@@ -33,5 +33,10 @@
       <version>3.8.1</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+    <groupId>org.uqbar-project</groupId>
+	    <artifactId>geodds-xtend</artifactId>
+	    <version>1.0.0</version>
+	</dependency>
   </dependencies>
 </project>
