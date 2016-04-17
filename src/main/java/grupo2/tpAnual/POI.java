@@ -2,14 +2,14 @@ package grupo2.tpAnual;
 
 
 public class POI {
-	public Direccion Direccion;
+	private Direccion _Direccion;
 	//public Point Point; 
 	
 	public Direccion getDireccion() {
-		return Direccion;
+		return _Direccion;
 	}
 
 	public void setDireccion(Direccion dir) {
-		this.Direccion = dir;
+		this._Direccion = dir;
 	}
 }
