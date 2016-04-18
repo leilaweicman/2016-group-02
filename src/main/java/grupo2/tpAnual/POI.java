@@ -1,5 +1,5 @@
 package grupo2.tpAnual;
-
+import java.util.Date;
 
 public abstract class POI {
 	private Direccion _Direccion;
@@ -21,6 +21,8 @@ public abstract class POI {
 	public String getPalabraClave(){
 		return _PalabraClave;
 	}
+	
+	abstract boolean estaDisponible(Date fecha); 
 	
 	abstract boolean Busqueda(String texto);
 	

@@ -1,4 +1,5 @@
 package grupo2.tpAnual;
+import java.util.Date;
 import java.util.List;
 
 
@@ -25,4 +26,10 @@ public class CGP extends POI{
 			return false;
 		}
 	}
+	
+	public boolean estaDisponible(Date fecha){		
+		//falta calculo
+		return true;
+	}
+	
 }

@@ -25,5 +25,11 @@ public class Parada extends POI{
 			return _Linea.equals(texto);
 		}
 	}
+	
+	public boolean estaDisponible(Date fecha){		
+		//falta calculo
+		return true;
+	}
+	
 }
 
