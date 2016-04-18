@@ -11,4 +11,7 @@ public class Banco {
 		this._Disponibilidad = dis;
 	}
 	
+	public boolean Busqueda (String txt){
+		return false;
+	}
 }

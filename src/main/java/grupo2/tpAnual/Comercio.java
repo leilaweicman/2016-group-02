@@ -10,4 +10,8 @@ public class Comercio {
 	public void setRubro(Rubro rub) {
 		this._Rubro = rub;
 	}
+	
+	public boolean Busqueda(String Texto){
+		return false;
+	}
 }
