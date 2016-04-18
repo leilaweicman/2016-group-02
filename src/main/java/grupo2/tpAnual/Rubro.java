@@ -28,4 +28,8 @@ public class Rubro {
 	public void setRadioCercania(int Radio) {
 		this._RadioCercania = Radio;
 	}
+	
+	public boolean Busqueda(String tipo){
+		return _Tipo.equals(tipo);
+	}
 }
