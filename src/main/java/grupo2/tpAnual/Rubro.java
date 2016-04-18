@@ -1,8 +1,17 @@
 package grupo2.tpAnual;
 
 public class Rubro {
+	private String _Tipo;
 	private int _RadioCercania;
 	private Disponibilidad _Disponibilidad;
+	
+	public String getTipo() {
+		return _Tipo;
+	}
+
+	public void setTipo(String tip) {
+		this._Tipo = tip;
+	}
 	
 	public Disponibilidad getDisponibilidad() {
 		return _Disponibilidad;
