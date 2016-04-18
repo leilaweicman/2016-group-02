@@ -4,7 +4,7 @@ public class Servicio {
 	private String _Nombre;
 	private Disponibilidad _Disponibilidad;
 	
-	public String _Nombre() {
+	public String getNombre() {
 		return _Nombre;
 	}
 
