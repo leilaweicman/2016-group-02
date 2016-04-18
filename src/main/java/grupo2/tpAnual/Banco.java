@@ -1,9 +1,11 @@
 package grupo2.tpAnual;
-
 import java.util.Date;
+
 
 public class Banco extends POI {
 	private Rango _Disponibilidad;
+	
+	
 	
 	public Rango getDisponibilidad() {
 		return _Disponibilidad;
@@ -18,6 +20,7 @@ public class Banco extends POI {
 	}
 	
 	public boolean estaDisponible(Date fecha){		
+		//falta calculo
 		return true;
 	}
 	

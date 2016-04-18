@@ -27,7 +27,6 @@ public class Parada extends POI{
 	}
 	
 	public boolean estaDisponible(Date fecha){		
-		//falta calculo
 		return true;
 	}
 	
