@@ -5,23 +5,10 @@ import org.joda.time.Hours;
 public class Rango {
 	//Falta definir bien bien como usarlo
 	
-	private DateTimeConstants diaDesde;
-	private DateTimeConstants diaHasta;
+	private DateTimeConstants dia;
 	private Hours horaDesde;
-	private Hours horaHasta;
+	private Hours horaHasta;	
 	
-	public DateTimeConstants getDiaDesde() {
-		return diaDesde;
-	}
-	public void setDiaDesde(DateTimeConstants diaDesde) {
-		this.diaDesde = diaDesde;
-	}
-	public DateTimeConstants getDiaHasta() {
-		return diaHasta;
-	}
-	public void setDiaHasta(DateTimeConstants diaHasta) {
-		this.diaHasta = diaHasta;
-	}
 	public Hours getHoraDesde() {
 		return horaDesde;
 	}
@@ -33,5 +20,11 @@ public class Rango {
 	}
 	public void setHoraHasta(Hours horaHasta) {
 		this.horaHasta = horaHasta;
+	}
+	public DateTimeConstants getDia() {
+		return dia;
+	}
+	public void setDia(DateTimeConstants dia) {
+		this.dia = dia;
 	}
 }
