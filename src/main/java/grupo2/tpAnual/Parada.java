@@ -3,13 +3,13 @@ package grupo2.tpAnual;
 import java.util.Date;
 
 public class Parada extends POI{
-	private int _Linea;
+	private String _Linea;
 	
-	public int getLinea() {
+	public String getLinea() {
 		return _Linea;
 	}
 
-	public void setLinea(int linea) {
+	public void setLinea(String linea) {
 		this._Linea = linea;
 	}
 	
