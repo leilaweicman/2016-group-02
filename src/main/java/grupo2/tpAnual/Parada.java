@@ -16,4 +16,9 @@ public class Parada extends POI{
 	public boolean CalcularDisponibilidad(Date fecha){
 		return true;
 	}
+	
+	public boolean Busqueda (String linea){
+		return _Linea.equals(linea);
+	}
 }
+
