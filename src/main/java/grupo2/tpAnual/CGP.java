@@ -12,5 +12,12 @@ public class CGP {
 		this._Servicios = ser;
 	}
 	
-	
+	public boolean Busqueda (CharSequence nombre){
+		for (Servicio ser : _Servicios){
+			if(ser.getNombre().contains(nombre)){
+				return true;
+			}
+		}
+		return false;
+	}
 }

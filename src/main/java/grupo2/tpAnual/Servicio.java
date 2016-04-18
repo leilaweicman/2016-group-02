@@ -19,8 +19,4 @@ public class Servicio {
 	public void setDisponibilidad(Disponibilidad dis) {
 		this._Disponibilidad = dis;
 	}
-	
-	public boolean Busqueda (CharSequence nombre){
-		return _Nombre.contains(nombre);
-	}
 }
