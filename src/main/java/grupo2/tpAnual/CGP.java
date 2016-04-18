@@ -2,7 +2,7 @@ package grupo2.tpAnual;
 import java.util.List;
 
 
-public class CGP {
+public class CGP extends POI{
 	private List<Servicio> _Servicios;
 	
 	public List<Servicio> getServicios(){
@@ -12,12 +12,17 @@ public class CGP {
 		this._Servicios = ser;
 	}
 	
-	public boolean Busqueda (CharSequence nombre){
-		for (Servicio ser : _Servicios){
-			if(ser.getNombre().contains(nombre)){
-				return true;
+	public boolean Busqueda (String texto){
+		if(getPalabraClave().equals(texto))
+		{
+			return true;
+		}else{
+			for (Servicio ser : _Servicios){
+				if(ser.getNombre().contains(texto)){
+					return true;
+				}
 			}
+			return false;
 		}
-		return false;
 	}
 }

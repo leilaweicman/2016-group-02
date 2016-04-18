@@ -1,6 +1,6 @@
 package grupo2.tpAnual;
 
-public class Comercio {
+public class Comercio extends POI{
 	private Rubro _Rubro;
 	
 	public Rubro getRubro() {
@@ -12,6 +12,6 @@ public class Comercio {
 	}
 	
 	public boolean Busqueda(String Texto){
-		return false;
+		return getPalabraClave().equals(Texto);
 	}
 }

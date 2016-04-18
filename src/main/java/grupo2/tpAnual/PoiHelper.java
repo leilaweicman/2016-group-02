@@ -11,13 +11,11 @@ public class PoiHelper {
 	public List<POI> getPOIs(){
 		return _POIs;
 	}
-	
+		
 	public void agregarPOI(POI p){
 		_POIs.add(p);
 	}
 	
-	//Falta definir que pasa en comercio y en el banco
-	//y entender que significa que esten etiquetados mediante una palabra clave
 	public List<POI> Busqueda (String txtABuscar){
 		List<POI> result = new ArrayList<POI>();
 		for(POI poi : _POIs){

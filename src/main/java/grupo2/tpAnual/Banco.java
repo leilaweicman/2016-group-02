@@ -1,6 +1,6 @@
 package grupo2.tpAnual;
 
-public class Banco {
+public class Banco extends POI {
 	private Disponibilidad _Disponibilidad;
 	
 	public Disponibilidad getDisponibilidad() {
@@ -11,7 +11,7 @@ public class Banco {
 		this._Disponibilidad = dis;
 	}
 	
-	public boolean Busqueda (String txt){
-		return false;
+	public boolean Busqueda (String Texto){
+		return getPalabraClave().equals(Texto);
 	}
 }

@@ -17,8 +17,13 @@ public class Parada extends POI{
 		return true;
 	}
 	
-	public boolean Busqueda (String linea){
-		return _Linea.equals(linea);
+	public boolean Busqueda (String texto){
+		if(getPalabraClave().equals(texto))
+		{
+			return true;
+		}else{
+			return _Linea.equals(texto);
+		}
 	}
 }
 
