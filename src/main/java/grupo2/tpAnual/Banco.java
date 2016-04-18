@@ -1,13 +1,13 @@
 package grupo2.tpAnual;
 
 public class Banco extends POI {
-	private Disponibilidad _Disponibilidad;
+	private Rango _Disponibilidad;
 	
-	public Disponibilidad getDisponibilidad() {
+	public Rango getDisponibilidad() {
 		return _Disponibilidad;
 	}
 
-	public void setDisponibilidad(Disponibilidad dis) {
+	public void setDisponibilidad(Rango dis) {
 		this._Disponibilidad = dis;
 	}
 	

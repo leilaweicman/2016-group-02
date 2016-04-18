@@ -2,7 +2,7 @@ package grupo2.tpAnual;
 
 public class Servicio {
 	private String _Nombre;
-	private Disponibilidad _Disponibilidad;
+	private Rango _Disponibilidad;
 	
 	public String getNombre() {
 		return _Nombre;
@@ -12,11 +12,11 @@ public class Servicio {
 		this._Nombre = Nom;
 	}
 	
-	public Disponibilidad getDisponibilidad() {
+	public Rango getDisponibilidad() {
 		return _Disponibilidad;
 	}
 
-	public void setDisponibilidad(Disponibilidad dis) {
+	public void setDisponibilidad(Rango dis) {
 		this._Disponibilidad = dis;
 	}
 }

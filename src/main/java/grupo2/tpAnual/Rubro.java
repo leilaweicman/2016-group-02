@@ -3,7 +3,7 @@ package grupo2.tpAnual;
 public class Rubro {
 	private String _Tipo;
 	private int _RadioCercania;
-	private Disponibilidad _Disponibilidad;
+	private Rango _Disponibilidad;
 	
 	public String getTipo() {
 		return _Tipo;
@@ -13,11 +13,11 @@ public class Rubro {
 		this._Tipo = tip;
 	}
 	
-	public Disponibilidad getDisponibilidad() {
+	public Rango getDisponibilidad() {
 		return _Disponibilidad;
 	}
 
-	public void setDisponibilidad(Disponibilidad dis) {
+	public void setDisponibilidad(Rango dis) {
 		this._Disponibilidad = dis;
 	}
 	
