@@ -2,6 +2,8 @@ package grupo2.tpAnual;
 import java.util.ArrayList;
 import java.util.Date;
 
+import org.uqbar.geodds.Point;
+
 //import org.joda.time.DateTimeConstants;
 
 public class Banco extends POI {	
@@ -34,6 +36,10 @@ public class Banco extends POI {
 	public boolean estaDisponible(Date fecha){		
 		//falta calculo
 		return true;
+	}
+	
+	public boolean estaCerca(Point coordenadaDeseada){
+		return (this._Ubicacion.distance(coordenadaDeseada)<0.5);
 	}
 	
 }
