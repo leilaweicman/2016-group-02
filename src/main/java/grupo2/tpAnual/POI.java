@@ -7,6 +7,7 @@ public abstract class POI {
 	private Direccion _Direccion;
 	private String _PalabraClave;
 	protected Point _Ubicacion;
+	protected Comuna _Comuna;
 	//public Point Point; 
 	
 	public Direccion getDireccion() {
@@ -28,12 +29,16 @@ public abstract class POI {
 	
 	abstract boolean Busqueda(String texto);
 	
-	public void setUbicacion (double latitud, double longitud){
+	public void setUbicacion(double latitud, double longitud){
 		this._Ubicacion=Point.and(latitud, longitud);
 	}
 	abstract boolean estaCerca(Point p);
 	
 	public Point getUbicacion (){
 		return _Ubicacion;
+	}
+	
+	public void setComuna(Comuna com){
+		this._Comuna = com;
 	}
 }

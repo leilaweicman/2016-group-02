@@ -2,6 +2,9 @@ package grupo2.tpAnual;
 import java.util.Date;
 import java.util.List;
 
+import org.uqbar.geodds.Point;
+
+
 
 public class CGP extends POI{
 	private List<Servicio> _Servicios;
@@ -26,10 +29,14 @@ public class CGP extends POI{
 			return false;
 		}
 	}
-	
+
 	public boolean estaDisponible(Date fecha){		
 		//falta calculo
 		return true;
+	}
+	//se lo delego a la comuna 
+	public boolean estaCerca(Point p) {
+		return (this._Comuna.laTenesAdentro(p));
 	}
 	
 	

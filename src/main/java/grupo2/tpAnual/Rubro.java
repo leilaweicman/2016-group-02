@@ -2,7 +2,7 @@ package grupo2.tpAnual;
 
 public class Rubro {
 	private String _Tipo;
-	private int _RadioCercania;
+	private double _RadioCercania;
 	private Rango _Disponibilidad;
 	
 	public String getTipo() {
@@ -21,11 +21,11 @@ public class Rubro {
 		this._Disponibilidad = dis;
 	}
 	
-	public int getRadioCercania() {
+	public double getRadioCercania() {
 		return _RadioCercania;
 	}
 
-	public void setRadioCercania(int Radio) {
+	public void setRadioCercania(double Radio) {
 		this._RadioCercania = Radio;
 	}
 	
