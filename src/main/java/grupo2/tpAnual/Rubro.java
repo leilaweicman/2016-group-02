@@ -26,6 +26,7 @@ public class Rubro {
 	}
 
 	public void setRadioCercania(double Radio) {
+	//El radio de cercania tiene que ser en kilometros.
 		this._RadioCercania = Radio;
 	}
 	
