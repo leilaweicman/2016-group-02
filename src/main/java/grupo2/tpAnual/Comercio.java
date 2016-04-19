@@ -2,6 +2,8 @@ package grupo2.tpAnual;
 
 import java.util.Date;
 
+import org.uqbar.geodds.Point;
+
 public class Comercio extends POI{
 	private Rubro _Rubro;
 	private Rango _Disponibilidad;
@@ -30,4 +32,9 @@ public class Comercio extends POI{
 		//falta calculo
 		return true;
 	}
+	
+	public boolean estaCerca(Point coordenadaDeseada){
+		return (this._Ubicacion.distance(coordenadaDeseada)<_Rubro.getRadioCercania());
+	}
+		
 }
