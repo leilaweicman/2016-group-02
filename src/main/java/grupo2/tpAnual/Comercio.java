@@ -1,13 +1,17 @@
 package grupo2.tpAnual;
-import java.util.Date;
 import org.uqbar.geodds.Point;
 import java.util.*;
 
 public class Comercio extends POI{
 	private Rubro _Rubro;
+	private ArrayList<Rango> rangoDisponibilidad = new ArrayList<Rango>();
 	private Map<String,ArrayList<Rango>> diasYRangos= new HashMap<String,ArrayList<Rango>>();
 	
-	public Comercio(){}
+	//no haria falta un constructor
+	public Comercio(){
+		
+	}
+	
 	public Comercio(HashMap<String,ArrayList<Rango>> disponibilidadDelComercio){
 		diasYRangos.put("lunes", disponibilidadDelComercio.get("lunes"));
 		diasYRangos.put("martes", disponibilidadDelComercio.get("martes"));
@@ -18,9 +22,25 @@ public class Comercio extends POI{
 		diasYRangos.put("domingo", disponibilidadDelComercio.get("domingo"));		
 	}
 	
+	
+	
 	public Map<String,ArrayList<Rango>> getDiasYRangos() {
 		return diasYRangos;
 	}
+	
+	public ArrayList<Rango> getRango() {
+		return rangoDisponibilidad;
+	}
+
+	public void setRango(ArrayList<Rango> rango) {
+		this.rangoDisponibilidad = rango;
+	}
+	
+	public void addRango(Rango rango) {
+		this.rangoDisponibilidad.add(rango);
+	}
+	
+	
 	
 	public Rubro getRubro() {
 		return _Rubro;

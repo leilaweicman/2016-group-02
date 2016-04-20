@@ -1,11 +1,14 @@
 package grupo2.tpAnual;
-//import org.joda.time.DateTimeConstants;
-//import org.joda.time.Hours;
+import java.time.LocalTime;
+
 
 public class Rango {	
 	private String dia;
 	private String horaDesde;
 	private String horaHasta;	
+	
+	private LocalTime hora;
+	
 	
 	public String getHoraDesde() {
 		return horaDesde;
@@ -24,5 +27,13 @@ public class Rango {
 	}
 	public void setDia(String day) {
 		this.dia = day;
+	}
+	
+	
+	public LocalTime getHora() {
+		return hora;
+	}
+	public void setHora(LocalTime hora) {
+		this.hora = hora;
 	}
 }
