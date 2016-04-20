@@ -1,12 +1,26 @@
 package grupo2.tpAnual;
-
 import java.util.Date;
-
 import org.uqbar.geodds.Point;
+import java.util.*;
 
 public class Comercio extends POI{
 	private Rubro _Rubro;
-	private Rango _Disponibilidad;
+	private Map<String,ArrayList<Rango>> diasYRangos= new HashMap<String,ArrayList<Rango>>();
+	
+	public Comercio(){}
+	public Comercio(HashMap<String,ArrayList<Rango>> disponibilidadDelComercio){
+		diasYRangos.put("lunes", disponibilidadDelComercio.get("lunes"));
+		diasYRangos.put("martes", disponibilidadDelComercio.get("martes"));
+		diasYRangos.put("miercoles", disponibilidadDelComercio.get("miercoles"));
+		diasYRangos.put("jueves", disponibilidadDelComercio.get("jueves"));
+		diasYRangos.put("viernes", disponibilidadDelComercio.get("viernes"));
+		diasYRangos.put("sabado", disponibilidadDelComercio.get("sabado"));
+		diasYRangos.put("domingo", disponibilidadDelComercio.get("domingo"));		
+	}
+	
+	public Map<String,ArrayList<Rango>> getDiasYRangos() {
+		return diasYRangos;
+	}
 	
 	public Rubro getRubro() {
 		return _Rubro;
@@ -18,14 +32,6 @@ public class Comercio extends POI{
 	
 	public boolean Busqueda(String Texto){
 		return getPalabraClave().equals(Texto);
-	}
-	
-	public Rango getDisponibilidad() {
-		return _Disponibilidad;
-	}
-
-	public void setDisponibilidad(Rango dis) {
-		this._Disponibilidad = dis;
 	}
 	
 	public boolean estaDisponible(Date fecha){		
