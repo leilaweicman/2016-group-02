@@ -17,7 +17,7 @@ public class CGP extends POI{
 	}
 	
 	public boolean Busqueda (String texto){
-		if(getPalabraClave().equals(texto))
+		if(getPalabraClave().contains(texto))
 		{
 			return true;
 		}else{
