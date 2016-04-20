@@ -2,29 +2,27 @@ package grupo2.tpAnual;
 import org.joda.time.DateTimeConstants;
 import org.joda.time.Hours;
 
-public class Rango {
-	//Falta definir bien bien como usarlo
+public class Rango {	
+	private String dia;
+	private String horaDesde;
+	private String horaHasta;	
 	
-	private DateTimeConstants dia;
-	private Hours horaDesde;
-	private Hours horaHasta;	
-	
-	public Hours getHoraDesde() {
+	public String getHoraDesde() {
 		return horaDesde;
 	}
-	public void setHoraDesde(Hours horaDesde) {
+	public void setHoraDesde(String horaDesde) {
 		this.horaDesde = horaDesde;
 	}
-	public Hours getHoraHasta() {
+	public String getHoraHasta() {
 		return horaHasta;
 	}
-	public void setHoraHasta(Hours horaHasta) {
+	public void setHoraHasta(String horaHasta) {
 		this.horaHasta = horaHasta;
 	}
-	public DateTimeConstants getDia() {
+	public String getDia() {
 		return dia;
 	}
-	public void setDia(DateTimeConstants dia) {
-		this.dia = dia;
+	public void setDia(String day) {
+		this.dia = day;
 	}
 }

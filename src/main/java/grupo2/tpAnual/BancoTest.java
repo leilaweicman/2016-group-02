@@ -2,10 +2,19 @@ package grupo2.tpAnual;
 
 import static org.junit.Assert.*;
 
+import org.junit.Before;
 import org.junit.Test;
 
 public class BancoTest {
+	private POI santander;
 
+	
+	@Before
+	public void init(){
+		santander = new Banco();
+		
+	}
+	
 	@Test
 	public void testEstaDisponible() {
 		fail("Not yet implemented");

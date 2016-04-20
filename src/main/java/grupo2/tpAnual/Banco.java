@@ -8,12 +8,23 @@ import org.uqbar.geodds.Point;
 
 public class Banco extends POI {	
 	private ArrayList<Rango> rangoDisponibilidad = new ArrayList<Rango>();
+	private ArrayList<String> days = new ArrayList<String>();
 	
 	//constructor
 	public Banco(){
-		/*Rango rango;
-		rango.setDia(DateTimeConstants.MONDAY);
-		this.addRango(rango);*/
+		days.add("lunes");
+		days.add("martes");
+		days.add("miercoles");
+		days.add("jueves");
+		days.add("viernes");
+		
+		for (String day : days){
+			Rango unRango = new Rango();
+			unRango.setDia(day);
+			unRango.setHoraDesde("10:00");
+			unRango.setHoraHasta("15:00");
+			rangoDisponibilidad.add(unRango);
+		}
 	}
 	
 	public ArrayList<Rango> getRango() {
