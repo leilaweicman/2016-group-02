@@ -1,18 +1,34 @@
 package grupo2.tpAnual;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.uqbar.geodds.Point;
 
-//import org.joda.time.DateTimeConstants;
 
 public class Banco extends POI {	
 	private ArrayList<Rango> rangoDisponibilidad = new ArrayList<Rango>();
-	private ArrayList<String> days = new ArrayList<String>();
-	
+	//private ArrayList<String> days = new ArrayList<String>();
+		private Map<String,ArrayList<Rango>> diasYRangos= new HashMap<String,ArrayList<Rango>>();
+		
 	//constructor
 	public Banco(){
-		days.add("lunes");
+		
+		Rango rango = new Rango();
+		rango.setHoraDesde("10:00");
+		rango.setHoraHasta("15:00");
+		addRango(rango);
+		diasYRangos.put("lunes", getRango());
+		diasYRangos.put("martes", getRango());
+		diasYRangos.put("miercoles", getRango());
+		diasYRangos.put("jueves ",getRango());
+		diasYRangos.put("viernes", getRango());
+		diasYRangos.put("sabado", getRango());
+		diasYRangos.put("domingo", getRango());		
+		
+		
+		/*days.add("lunes");
 		days.add("martes");
 		days.add("miercoles");
 		days.add("jueves");
@@ -24,7 +40,11 @@ public class Banco extends POI {
 			unRango.setHoraDesde("10:00");
 			unRango.setHoraHasta("15:00");
 			rangoDisponibilidad.add(unRango);
-		}
+		}*/
+	}
+	
+	public Map<String,ArrayList<Rango>> getDiasYRangos() {
+		return diasYRangos;
 	}
 	
 	public ArrayList<Rango> getRango() {
