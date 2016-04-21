@@ -61,7 +61,7 @@ public class Banco extends POI {
 	
 	
 	public boolean Busqueda (String Texto){
-		return getPalabraClave().equals(Texto);
+		return getPalabraClave().contains(Texto);
 	}
 	
 	public boolean estaDisponible(Date fecha){		

@@ -1,14 +1,23 @@
 package grupo2.tpAnual;
+import java.util.ArrayList;
 import java.util.Date;
-import org.joda.time.DateTime;
+
+//import org.joda.time.DateTime;
+
+import java.util.List;
+
 import org.uqbar.geodds.Point;
 
 public abstract class POI {
 	private Direccion _Direccion;
-	private String _PalabraClave;
+	private List<String> _PalabraClave;
 	protected Point _Ubicacion;
 	protected Comuna _Comuna;
 	//public Point Point; 
+	
+	public POI(){
+		_PalabraClave = new ArrayList<String>();
+	}
 	
 	public Direccion getDireccion() {
 		return _Direccion;
@@ -18,10 +27,10 @@ public abstract class POI {
 		this._Direccion = dir;
 	}
 	
-	public void setPalabraClave(String pc){
-		this._PalabraClave = pc;
+	public void addPalabraClave(String pc){
+		this._PalabraClave.add(pc);
 	}
-	public String getPalabraClave(){
+	public List<String> getPalabraClave(){
 		return _PalabraClave;
 	}
 	

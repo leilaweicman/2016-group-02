@@ -19,8 +19,9 @@ public class Parada extends POI{
 		return true;
 	}
 	
+	//En el caso de la parada la lista va a ser siempre de un elemento porque la parada es de una linea nomas
 	public boolean Busqueda (String texto){
-		if(getPalabraClave().equals(texto))
+		if(getPalabraClave().contains(texto))
 		{
 			return true;
 		}else{

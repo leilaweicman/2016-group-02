@@ -52,7 +52,7 @@ public class Comercio extends POI{
 	}
 	
 	public boolean Busqueda(String Texto){
-		return getPalabraClave().equals(Texto);
+		return getPalabraClave().contains(Texto);
 	}
 	
 	//borrar esto
