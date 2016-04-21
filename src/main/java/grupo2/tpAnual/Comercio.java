@@ -32,12 +32,7 @@ public class Comercio extends POI{
 	public boolean Busqueda(String Texto){
 		return getPalabraClave().contains(Texto);
 	}
-	
-	//borrar esto
-	 public boolean estaDisponible (Date fecha){
-		 return true;
-	 }
-	 
+		 
 	public boolean estaDisponible(DateTime momento, String nombre){		
 		int dia= momento.getDayOfWeek();
 		int hora = momento.getHourOfDay();

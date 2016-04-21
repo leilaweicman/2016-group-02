@@ -26,17 +26,14 @@ public class Parada extends POI{
 		}
 	}
 	
-	public boolean estaDisponible(Date fecha){		
-		return true;
-	}
-	
-	public boolean estaDisponibile(DateTime momento){
-		//las paradas siempre estan disponibles
-		return true;
-	}
-	
 	public boolean estaCerca(Point coordenadaDeseada){
 		return (this._Ubicacion.distance(coordenadaDeseada)<0.1);
+	}
+
+
+	public boolean estaDisponible(DateTime momento, String nombreServicio) {
+		//las paradas siempre estan disponibles
+		return true;
 	}
 	
 }

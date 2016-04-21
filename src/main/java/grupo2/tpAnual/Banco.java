@@ -45,11 +45,6 @@ public class Banco extends POI {
 		return getPalabraClave().contains(Texto);
 	}
 	
-	public boolean estaDisponible(Date fecha){		
-		//falta calculo
-		return true; 
-	}
-	
 	public boolean estaDisponible(DateTime momento, String nombre){		
 		int dia= momento.getDayOfWeek();
 		int hora = momento.getHourOfDay();

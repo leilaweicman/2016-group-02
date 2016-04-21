@@ -2,6 +2,8 @@ package grupo2.tpAnual;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import org.joda.time.DateTime;
 import org.uqbar.geodds.Point;
 
 public abstract class POI {
@@ -29,10 +31,8 @@ public abstract class POI {
 	public List<String> getPalabraClave(){
 		return _PalabraClave;
 	}
-	
-	abstract boolean estaDisponible(Date fecha); 
-	
-	//abstract boolean estaDisponible (DateTime momento);
+		
+	abstract boolean estaDisponible (DateTime momento, String nombreServicio);
 	 
 	abstract boolean Busqueda(String texto);
 	

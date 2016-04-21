@@ -28,11 +28,6 @@ public class CGP extends POI{
 			return false;
 		}
 	}
-
-	public boolean estaDisponible(Date fecha){		
-		//falta calculo
-		return true;
-	}
 	
 	public boolean estaDisponible(DateTime momento, String nombreServicio){		
 		boolean disponible=false;
