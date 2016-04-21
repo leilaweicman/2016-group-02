@@ -1,4 +1,5 @@
 package grupo2.tpAnual;
+import org.joda.time.DateTime;
 import org.uqbar.geodds.Point;
 import java.util.*;
 
@@ -54,9 +55,14 @@ public class Comercio extends POI{
 		return getPalabraClave().equals(Texto);
 	}
 	
-	public boolean estaDisponible(Date fecha){		
-		//falta calculo
-		return true;
+	//borrar esto
+	 public boolean estaDisponible (Date fecha){
+		 return true;
+	 }
+	 
+	public Integer estaDisponible(DateTime momento){		
+		int dia= momento.getDayOfWeek();		
+		return dia;
 	}
 	
 	public boolean estaCerca(Point coordenadaDeseada){

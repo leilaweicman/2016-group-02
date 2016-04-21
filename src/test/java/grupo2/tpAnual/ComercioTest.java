@@ -1,38 +1,44 @@
 package grupo2.tpAnual;
-import static org.junit.Assert.*;
 import java.time.LocalTime;
-
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 public class ComercioTest 
 {
-	private Comercio comercio;
-	private LocalTime hora;
-	private LocalTime hora2;
-	private Rango unRango;
-	@Before
-	public void init(){
-		comercio= new Comercio();
-		unRango = new Rango();
-		hora2= LocalTime.of(9,30);
-		hora= LocalTime.of(9,30);		
-		unRango.setDia("lunes");
-		unRango.setHora(hora);
-		//unRango.setHora(hora);
-		comercio.addRango(unRango);
-	}
-	
-	@Test
-	public void EstaEntre() {
-		//no se pueden comparar dos horas
-		//Assert.assertTrue(hora2 < hora);
-	}
-	
-	@Test
-	public void test() {
-		fail("Not yet implemented");
-	}
+ private Comercio comercio;
+ private LocalTime horaUsuario;
+ private String diaUsuario;
+ private Rango unRango;
+ 
+ @Before
+ public void init(){
+  comercio= new Comercio();
+  unRango = new Rango();
+  
+  horaUsuario=LocalTime.of(9,30);
+  diaUsuario = "lunes";
+  
+  unRango.setDia("lunes");
+  unRango.setHoraDesde(LocalTime.of(9,00));
+  unRango.setHoraHasta(LocalTime.of(13,00));  
+  comercio.addRango(unRango);  
+ }
+ 
+ 
+ /*compare to: hora > hora2 devuelve 1
+  *     hora < hora2 devuelve -1
+  *     hora = hora2 devuelve 0
+ */
+ 
+ @Test
+ public void estaEntre() {
+  
+  //for 
+  //un if preguntando si el rango.getDia es igual al diaUsuario
+  //si es igual verfica que el horaUsuario este entre horaDesde y horaHasta
+  
+  Assert.assertTrue((unRango.getHoraDesde()).compareTo(horaUsuario) == -1);
+ }
 
 }

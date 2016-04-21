@@ -21,13 +21,11 @@ public class Banco extends POI {
 		for (String day : days){
 			Rango unRango = new Rango();
 			unRango.setDia(day);
-			unRango.setHoraDesde("10:00");
-			unRango.setHoraHasta("15:00");
+			//unRango.setHoraDesde("10:00");
+			//unRango.setHoraHasta("15:00");
 			rangoDisponibilidad.add(unRango);
 		}
-	}
-	
-	
+	}	
 	//constructor con dicc
 	/*public Banco(){
 			
@@ -68,7 +66,7 @@ public class Banco extends POI {
 	
 	public boolean estaDisponible(Date fecha){		
 		//falta calculo
-		return true;
+		return true; 
 	}
 	
 	public boolean estaCerca(Point coordenadaDeseada){

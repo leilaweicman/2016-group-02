@@ -4,22 +4,21 @@ import java.time.LocalTime;
 
 public class Rango {	
 	private String dia;
-	private String horaDesde;
-	private String horaHasta;	
-	
-	private LocalTime hora;
+	private LocalTime horaDesde;
+	private LocalTime horaHasta;	
 	
 	
-	public String getHoraDesde() {
+	
+	public LocalTime getHoraDesde() {
 		return horaDesde;
 	}
-	public void setHoraDesde(String horaDesde) {
+	public void setHoraDesde(LocalTime horaDesde) {
 		this.horaDesde = horaDesde;
 	}
-	public String getHoraHasta() {
+	public LocalTime getHoraHasta() {
 		return horaHasta;
 	}
-	public void setHoraHasta(String horaHasta) {
+	public void setHoraHasta(LocalTime horaHasta) {
 		this.horaHasta = horaHasta;
 	}
 	public String getDia() {
@@ -30,10 +29,4 @@ public class Rango {
 	}
 	
 	
-	public LocalTime getHora() {
-		return hora;
-	}
-	public void setHora(LocalTime hora) {
-		this.hora = hora;
-	}
 }
