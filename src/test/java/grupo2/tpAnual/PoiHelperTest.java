@@ -32,6 +32,8 @@ public class PoiHelperTest {
 	
 		this.santander = new Banco();
 		this.santander.setUbicacion(-34.666612, -58.3858490);
+		this.santander.addPalabraClave("plazoFijo");
+		this.santander.addPalabraClave("dolar");
 		
 		this.p114 = new Parada();
 		this.p114.setUbicacion(-34.664837, -58.385674);
@@ -64,6 +66,11 @@ public class PoiHelperTest {
 		this.zara.setRubro(ropa);
 		this.ropa.setRadioCercania(0.3);
 		
+	}
+	
+	@Test
+	public void testEstaPalabraClave(){
+		Assert.assertTrue(santander.Busqueda("plazoFijo"));
 	}
 	
 	@Test
