@@ -2,6 +2,7 @@ package grupo2.tpAnual;
 
 import java.util.Date;
 
+import org.joda.time.DateTime;
 import org.uqbar.geodds.Point;
 
 public class Parada extends POI{
@@ -13,10 +14,6 @@ public class Parada extends POI{
 
 	public void setLinea(String linea) {
 		this._Linea = linea;
-	}
-	
-	public boolean CalcularDisponibilidad(Date fecha){
-		return true;
 	}
 	
 	//En el caso de la parada la lista va a ser siempre de un elemento porque la parada es de una linea nomas
@@ -33,9 +30,13 @@ public class Parada extends POI{
 		return true;
 	}
 	
+	public boolean estaDisponibile(DateTime momento){
+		//las paradas siempre estan disponibles
+		return true;
+	}
+	
 	public boolean estaCerca(Point coordenadaDeseada){
 		return (this._Ubicacion.distance(coordenadaDeseada)<0.1);
 	}
 	
 }
-
