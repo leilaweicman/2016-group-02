@@ -2,14 +2,17 @@ package grupo2.tpAnual;
 import java.sql.Time;
 import java.time.LocalTime;
 
+
 public class Rango {	
 	private String dia;
 	private LocalTime horaDesde;
-	private LocalTime horaHasta;	
+	private LocalTime horaHasta;
 	
+	private Integer day;
 	private Time horaD;
-	private Time horaH;	
-	private int day;
+	private Time horaH;
+	
+	
 	
 	public LocalTime getHoraDesde() {
 		return horaDesde;
@@ -29,6 +32,12 @@ public class Rango {
 	public void setDia(String day) {
 		this.dia = day;
 	}
+	public Integer getDay() {
+		return day;
+	}
+	public void setDay(Integer day) {
+		this.day = day;
+	}
 	public Time getHoraD() {
 		return horaD;
 	}
@@ -40,12 +49,6 @@ public class Rango {
 	}
 	public void setHoraH(Time horaH) {
 		this.horaH = horaH;
-	}
-	public int getDay() {
-		return day;
-	}
-	public void setDay(int day) {
-		this.day = day;
 	}
 	
 	
