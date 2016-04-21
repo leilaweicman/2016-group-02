@@ -1,6 +1,7 @@
 package grupo2.tpAnual;
 import java.util.Date;
 
+import org.joda.time.DateTime;
 import org.uqbar.geodds.Point;
 
 public abstract class POI {
@@ -26,6 +27,8 @@ public abstract class POI {
 	}
 	
 	abstract boolean estaDisponible(Date fecha); 
+	
+	//abstract String estaDisponible (DateTime momento);
 	
 	abstract boolean Busqueda(String texto);
 	

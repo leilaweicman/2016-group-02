@@ -1,20 +1,21 @@
 package grupo2.tpAnual;
 import java.time.LocalTime;
+import java.util.Date;
+import java.util.Scanner;
 
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.joda.time.DateTime;
 
-public class ComercioTest 
+public class App 
 {
-	private Comercio comercio;
-	private LocalTime hora;
-	private LocalTime hora2;
-	private Rango unRango;
-	private Rango otroRango;
-	private Rango miRango;
-	@Before
-	public void init(){
+	public static void main(String[] args) {
+		 Comercio comercio;
+		 LocalTime hora;
+		 LocalTime hora2;
+		 Rango unRango;
+		 Rango otroRango;
+		 Rango miRango;
+		 DateTime dt = new DateTime("2016-04-20T21:39:45");
+
 		comercio= new Comercio();
 		unRango = new Rango();
 		otroRango = new Rango();
@@ -31,17 +32,12 @@ public class ComercioTest
 		//unRango.setHora(hora);
 		comercio.addRango(unRango);
 		comercio.addRango(otroRango);
+		
+		int day = comercio.estaDisponible(dt);
+		
+		
+		
+	    	System.out.println(day);
 	}
-	
-	@Test
-	public void estaEntre() {
-		Assert.assertTrue(comercio.getRango().contains(miRango));
-		Assert.assertTrue(hora.compareTo(hora2) == -1);
-	}
-	
-	@Test
-	public void test() {
-		//fail("Not yet implemented");
-	}
-
+    
 }

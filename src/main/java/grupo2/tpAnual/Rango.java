@@ -13,8 +13,8 @@ public class Rango {
 	public String getHoraDesde() {
 		return horaDesde;
 	}
-	public void setHoraDesde(String horaDesde) {
-		this.horaDesde = horaDesde;
+	public void setHoraDesde(LocalTime hora2) {
+		this.horaDesde = hora2;
 	}
 	public String getHoraHasta() {
 		return horaHasta;

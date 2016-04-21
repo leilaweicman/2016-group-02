@@ -21,8 +21,8 @@ public class Banco extends POI {
 		for (String day : days){
 			Rango unRango = new Rango();
 			unRango.setDia(day);
-			unRango.setHoraDesde("10:00");
-			unRango.setHoraHasta("15:00");
+			//unRango.setHoraDesde("10:00");
+			//unRango.setHoraHasta("15:00");
 			rangoDisponibilidad.add(unRango);
 		}
 	}
