@@ -1,51 +1,32 @@
 package grupo2.tpAnual;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+
+import org.joda.time.DateTime;
 import org.uqbar.geodds.Point;
 
 public class Banco extends POI {	
 	private ArrayList<Rango> rangoDisponibilidad = new ArrayList<Rango>();
-	private ArrayList<String> days = new ArrayList<String>();
-	private Map<String,ArrayList<Rango>> diasYRangos= new HashMap<String,ArrayList<Rango>>();
-		
-	//constructor sin diccionario
+	private ArrayList<Integer> dias = new ArrayList<Integer>();
+	
+	//constructor
 	public Banco(){		
-		days.add("lunes");
-		days.add("martes");
-		days.add("miercoles");
-		days.add("jueves");
-		days.add("viernes");
+		dias.add(1);
+		dias.add(2);
+		dias.add(3);
+		dias.add(4);
+		dias.add(5);
 		
-		for (String day : days){
+		for (Integer dia : dias){
 			Rango unRango = new Rango();
-			unRango.setDia(day);
-			//unRango.setHoraDesde("10:00");
-			//unRango.setHoraHasta("15:00");
+			unRango.setDay(dia);
+			unRango.setHoraD(new Time (10,0,0));
+			unRango.setHoraH(new Time (15,0,0));
 			rangoDisponibilidad.add(unRango);
 		}
 	}	
-	//constructor con dicc
-	/*public Banco(){
-			
-		Rango rango = new Rango();
-		rango.setHoraDesde("10:00");
-		rango.setHoraHasta("15:00");
-		addRango(rango);
-		diasYRangos.put("lunes", getRango());
-		diasYRangos.put("martes", getRango());
-		diasYRangos.put("miercoles", getRango());
-		diasYRangos.put("jueves ",getRango());
-		diasYRangos.put("viernes", getRango());
-		diasYRangos.put("sabado", getRango());
-		diasYRangos.put("domingo", getRango());			
-		
-	}*/
 	
-	public Map<String,ArrayList<Rango>> getDiasYRangos() {
-		return diasYRangos;
-	}
 	
 	public ArrayList<Rango> getRango() {
 		return rangoDisponibilidad;
@@ -67,6 +48,25 @@ public class Banco extends POI {
 	public boolean estaDisponible(Date fecha){		
 		//falta calculo
 		return true; 
+	}
+	
+	public boolean estaDisponible(DateTime momento){		
+		int dia= momento.getDayOfWeek();
+		int hora = momento.getHourOfDay();
+		int minutos = momento.getMinuteOfHour();
+		int segundos = momento.getSecondOfMinute();
+		
+		Time horaCompleta = new Time(hora, minutos, segundos);
+		boolean disponible = false;
+		for (Rango rango : rangoDisponibilidad){
+			  
+			if( (dia == rango.getDay()) && 
+					((rango.getHoraD()).compareTo(horaCompleta) == -1)
+					 && ((rango.getHoraH()).compareTo(horaCompleta) == 1)){
+				disponible=true;				
+			}			
+		}	
+		return disponible; 
 	}
 	
 	public boolean estaCerca(Point coordenadaDeseada){

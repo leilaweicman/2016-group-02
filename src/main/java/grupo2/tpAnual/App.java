@@ -8,8 +8,6 @@ public class App
 {
 	public static void main(String[] args) {
 		Comercio comercio;
-		Time hora= new Time (9,0,0);
-		Time hora2;
 		Rango unRango;
 		Rango otroRango;
 		Rango rango;
