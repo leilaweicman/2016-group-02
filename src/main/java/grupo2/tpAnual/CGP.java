@@ -12,7 +12,7 @@ public class CGP extends POI{
 	public List<Servicio> getServicios(){
 		return _Servicios;
 	}
-	public void setServicio(List<Servicio> ser) {
+	public void setServicios(List<Servicio> ser) {
 		this._Servicios = ser;
 	}
 	
