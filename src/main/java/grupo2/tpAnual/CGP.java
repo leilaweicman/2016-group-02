@@ -2,18 +2,19 @@ package grupo2.tpAnual;
 import java.util.Date;
 import java.util.List;
 
+import org.joda.time.DateTime;
 import org.uqbar.geodds.Point;
 
 
 
 public class CGP extends POI{
-	private List<Servicio> _Servicios;
+	private List<Servicio> servicios;
 	
 	public List<Servicio> getServicios(){
-		return _Servicios;
+		return servicios;
 	}
 	public void setServicios(List<Servicio> ser) {
-		this._Servicios = ser;
+		this.servicios = ser;
 	}
 	
 	public boolean Busqueda (String texto){
@@ -21,7 +22,7 @@ public class CGP extends POI{
 		{
 			return true;
 		}else{
-			for (Servicio ser : _Servicios){
+			for (Servicio ser : servicios){
 				if(ser.getNombre().contains(texto)){
 					return true;
 				}
@@ -34,6 +35,28 @@ public class CGP extends POI{
 		//falta calculo
 		return true;
 	}
+	
+	public boolean estaDisponible (DateTime momento, String nombreServicio){
+		boolean disponible = false;
+		if (nombreServicio != ""){
+			for (Servicio servicio : servicios){
+				if (servicio.getNombre()== nombreServicio){
+					disponible = servicio.estaDisponible(momento);
+				}
+			}
+		} else {
+			int cont = 0;
+			Servicio[] serviciosArray = new Servicio[servicios.size()];
+			serviciosArray = servicios.toArray(serviciosArray);
+			
+			while (disponible == false){
+				cont++;
+				disponible = serviciosArray[cont].estaDisponible(momento);
+			}
+		}
+		return false;		
+	}
+	
 	//se lo delego a la comuna 
 	public boolean estaCerca(Point p) {
 		return (this._Comuna.laTenesAdentro(p));

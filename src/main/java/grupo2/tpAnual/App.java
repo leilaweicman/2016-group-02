@@ -40,7 +40,7 @@ public class App
 	 //  Time hour = comercio.estaDisponible(dt);
 	  
 	  
-	  boolean disp = comercio.estaDisponible(dt);
+	  boolean disp = comercio.estaDisponible(dt, "");
 	  
 	  System.out.println(disp);
 	}

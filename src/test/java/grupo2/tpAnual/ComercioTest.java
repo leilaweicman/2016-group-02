@@ -41,13 +41,13 @@ public class ComercioTest
  @Test
  public void estaDisponibleMiercolesALas10() {
 	 momento = new DateTime("2016-04-20T10:00:00");
-	 Assert.assertTrue(comercio.estaDisponible(momento)); 
+	 Assert.assertTrue(comercio.estaDisponible(momento, "")); 
  }
  
  @Test
  public void noEstaDisponibleMiercolesALas14() {
 	 momento = new DateTime("2016-04-20T14:00:00");
-	 Assert.assertFalse(comercio.estaDisponible(momento)); 
+	 Assert.assertFalse(comercio.estaDisponible(momento, "")); 
  }
 
 
