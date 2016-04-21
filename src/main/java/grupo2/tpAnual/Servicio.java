@@ -1,8 +1,6 @@
 package grupo2.tpAnual;
-
 import java.sql.Time;
 import java.util.ArrayList;
-
 import org.joda.time.DateTime;
 
 public class Servicio {
@@ -28,7 +26,7 @@ public class Servicio {
 	public void addRango(Rango rango) {
 		this.rangoDisponibilidad.add(rango);
 	}
-	
+
 	public boolean estaDisponible(DateTime momento) {
 		int dia= momento.getDayOfWeek();
 		int hora = momento.getHourOfDay();
@@ -47,7 +45,7 @@ public class Servicio {
 			}
 			
 		}
-		
 		return disponible;
 	}
+	
 }

@@ -5,8 +5,6 @@ import java.util.List;
 import org.joda.time.DateTime;
 import org.uqbar.geodds.Point;
 
-
-
 public class CGP extends POI{
 	private List<Servicio> servicios;
 	
@@ -36,26 +34,30 @@ public class CGP extends POI{
 		return true;
 	}
 	
-	public boolean estaDisponible (DateTime momento, String nombreServicio){
-		boolean disponible = false;
+	public boolean estaDisponible(DateTime momento, String nombreServicio){		
+		boolean disponible=false;
 		if (nombreServicio != ""){
+			
 			for (Servicio servicio : servicios){
+				
 				if (servicio.getNombre()== nombreServicio){
 					disponible = servicio.estaDisponible(momento);
 				}
 			}
-		} else {
+			
+		}else{
 			int cont = 0;
 			Servicio[] serviciosArray = new Servicio[servicios.size()];
-			serviciosArray = servicios.toArray(serviciosArray);
-			
+			serviciosArray = servicios.toArray(serviciosArray);			
 			while (disponible == false){
 				cont++;
-				disponible = serviciosArray[cont].estaDisponible(momento);
+				disponible = serviciosArray[cont].estaDisponible(momento);			
 			}
 		}
-		return false;		
+		return true;
 	}
+	
+	
 	
 	//se lo delego a la comuna 
 	public boolean estaCerca(Point p) {

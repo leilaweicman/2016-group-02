@@ -38,7 +38,7 @@ public class Comercio extends POI{
 		 return true;
 	 }
 	 
-	public boolean estaDisponible(DateTime momento, String servicio){		
+	public boolean estaDisponible(DateTime momento, String nombre){		
 		int dia= momento.getDayOfWeek();
 		int hora = momento.getHourOfDay();
 		int minutos = momento.getMinuteOfHour();

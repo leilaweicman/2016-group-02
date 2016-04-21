@@ -54,14 +54,8 @@ public class CGPTest {
 	@Test
 	 public void estaDisponibleRentasLunesALas1030() {
 		 momento = new DateTime("2016-04-25T10:30:00");
-		 //Assert.assertTrue(cgp.estaDisponible(momento, "Rentas")); 
-		 Assert.assertTrue(cgp.estaDisponible(momento, "")); 
+		 Assert.assertTrue(cgp.estaDisponible(momento, "Rentas")); 
+		// Assert.assertTrue(cgp.estaDisponible(momento, "")); 
 	 }
-	 
-	 /*@Test
-	 public void noEstaDisponibleSabadoALas20() {
-		 momento = new DateTime("2016-04-23T20:00:00");
-		 Assert.assertFalse(cgp.estaDisponible(momento, "")); 
-	 }*/
 
 }
