@@ -1,12 +1,7 @@
 package grupo2.tpAnual;
 import java.util.ArrayList;
 import java.util.Date;
-
-//import org.joda.time.DateTime;
-
 import java.util.List;
-
-import org.joda.time.DateTime;
 import org.uqbar.geodds.Point;
 
 public abstract class POI {
