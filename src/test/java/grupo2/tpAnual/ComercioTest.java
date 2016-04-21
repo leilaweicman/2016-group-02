@@ -1,6 +1,5 @@
 package grupo2.tpAnual;
 import java.sql.Time;
-import java.time.LocalTime;
 
 import org.joda.time.DateTime;
 import org.junit.Assert;
