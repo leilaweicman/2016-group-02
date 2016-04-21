@@ -25,9 +25,7 @@ public class Banco extends POI {
 			//unRango.setHoraHasta("15:00");
 			rangoDisponibilidad.add(unRango);
 		}
-	}
-	
-	
+	}	
 	//constructor con dicc
 	/*public Banco(){
 			
@@ -63,12 +61,12 @@ public class Banco extends POI {
 	
 	
 	public boolean Busqueda (String Texto){
-		return getPalabraClave().equals(Texto);
+		return getPalabraClave().contains(Texto);
 	}
 	
 	public boolean estaDisponible(Date fecha){		
 		//falta calculo
-		return true;
+		return true; 
 	}
 	
 	public boolean estaCerca(Point coordenadaDeseada){

@@ -1,33 +1,13 @@
 package grupo2.tpAnual;
 import org.joda.time.DateTime;
 import org.uqbar.geodds.Point;
+
+import java.sql.Time;
 import java.util.*;
 
 public class Comercio extends POI{
 	private Rubro _Rubro;
 	private ArrayList<Rango> rangoDisponibilidad = new ArrayList<Rango>();
-	private Map<String,ArrayList<Rango>> diasYRangos= new HashMap<String,ArrayList<Rango>>();
-	
-	//no haria falta un constructor
-	public Comercio(){
-		
-	}
-	
-	public Comercio(HashMap<String,ArrayList<Rango>> disponibilidadDelComercio){
-		diasYRangos.put("lunes", disponibilidadDelComercio.get("lunes"));
-		diasYRangos.put("martes", disponibilidadDelComercio.get("martes"));
-		diasYRangos.put("miercoles", disponibilidadDelComercio.get("miercoles"));
-		diasYRangos.put("jueves", disponibilidadDelComercio.get("jueves"));
-		diasYRangos.put("viernes", disponibilidadDelComercio.get("viernes"));
-		diasYRangos.put("sabado", disponibilidadDelComercio.get("sabado"));
-		diasYRangos.put("domingo", disponibilidadDelComercio.get("domingo"));		
-	}
-	
-	
-	
-	public Map<String,ArrayList<Rango>> getDiasYRangos() {
-		return diasYRangos;
-	}
 	
 	public ArrayList<Rango> getRango() {
 		return rangoDisponibilidad;
@@ -41,8 +21,6 @@ public class Comercio extends POI{
 		this.rangoDisponibilidad.add(rango);
 	}
 	
-	
-	
 	public Rubro getRubro() {
 		return _Rubro;
 	}
@@ -52,23 +30,38 @@ public class Comercio extends POI{
 	}
 	
 	public boolean Busqueda(String Texto){
-		return getPalabraClave().equals(Texto);
+		return getPalabraClave().contains(Texto);
 	}
 	
-	public int estaDisponible(DateTime momento){	
-		int dia = momento.getDayOfWeek();
-		//falta calculo
-		//desmenuzar momento
+	//borrar esto
+	 public boolean estaDisponible (Date fecha){
+		 return true;
+	 }
+	 
+	public boolean estaDisponible(DateTime momento){		
+		int dia= momento.getDayOfWeek();
+		int hora = momento.getHourOfDay();
+		int minutos = momento.getMinuteOfHour();
+		int segundos = momento.getSecondOfMinute();
 		
-		return dia;
+		Time horaCompleta = new Time(hora, minutos, segundos);
+		boolean disponible = false;
+		for (Rango rango : rangoDisponibilidad){
+			  
+			if( (dia == rango.getDay()) && 
+					((rango.getHoraD()).compareTo(horaCompleta) == -1)
+					 && ((rango.getHoraH()).compareTo(horaCompleta) == 1)){
+				disponible=true;
+				
+			}
+			
+		}
+		
+		return disponible;
 	}
 	
 	public boolean estaCerca(Point coordenadaDeseada){
 		return (this._Ubicacion.distance(coordenadaDeseada)<_Rubro.getRadioCercania());
 	}
 		
-	//borrar esto
-	public boolean estaDisponible (Date fecha){
-		return true;
-	}
 }
