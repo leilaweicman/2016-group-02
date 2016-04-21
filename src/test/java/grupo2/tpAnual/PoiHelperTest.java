@@ -2,6 +2,9 @@ package grupo2.tpAnual;
 
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.uqbar.geodds.Point;
@@ -45,6 +48,11 @@ public class PoiHelperTest {
 		
 		this.rentas = new CGP();
 		this.rentas.setUbicacion(-34.667049, -58.384798);
+		List<Servicio> servicios = new ArrayList<Servicio>();
+		Servicio ser = new Servicio();
+		ser.setNombre("Jubilados");
+		servicios.add(ser);
+		this.rentas.setServicios(servicios);
 		
 		this.vertice1 = Point.and(-34.668075, -58.380060);
 		this.vertice2= Point.and(-34.673044, -58.387755);
@@ -72,6 +80,12 @@ public class PoiHelperTest {
 	public void testEstaPalabraClave(){
 		Assert.assertTrue(santander.Busqueda("plazoFijo"));
 	}
+	
+	@Test
+	public void testBusquedaPorServicio(){
+		Assert.assertTrue(rentas.Busqueda("Jubilados"));
+	}
+	
 	
 	@Test
 	public void testEstaCercaBanco() {
