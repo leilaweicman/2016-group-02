@@ -11,8 +11,8 @@ import org.uqbar.geodds.Point;
 
 import junit.framework.Assert;
 
-public class PoiHelperTest {
-	private PoiHelper lasHeras;
+public class MapaTest {
+	private Mapa lasHeras;
 	private POI santander;
 	private Point coordenada;
 	private Point coordenadaBondi;
@@ -31,7 +31,7 @@ public class PoiHelperTest {
 	@Before
 	public void init(){
 		this.coordenada = Point.and(-34.666025, -58.385053);
-		this.lasHeras = new PoiHelper();
+		this.lasHeras = new Mapa();
 	
 		this.santander = new Banco();
 		this.santander.setUbicacion(-34.666612, -58.3858490);
@@ -60,7 +60,6 @@ public class PoiHelperTest {
 		this.vertice4=Point.and(-34.661528, -58.388313);
 		
 		this.comuna1 = new Comuna();
-		this.comuna1.setComuna();
 		this.comuna1.agregarVertice(vertice1);
 		this.comuna1.agregarVertice(vertice2);
 		this.comuna1.agregarVertice(vertice3);
@@ -89,21 +88,21 @@ public class PoiHelperTest {
 	
 	@Test
 	public void testEstaCercaBanco() {
-		Assert.assertTrue(lasHeras.estanCerca(santander,coordenada));
+		Assert.assertTrue(santander.estaCerca(coordenada));
 	}
 
 	@Test
 	public void testEstaCercaCGP(){
-		Assert.assertTrue(lasHeras.estanCerca(rentas, coordenada));
+		Assert.assertTrue(rentas.estaCerca(coordenada));
 	}
 	
 	@Test
 	public void testEstaCercaComercio(){
-		Assert.assertTrue(lasHeras.estanCerca(zara, coordenadaRopa));
+		Assert.assertTrue(zara.estaCerca(coordenadaRopa));
 	}
 	
 	@Test
 	public void testEstaCercaParada(){
-		Assert.assertTrue(lasHeras.estanCerca(p114, coordenadaBondi));
+		Assert.assertTrue(p114.estaCerca(coordenadaBondi));
 	}
 }

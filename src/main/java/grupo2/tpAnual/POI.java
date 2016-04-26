@@ -7,29 +7,29 @@ import org.joda.time.DateTime;
 import org.uqbar.geodds.Point;
 
 public abstract class POI {
-	private Direccion _Direccion;
-	private List<String> _PalabraClave;
-	protected Point _Ubicacion;
-	protected Comuna _Comuna;
+	private Direccion direccion;
+	private List<String> palabraClave;
+	protected Point ubicacion;
+	protected Comuna comuna;
 	//public Point Point; 
 	
 	public POI(){
-		_PalabraClave = new ArrayList<String>();
+		palabraClave = new ArrayList<String>();
 	}
 	
 	public Direccion getDireccion() {
-		return _Direccion;
+		return direccion;
 	}
 
 	public void setDireccion(Direccion dir) {
-		this._Direccion = dir;
+		this.direccion = dir;
 	}
 	
 	public void addPalabraClave(String pc){
-		this._PalabraClave.add(pc);
+		this.palabraClave.add(pc);
 	}
 	public List<String> getPalabraClave(){
-		return _PalabraClave;
+		return palabraClave;
 	}
 		
 	abstract boolean estaDisponible (DateTime momento, String nombreServicio);
@@ -37,15 +37,15 @@ public abstract class POI {
 	abstract boolean Busqueda(String texto);
 	
 	public void setUbicacion(double latitud, double longitud){
-		this._Ubicacion=Point.and(latitud, longitud);
+		this.ubicacion=Point.and(latitud, longitud);
 	}
-	abstract boolean estaCerca(Point p);
+	abstract boolean estaCerca(Point coordenadaDeseada);
 	
 	public Point getUbicacion (){
-		return _Ubicacion;
+		return ubicacion;
 	}
 	
 	public void setComuna(Comuna com){
-		this._Comuna = com;
+		this.comuna = com;
 	}
 }

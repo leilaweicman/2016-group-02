@@ -6,14 +6,14 @@ import org.joda.time.DateTime;
 import org.uqbar.geodds.Point;
 
 public class Parada extends POI{
-	private String _Linea;
+	private String linea;
 	
 	public String getLinea() {
-		return _Linea;
+		return linea;
 	}
 
 	public void setLinea(String linea) {
-		this._Linea = linea;
+		this.linea = linea;
 	}
 	
 	//En el caso de la parada la lista va a ser siempre de un elemento porque la parada es de una linea nomas
@@ -22,12 +22,12 @@ public class Parada extends POI{
 		{
 			return true;
 		}else{
-			return _Linea.equals(texto);
+			return linea.equals(texto);
 		}
 	}
 	
 	public boolean estaCerca(Point coordenadaDeseada){
-		return (this._Ubicacion.distance(coordenadaDeseada)<0.1);
+		return (this.ubicacion.distance(coordenadaDeseada)<0.1);
 	}
 
 

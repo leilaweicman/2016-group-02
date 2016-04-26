@@ -16,6 +16,7 @@ public class CGP extends POI{
 	}
 	
 	public boolean Busqueda (String texto){
+		
 		if(getPalabraClave().contains(texto))
 		{
 			return true;
@@ -55,8 +56,8 @@ public class CGP extends POI{
 	
 	
 	//se lo delego a la comuna 
-	public boolean estaCerca(Point p) {
-		return (this._Comuna.laTenesAdentro(p));
+	public boolean estaCerca(Point punto) {
+		return (this.comuna.estaAdentro(punto));
 	}
 	
 	

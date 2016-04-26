@@ -5,23 +5,23 @@ import java.util.List;
 
 import org.uqbar.geodds.Point;
 
-public class PoiHelper {
+public class Mapa {
 
-	private List<POI> _POIs;
-	public PoiHelper(){
-		_POIs = new ArrayList<POI>();
+	private List<POI> poiList;
+	public Mapa(){
+		poiList = new ArrayList<POI>();
 	}
 	public List<POI> getPOIs(){
-		return _POIs;
+		return poiList;
 	}
 		
-	public void agregarPOI(POI p){
-		_POIs.add(p);
+	public void agregarPOI(POI poi){
+		poiList.add(poi);
 	}
 	
 	public List<POI> Busqueda (String txtABuscar){
 		List<POI> result = new ArrayList<POI>();
-		for(POI poi : _POIs){
+		for(POI poi : poiList){
 			if(poi.Busqueda(txtABuscar)){
 				result.add(poi);
 			}
@@ -29,8 +29,8 @@ public class PoiHelper {
 		return result;
 	}		
 	// le pregunta al poi correspondiente que calcule la cercania
-	public boolean estanCerca(POI p, Point coordenadaDeseada){
-		return p.estaCerca(coordenadaDeseada);
+	public boolean estanCerca(POI poi, Point coordenadaDeseada){
+		return poi.estaCerca(coordenadaDeseada);
 	}
 }
 

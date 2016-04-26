@@ -10,23 +10,20 @@ public class Comuna {
 	private Polygon comuna;
 	private List<Point> vertices = new ArrayList<Point>();
 
-	
-	public void setComuna(){
-	 this.comuna = new Polygon(vertices);
-	}
-	
+		
 
 	public void agregarVertice(Point vertice){
 		this.vertices.add(vertice);
+		this.comuna = new Polygon(vertices);
 	}
-	
+		
 	public Polygon getComuna(){
 		return comuna;
 	}
 
 
-	public boolean laTenesAdentro(Point p) {
-		return (this.comuna.isInside(p));
+	public boolean estaAdentro(Point punto) {
+		return (this.comuna.isInside(punto));
 	}
 	
 	

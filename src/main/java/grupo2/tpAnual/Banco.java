@@ -1,22 +1,19 @@
 package grupo2.tpAnual;
 import java.sql.Time;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Arrays;
+import java.util.List;
 
 import org.joda.time.DateTime;
 import org.uqbar.geodds.Point;
 
 public class Banco extends POI {	
 	private ArrayList<Rango> rangoDisponibilidad = new ArrayList<Rango>();
-	private ArrayList<Integer> dias = new ArrayList<Integer>();
+	private List<Integer> dias = new ArrayList<Integer>();
 	
 	//constructor
 	public Banco(){		
-		dias.add(1);
-		dias.add(2);
-		dias.add(3);
-		dias.add(4);
-		dias.add(5);
+		dias= Arrays.asList(1,2,3,4,5);
 		
 		for (Integer dia : dias){
 			Rango unRango = new Rango();
@@ -65,7 +62,7 @@ public class Banco extends POI {
 	}
 	
 	public boolean estaCerca(Point coordenadaDeseada){
-		return (this._Ubicacion.distance(coordenadaDeseada)<0.5);
+		return (this.ubicacion.distance(coordenadaDeseada)<0.5);
 	}
 	
 }

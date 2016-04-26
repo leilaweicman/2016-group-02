@@ -6,7 +6,7 @@ import java.sql.Time;
 import java.util.*;
 
 public class Comercio extends POI{
-	private Rubro _Rubro;
+	private Rubro rubro;
 	private ArrayList<Rango> rangoDisponibilidad = new ArrayList<Rango>();
 	
 	public ArrayList<Rango> getRango() {
@@ -22,11 +22,11 @@ public class Comercio extends POI{
 	}
 	
 	public Rubro getRubro() {
-		return _Rubro;
+		return rubro;
 	}
 
 	public void setRubro(Rubro rub) {
-		this._Rubro = rub;
+		this.rubro = rub;
 	}
 	
 	public boolean Busqueda(String Texto){
@@ -56,7 +56,7 @@ public class Comercio extends POI{
 	}
 	
 	public boolean estaCerca(Point coordenadaDeseada){
-		return (this._Ubicacion.distance(coordenadaDeseada)<_Rubro.getRadioCercania());
+		return (this.ubicacion.distance(coordenadaDeseada)<rubro.getRadioCercania());
 	}
 		
 }
