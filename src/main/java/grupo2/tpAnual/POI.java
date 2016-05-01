@@ -34,7 +34,19 @@ public abstract class POI {
 		
 	abstract boolean estaDisponible (DateTime momento, String nombreServicio);
 	 
-	abstract boolean Busqueda(String texto);
+	public boolean VerificarPorTexto(String texto){
+		if (getPalabraClave().contains(texto)){
+			return true;
+		}else
+		{
+			return BusquedaParticular(texto);
+		}
+	}
+	
+	//Seteado en false para aquellas implementaciones en las cuales no tengan busqueda particular
+	public boolean BusquedaParticular(String texto){
+		return false;
+	};
 	
 	public void setUbicacion(double latitud, double longitud){
 		this.ubicacion=Point.and(latitud, longitud);
