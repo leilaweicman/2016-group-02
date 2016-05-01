@@ -1,0 +1,17 @@
+language: java
+
+jdk:
+  - oraclejdk8
+  
+after_success:
+  - bash <(curl -s https://codecov.io/bash) -t d82aa3ad-c385-45d4-85c5-b0160ebdd64c
+
+notifications:
+  email:
+    recipients:
+      - gastonprietoutn@gmail.com
+      - mtisot@gmail.com
+      - leilaweic@hotmail.com
+      - ailenmunozz@gmail.com
+      - michu.rabinovich@hotmail.com
+      - berco.fede@gmail.com
