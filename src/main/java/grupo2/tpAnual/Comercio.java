@@ -29,10 +29,6 @@ public class Comercio extends POI{
 		this.rubro = rub;
 	}
 	
-	public boolean Busqueda(String Texto){
-		return getPalabraClave().contains(Texto);
-	}
-		 
 	public boolean estaDisponible(DateTime momento, String nombre){		
 		int dia= momento.getDayOfWeek();
 		int hora = momento.getHourOfDay();

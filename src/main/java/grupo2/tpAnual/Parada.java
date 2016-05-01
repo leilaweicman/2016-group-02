@@ -16,14 +16,9 @@ public class Parada extends POI{
 		this.linea = linea;
 	}
 	
-	//En el caso de la parada la lista va a ser siempre de un elemento porque la parada es de una linea nomas
-	public boolean Busqueda (String texto){
-		if(getPalabraClave().contains(texto))
-		{
-			return true;
-		}else{
-			return linea.equals(texto);
-		}
+	@Override
+	public boolean BusquedaParticular (String texto){
+		return linea.equals(texto);		
 	}
 	
 	public boolean estaCerca(Point coordenadaDeseada){

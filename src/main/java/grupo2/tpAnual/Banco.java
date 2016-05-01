@@ -37,11 +37,6 @@ public class Banco extends POI {
 		this.rangoDisponibilidad.add(rango);
 	}
 	
-	
-	public boolean Busqueda (String Texto){
-		return getPalabraClave().contains(Texto);
-	}
-	
 	public boolean estaDisponible(DateTime momento, String nombre){		
 		int dia= momento.getDayOfWeek();
 		int hora = momento.getHourOfDay();

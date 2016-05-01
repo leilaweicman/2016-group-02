@@ -15,19 +15,14 @@ public class CGP extends POI{
 		this.servicios = ser;
 	}
 	
-	public boolean Busqueda (String texto){
-		
-		if(getPalabraClave().contains(texto))
-		{
-			return true;
-		}else{
-			for (Servicio ser : servicios){
-				if(ser.getNombre().contains(texto)){
-					return true;
-				}
+	@Override
+	public boolean BusquedaParticular(String texto){
+		for (Servicio ser : servicios){
+			if(ser.getNombre().contains(texto)){
+				return true;
 			}
-			return false;
 		}
+		return false;		
 	}
 	
 	public boolean estaDisponible(DateTime momento, String nombreServicio){		

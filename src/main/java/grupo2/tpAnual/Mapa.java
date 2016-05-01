@@ -22,7 +22,7 @@ public class Mapa {
 	public List<POI> Busqueda (String txtABuscar){
 		List<POI> result = new ArrayList<POI>();
 		for(POI poi : poiList){
-			if(poi.Busqueda(txtABuscar)){
+			if(poi.VerificarPorTexto(txtABuscar)){
 				result.add(poi);
 			}
 		}
