@@ -28,9 +28,6 @@ public class Mapa {
 		}
 		return result;
 	}		
-	// le pregunta al poi correspondiente que calcule la cercania
-	public boolean estanCerca(POI poi, Point coordenadaDeseada){
-		return poi.estaCerca(coordenadaDeseada);
-	}
+	
 }
 
