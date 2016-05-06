@@ -1,7 +1,5 @@
 package grupo2.tpAnual;
 
-import static org.junit.Assert.*;
-
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
