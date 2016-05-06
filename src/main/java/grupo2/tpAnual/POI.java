@@ -35,12 +35,7 @@ public abstract class POI {
 	abstract boolean estaDisponible (DateTime momento, String nombreServicio);
 	 
 	public boolean VerificarPorTexto(String texto){
-		if (getPalabraClave().contains(texto)){
-			return true;
-		}else
-		{
-			return BusquedaParticular(texto);
-		}
+		return getPalabraClave().contains(texto) || BusquedaParticular(texto);
 	}
 	
 	//Seteado en false para aquellas implementaciones en las cuales no tengan busqueda particular
