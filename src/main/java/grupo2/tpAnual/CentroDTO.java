@@ -8,5 +8,5 @@ public class CentroDTO {
 	private String nombreDirector;
 	private String domicilio;
 	private String telefono;
-	//private List<servicioDTO> serviciosDTO;
+	// private List<servicioDTO> serviciosDTO;
 }
