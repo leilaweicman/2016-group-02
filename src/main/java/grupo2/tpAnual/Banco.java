@@ -9,7 +9,7 @@ import org.joda.time.DateTime;
 import org.uqbar.geodds.Point;
 
 public class Banco extends POI {
-	private ArrayList<Rango> rangoDisponibilidad = new ArrayList<Rango>();
+	private List<Rango> rangoDisponibilidad = new ArrayList<Rango>();
 	private List<Integer> dias = new ArrayList<Integer>();
 
 	// constructor
@@ -25,7 +25,7 @@ public class Banco extends POI {
 		}
 	}
 
-	public ArrayList<Rango> getRango() {
+	public List<Rango> getRango() {
 		return rangoDisponibilidad;
 	}
 

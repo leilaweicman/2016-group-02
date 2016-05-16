@@ -3,14 +3,15 @@ package grupo2.tpAnual;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.uqbar.geodds.Point;
 
-public class Mapa {
+public class Mapa{
 
 	private List<POI> poiList;
-
+	private List<BusquedaAvanzada> integracionesDeBusqueda = new ArrayList<BusquedaAvanzada>();
 	public Mapa() {
 		poiList = new ArrayList<POI>();
+		CentroDTO centroDto = new CentroDTO();
+		integracionesDeBusqueda.add(centroDto);
 	}
 
 	public List<POI> getPOIs() {
@@ -21,14 +22,8 @@ public class Mapa {
 		poiList.add(poi);
 	}
 
-	public List<POI> Busqueda(String txtABuscar) {
-		List<POI> result = new ArrayList<POI>();
-		for (POI poi : poiList) {
-			if (poi.verificarPorTexto(txtABuscar)) {
-				result.add(poi);
-			}
-		}
-		return result;
+	public List<POI> busquedaIntegradora(String txtABuscar){
+		integracionesDeBusqueda.forEach(integracion -> integracion.busqueda(txtABuscar));
 	}
 
 }
