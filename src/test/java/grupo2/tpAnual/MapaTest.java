@@ -37,12 +37,12 @@ public class MapaTest {
 	
 	@Test
 	public void testEstaPalabraClave(){
-		Assert.assertTrue(santander.VerificarPorTexto("plazoFijo"));
+		Assert.assertTrue(santander.verificarPorTexto("plazoFijo"));
 	}
 	
 	@Test
 	public void testBusquedaPorServicio(){
-		Assert.assertTrue(rentas.VerificarPorTexto("Jubilados"));
+		Assert.assertTrue(rentas.verificarPorTexto("Jubilados"));
 	}
 	
 

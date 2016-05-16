@@ -24,7 +24,7 @@ public class Mapa {
 	public List<POI> Busqueda(String txtABuscar) {
 		List<POI> result = new ArrayList<POI>();
 		for (POI poi : poiList) {
-			if (poi.VerificarPorTexto(txtABuscar)) {
+			if (poi.verificarPorTexto(txtABuscar)) {
 				result.add(poi);
 			}
 		}
