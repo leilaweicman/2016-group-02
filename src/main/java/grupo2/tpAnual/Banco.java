@@ -7,11 +7,15 @@ import java.util.List;
 
 import org.joda.time.DateTime;
 import org.uqbar.geodds.Point;
+import static java.lang.System.out;
 
 public class Banco extends POI {
+	//BORRAR LISTA DE RANGOS
 	private List<Rango> rangoDisponibilidad = new ArrayList<Rango>();
+	
 	private List<Integer> dias = new ArrayList<Integer>();
-
+	private boolean disponibilidad;
+	
 	// constructor
 	public Banco() {
 		dias = Arrays.asList(1, 2, 3, 4, 5);
@@ -36,23 +40,19 @@ public class Banco extends POI {
 	public void addRango(Rango rango) {
 		this.rangoDisponibilidad.add(rango);
 	}
+	
+	//BORRAR
+	public boolean estaDisponible(DateTime momento, String nombre) 
+	{
+		return true;
+	}
+	
+	public boolean getDisponibilidad() {
+		return disponibilidad;
+	}
 
-	public boolean estaDisponible(DateTime momento, String nombre) {
-		int dia = momento.getDayOfWeek();
-		int hora = momento.getHourOfDay();
-		int minutos = momento.getMinuteOfHour();
-		int segundos = momento.getSecondOfMinute();
-
-		Time horaCompleta = new Time(hora, minutos, segundos);
-		boolean disponible = false;
-		for (Rango rango : rangoDisponibilidad) {
-
-			if ((dia == rango.getDay()) && ((rango.getHoraD()).compareTo(horaCompleta) == -1)
-					&& ((rango.getHoraH()).compareTo(horaCompleta) == 1)) {
-				disponible = true;
-			}
-		}
-		return disponible;
+	public void setDisponibilidad(boolean disponibilidad) {
+		this.disponibilidad = disponibilidad;
 	}
 
 	public boolean estaCerca(Point coordenadaDeseada) {

@@ -1,7 +1,7 @@
 package grupo2.tpAnual;
 
 import java.sql.Time;
-import java.time.LocalTime;
+import static java.lang.System.out;
 
 public class Rango {
 	private Integer day;
@@ -31,5 +31,15 @@ public class Rango {
 	public void setHoraH(Time horaH) {
 		this.horaH = horaH;
 	}
-
+	
+	public boolean estaDisponible(int dia, Time horaCompleta) {
+		
+		boolean disponible = false;
+		if ((dia == this.getDay()) && ((this.getHoraD()).compareTo(horaCompleta) == -1)
+				&& ((this.getHoraH()).compareTo(horaCompleta) == 1)) {
+			disponible = true;
+		}
+		
+		return disponible;
+	}
 }

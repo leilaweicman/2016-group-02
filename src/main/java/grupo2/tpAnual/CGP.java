@@ -9,6 +9,7 @@ import org.uqbar.geodds.Point;
 public class CGP extends POI {
 	private List<Servicio> servicios;
 
+	
 	public List<Servicio> getServicios() {
 		return servicios;
 	}
