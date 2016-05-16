@@ -2,7 +2,7 @@ package grupo2.tpAnual;
 
 import java.util.List;
 
-public class CentroDTO implements BusquedaAvanzada{
+public class CentroDTO /*implements BusquedaAvanzada*/{
 	private int numeroComuna;
 	private String zonas;
 	private String nombreDirector;
@@ -10,7 +10,7 @@ public class CentroDTO implements BusquedaAvanzada{
 	private String telefono;
 	// private List<servicioDTO> serviciosDTO;
 	
-	@Override
+	/*@Override
 	public List<POI> busqueda(String texto){
 		/*mockear busqueda que te devuelve una Lista de CGPs, un objeto de la clase CentroDTO
 		int: número de la comuna (ej: 3)
@@ -27,19 +27,12 @@ public class CentroDTO implements BusquedaAvanzada{
 		int: horario hasta (18)
 		int: minutos hasta (0)*/
 		
-		listaDePOi=listaDeCGP.forEach(cgp->cgp.transformarENPoi);
+		/*listaDePOi=listaDeCGP.forEach(cgp->cgp.transformarENPoi);
 		
-		return listaDePOi;
+		return listaDePOi;*/
 		
-	}
-	
-	public transformarENPoi(cgp){
-		new poi
-		dj
-		dj
-		dj
-		dj
-	
-	}
-	
 }
+	
+	
+	
+

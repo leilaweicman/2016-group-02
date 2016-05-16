@@ -17,7 +17,7 @@ public class CGP extends POI {
 		this.servicios = ser;
 	}
 
-	@Override
+	//@Override
 	public boolean busquedaParticular(String texto) {
 		for (Servicio ser : servicios) {
 			if (ser.getNombre().contains(texto)) {

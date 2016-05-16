@@ -11,7 +11,7 @@ public class Mapa{
 	public Mapa() {
 		poiList = new ArrayList<POI>();
 		CentroDTO centroDto = new CentroDTO();
-		integracionesDeBusqueda.add(centroDto);
+		//integracionesDeBusqueda.add(centroDto);
 	}
 
 	public List<POI> getPOIs() {
@@ -22,8 +22,8 @@ public class Mapa{
 		poiList.add(poi);
 	}
 
-	public List<POI> busquedaIntegradora(String txtABuscar){
+	/*public List<POI> busquedaIntegradora(String txtABuscar){
 		integracionesDeBusqueda.forEach(integracion -> integracion.busqueda(txtABuscar));
-	}
+	}*/
 
 }
