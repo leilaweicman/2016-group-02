@@ -12,7 +12,7 @@ public class Comercio extends POI {
 	//BORRAR LISTA DE RANGOS
 	private ArrayList<Rango> rangoDisponibilidad = new ArrayList<Rango>();
 	
-	private boolean disponibilidad;
+	private Disponibilidad disponibilidad;
 	
 	public ArrayList<Rango> getRango() {
 		return rangoDisponibilidad;
@@ -39,17 +39,17 @@ public class Comercio extends POI {
 	{
 		return true;
 	}
-
-	public boolean getDisponibilidad() {
-		return disponibilidad;
-	}
-
-	public void setDisponibilidad(boolean disponibilidad) {
-		this.disponibilidad = disponibilidad;
-	}
 	
 	public boolean estaCerca(Point coordenadaDeseada) {
 		return (this.ubicacion.distance(coordenadaDeseada) < rubro.getRadioCercania());
+	}
+
+	public Disponibilidad getDisponibilidad() {
+		return disponibilidad;
+	}
+
+	public void setDisponibilidad(Disponibilidad disponibilidad) {
+		this.disponibilidad = disponibilidad;
 	}
 	
 	

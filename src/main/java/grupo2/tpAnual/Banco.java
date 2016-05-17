@@ -14,7 +14,7 @@ public class Banco extends POI {
 	private List<Rango> rangoDisponibilidad = new ArrayList<Rango>();
 	
 	private List<Integer> dias = new ArrayList<Integer>();
-	private boolean disponibilidad;
+	private Disponibilidad disponibilidad;
 	
 	// constructor
 	public Banco() {
@@ -47,11 +47,11 @@ public class Banco extends POI {
 		return true;
 	}
 	
-	public boolean getDisponibilidad() {
+	public Disponibilidad getDisponibilidad() {
 		return disponibilidad;
 	}
 
-	public void setDisponibilidad(boolean disponibilidad) {
+	public void setDisponibilidad(Disponibilidad disponibilidad) {
 		this.disponibilidad = disponibilidad;
 	}
 

@@ -10,7 +10,7 @@ public class Servicio {
 	//BORRAR LISTA DE RANGOS
 	private ArrayList<Rango> rangoDisponibilidad = new ArrayList<Rango>();
 		
-	private boolean disponibilidad;
+	private Disponibilidad disponibilidad;
 	
 	public String getNombre() {
 		return nombre;
@@ -37,13 +37,12 @@ public class Servicio {
 	{
 		return true;
 	}
-	
-	
-	public boolean getDisponibilidad() {
+
+	public Disponibilidad getDisponibilidad() {
 		return disponibilidad;
 	}
 
-	public void setDisponibilidad(boolean disponibilidad) {
+	public void setDisponibilidad(Disponibilidad disponibilidad) {
 		this.disponibilidad = disponibilidad;
 	}
 
