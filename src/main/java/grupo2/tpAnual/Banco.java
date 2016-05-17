@@ -1,6 +1,6 @@
 package grupo2.tpAnual;
 
-import java.sql.Time;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -23,8 +23,8 @@ public class Banco extends POI {
 		for (Integer dia : dias) {
 			Rango unRango = new Rango();
 			unRango.setDay(dia);
-			unRango.setHoraD(new Time(10, 0, 0));
-			unRango.setHoraH(new Time(15, 0, 0));
+			unRango.setHoraD(LocalTime.of(10, 0, 0));
+			unRango.setHoraH(LocalTime.of(15, 0, 0));
 			rangoDisponibilidad.add(unRango);
 		}
 	}

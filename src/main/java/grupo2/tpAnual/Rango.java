@@ -1,12 +1,14 @@
 package grupo2.tpAnual;
 
-import java.sql.Time;
+
+import java.time.LocalTime;
+
 import static java.lang.System.out;
 
 public class Rango {
 	private Integer day;
-	private Time horaD;
-	private Time horaH;
+	private LocalTime horaD;
+	private LocalTime horaH;
 
 	public Integer getDay() {
 		return day;
@@ -16,23 +18,23 @@ public class Rango {
 		this.day = day;
 	}
 
-	public Time getHoraD() {
+	public LocalTime getHoraD() {
 		return horaD;
 	}
 
-	public void setHoraD(Time horaD) {
+	public void setHoraD(LocalTime horaD) {
 		this.horaD = horaD;
 	}
 
-	public Time getHoraH() {
+	public LocalTime getHoraH() {
 		return horaH;
 	}
 
-	public void setHoraH(Time horaH) {
+	public void setHoraH(LocalTime horaH) {
 		this.horaH = horaH;
 	}
 	
-	public boolean estaDisponible(int dia, Time horaCompleta) {
+	public boolean estaDisponible(int dia, LocalTime horaCompleta) {
 		
 		boolean disponible = false;
 		if ((dia == this.getDay()) && ((this.getHoraD()).compareTo(horaCompleta) == -1)

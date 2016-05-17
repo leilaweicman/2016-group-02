@@ -1,6 +1,6 @@
 package grupo2.tpAnual;
 
-import java.sql.Time;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,8 +15,10 @@ public class Disponibilidad {
 		int hora = momento.getHourOfDay();
 		int minutos = momento.getMinuteOfHour();
 		int segundos = momento.getSecondOfMinute();
+		
+		LocalTime horaCompleta = LocalTime.of(hora, minutos, segundos);
 
-		Time horaCompleta = new Time(hora, minutos, segundos);
+		//Time horaCompleta = new Time(hora, minutos, segundos);
 		boolean disponible = false;
 		
 		// USAR MENSAJES DE COLECCIONES
