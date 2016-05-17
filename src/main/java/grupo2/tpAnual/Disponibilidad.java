@@ -18,14 +18,20 @@ public class Disponibilidad {
 
 		Time horaCompleta = new Time(hora, minutos, segundos);
 		boolean disponible = false;
-		for (Rango rango : rangoDisponibilidad) {
+		
+		// USAR MENSAJES DE COLECCIONES
+		// col.stream().anyMatch(elem -> cond );
+		
+		disponible = rangoDisponibilidad.stream().anyMatch(rango -> rango.estaDisponible(dia, horaCompleta));
+		
+		/*for (Rango rango : rangoDisponibilidad) {
 			
 			disponible = rango.estaDisponible(dia, horaCompleta);
-			/*if ((dia == rango.getDay()) && ((rango.getHoraD()).compareTo(horaCompleta) == -1)
+			if ((dia == rango.getDay()) && ((rango.getHoraD()).compareTo(horaCompleta) == -1)
 					&& ((rango.getHoraH()).compareTo(horaCompleta) == 1)) {
 				disponible = true;
-			}*/
-		}
+			}
+		}*/
 		return disponible;
 	}
 	
