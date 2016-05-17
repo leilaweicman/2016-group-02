@@ -2,6 +2,7 @@ package grupo2.tpAnual;
 
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.joda.time.DateTime;
 import org.uqbar.geodds.Point;
@@ -32,23 +33,30 @@ public class CGP extends POI {
 		boolean disponible = false;
 		if (nombreServicio != "") {
 
-			for (Servicio servicio : servicios) {
+			disponible = servicios.stream().filter(x -> x.getNombre() == nombreServicio)
+					.collect(Collectors.toList()).get(0).estaDisponible(momento);
+
+			/*for (Servicio servicio : servicios) {
 
 				if (servicio.getNombre() == nombreServicio) {
 					disponible = servicio.estaDisponible(momento);
 				}
-			}
-
+			}*/
+			
 		} else {
-			int cont = 0;
+			
+			disponible = servicios.stream().anyMatch(servicio -> servicio.estaDisponible(momento));
+			
+			/*int cont = 0;
 			Servicio[] serviciosArray = new Servicio[servicios.size()];
 			serviciosArray = servicios.toArray(serviciosArray);
 			while (disponible == false) {
 				cont++;
 				disponible = serviciosArray[cont].estaDisponible(momento);
-			}
+			}*/
+			
 		}
-		return true;
+		return disponible;
 	}
 
 	// se lo delego a la comuna
