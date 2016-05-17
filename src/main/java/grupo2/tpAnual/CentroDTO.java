@@ -8,10 +8,11 @@ public class CentroDTO /*implements BusquedaAvanzada*/{
 	private String nombreDirector;
 	private String domicilio;
 	private String telefono;
+}
 	// private List<servicioDTO> serviciosDTO;
 	
-	/*@Override
-	public List<POI> busqueda(String texto){
+	//@Override
+	//public List<POI> busqueda(String texto);
 		/*mockear busqueda que te devuelve una Lista de CGPs, un objeto de la clase CentroDTO
 		int: número de la comuna (ej: 3)
 		string: zonas que incluye (ej. “Balvanera, San Cristóbal” para la comuna 3)
@@ -31,7 +32,7 @@ public class CentroDTO /*implements BusquedaAvanzada*/{
 		
 		return listaDePOi;*/
 		
-}
+
 	
 	
 	
