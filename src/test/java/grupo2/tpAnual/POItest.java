@@ -38,7 +38,7 @@ public class POItest {
 	@Test
 	public void testEstaCercaCGP(){
 		this.rentas = new CGP();
-		this.comuna1 = new Comuna();
+		this.comuna1 = new Comuna(1);
 		
 		this.vertice1 = Point.and(-34.668075, -58.380060);
 		this.vertice2= Point.and(-34.673044, -58.387755);

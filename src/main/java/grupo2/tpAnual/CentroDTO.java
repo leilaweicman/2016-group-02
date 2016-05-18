@@ -8,8 +8,22 @@ public class CentroDTO /*implements BusquedaAvanzada*/{
 	private String nombreDirector;
 	private String domicilio;
 	private String telefono;
-}
-	// private List<servicioDTO> serviciosDTO;
+	private List<Servicio> serviciosDTO;
+	
+	public int getNumeroComuna() {
+		return numeroComuna;
+	}
+	public String getZonas() {
+		return zonas;
+	}
+	public String getDomicilio() {
+		return domicilio;
+	}
+	public List<Servicio> getServiciosDTO() {
+		return serviciosDTO;
+	}
+
+}	
 	
 	//@Override
 	//public List<POI> busqueda(String texto);

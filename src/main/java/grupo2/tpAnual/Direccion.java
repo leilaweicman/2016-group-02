@@ -1,22 +1,22 @@
 package grupo2.tpAnual;
 
 public class Direccion {
-	private String _Calle;
-	private int _Altura;
+	private String calle;
+	private int altura;
 
 	public String getCalle() {
-		return _Calle;
+		return calle;
 	}
 
-	public void setCalle(String cl) {
-		this._Calle = cl;
+	public void setCalle(String calle) {
+		this.calle = calle;
 	}
 
 	public int getAltura() {
-		return _Altura;
+		return altura;
 	}
 
-	public void setPrecioBase(int alt) {
-		this._Altura = alt;
+	public void setPrecioBase(int altura) {
+		this.altura = altura;
 	}
 }

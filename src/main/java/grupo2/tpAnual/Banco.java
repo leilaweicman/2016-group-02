@@ -9,7 +9,7 @@ import org.joda.time.DateTime;
 import org.uqbar.geodds.Point;
 import static java.lang.System.out;
 
-public class Banco extends POI {
+public class Banco extends POI implements IBanco{
 	//BORRAR LISTA DE RANGOS
 	private List<Rango> rangoDisponibilidad = new ArrayList<Rango>();
 	

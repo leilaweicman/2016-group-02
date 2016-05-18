@@ -5,25 +5,13 @@ import java.util.List;
 import org.joda.time.DateTime;
 import org.uqbar.geodds.Point;
 
-public class BancoExterno extends POI {
+public class BancoExterno {
 	private String banco;
 	private double x;
 	private double y;
 	private String sucursal;
 	private String gerente;
 	private List<String> servicios;
-
-	@Override
-	boolean estaDisponible(DateTime momento, String nombreServicio) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	boolean estaCerca(Point coordenadaDeseada) {
-		// TODO Auto-generated method stub
-		return false;
-	}
 
 	public String getBanco() {
 		return banco;

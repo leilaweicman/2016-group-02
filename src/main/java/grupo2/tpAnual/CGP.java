@@ -1,13 +1,13 @@
 package grupo2.tpAnual;
 
-import java.util.Date;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.joda.time.DateTime;
 import org.uqbar.geodds.Point;
 
-public class CGP extends POI {
+public class CGP extends POI implements ICGP {
 	private List<Servicio> servicios;
 
 	
