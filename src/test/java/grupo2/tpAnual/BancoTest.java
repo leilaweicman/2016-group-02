@@ -8,9 +8,10 @@ public class BancoTest {
 	
 	 private Banco banco;
 	 private DateTime momento;
+	
 	 @Before
 	 public void init(){
-	  banco= new Banco();
+		 banco= new Banco();
 	 }
 	 
 	 @Test
@@ -19,10 +20,10 @@ public class BancoTest {
 		 Assert.assertTrue(banco.estaDisponible(momento, "")); 
 	 }
 	 
-	 //@Test
-	 /*public void noEstaDisponibleViernesALas16() {
+	 @Test
+	 public void noEstaDisponibleViernesALas16() {
 		 momento = new DateTime("2016-04-22T16:00:00");
 		 Assert.assertFalse(banco.estaDisponible(momento, "")); 
-	 }*/
+	 }
 
 }
