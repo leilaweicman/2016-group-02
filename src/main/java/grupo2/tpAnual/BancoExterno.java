@@ -2,65 +2,19 @@ package grupo2.tpAnual;
 
 import java.util.List;
 
-public class BancoExterno implements BusquedaAvanzada {
-	private String banco;
-	private double x;
-	private double y;
-	private String sucursal;
-	private String gerente;
-	private List<String> servicios;
+public interface BancoExterno {
 
-	public String getBanco() {
-		return banco;
-	}
+	public String getBanco();
 
-	public void setBanco(String banco) {
-		this.banco = banco;
-	}
+	public double getX();
 
-	public double getX() {
-		return x;
-	}
+	public double getY();
 
-	public void setX(double x) {
-		this.x = x;
-	}
+	public String getSucursal();
 
-	public double getY() {
-		return y;
-	}
+	public List<String> getServicios();
 
-	public void setY(double y) {
-		this.y = y;
-	}
-
-	public String getSucursal() {
-		return sucursal;
-	}
-
-	public void setSucursal(String sucursal) {
-		this.sucursal = sucursal;
-	}
-
-	public List<String> getServicios() {
-		return servicios;
-	}
-
-	public void setServicios(List<String> servicios) {
-		this.servicios = servicios;
-	}
-
-	public String getGerente() {
-		return gerente;
-	}
-
-	public void setGerente(String gerente) {
-		this.gerente = gerente;
-	}
-
-	@Override
-	public List<POI> busqueda(String texto) {
-		// HABRIA QE PONER QUE DEVUELVA LO DEL FORMATO JASON
-		return null;
-	}
+	public String getGerente();
+	
+	//public List<JSON> busqueda(String banco, String servicio);
 }
