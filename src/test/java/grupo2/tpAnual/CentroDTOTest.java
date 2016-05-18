@@ -9,15 +9,13 @@ public class CentroDTOTest {
 	private CentroDTO centro;
 
 	@Before
-	public void init(){
-		centro =
-				Mockito.
-				mock(CentroDTO.class);
+	public void init() {
+		centro = Mockito.mock(CentroDTO.class);
 	}
 
 	@Test
 	public void test() {
-		//fail("Not yet implemented");
+		// fail("Not yet implemented");
 	}
 
 }

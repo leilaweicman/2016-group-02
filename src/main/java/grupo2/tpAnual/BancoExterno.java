@@ -2,10 +2,7 @@ package grupo2.tpAnual;
 
 import java.util.List;
 
-import org.joda.time.DateTime;
-import org.uqbar.geodds.Point;
-
-public class BancoExterno {
+public class BancoExterno implements BusquedaAvanzada {
 	private String banco;
 	private double x;
 	private double y;
@@ -59,5 +56,11 @@ public class BancoExterno {
 
 	public void setGerente(String gerente) {
 		this.gerente = gerente;
+	}
+
+	@Override
+	public List<POI> busqueda(String texto) {
+		// HABRIA QE PONER QUE DEVUELVA LO DEL FORMATO JASON
+		return null;
 	}
 }

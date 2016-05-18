@@ -11,7 +11,7 @@ public class Rango {
 		return dia;
 	}
 
-	public void setDay(Integer day) {
+	public void setDia(Integer day) {
 		this.dia = day;
 	}
 

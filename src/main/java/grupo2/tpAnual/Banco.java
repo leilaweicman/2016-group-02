@@ -24,7 +24,7 @@ public class Banco extends POI implements IBanco{
 
 	private void crearRango(int dia){
 		Rango unRango = new Rango();
-		unRango.setDay(dia);
+		unRango.setDia(dia);
 		unRango.setHoraDesde(LocalTime.of(10, 0, 0));
 		unRango.setHoraHasta(LocalTime.of(15, 0, 0));
 		rangoDisponibilidad.add(unRango);
