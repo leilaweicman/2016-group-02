@@ -45,7 +45,7 @@ public class MapaTest {
 	@Test
 	public void testCrearPoi(){
 		lasHeras.crearPOI("Banco");
-		Assert.assertEquals(this.lasHeras.getPOIs().size(),6);
+		Assert.assertEquals(this.lasHeras.getPOIs().size(),3);
 		
 	}
 
