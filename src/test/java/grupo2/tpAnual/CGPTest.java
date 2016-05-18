@@ -3,6 +3,7 @@ package grupo2.tpAnual;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.joda.time.DateTime;
@@ -19,29 +20,35 @@ public class CGPTest {
 	private Rango otroRango;
 	private DateTime momento;
 	private List<Servicio> servicios;
+	private List<Rango> rangoUnServicio;
+	private List<Rango> rangoOtroServicio;
 	 
 	@Before
 	public void init(){
 		cgp = new CGP();
-		unServicio = new Servicio();
-		otroServicio = new Servicio();
 		unRango = new Rango();
 		otroRango = new Rango();
-		
-		
+		rangoUnServicio = new ArrayList<Rango>();
+		rangoOtroServicio = new ArrayList<Rango>();
+
 		unRango.setDay(1);
 		unRango.setHoraDesde(LocalTime.of(9,0,0));
 		unRango.setHoraHasta(LocalTime.of(18,0,0));
 			  
+		rangoUnServicio.add(unRango);
+		
 		otroRango.setDay(3);
 		otroRango.setHoraDesde(LocalTime.of(9,0,0));
 		otroRango.setHoraHasta(LocalTime.of(13,0,0));		  
 		
+		rangoOtroServicio.add(otroRango);
+
+		unServicio = new Servicio(rangoUnServicio);
+		otroServicio = new Servicio(rangoOtroServicio);
+		
 		unServicio.setNombre("Rentas");
-		unServicio.addRango(unRango);
 		
 		otroServicio.setNombre("otrasRentas");
-		otroServicio.addRango(otroRango);
 		
 		servicios = new ArrayList<Servicio>();
 		servicios.add(unServicio);
@@ -54,7 +61,7 @@ public class CGPTest {
 	 public void estaDisponibleRentasLunesALas1030() {
 		 momento = new DateTime("2016-04-25T10:30:00");
 		 Assert.assertTrue(cgp.estaDisponible(momento, "Rentas")); 
-		// Assert.assertTrue(cgp.estaDisponible(momento, "")); 
+		 Assert.assertTrue(cgp.estaDisponible(momento, "")); 
 	 }
 
 }

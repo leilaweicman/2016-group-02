@@ -35,25 +35,10 @@ public class CGP extends POI implements ICGP {
 
 			disponible = servicios.stream().filter(x -> x.getNombre() == nombreServicio)
 					.collect(Collectors.toList()).get(0).estaDisponible(momento);
-
-			/*for (Servicio servicio : servicios) {
-
-				if (servicio.getNombre() == nombreServicio) {
-					disponible = servicio.estaDisponible(momento);
-				}
-			}*/
 			
 		} else {
 			
 			disponible = servicios.stream().anyMatch(servicio -> servicio.estaDisponible(momento));
-			
-			/*int cont = 0;
-			Servicio[] serviciosArray = new Servicio[servicios.size()];
-			serviciosArray = servicios.toArray(serviciosArray);
-			while (disponible == false) {
-				cont++;
-				disponible = serviciosArray[cont].estaDisponible(momento);
-			}*/
 			
 		}
 		return disponible;
