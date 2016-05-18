@@ -9,11 +9,16 @@ public class Mapa implements Administrador {
 
 	private List<POI> poiList;
 	private List<Integracion> integracionesBusquedasExternas;
-	Map<Boolean, Boolean> conversorAPoi = new HashMap<>();
+	Map<String, POI> conversorAPoi = new HashMap<>();
 
 	public Mapa() {
 		poiList = new ArrayList<POI>();
 		integracionesBusquedasExternas = new ArrayList<Integracion>();
+		List<Rango> listaRango = new ArrayList<>();
+		conversorAPoi.put("Banco", new Banco());
+		conversorAPoi.put("CGP", new CGP());
+		conversorAPoi.put("Comercio", new Comercio(listaRango));
+		conversorAPoi.put("Parada",new Parada());
 	}
 
 	public List<POI> getPOIs() {
@@ -28,13 +33,10 @@ public class Mapa implements Administrador {
 		poiList.add(poi);
 	}
 
+
 	@Override
 	public void crearPOI(String nombre) {
-		List<Rango> listaRango = new ArrayList<>();
-		conversorAPoi.put(nombre == "Banco", poiList.add(new Banco()));
-		conversorAPoi.put(nombre == "CGP", poiList.add(new CGP()));
-		conversorAPoi.put(nombre == "Comercio", poiList.add(new Comercio(listaRango)));
-		conversorAPoi.put(nombre == "Parada", poiList.add(new Parada()));
+	if(this.conversorAPoi.containsKey(nombre)) this.poiList.add(this.conversorAPoi.get(nombre));	
 	}
 
 	public void darDeBajaPOI(POI nombre) {

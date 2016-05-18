@@ -18,6 +18,7 @@ public class IntegracionCentroDTO extends Integracion {
 	}*/
 
 /*	public List<POI> transformarListaAPOI(List<CGP> listaCGP){
+ 	
 		;
 	}*/
 
