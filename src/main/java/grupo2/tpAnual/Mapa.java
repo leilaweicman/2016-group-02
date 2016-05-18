@@ -48,6 +48,11 @@ public class Mapa implements Administrador {
 		
 	}
 
+	@Override
+	public POI consultarPoi(POI nombre) {
+		return nombre;
+	}
+
 
 
 }

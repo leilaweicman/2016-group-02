@@ -7,4 +7,6 @@ public interface Administrador {
 	public void modificarUnPOI(POI poi, String atributo, String valorAtributo);
 
 	public void darDeBajaPOI(POI nombre);
+	
+	public POI consultarPoi(POI nombre);
 }
