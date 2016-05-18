@@ -24,15 +24,15 @@ public class ComercioTest
   rango = new Rango();
   
   
-  unRango.setDay(1);
+  unRango.setDia(1);
   unRango.setHoraDesde(LocalTime.of(9,0,0));
   unRango.setHoraHasta(LocalTime.of(18,0,0));
   
-  otroRango.setDay(3);
+  otroRango.setDia(3);
   otroRango.setHoraDesde(LocalTime.of(9,0,0));
   otroRango.setHoraHasta(LocalTime.of(13,0,0));
   
-  rango.setDay(3);
+  rango.setDia(3);
   rango.setHoraDesde(LocalTime.of(15,0,0));
   rango.setHoraHasta(LocalTime.of(18,30,0));
   

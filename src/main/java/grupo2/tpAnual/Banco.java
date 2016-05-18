@@ -9,7 +9,7 @@ import org.joda.time.DateTime;
 import org.uqbar.geodds.Point;
 
 public class Banco extends POI implements IBanco{
-	//BORRAR LISTA DE RANGOS
+	
 	private List<Rango> rangoDisponibilidad = new ArrayList<Rango>();
 	
 	private List<Integer> dias = new ArrayList<Integer>();
@@ -18,19 +18,18 @@ public class Banco extends POI implements IBanco{
 	// constructor
 	public Banco() {
 		dias = Arrays.asList(1, 2, 3, 4, 5);
-		
-
-		for (Integer dia : dias) {
-			Rango unRango = new Rango();
-			unRango.setDay(dia);
-			unRango.setHoraDesde(LocalTime.of(10, 0, 0));
-			unRango.setHoraHasta(LocalTime.of(15, 0, 0));
-			rangoDisponibilidad.add(unRango);
-		}
-		
-		disponibilidad = new Disponibilidad (rangoDisponibilidad);
+		dias.stream().forEach(dia -> crearRango(dia));		
+		this.disponibilidad = new Disponibilidad(rangoDisponibilidad);
 	}
 
+	private void crearRango(int dia){
+		Rango unRango = new Rango();
+		unRango.setDia(dia);
+		unRango.setHoraDesde(LocalTime.of(10, 0, 0));
+		unRango.setHoraHasta(LocalTime.of(15, 0, 0));
+		rangoDisponibilidad.add(unRango);
+	}
+	
 	public List<Rango> getRango() {
 		return rangoDisponibilidad;
 	}

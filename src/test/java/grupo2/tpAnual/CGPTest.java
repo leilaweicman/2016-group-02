@@ -31,13 +31,13 @@ public class CGPTest {
 		rangoUnServicio = new ArrayList<Rango>();
 		rangoOtroServicio = new ArrayList<Rango>();
 
-		unRango.setDay(1);
+		unRango.setDia(1);
 		unRango.setHoraDesde(LocalTime.of(9,0,0));
 		unRango.setHoraHasta(LocalTime.of(18,0,0));
 			  
 		rangoUnServicio.add(unRango);
 		
-		otroRango.setDay(3);
+		otroRango.setDia(3);
 		otroRango.setHoraDesde(LocalTime.of(9,0,0));
 		otroRango.setHoraHasta(LocalTime.of(13,0,0));		  
 		

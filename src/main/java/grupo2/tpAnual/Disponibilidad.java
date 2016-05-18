@@ -10,10 +10,11 @@ public class Disponibilidad {
 	
 	private List<Rango> rangoDisponibilidad = new ArrayList<Rango>();
 	
+	// constructor
 	public Disponibilidad(List<Rango> rango) {
 		this.rangoDisponibilidad = rango;
 	}
-
+		
 	public boolean estaDisponible(DateTime momento) {
 		int dia = momento.getDayOfWeek();
 		int hora = momento.getHourOfDay();
@@ -25,7 +26,7 @@ public class Disponibilidad {
 		boolean disponible = false;
 		
 		disponible = this.rangoDisponibilidad.stream().anyMatch(rango -> rango.estaDisponible(dia, horaCompleta));
-		
+
 		return disponible;
 	}
 
