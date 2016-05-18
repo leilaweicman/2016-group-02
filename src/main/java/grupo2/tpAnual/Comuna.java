@@ -11,10 +11,11 @@ public class Comuna {
 	private List<Point> vertices = new ArrayList<Point>();
 	private int numeroComuna;
 	
-	public Comuna(int numero){
+	public Comuna(int numero, List<Point> vertices){
 		this.numeroComuna = numero;
 		this.comuna=  new Polygon(vertices);
 	}
+	
 	public void agregarVertice(Point vertice) {
 		this.vertices.add(vertice);
 		this.comuna = new Polygon(vertices);

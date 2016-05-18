@@ -11,11 +11,6 @@ public class Comercio extends POI {
 	
 	private Disponibilidad disponibilidad;
 	
-	//agrego constructor para que no falle POI test
-	public Comercio(){
-		
-	}
-	
 	public Comercio(List<Rango> rango){
 		this.rangoDisponibilidad = rango;
 		disponibilidad = new Disponibilidad(this.rangoDisponibilidad);

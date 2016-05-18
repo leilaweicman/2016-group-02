@@ -3,15 +3,15 @@ package grupo2.tpAnual;
 import java.util.ArrayList;
 import java.util.List;
 
-
-public class Mapa{
+public class Mapa {
 
 	private List<POI> poiList;
 	private List<BusquedaAvanzada> integracionesDeBusqueda = new ArrayList<BusquedaAvanzada>();
+
 	public Mapa() {
 		poiList = new ArrayList<POI>();
 		CentroDTO centroDto = new CentroDTO();
-		//integracionesDeBusqueda.add(centroDto);
+		// integracionesDeBusqueda.add(centroDto);
 	}
 
 	public List<POI> getPOIs() {
@@ -22,8 +22,10 @@ public class Mapa{
 		poiList.add(poi);
 	}
 
-	/*public List<POI> busquedaIntegradora(String txtABuscar){
-		integracionesDeBusqueda.forEach(integracion -> integracion.busqueda(txtABuscar));
-	}*/
+	/*
+	 * public List<POI> busquedaIntegradora(String txtABuscar){
+	 * integracionesDeBusqueda.forEach(integracion ->
+	 * integracion.busqueda(txtABuscar)); }
+	 */
 
 }

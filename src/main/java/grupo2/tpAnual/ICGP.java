@@ -2,12 +2,12 @@ package grupo2.tpAnual;
 
 import java.util.List;
 
-
 import org.joda.time.DateTime;
 import org.uqbar.geodds.Point;
 
 public interface ICGP {
 	public void setServicios(List<Servicio> servicios);
+
 	public List<Servicio> getServicios();
 
 	public boolean busquedaParticular(String texto);

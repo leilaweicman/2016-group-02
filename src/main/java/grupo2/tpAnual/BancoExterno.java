@@ -2,9 +2,6 @@ package grupo2.tpAnual;
 
 import java.util.List;
 
-import org.joda.time.DateTime;
-import org.uqbar.geodds.Point;
-
 public class BancoExterno {
 	private String banco;
 	private double x;

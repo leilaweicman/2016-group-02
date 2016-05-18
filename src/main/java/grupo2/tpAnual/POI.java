@@ -1,13 +1,12 @@
 package grupo2.tpAnual;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.joda.time.DateTime;
 import org.uqbar.geodds.Point;
 
-public abstract class POI /*implements BusquedaAvanzada*/{
+public abstract class POI /* implements BusquedaAvanzada */ {
 	private Direccion direccion;
 	private List<String> palabraClave;
 	protected Point ubicacion;
@@ -59,12 +58,12 @@ public abstract class POI /*implements BusquedaAvanzada*/{
 	public void setComuna(Comuna com) {
 		this.comuna = com;
 	}
-	
+
 	public List<POI> busqueda(String txtABuscar) {
 		List<POI> resultadoBusqueda = new ArrayList<POI>();
-			if (this.VerificarPorTexto(txtABuscar)) {
-				resultadoBusqueda.add(this);
-			}
+		if (this.VerificarPorTexto(txtABuscar)) {
+			resultadoBusqueda.add(this);
+		}
 		return resultadoBusqueda;
 	}
 }
