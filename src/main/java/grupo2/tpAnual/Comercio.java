@@ -2,8 +2,6 @@ package grupo2.tpAnual;
 
 import org.joda.time.DateTime;
 import org.uqbar.geodds.Point;
-
-import java.sql.Time;
 import java.util.*;
 
 public class Comercio extends POI {

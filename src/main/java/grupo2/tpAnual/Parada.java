@@ -1,7 +1,4 @@
 package grupo2.tpAnual;
-
-import java.util.Date;
-
 import org.joda.time.DateTime;
 import org.uqbar.geodds.Point;
 

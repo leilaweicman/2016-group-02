@@ -1,44 +1,41 @@
 package grupo2.tpAnual;
-
-
 import java.time.LocalTime;
 
-import static java.lang.System.out;
 
 public class Rango {
-	private Integer day;
-	private LocalTime horaD;
-	private LocalTime horaH;
+	private Integer dia;
+	private LocalTime horaDesde;
+	private LocalTime horaHasta;
 
 	public Integer getDay() {
-		return day;
+		return dia;
 	}
 
 	public void setDay(Integer day) {
-		this.day = day;
+		this.dia = day;
 	}
 
-	public LocalTime getHoraD() {
-		return horaD;
+	public LocalTime getHoraDesde() {
+		return horaDesde;
 	}
 
-	public void setHoraD(LocalTime horaD) {
-		this.horaD = horaD;
+	public void setHoraDesde(LocalTime horaD) {
+		this.horaDesde = horaD;
 	}
 
-	public LocalTime getHoraH() {
-		return horaH;
+	public LocalTime getHoraHasta() {
+		return horaHasta;
 	}
 
-	public void setHoraH(LocalTime horaH) {
-		this.horaH = horaH;
+	public void setHoraHasta(LocalTime horaH) {
+		this.horaHasta = horaH;
 	}
 	
 	public boolean estaDisponible(int dia, LocalTime horaCompleta) {
 		
 		boolean disponible = false;
-		if ((dia == this.getDay()) && ((this.getHoraD()).compareTo(horaCompleta) == -1)
-				&& ((this.getHoraH()).compareTo(horaCompleta) == 1)) {
+		if ((dia == this.getDay()) && ((this.getHoraDesde()).compareTo(horaCompleta) == -1)
+				&& ((this.getHoraHasta()).compareTo(horaCompleta) == 1)) {
 			disponible = true;
 		}
 		

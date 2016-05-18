@@ -7,7 +7,6 @@ import java.util.List;
 
 import org.joda.time.DateTime;
 import org.uqbar.geodds.Point;
-import static java.lang.System.out;
 
 public class Banco extends POI implements IBanco{
 	//BORRAR LISTA DE RANGOS
@@ -23,8 +22,8 @@ public class Banco extends POI implements IBanco{
 		for (Integer dia : dias) {
 			Rango unRango = new Rango();
 			unRango.setDay(dia);
-			unRango.setHoraD(LocalTime.of(10, 0, 0));
-			unRango.setHoraH(LocalTime.of(15, 0, 0));
+			unRango.setHoraDesde(LocalTime.of(10, 0, 0));
+			unRango.setHoraHasta(LocalTime.of(15, 0, 0));
 			rangoDisponibilidad.add(unRango);
 		}
 	}
