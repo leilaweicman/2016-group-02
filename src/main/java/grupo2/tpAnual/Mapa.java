@@ -4,13 +4,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Mapa implements Administrador {
 
 	private List<POI> poiList;
 	private List<Integracion> integracionesBusquedasExternas;
 	Map<String, POI> conversorAPoi = new HashMap<>();
-
+	private List<POI> listaPOIS= new ArrayList<POI>();
+	
 	public Mapa() {
 		poiList = new ArrayList<POI>();
 		integracionesBusquedasExternas = new ArrayList<Integracion>();
@@ -53,11 +55,27 @@ public class Mapa implements Administrador {
 	public POI consultarPoi(POI nombre) {
 		return nombre;
 	}
-
+	
 	/*public List<POI> busquedaRealizadaPorElUsuario(String txtABuscar) {
-		List<POI> listaPOIS= new ArrayList<POI>();
-		this.integracionesBusquedasExternas.forEach(integr -> integr.busqueda(txtABuscar));
-		return integracionesBusquedasExternas;
-	}*/
-
+	  List<POI> result = new ArrayList<POI>();
+	  for (POI poi : poiList) {
+	   if (poi.verificarPorTexto(txtABuscar))
+	    result.add(poi);
+	  }
+	  return result;
+	 }*/
+	
+	
+	public List<POI> busquedaRealizadaPorElUsuario(String txtABuscar) {
+		//List<POI> listaPOIS= new ArrayList<POI>();
+		this.integracionesBusquedasExternas.stream().forEach(integr -> concatenarListas(integr, txtABuscar) );
+		return listaPOIS;
+	}
+	
+	private void concatenarListas(Integracion integr, String txtABuscar)
+	{
+		List<POI> lista= new ArrayList<POI>();
+		lista= integr.busqueda(txtABuscar);
+		listaPOIS.addAll(lista) ;
+	}
 }

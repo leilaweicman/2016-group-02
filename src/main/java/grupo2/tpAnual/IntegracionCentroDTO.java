@@ -8,19 +8,19 @@ import org.uqbar.geodds.Point;
 public class IntegracionCentroDTO extends Integracion {
 	private CentroDTO lugar;
 
-	/*	@Override
+	@Override
 	public List<POI> busqueda(String txtABuscar) {
 		List<CGP> listaCGP = new ArrayList<>();
 		List<POI> listaPOI = new ArrayList<>();
 		listaCGP = this.lugar.busqueda(txtABuscar);
 		listaPOI= transformarListaAPOI(listaCGP);
 		return listaPOI;
-	}*/
+	}
 
-/*	public List<POI> transformarListaAPOI(List<CGP> listaCGP){
- 	
-		;
-	}*/
+	public List<POI> transformarListaAPOI(List<CGP> listaCGP){
+		List<POI> listaPOI = new ArrayList<>();
+		return listaPOI;
+	}
 
 	public void setServicios(List<Servicio> serviciosTransformados) {
 		serviciosTransformados.add((Servicio) lugar.getServiciosDTO());
@@ -36,10 +36,10 @@ public class IntegracionCentroDTO extends Integracion {
 		comuna = new Comuna(this.lugar.getNumeroComuna(), listaVertices);
 	}
 
-	@Override
+	/*@Override
 	public Object busqueda(String txtABuscar) {
 		// NO DARLE BOLA, SINO ROMPIA, HAY Q MIRAR EL Q ESTA COMENTADO
-		return null;
-	}
+		return true;
+	}*/
 
 }
