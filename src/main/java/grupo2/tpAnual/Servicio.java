@@ -1,15 +1,26 @@
 package grupo2.tpAnual;
 
 import java.util.ArrayList;
+import java.util.List;
+
 import org.joda.time.DateTime;
 
 public class Servicio {
 	private String nombre;
 	
-	//BORRAR LISTA DE RANGOS
-	private ArrayList<Rango> rangoDisponibilidad = new ArrayList<Rango>();
+	private List<Rango> rangoDisponibilidad = new ArrayList<Rango>();
 		
 	private Disponibilidad disponibilidad;
+	
+	//agrego constructor para que no falle POI test
+	public Servicio(){
+		
+	}
+	
+	public Servicio(List<Rango> rango){
+		this.rangoDisponibilidad = rango;
+		disponibilidad = new Disponibilidad(this.rangoDisponibilidad);
+	}
 	
 	public String getNombre() {
 		return nombre;
@@ -19,11 +30,11 @@ public class Servicio {
 		this.nombre = Nom;
 	}
 
-	public ArrayList<Rango> getRango() {
+	public List<Rango> getRango() {
 		return rangoDisponibilidad;
 	}
 
-	public void setRango(ArrayList<Rango> rango) {
+	public void setRango(List<Rango> rango) {
 		this.rangoDisponibilidad = rango;
 	}
 
@@ -31,10 +42,9 @@ public class Servicio {
 		this.rangoDisponibilidad.add(rango);
 	}
 
-	//BORRAR
 	public boolean estaDisponible(DateTime momento) 
 	{
-		return true;
+		return this.disponibilidad.estaDisponible(momento);
 	}
 
 	public Disponibilidad getDisponibilidad() {

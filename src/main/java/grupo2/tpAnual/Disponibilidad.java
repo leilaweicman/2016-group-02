@@ -6,7 +6,7 @@ import java.util.List;
 
 import org.joda.time.DateTime;
 
-public class Disponibilidad {
+public class Disponibilidad {	
 	
 	private List<Rango> rangoDisponibilidad = new ArrayList<Rango>();
 	
@@ -26,16 +26,16 @@ public class Disponibilidad {
 		boolean disponible = false;
 		
 		disponible = this.rangoDisponibilidad.stream().anyMatch(rango -> rango.estaDisponible(dia, horaCompleta));
-		
-		/*for (Rango rango : rangoDisponibilidad) {
-			
-			disponible = rango.estaDisponible(dia, horaCompleta);
-			if ((dia == rango.getDay()) && ((rango.getHoraD()).compareTo(horaCompleta) == -1)
-					&& ((rango.getHoraH()).compareTo(horaCompleta) == 1)) {
-				disponible = true;
-			}
-		}*/
+
 		return disponible;
+	}
+
+	public void setDisponibilidad(List<Rango> rango) {
+		this.rangoDisponibilidad = rango;		
+	}
+
+	public void addRango(Rango rango) {
+		this.rangoDisponibilidad.add(rango);		
 	}
 	
 }
