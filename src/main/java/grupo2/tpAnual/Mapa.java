@@ -9,7 +9,7 @@ public class Mapa implements Administrador {
 
 	private List<POI> poiList;
 	private List<BusquedaAvanzada> integracionesDeBusqueda = new ArrayList<BusquedaAvanzada>();
-	Map<String, Boolean> conversorAPoi = new HashMap<>();
+	Map<Boolean, Boolean> conversorAPoi = new HashMap<>();
 	public Mapa() {
 		poiList = new ArrayList<POI>();
 		// integracionesDeBusqueda.add(centroDto);
@@ -32,10 +32,10 @@ public class Mapa implements Administrador {
 	@Override
 	public void crearPOI(String nombre){
 		List<Rango> listaRango = new ArrayList<>();
-		conversorAPoi.put("Banco", poiList.add(new Banco()));
-		conversorAPoi.put("CGP", poiList.add(new CGP()));
-		conversorAPoi.put("Comercio",poiList.add(new Comercio(listaRango)));
-		conversorAPoi.put("Parada", poiList.add(new Parada()));	
+		conversorAPoi.put(nombre=="Banco", poiList.add(new Banco()));
+		conversorAPoi.put(nombre=="CGP", poiList.add(new CGP()));
+		conversorAPoi.put(nombre=="Comercio",poiList.add(new Comercio(listaRango)));
+		conversorAPoi.put(nombre=="Parada", poiList.add(new Parada()));	
 	}
 	
 	public void darDeBajaPOI(POI nombre) {

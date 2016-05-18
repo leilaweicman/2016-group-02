@@ -2,6 +2,8 @@ package grupo2.tpAnual;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -38,6 +40,13 @@ public class MapaTest {
 	@Test
 	public void testBusquedaPorServicio() {
 		// Assert.assertTrue(rentas.verificarPorTexto("Jubilados"));
+	}
+	
+	@Test
+	public void testCrearPoi(){
+		lasHeras.crearPOI("Banco");
+		Assert.assertEquals(this.lasHeras.getPOIs().size(),6);
+		
 	}
 
 }
