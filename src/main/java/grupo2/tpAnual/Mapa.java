@@ -11,6 +11,8 @@ public class Mapa implements Administrador {
 	private List<POI> poiList;
 	private List<Integracion> integracionesBusquedasExternas;
 	Map<String, POI> conversorAPoi = new HashMap<>();
+	Map<String, Object> devolverAtributo= new HashMap<>();
+	
 	private List<POI> listaPOIS= new ArrayList<POI>();
 	
 	public Mapa() {
@@ -52,8 +54,15 @@ public class Mapa implements Administrador {
 	}
 
 	@Override
-	public POI consultarPoi(POI nombre) {
-		return nombre;
+	public Object consultarPoi(POI nombre, String atributo) {
+		devolverAtributo.put("Direccion",nombre.getDireccion());
+		devolverAtributo.put("Ubicacion",nombre.getUbicacion());
+		devolverAtributo.put("Comuna",nombre.getComuna());
+		
+		if(this.devolverAtributo.containsKey(atributo))	{return (this.devolverAtributo.get(atributo));}
+		return atributo; //esto es cualca, para que no tire error porque no se que devolver
+		
+		
 	}
 	
 	/*public List<POI> busquedaRealizadaPorElUsuario(String txtABuscar) {

@@ -59,6 +59,10 @@ public abstract class POI  /*implements BusquedaAvanzada*/ {
 	public void setComuna(Comuna com) {
 		this.comuna = com;
 	}
+	
+	public Comuna getComuna(){
+		return comuna;
+	}
 
 	public List<POI> busqueda(String txtABuscar) {
 		List<POI> resultadoBusqueda = new ArrayList<POI>();

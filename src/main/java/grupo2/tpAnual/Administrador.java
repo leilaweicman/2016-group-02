@@ -8,5 +8,5 @@ public interface Administrador {
 
 	public void darDeBajaPOI(POI nombre);
 	
-	public POI consultarPoi(POI nombre);
+	public Object consultarPoi(POI nombre, String atributo);
 }
