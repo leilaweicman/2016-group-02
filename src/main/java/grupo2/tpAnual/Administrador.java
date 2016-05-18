@@ -1,10 +1,10 @@
 package grupo2.tpAnual;
 
 public interface Administrador {
-	
-	public void darDeAltaUnPOI();
 
-	public void modificarUnPOI(String atributo, String valorAtributo);
-	
-	public void darDeBajaUnPOI();
+	public void crearPOI(String nombre);
+
+	public void modificarUnPOI(POI poi, String atributo, String valorAtributo);
+
+	public void darDeBajaPOI(POI nombre);
 }
