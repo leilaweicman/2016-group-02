@@ -16,6 +16,6 @@ public interface CentroDTO {
 
 	public String getNombreDirector();
 	
-	public List<POI> busqueda(String texto);
-
+	public List<CGP> busqueda(String texto);
+	
 }

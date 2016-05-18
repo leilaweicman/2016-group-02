@@ -8,36 +8,35 @@ import java.util.Map;
 public class Mapa implements Administrador {
 
 	private List<POI> poiList;
-	private List<BusquedaAvanzada> integracionesDeBusqueda = new ArrayList<BusquedaAvanzada>();
+	private List<Integracion> integracionesBusquedasExternas;
 	Map<Boolean, Boolean> conversorAPoi = new HashMap<>();
+
 	public Mapa() {
 		poiList = new ArrayList<POI>();
-		// integracionesDeBusqueda.add(centroDto);
+		integracionesBusquedasExternas = new ArrayList<Integracion>();
 	}
 
 	public List<POI> getPOIs() {
 		return poiList;
 	}
 
+	public void setIntegracionesBusquedaExterna(Integracion integracion) {
+		this.integracionesBusquedasExternas.add(integracion);
+	}
+
 	public void agregarPOI(POI poi) {
 		poiList.add(poi);
 	}
 
-	/*
-	 * public List<POI> busquedaIntegradora(String txtABuscar){
-	 * integracionesDeBusqueda.forEach(integracion ->
-	 * integracion.busqueda(txtABuscar)); }
-	 */
-	
 	@Override
-	public void crearPOI(String nombre){
+	public void crearPOI(String nombre) {
 		List<Rango> listaRango = new ArrayList<>();
-		conversorAPoi.put(nombre=="Banco", poiList.add(new Banco()));
-		conversorAPoi.put(nombre=="CGP", poiList.add(new CGP()));
-		conversorAPoi.put(nombre=="Comercio",poiList.add(new Comercio(listaRango)));
-		conversorAPoi.put(nombre=="Parada", poiList.add(new Parada()));	
+		conversorAPoi.put(nombre == "Banco", poiList.add(new Banco()));
+		conversorAPoi.put(nombre == "CGP", poiList.add(new CGP()));
+		conversorAPoi.put(nombre == "Comercio", poiList.add(new Comercio(listaRango)));
+		conversorAPoi.put(nombre == "Parada", poiList.add(new Parada()));
 	}
-	
+
 	public void darDeBajaPOI(POI nombre) {
 		poiList.remove(nombre);
 	}
@@ -45,7 +44,7 @@ public class Mapa implements Administrador {
 	@Override
 	public void modificarUnPOI(POI poi, String atributo, String valorAtributo) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -53,6 +52,10 @@ public class Mapa implements Administrador {
 		return nombre;
 	}
 
-
+	/*public List<POI> busquedaRealizadaPorElUsuario(String txtABuscar) {
+		List<POI> listaPOIS= new ArrayList<POI>();
+		this.integracionesBusquedasExternas.forEach(integr -> integr.busqueda(txtABuscar));
+		return integracionesBusquedasExternas;
+	}*/
 
 }
