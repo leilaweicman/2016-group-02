@@ -3,7 +3,7 @@ package grupo2.tpAnual;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Mapa {
+public class Mapa implements Administrador {
 
 	private List<POI> poiList;
 	private List<BusquedaAvanzada> integracionesDeBusqueda = new ArrayList<BusquedaAvanzada>();
@@ -27,5 +27,15 @@ public class Mapa {
 	 * integracionesDeBusqueda.forEach(integracion ->
 	 * integracion.busqueda(txtABuscar)); }
 	 */
+	public void darDeAltaUnPOI(){
+		
+	}
 
+	public void modificarUnPOI(String atributo, String valorAtributo){
+		
+	}
+	
+	public void darDeBajaUnPOI(){
+		
+	}
 }
