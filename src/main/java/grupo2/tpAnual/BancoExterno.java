@@ -17,4 +17,5 @@ public interface BancoExterno {
 	public String getGerente();
 	
 	//public List<JSON> busqueda(String banco, String servicio);
+	public List<Object> busqueda(String banco, String servicio);
 }
