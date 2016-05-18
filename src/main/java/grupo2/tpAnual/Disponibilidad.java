@@ -6,11 +6,15 @@ import java.util.List;
 
 import org.joda.time.DateTime;
 
-public class Disponibilidad {
+public class Disponibilidad {	
 	
 	private List<Rango> rangoDisponibilidad = new ArrayList<Rango>();
 	
-	public boolean estaDisponible(DateTime momento, String nombre) {
+	public Disponibilidad(List<Rango> rango) {
+		this.rangoDisponibilidad = rango;
+	}
+
+	public boolean estaDisponible(DateTime momento) {
 		int dia = momento.getDayOfWeek();
 		int hora = momento.getHourOfDay();
 		int minutos = momento.getMinuteOfHour();
@@ -18,23 +22,19 @@ public class Disponibilidad {
 		
 		LocalTime horaCompleta = LocalTime.of(hora, minutos, segundos);
 
-		//Time horaCompleta = new Time(hora, minutos, segundos);
 		boolean disponible = false;
 		
-		// USAR MENSAJES DE COLECCIONES
-		// col.stream().anyMatch(elem -> cond );
+		disponible = this.rangoDisponibilidad.stream().anyMatch(rango -> rango.estaDisponible(dia, horaCompleta));
 		
-		disponible = rangoDisponibilidad.stream().anyMatch(rango -> rango.estaDisponible(dia, horaCompleta));
-		
-		/*for (Rango rango : rangoDisponibilidad) {
-			
-			disponible = rango.estaDisponible(dia, horaCompleta);
-			if ((dia == rango.getDay()) && ((rango.getHoraD()).compareTo(horaCompleta) == -1)
-					&& ((rango.getHoraH()).compareTo(horaCompleta) == 1)) {
-				disponible = true;
-			}
-		}*/
 		return disponible;
+	}
+
+	public void setDisponibilidad(List<Rango> rango) {
+		this.rangoDisponibilidad = rango;		
+	}
+
+	public void addRango(Rango rango) {
+		this.rangoDisponibilidad.add(rango);		
 	}
 	
 }

@@ -7,21 +7,32 @@ import java.util.*;
 public class Comercio extends POI {
 	private Rubro rubro;
 	
-	//BORRAR LISTA DE RANGOS
-	private ArrayList<Rango> rangoDisponibilidad = new ArrayList<Rango>();
+	private List<Rango> rangoDisponibilidad = new ArrayList<Rango>();
 	
 	private Disponibilidad disponibilidad;
 	
-	public ArrayList<Rango> getRango() {
+	//agrego constructor para que no falle POI test
+	public Comercio(){
+		
+	}
+	
+	public Comercio(List<Rango> rango){
+		this.rangoDisponibilidad = rango;
+		disponibilidad = new Disponibilidad(this.rangoDisponibilidad);
+	}
+	
+	public List<Rango> getRango() {
 		return rangoDisponibilidad;
 	}
 
-	public void setRango(ArrayList<Rango> rango) {
+	public void setRango(List<Rango> rango) {
 		this.rangoDisponibilidad = rango;
+		this.disponibilidad.setDisponibilidad(this.rangoDisponibilidad);
 	}
 
 	public void addRango(Rango rango) {
 		this.rangoDisponibilidad.add(rango);
+		this.disponibilidad.addRango(rango);
 	}
 
 	public Rubro getRubro() {
@@ -32,10 +43,9 @@ public class Comercio extends POI {
 		this.rubro = rub;
 	}
 	
-	//BORRAR
 	public boolean estaDisponible(DateTime momento, String nombre) 
 	{
-		return true;
+		return this.disponibilidad.estaDisponible(momento);
 	}
 	
 	public boolean estaCerca(Point coordenadaDeseada) {

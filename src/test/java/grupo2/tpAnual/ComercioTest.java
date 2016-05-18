@@ -1,5 +1,7 @@
 package grupo2.tpAnual;
 import java.time.LocalTime;
+import java.util.Arrays;
+import java.util.List;
 
 import org.joda.time.DateTime;
 import org.junit.Assert;
@@ -13,13 +15,14 @@ public class ComercioTest
  private Rango otroRango;
  private Rango rango;
  private DateTime momento;
+ private List<Rango> listaRangos;
  
  @Before
  public void init(){
-  comercio= new Comercio();
   unRango = new Rango();
   otroRango = new Rango();
   rango = new Rango();
+  
   
   unRango.setDay(1);
   unRango.setHoraDesde(LocalTime.of(9,0,0));
@@ -33,9 +36,9 @@ public class ComercioTest
   rango.setHoraDesde(LocalTime.of(15,0,0));
   rango.setHoraHasta(LocalTime.of(18,30,0));
   
-  comercio.addRango(unRango); 
-  comercio.addRango(otroRango);
-  comercio.addRango(rango);
+  listaRangos = Arrays.asList(unRango, otroRango, rango);
+
+  comercio= new Comercio(listaRangos);
  }
  
  @Test
@@ -44,11 +47,11 @@ public class ComercioTest
 	 Assert.assertTrue(comercio.estaDisponible(momento, "")); 
  }
  
- //@Test
- /*public void noEstaDisponibleMiercolesALas14() {
+ @Test
+ public void noEstaDisponibleMiercolesALas14() {
 	 momento = new DateTime("2016-04-20T14:00:00");
 	 Assert.assertFalse(comercio.estaDisponible(momento, "")); 
- }*/
+ }
 
 
 }

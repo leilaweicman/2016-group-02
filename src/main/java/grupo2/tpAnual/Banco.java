@@ -18,6 +18,7 @@ public class Banco extends POI implements IBanco{
 	// constructor
 	public Banco() {
 		dias = Arrays.asList(1, 2, 3, 4, 5);
+		
 
 		for (Integer dia : dias) {
 			Rango unRango = new Rango();
@@ -26,6 +27,8 @@ public class Banco extends POI implements IBanco{
 			unRango.setHoraHasta(LocalTime.of(15, 0, 0));
 			rangoDisponibilidad.add(unRango);
 		}
+		
+		disponibilidad = new Disponibilidad (rangoDisponibilidad);
 	}
 
 	public List<Rango> getRango() {
@@ -40,10 +43,9 @@ public class Banco extends POI implements IBanco{
 		this.rangoDisponibilidad.add(rango);
 	}
 	
-	//BORRAR
 	public boolean estaDisponible(DateTime momento, String nombre) 
 	{
-		return true;
+		return this.disponibilidad.estaDisponible(momento);
 	}
 	
 	public Disponibilidad getDisponibilidad() {

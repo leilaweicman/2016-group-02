@@ -32,14 +32,10 @@ public class CGP extends POI implements ICGP {
 	public boolean estaDisponible(DateTime momento, String nombreServicio) {
 		boolean disponible = false;
 		if (nombreServicio != "") {
-
 			disponible = servicios.stream().filter(x -> x.getNombre() == nombreServicio)
 					.collect(Collectors.toList()).get(0).estaDisponible(momento);
-			
-		} else {
-			
+		} else {			
 			disponible = servicios.stream().anyMatch(servicio -> servicio.estaDisponible(momento));
-			
 		}
 		return disponible;
 	}
