@@ -9,18 +9,19 @@ public class IntegracionCentroDTO extends Integracion {
 	private CentroDTO lugar;
 
 	@Override
-	public List<POI> busqueda(String txtABuscar) {
-		List<CGP> listaCGP = new ArrayList<>();
-		List<POI> listaPOI = new ArrayList<>();
-		listaCGP = this.lugar.busqueda(txtABuscar);
-		listaPOI= transformarListaAPOI(listaCGP);
-		return listaPOI;
+	public List<POI> busqueda(String txtABuscar) {		
+		return this.lugar.busqueda(txtABuscar);
 	}
 
-	public List<POI> transformarListaAPOI(List<CGP> listaCGP){
+	/*public List<POI> transformarListaAPOI(List<CGP> listaCGP){
 		List<POI> listaPOI = new ArrayList<>();
 		return listaPOI;
 	}
+	
+	public POI transformarCGPAPOI(List<CGP> listaCGP){
+		POI POI = new ArrayList<>();
+		return listaPOI;
+	}*/
 
 	public void setServicios(List<Servicio> serviciosTransformados) {
 		serviciosTransformados.add((Servicio) lugar.getServiciosDTO());
