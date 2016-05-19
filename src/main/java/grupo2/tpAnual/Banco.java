@@ -8,7 +8,7 @@ import java.util.List;
 import org.joda.time.DateTime;
 import org.uqbar.geodds.Point;
 
-public class Banco extends POI implements IBanco{
+public class Banco extends POI{
 	
 	private List<Rango> rangoDisponibilidad = new ArrayList<Rango>();
 	

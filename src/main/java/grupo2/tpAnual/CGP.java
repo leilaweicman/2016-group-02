@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 import org.joda.time.DateTime;
 import org.uqbar.geodds.Point;
 
-public class CGP extends POI implements ICGP {
+public class CGP extends POI{
 	private List<Servicio> servicios;
 
 	

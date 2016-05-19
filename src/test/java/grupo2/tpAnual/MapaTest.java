@@ -44,16 +44,10 @@ public class MapaTest {
 	
 	@Test
 	public void testCrearPoiAcierto(){
-		lasHeras.crearPOI("Banco");
+		lasHeras.crearPOI(rentas);
 		Assert.assertEquals(this.lasHeras.getPOIs().size(),3);
 		
 	}
 	
-	@Test
-	public void testCrearPoiNoAcierto(){
-		lasHeras.crearPOI("Peluca");
-		Assert.assertEquals(this.lasHeras.getPOIs().size(),2);
-		
-	}
 
 }

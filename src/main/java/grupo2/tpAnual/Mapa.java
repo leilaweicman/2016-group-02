@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Mapa implements Administrador {
+public class Mapa {
 
 	private List<POI> poiList;
 	private List<Integracion> integracionesBusquedasExternas;
@@ -37,24 +37,23 @@ public class Mapa implements Administrador {
 	}
 
 
-	@Override
-	public void crearPOI(String nombre) {
-	if(this.conversorAPoi.containsKey(nombre)) this.poiList.add(this.conversorAPoi.get(nombre));	
+	public void crearPOI(POI poi) {
+	this.poiList.add(poi);	
 	}
 
 	public void darDeBajaPOI(POI nombre) {
 		poiList.remove(nombre);
 	}
 
-	@Override
+
 	public void modificarUnPOI(POI poi, String atributo, String valorAtributo) {
-		// TODO Auto-generated method stub
+		// No hacemos nada hastano tener la UI
 
 	}
 
-	@Override
+
 	public Object consultarPoi(POI nombre, String atributo) {
-		devolverAtributo.put("Direccion",nombre.getDireccion());
+		devolverAtributo.put("Direccion",nombre.getDireccion()); 
 		devolverAtributo.put("Ubicacion",nombre.getUbicacion());
 		devolverAtributo.put("Comuna",nombre.getComuna());
 		
