@@ -13,16 +13,6 @@ public class IntegracionCentroDTO extends Integracion {
 		return this.lugar.busqueda(txtABuscar);
 	}
 
-	/*public List<POI> transformarListaAPOI(List<CGP> listaCGP){
-		List<POI> listaPOI = new ArrayList<>();
-		return listaPOI;
-	}
-	
-	public POI transformarCGPAPOI(List<CGP> listaCGP){
-		POI POI = new ArrayList<>();
-		return listaPOI;
-	}*/
-
 	public void setServicios(List<Servicio> serviciosTransformados) {
 		serviciosTransformados.add((Servicio) lugar.getServiciosDTO());
 	}
@@ -36,11 +26,5 @@ public class IntegracionCentroDTO extends Integracion {
 		List<Point> listaVertices = new ArrayList<>();
 		comuna = new Comuna(this.lugar.getNumeroComuna(), listaVertices);
 	}
-
-	/*@Override
-	public Object busqueda(String txtABuscar) {
-		// NO DARLE BOLA, SINO ROMPIA, HAY Q MIRAR EL Q ESTA COMENTADO
-		return true;
-	}*/
 
 }

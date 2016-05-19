@@ -34,18 +34,25 @@ public class MapaTest {
 
 	@Test
 	public void testEstaPalabraClave() {
-		// Assert.assertTrue(santander.verificarPorTexto("plazoFijo"));
+		 Assert.assertTrue(santander.VerificarPorTexto("plazoFijo"));
 	}
 
-	@Test
+	/*@Test
 	public void testBusquedaPorServicio() {
-		// Assert.assertTrue(rentas.verificarPorTexto("Jubilados"));
+		//Assert.assertTrue(rentas.VerificarPorTexto("Jubilados"));
+	}*/
+	
+	@Test
+	public void testCrearPoiAcierto(){
+		lasHeras.crearPOI("Banco");
+		Assert.assertEquals(this.lasHeras.getPOIs().size(),3);
+		
 	}
 	
 	@Test
-	public void testCrearPoi(){
-		lasHeras.crearPOI("Banco");
-		Assert.assertEquals(this.lasHeras.getPOIs().size(),3);
+	public void testCrearPoiNoAcierto(){
+		lasHeras.crearPOI("Peluca");
+		Assert.assertEquals(this.lasHeras.getPOIs().size(),2);
 		
 	}
 
