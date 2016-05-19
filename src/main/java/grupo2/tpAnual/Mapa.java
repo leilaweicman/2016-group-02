@@ -60,7 +60,7 @@ public class Mapa implements Administrador {
 		devolverAtributo.put("Comuna",nombre.getComuna());
 		
 		if(this.devolverAtributo.containsKey(atributo))	{return (this.devolverAtributo.get(atributo));}
-		return atributo; //esto es cualca, para que no tire error porque no se que devolver
+		else return null; //esto es cualca, para que no tire error porque no se que devolver
 		
 		
 	}
