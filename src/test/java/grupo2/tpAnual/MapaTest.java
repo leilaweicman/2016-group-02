@@ -34,7 +34,7 @@ public class MapaTest {
 
 	@Test
 	public void testEstaPalabraClave() {
-		 Assert.assertTrue(santander.VerificarPorTexto("plazoFijo"));
+		 Assert.assertTrue(santander.verificarPorTexto("plazoFijo"));
 	}
 
 	/*@Test

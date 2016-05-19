@@ -2,20 +2,41 @@ package grupo2.tpAnual;
 
 import java.util.List;
 
-public interface CentroDTO {
+public class CentroDTO {
+	private int numeroComuna;
+	private String zona;
+	private int telefono;
+	private String domicilio;
+	private String nombreDirector;
+	private List<Servicio> serviciosDTO;
 
-	public int getNumeroComuna();
+	public CentroDTO(int numeroComuna, String domicilio) {
+		this.numeroComuna = numeroComuna;
+		this.domicilio = domicilio;
+	}
 
-	public String getZonas();
+	public int getNumeroComuna() {
+		return this.numeroComuna;
+	}
 
-	public String getDomicilio();
+	public String getZona() {
+		return this.zona;
+	}
 
-	public int getTelefono();
-	
-	public List<Servicio> getServiciosDTO();
+	public String getDomicilio() {
+		return this.domicilio;
+	}
 
-	public String getNombreDirector();
-	
-	public List<POI> busqueda(String texto);
-	
+	public int getTelefono() {
+		return this.telefono;
+	}
+
+	public List<Servicio> getServiciosDTO() {
+		return this.serviciosDTO;
+	}
+
+	public String getNombreDirector() {
+		return this.nombreDirector;
+	}
+
 }

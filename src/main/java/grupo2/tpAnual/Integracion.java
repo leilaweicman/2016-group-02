@@ -2,8 +2,8 @@ package grupo2.tpAnual;
 
 import java.util.List;
 
-public abstract class Integracion {
+public interface Integracion {
 
-	public abstract List<POI> busqueda(String txtABuscar, String servicio);
+	public abstract List<POI> busqueda(String txtABuscar);
 
 }

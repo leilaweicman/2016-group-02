@@ -9,14 +9,14 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-public class IntegracionBancoExterno extends Integracion{
+public class IntegracionBancoExterno implements Integracion{
 	private BancoExterno banco;
 	
 	@Override
-	public List<POI> busqueda(String banco, String servicio) {
+	public List<POI> busqueda(String banco) {
 		String json;
 		List<POI> listaPOI = new ArrayList<>();
-		json = this.banco.busqueda(banco,servicio);
+		json = this.banco.busqueda(banco,"");
 		listaPOI= transformarAPOI(json);
 		return listaPOI;
 	}
