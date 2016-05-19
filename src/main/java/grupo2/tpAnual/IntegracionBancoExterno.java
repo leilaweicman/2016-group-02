@@ -5,6 +5,10 @@ import java.util.List;
 
 import org.uqbar.geodds.Point;
 
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 public class IntegracionBancoExterno extends Integracion{
 	private BancoExterno banco;
 	
@@ -25,9 +29,16 @@ public class IntegracionBancoExterno extends Integracion{
       "servicios": [ "cobro cheques", "depósitos", "extracciones", "transferencias", "créditos", "", "", "" ]
    }*/
 	
-	public List<POI> transformarAPOI(String listaBancosExt){
-		List<POI> listaPOI = new ArrayList<>();
-		return listaPOI;
+	public List<POI> transformarAPOI(String jsonBancosExt){
+		ObjectMapper mapper = new ObjectMapper();
+		try{
+			List<POI> listaPOI = mapper.readValue(jsonBancosExt, List.class);
+			return listaPOI;
+		} catch (Exception e){
+			//catcheo Exception generico solo por ahora
+			throw new IntegracionBancoExternoException ("no se ha podido agregar", e);
+		}
+		
 	}
 	
 	public void bancoExternoAPoi(BancoExterno banco){

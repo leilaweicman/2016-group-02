@@ -59,7 +59,7 @@ public class Mapa implements Administrador {
 		devolverAtributo.put("Comuna",nombre.getComuna());
 		
 		if(this.devolverAtributo.containsKey(atributo))	{return (this.devolverAtributo.get(atributo));}
-		return atributo; //esto es cualca, para que no tire error porque no se que devolver
+		return atributo; //para que no tire error porque no se que devolver
 		
 		
 	}
@@ -75,8 +75,12 @@ public class Mapa implements Administrador {
 	
 	
 	public List<POI> busquedaRealizadaPorElUsuario(String txtABuscar, String servicio) {
-		this.integracionesBusquedasExternas.stream().forEach(integr -> concatenarListas(integr, txtABuscar, servicio) );
-		return listaPOIS;
+		try{
+			this.integracionesBusquedasExternas.stream().forEach(integr -> concatenarListas(integr, txtABuscar, servicio) );
+			return listaPOIS;
+		} catch (Exception e){
+			throw new IntegracionException ("no se ha podido realizar la busqueda",e);
+		}
 	}
 	
 	private void concatenarListas(Integracion integr, String txtABuscar, String servicio){
