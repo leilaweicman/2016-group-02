@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class Mapa implements Administrador {
 
@@ -75,16 +74,14 @@ public class Mapa implements Administrador {
 	 }*/
 	
 	
-	public List<POI> busquedaRealizadaPorElUsuario(String txtABuscar) {
-		//List<POI> listaPOIS= new ArrayList<POI>();
-		this.integracionesBusquedasExternas.stream().forEach(integr -> concatenarListas(integr, txtABuscar) );
+	public List<POI> busquedaRealizadaPorElUsuario(String txtABuscar, String servicio) {
+		this.integracionesBusquedasExternas.stream().forEach(integr -> concatenarListas(integr, txtABuscar, servicio) );
 		return listaPOIS;
 	}
 	
-	private void concatenarListas(Integracion integr, String txtABuscar)
-	{
+	private void concatenarListas(Integracion integr, String txtABuscar, String servicio){
 		List<POI> lista= new ArrayList<POI>();
-		lista= integr.busqueda(txtABuscar);
+		lista= integr.busqueda(txtABuscar, servicio);
 		listaPOIS.addAll(lista) ;
 	}
 }

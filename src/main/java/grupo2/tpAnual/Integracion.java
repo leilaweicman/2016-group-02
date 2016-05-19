@@ -4,6 +4,6 @@ import java.util.List;
 
 public abstract class Integracion {
 
-	public abstract List<POI> busqueda(String txtABuscar);
+	public abstract List<POI> busqueda(String txtABuscar, String servicio);
 
 }

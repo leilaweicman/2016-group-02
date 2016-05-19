@@ -9,7 +9,7 @@ public class IntegracionCentroDTO extends Integracion {
 	private CentroDTO lugar;
 
 	@Override
-	public List<POI> busqueda(String txtABuscar) {		
+	public List<POI> busqueda(String txtABuscar, String servicio) {		
 		return this.lugar.busqueda(txtABuscar);
 	}
 

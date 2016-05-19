@@ -9,17 +9,23 @@ public class IntegracionBancoExterno extends Integracion{
 	private BancoExterno banco;
 	
 	@Override
-	public List<POI> busqueda(String txtABuscar) {
-		List<Object> listaBancos = new ArrayList<>();
+	public List<POI> busqueda(String banco, String servicio) {
+		String json;
 		List<POI> listaPOI = new ArrayList<>();
-		String banco="";
-		String servicio="";
-		listaBancos = this.banco.busqueda(banco,servicio);
-		listaPOI= transformarListaAPOI(listaBancos);
+		json = this.banco.busqueda(banco,servicio);
+		listaPOI= transformarAPOI(json);
 		return listaPOI;
 	}
 	
-	public List<POI> transformarListaAPOI(List<Object> listaCGP){
+	/* { "banco": "Banco de la Plaza",
+      "x": -35.9338322,
+      "y": 72.348353,
+      "sucursal": "Avellaneda",
+      "gerente": "Javier Loeschbor",
+      "servicios": [ "cobro cheques", "depósitos", "extracciones", "transferencias", "créditos", "", "", "" ]
+   }*/
+	
+	public List<POI> transformarAPOI(String listaBancosExt){
 		List<POI> listaPOI = new ArrayList<>();
 		return listaPOI;
 	}
