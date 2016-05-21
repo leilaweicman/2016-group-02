@@ -1,54 +1,44 @@
 package grupo2.tpAnual;
 
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.uqbar.geodds.Point;
 
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-public class IntegracionBancoExterno implements Integracion{
+public class IntegracionBancoExterno implements Integracion {
+	public ObjectMapper mapper = new ObjectMapper();
 	private BancoExterno banco;
-	
+	private ServicioBancosExternos mapaBancoExterno = new ServicioBancosExternos();
+
 	@Override
 	public List<POI> busqueda(String banco) {
-		String json;
+		List<BancoExterno> json = new ArrayList<>();
 		List<POI> listaPOI = new ArrayList<>();
-		json = this.banco.busqueda(banco,"");
-		listaPOI= transformarAPOI(json);
+		// json = this.mapaBancoExterno.busqueda(banco, "");
+		listaPOI = transformarAPOI(json);
 		return listaPOI;
 	}
-	
-	/* { "banco": "Banco de la Plaza",
-      "x": -35.9338322,
-      "y": 72.348353,
-      "sucursal": "Avellaneda",
-      "gerente": "Javier Loeschbor",
-      "servicios": [ "cobro cheques", "depósitos", "extracciones", "transferencias", "créditos", "", "", "" ]
-   }*/
-	
-	public List<POI> transformarAPOI(String jsonBancosExt){
-		ObjectMapper mapper = new ObjectMapper();
-		try{
-			List<POI> listaPOI = mapper.readValue(jsonBancosExt, List.class);
-			return listaPOI;
-		} catch (Exception e){
-			//catcheo Exception generico solo por ahora
-			throw new IntegracionBancoExternoException ("no se ha podido agregar", e);
+
+	public List<POI> transformarAPOI(List<BancoExterno> listaBancosExternos) {
+		List<POI> listaPOI = new ArrayList<>();
+		for (BancoExterno banco : listaBancosExternos) {
+			listaPOI.add(this.adapter(banco));
 		}
-		
+		return listaPOI;
 	}
-	
-	public void bancoExternoAPoi(BancoExterno banco){
-		this.banco = banco;
+
+	public POI adapter(BancoExterno banco) {
+		POI bancoPOI = new Banco(); /// no estoy segura de que funcione esto...
+		bancoPOI = mapper.convertValue(banco, POI.class);
+		return bancoPOI;
 	}
-	
+
 	public Point getUbicacion() {
-		Point ubicacionBanco = new Point(banco.getX(), banco.getY());
+		Point ubicacionBanco = new Point(banco.getLatitud(), banco.getLongitud());
 		return ubicacionBanco;
 	}
-	
-	
+
 }

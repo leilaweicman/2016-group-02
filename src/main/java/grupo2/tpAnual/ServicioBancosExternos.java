@@ -11,7 +11,7 @@ public class ServicioBancosExternos {
 
 	public ObjectMapper mapper = new ObjectMapper();
 
-	public List<BancoExterno> BuscarBancos(String Banco, String Servicio)
+	public List<BancoExterno> busqueda(String Banco, String Servicio)
 			throws JsonParseException, JsonMappingException, IOException {
 		// doc: https://github.com/FasterXML/jackson-databind/
 

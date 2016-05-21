@@ -22,32 +22,38 @@ public class MapaTest {
 
 		this.rentas = new CGP();
 		List<Servicio> servicios = new ArrayList<Servicio>();
-		Servicio ser = new Servicio();
+		List<Rango> listaRango = new ArrayList<>();
+		Servicio ser = new Servicio(listaRango);
 		ser.setNombre("Jubilados");
 		servicios.add(ser);
 		this.rentas.setServicios(servicios);
 
 		this.lasHeras.agregarPOI(santander);
 		this.lasHeras.agregarPOI(rentas);
+		
 
 	}
-
+	
 	@Test
 	public void testEstaPalabraClave() {
-		 Assert.assertTrue(santander.verificarPorTexto("plazoFijo"));
+		Assert.assertTrue(santander.verificarPorTexto("plazoFijo"));
 	}
 
-	/*@Test
-	public void testBusquedaPorServicio() {
-		//Assert.assertTrue(rentas.VerificarPorTexto("Jubilados"));
-	}*/
-	
+	/*
+	 * @Test public void testBusquedaPorServicio() {
+	 * //Assert.assertTrue(rentas.VerificarPorTexto("Jubilados")); }
+	 */
+
 	@Test
-	public void testCrearPoiAcierto(){
+	public void testCrearPoiAcierto() {
 		lasHeras.crearPOI(rentas);
-		Assert.assertEquals(this.lasHeras.getPOIs().size(),3);
-		
+		Assert.assertEquals(this.lasHeras.getPOIs().size(), 3);
 	}
-	
+
+	@Test
+	public void testBusquedaPorElUsuario() { //cuando se arregle el del banco, va a haber que modificar este test
+		Assert.assertEquals(this.lasHeras.busquedaRealizadaPorElUsuario("plazoFijo").size(), 3);
+
+	}
 
 }

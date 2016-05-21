@@ -7,21 +7,16 @@ import org.joda.time.DateTime;
 
 public class Servicio {
 	private String nombre;
-	
+
 	private List<Rango> rangoDisponibilidad = new ArrayList<Rango>();
-		
+
 	private Disponibilidad disponibilidad;
-	
-	//agrego constructor para que no falle POI test
-	public Servicio(){
-		
-	}
-	
-	public Servicio(List<Rango> rango){
+
+	public Servicio(List<Rango> rango) {
 		this.rangoDisponibilidad = rango;
 		disponibilidad = new Disponibilidad(this.rangoDisponibilidad);
 	}
-	
+
 	public String getNombre() {
 		return nombre;
 	}
@@ -42,8 +37,7 @@ public class Servicio {
 		this.rangoDisponibilidad.add(rango);
 	}
 
-	public boolean estaDisponible(DateTime momento) 
-	{
+	public boolean estaDisponible(DateTime momento) {
 		return this.disponibilidad.estaDisponible(momento);
 	}
 

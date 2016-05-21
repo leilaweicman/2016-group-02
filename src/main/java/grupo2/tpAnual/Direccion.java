@@ -3,20 +3,23 @@ package grupo2.tpAnual;
 public class Direccion {
 	private String calle;
 	private int altura;
+	private String zona;
+
+	public Direccion(String calle, String zona) {
+		this.calle = calle;
+		this.zona = zona;
+	}
 
 	public String getCalle() {
 		return calle;
-	}
-
-	public void setCalle(String calle) {
-		this.calle = calle;
 	}
 
 	public int getAltura() {
 		return altura;
 	}
 
-	public void setPrecioBase(int altura) {
-		this.altura = altura;
+	public String getZona() {
+		return zona;
 	}
+
 }

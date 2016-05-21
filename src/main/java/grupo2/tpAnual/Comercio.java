@@ -6,16 +6,16 @@ import java.util.*;
 
 public class Comercio extends POI {
 	private Rubro rubro;
-	
+
 	private List<Rango> rangoDisponibilidad = new ArrayList<Rango>();
-	
+
 	private Disponibilidad disponibilidad;
-	
-	public Comercio(List<Rango> rango){
+
+	public Comercio(List<Rango> rango) {
 		this.rangoDisponibilidad = rango;
 		disponibilidad = new Disponibilidad(this.rangoDisponibilidad);
 	}
-	
+
 	public List<Rango> getRango() {
 		return rangoDisponibilidad;
 	}
@@ -37,12 +37,11 @@ public class Comercio extends POI {
 	public void setRubro(Rubro rub) {
 		this.rubro = rub;
 	}
-	
-	public boolean estaDisponible(DateTime momento, String nombre) 
-	{
+
+	public boolean estaDisponible(DateTime momento, String nombre) {
 		return this.disponibilidad.estaDisponible(momento);
 	}
-	
+
 	public boolean estaCerca(Point coordenadaDeseada) {
 		return (this.ubicacion.distance(coordenadaDeseada) < rubro.getRadioCercania());
 	}
@@ -54,6 +53,5 @@ public class Comercio extends POI {
 	public void setDisponibilidad(Disponibilidad disponibilidad) {
 		this.disponibilidad = disponibilidad;
 	}
-	
-	
+
 }
