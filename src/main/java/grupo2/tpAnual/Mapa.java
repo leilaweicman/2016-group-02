@@ -26,7 +26,7 @@ public class Mapa {
 		return pois;
 	}
 
-	public void setIntegracionesBusquedaExterna(Integracion integracion) {
+	public void setOrigenesDeDatos(Integracion integracion) {
 		this.origenesDeDatos.add(integracion);
 	}
 
@@ -65,11 +65,8 @@ public class Mapa {
 			if (poi.verificarPorTexto(txtABuscar))
 				result.add(poi);
 		}
-		for (Integracion integracion : origenesDeDatos) {
-			List<POI> resultadoAuxiliar = new ArrayList<>();
-			resultadoAuxiliar = integracion.busqueda(txtABuscar);
-			result.addAll(resultadoAuxiliar); // <--- esto es horrible
-		}
+		this.origenesDeDatos.forEach(integracion-> result.addAll(integracion.busqueda(txtABuscar)) );
+		//falta aplanar la lista
 		return result;
 	}
 	/*
