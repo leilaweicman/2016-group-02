@@ -38,13 +38,11 @@ public class IntegracionBancoExterno implements Integracion {
 
 	public POI adapter(BancoExterno banco) {
 		POI bancoPOI = new Banco(); /// no estoy segura de que funcione esto...
-		bancoPOI = mapper.convertValue(banco, POI.class);
-		return bancoPOI;
+		return mapper.convertValue(banco, POI.class);
 	}
 
 	public Point getUbicacion() {
-		Point ubicacionBanco = new Point(banco.getLatitud(), banco.getLongitud());
-		return ubicacionBanco;
+		return new Point(banco.getLatitud(), banco.getLongitud());
 	}
 
 }
