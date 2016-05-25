@@ -51,16 +51,17 @@ public class Mapa {
 
 	}
 
-	public Object consultarPoi(POI nombre, String atributo) {
-		devolverAtributo.put("Direccion", nombre.getDireccion().getCalle());
-		devolverAtributo.put("Ubicacion", nombre.getUbicacion().toString());
-		devolverAtributo.put("Comuna", nombre.getComuna().getNumeroComuna());
-
-		if (this.devolverAtributo.containsKey(atributo)) {
-			return (this.devolverAtributo.get(atributo));
+	public String consultarPoi(POI poi, String atributo) {
+		switch(atributo) {
+		    case "Direccion":
+		        return poi.getDireccion().getCalle();
+		    case "Ubicacion":
+		    	return poi.getUbicacion().toString();
+		    case "Comuna":
+		    	return String.valueOf(poi.getComuna().getNumeroComuna());		        
+		    default:
+		        return "No se encontró attributo";
 		}
-		return atributo; // para que no tire error porque no se que devolver
-
 	}
 
 	public List<POI> busquedaRealizadaPorElUsuario(String txtABuscar) {
