@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import grupo2.tpAnual.Banco;
 import grupo2.tpAnual.BancoExterno;
+import grupo2.tpAnual.Comuna;
 import grupo2.tpAnual.POI;
 import grupo2.tpAnual.ServicioBancosExternos;
 
@@ -37,8 +38,16 @@ public class IntegracionBancoExterno implements Integracion {
 	}
 
 	public POI adapter(BancoExterno banco) {
-		POI bancoPOI = new Banco(); /// no estoy segura de que funcione esto...
-		return mapper.convertValue(banco, POI.class);
+		Banco poi = new Banco();
+		List<Point> listaVertices = new ArrayList<>();
+		//Aca se setea cada item del banco externo con el poi
+		
+		
+		//poi.setComuna(new Comuna(??, listaVertices));	  //Hay que ver como manejar la comuna
+		poi.setUbicacion(banco.getLatitud(), banco.getLongitud());
+		//poi.setDireccion();
+		
+		return poi;
 	}
 
 	public Point getUbicacion() {

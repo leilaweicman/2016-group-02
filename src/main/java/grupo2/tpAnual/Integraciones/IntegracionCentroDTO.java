@@ -33,7 +33,7 @@ public class IntegracionCentroDTO implements Integracion {
 	}
 
 	public POI adapter(CentroDTO dto) {
-		POI poi = new CGP();
+		CGP poi = new CGP();
 		List<Point> listaVertices = new ArrayList<>();
 		poi.setComuna(new Comuna(dto.getNumeroComuna(), listaVertices));
 		poi.setDireccion(new Direccion(dto.getDomicilio(), dto.getZona()));
