@@ -6,6 +6,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
+import grupo2.tpAnual.Integraciones.IntegracionBancoExterno;
+
 public class IntegracionBancoExternoTest {
 
 	private BancoExterno bancoExterno = new BancoExterno(-34.666612, -58.3858490);

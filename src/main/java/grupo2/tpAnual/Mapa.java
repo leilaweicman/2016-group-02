@@ -6,6 +6,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import grupo2.tpAnual.Integraciones.Integracion;
+import grupo2.tpAnual.Integraciones.IntegracionBancoExterno;
+import grupo2.tpAnual.Integraciones.IntegracionCentroDTO;
+
 public class Mapa {
 
 	private List<POI> pois;

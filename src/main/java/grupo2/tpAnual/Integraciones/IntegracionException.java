@@ -1,4 +1,4 @@
-package grupo2.tpAnual;
+package grupo2.tpAnual.Integraciones;
 
 public class IntegracionException extends RuntimeException {
 

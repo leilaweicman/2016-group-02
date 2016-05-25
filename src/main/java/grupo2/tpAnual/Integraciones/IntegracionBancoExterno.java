@@ -1,8 +1,14 @@
-package grupo2.tpAnual;
+package grupo2.tpAnual.Integraciones;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import grupo2.tpAnual.Banco;
+import grupo2.tpAnual.BancoExterno;
+import grupo2.tpAnual.POI;
+import grupo2.tpAnual.ServicioBancosExternos;
+
 import java.util.ArrayList;
 import java.util.List;
 

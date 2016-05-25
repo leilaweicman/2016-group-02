@@ -5,6 +5,8 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;
 
+import grupo2.tpAnual.Integraciones.IntegracionCentroDTO;
+
 public class IntegracionCentroDTOTest {
 	IntegracionCentroDTO integracion = new IntegracionCentroDTO();
 	CentroDTO centroDTO = new CentroDTO(9, "Juan B Justo 1882");

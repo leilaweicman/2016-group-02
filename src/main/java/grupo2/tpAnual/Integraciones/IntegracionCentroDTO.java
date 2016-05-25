@@ -1,9 +1,16 @@
-package grupo2.tpAnual;
+package grupo2.tpAnual.Integraciones;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.uqbar.geodds.Point;
+
+import grupo2.tpAnual.CGP;
+import grupo2.tpAnual.CentroDTO;
+import grupo2.tpAnual.Comuna;
+import grupo2.tpAnual.Direccion;
+import grupo2.tpAnual.POI;
+import grupo2.tpAnual.ServicioCentroDTO;
 
 public class IntegracionCentroDTO implements Integracion {
 	private ServicioCentroDTO mapaCentroDTO = new ServicioCentroDTO();
