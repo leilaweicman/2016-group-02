@@ -20,10 +20,8 @@ public class Mapa {
 		pois = new ArrayList<POI>();
 		origenesDeDatos = new ArrayList<Integracion>();
 		List<Rango> listaRango = new ArrayList<>();
-		IntegracionBancoExterno datosBancosExterno = new IntegracionBancoExterno();
-		IntegracionCentroDTO datosCentroDto = new IntegracionCentroDTO();
-		origenesDeDatos.add(datosBancosExterno);
-		origenesDeDatos.add(datosCentroDto);
+		origenesDeDatos.add(new IntegracionBancoExterno());
+		origenesDeDatos.add(new IntegracionCentroDTO());
 	}
 
 	public List<POI> getPOIs() {

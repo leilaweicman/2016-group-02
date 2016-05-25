@@ -14,7 +14,6 @@ import grupo2.tpAnual.ServicioCentroDTO;
 
 public class IntegracionCentroDTO implements Integracion {
 	private ServicioCentroDTO mapaCentroDTO = new ServicioCentroDTO();
-	private CentroDTO lugar;
 
 	@Override
 	public List<POI> busqueda(String txtABuscar) {
@@ -36,10 +35,8 @@ public class IntegracionCentroDTO implements Integracion {
 	public POI adapter(CentroDTO dto) {
 		POI poi = new CGP();
 		List<Point> listaVertices = new ArrayList<>();
-		this.lugar = dto;
-		poi.setComuna(new Comuna(this.lugar.getNumeroComuna(), listaVertices));
-		poi.setDireccion(new Direccion(this.lugar.getDomicilio(), this.lugar.getZona()));
+		poi.setComuna(new Comuna(dto.getNumeroComuna(), listaVertices));
+		poi.setDireccion(new Direccion(dto.getDomicilio(), dto.getZona()));
 		return poi;
-
 	}
 }
