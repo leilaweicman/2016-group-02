@@ -73,7 +73,7 @@ public class Mapa {
 		long tiempoFin = System.currentTimeMillis();//mido el tiempo de ejecución
 		long segundosTardados=(tiempoFin- tiempoInicio)/1000; //lo paso a segundos
 		
-		this.observersBusqueda.forEach(observer-> observer.notificarBusqueda(segundosTardados,tiempoMaximoDeEjecucion));
+		//this.observersBusqueda.forEach(observer-> observer.notificarBusqueda(segundosTardados,tiempoMaximoDeEjecucion));
 		//es facil querer agregar mas observers, pero habría sobrecarga porqe no todos necesitan estos parametros.
 		
 		this.registroBusqueda.add(new DatosParaAlmacenamientoBusqueda(txtABuscar,segundosTardados,result.size()));
