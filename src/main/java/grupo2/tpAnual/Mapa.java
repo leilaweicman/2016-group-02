@@ -12,12 +12,12 @@ public class Mapa {
 	private List<POI> pois;
 	private List<DatosParaAlmacenamientoBusqueda> registroBusqueda; //horrible el nombre, habría que buscar una mejor abstraccion.
 	private List<Integracion> origenesDeDatos;
-	List<ObserverBusqueda> observersBusqueda;
+	//List<ObserverBusqueda> observersBusqueda;
 	private long tiempoMaximoDeEjecucion;
 	public Mapa() {
 		pois = new ArrayList<POI>();
 		registroBusqueda = new ArrayList<DatosParaAlmacenamientoBusqueda>();
-		observersBusqueda = new ArrayList<ObserverBusqueda>();
+		//observersBusqueda = new ArrayList<ObserverBusqueda>();
 		origenesDeDatos = new ArrayList<Integracion>();
 		origenesDeDatos.add(new IntegracionBancoExterno());
 		origenesDeDatos.add(new IntegracionCentroDTO());
@@ -82,11 +82,11 @@ public class Mapa {
 	}
 	
 	public void agregarObserverBusqueda(ObserverBusqueda observer){
-		this.observersBusqueda.add(observer);
+		//this.observersBusqueda.add(observer);
 	}
 	
 	public void quitarObserverBusqueda(ObserverBusqueda observer){
-		this.observersBusqueda.remove(observer);
+		//this.observersBusqueda.remove(observer);
 	}
 	
 	public void setTiempoMaximoDeEjecucion(int tiempoEnSegundos){
