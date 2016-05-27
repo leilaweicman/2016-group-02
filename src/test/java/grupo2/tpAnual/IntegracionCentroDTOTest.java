@@ -15,9 +15,14 @@ public class IntegracionCentroDTOTest {
 	POI cgp2 = new CGP();
 
 	@Test
-	public void adapterPOIaCentroDTOTest() {
+	public void adapterPOIaCentroDTODireccionTest() {
 		cgp = integracion.adapter(centroDTO);
 		Assert.assertEquals(cgp.getDireccion().getCalle(), centroDTO.getDomicilio());
+	}
+
+	@Test
+	public void adapterPOIaCentroDTOComunaTest() {
+		cgp = integracion.adapter(centroDTO);
 		Assert.assertEquals(cgp.getComuna().getNumeroComuna(), centroDTO.getNumeroComuna());
 	}
 

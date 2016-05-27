@@ -1,10 +1,7 @@
 package grupo2.tpAnual;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 import grupo2.tpAnual.Integraciones.Integracion;
 import grupo2.tpAnual.Integraciones.IntegracionBancoExterno;
@@ -13,17 +10,19 @@ import grupo2.tpAnual.Integraciones.IntegracionCentroDTO;
 public class Mapa {
 
 	private List<POI> pois;
+	private List<DatosParaAlmacenamientoBusqueda> registroBusqueda; //horrible el nombre, habría que buscar una mejor abstraccion.
 	private List<Integracion> origenesDeDatos;
-	Map<String, Object> devolverAtributo = new HashMap<>();
-
+	List<ObserverBusqueda> observersBusqueda;
+	private long tiempoMaximoDeEjecucion;
 	public Mapa() {
 		pois = new ArrayList<POI>();
+		registroBusqueda = new ArrayList<DatosParaAlmacenamientoBusqueda>();
+		observersBusqueda = new ArrayList<ObserverBusqueda>();
 		origenesDeDatos = new ArrayList<Integracion>();
-		List<Rango> listaRango = new ArrayList<>();
 		origenesDeDatos.add(new IntegracionBancoExterno());
 		origenesDeDatos.add(new IntegracionCentroDTO());
 	}
-
+	
 	public List<POI> getPOIs() {
 		return pois;
 	}
@@ -50,31 +49,47 @@ public class Mapa {
 	}
 
 	public String consultarPoi(POI poi, String atributo) {
-		switch(atributo) {
-		    case "Direccion":
-		        return poi.getDireccion().getCalle();
-		    case "Ubicacion":
-		    	return poi.getUbicacion().toString();
-		    case "Comuna":
-		    	return String.valueOf(poi.getComuna().getNumeroComuna());		        
-		    default:
-		        return "No se encontró attributo";
+		switch (atributo) {
+		case "Direccion":
+			return poi.getDireccion().getCalle();
+		case "Ubicacion":
+			return poi.getUbicacion().toString();
+		case "Comuna":
+			return String.valueOf(poi.getComuna().getNumeroComuna());
+		default:
+			return "No se encontró attributo";
 		}
 	}
 
 	public List<POI> busquedaRealizadaPorElUsuario(String txtABuscar) {
-		List<POI> result = new ArrayList<>();
-		for (POI poi : pois) {
+		long tiempoInicio = System.currentTimeMillis();//mido el tiempo de ejecución
+		List<POI> result = new ArrayList<POI>();
+		for (POI poi : pois) { 
 			if (poi.verificarPorTexto(txtABuscar))
 				result.add(poi);
 		}
-		this.origenesDeDatos.forEach(integracion-> result.addAll(integracion.busqueda(txtABuscar)) );
-		//falta aplanar la lista
+		this.origenesDeDatos.forEach(integracion -> result.addAll(integracion.busqueda(txtABuscar)));
+		
+		long tiempoFin = System.currentTimeMillis();//mido el tiempo de ejecución
+		long segundosTardados=(tiempoFin- tiempoInicio)/1000; //lo paso a segundos
+		
+		this.observersBusqueda.forEach(observer-> observer.notificarBusqueda(segundosTardados,tiempoMaximoDeEjecucion));
+		//es facil querer agregar mas observers, pero habría sobrecarga porqe no todos necesitan estos parametros.
+		
+		this.registroBusqueda.add(new DatosParaAlmacenamientoBusqueda(txtABuscar,segundosTardados,result.size()));
+		//agrego a la lista registroBusqueda los datos que pide almacenar en las búsquedas (punto 2). 
 		return result;
 	}
-	/*
-	 * private void concatenarListas(Integracion integr, String txtABuscar,
-	 * String servicio) { List<POI> lista = new ArrayList<POI>(); lista =
-	 * integr.busqueda(txtABuscar, servicio); listaPOIS.addAll(lista); }
-	 */
+	
+	public void agregarObserverBusqueda(ObserverBusqueda observer){
+		this.observersBusqueda.add(observer);
+	}
+	
+	public void quitarObserverBusqueda(ObserverBusqueda observer){
+		this.observersBusqueda.remove(observer);
+	}
+	
+	public void setTiempoMaximoDeEjecucion(int tiempoEnSegundos){
+		this.tiempoMaximoDeEjecucion = tiempoEnSegundos;
+	}
 }
