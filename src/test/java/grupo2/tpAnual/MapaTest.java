@@ -55,5 +55,14 @@ public class MapaTest {
 		Assert.assertEquals(this.lasHeras.busquedaRealizadaPorElUsuario("plazoFijo").size(), 3);
 
 	}
+	
+	@Test
+	public void testGuardaDatosDeBusqueda() {
+		this.lasHeras.busquedaRealizadaPorElUsuario("plazoFijo");
+		this.lasHeras.busquedaRealizadaPorElUsuario("dolar");
+		this.lasHeras.busquedaRealizadaPorElUsuario("hola");
+		this.lasHeras.busquedaRealizadaPorElUsuario("chau");
+		Assert.assertEquals(this.lasHeras.getRegistroBusqueda().size(),4);
+	}
 
 }
