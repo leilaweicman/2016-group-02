@@ -31,18 +31,16 @@ public class IntegracionBancoExterno implements Integracion {
 
 	public List<POI> transformarAPOI(List<BancoExterno> listaBancosExternos) {
 		List<POI> listaPOI = new ArrayList<POI>();
-		for (BancoExterno bancoExterno : listaBancosExternos) {
-			listaPOI.add(this.adapter(bancoExterno));
-		}
+		listaBancosExternos.forEach(banco -> listaPOI.add(adapter(bancoExterno)));
 		return listaPOI;
 	}
 
-	public POI adapter(BancoExterno bancoExterno) {
+	private POI adapter(BancoExterno bancoExterno) {
 		POI bancoPoi = new Banco();
 		//Aca se setea cada item del banco externo con el poi
 		//saqué la info de aca: http://www.anieto2k.com/2009/07/06/todo-lo-que-siempre-quisiste-saber-sobre-json/ 
 		//para poder hacer el adapter. No estoy segura de que esté bien... 
-		//bancoPoi.setUbicacion(bancoExterno.x, bancoExterno.y);
+		bancoPoi.setUbicacion(bancoExterno.x, bancoExterno.y);
 		return bancoPoi;
 	}
 
