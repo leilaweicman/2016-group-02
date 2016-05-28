@@ -1,4 +1,4 @@
-package grupo2.tpAnual;
+package grupo2.tpAnual.Observers;
 
 public interface ObserverBusqueda {
 	//lo implementan RegistrarBusqueda y EnviarMailBusqueda

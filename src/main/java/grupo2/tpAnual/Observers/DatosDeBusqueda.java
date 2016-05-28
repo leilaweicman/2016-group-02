@@ -1,4 +1,4 @@
-package grupo2.tpAnual;
+package grupo2.tpAnual.Observers;
 
 public class DatosDeBusqueda {
 	// Clase que guarda los datos que se quieren almacenar de las busquedas

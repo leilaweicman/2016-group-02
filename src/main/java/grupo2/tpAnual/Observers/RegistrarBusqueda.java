@@ -1,4 +1,4 @@
-package grupo2.tpAnual;
+package grupo2.tpAnual.Observers;
 
 import java.util.ArrayList;
 import java.util.List;

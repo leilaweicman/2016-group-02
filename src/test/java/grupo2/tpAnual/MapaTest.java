@@ -13,6 +13,8 @@ import org.mockito.Mockito;
 
 import grupo2.tpAnual.Integraciones.IntegracionBancoExterno;
 import grupo2.tpAnual.Integraciones.IntegracionCentroDTO;
+import grupo2.tpAnual.Observers.EnviarMailBusqueda;
+import grupo2.tpAnual.Observers.RegistrarBusqueda;
 
 public class MapaTest {
 	private Mapa lasHeras;

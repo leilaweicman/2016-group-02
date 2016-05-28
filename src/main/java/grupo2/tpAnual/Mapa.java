@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import grupo2.tpAnual.Integraciones.Integracion;
+import grupo2.tpAnual.Observers.DatosDeBusqueda;
+import grupo2.tpAnual.Observers.ObserverBusqueda;
 
 
 public class Mapa {

@@ -7,6 +7,9 @@ import java.io.PrintStream;
 
 import org.junit.Test;
 
+import grupo2.tpAnual.Observers.DatosDeBusqueda;
+import grupo2.tpAnual.Observers.EnviarMailBusqueda;
+
 public class EnviarMailBusquedaTest {
 	private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
 	EnviarMailBusqueda observer = new EnviarMailBusqueda();
