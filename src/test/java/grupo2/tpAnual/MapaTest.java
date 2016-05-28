@@ -6,19 +6,17 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mockito;
 
 public class MapaTest {
 	private Mapa lasHeras;
 	private POI santander;
 	private CGP rentas;
-	private EnviarMailBusqueda observerMail = Mockito.mock(EnviarMailBusqueda.class);
-	private RegistrarBusqueda observerRegristro = Mockito.mock(RegistrarBusqueda.class);
+	private RegistrarBusqueda observerRegristro = new RegistrarBusqueda();
 
 	@Before
 	public void init() {
 		this.lasHeras = new Mapa();
-
+		this.lasHeras.setTiempoMaximoDeEjecucion(10);
 		this.santander = new Banco();
 		this.santander.addPalabraClave("plazoFijo");
 		this.santander.addPalabraClave("dolar");
@@ -33,10 +31,8 @@ public class MapaTest {
 
 		this.lasHeras.agregarPOI(santander);
 		this.lasHeras.agregarPOI(rentas);
-		
-
 	}
-	
+
 	@Test
 	public void testEstaPalabraClave() {
 		Assert.assertTrue(santander.verificarPorTexto("plazoFijo"));
@@ -54,16 +50,15 @@ public class MapaTest {
 	}
 
 	@Test
-	public void testBusquedaPorElUsuarioSinObservers() { //cuando se arregle el del banco, va a haber que modificar este test
+	public void testBusquedaPorElUsuarioSinObservers() { // cuanddo se arregle el banco hay que modificar este test
 		Assert.assertEquals(this.lasHeras.busquedaRealizadaPorElUsuario("plazoFijo").size(), 3);
 	}
-	
+
 	@Test
-	public void testBusquedaPorElUsuarioConObservers() { //cuando se arregle el del banco, va a haber que modificar este test
-		lasHeras.agregarObserverBusqueda(observerMail);
+	public void testBusquedaPorElUsuarioConObservers() { 
 		lasHeras.agregarObserverBusqueda(observerRegristro);
-		Assert.assertEquals(this.lasHeras.busquedaRealizadaPorElUsuario("plazoFijo").size(), 3);
-	//Con esto verifico que al agregar observers, todo sigue funcionando bien. El funcionamiento de cada observer está testeado en sus clases correspondientes
+		lasHeras.busquedaRealizadaPorElUsuario("plazoFijo");
+		Assert.assertEquals(observerRegristro.getRegistroBusqueda().size(), 1);
 	}
 
 }

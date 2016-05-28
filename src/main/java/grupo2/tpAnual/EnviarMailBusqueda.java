@@ -7,6 +7,8 @@ public class EnviarMailBusqueda implements ObserverBusqueda {
 		if (datosParaObserver.getSegundosQueTardoLaBusqueda() > datosParaObserver.getTiempoMaximoDeBusqueda()) {
 			// enviar mail al administrador
 		System.out.print("Se envio el mail correctamente");
+		}else{
+		System.out.print("La busqueda se ejecuto correctamente");
 		}
 	}
 

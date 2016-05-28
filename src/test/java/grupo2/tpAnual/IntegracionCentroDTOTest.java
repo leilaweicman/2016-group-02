@@ -28,18 +28,17 @@ public class IntegracionCentroDTOTest {
 
 	@Test
 	public void transformarCentroDTOaPOITest() {
-		List<CentroDTO> listaCentroDTO = new ArrayList<>();
-		List<POI> listaPOI = new ArrayList<>();
+		List<CentroDTO> listaCentroDTO = new ArrayList<CentroDTO>();
 		listaCentroDTO.add(centroDTO);
 		listaCentroDTO.add(centroDTO2);
-		listaPOI = integracion.transformarDTOaPOI(listaCentroDTO);
+		integracion.transformarDTOaPOI(listaCentroDTO);
 		Assert.assertEquals(listaCentroDTO.size(), 2);
 
 	}
 
 	@Test
 	public void busquedaIntegracionTest() {
-		List<POI> listaPOI = new ArrayList<>();
+		List<POI> listaPOI = new ArrayList<POI>();
 		listaPOI = integracion.busqueda("hola");
 		Assert.assertEquals(listaPOI.size(), 2);
 	}

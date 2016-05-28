@@ -2,6 +2,7 @@ package grupo2.tpAnual;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import grupo2.tpAnual.Integraciones.Integracion;
 import grupo2.tpAnual.Integraciones.IntegracionBancoExterno;
@@ -11,7 +12,7 @@ public class Mapa {
 
 	private List<POI> pois;
 	private List<Integracion> origenesDeDatos;
-	List<ObserverBusqueda> observersBusqueda;
+	private List<ObserverBusqueda> observersBusqueda;
 	private long tiempoMaximoDeEjecucion;
 	
 	public Mapa() {
@@ -63,16 +64,20 @@ public class Mapa {
 	public List<POI> busquedaRealizadaPorElUsuario(String txtABuscar) {
 		long tiempoInicio = System.currentTimeMillis();//mido el tiempo de ejecución
 		List<POI> result = new ArrayList<POI>();
-		for (POI poi : pois) { 
-			if (poi.verificarPorTexto(txtABuscar))
-				result.add(poi);
-		}
+		
+		//busco en mis pois
+		result.addAll(this.pois.stream().filter(poi -> poi.verificarPorTexto(txtABuscar)).collect(Collectors.toList()));
+					
+		//busco en los servicios externos
 		this.origenesDeDatos.forEach(integracion -> result.addAll(integracion.busqueda(txtABuscar)));
-
+	
 		long tiempoFin = System.currentTimeMillis();//mido el tiempo de ejecución
 		long segundosTardados=(tiempoFin- tiempoInicio)/1000; //lo paso a segundos
+		
+		//le aviso a los observers de que ocurrio el evento
 		DatosDeBusqueda datosParaObserver = new DatosDeBusqueda(txtABuscar,segundosTardados,this.tiempoMaximoDeEjecucion,result.size());
 		this.observersBusqueda.forEach(observer-> observer.notificarBusqueda(datosParaObserver));
+		
 		return result;
 	}
 	
