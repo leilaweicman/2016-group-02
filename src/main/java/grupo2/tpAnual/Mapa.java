@@ -10,13 +10,11 @@ import grupo2.tpAnual.Integraciones.IntegracionCentroDTO;
 public class Mapa {
 
 	private List<POI> pois;
-	private List<DatosParaAlmacenamientoBusqueda> registroBusqueda; //horrible el nombre, habría que buscar una mejor abstraccion.
 	private List<Integracion> origenesDeDatos;
 	List<ObserverBusqueda> observersBusqueda;
 	private long tiempoMaximoDeEjecucion;
 	
 	public Mapa() {
-		registroBusqueda= new ArrayList<DatosParaAlmacenamientoBusqueda>();
 		pois = new ArrayList<POI>();
 		observersBusqueda = new ArrayList<ObserverBusqueda>();
 		origenesDeDatos = new ArrayList<Integracion>();
@@ -70,15 +68,11 @@ public class Mapa {
 				result.add(poi);
 		}
 		this.origenesDeDatos.forEach(integracion -> result.addAll(integracion.busqueda(txtABuscar)));
-		
+
 		long tiempoFin = System.currentTimeMillis();//mido el tiempo de ejecución
 		long segundosTardados=(tiempoFin- tiempoInicio)/1000; //lo paso a segundos
-		
-		this.observersBusqueda.forEach(observer-> observer.notificarBusqueda(segundosTardados,tiempoMaximoDeEjecucion));
-		//es facil querer agregar mas observers, pero habría sobrecarga porqe no todos necesitan estos parametros.
-		
-		this.getRegistroBusqueda().add(new DatosParaAlmacenamientoBusqueda(txtABuscar,segundosTardados,result.size()));
-		//agrego a la lista registroBusqueda los datos que pide almacenar en las búsquedas (punto 2). 
+		DatosDeBusqueda datosParaObserver = new DatosDeBusqueda(txtABuscar,segundosTardados,this.tiempoMaximoDeEjecucion,result.size());
+		this.observersBusqueda.forEach(observer-> observer.notificarBusqueda(datosParaObserver));
 		return result;
 	}
 	
@@ -92,10 +86,6 @@ public class Mapa {
 	
 	public void setTiempoMaximoDeEjecucion(int tiempoEnSegundos){
 		this.tiempoMaximoDeEjecucion = tiempoEnSegundos;
-	}
-
-	public List<DatosParaAlmacenamientoBusqueda> getRegistroBusqueda() {
-		return registroBusqueda;
 	}
 
 }

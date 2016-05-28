@@ -6,11 +6,14 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mockito;
 
 public class MapaTest {
 	private Mapa lasHeras;
 	private POI santander;
 	private CGP rentas;
+	private EnviarMailBusqueda observerMail = Mockito.mock(EnviarMailBusqueda.class);
+	private RegistrarBusqueda observerRegristro = Mockito.mock(RegistrarBusqueda.class);
 
 	@Before
 	public void init() {
@@ -51,18 +54,16 @@ public class MapaTest {
 	}
 
 	@Test
-	public void testBusquedaPorElUsuario() { //cuando se arregle el del banco, va a haber que modificar este test
+	public void testBusquedaPorElUsuarioSinObservers() { //cuando se arregle el del banco, va a haber que modificar este test
 		Assert.assertEquals(this.lasHeras.busquedaRealizadaPorElUsuario("plazoFijo").size(), 3);
-
 	}
 	
 	@Test
-	public void testGuardaDatosDeBusqueda() {
-		this.lasHeras.busquedaRealizadaPorElUsuario("plazoFijo");
-		this.lasHeras.busquedaRealizadaPorElUsuario("dolar");
-		this.lasHeras.busquedaRealizadaPorElUsuario("hola");
-		this.lasHeras.busquedaRealizadaPorElUsuario("chau");
-		Assert.assertEquals(this.lasHeras.getRegistroBusqueda().size(),4);
+	public void testBusquedaPorElUsuarioConObservers() { //cuando se arregle el del banco, va a haber que modificar este test
+		lasHeras.agregarObserverBusqueda(observerMail);
+		lasHeras.agregarObserverBusqueda(observerRegristro);
+		Assert.assertEquals(this.lasHeras.busquedaRealizadaPorElUsuario("plazoFijo").size(), 3);
+	//Con esto verifico que al agregar observers, todo sigue funcionando bien. El funcionamiento de cada observer está testeado en sus clases correspondientes
 	}
 
 }

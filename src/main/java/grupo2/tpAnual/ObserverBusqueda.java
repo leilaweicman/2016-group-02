@@ -1,7 +1,7 @@
 package grupo2.tpAnual;
 
 public interface ObserverBusqueda {
-	
-	public void notificarBusqueda(long tiempoTardado , long tiempoMaximoEjecucion);
+	//lo implementan RegistrarBusqueda y EnviarMailBusqueda
+	public void notificarBusqueda(DatosDeBusqueda datosParaObserver);
 
 }
