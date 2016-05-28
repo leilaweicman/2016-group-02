@@ -1,4 +1,5 @@
 package grupo2.tpAnual;
+
 import org.joda.time.DateTime;
 import org.uqbar.geodds.Point;
 
@@ -13,7 +14,7 @@ public class Parada extends POI {
 		this.linea = linea;
 	}
 
-	//@Override
+	// @Override
 	public boolean busquedaParticular(String texto) {
 		return linea.equals(texto);
 	}

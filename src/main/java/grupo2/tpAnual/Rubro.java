@@ -1,36 +1,36 @@
 package grupo2.tpAnual;
 
 public class Rubro {
-	private String _Tipo;
-	private double _RadioCercania;
-	private Rango _Disponibilidad;
+	private String tipoRubro;
+	private double radioCercania;
+	private Rango disponibilidad;
 
 	public String getTipo() {
-		return _Tipo;
+		return tipoRubro;
 	}
 
 	public void setTipo(String tip) {
-		this._Tipo = tip;
+		this.tipoRubro = tip;
 	}
 
 	public Rango getDisponibilidad() {
-		return _Disponibilidad;
+		return disponibilidad;
 	}
 
 	public void setDisponibilidad(Rango dis) {
-		this._Disponibilidad = dis;
+		this.disponibilidad = dis;
 	}
 
 	public double getRadioCercania() {
-		return _RadioCercania;
+		return radioCercania;
 	}
 
 	public void setRadioCercania(double Radio) {
 		// El radio de cercania tiene que ser en kilometros.
-		this._RadioCercania = Radio;
+		this.radioCercania = Radio;
 	}
 
 	public boolean Busqueda(String tipo) {
-		return _Tipo.equals(tipo);
+		return tipoRubro.equals(tipo);
 	}
 }

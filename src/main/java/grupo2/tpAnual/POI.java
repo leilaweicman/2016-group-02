@@ -6,15 +6,14 @@ import java.util.List;
 import org.joda.time.DateTime;
 import org.uqbar.geodds.Point;
 
-public abstract class POI  /*implements BusquedaAvanzada*/ {
+public abstract class POI {
 	private Direccion direccion;
 	private List<String> palabraClave;
 	protected Point ubicacion;
 	protected Comuna comuna;
-	// public Point Point;
 
 	public POI() {
-		
+
 		palabraClave = new ArrayList<String>();
 	}
 
@@ -36,7 +35,7 @@ public abstract class POI  /*implements BusquedaAvanzada*/ {
 
 	abstract boolean estaDisponible(DateTime momento, String nombreServicio);
 
-	public boolean VerificarPorTexto(String texto) {
+	public boolean verificarPorTexto(String texto) {
 		return getPalabraClave().contains(texto) || BusquedaParticular(texto);
 	}
 
@@ -59,14 +58,14 @@ public abstract class POI  /*implements BusquedaAvanzada*/ {
 	public void setComuna(Comuna com) {
 		this.comuna = com;
 	}
-	
-	public Comuna getComuna(){
+
+	public Comuna getComuna() {
 		return comuna;
 	}
 
 	public List<POI> busqueda(String txtABuscar) {
 		List<POI> resultadoBusqueda = new ArrayList<POI>();
-		if (this.VerificarPorTexto(txtABuscar)) {
+		if (this.verificarPorTexto(txtABuscar)) {
 			resultadoBusqueda.add(this);
 		}
 		return resultadoBusqueda;

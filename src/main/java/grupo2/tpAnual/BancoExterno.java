@@ -1,21 +1,19 @@
 package grupo2.tpAnual;
 
-import java.util.List;
+public class BancoExterno {
+	public double x;
+	public double y;
 
-public interface BancoExterno {
+	public BancoExterno(double latitud, double longitud) {
+		this.x = latitud;
+		this.y = longitud;
+	}
 
-	public String getBanco();
+	public double getLatitud() {
+		return this.x;
+	}
 
-	public double getX();
-
-	public double getY();
-
-	public String getSucursal();
-
-	public List<String> getServicios();
-
-	public String getGerente();
-	
-	//public List<JSON> busqueda(String banco, String servicio);
-	public List<Object> busqueda(String banco, String servicio);
+	public double getLongitud() {
+		return this.y;
+	}
 }

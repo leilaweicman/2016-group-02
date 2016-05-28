@@ -1,90 +1,101 @@
 package grupo2.tpAnual;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
-public class Mapa implements Administrador {
+import grupo2.tpAnual.Integraciones.Integracion;
 
-	private List<POI> poiList;
-	private List<Integracion> integracionesBusquedasExternas;
-	Map<String, POI> conversorAPoi = new HashMap<>();
-	Map<String, Object> devolverAtributo= new HashMap<>();
-	
-	private List<POI> listaPOIS= new ArrayList<POI>();
+
+public class Mapa {
+
+	private List<POI> pois;
+	private List<Integracion> origenesDeDatos;
+	private List<ObserverBusqueda> observersBusqueda;
+	private long tiempoMaximoDeEjecucion;
 	
 	public Mapa() {
-		poiList = new ArrayList<POI>();
-		integracionesBusquedasExternas = new ArrayList<Integracion>();
-		List<Rango> listaRango = new ArrayList<>();
-		conversorAPoi.put("Banco", new Banco());
-		conversorAPoi.put("CGP", new CGP());
-		conversorAPoi.put("Comercio", new Comercio(listaRango));
-		conversorAPoi.put("Parada",new Parada());
+		pois = new ArrayList<POI>();
+		observersBusqueda = new ArrayList<ObserverBusqueda>();
+		origenesDeDatos = new ArrayList<Integracion>();
 	}
-
+	
 	public List<POI> getPOIs() {
-		return poiList;
+		return pois;
 	}
 
-	public void setIntegracionesBusquedaExterna(Integracion integracion) {
-		this.integracionesBusquedasExternas.add(integracion);
+	public void setOrigenesDeDatos(Integracion integracion) {
+		this.origenesDeDatos.add(integracion);
 	}
 
 	public void agregarPOI(POI poi) {
-		poiList.add(poi);
+		pois.add(poi);
 	}
 
-
-	@Override
-	public void crearPOI(String nombre) {
-	if(this.conversorAPoi.containsKey(nombre)) this.poiList.add(this.conversorAPoi.get(nombre));	
+	public void crearPOI(POI poi) {
+		this.pois.add(poi);
 	}
 
 	public void darDeBajaPOI(POI nombre) {
-		poiList.remove(nombre);
+		pois.remove(nombre);
 	}
 
-	@Override
 	public void modificarUnPOI(POI poi, String atributo, String valorAtributo) {
-		// TODO Auto-generated method stub
+		// No hacemos nada hastano tener la UI
 
 	}
 
-	@Override
-	public Object consultarPoi(POI nombre, String atributo) {
-		devolverAtributo.put("Direccion",nombre.getDireccion());
-		devolverAtributo.put("Ubicacion",nombre.getUbicacion());
-		devolverAtributo.put("Comuna",nombre.getComuna());
+	public String consultarPoi(POI poi, String atributo) {
+		switch (atributo) {
+		case "Direccion":
+			return poi.getDireccion().getCalle();
+		case "Ubicacion":
+			return poi.getUbicacion().toString();
+		case "Comuna":
+			return String.valueOf(poi.getComuna().getNumeroComuna());
+		default:
+			return "No se encontró attributo";
+		}
+	}
+
+	public List<POI> busquedaRealizadaPorElUsuario(String txtABuscar) {
+		long tiempoInicio = System.currentTimeMillis();
+		List<POI> result = new ArrayList<POI>();
 		
+<<<<<<< HEAD
 		if(this.devolverAtributo.containsKey(atributo))	{return (this.devolverAtributo.get(atributo));}
 		else return null; //esto es cualca, para que no tire error porque no se que devolver
+=======
+		//busco en mis pois
+		result.addAll(this.pois.stream().filter(poi -> poi.verificarPorTexto(txtABuscar)).collect(Collectors.toList()));
+					
+		//busco en los servicios externos
+		this.origenesDeDatos.forEach(integracion -> result.addAll(integracion.busqueda(txtABuscar)));
+		long tiempoFin = System.currentTimeMillis();
+	
+		//mido el tiempo de ejecucion y lo paso a segundos
+		long segundosTardados=(tiempoFin- tiempoInicio)/1000;
+>>>>>>> 8e0af425b69aa4bc8e14a03acd55d7662e720dd0
 		
+		//le aviso a los observers de que ocurrio el evento
+		DatosDeBusqueda datosParaObserver = new DatosDeBusqueda(txtABuscar,segundosTardados,this.tiempoMaximoDeEjecucion,result.size());
+		this.observersBusqueda.forEach(observer-> observer.notificarBusqueda(datosParaObserver));
 		
+		return result;
 	}
 	
-	/*public List<POI> busquedaRealizadaPorElUsuario(String txtABuscar) {
-	  List<POI> result = new ArrayList<POI>();
-	  for (POI poi : poiList) {
-	   if (poi.verificarPorTexto(txtABuscar))
-	    result.add(poi);
-	  }
-	  return result;
-	 }*/
-	
-	
-	public List<POI> busquedaRealizadaPorElUsuario(String txtABuscar) {
-		//List<POI> listaPOIS= new ArrayList<POI>();
-		this.integracionesBusquedasExternas.stream().forEach(integr -> concatenarListas(integr, txtABuscar) );
-		return listaPOIS;
+	public void agregarObserverBusqueda(ObserverBusqueda observer){
+		this.observersBusqueda.add(observer);
 	}
 	
-	private void concatenarListas(Integracion integr, String txtABuscar)
-	{
-		List<POI> lista= new ArrayList<POI>();
-		lista= integr.busqueda(txtABuscar);
-		listaPOIS.addAll(lista) ;
+	public void quitarObserverBusqueda(ObserverBusqueda observer){
+		this.observersBusqueda.remove(observer);
+	}
+	
+	public void setTiempoMaximoDeEjecucion(int tiempoEnSegundos){
+		this.tiempoMaximoDeEjecucion = tiempoEnSegundos;
+	}
+	public long getTiempoMaximoDeEjecucion(){
+		return this.tiempoMaximoDeEjecucion;
 	}
 }

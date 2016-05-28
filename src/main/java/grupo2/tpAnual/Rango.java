@@ -1,6 +1,6 @@
 package grupo2.tpAnual;
-import java.time.LocalTime;
 
+import java.time.LocalTime;
 
 public class Rango {
 	private Integer dia;
@@ -30,15 +30,15 @@ public class Rango {
 	public void setHoraHasta(LocalTime horaH) {
 		this.horaHasta = horaH;
 	}
-	
+
 	public boolean estaDisponible(int dia, LocalTime horaCompleta) {
-		
+
 		boolean disponible = false;
 		if ((dia == this.getDay()) && ((this.getHoraDesde()).compareTo(horaCompleta) == -1)
 				&& ((this.getHoraHasta()).compareTo(horaCompleta) == 1)) {
 			disponible = true;
 		}
-		
+
 		return disponible;
 	}
 }
