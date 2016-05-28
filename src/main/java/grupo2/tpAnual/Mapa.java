@@ -5,8 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import grupo2.tpAnual.Integraciones.Integracion;
-import grupo2.tpAnual.Integraciones.IntegracionBancoExterno;
-import grupo2.tpAnual.Integraciones.IntegracionCentroDTO;
+
 
 public class Mapa {
 
@@ -19,8 +18,6 @@ public class Mapa {
 		pois = new ArrayList<POI>();
 		observersBusqueda = new ArrayList<ObserverBusqueda>();
 		origenesDeDatos = new ArrayList<Integracion>();
-		origenesDeDatos.add(new IntegracionBancoExterno());
-		origenesDeDatos.add(new IntegracionCentroDTO());
 	}
 	
 	public List<POI> getPOIs() {
@@ -62,7 +59,7 @@ public class Mapa {
 	}
 
 	public List<POI> busquedaRealizadaPorElUsuario(String txtABuscar) {
-		long tiempoInicio = System.currentTimeMillis();//mido el tiempo de ejecución
+		long tiempoInicio = System.currentTimeMillis();
 		List<POI> result = new ArrayList<POI>();
 		
 		//busco en mis pois
@@ -70,9 +67,10 @@ public class Mapa {
 					
 		//busco en los servicios externos
 		this.origenesDeDatos.forEach(integracion -> result.addAll(integracion.busqueda(txtABuscar)));
+		long tiempoFin = System.currentTimeMillis();
 	
-		long tiempoFin = System.currentTimeMillis();//mido el tiempo de ejecución
-		long segundosTardados=(tiempoFin- tiempoInicio)/1000; //lo paso a segundos
+		//mido el tiempo de ejecucion y lo paso a segundos
+		long segundosTardados=(tiempoFin- tiempoInicio)/1000;
 		
 		//le aviso a los observers de que ocurrio el evento
 		DatosDeBusqueda datosParaObserver = new DatosDeBusqueda(txtABuscar,segundosTardados,this.tiempoMaximoDeEjecucion,result.size());
@@ -92,5 +90,7 @@ public class Mapa {
 	public void setTiempoMaximoDeEjecucion(int tiempoEnSegundos){
 		this.tiempoMaximoDeEjecucion = tiempoEnSegundos;
 	}
-
+	public long getTiempoMaximoDeEjecucion(){
+		return this.tiempoMaximoDeEjecucion;
+	}
 }

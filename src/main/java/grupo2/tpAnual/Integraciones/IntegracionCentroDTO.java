@@ -16,7 +16,7 @@ public class IntegracionCentroDTO implements Integracion {
 	private ServicioCentroDTO mapaCentroDTO = new ServicioCentroDTO();
 
 	@Override
-	public List<POI> busqueda(String txtABuscar) {
+	public List<POI> busqueda(String txtABuscar){
 		List<CentroDTO> listaCentroDTO = new ArrayList<>();
 		List<POI> listaPOI = new ArrayList<>();
 		listaCentroDTO = this.mapaCentroDTO.busqueda(txtABuscar);
@@ -26,9 +26,7 @@ public class IntegracionCentroDTO implements Integracion {
 
 	public List<POI> transformarDTOaPOI(List<CentroDTO> listaCentroDTO) {
 		List<POI> listaPOI = new ArrayList<>();
-		for (CentroDTO dto : listaCentroDTO) {
-			listaPOI.add(adapter(dto));
-		}
+		listaCentroDTO.forEach(elementoDto -> listaPOI.add(adapter(elementoDto)));
 		return listaPOI;
 	}
 
