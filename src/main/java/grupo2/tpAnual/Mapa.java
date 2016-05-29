@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 import org.joda.time.LocalDate;
 
 import grupo2.tpAnual.Integraciones.Integracion;
-import grupo2.tpAnual.Observers.DatosDeBusqueda;
 import grupo2.tpAnual.Observers.ObserverBusqueda;
 
 

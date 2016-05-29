@@ -3,6 +3,8 @@ package grupo2.tpAnual.Observers;
 import java.util.ArrayList;
 import java.util.List;
 
+import grupo2.tpAnual.DatosDeBusqueda;
+
 public class RegistrarBusqueda implements ObserverBusqueda {
 	private List<DatosDeBusqueda> registroBusqueda = new ArrayList<DatosDeBusqueda>();
 

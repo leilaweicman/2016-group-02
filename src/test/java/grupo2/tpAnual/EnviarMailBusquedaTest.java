@@ -7,7 +7,6 @@ import java.io.PrintStream;
 import org.joda.time.LocalDate;
 import org.junit.Test;
 
-import grupo2.tpAnual.Observers.DatosDeBusqueda;
 import grupo2.tpAnual.Observers.EnviarMailBusqueda;
 
 public class EnviarMailBusquedaTest {

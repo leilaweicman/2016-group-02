@@ -1,4 +1,4 @@
-package grupo2.tpAnual.Observers;
+package grupo2.tpAnual;
 
 import org.joda.time.LocalDate;
 
