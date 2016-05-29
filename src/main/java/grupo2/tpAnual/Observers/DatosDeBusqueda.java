@@ -1,6 +1,6 @@
 package grupo2.tpAnual.Observers;
 
-import java.util.Date;
+import org.joda.time.LocalDate;
 
 public class DatosDeBusqueda {
 	// Clase que guarda los datos que se quieren almacenar de las busquedas
@@ -8,9 +8,9 @@ public class DatosDeBusqueda {
 	private long segundosQueTardoLaBusqueda;
 	private int totalDeResultados;
 	private long tiempoMaximoDeBusqueda;
-	private Date fecha;
+	private LocalDate fecha;
 
-	public DatosDeBusqueda(String texto, long segundos, long tiempoMaximoDeBusqueda,int totalResultados, Date fecha) {
+	public DatosDeBusqueda(String texto, long segundos, long tiempoMaximoDeBusqueda,int totalResultados, LocalDate fecha) {
 		this.txtBuscado = texto;
 		this.segundosQueTardoLaBusqueda = segundos;
 		this.totalDeResultados = totalResultados;
@@ -34,7 +34,7 @@ public class DatosDeBusqueda {
 		return tiempoMaximoDeBusqueda;
 	}
 	
-	public Date getFecha() {
+	public LocalDate getFecha() {
 		return fecha;
 	}
 

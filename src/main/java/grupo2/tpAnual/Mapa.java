@@ -1,9 +1,10 @@
 package grupo2.tpAnual;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import org.joda.time.LocalDate;
 
 import grupo2.tpAnual.Integraciones.Integracion;
 import grupo2.tpAnual.Observers.DatosDeBusqueda;
@@ -76,7 +77,7 @@ public class Mapa {
 		long segundosTardados=(tiempoFin- tiempoInicio)/1000;
 		
 		//le aviso a los observers de que ocurrio el evento
-		DatosDeBusqueda datosParaObserver = new DatosDeBusqueda(txtABuscar,segundosTardados,this.tiempoMaximoDeEjecucion,result.size(), new Date());
+		DatosDeBusqueda datosParaObserver = new DatosDeBusqueda(txtABuscar,segundosTardados,this.tiempoMaximoDeEjecucion,result.size(), new LocalDate());
 		this.observersBusqueda.forEach(observer-> observer.notificarBusqueda(datosParaObserver));
 		
 		return result;
