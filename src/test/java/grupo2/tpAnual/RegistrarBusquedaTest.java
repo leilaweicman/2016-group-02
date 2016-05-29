@@ -8,7 +8,7 @@ import grupo2.tpAnual.Observers.RegistrarBusqueda;
 
 public class RegistrarBusquedaTest {
 	RegistrarBusqueda observer = new RegistrarBusqueda();
-	DatosDeBusqueda datoBuscado = new DatosDeBusqueda("libros", 18, 10, 15);
+	DatosDeBusqueda datoBuscado = new DatosDeBusqueda("libros", 18, 10, 15, null);
 
 	@Test
 	public void notificarBusquedaTest() {
