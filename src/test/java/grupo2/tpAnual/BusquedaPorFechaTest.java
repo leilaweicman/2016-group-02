@@ -1,15 +1,15 @@
 package grupo2.tpAnual;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.joda.time.LocalDate;
 import org.junit.Assert;
 import org.junit.Test;
 
-import grupo2.tpAnual.Reportes.BusquedasPorFecha;
 
 public class BusquedaPorFechaTest {
-	BusquedasPorFecha reporte = new BusquedasPorFecha();
+	Reportes reporte = new Reportes();
 	
 	@Test
 	public void obtenerReporte(){
@@ -17,6 +17,7 @@ public class BusquedaPorFechaTest {
 		lista.add(new DatosDeBusqueda("libros", 18, 10, 15, new LocalDate()));
 		lista.add(new DatosDeBusqueda("carpetas", 16, 14, 15, new LocalDate().minusDays(1)));
 		lista.add(new DatosDeBusqueda("carpetas", 16, 14, 15, new LocalDate().minusDays(2)));
-		Assert.assertEquals(lista.size(), 3);
+		Map<String, Integer> map = reporte.BusquedasPorFecha(lista);
+		Assert.assertEquals(map.size(), 3);
 	}
 }

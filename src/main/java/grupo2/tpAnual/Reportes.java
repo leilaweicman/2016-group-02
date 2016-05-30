@@ -1,14 +1,10 @@
-package grupo2.tpAnual.Reportes;
-
+package grupo2.tpAnual;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import grupo2.tpAnual.DatosDeBusqueda;
-
-public class BusquedasPorFecha {
-	
-	public Map<String, Integer> ObtenerReporte (List<DatosDeBusqueda> registroBusqueda){
+public class Reportes {
+	public Map<String, Integer> BusquedasPorFecha (List<DatosDeBusqueda> registroBusqueda){
 		Map<String, Integer> reporte = new HashMap<String, Integer>();
 		for(DatosDeBusqueda registro : registroBusqueda){
 			Integer cantidadXFecha = reporte.get(registro.getFecha().toString()) ;
