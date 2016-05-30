@@ -11,9 +11,6 @@ public class RegistrarBusqueda implements ObserverBusqueda {
 	@Override
 	public void notificarBusqueda(DatosDeBusqueda datosParaObserver) {
 		this.registroBusqueda.add(datosParaObserver);
-		// No sé si crear una nueva clase que tenga los atributos que necesita
-		// registrar, o que almacene todos, o hacer una tupla con los datos q
-		// necesito almacenar
 	}
 	
 	public List<DatosDeBusqueda> getRegistroBusqueda(){

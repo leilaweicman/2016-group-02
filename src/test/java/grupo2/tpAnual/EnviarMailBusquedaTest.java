@@ -17,7 +17,7 @@ public class EnviarMailBusquedaTest {
 	DatosDeBusqueda datoBuscado2 = new DatosDeBusqueda("asado", 5, 10, 15, new LocalDate());
 	
 	@Test
-	public void enviarMailTest() { //cuando este implementado hay q cambiar e enviarMailBusqueda por un mockito
+	public void enviarMailTest() { 
 		System.setOut(new PrintStream(outContent));
 		observer.notificarBusqueda(datoBuscado);
 		assertEquals("Se envio el mail correctamente", outContent.toString());
