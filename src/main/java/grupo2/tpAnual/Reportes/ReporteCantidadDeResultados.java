@@ -1,9 +1,9 @@
 package grupo2.tpAnual.Reportes;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+//import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+//import java.util.Map;
 import java.util.stream.Collectors;
 
 import grupo2.tpAnual.DatosDeBusqueda;
@@ -20,7 +20,7 @@ public class ReporteCantidadDeResultados {
 		return reporte;
 	}
 		//Esto es un esqueleto, no esta hecho bien	
-		public Map<String, Integer> obtenerReportePorUsuario (List<DatosDeBusqueda> registroBusqueda){
+		/*public Map<String, Integer> obtenerReportePorUsuario (List<DatosDeBusqueda> registroBusqueda){
 		
 		Map<String, Integer> reporte = new HashMap<String, Integer>();
 		Integer cantidadResultados;
@@ -31,5 +31,5 @@ public class ReporteCantidadDeResultados {
 						
 		return reporte;
 	}	
-	
+}*/
 }
