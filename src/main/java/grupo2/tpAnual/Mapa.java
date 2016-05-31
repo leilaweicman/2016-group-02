@@ -65,10 +65,7 @@ public class Mapa {
 		long tiempoInicio = System.currentTimeMillis();
 		List<POI> result = new ArrayList<POI>();
 		
-<<<<<<< HEAD
-		if(this.devolverAtributo.containsKey(atributo))	{return (this.devolverAtributo.get(atributo));}
-		else return null; //esto es cualca, para que no tire error porque no se que devolver
-=======
+
 		//busco en mis pois
 		result.addAll(this.pois.stream().filter(poi -> poi.verificarPorTexto(txtABuscar)).collect(Collectors.toList()));
 					
@@ -78,7 +75,7 @@ public class Mapa {
 	
 		//mido el tiempo de ejecucion y lo paso a segundos
 		long segundosTardados=(tiempoFin- tiempoInicio)/1000;
->>>>>>> 8e0af425b69aa4bc8e14a03acd55d7662e720dd0
+
 		
 		//le aviso a los observers de que ocurrio el evento
 		DatosDeBusqueda datosParaObserver = new DatosDeBusqueda(txtABuscar,segundosTardados,this.tiempoMaximoDeEjecucion,result.size(), new LocalDate());
