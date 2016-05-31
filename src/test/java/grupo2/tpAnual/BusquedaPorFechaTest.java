@@ -14,9 +14,9 @@ public class BusquedaPorFechaTest {
 	@Test
 	public void obtenerReporte(){
 		List<DatosDeBusqueda> lista = new ArrayList<DatosDeBusqueda>();
-		lista.add(new DatosDeBusqueda("libros", 18, 10, 15, new LocalDate()));
-		lista.add(new DatosDeBusqueda("carpetas", 16, 14, 15, new LocalDate().minusDays(1)));
-		lista.add(new DatosDeBusqueda("carpetas", 16, 14, 15, new LocalDate().minusDays(2)));
+		lista.add(new DatosDeBusqueda("flores","libros", 18, 10, 15, new LocalDate()));
+		lista.add(new DatosDeBusqueda("lasHeras","carpetas", 16, 14, 15, new LocalDate().minusDays(1)));
+		lista.add(new DatosDeBusqueda("lasHeras","carpetas", 16, 14, 15, new LocalDate().minusDays(2)));
 		Assert.assertEquals(lista.size(), 3);
 	}
 }
