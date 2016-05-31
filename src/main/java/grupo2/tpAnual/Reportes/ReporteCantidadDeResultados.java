@@ -19,19 +19,17 @@ public class ReporteCantidadDeResultados {
 	
 		return reporte;
 	}
-			
-		/*public Map<String, Integer> obtenerReportePorUsuario (List<DatosDeBusqueda> registroBusqueda){
-		Map<String, Integer> reporte = new HashMap<String, Integer>();
+		//Esto es un esqueleto, no esta hecho bien	
+		public Map<String, Integer> obtenerReportePorUsuario (List<DatosDeBusqueda> registroBusqueda){
 		
+		Map<String, Integer> reporte = new HashMap<String, Integer>();
+		Integer cantidadResultados;
+
 		for(DatosDeBusqueda registro : registroBusqueda){
-			Integer nombre = reporte.get(registro.getFecha().toString()) ;
-			if(cantidadXFecha != null){
-				reporte.put(registro.getFecha().toString(), ++cantidadXFecha);
-			}else{
-				reporte.put(registro.getFecha().toString(), 1);
-			}
-		}
+			
+		reporte.put(registro.getNombre(), cantidadResultados);
+						
 		return reporte;
-	}*/		
+	}	
 	
 }
