@@ -81,7 +81,7 @@ public class Mapa {
 
 		
 		//le aviso a los observers de que ocurrio el evento
-		DatosDeBusqueda datosParaObserver = new DatosDeBusqueda(txtABuscar,segundosTardados,this.tiempoMaximoDeEjecucion,result.size(), new LocalDate());
+		DatosDeBusqueda datosParaObserver = new DatosDeBusqueda(this.nombre, txtABuscar,segundosTardados,this.tiempoMaximoDeEjecucion,result.size(), new LocalDate());
 		this.observersBusqueda.forEach(observer-> observer.notificarBusqueda(datosParaObserver));
 		
 		return result;

@@ -9,13 +9,15 @@ public class DatosDeBusqueda {
 	private int totalDeResultados;
 	private long tiempoMaximoDeBusqueda;
 	private LocalDate fecha;
+	private String nombre;
 
-	public DatosDeBusqueda(String texto, long segundos, long tiempoMaximoDeBusqueda,int totalResultados, LocalDate fecha) {
+	public DatosDeBusqueda(String nombre, String texto, long segundos, long tiempoMaximoDeBusqueda,int totalResultados, LocalDate fecha) {
 		this.txtBuscado = texto;
 		this.segundosQueTardoLaBusqueda = segundos;
 		this.totalDeResultados = totalResultados;
 		this.tiempoMaximoDeBusqueda = tiempoMaximoDeBusqueda;
 		this.fecha = fecha;
+		this.nombre=nombre;
 	}
 
 	public String getTxtBuscado() {
@@ -36,6 +38,10 @@ public class DatosDeBusqueda {
 	
 	public LocalDate getFecha() {
 		return fecha;
+	}
+	
+	public String getNombre(){
+		return nombre;
 	}
 
 }
