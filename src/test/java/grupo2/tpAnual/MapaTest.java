@@ -13,6 +13,8 @@ import org.mockito.Mockito;
 
 import grupo2.tpAnual.Integraciones.IntegracionBancoExterno;
 import grupo2.tpAnual.Integraciones.IntegracionCentroDTO;
+import grupo2.tpAnual.Observers.EnviarMailBusqueda;
+import grupo2.tpAnual.Observers.RegistrarBusqueda;
 
 public class MapaTest {
 	private Mapa lasHeras;
@@ -27,7 +29,7 @@ public class MapaTest {
 	@Before
 	public void init() {
 		this.lasHeras = new Mapa();
-		this.lasHeras.setTiempoMaximoDeEjecucion(3);
+		this.lasHeras.setTiempoMaximoDeEjecucion(2);
 
 		this.santander = new Banco();
 		this.santander.addPalabraClave("plazoFijo");
@@ -85,8 +87,8 @@ public class MapaTest {
 
 		lasHeras.setOrigenesDeDatos(centroDTOmock);
 		lasHeras.busquedaRealizadaPorElUsuario("plazoFijo");
-		Mockito.verify(centroDTOmock, Mockito.after(30000)).busqueda("plazoFijo");
-		
+		Mockito.verify(centroDTOmock, Mockito.after(3000)).busqueda("plazoFijo");
+		//simulo lo q tardaría la busqueda con el verdadero componente
 		long tiempoFin = System.currentTimeMillis();
 		Assert.assertTrue((tiempoFin - tiempoInicio) / 1000 > lasHeras.getTiempoMaximoDeEjecucion());
 	}
@@ -136,7 +138,6 @@ public class MapaTest {
 		
 		lasHeras.busquedaRealizadaPorElUsuario("plazoFijo");
 		
-		//Assert.assertEquals("Se envio el mail correctamente", outContent.toString());
 		Assert.assertEquals(lasHeras.busquedaRealizadaPorElUsuario("plazoFijo").size(), 5);
 		lasHeras.busquedaRealizadaPorElUsuario("hola");
 		Assert.assertEquals(observerRegistro.getRegistroBusqueda().size(), 3); //son tres por el assert anterior

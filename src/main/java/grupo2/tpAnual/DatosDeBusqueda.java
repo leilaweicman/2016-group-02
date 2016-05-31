@@ -1,17 +1,21 @@
 package grupo2.tpAnual;
 
+import org.joda.time.LocalDate;
+
 public class DatosDeBusqueda {
 	// Clase que guarda los datos que se quieren almacenar de las busquedas
 	private String txtBuscado;
 	private long segundosQueTardoLaBusqueda;
 	private int totalDeResultados;
 	private long tiempoMaximoDeBusqueda;
+	private LocalDate fecha;
 
-	public DatosDeBusqueda(String texto, long segundos, long tiempoMaximoDeBusqueda,int totalResultados) {
+	public DatosDeBusqueda(String texto, long segundos, long tiempoMaximoDeBusqueda,int totalResultados, LocalDate fecha) {
 		this.txtBuscado = texto;
 		this.segundosQueTardoLaBusqueda = segundos;
 		this.totalDeResultados = totalResultados;
 		this.tiempoMaximoDeBusqueda = tiempoMaximoDeBusqueda;
+		this.fecha = fecha;
 	}
 
 	public String getTxtBuscado() {
@@ -28,6 +32,10 @@ public class DatosDeBusqueda {
 
 	public long getTiempoMaximoDeBusqueda() {
 		return tiempoMaximoDeBusqueda;
+	}
+	
+	public LocalDate getFecha() {
+		return fecha;
 	}
 
 }
