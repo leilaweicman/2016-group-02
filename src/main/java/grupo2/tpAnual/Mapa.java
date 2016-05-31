@@ -16,12 +16,15 @@ public class Mapa {
 	private List<Integracion> origenesDeDatos;
 	private List<ObserverBusqueda> observersBusqueda;
 	private long tiempoMaximoDeEjecucion;
+	private String nombre;
 	
 	public Mapa() {
 		pois = new ArrayList<POI>();
 		observersBusqueda = new ArrayList<ObserverBusqueda>();
 		origenesDeDatos = new ArrayList<Integracion>();
 	}
+	
+
 	
 	public List<POI> getPOIs() {
 		return pois;
@@ -97,5 +100,13 @@ public class Mapa {
 	}
 	public long getTiempoMaximoDeEjecucion(){
 		return this.tiempoMaximoDeEjecucion;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 }
