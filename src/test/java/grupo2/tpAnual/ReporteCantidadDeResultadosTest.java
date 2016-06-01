@@ -16,7 +16,6 @@ public class ReporteCantidadDeResultadosTest {
 	String nombreTerminal;
 	ReporteCantidadDeResultados reporte;
 	
-	//FALTAN LOS TESTS DE OBTENERREPORTEPORUSUARIO PORQUE FALTA CORREGIR EL METODO
 	
 	@Before
 	public void init() {
@@ -51,5 +50,21 @@ public class ReporteCantidadDeResultadosTest {
 		this.observer.notificarBusqueda(datoBuscado3);
 		Assert.assertEquals(reporte.obtenerReportePorTerminal(observer.getRegistroBusqueda(), nombreTerminal).size(), 2);
 
+	}
+	
+	@Test
+	public void reporteUsuarioTest() {
+		this.observer.notificarBusqueda(datoBuscado);
+		this.observer.notificarBusqueda(datoBuscado2);
+		this.observer.notificarBusqueda(datoBuscado3);
+		Assert.assertEquals(reporte.obtenerReportePorUsuario(observer.getRegistroBusqueda()).size(), 2);
+	}
+	
+	@Test
+	public void reportePorUsuarioTest() {
+		this.observer.notificarBusqueda(datoBuscado);
+		this.observer.notificarBusqueda(datoBuscado2);
+		this.observer.notificarBusqueda(datoBuscado3);
+		Assert.assertNotEquals(reporte.obtenerReportePorUsuario(observer.getRegistroBusqueda()).size(), 3);
 	}
 }
