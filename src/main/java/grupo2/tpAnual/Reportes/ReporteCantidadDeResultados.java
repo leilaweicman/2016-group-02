@@ -23,13 +23,14 @@ public class ReporteCantidadDeResultados {
 		/*public Map<String, Integer> obtenerReportePorUsuario (List<DatosDeBusqueda> registroBusqueda){
 		
 		Map<String, Integer> reporte = new HashMap<String, Integer>();
-		Integer cantidadResultados;
+					
 
 		for(DatosDeBusqueda registro : registroBusqueda){
-			
+		Integer cantidadResultados;
+		cantidadResultados= this.obtenerReportePorTerminal(registroBusqueda, registro.getNombre()).stream().sum();	
 		reporte.put(registro.getNombre(), cantidadResultados);
 						
+		}
 		return reporte;
-	}	
 }*/
 }
