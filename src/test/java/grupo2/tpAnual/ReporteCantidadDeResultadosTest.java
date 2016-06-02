@@ -58,6 +58,8 @@ public class ReporteCantidadDeResultadosTest {
 		this.observer.notificarBusqueda(datoBuscado2);
 		this.observer.notificarBusqueda(datoBuscado3);
 		Assert.assertEquals(reporte.obtenerReportePorUsuario(observer.getRegistroBusqueda()).size(), 2);
+		Assert.assertTrue(reporte.obtenerReportePorUsuario(observer.getRegistroBusqueda()).get("flores")==40);
+		Assert.assertTrue(reporte.obtenerReportePorUsuario(observer.getRegistroBusqueda()).get("lasHeras")==15);
 	}
 	
 	@Test
