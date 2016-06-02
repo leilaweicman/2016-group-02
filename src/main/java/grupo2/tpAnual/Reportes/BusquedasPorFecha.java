@@ -8,7 +8,7 @@ import grupo2.tpAnual.DatosDeBusqueda;
 
 public class BusquedasPorFecha {
 	
-	public Map<String, Integer> ObtenerReporte (List<DatosDeBusqueda> registroBusqueda){
+	public Map<String, Integer> obtenerReporte (List<DatosDeBusqueda> registroBusqueda){
 		Map<String, Integer> reporte = new HashMap<String, Integer>();
 		for(DatosDeBusqueda registro : registroBusqueda){
 			Integer cantidadXFecha = reporte.get(registro.getFecha().toString()) ;
