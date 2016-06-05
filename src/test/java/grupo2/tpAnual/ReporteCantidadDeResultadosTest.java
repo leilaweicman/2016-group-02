@@ -6,7 +6,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import grupo2.tpAnual.Observers.RegistrarBusqueda;
-import grupo2.tpAnual.Reportes.ReporteCantidadDeResultados;
 
 public class ReporteCantidadDeResultadosTest {
 	RegistrarBusqueda observer;
@@ -14,7 +13,7 @@ public class ReporteCantidadDeResultadosTest {
 	DatosDeBusqueda datoBuscado2;
 	DatosDeBusqueda datoBuscado3;
 	String nombreTerminal;
-	ReporteCantidadDeResultados reporte;
+	Reportes reporte;
 	
 	
 	@Before
@@ -23,7 +22,7 @@ public class ReporteCantidadDeResultadosTest {
 		datoBuscado2 = new DatosDeBusqueda("flores","asado", 5, 10, 15, new LocalDate());
 		datoBuscado3 = new DatosDeBusqueda("flores","asado", 10, 20, 25, new LocalDate());
 		observer = new RegistrarBusqueda();
-		reporte=new ReporteCantidadDeResultados();
+		reporte=new Reportes();
 	}	
 	
 	@Test

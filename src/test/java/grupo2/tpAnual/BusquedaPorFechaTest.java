@@ -43,7 +43,7 @@ public class BusquedaPorFechaTest {
 		lista.add(datoBuscado);
 		lista.add(datoBuscado2);
 		lista.add(datoBuscado3);
-		Map<String, Integer> map = reporte.BusquedasPorFecha(lista);
+		Map<String, Integer> map = reporte.busquedasPorFecha(lista);
 		Assert.assertEquals(map.size(), 3);
 	}
 }
