@@ -13,8 +13,8 @@ public class EnviarMailBusquedaTest {
 	private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
 	EnviarMailBusqueda observer = new EnviarMailBusqueda();
 
-	DatosDeBusqueda datoBuscado = new DatosDeBusqueda("libros", 18, 10, 15, new LocalDate());
-	DatosDeBusqueda datoBuscado2 = new DatosDeBusqueda("asado", 5, 10, 15, new LocalDate());
+	DatosDeBusqueda datoBuscado = new DatosDeBusqueda("lasHeras","libros", 18, 10, 15, new LocalDate());
+	DatosDeBusqueda datoBuscado2 = new DatosDeBusqueda("flores","asado", 5, 10, 15, new LocalDate());
 	
 	@Test
 	public void enviarMailTest() { 

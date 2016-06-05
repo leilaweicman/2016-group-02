@@ -16,12 +16,15 @@ public class Mapa {
 	private List<Integracion> origenesDeDatos;
 	private List<ObserverBusqueda> observersBusqueda;
 	private long tiempoMaximoDeEjecucion;
+	private String nombre;
 	
 	public Mapa() {
 		pois = new ArrayList<POI>();
 		observersBusqueda = new ArrayList<ObserverBusqueda>();
 		origenesDeDatos = new ArrayList<Integracion>();
 	}
+	
+
 	
 	public List<POI> getPOIs() {
 		return pois;
@@ -65,6 +68,7 @@ public class Mapa {
 		long tiempoInicio = System.currentTimeMillis();
 		List<POI> result = new ArrayList<POI>();
 		
+
 		//busco en mis pois
 		result.addAll(this.pois.stream().filter(poi -> poi.verificarPorTexto(txtABuscar)).collect(Collectors.toList()));
 					
@@ -74,9 +78,10 @@ public class Mapa {
 	
 		//mido el tiempo de ejecucion y lo paso a segundos
 		long segundosTardados=(tiempoFin- tiempoInicio)/1000;
+
 		
 		//le aviso a los observers de que ocurrio el evento
-		DatosDeBusqueda datosParaObserver = new DatosDeBusqueda(txtABuscar,segundosTardados,this.tiempoMaximoDeEjecucion,result.size(), new LocalDate());
+		DatosDeBusqueda datosParaObserver = new DatosDeBusqueda(this.nombre, txtABuscar,segundosTardados,this.tiempoMaximoDeEjecucion,result.size(), new LocalDate());
 		this.observersBusqueda.forEach(observer-> observer.notificarBusqueda(datosParaObserver));
 		
 		return result;
@@ -95,5 +100,13 @@ public class Mapa {
 	}
 	public long getTiempoMaximoDeEjecucion(){
 		return this.tiempoMaximoDeEjecucion;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 }
