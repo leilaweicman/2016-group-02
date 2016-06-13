@@ -31,9 +31,9 @@ public class BusquedaPorFechaTest {
 	
 	@Test
 	public void obtenerReporteTest(){
-		this.observer.notificarBusqueda(datoBuscado);
+/*		this.observer.notificarBusqueda(datoBuscado);
 		this.observer.notificarBusqueda(datoBuscado2);
-		this.observer.notificarBusqueda(datoBuscado3);
+		this.observer.notificarBusqueda(datoBuscado3);*/
 		
 	}
 	
