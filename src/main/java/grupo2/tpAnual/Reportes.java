@@ -10,8 +10,7 @@ import grupo2.tpAnual.DatosDeBusqueda;
 
 public class Reportes {
 	private RegistrarDatosBusqueda register=new RegistrarDatosBusqueda();
-	private List<DatosDeBusqueda> registroBusqueda;
-	
+	private List<DatosDeBusqueda> registroBusqueda = new ArrayList<DatosDeBusqueda>();
 	
 	public Map<String, Integer> busquedasPorFecha (){
 		Map<String, Integer> reporte = new HashMap<String, Integer>();
@@ -44,7 +43,6 @@ public class Reportes {
 		return reporte;
 	}
 	
-	//Esto es un esqueleto, no esta hecho bien	
 	public Map<String, Integer> obtenerReportePorUsuario (){
 	
 		Map<String, Integer> reporte = new HashMap<String, Integer>();				

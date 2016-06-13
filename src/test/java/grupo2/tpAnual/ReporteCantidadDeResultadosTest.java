@@ -28,9 +28,9 @@ public class ReporteCantidadDeResultadosTest {
 	@Test
 	public void reporteEnTerminalLasHerasTest() {
 		nombreTerminal= "lasHeras";		
-		/*this.observer.notificarBusqueda(datoBuscado);
+	/*	this.observer.notificarBusqueda(datoBuscado);
 		this.observer.notificarBusqueda(datoBuscado2);
-		Assert.assertEquals(reporte.obtenerReportePorTerminal(nombreTerminal).size(), 1);/
+		Assert.assertEquals(reporte.obtenerReportePorTerminal(nombreTerminal).size(), 1);*/
 	}
 	
 	@Test

@@ -8,7 +8,9 @@ import grupo2.tpAnual.RegistrarDatosBusqueda;
 
 public class RegistrarBusqueda implements ObserverBusqueda {
 	private List<DatosDeBusqueda> registroBusqueda = new ArrayList<DatosDeBusqueda>();
-	private RegistrarDatosBusqueda register;
+	private RegistrarDatosBusqueda register = new RegistrarDatosBusqueda();
+	
+	
 	@Override
 	public void notificarBusqueda(DatosDeBusqueda datosParaObserver) {
 		this.registroBusqueda.add(datosParaObserver);
