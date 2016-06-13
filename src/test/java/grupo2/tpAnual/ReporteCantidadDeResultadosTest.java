@@ -30,7 +30,7 @@ public class ReporteCantidadDeResultadosTest {
 		nombreTerminal= "lasHeras";		
 		this.observer.notificarBusqueda(datoBuscado);
 		this.observer.notificarBusqueda(datoBuscado2);
-		Assert.assertEquals(reporte.obtenerReportePorTerminal(observer.getRegistroBusqueda(), nombreTerminal).size(), 1);
+		Assert.assertEquals(reporte.obtenerReportePorTerminal(nombreTerminal).size(), 1);
 	}
 	
 	@Test
@@ -38,7 +38,7 @@ public class ReporteCantidadDeResultadosTest {
 		nombreTerminal= "lasHeras";		
 		this.observer.notificarBusqueda(datoBuscado);
 		this.observer.notificarBusqueda(datoBuscado2);
-		Assert.assertNotEquals(reporte.obtenerReportePorTerminal(observer.getRegistroBusqueda(), nombreTerminal).size(), 2);
+		Assert.assertNotEquals(reporte.obtenerReportePorTerminal(nombreTerminal).size(), 2);
 	}
 	
 	@Test
@@ -47,7 +47,7 @@ public class ReporteCantidadDeResultadosTest {
 		this.observer.notificarBusqueda(datoBuscado);
 		this.observer.notificarBusqueda(datoBuscado2);
 		this.observer.notificarBusqueda(datoBuscado3);
-		Assert.assertEquals(reporte.obtenerReportePorTerminal(observer.getRegistroBusqueda(), nombreTerminal).size(), 2);
+		Assert.assertEquals(reporte.obtenerReportePorTerminal(nombreTerminal).size(), 2);
 
 	}
 	
@@ -56,9 +56,9 @@ public class ReporteCantidadDeResultadosTest {
 		this.observer.notificarBusqueda(datoBuscado);
 		this.observer.notificarBusqueda(datoBuscado2);
 		this.observer.notificarBusqueda(datoBuscado3);
-		Assert.assertEquals(reporte.obtenerReportePorUsuario(observer.getRegistroBusqueda()).size(), 2);
-		Assert.assertTrue(reporte.obtenerReportePorUsuario(observer.getRegistroBusqueda()).get("flores")==40);
-		Assert.assertTrue(reporte.obtenerReportePorUsuario(observer.getRegistroBusqueda()).get("lasHeras")==15);
+		Assert.assertEquals(reporte.obtenerReportePorUsuario().size(), 2);
+		Assert.assertTrue(reporte.obtenerReportePorUsuario().get("flores")==40);
+		Assert.assertTrue(reporte.obtenerReportePorUsuario().get("lasHeras")==15);
 	}
 	
 	@Test
@@ -66,6 +66,6 @@ public class ReporteCantidadDeResultadosTest {
 		this.observer.notificarBusqueda(datoBuscado);
 		this.observer.notificarBusqueda(datoBuscado2);
 		this.observer.notificarBusqueda(datoBuscado3);
-		Assert.assertNotEquals(reporte.obtenerReportePorUsuario(observer.getRegistroBusqueda()).size(), 3);
+		Assert.assertNotEquals(reporte.obtenerReportePorUsuario().size(), 3);
 	}
 }

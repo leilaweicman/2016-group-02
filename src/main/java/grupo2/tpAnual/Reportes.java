@@ -9,9 +9,13 @@ import grupo2.tpAnual.DatosDeBusqueda;
 
 
 public class Reportes {
-
-	public Map<String, Integer> busquedasPorFecha (List<DatosDeBusqueda> registroBusqueda){
+	private RegistrarDatosBusqueda register=new RegistrarDatosBusqueda();
+	private List<DatosDeBusqueda> registroBusqueda;
+	
+	
+	public Map<String, Integer> busquedasPorFecha (){
 		Map<String, Integer> reporte = new HashMap<String, Integer>();
+		this.registroBusqueda.addAll(this.register.consultarDatos());
 		for(DatosDeBusqueda registro : registroBusqueda){
 			Integer cantidadXFecha = reporte.get(registro.getFecha().toString()) ;
 			if(cantidadXFecha != null){
@@ -31,9 +35,9 @@ public class Reportes {
 	
 	Integer suma;
 
-	public List<Integer> obtenerReportePorTerminal (List<DatosDeBusqueda> registroBusqueda, String nombreTerminal){
+	public List<Integer> obtenerReportePorTerminal (String nombreTerminal){
 		List<Integer> reporte = new ArrayList<Integer>();
-	
+		this.registroBusqueda.addAll(this.register.consultarDatos());
 		reporte.addAll(registroBusqueda.stream().filter(registro-> registro.getNombre()==nombreTerminal)
 				.map(registro->registro.getTotalDeResultados()).collect(Collectors.toList()));		
 	
@@ -41,13 +45,13 @@ public class Reportes {
 	}
 	
 	//Esto es un esqueleto, no esta hecho bien	
-	public Map<String, Integer> obtenerReportePorUsuario (List<DatosDeBusqueda> registroBusqueda){
+	public Map<String, Integer> obtenerReportePorUsuario (){
 	
 		Map<String, Integer> reporte = new HashMap<String, Integer>();				
-	
+		this.registroBusqueda.addAll(this.register.consultarDatos());
 		for(DatosDeBusqueda registro : registroBusqueda){
 			Integer cantidadResultados;
-			cantidadResultados= this.obtenerReportePorTerminal(registroBusqueda, registro.getNombre()).stream()
+			cantidadResultados= this.obtenerReportePorTerminal(registro.getNombre()).stream()
 					.reduce(0, (a, b) -> a+b );
 			
 			reporte.put(registro.getNombre(), cantidadResultados);
