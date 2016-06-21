@@ -5,10 +5,10 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;
 
-import grupo2.tpAnual.OrigenesDeDatos.StubCentroDTO;
+import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosCentroDTO;
 
 public class IntegracionCentroDTOTest {
-	StubCentroDTO integracion = new StubCentroDTO();
+	OrigenesDeDatosCentroDTO integracion = new OrigenesDeDatosCentroDTO();
 	CentroDTO centroDTO = new CentroDTO(9, "Juan B Justo 1882");
 	CentroDTO centroDTO2 = new CentroDTO(7, "Corrientes 1234");
 	POI cgp = new CGP();

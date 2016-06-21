@@ -10,10 +10,10 @@ import grupo2.tpAnual.CentroDTO;
 import grupo2.tpAnual.Comuna;
 import grupo2.tpAnual.Direccion;
 import grupo2.tpAnual.POI;
-import grupo2.tpAnual.ServicioCentroDTO;
+import grupo2.tpAnual.StubCentroDTO;
 
-public class StubCentroDTO implements OrigenesDeDatos {
-	private ServicioCentroDTO mapaCentroDTO = new ServicioCentroDTO();
+public class OrigenesDeDatosCentroDTO implements OrigenesDeDatos {
+	private StubCentroDTO mapaCentroDTO = new StubCentroDTO();
 
 	@Override
 	public List<POI> busqueda(String txtABuscar){

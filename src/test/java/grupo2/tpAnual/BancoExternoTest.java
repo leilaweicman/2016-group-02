@@ -11,10 +11,10 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 
 public class BancoExternoTest {
 
-	 public ServicioBancosExternos servicio;
+	 public StubBancosExternos servicio;
 	 @Before
 	 public void init(){
-		 servicio = new ServicioBancosExternos();
+		 servicio = new StubBancosExternos();
 	 }
 	 
 	 @Test
