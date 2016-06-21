@@ -1,4 +1,4 @@
-package grupo2.tpAnual.Integraciones;
+package grupo2.tpAnual.OrigenesDeDatos;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -15,7 +15,7 @@ import java.util.List;
 
 import org.uqbar.geodds.Point;
 
-public class IntegracionBancoExterno implements Integracion {
+public class OrigenesDeDatosBancoExterno implements OrigenesDeDatos {
 	public ObjectMapper mapper = new ObjectMapper();
 	private BancoExterno bancoExterno;
 	private ServicioBancosExternos mapaBancoExterno = new ServicioBancosExternos();

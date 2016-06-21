@@ -11,10 +11,10 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import grupo2.tpAnual.Integraciones.IntegracionBancoExterno;
-import grupo2.tpAnual.Integraciones.IntegracionCentroDTO;
 import grupo2.tpAnual.Observers.EnviarMailBusqueda;
 import grupo2.tpAnual.Observers.RegistrarBusqueda;
+import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosBancoExterno;
+import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosCentroDTO;
 
 public class MapaTest {
 	private Mapa lasHeras;
@@ -22,8 +22,8 @@ public class MapaTest {
 	private CGP rentas;
 	private EnviarMailBusqueda observerMail;
 	private RegistrarBusqueda observerRegistro;
-	private IntegracionCentroDTO centroDTOmock;
-	private IntegracionBancoExterno bancoExternoMock;
+	private OrigenesDeDatosCentroDTO centroDTOmock;
+	private OrigenesDeDatosBancoExterno bancoExternoMock;
 	private ByteArrayOutputStream outContent;
 
 	@Before
@@ -49,8 +49,8 @@ public class MapaTest {
 		this.observerRegistro = new RegistrarBusqueda();
 		this.observerMail = new EnviarMailBusqueda();
 
-		centroDTOmock = Mockito.mock(IntegracionCentroDTO.class);
-		bancoExternoMock = Mockito.mock(IntegracionBancoExterno.class);
+		centroDTOmock = Mockito.mock(OrigenesDeDatosCentroDTO.class);
+		bancoExternoMock = Mockito.mock(OrigenesDeDatosBancoExterno.class);
 		List<POI> pois = Arrays.asList(rentas, santander);
 
 		Mockito.when(centroDTOmock.busqueda("plazoFijo")).thenReturn(pois);

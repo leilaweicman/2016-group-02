@@ -6,19 +6,19 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import grupo2.tpAnual.Integraciones.IntegracionBancoExterno;
+import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosBancoExterno;
 
 public class IntegracionBancoExternoTest {
 
 	private BancoExterno bancoExterno = new BancoExterno(-34.666612, -58.3858490);
-	private IntegracionBancoExterno integBancoExterno;
+	private OrigenesDeDatosBancoExterno integBancoExterno;
 	private String banco;
 	private String servicio;
 	private String respuestaJson;
 
 	@Before
 	public void init() {
-		integBancoExterno = Mockito.mock(IntegracionBancoExterno.class);
+		integBancoExterno = Mockito.mock(OrigenesDeDatosBancoExterno.class);
 		banco = "Banco de la Plaza";
 		servicio = "cobro cheques";
 	}

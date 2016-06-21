@@ -1,4 +1,4 @@
-package grupo2.tpAnual.Integraciones;
+package grupo2.tpAnual.OrigenesDeDatos;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +12,7 @@ import grupo2.tpAnual.Direccion;
 import grupo2.tpAnual.POI;
 import grupo2.tpAnual.ServicioCentroDTO;
 
-public class IntegracionCentroDTO implements Integracion {
+public class OrigenesDeDatosCentroDTO implements OrigenesDeDatos {
 	private ServicioCentroDTO mapaCentroDTO = new ServicioCentroDTO();
 
 	@Override

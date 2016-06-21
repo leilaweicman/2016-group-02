@@ -6,14 +6,14 @@ import java.util.stream.Collectors;
 
 import org.joda.time.LocalDate;
 
-import grupo2.tpAnual.Integraciones.Integracion;
 import grupo2.tpAnual.Observers.ObserverBusqueda;
+import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatos;
 
 
 public class Mapa {
 
 	private List<POI> pois;
-	private List<Integracion> origenesDeDatos;
+	private List<OrigenesDeDatos> origenesDeDatos;
 	private List<ObserverBusqueda> observersBusqueda;
 	private long tiempoMaximoDeEjecucion;
 	private String nombre;
@@ -21,7 +21,7 @@ public class Mapa {
 	public Mapa() {
 		pois = new ArrayList<POI>();
 		observersBusqueda = new ArrayList<ObserverBusqueda>();
-		origenesDeDatos = new ArrayList<Integracion>();
+		origenesDeDatos = new ArrayList<OrigenesDeDatos>();
 	}
 	
 
@@ -30,7 +30,7 @@ public class Mapa {
 		return pois;
 	}
 
-	public void setOrigenesDeDatos(Integracion integracion) {
+	public void setOrigenesDeDatos(OrigenesDeDatos integracion) {
 		this.origenesDeDatos.add(integracion);
 	}
 
