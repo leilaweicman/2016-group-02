@@ -7,17 +7,15 @@ public class DatosDeBusqueda {
 	private String txtBuscado;
 	private long segundosQueTardoLaBusqueda;
 	private int totalDeResultados;
-	private long tiempoMaximoDeBusqueda;
 	private LocalDate fecha;
 	private String nombre;
 
-	public DatosDeBusqueda(String nombre, String texto, long segundos, long tiempoMaximoDeBusqueda,int totalResultados, LocalDate fecha) {
+	public DatosDeBusqueda(String nombre, String texto, long segundos, int totalResultados, LocalDate fecha) {
 		this.txtBuscado = texto;
 		this.segundosQueTardoLaBusqueda = segundos;
 		this.totalDeResultados = totalResultados;
-		this.tiempoMaximoDeBusqueda = tiempoMaximoDeBusqueda;
 		this.fecha = fecha;
-		this.nombre=nombre;
+		this.nombre = nombre;
 	}
 
 	public String getTxtBuscado() {
@@ -32,15 +30,11 @@ public class DatosDeBusqueda {
 		return totalDeResultados;
 	}
 
-	public long getTiempoMaximoDeBusqueda() {
-		return tiempoMaximoDeBusqueda;
-	}
-	
 	public LocalDate getFecha() {
 		return fecha;
 	}
-	
-	public String getNombre(){
+
+	public String getNombre() {
 		return nombre;
 	}
 

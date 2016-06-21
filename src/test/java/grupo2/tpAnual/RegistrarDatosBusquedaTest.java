@@ -9,7 +9,7 @@ import grupo2.tpAnual.Observers.NotificarDatosBusqueda;
 
 public class RegistrarDatosBusquedaTest {
 	RegistrarDatosBusqueda registro = new RegistrarDatosBusqueda();
-	DatosDeBusqueda datoBuscado = new DatosDeBusqueda("lasHeras","libros", 18, 10, 15, new LocalDate());
+	DatosDeBusqueda datoBuscado = new DatosDeBusqueda("lasHeras","libros", 10, 15, new LocalDate());
 
 	@Test
 	public void agregarDatosBusquedaTest() {

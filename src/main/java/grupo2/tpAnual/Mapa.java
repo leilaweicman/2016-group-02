@@ -15,7 +15,6 @@ public class Mapa {
 	private List<POI> pois;
 	private List<OrigenesDeDatos> origenesDeDatos;
 	private List<ObserverBusqueda> observersBusqueda;
-	private long tiempoMaximoDeEjecucion;
 	private String nombre;
 	
 	public Mapa() {
@@ -51,18 +50,6 @@ public class Mapa {
 
 	}
 
-	public String consultarPoi(POI poi, String atributo) {
-		switch (atributo) {
-		case "Direccion":
-			return poi.getDireccion().getCalle();
-		case "Ubicacion":
-			return poi.getUbicacion().toString();
-		case "Comuna":
-			return String.valueOf(poi.getComuna().getNumeroComuna());
-		default:
-			return "No se encontró attributo";
-		}
-	}
 
 	public List<POI> busquedaRealizadaPorElUsuario(String txtABuscar) {
 		long tiempoInicio = System.currentTimeMillis();
@@ -81,7 +68,7 @@ public class Mapa {
 
 		
 		//le aviso a los observers de que ocurrio el evento
-		DatosDeBusqueda datosParaObserver = new DatosDeBusqueda(this.nombre, txtABuscar,segundosTardados,this.tiempoMaximoDeEjecucion,result.size(), new LocalDate());
+		DatosDeBusqueda datosParaObserver = new DatosDeBusqueda(this.nombre, txtABuscar,segundosTardados,result.size(), new LocalDate());
 		this.observersBusqueda.forEach(observer-> observer.notificarBusqueda(datosParaObserver));
 		
 		return result;
@@ -95,12 +82,6 @@ public class Mapa {
 		this.observersBusqueda.remove(observer);
 	}
 	
-	public void setTiempoMaximoDeEjecucion(int tiempoEnSegundos){
-		this.tiempoMaximoDeEjecucion = tiempoEnSegundos;
-	}
-	public long getTiempoMaximoDeEjecucion(){
-		return this.tiempoMaximoDeEjecucion;
-	}
 
 	public String getNombre() {
 		return nombre;

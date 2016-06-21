@@ -11,13 +11,13 @@ import grupo2.tpAnual.Observers.EnviarMailBusqueda;
 
 public class EnviarMailBusquedaTest {
 	private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-	EnviarMailBusqueda observer = new EnviarMailBusqueda();
 
-	DatosDeBusqueda datoBuscado = new DatosDeBusqueda("lasHeras","libros", 18, 10, 15, new LocalDate());
-	DatosDeBusqueda datoBuscado2 = new DatosDeBusqueda("flores","asado", 5, 10, 15, new LocalDate());
+	DatosDeBusqueda datoBuscado = new DatosDeBusqueda("lasHeras","libros", 10, 15, new LocalDate());
+	DatosDeBusqueda datoBuscado2 = new DatosDeBusqueda("flores","asado", 10, 15, new LocalDate());
 	
 	@Test
 	public void enviarMailTest() { 
+		EnviarMailBusqueda observer = new EnviarMailBusqueda(1);
 		System.setOut(new PrintStream(outContent));
 		observer.notificarBusqueda(datoBuscado);
 		assertEquals("Se envio el mail correctamente", outContent.toString());
@@ -25,6 +25,7 @@ public class EnviarMailBusquedaTest {
 	
 	@Test
 	public void noEnviarMailTest(){
+		EnviarMailBusqueda observer = new EnviarMailBusqueda(18);
 		System.setOut(new PrintStream(outContent));
 		observer.notificarBusqueda(datoBuscado2);
 		assertEquals("La busqueda se ejecuto correctamente", outContent.toString());

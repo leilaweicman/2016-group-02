@@ -28,7 +28,6 @@ public class MapaTest {
 	@Before
 	public void init() {
 		this.lasHeras = new Mapa();
-		this.lasHeras.setTiempoMaximoDeEjecucion(2);
 		
 		this.bancoExternoStub = new OrigenesDeDatosBancoExterno();
 		this.centroDTOstub = new OrigenesDeDatosCentroDTO();
@@ -49,7 +48,7 @@ public class MapaTest {
 		this.lasHeras.agregarPOI(rentas);
 
 		this.observerRegistro = new NotificarDatosBusqueda();
-		this.observerMail = new EnviarMailBusqueda();
+		this.observerMail = new EnviarMailBusqueda(2);
 
 		List<POI> pois = Arrays.asList(rentas, santander);
 

@@ -18,9 +18,9 @@ public class ReporteCantidadDeResultadosTest {
 	
 	@Before
 	public void init() {
-		datoBuscado = new DatosDeBusqueda("lasHeras","libros", 18, 10, 15, new LocalDate());
-		datoBuscado2 = new DatosDeBusqueda("flores","asado", 5, 10, 15, new LocalDate());
-		datoBuscado3 = new DatosDeBusqueda("flores","asado", 10, 20, 25, new LocalDate());
+		datoBuscado = new DatosDeBusqueda("lasHeras","libros", 10, 15, new LocalDate());
+		datoBuscado2 = new DatosDeBusqueda("flores","asado", 10, 15, new LocalDate());
+		datoBuscado3 = new DatosDeBusqueda("flores","asado", 20, 25, new LocalDate());
 		observer = new NotificarDatosBusqueda();
 		reporte=new Reportes();
 	}	
