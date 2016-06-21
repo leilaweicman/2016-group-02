@@ -10,10 +10,10 @@ import org.junit.Test;
 
 
 
-import grupo2.tpAnual.Observers.RegistrarBusqueda;
+import grupo2.tpAnual.Observers.NotificarDatosBusqueda;
 
 public class BusquedaPorFechaTest {
-	RegistrarBusqueda observer;
+	NotificarDatosBusqueda observer;
 	DatosDeBusqueda datoBuscado;
 	DatosDeBusqueda datoBuscado2;
 	DatosDeBusqueda datoBuscado3;
@@ -24,7 +24,7 @@ public class BusquedaPorFechaTest {
 	datoBuscado = new DatosDeBusqueda("lasHeras","libros", 18, 10, 15, new LocalDate());
 	datoBuscado2 = new DatosDeBusqueda("flores","carpetas", 16, 14, 15, new LocalDate().minusDays(1));
 	datoBuscado3 = new DatosDeBusqueda("flores","carpetas", 16, 14, 15, new LocalDate().minusDays(2));
-	observer = new RegistrarBusqueda();
+	observer = new NotificarDatosBusqueda();
 	reporte = new Reportes();
 	}
 

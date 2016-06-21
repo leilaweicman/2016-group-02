@@ -8,7 +8,7 @@ import org.mockito.Mockito;
 
 import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosBancoExterno;
 
-public class IntegracionBancoExternoTest {
+public class OrigenesDeDatosBancoExternoTest {
 
 	private BancoExterno bancoExterno = new BancoExterno(-34.666612, -58.3858490);
 	private OrigenesDeDatosBancoExterno bancoExternoDatos;

@@ -5,10 +5,10 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import grupo2.tpAnual.Observers.RegistrarBusqueda;
+import grupo2.tpAnual.Observers.NotificarDatosBusqueda;
 
 public class ReporteCantidadDeResultadosTest {
-	RegistrarBusqueda observer;
+	NotificarDatosBusqueda observer;
 	DatosDeBusqueda datoBuscado;
 	DatosDeBusqueda datoBuscado2;
 	DatosDeBusqueda datoBuscado3;
@@ -21,7 +21,7 @@ public class ReporteCantidadDeResultadosTest {
 		datoBuscado = new DatosDeBusqueda("lasHeras","libros", 18, 10, 15, new LocalDate());
 		datoBuscado2 = new DatosDeBusqueda("flores","asado", 5, 10, 15, new LocalDate());
 		datoBuscado3 = new DatosDeBusqueda("flores","asado", 10, 20, 25, new LocalDate());
-		observer = new RegistrarBusqueda();
+		observer = new NotificarDatosBusqueda();
 		reporte=new Reportes();
 	}	
 	

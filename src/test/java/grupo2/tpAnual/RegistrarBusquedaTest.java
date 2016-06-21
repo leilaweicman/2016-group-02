@@ -5,10 +5,10 @@ import org.joda.time.LocalDate;
 import org.junit.Assert;
 import org.junit.Test;
 
-import grupo2.tpAnual.Observers.RegistrarBusqueda;
+import grupo2.tpAnual.Observers.NotificarDatosBusqueda;
 
 public class RegistrarBusquedaTest {
-	RegistrarBusqueda observer = new RegistrarBusqueda();
+	NotificarDatosBusqueda observer = new NotificarDatosBusqueda();
 	DatosDeBusqueda datoBuscado = new DatosDeBusqueda("lasHeras","libros", 18, 10, 15, new LocalDate());
 
 	@Test

@@ -11,7 +11,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import grupo2.tpAnual.Observers.EnviarMailBusqueda;
-import grupo2.tpAnual.Observers.RegistrarBusqueda;
+import grupo2.tpAnual.Observers.NotificarDatosBusqueda;
 import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosBancoExterno;
 import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosCentroDTO;
 
@@ -20,7 +20,7 @@ public class MapaTest {
 	private POI santander;
 	private CGP rentas;
 	private EnviarMailBusqueda observerMail;
-	private RegistrarBusqueda observerRegistro;
+	private NotificarDatosBusqueda observerRegistro;
 	private OrigenesDeDatosCentroDTO centroDTOstub;
 	private OrigenesDeDatosBancoExterno bancoExternoStub;
 	private ByteArrayOutputStream outContent;
@@ -48,7 +48,7 @@ public class MapaTest {
 		this.lasHeras.agregarPOI(santander);
 		this.lasHeras.agregarPOI(rentas);
 
-		this.observerRegistro = new RegistrarBusqueda();
+		this.observerRegistro = new NotificarDatosBusqueda();
 		this.observerMail = new EnviarMailBusqueda();
 
 		List<POI> pois = Arrays.asList(rentas, santander);
