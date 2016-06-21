@@ -9,11 +9,10 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mockito;
 
 import grupo2.tpAnual.Observers.EnviarMailBusqueda;
 import grupo2.tpAnual.Observers.RegistrarBusqueda;
-import grupo2.tpAnual.OrigenesDeDatos.StubBancoExterno;
+import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosBancoExterno;
 import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosCentroDTO;
 
 public class MapaTest {
@@ -22,8 +21,8 @@ public class MapaTest {
 	private CGP rentas;
 	private EnviarMailBusqueda observerMail;
 	private RegistrarBusqueda observerRegistro;
-	private OrigenesDeDatosCentroDTO centroDTOmock;
-	private StubBancoExterno bancoExternoMock;
+	private OrigenesDeDatosCentroDTO centroDTOstub;
+	private OrigenesDeDatosBancoExterno bancoExternoStub;
 	private ByteArrayOutputStream outContent;
 
 	@Before
@@ -49,14 +48,8 @@ public class MapaTest {
 		this.observerRegistro = new RegistrarBusqueda();
 		this.observerMail = new EnviarMailBusqueda();
 
-		centroDTOmock = Mockito.mock(OrigenesDeDatosCentroDTO.class);
-		bancoExternoMock = Mockito.mock(StubBancoExterno.class);
 		List<POI> pois = Arrays.asList(rentas, santander);
 
-		Mockito.when(centroDTOmock.busqueda("plazoFijo")).thenReturn(pois);
-		Mockito.when(bancoExternoMock.busqueda("plazoFijo")).thenReturn(pois);
-		Mockito.when(bancoExternoMock.busqueda("dolar")).thenReturn(pois);
-		
 		outContent = new ByteArrayOutputStream();
 	}
 
@@ -85,10 +78,9 @@ public class MapaTest {
 	public void testBusquedaPorElUsuarioConIntegracionDTO() {
 		long tiempoInicio = System.currentTimeMillis();
 
-		lasHeras.setOrigenesDeDatos(centroDTOmock);
+		lasHeras.setOrigenesDeDatos(centroDTOstub);
 		lasHeras.busquedaRealizadaPorElUsuario("plazoFijo");
-		Mockito.verify(centroDTOmock, Mockito.after(3000)).busqueda("plazoFijo");
-		//simulo lo q tardaría la busqueda con el verdadero componente
+		
 		long tiempoFin = System.currentTimeMillis();
 		Assert.assertTrue((tiempoFin - tiempoInicio) / 1000 > lasHeras.getTiempoMaximoDeEjecucion());
 	}
@@ -96,14 +88,14 @@ public class MapaTest {
 	@Test
 	public void testBusquedaPorElUsuariConIntegracionBancoExterno() {
 
-		lasHeras.setOrigenesDeDatos(bancoExternoMock);
+		lasHeras.setOrigenesDeDatos(bancoExternoStub);
 		Assert.assertEquals(lasHeras.busquedaRealizadaPorElUsuario("dolar").size(), 3);
 	}
 
 	@Test
 	public void testBusquedaPorElUsuarioConIntegracioneS() {
-		lasHeras.setOrigenesDeDatos(centroDTOmock);
-		lasHeras.setOrigenesDeDatos(bancoExternoMock);
+		lasHeras.setOrigenesDeDatos(centroDTOstub);
+		lasHeras.setOrigenesDeDatos(bancoExternoStub);
 		Assert.assertEquals(lasHeras.busquedaRealizadaPorElUsuario("plazoFijo").size(), 5);
 	}
 

@@ -7,7 +7,7 @@ import org.junit.Test;
 
 import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosCentroDTO;
 
-public class IntegracionCentroDTOTest {
+public class OrigenesDeDatosCentroDTOTest {
 	OrigenesDeDatosCentroDTO integracion = new OrigenesDeDatosCentroDTO();
 	CentroDTO centroDTO = new CentroDTO(9, "Juan B Justo 1882");
 	CentroDTO centroDTO2 = new CentroDTO(7, "Corrientes 1234");
