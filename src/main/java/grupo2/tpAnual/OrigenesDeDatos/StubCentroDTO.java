@@ -12,7 +12,7 @@ import grupo2.tpAnual.Direccion;
 import grupo2.tpAnual.POI;
 import grupo2.tpAnual.ServicioCentroDTO;
 
-public class OrigenesDeDatosCentroDTO implements OrigenesDeDatos {
+public class StubCentroDTO implements OrigenesDeDatos {
 	private ServicioCentroDTO mapaCentroDTO = new ServicioCentroDTO();
 
 	@Override

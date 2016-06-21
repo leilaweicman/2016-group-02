@@ -15,7 +15,7 @@ import java.util.List;
 
 import org.uqbar.geodds.Point;
 
-public class OrigenesDeDatosBancoExterno implements OrigenesDeDatos {
+public class StubBancoExterno implements OrigenesDeDatos {
 	public ObjectMapper mapper = new ObjectMapper();
 	private BancoExterno bancoExterno;
 	private ServicioBancosExternos mapaBancoExterno = new ServicioBancosExternos();

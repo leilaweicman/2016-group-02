@@ -13,8 +13,8 @@ import org.mockito.Mockito;
 
 import grupo2.tpAnual.Observers.EnviarMailBusqueda;
 import grupo2.tpAnual.Observers.RegistrarBusqueda;
-import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosBancoExterno;
-import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosCentroDTO;
+import grupo2.tpAnual.OrigenesDeDatos.StubBancoExterno;
+import grupo2.tpAnual.OrigenesDeDatos.StubCentroDTO;
 
 public class MapaTest {
 	private Mapa lasHeras;
@@ -22,8 +22,8 @@ public class MapaTest {
 	private CGP rentas;
 	private EnviarMailBusqueda observerMail;
 	private RegistrarBusqueda observerRegistro;
-	private OrigenesDeDatosCentroDTO centroDTOmock;
-	private OrigenesDeDatosBancoExterno bancoExternoMock;
+	private StubCentroDTO centroDTOmock;
+	private StubBancoExterno bancoExternoMock;
 	private ByteArrayOutputStream outContent;
 
 	@Before
@@ -49,8 +49,8 @@ public class MapaTest {
 		this.observerRegistro = new RegistrarBusqueda();
 		this.observerMail = new EnviarMailBusqueda();
 
-		centroDTOmock = Mockito.mock(OrigenesDeDatosCentroDTO.class);
-		bancoExternoMock = Mockito.mock(OrigenesDeDatosBancoExterno.class);
+		centroDTOmock = Mockito.mock(StubCentroDTO.class);
+		bancoExternoMock = Mockito.mock(StubBancoExterno.class);
 		List<POI> pois = Arrays.asList(rentas, santander);
 
 		Mockito.when(centroDTOmock.busqueda("plazoFijo")).thenReturn(pois);
