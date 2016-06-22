@@ -33,7 +33,7 @@ public class OrigenesDeDatosPOIs implements OrigenesDeDatos {
 	@Override
 	public List&lt;POI&gt; busqueda(String txtABuscar) {
 <span class="fc" id="L35">		List&lt;POI&gt; resultados = new ArrayList&lt;POI&gt;();</span>
-<span class="fc" id="L36">		resultados.addAll(this.pois.stream().filter(poi -&gt; poi.verificarPorTexto(txtABuscar)).collect(Collectors.toList()));</span>
+<span class="fc" id="L36">		resultados.addAll(this.pois.stream().filter(poi -&gt; poi.verificaPorTexto(txtABuscar)).collect(Collectors.toList()));</span>
 <span class="fc" id="L37">		return resultados;</span>
 	}
 

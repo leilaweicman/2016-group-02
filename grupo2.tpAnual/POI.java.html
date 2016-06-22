@@ -36,13 +36,13 @@ public abstract class POI{
 
 	abstract boolean estaDisponible(DateTime momento, String nombreServicio);
 
-	public boolean verificarPorTexto(String texto) {
-<span class="pc bpc" id="L40" title="1 of 4 branches missed.">		return getPalabraClave().contains(texto) || busquedaParticular(texto);</span>
+	public boolean verificaPorTexto(String texto) {
+<span class="pc bpc" id="L40" title="1 of 4 branches missed.">		return getPalabraClave().contains(texto) || tieneTextoEnOtrosAtributos(texto);</span>
 	}
 
 	// Seteado en false para aquellas implementaciones en las cuales no tengan
 	// busqueda particular
-	public boolean busquedaParticular(String texto) {
+	public boolean tieneTextoEnOtrosAtributos(String texto) {
 <span class="fc" id="L46">		return false;</span>
 	};
 
@@ -66,7 +66,7 @@ public abstract class POI{
 
 	public List&lt;POI&gt; busqueda(String txtABuscar) {
 <span class="nc" id="L68">		List&lt;POI&gt; resultadoBusqueda = new ArrayList&lt;POI&gt;();</span>
-<span class="nc bnc" id="L69" title="All 2 branches missed.">		if (this.verificarPorTexto(txtABuscar)) {</span>
+<span class="nc bnc" id="L69" title="All 2 branches missed.">		if (this.verificaPorTexto(txtABuscar)) {</span>
 <span class="nc" id="L70">			resultadoBusqueda.add(this);</span>
 		}
 <span class="nc" id="L72">		return resultadoBusqueda;</span>
