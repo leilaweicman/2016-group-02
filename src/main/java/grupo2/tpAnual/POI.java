@@ -6,7 +6,6 @@ import java.util.List;
 import org.joda.time.DateTime;
 import org.uqbar.geodds.Point;
 
-import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatos;
 
 public abstract class POI{
 	private Direccion direccion;

@@ -24,18 +24,18 @@ public class MapaTest {
 	private OrigenesDeDatosPOIs origenesDeDatosPois;
 	private EnviarMailBusqueda observerMail;
 	private NotificarDatosBusqueda observerRegistro;
-	private OrigenesDeDatosCentroDTO centroDTOstub;
-	private OrigenesDeDatosBancoExterno bancoExternoStub;
+	private OrigenesDeDatosCentroDTO datosCentrosDTOs;
+	private OrigenesDeDatosBancoExterno datosBancosExternos;
 	private ByteArrayOutputStream outContent;
 	private List<OrigenesDeDatos> listaDeOrigenes;
 
 	@Before
 	public void init() {
 		this.listaDeOrigenes = new ArrayList<OrigenesDeDatos>();
-		this.bancoExternoStub = new OrigenesDeDatosBancoExterno();
-		this.centroDTOstub = new OrigenesDeDatosCentroDTO();
+		this.datosBancosExternos = new OrigenesDeDatosBancoExterno();
+		this.datosCentrosDTOs = new OrigenesDeDatosCentroDTO();
 		this.origenesDeDatosPois = new OrigenesDeDatosPOIs();
-		listaDeOrigenes = Arrays.asList(centroDTOstub, bancoExternoStub, origenesDeDatosPois);
+		listaDeOrigenes = Arrays.asList(datosCentrosDTOs, datosBancosExternos, origenesDeDatosPois);
 		
 		this.lasHeras = new Mapa(listaDeOrigenes);
 		
@@ -63,8 +63,8 @@ public class MapaTest {
 
 	@Test
 	public void testBusquedaPorElUsuarioSinObserversNiOrigenesDeDatos() {
-		this.lasHeras.sacarOrigenesDeDatos(bancoExternoStub);
-		this.lasHeras.sacarOrigenesDeDatos(centroDTOstub);
+		this.lasHeras.sacarOrigenesDeDatos(datosBancosExternos);
+		this.lasHeras.sacarOrigenesDeDatos(datosCentrosDTOs);
 		this.lasHeras.sacarOrigenesDeDatos(origenesDeDatosPois);
 		
 		Assert.assertEquals(this.lasHeras.busquedaRealizadaPorElUsuario("plazoFijo").size(), 0);
@@ -74,15 +74,15 @@ public class MapaTest {
 	public void testBusquedaPorElUsuarioConDatosDTO() {
 
 		this.lasHeras.sacarOrigenesDeDatos(origenesDeDatosPois);
-		this.lasHeras.sacarOrigenesDeDatos(bancoExternoStub);
+		this.lasHeras.sacarOrigenesDeDatos(datosBancosExternos);
 		Assert.assertEquals(lasHeras.busquedaRealizadaPorElUsuario("palabras").size(), 2);
 	}
 
 	@Test
 	public void testBusquedaPorElUsuarioConDatosPOIS() {
 
-		this.lasHeras.sacarOrigenesDeDatos(bancoExternoStub);
-		this.lasHeras.sacarOrigenesDeDatos(centroDTOstub);
+		this.lasHeras.sacarOrigenesDeDatos(datosBancosExternos);
+		this.lasHeras.sacarOrigenesDeDatos(datosCentrosDTOs);
 		Assert.assertEquals(lasHeras.busquedaRealizadaPorElUsuario("plazoFijo").size(), 1);
 	}
 	/*@Test
