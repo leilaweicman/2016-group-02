@@ -19,12 +19,12 @@ import org.uqbar.geodds.Point;
 
 	// @Override
 	public boolean busquedaParticular(String texto) {
-<span class="nc bnc" id="L22" title="All 2 branches missed.">		for (Servicio ser : servicios) {</span>
-<span class="nc bnc" id="L23" title="All 2 branches missed.">			if (ser.getNombre().contains(texto)) {</span>
+<span class="fc bfc" id="L22" title="All 2 branches covered.">		for (Servicio ser : servicios) {</span>
+<span class="pc bpc" id="L23" title="1 of 2 branches missed.">			if (ser.getNombre().contains(texto)) {</span>
 <span class="nc" id="L24">				return true;</span>
 			}
-<span class="nc" id="L26">		}</span>
-<span class="nc" id="L27">		return false;</span>
+<span class="fc" id="L26">		}</span>
+<span class="fc" id="L27">		return false;</span>
 	}
 
 	public boolean estaDisponible(DateTime momento, String nombreServicio) {

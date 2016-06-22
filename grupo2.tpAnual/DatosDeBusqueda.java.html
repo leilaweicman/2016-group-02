@@ -7,41 +7,35 @@ public class DatosDeBusqueda {
 	private String txtBuscado;
 	private long segundosQueTardoLaBusqueda;
 	private int totalDeResultados;
-	private long tiempoMaximoDeBusqueda;
 	private LocalDate fecha;
 	private String nombre;
 
-<span class="fc" id="L14">	public DatosDeBusqueda(String nombre, String texto, long segundos, long tiempoMaximoDeBusqueda,int totalResultados, LocalDate fecha) {</span>
-<span class="fc" id="L15">		this.txtBuscado = texto;</span>
-<span class="fc" id="L16">		this.segundosQueTardoLaBusqueda = segundos;</span>
-<span class="fc" id="L17">		this.totalDeResultados = totalResultados;</span>
-<span class="fc" id="L18">		this.tiempoMaximoDeBusqueda = tiempoMaximoDeBusqueda;</span>
-<span class="fc" id="L19">		this.fecha = fecha;</span>
-<span class="fc" id="L20">		this.nombre=nombre;</span>
-<span class="fc" id="L21">	}</span>
+<span class="fc" id="L13">	public DatosDeBusqueda(String nombre, String texto, long segundos, int totalResultados, LocalDate fecha) {</span>
+<span class="fc" id="L14">		this.txtBuscado = texto;</span>
+<span class="fc" id="L15">		this.segundosQueTardoLaBusqueda = segundos;</span>
+<span class="fc" id="L16">		this.totalDeResultados = totalResultados;</span>
+<span class="fc" id="L17">		this.fecha = fecha;</span>
+<span class="fc" id="L18">		this.nombre = nombre;</span>
+<span class="fc" id="L19">	}</span>
 
 	public String getTxtBuscado() {
-<span class="nc" id="L24">		return txtBuscado;</span>
+<span class="nc" id="L22">		return txtBuscado;</span>
 	}
 
 	public long getSegundosQueTardoLaBusqueda() {
-<span class="fc" id="L28">		return segundosQueTardoLaBusqueda;</span>
+<span class="fc" id="L26">		return segundosQueTardoLaBusqueda;</span>
 	}
 
 	public int getTotalDeResultados() {
-<span class="nc" id="L32">		return totalDeResultados;</span>
+<span class="nc" id="L30">		return totalDeResultados;</span>
 	}
 
-	public long getTiempoMaximoDeBusqueda() {
-<span class="fc" id="L36">		return tiempoMaximoDeBusqueda;</span>
-	}
-	
 	public LocalDate getFecha() {
-<span class="nc" id="L40">		return fecha;</span>
+<span class="nc" id="L34">		return fecha;</span>
 	}
-	
-	public String getNombre(){
-<span class="nc" id="L44">		return nombre;</span>
+
+	public String getNombre() {
+<span class="nc" id="L38">		return nombre;</span>
 	}
 
 }

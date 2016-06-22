@@ -4,15 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 <span class="fc" id="L6">public class RegistrarDatosBusqueda {</span>
-<span class="fc" id="L7">	private List&lt;DatosDeBusqueda&gt; listaDatosDeBusqueda= new ArrayList&lt;DatosDeBusqueda&gt;();</span>
-	
-	public void agregarDatosBusqueda(List&lt;DatosDeBusqueda&gt; registroBusqueda) {
-		
-<span class="fc" id="L11">		this.listaDatosDeBusqueda.addAll(registroBusqueda);</span>
+<span class="fc" id="L7">	private List&lt;DatosDeBusqueda&gt; listaDatosDeBusqueda = new ArrayList&lt;DatosDeBusqueda&gt;();</span>
+
+	public void agregarDatosBusqueda(DatosDeBusqueda registroBusqueda) {
+
+<span class="fc" id="L11">		this.listaDatosDeBusqueda.add(registroBusqueda);</span>
 <span class="fc" id="L12">	}</span>
 
-	public List&lt;DatosDeBusqueda&gt; consultarDatos(){
+	public List&lt;DatosDeBusqueda&gt; consultarDatos() {
 <span class="fc" id="L15">		return this.listaDatosDeBusqueda;</span>
-}
+	}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

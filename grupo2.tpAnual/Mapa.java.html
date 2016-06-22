@@ -2,112 +2,67 @@
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-
 import org.joda.time.LocalDate;
 
-import grupo2.tpAnual.Integraciones.Integracion;
 import grupo2.tpAnual.Observers.ObserverBusqueda;
-
+import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatos;
 
 public class Mapa {
-
-	private List&lt;POI&gt; pois;
-	private List&lt;Integracion&gt; origenesDeDatos;
+	private List&lt;OrigenesDeDatos&gt; origenesDeDatos;
 	private List&lt;ObserverBusqueda&gt; observersBusqueda;
-	private long tiempoMaximoDeEjecucion;
 	private String nombre;
+
+<span class="fc" id="L15">	public Mapa(List&lt;OrigenesDeDatos&gt; listaDeOrigenes) {</span>
+<span class="fc" id="L16">		observersBusqueda = new ArrayList&lt;ObserverBusqueda&gt;();</span>
+<span class="fc" id="L17">		origenesDeDatos = new ArrayList&lt;OrigenesDeDatos&gt;();</span>
+<span class="fc" id="L18">		listaDeOrigenes.forEach(origen -&gt; this.agregarOrigenesDeDatos(origen));</span>
+<span class="fc" id="L19">	}</span>
+	// desacoplo la lista de pois de mapa. Ahora el conjunto de pois pasa a ser
+	// otro origen de dato mas
+	// y el mapa solo se encarga de buscar y los observers y esas cosas
+
+	public void agregarOrigenesDeDatos(OrigenesDeDatos integracion) {
+<span class="fc" id="L25">		this.origenesDeDatos.add(integracion);</span>
+<span class="fc" id="L26">	}</span>
 	
-<span class="fc" id="L21">	public Mapa() {</span>
-<span class="fc" id="L22">		pois = new ArrayList&lt;POI&gt;();</span>
-<span class="fc" id="L23">		observersBusqueda = new ArrayList&lt;ObserverBusqueda&gt;();</span>
-<span class="fc" id="L24">		origenesDeDatos = new ArrayList&lt;Integracion&gt;();</span>
-<span class="fc" id="L25">	}</span>
-	
-
-	
-	public List&lt;POI&gt; getPOIs() {
-<span class="fc" id="L30">		return pois;</span>
-	}
-
-	public void setOrigenesDeDatos(Integracion integracion) {
-<span class="fc" id="L34">		this.origenesDeDatos.add(integracion);</span>
-<span class="fc" id="L35">	}</span>
-
-	public void agregarPOI(POI poi) {
-<span class="fc" id="L38">		pois.add(poi);</span>
-<span class="fc" id="L39">	}</span>
-
-	public void crearPOI(POI poi) {
-<span class="fc" id="L42">		this.pois.add(poi);</span>
-<span class="fc" id="L43">	}</span>
-
-	public void darDeBajaPOI(POI nombre) {
-<span class="nc" id="L46">		pois.remove(nombre);</span>
-<span class="nc" id="L47">	}</span>
-
-	public void modificarUnPOI(POI poi, String atributo, String valorAtributo) {
-		// No hacemos nada hastano tener la UI
-
-<span class="nc" id="L52">	}</span>
-
-	public String consultarPoi(POI poi, String atributo) {
-<span class="nc bnc" id="L55" title="All 14 branches missed.">		switch (atributo) {</span>
-		case &quot;Direccion&quot;:
-<span class="nc" id="L57">			return poi.getDireccion().getCalle();</span>
-		case &quot;Ubicacion&quot;:
-<span class="nc" id="L59">			return poi.getUbicacion().toString();</span>
-		case &quot;Comuna&quot;:
-<span class="nc" id="L61">			return String.valueOf(poi.getComuna().getNumeroComuna());</span>
-		default:
-<span class="nc" id="L63">			return &quot;No se encontró attributo&quot;;</span>
-		}
-	}
+	public void sacarOrigenesDeDatos(OrigenesDeDatos integracion) {
+<span class="fc" id="L29">		this.origenesDeDatos.remove(integracion);</span>
+<span class="fc" id="L30">	}</span>
 
 	public List&lt;POI&gt; busquedaRealizadaPorElUsuario(String txtABuscar) {
-<span class="fc" id="L68">		long tiempoInicio = System.currentTimeMillis();</span>
-<span class="fc" id="L69">		List&lt;POI&gt; result = new ArrayList&lt;POI&gt;();</span>
-		
+<span class="fc" id="L33">		long tiempoInicio = System.currentTimeMillis();</span>
+<span class="fc" id="L34">		List&lt;POI&gt; result = new ArrayList&lt;POI&gt;();</span>
 
-		//busco en mis pois
-<span class="fc" id="L73">		result.addAll(this.pois.stream().filter(poi -&gt; poi.verificarPorTexto(txtABuscar)).collect(Collectors.toList()));</span>
-					
-		//busco en los servicios externos
-<span class="fc" id="L76">		this.origenesDeDatos.forEach(integracion -&gt; result.addAll(integracion.busqueda(txtABuscar)));</span>
-<span class="fc" id="L77">		long tiempoFin = System.currentTimeMillis();</span>
-	
-		//mido el tiempo de ejecucion y lo paso a segundos
-<span class="fc" id="L80">		long segundosTardados=(tiempoFin- tiempoInicio)/1000;</span>
+		// busco en los servicios externos y mis pois (que forma parte de un
+		// origen de dato)
+<span class="fc" id="L38">		this.origenesDeDatos.forEach(integracion -&gt; result.addAll(integracion.busqueda(txtABuscar)));</span>
+<span class="fc" id="L39">		long tiempoFin = System.currentTimeMillis();</span>
 
-		
-		//le aviso a los observers de que ocurrio el evento
-<span class="fc" id="L84">		DatosDeBusqueda datosParaObserver = new DatosDeBusqueda(this.nombre, txtABuscar,segundosTardados,this.tiempoMaximoDeEjecucion,result.size(), new LocalDate());</span>
-<span class="pc" id="L85">		this.observersBusqueda.forEach(observer-&gt; observer.notificarBusqueda(datosParaObserver));</span>
-		
-<span class="fc" id="L87">		return result;</span>
+		// mido el tiempo de ejecucion y lo paso a segundos
+<span class="fc" id="L42">		long segundosTardados = (tiempoFin - tiempoInicio) / 1000;</span>
+
+		// le aviso a los observers de que ocurrio el evento
+<span class="fc" id="L45">		DatosDeBusqueda datosParaObserver = new DatosDeBusqueda(this.nombre, txtABuscar, segundosTardados,</span>
+<span class="fc" id="L46">				result.size(), new LocalDate());</span>
+<span class="fc" id="L47">		this.observersBusqueda.forEach(observer -&gt; observer.notificarBusqueda(datosParaObserver));</span>
+
+<span class="fc" id="L49">		return result;</span>
 	}
-	
-	public void agregarObserverBusqueda(ObserverBusqueda observer){
-<span class="nc" id="L91">		this.observersBusqueda.add(observer);</span>
-<span class="nc" id="L92">	}</span>
-	
-	public void quitarObserverBusqueda(ObserverBusqueda observer){
-<span class="nc" id="L95">		this.observersBusqueda.remove(observer);</span>
-<span class="nc" id="L96">	}</span>
-	
-	public void setTiempoMaximoDeEjecucion(int tiempoEnSegundos){
-<span class="fc" id="L99">		this.tiempoMaximoDeEjecucion = tiempoEnSegundos;</span>
-<span class="fc" id="L100">	}</span>
-	public long getTiempoMaximoDeEjecucion(){
-<span class="fc" id="L102">		return this.tiempoMaximoDeEjecucion;</span>
-	}
+
+	public void agregarObserverBusqueda(ObserverBusqueda observer) {
+<span class="fc" id="L53">		this.observersBusqueda.add(observer);</span>
+<span class="fc" id="L54">	}</span>
+
+	public void quitarObserverBusqueda(ObserverBusqueda observer) {
+<span class="nc" id="L57">		this.observersBusqueda.remove(observer);</span>
+<span class="nc" id="L58">	}</span>
 
 	public String getNombre() {
-<span class="nc" id="L106">		return nombre;</span>
+<span class="nc" id="L61">		return nombre;</span>
 	}
 
 	public void setNombre(String nombre) {
-<span class="nc" id="L110">		this.nombre = nombre;</span>
-<span class="nc" id="L111">	}</span>
+<span class="nc" id="L65">		this.nombre = nombre;</span>
+<span class="nc" id="L66">	}</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>IntegracionCentroDTO.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tpAnual</a> &gt; <a href="index.source.html" class="el_package">grupo2.tpAnual.Integraciones</a> &gt; <span class="el_source">IntegracionCentroDTO.java</span></div><h1>IntegracionCentroDTO.java</h1><pre class="source lang-java linenums">package grupo2.tpAnual.Integraciones;
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>OrigenesDeDatosCentroDTO.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tpAnual</a> &gt; <a href="index.source.html" class="el_package">grupo2.tpAnual.OrigenesDeDatos</a> &gt; <span class="el_source">OrigenesDeDatosCentroDTO.java</span></div><h1>OrigenesDeDatosCentroDTO.java</h1><pre class="source lang-java linenums">package grupo2.tpAnual.OrigenesDeDatos;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,10 +10,10 @@ import grupo2.tpAnual.CentroDTO;
 import grupo2.tpAnual.Comuna;
 import grupo2.tpAnual.Direccion;
 import grupo2.tpAnual.POI;
-import grupo2.tpAnual.ServicioCentroDTO;
+import grupo2.tpAnual.StubCentroDTO;
 
-<span class="fc" id="L15">public class IntegracionCentroDTO implements Integracion {</span>
-<span class="fc" id="L16">	private ServicioCentroDTO mapaCentroDTO = new ServicioCentroDTO();</span>
+<span class="fc" id="L15">public class OrigenesDeDatosCentroDTO implements OrigenesDeDatos {</span>
+<span class="fc" id="L16">	private StubCentroDTO mapaCentroDTO = new StubCentroDTO();</span>
 
 	@Override
 	public List&lt;POI&gt; busqueda(String txtABuscar){
