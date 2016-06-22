@@ -73,7 +73,7 @@ public class POItest {
 	@Test
 	public void testEstaPalabraClave() {
 		this.santander.addPalabraClave("plazoFijo");
-		Assert.assertTrue(santander.verificarPorTexto("plazoFijo"));
+		Assert.assertTrue(santander.verificaPorTexto("plazoFijo"));
 	}
 	@Test
 	public void testEstaCercaParada() {

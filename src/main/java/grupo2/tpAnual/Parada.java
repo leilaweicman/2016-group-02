@@ -15,7 +15,7 @@ public class Parada extends POI {
 	}
 
 	// @Override
-	public boolean busquedaParticular(String texto) {
+	public boolean tieneTextoEnOtrosAtributos(String texto) {
 		return linea.equals(texto);
 	}
 

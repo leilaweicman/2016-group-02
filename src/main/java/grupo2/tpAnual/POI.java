@@ -36,13 +36,13 @@ public abstract class POI{
 
 	abstract boolean estaDisponible(DateTime momento, String nombreServicio);
 
-	public boolean verificarPorTexto(String texto) {
-		return getPalabraClave().contains(texto) || busquedaParticular(texto);
+	public boolean verificaPorTexto(String texto) {
+		return getPalabraClave().contains(texto) || tieneTextoEnOtrosAtributos(texto);
 	}
 
 	// Seteado en false para aquellas implementaciones en las cuales no tengan
 	// busqueda particular
-	public boolean busquedaParticular(String texto) {
+	public boolean tieneTextoEnOtrosAtributos(String texto) {
 		return false;
 	};
 
@@ -66,7 +66,7 @@ public abstract class POI{
 
 	public List<POI> busqueda(String txtABuscar) {
 		List<POI> resultadoBusqueda = new ArrayList<POI>();
-		if (this.verificarPorTexto(txtABuscar)) {
+		if (this.verificaPorTexto(txtABuscar)) {
 			resultadoBusqueda.add(this);
 		}
 		return resultadoBusqueda;
