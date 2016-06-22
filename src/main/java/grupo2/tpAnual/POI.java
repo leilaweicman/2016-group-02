@@ -6,7 +6,9 @@ import java.util.List;
 import org.joda.time.DateTime;
 import org.uqbar.geodds.Point;
 
-public abstract class POI {
+import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatos;
+
+public abstract class POI{
 	private Direccion direccion;
 	private List<String> palabraClave;
 	protected Point ubicacion;
@@ -36,12 +38,12 @@ public abstract class POI {
 	abstract boolean estaDisponible(DateTime momento, String nombreServicio);
 
 	public boolean verificarPorTexto(String texto) {
-		return getPalabraClave().contains(texto) || BusquedaParticular(texto);
+		return getPalabraClave().contains(texto) || busquedaParticular(texto);
 	}
 
 	// Seteado en false para aquellas implementaciones en las cuales no tengan
 	// busqueda particular
-	public boolean BusquedaParticular(String texto) {
+	public boolean busquedaParticular(String texto) {
 		return false;
 	};
 

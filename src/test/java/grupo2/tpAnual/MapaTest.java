@@ -12,25 +12,32 @@ import org.junit.Test;
 
 import grupo2.tpAnual.Observers.EnviarMailBusqueda;
 import grupo2.tpAnual.Observers.NotificarDatosBusqueda;
+import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatos;
 import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosBancoExterno;
 import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosCentroDTO;
+import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosPOIs;
 
 public class MapaTest {
 	private Mapa lasHeras;
 	private POI santander;
 	private CGP rentas;
+	private OrigenesDeDatosPOIs origenesDeDatosPois;
 	private EnviarMailBusqueda observerMail;
 	private NotificarDatosBusqueda observerRegistro;
 	private OrigenesDeDatosCentroDTO centroDTOstub;
 	private OrigenesDeDatosBancoExterno bancoExternoStub;
 	private ByteArrayOutputStream outContent;
+	private List<OrigenesDeDatos> listaDeOrigenes;
 
 	@Before
 	public void init() {
-		this.lasHeras = new Mapa();
-		
+		this.listaDeOrigenes = new ArrayList<OrigenesDeDatos>();
 		this.bancoExternoStub = new OrigenesDeDatosBancoExterno();
 		this.centroDTOstub = new OrigenesDeDatosCentroDTO();
+		this.origenesDeDatosPois = new OrigenesDeDatosPOIs();
+		listaDeOrigenes = Arrays.asList(centroDTOstub, bancoExternoStub, origenesDeDatosPois);
+		
+		this.lasHeras = new Mapa(listaDeOrigenes);
 		
 		this.santander = new Banco();
 		this.santander.addPalabraClave("plazoFijo");
@@ -44,93 +51,82 @@ public class MapaTest {
 		servicios.add(ser);
 		this.rentas.setServicios(servicios);
 
-		this.lasHeras.agregarPOI(santander);
-		this.lasHeras.agregarPOI(rentas);
+		//this.lasHeras.agregarPOI(santander); ahora se encarga el origenDeDatosPOIs de agregarlos 
+		this.origenesDeDatosPois.agregarPOI(santander);
+		this.origenesDeDatosPois.agregarPOI(rentas);
 
 		this.observerRegistro = new NotificarDatosBusqueda();
 		this.observerMail = new EnviarMailBusqueda(2);
 
-		List<POI> pois = Arrays.asList(rentas, santander);
-
-		outContent = new ByteArrayOutputStream();
+		this.outContent = new ByteArrayOutputStream();
 	}
 
 	@Test
-	public void testEstaPalabraClave() {
-		Assert.assertTrue(santander.verificarPorTexto("plazoFijo"));
-	}
-
-	/*
-	 * @Test public void testBusquedaPorServicio() {
-	 * //Assert.assertTrue(rentas.VerificarPorTexto("Jubilados")); }
-	 */
-
-	@Test
-	public void testCrearPoiAcierto() {
-		lasHeras.crearPOI(rentas);
-		Assert.assertEquals(this.lasHeras.getPOIs().size(), 3);
+	public void testBusquedaPorElUsuarioSinObserversNiOrigenesDeDatos() {
+		this.lasHeras.sacarOrigenesDeDatos(bancoExternoStub);
+		this.lasHeras.sacarOrigenesDeDatos(centroDTOstub);
+		this.lasHeras.sacarOrigenesDeDatos(origenesDeDatosPois);
+		
+		Assert.assertEquals(this.lasHeras.busquedaRealizadaPorElUsuario("plazoFijo").size(), 0);
 	}
 
 	@Test
-	public void testBusquedaPorElUsuarioSinObserversNiIntegraciones() {
-		Assert.assertEquals(this.lasHeras.busquedaRealizadaPorElUsuario("plazoFijo").size(), 1);
+	public void testBusquedaPorElUsuarioConDatosDTO() {
+
+		this.lasHeras.sacarOrigenesDeDatos(origenesDeDatosPois);
+		this.lasHeras.sacarOrigenesDeDatos(bancoExternoStub);
+		Assert.assertEquals(lasHeras.busquedaRealizadaPorElUsuario("palabras").size(), 2);
 	}
 
 	@Test
-	public void testBusquedaPorElUsuarioConIntegracionDTO() {
+	public void testBusquedaPorElUsuarioConDatosPOIS() {
 
-		lasHeras.setOrigenesDeDatos(centroDTOstub);
-		Assert.assertEquals(lasHeras.busquedaRealizadaPorElUsuario("plazoFijo").size(), 3);
+		this.lasHeras.sacarOrigenesDeDatos(bancoExternoStub);
+		this.lasHeras.sacarOrigenesDeDatos(centroDTOstub);
+		Assert.assertEquals(lasHeras.busquedaRealizadaPorElUsuario("plazoFijo").size(), 1);
 	}
-
 	/*@Test
-	public void testBusquedaPorElUsuariConIntegracionBancoExterno() {
-		lasHeras.setOrigenesDeDatos(bancoExternoStub);
-		Assert.assertEquals(lasHeras.busquedaRealizadaPorElUsuario("dolar").size(), 3);
+	public void testBusquedaPorElUsuariConDatosBancoExterno() {
+		this.lasHeras.sacarOrigenesDeDatos(centroDTOstub);
+		this.lasHeras.sacarOrigenesDeDatos(origenesDeDatosPois);
+		Assert.assertEquals(lasHeras.busquedaRealizadaPorElUsuario("dolar").size(), 2);
 	}*/ //Está dando error porque no estaría funcionando bien el adapter
 
 	/*@Test
-	public void testBusquedaPorElUsuarioConIntegracioneS() {
-		lasHeras.setOrigenesDeDatos(centroDTOstub);
-		lasHeras.setOrigenesDeDatos(bancoExternoStub);
-		Assert.assertEquals(lasHeras.busquedaRealizadaPorElUsuario("plazoFijo").size(), 5);
+	public void testBusquedaPorElUsuarioConOrigenesDeDatos() {
+	
+	Assert.assertEquals(lasHeras.busquedaRealizadaPorElUsuario("plazoFijo").size(), 4);
 	} Está dando error porque no estaría funcionando el adapter del bancoExterno
 */
-	@Test
-	public void testBusquedaPorElUsuarioConObserverRegistro() {
-		/*lasHeras.agregarObserverBusqueda(observerRegistro);
-		lasHeras.busquedaRealizadaPorElUsuario("plazoFijo");
-		Assert.assertEquals(observerRegistro.getRegistroBusqueda().size(), 1);*/
 
-	}
 
 	@Test
 	public void testBusquedaPorElUsuarioConObservers() {
-		/*lasHeras.agregarObserverBusqueda(observerMail);
-		lasHeras.agregarObserverBusqueda(observerRegistro);
+		lasHeras.agregarObserverBusqueda(observerMail);
 		System.setOut(new PrintStream(outContent));
 		
 		lasHeras.busquedaRealizadaPorElUsuario("plazoFijo");
 		Assert.assertEquals("La busqueda se ejecuto correctamente", outContent.toString());
-
-		lasHeras.busquedaRealizadaPorElUsuario("hola");
-		Assert.assertEquals(observerRegistro.getRegistroBusqueda().size(), 2);*/
 	}
 
 	@Test
-	public void testBusquedaPorElUsuarioConObserversEIntegraciones() {
-	/*	lasHeras.agregarObserverBusqueda(observerMail);
+	public void testBusquedaPorElUsuarioIntegrador_assertObservers() {
+		lasHeras.agregarObserverBusqueda(observerMail);
 		lasHeras.agregarObserverBusqueda(observerRegistro);
-		lasHeras.setOrigenesDeDatos(bancoExternoMock);
-		lasHeras.setOrigenesDeDatos(centroDTOmock);
 		System.setOut(new PrintStream(outContent));
-		
+		lasHeras.busquedaRealizadaPorElUsuario("plazoFijo");
+		Assert.assertEquals("La busqueda se ejecuto correctamente", outContent.toString());
+	}
+	
+	@Test
+	public void testBusquedaPorElUsuarioIntegrador_assertOrigenesDatos() {
+		lasHeras.agregarObserverBusqueda(observerMail);
+		lasHeras.agregarObserverBusqueda(observerRegistro);
+		System.setOut(new PrintStream(outContent));
 		lasHeras.busquedaRealizadaPorElUsuario("plazoFijo");
 		
-		Assert.assertEquals(lasHeras.busquedaRealizadaPorElUsuario("plazoFijo").size(), 5);
-		lasHeras.busquedaRealizadaPorElUsuario("hola");
-		Assert.assertEquals(observerRegistro.getRegistroBusqueda().size(), 3); //son tres por el assert anterior*/
-
+		Assert.assertEquals(lasHeras.busquedaRealizadaPorElUsuario("plazoFijo").size(), 3);
+		//con el banco no esta dando resultados, cuando funcione tiene que cambiar a 5
 	}
 
 }

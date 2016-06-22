@@ -30,11 +30,11 @@ public class POItest {
 	@Before
 	public void init() {
 		this.coordenada = Point.and(-34.666025, -58.385053);
+		this.santander = new Banco();
 	}
 
 	@Test
 	public void testEstaCercaBanco() {
-		this.santander = new Banco();
 		this.santander.setUbicacion(-34.666612, -58.3858490);
 		Assert.assertTrue(santander.estaCerca(coordenada));
 	}
@@ -70,7 +70,11 @@ public class POItest {
 
 		Assert.assertTrue(zara.estaCerca(coordenadaRopa));
 	}
-
+	@Test
+	public void testEstaPalabraClave() {
+		this.santander.addPalabraClave("plazoFijo");
+		Assert.assertTrue(santander.verificarPorTexto("plazoFijo"));
+	}
 	@Test
 	public void testEstaCercaParada() {
 		this.p114 = new Parada();
