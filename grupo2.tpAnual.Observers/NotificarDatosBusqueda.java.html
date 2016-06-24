@@ -7,13 +7,16 @@ public class NotificarDatosBusqueda implements ObserverBusqueda {
 	private RegistrarDatosBusqueda register;
 
 <span class="fc" id="L9">	public NotificarDatosBusqueda() {</span>
-<span class="fc" id="L10">		register = new RegistrarDatosBusqueda();</span>
+<span class="fc" id="L10">		this.register = new RegistrarDatosBusqueda();</span>
 <span class="fc" id="L11">	}</span>
 
 	@Override
 	public void notificarBusqueda(DatosDeBusqueda datosParaObserver) {
 <span class="fc" id="L15">		this.register.agregarDatosBusqueda(datosParaObserver);</span>
 <span class="fc" id="L16">	}</span>
-
+	
+	public RegistrarDatosBusqueda getRegister(){
+<span class="fc" id="L19">		return this.register;</span>
+	}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>
