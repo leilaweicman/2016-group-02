@@ -9,11 +9,18 @@ import java.util.stream.Collectors;
 import grupo2.tpAnual.DatosDeBusqueda;
 import grupo2.tpAnual.RegistrarDatosBusqueda;
 
-public class PorTerminalOUsuario implements Reporte {
+public class PorTerminalOUsuario{
+	RegistrarDatosBusqueda register;
+	List<DatosDeBusqueda> registroBusqueda = new ArrayList<DatosDeBusqueda>();
+
+	
+	public PorTerminalOUsuario(RegistrarDatosBusqueda registro){
+	this.register = registro;
+	}
 	
 	public List<Integer> obtenerReportePorTerminal (String nombreTerminal){
 		List<Integer> reporte = new ArrayList<Integer>();
-		Reporte.registroBusqueda.addAll(Reporte.register.consultarDatos());
+		this.registroBusqueda.addAll(this.register.consultarDatos());
 		reporte.addAll(registroBusqueda.stream().filter(registro-> registro.getNombre().equals(nombreTerminal))
 				.map(registro->registro.getTotalDeResultados()).collect(Collectors.toList()));		
 	
@@ -23,7 +30,7 @@ public class PorTerminalOUsuario implements Reporte {
 		public Map<String, Integer> obtenerReportePorUsuario (){
 			
 			Map<String, Integer> reporte = new HashMap<String, Integer>();				
-			Reporte.registroBusqueda.addAll(Reporte.register.consultarDatos());
+			this.registroBusqueda.addAll(this.register.consultarDatos());
 			for(DatosDeBusqueda registro : registroBusqueda){
 				Integer cantidadResultados;
 				cantidadResultados= this.obtenerReportePorTerminal(registro.getNombre()).stream()

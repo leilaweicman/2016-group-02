@@ -1,15 +1,24 @@
 package grupo2.tpAnual.Reportes;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import grupo2.tpAnual.DatosDeBusqueda;
+import grupo2.tpAnual.RegistrarDatosBusqueda;
 
-public class PorBusquedaPorFecha implements Reporte{
+public class PorBusquedaPorFecha{
+	List<DatosDeBusqueda> registroBusqueda = new ArrayList<DatosDeBusqueda>();
+	RegistrarDatosBusqueda register;
+	
+	public PorBusquedaPorFecha(RegistrarDatosBusqueda register){
+		this.register = register; 
+	}
 
 	public Map<String, Integer> busquedasPorFecha (){
 		Map<String, Integer> reporte = new HashMap<String, Integer>();
-		Reporte.registroBusqueda.addAll(Reporte.register.consultarDatos());
+		this.registroBusqueda.addAll(this.register.consultarDatos());
 		for(DatosDeBusqueda registro : registroBusqueda){
 			Integer cantidadXFecha = reporte.get(registro.getFecha().toString()) ;
 			if(cantidadXFecha != null){
