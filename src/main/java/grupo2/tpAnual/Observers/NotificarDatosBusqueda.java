@@ -7,12 +7,15 @@ public class NotificarDatosBusqueda implements ObserverBusqueda {
 	private RegistrarDatosBusqueda register;
 
 	public NotificarDatosBusqueda() {
-		register = new RegistrarDatosBusqueda();
+		this.register = new RegistrarDatosBusqueda();
 	}
 
 	@Override
 	public void notificarBusqueda(DatosDeBusqueda datosParaObserver) {
 		this.register.agregarDatosBusqueda(datosParaObserver);
 	}
-
+	
+	public RegistrarDatosBusqueda getRegister(){
+		return this.register;
+	}
 }

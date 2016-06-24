@@ -6,6 +6,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 
+
 public class RegistrarDatosBusquedaTest {
 	RegistrarDatosBusqueda registro = new RegistrarDatosBusqueda();
 	DatosDeBusqueda datoBuscado = new DatosDeBusqueda("lasHeras","libros", 10, 15, new LocalDate());
@@ -16,4 +17,6 @@ public class RegistrarDatosBusquedaTest {
 	Assert.assertEquals(this.registro.consultarDatos().size(), 1);
 
 	}
+	
+
 }

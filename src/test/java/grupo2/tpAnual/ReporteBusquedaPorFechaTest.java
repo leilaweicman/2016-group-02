@@ -6,17 +6,18 @@ import java.util.Map;
 import org.joda.time.LocalDate;
 import org.junit.Assert;
 import org.junit.Before;
-
-
+import org.junit.Test;
 
 import grupo2.tpAnual.Observers.NotificarDatosBusqueda;
+import grupo2.tpAnual.Reportes.PorBusquedaPorFecha;
 
-public class BusquedaPorFechaTest {
+
+public class ReporteBusquedaPorFechaTest {
 	NotificarDatosBusqueda observer;
 	DatosDeBusqueda datoBuscado;
 	DatosDeBusqueda datoBuscado2;
 	DatosDeBusqueda datoBuscado3;
-	Reportes reporte;
+	PorBusquedaPorFecha reporte;
 	
 	@Before
 	public void init() {
@@ -24,11 +25,11 @@ public class BusquedaPorFechaTest {
 	datoBuscado2 = new DatosDeBusqueda("flores","carpetas", 14, 15, new LocalDate().minusDays(1));
 	datoBuscado3 = new DatosDeBusqueda("flores","carpetas", 14, 15, new LocalDate().minusDays(2));
 	observer = new NotificarDatosBusqueda();
-	reporte = new Reportes();
+	reporte = new PorBusquedaPorFecha();
 	}
 
-	
-	public void obtenerReporte(){
+	/*@Test
+	public void obtenerReporteTest(){
 		List<DatosDeBusqueda> lista = new ArrayList<DatosDeBusqueda>();
 
 		lista.add(datoBuscado);
@@ -36,5 +37,5 @@ public class BusquedaPorFechaTest {
 		lista.add(datoBuscado3);
 		Map<String, Integer> map = reporte.busquedasPorFecha();
 		Assert.assertEquals(map.size(), 3);
-	}
+	}*/
 }

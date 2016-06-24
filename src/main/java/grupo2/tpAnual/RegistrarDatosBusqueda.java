@@ -4,8 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RegistrarDatosBusqueda {
-	private List<DatosDeBusqueda> listaDatosDeBusqueda = new ArrayList<DatosDeBusqueda>();
-
+	private List<DatosDeBusqueda> listaDatosDeBusqueda;
+	
+	public RegistrarDatosBusqueda(){
+		this.listaDatosDeBusqueda = new ArrayList<DatosDeBusqueda>();
+		
+	}
+	
 	public void agregarDatosBusqueda(DatosDeBusqueda registroBusqueda) {
 
 		this.listaDatosDeBusqueda.add(registroBusqueda);
