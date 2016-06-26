@@ -18,6 +18,7 @@ public class CGP extends POI {
 	}
 
 	// @Override
+	@Override
 	public boolean tieneTextoEnOtrosAtributos(String texto) {
 		for (Servicio ser : servicios) {
 			if (ser.getNombre().contains(texto)) {
@@ -27,6 +28,7 @@ public class CGP extends POI {
 		return false;
 	}
 
+	@Override
 	public boolean estaDisponible(DateTime momento, String nombreServicio) {
 		boolean disponible = false;
 		if (nombreServicio != "") {
@@ -39,6 +41,7 @@ public class CGP extends POI {
 	}
 
 	// se lo delego a la comuna
+	@Override
 	public boolean estaCerca(Point punto) {
 		return (this.comuna.estaAdentro(punto));
 	}

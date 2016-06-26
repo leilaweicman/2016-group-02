@@ -39,10 +39,12 @@ public class Comercio extends POI {
 		this.rubro = rub;
 	}
 
+	@Override
 	public boolean estaDisponible(DateTime momento, String nombre) {
 		return this.disponibilidad.estaDisponible(momento);
 	}
 
+	@Override
 	public boolean estaCerca(Point coordenadaDeseada) {
 		return (this.ubicacion.distance(coordenadaDeseada) < rubro.getRadioCercania());
 	}

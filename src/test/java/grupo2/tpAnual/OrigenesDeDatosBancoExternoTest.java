@@ -1,11 +1,6 @@
 package grupo2.tpAnual;
 
-import static org.mockito.Mockito.*;
-
 import org.junit.Before;
-import org.junit.Test;
-import org.mockito.Mockito;
-
 import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosBancoExterno;
 
 public class OrigenesDeDatosBancoExternoTest {
