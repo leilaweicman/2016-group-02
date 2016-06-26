@@ -42,20 +42,22 @@ public class Banco extends POI {
 <span class="nc" id="L42">		this.rangoDisponibilidad.add(rango);</span>
 <span class="nc" id="L43">	}</span>
 
+	@Override
 	public boolean estaDisponible(DateTime momento, String nombre) {
-<span class="fc" id="L46">		return this.disponibilidad.estaDisponible(momento);</span>
+<span class="fc" id="L47">		return this.disponibilidad.estaDisponible(momento);</span>
 	}
 
 	public Disponibilidad getDisponibilidad() {
-<span class="nc" id="L50">		return disponibilidad;</span>
+<span class="nc" id="L51">		return disponibilidad;</span>
 	}
 
 	public void setDisponibilidad(Disponibilidad disponibilidad) {
-<span class="nc" id="L54">		this.disponibilidad = disponibilidad;</span>
-<span class="nc" id="L55">	}</span>
+<span class="nc" id="L55">		this.disponibilidad = disponibilidad;</span>
+<span class="nc" id="L56">	}</span>
 
+	@Override
 	public boolean estaCerca(Point coordenadaDeseada) {
-<span class="nc bnc" id="L58" title="All 2 branches missed.">		return (this.ubicacion.distance(coordenadaDeseada) &lt; 0.5);</span>
+<span class="nc bnc" id="L60" title="All 2 branches missed.">		return (this.ubicacion.distance(coordenadaDeseada) &lt; 0.5);</span>
 	}
 
 }

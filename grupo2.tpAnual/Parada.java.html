@@ -15,17 +15,20 @@ import org.uqbar.geodds.Point;
 <span class="nc" id="L15">	}</span>
 
 	// @Override
+	@Override
 	public boolean tieneTextoEnOtrosAtributos(String texto) {
-<span class="nc" id="L19">		return linea.equals(texto);</span>
+<span class="nc" id="L20">		return linea.equals(texto);</span>
 	}
 
+	@Override
 	public boolean estaCerca(Point coordenadaDeseada) {
-<span class="nc bnc" id="L23" title="All 2 branches missed.">		return (this.ubicacion.distance(coordenadaDeseada) &lt; 0.1);</span>
+<span class="nc bnc" id="L25" title="All 2 branches missed.">		return (this.ubicacion.distance(coordenadaDeseada) &lt; 0.1);</span>
 	}
 
+	@Override
 	public boolean estaDisponible(DateTime momento, String nombreServicio) {
 		// las paradas siempre estan disponibles
-<span class="nc" id="L28">		return true;</span>
+<span class="nc" id="L31">		return true;</span>
 	}
 
 }
