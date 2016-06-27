@@ -31,10 +31,12 @@ public class OrigenesDeDatosCentroDTO implements OrigenesDeDatos {
 	}
 
 	public POI adapter(CentroDTO dto) {
-		CGP poi = new CGP();
+		int numeroVerificador = 9000;
+		CGP poi = new CGP(numeroVerificador);
 		List<Point> listaVertices = new ArrayList<>();
 		poi.setComuna(new Comuna(dto.getNumeroComuna(), listaVertices));
 		poi.setDireccion(new Direccion(dto.getDomicilio(), dto.getZona()));
+		numeroVerificador = numeroVerificador + 1;
 		return poi;
 	}
 }

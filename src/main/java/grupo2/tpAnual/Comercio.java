@@ -12,7 +12,8 @@ public class Comercio extends POI {
 
 	private Disponibilidad disponibilidad;
 
-	public Comercio(List<Rango> rango) {
+	public Comercio(List<Rango> rango, int numeroVerificador) {
+		super(numeroVerificador);
 		this.rangoDisponibilidad = rango;
 		disponibilidad = new Disponibilidad(this.rangoDisponibilidad);
 	}

@@ -22,16 +22,18 @@ public class OrigenesDeDatosPOIsTest {
 
 	@Before
 	public void init() {
-
+		int numeroVerificadorComercio = 16;
+		int numeroVerificadorBanco = 17;
+		int numeroVerificadorCGP = 19;
 		unRango = new Rango();
 		unRango.setDia(1);
 		unRango.setHoraDesde(LocalTime.of(9, 0, 0));
 		unRango.setHoraHasta(LocalTime.of(18, 0, 0));
 		listaRangos = Arrays.asList(unRango);
 
-		this.kosiuko = new Comercio(listaRangos);
-		this.bancoPiano = new Banco();
-		this.cgp = new CGP();
+		this.kosiuko = new Comercio(listaRangos,numeroVerificadorComercio);
+		this.bancoPiano = new Banco(numeroVerificadorBanco);
+		this.cgp = new CGP(numeroVerificadorCGP);
 
 		this.origenesPOI = new OrigenesDeDatosPOIs();
 

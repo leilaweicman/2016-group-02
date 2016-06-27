@@ -4,9 +4,9 @@ package grupo2.tpAnual.Procesos;
 public class AsignacionDeAccionesParaUsuarios implements AccionesDeProcesos {
 
 	@Override
-	public void ejecutar() {
+	public boolean ejecutar() {
 		// TODO Auto-generated method stub
-		
+		return true;
 	}
 	
 }

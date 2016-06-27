@@ -12,10 +12,15 @@ public abstract class POI{
 	private List<String> palabraClave;
 	protected Point ubicacion;
 	protected Comuna comuna;
+	private Integer numeroVerificador;
 
-	public POI() {
-
+	public POI(int numeroVerificador) {
+		this.numeroVerificador = numeroVerificador;
 		palabraClave = new ArrayList<String>();
+	}
+	
+	public Integer getNumeroVerificador(){
+		return this.numeroVerificador;
 	}
 
 	public Direccion getDireccion() {

@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.eclipse.xtext.xbase.lib.Pair;
+
 import grupo2.tpAnual.POI;
 
 public class OrigenesDeDatosPOIs implements OrigenesDeDatos {
@@ -21,20 +23,16 @@ public class OrigenesDeDatosPOIs implements OrigenesDeDatos {
 		pois.add(poi);
 	}
 
-	public void darDeBajaPOI(POI nombre) {
-		pois.remove(nombre);
+	public void darDeBajaPOI(Integer numeroVerificador) {
+		pois.remove(pois.stream().anyMatch(poi -> poi.getNumeroVerificador().equals(numeroVerificador)));
 	}
-
-	public void modificarUnPOI(POI poi, String atributo, String valorAtributo) {
-		// No hacemos nada hastano tener la UI
-
-	}
-
+	
 	@Override
 	public List<POI> busqueda(String txtABuscar) {
 		List<POI> resultados = new ArrayList<POI>();
 		resultados.addAll(this.pois.stream().filter(poi -> poi.verificaPorTexto(txtABuscar)).collect(Collectors.toList()));
 		return resultados;
 	}
+
 
 }

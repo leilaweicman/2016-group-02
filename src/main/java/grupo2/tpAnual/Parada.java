@@ -5,16 +5,15 @@ import org.uqbar.geodds.Point;
 
 public class Parada extends POI {
 	private String linea;
-
+	
+	public Parada(int numeroVerificador, String linea){
+		super(numeroVerificador);
+		this.linea = linea;
+	}
 	public String getLinea() {
 		return linea;
 	}
 
-	public void setLinea(String linea) {
-		this.linea = linea;
-	}
-
-	// @Override
 	@Override
 	public boolean tieneTextoEnOtrosAtributos(String texto) {
 		return linea.equals(texto);

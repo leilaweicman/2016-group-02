@@ -11,7 +11,8 @@ public class BancoTest {
 	
 	 @Before
 	 public void init(){
-		 banco= new Banco();
+		 int numeroVerificador = 15;
+		 banco= new Banco(numeroVerificador);
 	 }
 	 
 	 @Test

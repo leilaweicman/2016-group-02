@@ -1,5 +1,6 @@
 package grupo2.tpAnual;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -8,7 +9,11 @@ import org.uqbar.geodds.Point;
 
 public class CGP extends POI {
 	private List<Servicio> servicios;
-
+	
+	public CGP(int numeroVerificador){
+		super(numeroVerificador);
+		servicios = new ArrayList<>();
+	}
 	public List<Servicio> getServicios() {
 		return servicios;
 	}
@@ -17,7 +22,6 @@ public class CGP extends POI {
 		this.servicios = ser;
 	}
 
-	// @Override
 	@Override
 	public boolean tieneTextoEnOtrosAtributos(String texto) {
 		for (Servicio ser : servicios) {

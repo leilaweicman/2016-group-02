@@ -10,13 +10,16 @@ import org.uqbar.geodds.Point;
 
 public class Banco extends POI {
 
-	private List<Rango> rangoDisponibilidad = new ArrayList<Rango>();
+	private List<Rango> rangoDisponibilidad;
 
-	private List<Integer> dias = new ArrayList<Integer>();
+	private List<Integer> dias;
 	private Disponibilidad disponibilidad;
 
 	// constructor
-	public Banco() {
+	public Banco(int numeroVerificador) {
+		super(numeroVerificador);
+		this.rangoDisponibilidad = new ArrayList<Rango>();
+		this.dias = new ArrayList<Integer>();
 		dias = Arrays.asList(1, 2, 3, 4, 5);
 		dias.stream().forEach(dia -> crearRango(dia));
 		this.disponibilidad = new Disponibilidad(rangoDisponibilidad);

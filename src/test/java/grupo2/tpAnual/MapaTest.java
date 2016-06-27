@@ -31,6 +31,8 @@ public class MapaTest {
 
 	@Before
 	public void init() {
+		int numeroVerificadorCGP = 16;
+		int numeroVerificadorBanco = 18; 
 		this.listaDeOrigenes = new ArrayList<OrigenesDeDatos>();
 		this.datosBancosExternos = new OrigenesDeDatosBancoExterno();
 		this.datosCentrosDTOs = new OrigenesDeDatosCentroDTO();
@@ -39,11 +41,11 @@ public class MapaTest {
 		
 		this.lasHeras = new Mapa(listaDeOrigenes);
 		
-		this.santander = new Banco();
+		this.santander = new Banco(numeroVerificadorBanco);
 		this.santander.addPalabraClave("plazoFijo");
 		this.santander.addPalabraClave("dolar");
 
-		this.rentas = new CGP();
+		this.rentas = new CGP(numeroVerificadorCGP);
 		List<Servicio> servicios = new ArrayList<Servicio>();
 		List<Rango> listaRango = new ArrayList<>();
 		Servicio ser = new Servicio(listaRango);

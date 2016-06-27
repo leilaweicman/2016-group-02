@@ -76,6 +76,11 @@
     	<version>1.10.19</version>
 	</dependency> 
 
+	<dependency>
+		<groupid>com.sun.jersey</groupid>
+		<artifactid>jersey-server</artifactid>
+		<version>1.11</version>
+	</dependency>
  </dependencies>  
 </project>
 

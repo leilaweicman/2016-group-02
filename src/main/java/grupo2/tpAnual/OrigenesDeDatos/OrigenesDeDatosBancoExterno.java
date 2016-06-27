@@ -31,12 +31,14 @@ public class OrigenesDeDatosBancoExterno implements OrigenesDeDatos {
 	}
 
 	private POI adapter(BancoExterno bancoExterno) {
-		POI bancoPoi = new Banco();
+		int numeroVerificador = 8000;
+		POI bancoPoi = new Banco(numeroVerificador);
 		// Aca se setea cada item del banco externo con el poi
 		// saqué la info de aca:
 		// http://www.anieto2k.com/2009/07/06/todo-lo-que-siempre-quisiste-saber-sobre-json/
-		// para poder hacer el adapter. No estoy segura de que esté bien...
+	
 		bancoPoi.setUbicacion(bancoExterno.x, bancoExterno.y);
+		numeroVerificador= numeroVerificador + 1;
 		return bancoPoi;
 	}
 
