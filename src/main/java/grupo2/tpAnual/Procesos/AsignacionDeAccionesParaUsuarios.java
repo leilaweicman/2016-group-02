@@ -1,12 +1,22 @@
 package grupo2.tpAnual.Procesos;
 
+import org.joda.time.LocalDate;
 
-public class AsignacionDeAccionesParaUsuarios implements AccionesDeProcesos {
+import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosPOIs;
+import grupo2.tpAnual.Procesos.ManejoDeErroresProcesos.AccionEnCasoDeFallo;
+
+public class AsignacionDeAccionesParaUsuarios extends Proceso {
+
+	public AsignacionDeAccionesParaUsuarios(int hora, LocalDate fecha, AccionEnCasoDeFallo configuracion, OrigenesDeDatosPOIs origenesDeDatos) {
+		super(hora, fecha, configuracion, origenesDeDatos);
+		
+	}
 
 	@Override
-	public boolean ejecutar() {
+	public void ejecutarProceso(LogEjecucionProcesos log) {
 		// TODO Auto-generated method stub
-		return true;
 	}
+
+
 	
 }

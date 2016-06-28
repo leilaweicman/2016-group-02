@@ -19,7 +19,7 @@ public class ComercioTest {
 
 	@Before
 	public void init() {
-		int numeroVerificador = 16;
+		
 		unRango = new Rango();
 		otroRango = new Rango();
 		rango = new Rango();
@@ -38,7 +38,7 @@ public class ComercioTest {
 
 		listaRangos = Arrays.asList(unRango, otroRango, rango);
 
-		comercio = new Comercio(listaRangos, numeroVerificador);
+		comercio = new Comercio(listaRangos);
 	}
 
 	@Test

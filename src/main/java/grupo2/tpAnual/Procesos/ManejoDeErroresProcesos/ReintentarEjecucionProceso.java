@@ -4,7 +4,7 @@ public class ReintentarEjecucionProceso implements AccionEnCasoDeFallo {
 	private int cantidadRepeticiones; 
 	
 	public ReintentarEjecucionProceso(int cantidadRepeticiones){
-		this.cantidadRepeticiones = cantidadRepeticiones; 
+		this.cantidadRepeticiones = cantidadRepeticiones;
 	}
 
 	@Override

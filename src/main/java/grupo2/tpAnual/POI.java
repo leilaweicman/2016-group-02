@@ -6,20 +6,28 @@ import java.util.List;
 import org.joda.time.DateTime;
 import org.uqbar.geodds.Point;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-public abstract class POI{
+
+public abstract class POI {
+	
 	private Direccion direccion;
+	@JsonProperty("servicios")
 	private List<String> palabraClave;
 	protected Point ubicacion;
 	protected Comuna comuna;
+	@JsonProperty("id")
 	private Integer numeroVerificador;
-
-	public POI(int numeroVerificador) {
-		this.numeroVerificador = numeroVerificador;
+	
+	public POI() {
 		palabraClave = new ArrayList<String>();
 	}
 	
-	public Integer getNumeroVerificador(){
+	public void setNumeroVerificador(Integer numeroVerificador) {
+		this.numeroVerificador = numeroVerificador;
+	}
+
+	public Integer getNumeroVerificador() {
 		return this.numeroVerificador;
 	}
 

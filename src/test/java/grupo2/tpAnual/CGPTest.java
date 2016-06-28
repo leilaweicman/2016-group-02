@@ -23,8 +23,7 @@ public class CGPTest {
 
 	@Before
 	public void init() {
-		int numeroVerificador = 16;
-		cgp = new CGP(numeroVerificador);
+		cgp = new CGP();
 		unRango = new Rango();
 		otroRango = new Rango();
 		rangoUnServicio = new ArrayList<Rango>();

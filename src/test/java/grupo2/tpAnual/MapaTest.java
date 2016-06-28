@@ -31,8 +31,6 @@ public class MapaTest {
 
 	@Before
 	public void init() {
-		int numeroVerificadorCGP = 16;
-		int numeroVerificadorBanco = 18; 
 		this.listaDeOrigenes = new ArrayList<OrigenesDeDatos>();
 		this.datosBancosExternos = new OrigenesDeDatosBancoExterno();
 		this.datosCentrosDTOs = new OrigenesDeDatosCentroDTO();
@@ -41,11 +39,11 @@ public class MapaTest {
 		
 		this.lasHeras = new Mapa(listaDeOrigenes);
 		
-		this.santander = new Banco(numeroVerificadorBanco);
+		this.santander = new Banco();
 		this.santander.addPalabraClave("plazoFijo");
 		this.santander.addPalabraClave("dolar");
 
-		this.rentas = new CGP(numeroVerificadorCGP);
+		this.rentas = new CGP();
 		List<Servicio> servicios = new ArrayList<Servicio>();
 		List<Rango> listaRango = new ArrayList<>();
 		Servicio ser = new Servicio(listaRango);
@@ -87,20 +85,18 @@ public class MapaTest {
 		this.lasHeras.sacarOrigenesDeDatos(datosCentrosDTOs);
 		Assert.assertEquals(lasHeras.busquedaRealizadaPorElUsuario("plazoFijo").size(), 1);
 	}
-	/*@Test
+	@Test
 	public void testBusquedaPorElUsuariConDatosBancoExterno() {
-		this.lasHeras.sacarOrigenesDeDatos(centroDTOstub);
+		this.lasHeras.sacarOrigenesDeDatos(datosCentrosDTOs);
 		this.lasHeras.sacarOrigenesDeDatos(origenesDeDatosPois);
 		Assert.assertEquals(lasHeras.busquedaRealizadaPorElUsuario("dolar").size(), 2);
-	}*/ //Está dando error porque no estaría funcionando bien el adapter
+	} 
 
-	/*@Test
+	@Test
 	public void testBusquedaPorElUsuarioConOrigenesDeDatos() {
 	
-	Assert.assertEquals(lasHeras.busquedaRealizadaPorElUsuario("plazoFijo").size(), 4);
-	} Está dando error porque no estaría funcionando el adapter del bancoExterno
-*/
-
+	Assert.assertEquals(lasHeras.busquedaRealizadaPorElUsuario("plazoFijo").size(), 5);
+	} 
 
 	@Test
 	public void testBusquedaPorElUsuarioConObservers() {
@@ -127,8 +123,7 @@ public class MapaTest {
 		System.setOut(new PrintStream(outContent));
 		lasHeras.busquedaRealizadaPorElUsuario("plazoFijo");
 		
-		Assert.assertEquals(lasHeras.busquedaRealizadaPorElUsuario("plazoFijo").size(), 3);
-		//con el banco no esta dando resultados, cuando funcione tiene que cambiar a 5
+		Assert.assertEquals(lasHeras.busquedaRealizadaPorElUsuario("plazoFijo").size(), 5);
 	}
 
 }

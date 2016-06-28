@@ -16,8 +16,8 @@ public class Banco extends POI {
 	private Disponibilidad disponibilidad;
 
 	// constructor
-	public Banco(int numeroVerificador) {
-		super(numeroVerificador);
+	public Banco() {
+	
 		this.rangoDisponibilidad = new ArrayList<Rango>();
 		this.dias = new ArrayList<Integer>();
 		dias = Arrays.asList(1, 2, 3, 4, 5);

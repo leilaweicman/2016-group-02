@@ -11,9 +11,8 @@ public class OrigenesDeDatosCentroDTOTest {
 	OrigenesDeDatosCentroDTO integracion = new OrigenesDeDatosCentroDTO();
 	CentroDTO centroDTO = new CentroDTO(9, "Juan B Justo 1882");
 	CentroDTO centroDTO2 = new CentroDTO(7, "Corrientes 1234");
-	int numeroVerificador = 16;
-	POI cgp = new CGP(numeroVerificador);
-	Object cgp2 = new CGP(numeroVerificador);
+	POI cgp = new CGP();
+	Object cgp2 = new CGP();
 
 	@Test
 	public void adapterPOIaCentroDTODireccionTest() {

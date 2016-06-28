@@ -1,31 +1,22 @@
 package grupo2.tpAnual.Procesos;
 
-import java.util.List;
 
-import org.eclipse.xtext.xbase.lib.Pair;
+import org.joda.time.LocalDate;
 
-import grupo2.tpAnual.Mapa;
-import grupo2.tpAnual.POI;
-import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatos;
 import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosPOIs;
+import grupo2.tpAnual.Procesos.ManejoDeErroresProcesos.AccionEnCasoDeFallo;
 
-public class ActualizacionLocalesComerciales implements AccionesDeProcesos {
-	private List<Pair<String,List<String>>> textoPlano; //Lista de tuplas (nombreFantasia, listaPalabrasClave)
-	private OrigenesDeDatos origenesDeDatos; 
-
-	public ActualizacionLocalesComerciales(List<Pair<String,List<String>>> textoPlano, OrigenesDeDatos origenesDeDatos) {
-		this.textoPlano = textoPlano;
-		this.origenesDeDatos = origenesDeDatos;
-
-	}
-
-	public void aplanarOrigenesDeDatos(){
-
-	}
+public class ActualizacionLocalesComerciales extends Proceso {
 	
+	
+	public ActualizacionLocalesComerciales(int hora, LocalDate fecha, AccionEnCasoDeFallo configuracion, OrigenesDeDatosPOIs origenesDeDatos) {
+		super(hora, fecha, configuracion, origenesDeDatos);
+		// TODO Auto-generated constructor stub
+	}
+
 	@Override
-	public boolean ejecutar() {
-				return true;
-		}
+	public void ejecutarProceso(LogEjecucionProcesos log) {
+		// TODO Auto-generated method stub
+	}
 
 }

@@ -29,9 +29,9 @@ public class POItest {
 
 	@Before
 	public void init() {
-		int numeroVerificadorBanco = 16;
+
 		this.coordenada = Point.and(-34.666025, -58.385053);
-		this.santander = new Banco(numeroVerificadorBanco);
+		this.santander = new Banco();
 	}
 
 	@Test
@@ -42,8 +42,8 @@ public class POItest {
 
 	@Test
 	public void testEstaCercaCGP() {
-		int numeroVerificadorCGP = 1000;
-		this.rentas = new CGP(numeroVerificadorCGP);
+
+		this.rentas = new CGP();
 		this.vertice1 = Point.and(-34.668075, -58.380060);
 		this.vertice2 = Point.and(-34.673044, -58.387755);
 		this.vertice3 = Point.and(-34.668363, -58.398441);
@@ -58,13 +58,13 @@ public class POItest {
 
 	@Test
 	public void testEstaCercaComercio() {
-		int numeroVerificadorComercio = 1895;
+
 		Rango rango = new Rango();
 		rango.setDia(3);
 		rango.setHoraDesde(LocalTime.of(15, 0, 0));
 		rango.setHoraHasta(LocalTime.of(18, 30, 0));
 		List<Rango> listaRangos = Arrays.asList(rango);
-		this.zara = new Comercio(listaRangos,numeroVerificadorComercio);
+		this.zara = new Comercio(listaRangos);
 		this.ropa = new Rubro();
 		this.zara.setRubro(ropa);
 		this.ropa.setRadioCercania(0.3);
@@ -80,8 +80,7 @@ public class POItest {
 	}
 	@Test
 	public void testEstaCercaParada() {
-		int numeroVerificadorParada = 1786;
-		this.p114 = new Parada(numeroVerificadorParada, "linea114");
+		this.p114 = new Parada("linea114");
 		this.p114.setUbicacion(-34.664837, -58.385674);
 		this.coordenadaBondi = Point.and(-34.664634, -58.385459);
 		Assert.assertTrue(p114.estaCerca(coordenadaBondi));

@@ -20,23 +20,24 @@ public class OrigenesDeDatosPOIsTest {
 	private List<Rango> listaRangos;
 	private List<Servicio> servicios;
 
+	
 	@Before
 	public void init() {
-		int numeroVerificadorComercio = 16;
-		int numeroVerificadorBanco = 17;
-		int numeroVerificadorCGP = 19;
+		
 		unRango = new Rango();
 		unRango.setDia(1);
 		unRango.setHoraDesde(LocalTime.of(9, 0, 0));
 		unRango.setHoraHasta(LocalTime.of(18, 0, 0));
 		listaRangos = Arrays.asList(unRango);
 
-		this.kosiuko = new Comercio(listaRangos,numeroVerificadorComercio);
-		this.bancoPiano = new Banco(numeroVerificadorBanco);
-		this.cgp = new CGP(numeroVerificadorCGP);
-
 		this.origenesPOI = new OrigenesDeDatosPOIs();
-
+		
+		this.kosiuko = new Comercio(listaRangos);
+		this.kosiuko.setNumeroVerificador(1444);
+		this.bancoPiano = new Banco();
+		this.bancoPiano.setNumeroVerificador(145);
+		this.cgp = new CGP();
+		this.cgp.setNumeroVerificador(4);
 	}
 
 	@Test
@@ -50,7 +51,7 @@ public class OrigenesDeDatosPOIsTest {
 		this.origenesPOI.agregarPOI(kosiuko);
 		this.origenesPOI.agregarPOI(bancoPiano);
 		this.origenesPOI.agregarPOI(cgp);
-		this.origenesPOI.darDeBajaPOI(kosiuko);
+		this.origenesPOI.darDeBajaPOI(kosiuko.getNumeroVerificador());
 		Assert.assertEquals(this.origenesPOI.getPOIs().size(), 2);
 	}
 

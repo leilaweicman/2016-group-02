@@ -17,8 +17,8 @@ public class BancoExternoTest {
 	 }
 	 
 	 @Test
-	 public void verEnPantallaSiConvierteBien() throws JsonParseException, JsonMappingException, IOException {
-		 List<BancoExterno> result = servicio.busqueda("s","s");
-		 System.out.println(result);
+	 public void verEnPantallaSiConvierteBien() throws Exception {
+		String result = servicio.busqueda("s","s");
+		System.out.println(result);
 	 }
 }

@@ -2,24 +2,23 @@ package grupo2.tpAnual.Procesos;
 
 import org.joda.time.LocalDate;
 
+import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosPOIs;
 import grupo2.tpAnual.Procesos.ManejoDeErroresProcesos.AccionEnCasoDeFallo;
 
-public class Proceso {
+public abstract class Proceso {
 	private int horaEjecucion;
 	private LocalDate fechaEjecucion; 
 	private AccionEnCasoDeFallo configuracionFallo;
-	private AccionesDeProcesos accionDeProceso;
+	protected OrigenesDeDatosPOIs origenesDeDatos;
 	
-	public Proceso(int hora, LocalDate fecha, AccionesDeProcesos accion, AccionEnCasoDeFallo configuracion){
+	public Proceso(int hora, LocalDate fecha, AccionEnCasoDeFallo configuracion, OrigenesDeDatosPOIs origenesDeDatos){
 		this.horaEjecucion = hora;
 		this.configuracionFallo = configuracion;
 		this.fechaEjecucion = fecha;
-		this.accionDeProceso = accion; 
+		this.origenesDeDatos = origenesDeDatos;
 	}
 	
-	public boolean ejecutarProceso(){
-		return this.accionDeProceso.ejecutar();
-	}
+	public abstract void ejecutarProceso(LogEjecucionProcesos log);
 	
 	
 	public int getHoraEjecucion(){

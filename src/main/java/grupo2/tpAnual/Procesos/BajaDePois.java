@@ -1,43 +1,61 @@
 package grupo2.tpAnual.Procesos;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
-import grupo2.tpAnual.POI;
+import org.joda.time.LocalDate;
+
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import grupo2.tpAnual.CGP;
 import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosPOIs;
-public class BajaDePois implements AccionesDeProcesos {
+import grupo2.tpAnual.Procesos.ManejoDeErroresProcesos.AccionEnCasoDeFallo;
 
-	OrigenesDeDatosPOIs origenesDeDatos; 
-	StubServicioRESTBajaPOIS servicioRestBajaPois;
+public class BajaDePois extends Proceso {
+
+	RestServiceBajaPois servicioRestBajaPois;
+	public ObjectMapper mapper = new ObjectMapper();
 	
-	public BajaDePois(){
-		this.servicioRestBajaPois = new StubServicioRESTBajaPOIS();
-		this.origenesDeDatos = new OrigenesDeDatosPOIs();
-	}	
-	public BajaDePois(OrigenesDeDatosPOIs origenes){
-		this.origenesDeDatos = origenes;
-		
+	public BajaDePois(int hora, LocalDate fecha, AccionEnCasoDeFallo configuracion, OrigenesDeDatosPOIs origenesDeDatos) {
+		super(hora, fecha, configuracion,origenesDeDatos);
+		this.servicioRestBajaPois = new RestServiceBajaPois();
 	}
 
-	
-	public List<Integer> getNumerosIdentificadoresDePois(){
-		List<Integer> numerosVerificadoresPois = new ArrayList<>();
-		return numerosVerificadoresPois;
-		
+	public List<Integer> getNumerosIdentificadoresDePois() throws Exception {
+		// obtengo los datos del servicio rest en formato json
+		String json = this.servicioRestBajaPois.getPOIs();
+		mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false); //ignora los atributos que no uso
+		List<CGP> pois = mapper.readValue(json, mapper.getTypeFactory().constructCollectionType(ArrayList.class, CGP.class));
+
+		// agrego el numero de identificador del poi a la lista
+		List<Integer> numerosID = new ArrayList<>();
+
+		pois.forEach(poi ->numerosID.add(poi.getNumeroVerificador()));
+
+		return numerosID;
 	}
-	
+
 	@Override
-	public boolean ejecutar() {
+	public void ejecutarProceso(LogEjecucionProcesos log) {
 		int cantidadElementosAfectados = 0;
-		List<Integer> poisABorrar = this.servicioRestBajaPois.getPOIsFueraDeUso().getNumerosIdentificadoresDePois();
-		if(poisABorrar!=null){
-			for(Integer pid: poisABorrar){
-				this.origenesDeDatos.darDeBajaPOI(pid);
-				cantidadElementosAfectados = cantidadElementosAfectados + 1;  
+		List<Integer> poisABorrar;
+		try {
+			poisABorrar = this.getNumerosIdentificadoresDePois();
+			if (poisABorrar != null) {
+				for (Integer pid : poisABorrar) {
+					this.origenesDeDatos.darDeBajaPOI(pid);
+					cantidadElementosAfectados = cantidadElementosAfectados + 1;
+				}
+				log.loguearProceso(new DatosParaLogEjecucionProcesos(this.getFechaEjecucion(), this.getHoraEjecucion(),
+						true, cantidadElementosAfectados));
+
 			}
-		return true;
-		}	
-	return false;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		log.loguearProceso(new DatosParaLogEjecucionProcesos(this.getFechaEjecucion(), this.getHoraEjecucion(), false,
+				cantidadElementosAfectados));
 	}
 
 }

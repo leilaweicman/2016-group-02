@@ -4,11 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.eclipse.xtext.xbase.lib.Pair;
-
 import grupo2.tpAnual.POI;
 
 public class OrigenesDeDatosPOIs implements OrigenesDeDatos {
+
 	private List<POI> pois;
 
 	public OrigenesDeDatosPOIs() {
@@ -24,7 +23,7 @@ public class OrigenesDeDatosPOIs implements OrigenesDeDatos {
 	}
 
 	public void darDeBajaPOI(Integer numeroVerificador) {
-		pois.remove(pois.stream().anyMatch(poi -> poi.getNumeroVerificador().equals(numeroVerificador)));
+		this.pois.removeIf(poi -> poi.getNumeroVerificador().equals(numeroVerificador));
 	}
 	
 	@Override
