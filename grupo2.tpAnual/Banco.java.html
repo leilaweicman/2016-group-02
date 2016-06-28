@@ -10,54 +10,57 @@ import org.uqbar.geodds.Point;
 
 public class Banco extends POI {
 
-<span class="fc" id="L13">	private List&lt;Rango&gt; rangoDisponibilidad = new ArrayList&lt;Rango&gt;();</span>
+	private List&lt;Rango&gt; rangoDisponibilidad;
 
-<span class="fc" id="L15">	private List&lt;Integer&gt; dias = new ArrayList&lt;Integer&gt;();</span>
+	private List&lt;Integer&gt; dias;
 	private Disponibilidad disponibilidad;
 
 	// constructor
 <span class="fc" id="L19">	public Banco() {</span>
-<span class="fc" id="L20">		dias = Arrays.asList(1, 2, 3, 4, 5);</span>
-<span class="fc" id="L21">		dias.stream().forEach(dia -&gt; crearRango(dia));</span>
-<span class="fc" id="L22">		this.disponibilidad = new Disponibilidad(rangoDisponibilidad);</span>
-<span class="fc" id="L23">	}</span>
+	
+<span class="fc" id="L21">		this.rangoDisponibilidad = new ArrayList&lt;Rango&gt;();</span>
+<span class="fc" id="L22">		this.dias = new ArrayList&lt;Integer&gt;();</span>
+<span class="fc" id="L23">		dias = Arrays.asList(1, 2, 3, 4, 5);</span>
+<span class="fc" id="L24">		dias.stream().forEach(dia -&gt; crearRango(dia));</span>
+<span class="fc" id="L25">		this.disponibilidad = new Disponibilidad(rangoDisponibilidad);</span>
+<span class="fc" id="L26">	}</span>
 
 	private void crearRango(int dia) {
-<span class="fc" id="L26">		Rango unRango = new Rango();</span>
-<span class="fc" id="L27">		unRango.setDia(dia);</span>
-<span class="fc" id="L28">		unRango.setHoraDesde(LocalTime.of(10, 0, 0));</span>
-<span class="fc" id="L29">		unRango.setHoraHasta(LocalTime.of(15, 0, 0));</span>
-<span class="fc" id="L30">		rangoDisponibilidad.add(unRango);</span>
-<span class="fc" id="L31">	}</span>
+<span class="fc" id="L29">		Rango unRango = new Rango();</span>
+<span class="fc" id="L30">		unRango.setDia(dia);</span>
+<span class="fc" id="L31">		unRango.setHoraDesde(LocalTime.of(10, 0, 0));</span>
+<span class="fc" id="L32">		unRango.setHoraHasta(LocalTime.of(15, 0, 0));</span>
+<span class="fc" id="L33">		rangoDisponibilidad.add(unRango);</span>
+<span class="fc" id="L34">	}</span>
 
 	public List&lt;Rango&gt; getRango() {
-<span class="nc" id="L34">		return rangoDisponibilidad;</span>
+<span class="nc" id="L37">		return rangoDisponibilidad;</span>
 	}
 
 	public void setRango(ArrayList&lt;Rango&gt; rango) {
-<span class="nc" id="L38">		this.rangoDisponibilidad = rango;</span>
-<span class="nc" id="L39">	}</span>
+<span class="nc" id="L41">		this.rangoDisponibilidad = rango;</span>
+<span class="nc" id="L42">	}</span>
 
 	public void addRango(Rango rango) {
-<span class="nc" id="L42">		this.rangoDisponibilidad.add(rango);</span>
-<span class="nc" id="L43">	}</span>
+<span class="nc" id="L45">		this.rangoDisponibilidad.add(rango);</span>
+<span class="nc" id="L46">	}</span>
 
 	@Override
 	public boolean estaDisponible(DateTime momento, String nombre) {
-<span class="fc" id="L47">		return this.disponibilidad.estaDisponible(momento);</span>
+<span class="fc" id="L50">		return this.disponibilidad.estaDisponible(momento);</span>
 	}
 
 	public Disponibilidad getDisponibilidad() {
-<span class="nc" id="L51">		return disponibilidad;</span>
+<span class="nc" id="L54">		return disponibilidad;</span>
 	}
 
 	public void setDisponibilidad(Disponibilidad disponibilidad) {
-<span class="nc" id="L55">		this.disponibilidad = disponibilidad;</span>
-<span class="nc" id="L56">	}</span>
+<span class="nc" id="L58">		this.disponibilidad = disponibilidad;</span>
+<span class="nc" id="L59">	}</span>
 
 	@Override
 	public boolean estaCerca(Point coordenadaDeseada) {
-<span class="nc bnc" id="L60" title="All 2 branches missed.">		return (this.ubicacion.distance(coordenadaDeseada) &lt; 0.5);</span>
+<span class="nc bnc" id="L63" title="All 2 branches missed.">		return (this.ubicacion.distance(coordenadaDeseada) &lt; 0.5);</span>
 	}
 
 }

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>OrigenesDeDatosBancoExterno.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tpAnual</a> &gt; <a href="index.source.html" class="el_package">grupo2.tpAnual.OrigenesDeDatos</a> &gt; <span class="el_source">OrigenesDeDatosBancoExterno.java</span></div><h1>OrigenesDeDatosBancoExterno.java</h1><pre class="source lang-java linenums">package grupo2.tpAnual.OrigenesDeDatos;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import grupo2.tpAnual.Banco;
-import grupo2.tpAnual.BancoExterno;
 import grupo2.tpAnual.POI;
 import grupo2.tpAnual.StubBancosExternos;
 
@@ -12,32 +12,25 @@ import java.util.List;
 
 <span class="fc" id="L13">public class OrigenesDeDatosBancoExterno implements OrigenesDeDatos {</span>
 <span class="fc" id="L14">	public ObjectMapper mapper = new ObjectMapper();</span>
-	private BancoExterno bancoExterno;
-<span class="fc" id="L16">	private StubBancosExternos mapaBancoExterno = new StubBancosExternos();</span>
+<span class="fc" id="L15">	private StubBancosExternos mapaBancoExterno = new StubBancosExternos();</span>
 
 	@Override
 	public List&lt;POI&gt; busqueda(String banco) {
-<span class="fc" id="L20">		List&lt;BancoExterno&gt; json = new ArrayList&lt;&gt;();</span>
-<span class="fc" id="L21">		List&lt;POI&gt; listaPOI = new ArrayList&lt;&gt;();</span>
-		// json = this.mapaBancoExterno.busqueda(banco, &quot;&quot;);
-<span class="fc" id="L23">		listaPOI = transformarAPOI(json);</span>
-<span class="fc" id="L24">		return listaPOI;</span>
+<span class="fc" id="L19">		List&lt;POI&gt; listaPOI = new ArrayList&lt;&gt;();</span>
+		try {
+<span class="fc" id="L21">			String json = this.mapaBancoExterno.busqueda(banco, &quot;&quot;);</span>
+<span class="fc" id="L22">			listaPOI = transformarAPOI(json);</span>
+<span class="nc" id="L23">		} catch (Exception e) {</span>
+<span class="nc" id="L24">			e.printStackTrace();</span>
+<span class="fc" id="L25">		}</span>
+<span class="fc" id="L26">		return listaPOI;</span>
 	}
 
-	public List&lt;POI&gt; transformarAPOI(List&lt;BancoExterno&gt; listaBancosExternos) {
-<span class="fc" id="L28">		List&lt;POI&gt; listaPOI = new ArrayList&lt;POI&gt;();</span>
-<span class="pc" id="L29">		listaBancosExternos.forEach(banco -&gt; listaPOI.add(adapter(bancoExterno)));</span>
-<span class="fc" id="L30">		return listaPOI;</span>
-	}
-
-	private POI adapter(BancoExterno bancoExterno) {
-<span class="nc" id="L34">		POI bancoPoi = new Banco();</span>
-		// Aca se setea cada item del banco externo con el poi
-		// saqué la info de aca:
-		// http://www.anieto2k.com/2009/07/06/todo-lo-que-siempre-quisiste-saber-sobre-json/
-		// para poder hacer el adapter. No estoy segura de que esté bien...
-<span class="nc" id="L39">		bancoPoi.setUbicacion(bancoExterno.x, bancoExterno.y);</span>
-<span class="nc" id="L40">		return bancoPoi;</span>
+	public List&lt;POI&gt; transformarAPOI(String bancosExternosEnJson) throws Exception {
+		
+<span class="fc" id="L31">		mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false); //ignora los atributos que no uso</span>
+<span class="fc" id="L32">		List&lt;POI&gt; listaPOI = mapper.readValue(bancosExternosEnJson, mapper.getTypeFactory().constructCollectionType(ArrayList.class, Banco.class));</span>
+<span class="fc" id="L33">		return listaPOI;</span>
 	}
 
 }

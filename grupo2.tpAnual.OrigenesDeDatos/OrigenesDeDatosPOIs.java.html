@@ -7,35 +7,32 @@ import java.util.stream.Collectors;
 import grupo2.tpAnual.POI;
 
 public class OrigenesDeDatosPOIs implements OrigenesDeDatos {
+
 	private List&lt;POI&gt; pois;
 
-<span class="fc" id="L12">	public OrigenesDeDatosPOIs() {</span>
-<span class="fc" id="L13">		this.pois = new ArrayList&lt;POI&gt;();</span>
-<span class="fc" id="L14">	}</span>
+<span class="fc" id="L13">	public OrigenesDeDatosPOIs() {</span>
+<span class="fc" id="L14">		this.pois = new ArrayList&lt;POI&gt;();</span>
+<span class="fc" id="L15">	}</span>
 
 	public List&lt;POI&gt; getPOIs() {
-<span class="fc" id="L17">		return pois;</span>
+<span class="fc" id="L18">		return pois;</span>
 	}
 
 	public void agregarPOI(POI poi) {
-<span class="fc" id="L21">		pois.add(poi);</span>
-<span class="fc" id="L22">	}</span>
+<span class="fc" id="L22">		pois.add(poi);</span>
+<span class="fc" id="L23">	}</span>
 
-	public void darDeBajaPOI(POI nombre) {
-<span class="fc" id="L25">		pois.remove(nombre);</span>
-<span class="fc" id="L26">	}</span>
-
-	public void modificarUnPOI(POI poi, String atributo, String valorAtributo) {
-		// No hacemos nada hastano tener la UI
-
-<span class="nc" id="L31">	}</span>
-
+	public void darDeBajaPOI(Integer numeroVerificador) {
+<span class="fc" id="L26">		this.pois.removeIf(poi -&gt; poi.getNumeroVerificador().equals(numeroVerificador));</span>
+<span class="fc" id="L27">	}</span>
+	
 	@Override
 	public List&lt;POI&gt; busqueda(String txtABuscar) {
-<span class="fc" id="L35">		List&lt;POI&gt; resultados = new ArrayList&lt;POI&gt;();</span>
-<span class="fc" id="L36">		resultados.addAll(this.pois.stream().filter(poi -&gt; poi.verificaPorTexto(txtABuscar)).collect(Collectors.toList()));</span>
-<span class="fc" id="L37">		return resultados;</span>
+<span class="fc" id="L31">		List&lt;POI&gt; resultados = new ArrayList&lt;POI&gt;();</span>
+<span class="fc" id="L32">		resultados.addAll(this.pois.stream().filter(poi -&gt; poi.verificaPorTexto(txtABuscar)).collect(Collectors.toList()));</span>
+<span class="fc" id="L33">		return resultados;</span>
 	}
+
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

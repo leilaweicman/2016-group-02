@@ -1,12 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>BajaDePois.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tpAnual</a> &gt; <a href="index.source.html" class="el_package">grupo2.tpAnual.Procesos</a> &gt; <span class="el_source">BajaDePois.java</span></div><h1>BajaDePois.java</h1><pre class="source lang-java linenums">package grupo2.tpAnual.Procesos;
 
-<span class="nc" id="L3">public class BajaDePois implements AccionesDeProcesos {</span>
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.joda.time.LocalDate;
+
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import grupo2.tpAnual.CGP;
+import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosPOIs;
+import grupo2.tpAnual.Procesos.ManejoDeErroresProcesos.AccionEnCasoDeFallo;
+
+public class BajaDePois extends Proceso {
+
+	RestServiceBajaPois servicioRestBajaPois;
+<span class="fc" id="L18">	public ObjectMapper mapper = new ObjectMapper();</span>
+	
+	public BajaDePois(int hora, LocalDate fecha, AccionEnCasoDeFallo configuracion, OrigenesDeDatosPOIs origenesDeDatos) {
+<span class="fc" id="L21">		super(hora, fecha, configuracion,origenesDeDatos);</span>
+<span class="fc" id="L22">		this.servicioRestBajaPois = new RestServiceBajaPois();</span>
+<span class="fc" id="L23">	}</span>
+
+	public List&lt;Integer&gt; getNumerosIdentificadoresDePois() throws Exception {
+		// obtengo los datos del servicio rest en formato json
+<span class="fc" id="L27">		String json = this.servicioRestBajaPois.getPOIs();</span>
+<span class="fc" id="L28">		mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false); //ignora los atributos que no uso</span>
+<span class="fc" id="L29">		List&lt;CGP&gt; pois = mapper.readValue(json, mapper.getTypeFactory().constructCollectionType(ArrayList.class, CGP.class));</span>
+
+		// agrego el numero de identificador del poi a la lista
+<span class="fc" id="L32">		List&lt;Integer&gt; numerosID = new ArrayList&lt;&gt;();</span>
+
+<span class="fc" id="L34">		pois.forEach(poi -&gt;numerosID.add(poi.getNumeroVerificador()));</span>
+
+<span class="fc" id="L36">		return numerosID;</span>
+	}
 
 	@Override
-	public void ejecutar() {
-		// TODO Auto-generated method stub
-		
-<span class="nc" id="L9">	}</span>
+	public void ejecutarProceso(LogEjecucionProcesos log) {
+<span class="fc" id="L41">		int cantidadElementosAfectados = 0;</span>
+		List&lt;Integer&gt; poisABorrar;
+		try {
+<span class="fc" id="L44">			poisABorrar = this.getNumerosIdentificadoresDePois();</span>
+<span class="pc bpc" id="L45" title="1 of 2 branches missed.">			if (poisABorrar != null) {</span>
+<span class="fc bfc" id="L46" title="All 2 branches covered.">				for (Integer pid : poisABorrar) {</span>
+<span class="fc" id="L47">					this.origenesDeDatos.darDeBajaPOI(pid);</span>
+<span class="fc" id="L48">					cantidadElementosAfectados = cantidadElementosAfectados + 1;</span>
+<span class="fc" id="L49">				}</span>
+<span class="fc" id="L50">				log.loguearProceso(new DatosParaLogEjecucionProcesos(this.getFechaEjecucion(), this.getHoraEjecucion(),</span>
+						true, cantidadElementosAfectados));
+
+			}
+<span class="nc" id="L54">		} catch (Exception e) {</span>
+<span class="nc" id="L55">			e.printStackTrace();</span>
+<span class="fc" id="L56">		}</span>
+<span class="fc" id="L57">		log.loguearProceso(new DatosParaLogEjecucionProcesos(this.getFechaEjecucion(), this.getHoraEjecucion(), false,</span>
+				cantidadElementosAfectados));
+<span class="fc" id="L59">	}</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>
