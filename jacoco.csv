@@ -13,7 +13,7 @@ tpAnual,grupo2.tpAnual.Procesos,DatosParaLogEjecucionProcesos,0,15,0,0,0,6,0,1,0
 tpAnual,grupo2.tpAnual.Procesos,AsignacionDeAccionesParaUsuarios,8,0,0,0,3,0,2,0,2,0
 tpAnual,grupo2.tpAnual.Procesos,LogEjecucionProcesos,0,17,0,0,0,6,0,3,0,3
 tpAnual,grupo2.tpAnual.Procesos,Proceso,4,21,0,0,2,8,1,3,1,3
-tpAnual,grupo2.tpAnual.Procesos,BajaDePois,3,105,1,3,2,21,1,5,0,4
+tpAnual,grupo2.tpAnual.Procesos,BajaDePois,15,94,1,3,3,21,1,5,0,4
 tpAnual,grupo2.tpAnual.Observers,EnviarMailBusqueda,0,20,0,2,0,7,0,3,0,2
 tpAnual,grupo2.tpAnual.Observers,NotificarDatosBusqueda,0,16,0,0,0,6,0,3,0,3
 tpAnual,grupo2.tpAnual,BancoExterno,15,0,0,0,6,0,3,0,3,0
