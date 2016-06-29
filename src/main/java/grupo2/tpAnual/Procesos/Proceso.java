@@ -8,7 +8,7 @@ import grupo2.tpAnual.Procesos.ManejoDeErroresProcesos.AccionEnCasoDeFallo;
 public abstract class Proceso {
 	private int horaEjecucion;
 	private LocalDate fechaEjecucion; 
-	private AccionEnCasoDeFallo configuracionFallo;
+	protected AccionEnCasoDeFallo configuracionFallo;
 	protected OrigenesDeDatosPOIs origenesDeDatos;
 	
 	public Proceso(int hora, LocalDate fecha, AccionEnCasoDeFallo configuracion, OrigenesDeDatosPOIs origenesDeDatos){

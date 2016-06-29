@@ -24,7 +24,7 @@ public class MasterProcesos {
 		
 	}
 	
-	public void ejecutarProceso(Proceso proceso){
+	public void ejecutarProcesos(Proceso proceso){//no se pasa por parametro, lo tiene que ejecutar desde su lista
 		//hacer para que ejecute lo q tiene q ejecutar en horario
 		proceso.ejecutarProceso(this.log); //le paso el log por parametro porque quiero que me quede todo aca
 	}

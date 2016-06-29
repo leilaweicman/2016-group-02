@@ -43,7 +43,7 @@ public class LogEjecucionProcesosTest {
 	@Test
 	public void ejecucionDeProcesoConLogTest(){
 		proceso.ejecutarProceso(log);
-		Assert.assertEquals(log.obtenerLog().size(), 2);
+		Assert.assertEquals(log.obtenerLog().size(), 1);
 	}
 
 }
