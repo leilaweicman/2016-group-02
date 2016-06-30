@@ -32,7 +32,7 @@ public class OrigenesDeDatosPOIsTest {
 
 		this.origenesPOI = new OrigenesDeDatosPOIs();
 		
-		this.kosiuko = new Comercio(listaRangos);
+		this.kosiuko = new Comercio(listaRangos, "");
 		this.kosiuko.setNumeroVerificador(1444);
 		this.bancoPiano = new Banco();
 		this.bancoPiano.setNumeroVerificador(145);

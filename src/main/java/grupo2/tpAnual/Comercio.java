@@ -7,15 +7,18 @@ import java.util.*;
 
 public class Comercio extends POI {
 	private Rubro rubro;
-
 	private List<Rango> rangoDisponibilidad = new ArrayList<Rango>();
-
 	private Disponibilidad disponibilidad;
+	private String nombre;
 
-	public Comercio(List<Rango> rango) {
-
+	public Comercio(List<Rango> rango, String nom) {
+		nombre = nom;
 		this.rangoDisponibilidad = rango;
 		disponibilidad = new Disponibilidad(this.rangoDisponibilidad);
+	}
+	
+	public String getNombre(){
+		return nombre;
 	}
 
 	public List<Rango> getRango() {

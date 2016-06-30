@@ -42,6 +42,10 @@ public abstract class POI {
 	public void addPalabraClave(String pc) {
 		this.palabraClave.add(pc);
 	}
+	
+	public void setPalabrasClaves(List<String> palabras){
+		this.palabraClave = palabras;
+	}
 
 	public List<String> getPalabraClave() {
 		return palabraClave;

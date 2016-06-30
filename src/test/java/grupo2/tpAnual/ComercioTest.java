@@ -38,7 +38,7 @@ public class ComercioTest {
 
 		listaRangos = Arrays.asList(unRango, otroRango, rango);
 
-		comercio = new Comercio(listaRangos);
+		comercio = new Comercio(listaRangos, "");
 	}
 
 	@Test

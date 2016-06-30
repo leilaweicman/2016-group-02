@@ -64,7 +64,7 @@ public class POItest {
 		rango.setHoraDesde(LocalTime.of(15, 0, 0));
 		rango.setHoraHasta(LocalTime.of(18, 30, 0));
 		List<Rango> listaRangos = Arrays.asList(rango);
-		this.zara = new Comercio(listaRangos);
+		this.zara = new Comercio(listaRangos, "");
 		this.ropa = new Rubro();
 		this.zara.setRubro(ropa);
 		this.ropa.setRadioCercania(0.3);
