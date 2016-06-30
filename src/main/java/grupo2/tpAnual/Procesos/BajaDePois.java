@@ -25,12 +25,8 @@ public class BajaDePois extends Proceso {
 	public List<Integer> getNumerosIdentificadoresDePois() throws Exception {
 		// obtengo los datos del servicio rest en formato json
 		String json = this.servicioRestBajaPois.getPOIs();
-		mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false); // ignora
-																					// los
-																					// atributos
-																					// que
-																					// no
-																					// uso
+		mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false); 
+		
 		List<CGP> pois = mapper.readValue(json,
 				mapper.getTypeFactory().constructCollectionType(ArrayList.class, CGP.class));
 

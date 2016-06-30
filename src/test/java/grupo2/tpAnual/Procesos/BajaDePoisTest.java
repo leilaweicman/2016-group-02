@@ -1,5 +1,8 @@
-package grupo2.tpAnual;
+package grupo2.tpAnual.Procesos;
 
+import grupo2.tpAnual.Banco;
+import grupo2.tpAnual.CGP;
+import grupo2.tpAnual.Parada;
 import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosPOIs;
 import grupo2.tpAnual.Procesos.BajaDePois;
 import grupo2.tpAnual.Procesos.LogEjecucionProcesos;

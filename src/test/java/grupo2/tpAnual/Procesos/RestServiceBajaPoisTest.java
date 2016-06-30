@@ -1,4 +1,4 @@
-package grupo2.tpAnual;
+package grupo2.tpAnual.Procesos;
 
 import grupo2.tpAnual.Procesos.RestServiceBajaPois;
 

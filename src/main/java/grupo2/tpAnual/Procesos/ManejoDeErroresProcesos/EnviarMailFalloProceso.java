@@ -1,11 +1,15 @@
 package grupo2.tpAnual.Procesos.ManejoDeErroresProcesos;
 
-public class EnviarMailFalloProceso implements AccionEnCasoDeFallo{
+import grupo2.tpAnual.MailSender;
 
+public class EnviarMailFalloProceso implements AccionEnCasoDeFallo{
+	
+	private MailSender mailSender;
+	private String mailAdministrador;
+	
 	@Override
 	public void ejecutarConfiguracionPorFallo() {
-		// enviar mail
-		System.out.print("Se envio el mail correctamente");
+		mailSender.send(mailAdministrador, "Fallo al ejecutar un proceso", "Se ha producido un error al ejecutar el proceso");
 	}
 	
 	
