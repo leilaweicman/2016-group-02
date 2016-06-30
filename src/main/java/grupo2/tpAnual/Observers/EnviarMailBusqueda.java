@@ -1,5 +1,7 @@
 package grupo2.tpAnual.Observers;
 
+import org.mockito.Mockito;
+
 import grupo2.tpAnual.DatosDeBusqueda;
 import grupo2.tpAnual.MailSender;
 
@@ -10,6 +12,7 @@ public class EnviarMailBusqueda implements ObserverBusqueda {
 	
 	public EnviarMailBusqueda(long tiempoMaximoDeEjecucion){
 		this.tiempoMaximo = tiempoMaximoDeEjecucion;
+		this.mailSender = Mockito.mock(MailSender.class);
 	}
 	@Override
 	public void notificarBusqueda(DatosDeBusqueda datosParaObserver) {
