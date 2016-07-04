@@ -14,7 +14,7 @@ import grupo2.tpAnual.Procesos.ManejoDeErroresProcesos.AccionEnCasoDeFallo;
 
 public class ActualizacionLocalesComerciales extends Proceso {
 	//HAY QUE VER DE DONDE OBTENGO EL ORIGEN
-	private String origen = "C:\\Users\\pc hogar.pc\\Desktop\\prueba.txt";
+	private String origen = "src\\test\\java\\grupo2\\tpAnual\\Procesos\\prueba.txt";
 	
 	public ActualizacionLocalesComerciales(int hora, LocalDate fecha, AccionEnCasoDeFallo configuracion, OrigenesDeDatosPOIs origenesDeDatos) {
 		super(hora, fecha, configuracion, origenesDeDatos);
