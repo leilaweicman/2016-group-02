@@ -24,7 +24,7 @@ public class AsignacionDeAccionesParaUsuarios extends Proceso {
 	
 	public List<Usuario> getUsuariosSegunCriterio(){
 		listaUsuarios=new ArrayList<>();
-		listaUsuarios.addAll(this.criterio.dameUsuarios(this.deComuna));
+		this.listaUsuarios.addAll(this.criterio.dameUsuarios(this.deComuna));
 		return listaUsuarios;
 	}
 	
@@ -43,14 +43,38 @@ public class AsignacionDeAccionesParaUsuarios extends Proceso {
 	public List<ObserverBusqueda> getAccionesParaAgregarAUsuario(){
 		return this.accionesParaAgregarAUsuario;
 	}
-	
+	int cantidadElementosAfectados=0;
 	@Override
 	public void ejecutarProceso() {
+		try{
+			
+			if(listaUsuarios != null){
+							
+				for(Usuario usuario : listaUsuarios){
+				
+					if(accionesParaAgregarAUsuario != null){
+					
+						usuario.agregarObserversBusqueda(this.accionesParaAgregarAUsuario);
+					}
+			
+					if(accionesParaSacarAUsuario != null){
+						usuario.quitarObserversBusqueda(this.accionesParaSacarAUsuario);
+					}
+					cantidadElementosAfectados++;
+				}
+			}
 		
-		this.listaUsuarios.forEach(usuario -> usuario.agregarObserversBusqueda(this.accionesParaAgregarAUsuario));
+		this.setEstadoProceso(true);
 		
-		this.listaUsuarios.forEach(usuario -> usuario.quitarObserversBusqueda(this.accionesParaSacarAUsuario));
-	
+		}catch (Exception e){
+		this.configuracionesFallo.forEach(configuracion -> configuracion.ejecutarConfiguracionPorFallo(this));
+		
+		this.setEstadoProceso(false);
+		
+		}
+
+	this.log.loguearProceso(new DatosParaLogEjecucionProcesos(this.getFechaEjecucion(), this.getHoraEjecucion(),
+			this.ejecucionExitosa, cantidadElementosAfectados));
 	}
 	
 }

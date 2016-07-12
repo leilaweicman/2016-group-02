@@ -12,10 +12,12 @@ import org.junit.Test;
 
 import grupo2.tpAnual.Observers.EnviarMailBusqueda;
 import grupo2.tpAnual.Observers.NotificarDatosBusqueda;
+import grupo2.tpAnual.Observers.ObserverBusqueda;
 import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatos;
 import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosBancoExterno;
 import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosCentroDTO;
 import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosPOIs;
+	
 
 public class MapaTest {
 	private Usuario juan;
@@ -29,7 +31,8 @@ public class MapaTest {
 	private OrigenesDeDatosBancoExterno datosBancosExternos;
 	private ByteArrayOutputStream outContent;
 	private List<OrigenesDeDatos> listaDeOrigenes;
-
+	private List<ObserverBusqueda> listaMail;
+	private List<ObserverBusqueda> lista2;
 	@Before
 	public void init() {
 		this.listaDeOrigenes = new ArrayList<OrigenesDeDatos>();
@@ -39,7 +42,7 @@ public class MapaTest {
 		listaDeOrigenes = Arrays.asList(datosCentrosDTOs, datosBancosExternos, origenesDeDatosPois);
 		
 		this.juan=new Usuario();
-		
+			
 		this.lasHeras = new Mapa(listaDeOrigenes);
 		this.lasHeras.setUsuario(juan);
 		
@@ -61,6 +64,12 @@ public class MapaTest {
 
 		this.observerRegistro = new NotificarDatosBusqueda();
 		this.observerMail = new EnviarMailBusqueda(2);
+		
+		listaMail=new ArrayList<>();
+		lista2= new ArrayList<>();
+		listaMail.add(observerMail);
+		lista2.add(observerMail);
+		lista2.add(observerRegistro);
 
 		this.outContent = new ByteArrayOutputStream();
 	}
@@ -104,7 +113,7 @@ public class MapaTest {
 
 	@Test
 	public void testBusquedaPorElUsuarioConObservers() {
-		juan.agregarObserverBusqueda(observerMail);
+		juan.agregarObserversBusqueda(listaMail);
 		System.setOut(new PrintStream(outContent));
 		
 		lasHeras.busquedaRealizadaPorElUsuario("plazoFijo");
@@ -113,8 +122,7 @@ public class MapaTest {
 
 	@Test
 	public void testBusquedaPorElUsuarioIntegrador_assertObservers() {
-		juan.agregarObserverBusqueda(observerMail);
-		juan.agregarObserverBusqueda(observerRegistro);
+		juan.agregarObserversBusqueda(lista2);
 		System.setOut(new PrintStream(outContent));
 		lasHeras.busquedaRealizadaPorElUsuario("plazoFijo");
 		Assert.assertEquals("La busqueda se ejecuto correctamente", outContent.toString());
@@ -122,8 +130,7 @@ public class MapaTest {
 	
 	@Test
 	public void testBusquedaPorElUsuarioIntegrador_assertOrigenesDatos() {
-		juan.agregarObserverBusqueda(observerMail);
-		juan.agregarObserverBusqueda(observerRegistro);
+		juan.agregarObserversBusqueda(lista2);
 		System.setOut(new PrintStream(outContent));
 		lasHeras.busquedaRealizadaPorElUsuario("plazoFijo");
 		

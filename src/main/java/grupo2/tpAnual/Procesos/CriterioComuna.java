@@ -20,5 +20,10 @@ public class CriterioComuna implements Criterio{
 				filter(usuario -> usuario.comuna == comuna).collect(Collectors.toList()));
 		return lista;
 	}
+	
+	public void setUsuarios(Usuario usuario){
+		this.repositorioUsuarios.setUsuarios(usuario);
+		
+	}
 
 }

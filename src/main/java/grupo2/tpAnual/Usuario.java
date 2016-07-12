@@ -21,13 +21,16 @@ public class Usuario {
 		return this.accionesBusqueda;
 }
 	
-	public void agregarObserverBusqueda(ObserverBusqueda observer) {
+	/*public void agregarObserverBusqueda(ObserverBusqueda observer) {
 		this.accionesBusqueda.add(observer);
-	}//este no va, pero hy que modificar los tests
+	}//este no va, pero hy que modificar los tests*/
 	
 	public void agregarObserversBusqueda(List<ObserverBusqueda> observers) {
 			this.accionesBusqueda.addAll(observers);
 		}
+	public List<ObserverBusqueda> getAccionesBusqueda(){
+		return accionesBusqueda;
+	}
 
 		public void quitarObserversBusqueda(List<ObserverBusqueda> observers) {
 			this.accionesBusqueda.removeAll(observers);

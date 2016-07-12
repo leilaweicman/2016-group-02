@@ -1,12 +1,13 @@
 package grupo2.tpAnual;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserRepository {
-	public List<Usuario> usuarios;
+	public List<Usuario> usuarios=new ArrayList<>();
 	
 	public void setUsuarios(Usuario usuario){
-		usuarios.add(usuario);
+		this.usuarios.add(usuario);
 		
 	}
 	

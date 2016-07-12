@@ -15,5 +15,8 @@ public class CriterioTodos implements Criterio{
 		return this.repositorioUsuarios.getUsuarios();
 		
 	}
-
+	public void setUsuarios(Usuario usuario){
+		this.repositorioUsuarios.setUsuarios(usuario);
+		
+	}
 }

@@ -24,8 +24,8 @@ public abstract class Proceso {
 		return configuracionesFallo;
 	}
 
-	public void setConfiguracionesFallo(List<AccionEnCasoDeFallo> configuracionesFallo) {
-		this.configuracionesFallo = configuracionesFallo;
+	public void setConfiguracionesFallo(AccionEnCasoDeFallo configuracionFallo) {
+		this.configuracionesFallo.add(configuracionFallo);
 	}
 
 	public Criterio getCriterio() {
