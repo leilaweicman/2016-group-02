@@ -8,17 +8,22 @@ import org.junit.Test;
 import grupo2.tpAnual.Comercio;
 import grupo2.tpAnual.Rango;
 import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosPOIs;
+import grupo2.tpAnual.Procesos.ManejoDeErroresProcesos.AccionEnCasoDeFallo;
+import grupo2.tpAnual.Procesos.ManejoDeErroresProcesos.EnviarMailFalloProceso;
 
 import static org.junit.Assert.*;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class ActualizacionLocalesComercialesTest {
 	private OrigenesDeDatosPOIs origenesDeDatos;
-	private LogEjecucionProcesos log;
+	//private LogEjecucionProcesos log;
 	private ActualizacionLocalesComerciales proceso;
+	public EnviarMailFalloProceso config1;	
+	
 	@Before
 	public void init() {
 		origenesDeDatos = new OrigenesDeDatosPOIs();
@@ -37,13 +42,16 @@ public class ActualizacionLocalesComercialesTest {
 		rango.setDia(3);
 		rango.setHoraDesde(LocalTime.of(15, 0, 0));
 		rango.setHoraHasta(LocalTime.of(18, 30, 0));
-
+		
+		List<AccionEnCasoDeFallo> configuraciones= new ArrayList<>();
+		configuraciones.add(config1);
 		List<Rango>  listaRangos = Arrays.asList(unRango, otroRango, rango);
-
+		
+		
 		Comercio comercio = new Comercio(listaRangos, "Carrousel");
 		origenesDeDatos.agregarPOI(comercio);
-		log = new LogEjecucionProcesos();
-		proceso = new ActualizacionLocalesComerciales(14, new LocalDate(),null,origenesDeDatos);
+		proceso = new ActualizacionLocalesComerciales(14, new LocalDate(),configuraciones,origenesDeDatos);
+		
 	}
 	
 	//@Test
@@ -54,7 +62,7 @@ public class ActualizacionLocalesComercialesTest {
 	
 	@Test
 	public void ejecutarTest() {
-		proceso.ejecutarProceso(log);
+		proceso.ejecutarProceso();
 		Comercio com = (Comercio)origenesDeDatos.getPOIs().iterator().next() ;
 		Assert.assertEquals(com.getPalabraClave().size(), 4);
 	}

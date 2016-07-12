@@ -7,10 +7,12 @@ public class DatosParaLogEjecucionProcesos {
 	private int hora;
 	private int cantidadElementosAfectados;
 	private boolean ejecucionExitosa;
+	
 	public DatosParaLogEjecucionProcesos(LocalDate fecha, int hora, boolean estadoEjecucion, int cantidadElementosAfectados){
 		this.fecha = fecha;
 		this.cantidadElementosAfectados = cantidadElementosAfectados;
 		this.hora = hora;
-		this.ejecucionExitosa = estadoEjecucion;
+		this.ejecucionExitosa=estadoEjecucion;
 	}
+
 }

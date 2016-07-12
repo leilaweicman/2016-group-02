@@ -16,13 +16,13 @@ public class ActualizacionLocalesComerciales extends Proceso {
 	//HAY QUE VER DE DONDE OBTENGO EL ORIGEN
 	private String origen = "src\\test\\java\\grupo2\\tpAnual\\Procesos\\prueba.txt";
 	
-	public ActualizacionLocalesComerciales(int hora, LocalDate fecha, AccionEnCasoDeFallo configuracion, OrigenesDeDatosPOIs origenesDeDatos) {
-		super(hora, fecha, configuracion, origenesDeDatos);
+	public ActualizacionLocalesComerciales(int hora, LocalDate fecha, List<AccionEnCasoDeFallo> configuraciones, OrigenesDeDatosPOIs origenesDeDatos) {
+		super(hora, fecha, configuraciones, origenesDeDatos);
 		// TODO Auto-generated constructor stub
 	}
 
 	@Override
-	public void ejecutarProceso(LogEjecucionProcesos log) {
+	public void ejecutarProceso() {
 		//WebResource.Builder builder = this.client.resource(origen).accept(MediaType.TEXT_PLAIN);
 		//String response = builder.get(String.class);
 		

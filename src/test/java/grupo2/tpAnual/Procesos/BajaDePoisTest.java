@@ -6,11 +6,16 @@ import grupo2.tpAnual.Parada;
 import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosPOIs;
 import grupo2.tpAnual.Procesos.BajaDePois;
 import grupo2.tpAnual.Procesos.LogEjecucionProcesos;
+import grupo2.tpAnual.Procesos.ManejoDeErroresProcesos.AccionEnCasoDeFallo;
+import grupo2.tpAnual.Procesos.ManejoDeErroresProcesos.EnviarMailFalloProceso;
 
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import org.joda.time.LocalDate;
 
@@ -18,11 +23,11 @@ public class BajaDePoisTest {
 
 	private BajaDePois procesoBajaDePois;
 	private OrigenesDeDatosPOIs origenesDeDatos;
-	private LogEjecucionProcesos log;
+	//private LogEjecucionProcesos log;
 	private Banco banco;
 	private Parada parada;
 	private CGP cgp;
-
+	public EnviarMailFalloProceso config1;
 	@Before
 	public void init() {
 		origenesDeDatos = new OrigenesDeDatosPOIs();
@@ -35,8 +40,9 @@ public class BajaDePoisTest {
 		origenesDeDatos.agregarPOI(banco);
 		origenesDeDatos.agregarPOI(cgp);
 		origenesDeDatos.agregarPOI(parada);
-		log = new LogEjecucionProcesos();
-		procesoBajaDePois = new BajaDePois(17, new LocalDate(),null,origenesDeDatos);
+		List<AccionEnCasoDeFallo> configuraciones= new ArrayList<>();
+		configuraciones.add(config1);
+		procesoBajaDePois = new BajaDePois(17, new LocalDate(),configuraciones,origenesDeDatos);
 	}
 
 	@Test
@@ -51,7 +57,7 @@ public class BajaDePoisTest {
 	
 		@Test
 	public void ejecutarTest() {
-		procesoBajaDePois.ejecutarProceso(log);
+		procesoBajaDePois.ejecutarProceso();
 		Assert.assertEquals(origenesDeDatos.getPOIs().size(),1);
 	}
 }

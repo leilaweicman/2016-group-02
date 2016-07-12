@@ -11,14 +11,15 @@ import grupo2.tpAnual.CGP;
 import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosPOIs;
 import grupo2.tpAnual.Procesos.ManejoDeErroresProcesos.AccionEnCasoDeFallo;
 
+
 public class BajaDePois extends Proceso {
 
 	RestServiceBajaPois servicioRestBajaPois;
 	public ObjectMapper mapper = new ObjectMapper();
 
-	public BajaDePois(int hora, LocalDate fecha, AccionEnCasoDeFallo configuracion,
+	public BajaDePois(int hora, LocalDate fecha, List<AccionEnCasoDeFallo> configuraciones,
 			OrigenesDeDatosPOIs origenesDeDatos) {
-		super(hora, fecha, configuracion, origenesDeDatos);
+		super(hora, fecha, configuraciones, origenesDeDatos);
 		this.servicioRestBajaPois = new RestServiceBajaPois();
 	}
 
@@ -39,7 +40,7 @@ public class BajaDePois extends Proceso {
 	}
 
 	@Override
-	public void ejecutarProceso(LogEjecucionProcesos log) {
+	public void ejecutarProceso() {
 		int cantidadElementosAfectados = 0;
 		List<Integer> poisABorrar;
 		try {
@@ -49,16 +50,17 @@ public class BajaDePois extends Proceso {
 					this.origenesDeDatos.darDeBajaPOI(pid);
 					cantidadElementosAfectados = cantidadElementosAfectados + 1;
 				}
-				log.loguearProceso(new DatosParaLogEjecucionProcesos(this.getFechaEjecucion(), this.getHoraEjecucion(),
-						true, cantidadElementosAfectados));
-
+				
+				this.setEstadoProceso(true);
+				
 			}
 		} catch (Exception e) {
-			this.configuracionFallo.ejecutarConfiguracionPorFallo();
-			log.loguearProceso(new DatosParaLogEjecucionProcesos(this.getFechaEjecucion(), this.getHoraEjecucion(),
-					false, cantidadElementosAfectados));
+			this.configuracionesFallo.forEach(configuracion -> configuracion.ejecutarConfiguracionPorFallo(this));
+			this.setEstadoProceso(false);			
 		}
 
+		this.log.loguearProceso(new DatosParaLogEjecucionProcesos(this.getFechaEjecucion(), this.getHoraEjecucion(),
+				this.ejecucionExitosa, cantidadElementosAfectados));
 	}
 
 }
