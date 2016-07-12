@@ -18,6 +18,7 @@ import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosCentroDTO;
 import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosPOIs;
 
 public class MapaTest {
+	private Usuario juan;
 	private Mapa lasHeras;
 	private POI santander;
 	private CGP rentas;
@@ -37,7 +38,10 @@ public class MapaTest {
 		this.origenesDeDatosPois = new OrigenesDeDatosPOIs();
 		listaDeOrigenes = Arrays.asList(datosCentrosDTOs, datosBancosExternos, origenesDeDatosPois);
 		
+		this.juan=new Usuario();
+		
 		this.lasHeras = new Mapa(listaDeOrigenes);
+		this.lasHeras.setUsuario(juan);
 		
 		this.santander = new Banco();
 		this.santander.addPalabraClave("plazoFijo");
@@ -100,7 +104,7 @@ public class MapaTest {
 
 	@Test
 	public void testBusquedaPorElUsuarioConObservers() {
-		lasHeras.agregarObserverBusqueda(observerMail);
+		juan.agregarObserverBusqueda(observerMail);
 		System.setOut(new PrintStream(outContent));
 		
 		lasHeras.busquedaRealizadaPorElUsuario("plazoFijo");
@@ -109,8 +113,8 @@ public class MapaTest {
 
 	@Test
 	public void testBusquedaPorElUsuarioIntegrador_assertObservers() {
-		lasHeras.agregarObserverBusqueda(observerMail);
-		lasHeras.agregarObserverBusqueda(observerRegistro);
+		juan.agregarObserverBusqueda(observerMail);
+		juan.agregarObserverBusqueda(observerRegistro);
 		System.setOut(new PrintStream(outContent));
 		lasHeras.busquedaRealizadaPorElUsuario("plazoFijo");
 		Assert.assertEquals("La busqueda se ejecuto correctamente", outContent.toString());
@@ -118,8 +122,8 @@ public class MapaTest {
 	
 	@Test
 	public void testBusquedaPorElUsuarioIntegrador_assertOrigenesDatos() {
-		lasHeras.agregarObserverBusqueda(observerMail);
-		lasHeras.agregarObserverBusqueda(observerRegistro);
+		juan.agregarObserverBusqueda(observerMail);
+		juan.agregarObserverBusqueda(observerRegistro);
 		System.setOut(new PrintStream(outContent));
 		lasHeras.busquedaRealizadaPorElUsuario("plazoFijo");
 		

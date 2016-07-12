@@ -11,11 +11,13 @@ public class Mapa {
 	private List<OrigenesDeDatos> origenesDeDatos;
 	private List<ObserverBusqueda> observersBusqueda;
 	private String nombre;
-
+	private Usuario usuario;
+	
 	public Mapa(List<OrigenesDeDatos> listaDeOrigenes) {
 		observersBusqueda = new ArrayList<ObserverBusqueda>();
 		origenesDeDatos = new ArrayList<OrigenesDeDatos>();
 		listaDeOrigenes.forEach(origen -> this.agregarOrigenesDeDatos(origen));
+		
 	}
 	// desacoplo la lista de pois de mapa. Ahora el conjunto de pois pasa a ser
 	// otro origen de dato mas
@@ -32,7 +34,9 @@ public class Mapa {
 	public List<POI> busquedaRealizadaPorElUsuario(String txtABuscar) {
 		long tiempoInicio = System.currentTimeMillis();
 		List<POI> result = new ArrayList<POI>();
-
+		
+		this.observersBusqueda.addAll(usuario.enviarObservers());
+		
 		// busco en los servicios externos y mis pois (que forma parte de un
 		// origen de dato)
 		this.origenesDeDatos.forEach(integracion -> result.addAll(integracion.busqueda(txtABuscar)));
@@ -49,14 +53,7 @@ public class Mapa {
 		return result;
 	}
 
-	public void agregarObserverBusqueda(ObserverBusqueda observer) {
-		this.observersBusqueda.add(observer);
-	}
-
-	public void quitarObserverBusqueda(ObserverBusqueda observer) {
-		this.observersBusqueda.remove(observer);
-	}
-
+	
 	public List<OrigenesDeDatos> getOrigenesDeDatos() {
 		return this.origenesDeDatos;
 	}
@@ -67,5 +64,9 @@ public class Mapa {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+	
+	public void setUsuario(Usuario user){
+		this.usuario=user;
 	}
 }
