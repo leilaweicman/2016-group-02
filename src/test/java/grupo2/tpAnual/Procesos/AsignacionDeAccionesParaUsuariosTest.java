@@ -39,6 +39,7 @@ public class AsignacionDeAccionesParaUsuariosTest {
 	private Point vertice4;
 	private CriterioTodos todos;
 	private CriterioComuna porComuna;
+	private CriterioSeleccionFija picky;
 	
 	private NotificarDatosBusqueda observerRegistro;
 	
@@ -60,6 +61,7 @@ public class AsignacionDeAccionesParaUsuariosTest {
 		ana=new Usuario();
 		todos=new CriterioTodos();
 		porComuna= new CriterioComuna();
+		picky= new CriterioSeleccionFija();
 		
 		
 		this.vertice1 = Point.and(-34.668075, -58.380060);
@@ -81,7 +83,9 @@ public class AsignacionDeAccionesParaUsuariosTest {
 				
 		this.porComuna.setRepositorioUsuarios(repo);
 		this.todos.setRepositorioUsuarios(repo);
+		this.picky.setRepositorioUsuarios(repo);
 		
+		this.picky.agregarUsuario(juan);
 		
 		observerRegistro= new NotificarDatosBusqueda();
 		this.proceso3.setAccionesParaAgregarAUsuario(observerRegistro);
@@ -110,7 +114,8 @@ public class AsignacionDeAccionesParaUsuariosTest {
 	
 	@Test
 	public void testEjecutarProceso3(){
-		this.proceso3.setListaUsuariosAdmin(juan);
+		this.proceso3.setCriterio(picky);		
+		proceso3.getUsuariosSegunCriterio();
 		proceso3.ejecutarProceso();
 		Assert.assertEquals(juan.getAccionesBusqueda().size(), 1);
 		Assert.assertEquals(ana.getAccionesBusqueda().size(), 0);

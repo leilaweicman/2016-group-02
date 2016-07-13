@@ -2,16 +2,13 @@ package grupo2.tpAnual.Procesos;
 
 import java.util.List;
 import java.util.Timer;
-import java.util.TimerTask;
 
-import org.joda.time.LocalDate;
-
-public class MasterProcesos {
+public class Cron {
 	private List<Proceso> procesos;
 	private Timer timer;
 
 	
-	public MasterProcesos(){
+	public Cron(){
 	    this.timer = new Timer();
 	}
 	
@@ -26,5 +23,4 @@ public class MasterProcesos {
 		//hacer para que ejecute lo q tiene q ejecutar en horario
 		proceso.ejecutarProceso(); 
 	}
-	
 }

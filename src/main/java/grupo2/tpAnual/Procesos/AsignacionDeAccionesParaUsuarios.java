@@ -25,8 +25,7 @@ public class AsignacionDeAccionesParaUsuarios extends Proceso {
 	public List<ObserverBusqueda> accionesParaAgregarAUsuario=new ArrayList<>();
 	public List<ObserverBusqueda> accionesParaSacarAUsuario=new ArrayList<>();
 	
-	public List<Usuario> getUsuariosSegunCriterio(){
-	
+	public List<Usuario> getUsuariosSegunCriterio(){	
 		
 		this.listaUsuarios.addAll(this.criterio.dameUsuarios(this.deComuna));
 		
