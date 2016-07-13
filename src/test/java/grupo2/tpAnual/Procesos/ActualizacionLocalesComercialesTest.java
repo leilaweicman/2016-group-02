@@ -23,13 +23,17 @@ public class ActualizacionLocalesComercialesTest {
 	//private LogEjecucionProcesos log;
 	private ActualizacionLocalesComerciales proceso;
 	public EnviarMailFalloProceso config1;	
+	List<AccionEnCasoDeFallo> configuraciones;
+	Rango unRango;
+	Rango otroRango;
+	Rango rango;
 	
 	@Before
 	public void init() {
 		origenesDeDatos = new OrigenesDeDatosPOIs();
-		Rango unRango = new Rango();
-		Rango otroRango = new Rango();
-		Rango rango = new Rango();
+		unRango = new Rango();
+		otroRango = new Rango();
+		rango = new Rango();
 		
 		unRango.setDia(1);
 		unRango.setHoraDesde(LocalTime.of(9, 0, 0));
@@ -43,14 +47,17 @@ public class ActualizacionLocalesComercialesTest {
 		rango.setHoraDesde(LocalTime.of(15, 0, 0));
 		rango.setHoraHasta(LocalTime.of(18, 30, 0));
 		
-		List<AccionEnCasoDeFallo> configuraciones= new ArrayList<>();
+		configuraciones= new ArrayList<>();
+		config1 = new EnviarMailFalloProceso ();
 		configuraciones.add(config1);
 		List<Rango>  listaRangos = Arrays.asList(unRango, otroRango, rango);
 		
 		
 		Comercio comercio = new Comercio(listaRangos, "Carrousel");
 		origenesDeDatos.agregarPOI(comercio);
+
 		proceso = new ActualizacionLocalesComerciales(14, new LocalDate(),configuraciones,origenesDeDatos);
+		
 		
 	}
 	
@@ -61,7 +68,7 @@ public class ActualizacionLocalesComercialesTest {
 	//}
 	
 	@Test
-	public void ejecutarTest() {
+	public void ejecutarProcesoTest() {
 		proceso.ejecutarProceso();
 		Comercio com = (Comercio)origenesDeDatos.getPOIs().iterator().next() ;
 		Assert.assertEquals(com.getPalabraClave().size(), 4);

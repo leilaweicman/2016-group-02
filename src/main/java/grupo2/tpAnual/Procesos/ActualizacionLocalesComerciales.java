@@ -14,18 +14,15 @@ import grupo2.tpAnual.Procesos.ManejoDeErroresProcesos.AccionEnCasoDeFallo;
 
 public class ActualizacionLocalesComerciales extends Proceso {
 	//HAY QUE VER DE DONDE OBTENGO EL ORIGEN
-	private String origen = "src\\test\\java\\grupo2\\tpAnual\\Procesos\\prueba.txt";
-	
+
+	private String origen = "src" + File.separator + "test" + File.separator + "java" + File.separator + "grupo2" + File.separator + "tpAnual" + File.separator + "Procesos" + File.separator + "prueba.txt";
 	public ActualizacionLocalesComerciales(int hora, LocalDate fecha, List<AccionEnCasoDeFallo> configuraciones, OrigenesDeDatosPOIs origenesDeDatos) {
 		super(hora, fecha, configuraciones, origenesDeDatos);
-		// TODO Auto-generated constructor stub
+
 	}
 
 	@Override
 	public void ejecutarProceso() {
-		//WebResource.Builder builder = this.client.resource(origen).accept(MediaType.TEXT_PLAIN);
-		//String response = builder.get(String.class);
-		
 		try {
 			String response = getFile(origen);		
 			String[] componente = response.split(";");
@@ -38,8 +35,8 @@ public class ActualizacionLocalesComerciales extends Proceso {
 				}
 			}	
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			this.configuracionesFallo.forEach(configuracion -> configuracion.ejecutarConfiguracionPorFallo(this));
+			this.setEstadoProceso(false);
 		}
 	}
 	
