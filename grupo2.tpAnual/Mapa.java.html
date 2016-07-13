@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Mapa.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tpAnual</a> &gt; <a href="index.source.html" class="el_package">grupo2.tpAnual</a> &gt; <span class="el_source">Mapa.java</span></div><h1>Mapa.java</h1><pre class="source lang-java linenums">package grupo2.tpAnual;
+
+import java.util.ArrayList;
+import java.util.List;
+import org.joda.time.LocalDate;
+
+import grupo2.tpAnual.Observers.ObserverBusqueda;
+import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatos;
+
+public class Mapa {
+	private List&lt;OrigenesDeDatos&gt; origenesDeDatos;
+	private List&lt;ObserverBusqueda&gt; observersBusqueda;
+	private String nombre;
+	private Usuario usuario;
+	
+<span class="fc" id="L16">	public Mapa(List&lt;OrigenesDeDatos&gt; listaDeOrigenes) {</span>
+<span class="fc" id="L17">		observersBusqueda = new ArrayList&lt;ObserverBusqueda&gt;();</span>
+<span class="fc" id="L18">		origenesDeDatos = new ArrayList&lt;OrigenesDeDatos&gt;();</span>
+<span class="fc" id="L19">		listaDeOrigenes.forEach(origen -&gt; this.agregarOrigenesDeDatos(origen));</span>
+		
+<span class="fc" id="L21">	}</span>
+	// desacoplo la lista de pois de mapa. Ahora el conjunto de pois pasa a ser
+	// otro origen de dato mas
+	// y el mapa solo se encarga de buscar y los observers y esas cosas
+
+	public void agregarOrigenesDeDatos(OrigenesDeDatos integracion) {
+<span class="fc" id="L27">		this.origenesDeDatos.add(integracion);</span>
+<span class="fc" id="L28">	}</span>
+
+	public void sacarOrigenesDeDatos(OrigenesDeDatos integracion) {
+<span class="fc" id="L31">		this.origenesDeDatos.remove(integracion);</span>
+<span class="fc" id="L32">	}</span>
+
+	public List&lt;POI&gt; busquedaRealizadaPorElUsuario(String txtABuscar) {
+<span class="fc" id="L35">		long tiempoInicio = System.currentTimeMillis();</span>
+<span class="fc" id="L36">		List&lt;POI&gt; result = new ArrayList&lt;POI&gt;();</span>
+		
+<span class="fc" id="L38">		this.observersBusqueda.addAll(usuario.enviarObservers());</span>
+		
+		// busco en los servicios externos y mis pois (que forma parte de un
+		// origen de dato)
+<span class="fc" id="L42">		this.origenesDeDatos.forEach(integracion -&gt; result.addAll(integracion.busqueda(txtABuscar)));</span>
+<span class="fc" id="L43">		long tiempoFin = System.currentTimeMillis();</span>
+
+		// mido el tiempo de ejecucion y lo paso a segundos
+<span class="fc" id="L46">		long segundosTardados = (tiempoFin - tiempoInicio) / 1000;</span>
+
+		// le aviso a los observers de que ocurrio el evento
+<span class="fc" id="L49">		DatosDeBusqueda datosParaObserver = new DatosDeBusqueda(this.nombre, txtABuscar, segundosTardados,</span>
+<span class="fc" id="L50">				result.size(), new LocalDate());</span>
+<span class="fc" id="L51">		this.observersBusqueda.forEach(observer -&gt; observer.notificarBusqueda(datosParaObserver));</span>
+
+<span class="fc" id="L53">		return result;</span>
+	}
+
+	
+	public List&lt;OrigenesDeDatos&gt; getOrigenesDeDatos() {
+<span class="nc" id="L58">		return this.origenesDeDatos;</span>
+	}
+
+	public String getNombre() {
+<span class="nc" id="L62">		return nombre;</span>
+	}
+
+	public void setNombre(String nombre) {
+<span class="nc" id="L66">		this.nombre = nombre;</span>
+<span class="nc" id="L67">	}</span>
+	
+	public void setUsuario(Usuario user){
+<span class="fc" id="L70">		this.usuario=user;</span>
+<span class="fc" id="L71">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>
