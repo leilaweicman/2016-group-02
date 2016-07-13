@@ -7,7 +7,7 @@ import grupo2.tpAnual.UserRepository;
 import grupo2.tpAnual.Usuario;
 
 public class CriterioTodos implements Criterio{
-	public UserRepository repositorioUsuarios=new UserRepository();
+	public UserRepository repositorioUsuarios;
 	
 	@Override
 	public List<Usuario> dameUsuarios(Comuna comuna) {
@@ -15,8 +15,9 @@ public class CriterioTodos implements Criterio{
 		return this.repositorioUsuarios.getUsuarios();
 		
 	}
-	public void setUsuarios(Usuario usuario){
-		this.repositorioUsuarios.setUsuarios(usuario);
-		
+
+	
+	public void setRepositorioUsuarios(UserRepository repo){
+		this.repositorioUsuarios=repo;
 	}
 }

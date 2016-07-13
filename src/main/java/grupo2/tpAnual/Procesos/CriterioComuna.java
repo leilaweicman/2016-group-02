@@ -25,5 +25,8 @@ public class CriterioComuna implements Criterio{
 		this.repositorioUsuarios.setUsuarios(usuario);
 		
 	}
+	public void setRepositorioUsuarios(UserRepository repo){
+		this.repositorioUsuarios=repo;
+	}
 
 }

@@ -14,6 +14,7 @@ import grupo2.tpAnual.Banco;
 import grupo2.tpAnual.CGP;
 import grupo2.tpAnual.Comuna;
 import grupo2.tpAnual.Parada;
+import grupo2.tpAnual.UserRepository;
 import grupo2.tpAnual.Usuario;
 import grupo2.tpAnual.Observers.NotificarDatosBusqueda;
 import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosPOIs;
@@ -40,6 +41,8 @@ public class AsignacionDeAccionesParaUsuariosTest {
 	private CriterioComuna porComuna;
 	
 	private NotificarDatosBusqueda observerRegistro;
+	
+	private UserRepository repo;
 	
 	@Before
 	public void init() {
@@ -68,14 +71,16 @@ public class AsignacionDeAccionesParaUsuariosTest {
 		this.comuna1 = new Comuna(1, listaVertices);
 		this.comuna2 = new Comuna(2, listaVertices);
 		
+		repo = new UserRepository();
+		this.repo.setUsuarios(juan);
+		this.repo.setUsuarios(ana);
+		
 		this.juan.setComuna(comuna1);
 		this.ana.setComuna(comuna2);
 		
-		this.todos.setUsuarios(juan);
-		this.todos.setUsuarios(ana);
-		
-		this.porComuna.setUsuarios(juan);
-		this.porComuna.setUsuarios(ana);
+				
+		this.porComuna.setRepositorioUsuarios(repo);
+		this.todos.setRepositorioUsuarios(repo);
 		
 		
 		observerRegistro= new NotificarDatosBusqueda();
@@ -97,6 +102,15 @@ public class AsignacionDeAccionesParaUsuariosTest {
 	public void testEjecutarProceso2(){
 		this.proceso3.setCriterio(porComuna);
 		proceso3.getUsuariosSegunCriterio();
+		proceso3.ejecutarProceso();
+		Assert.assertEquals(juan.getAccionesBusqueda().size(), 1);
+		Assert.assertEquals(ana.getAccionesBusqueda().size(), 0);
+		
+	}
+	
+	@Test
+	public void testEjecutarProceso3(){
+		this.proceso3.setListaUsuariosAdmin(juan);
 		proceso3.ejecutarProceso();
 		Assert.assertEquals(juan.getAccionesBusqueda().size(), 1);
 		Assert.assertEquals(ana.getAccionesBusqueda().size(), 0);

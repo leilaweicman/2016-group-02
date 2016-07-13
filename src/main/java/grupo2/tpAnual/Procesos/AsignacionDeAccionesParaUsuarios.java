@@ -18,13 +18,18 @@ public class AsignacionDeAccionesParaUsuarios extends Proceso {
 		super(hora, fecha, configuraciones, origenesDeDatos);
 		
 	}
-	public List<Usuario> listaUsuarios;
+	public List<Usuario> listaUsuarios = new ArrayList<>();
+	
+	//public List<Usuario> listaConfigAdmin= new ArrayList<>();
+	
 	public List<ObserverBusqueda> accionesParaAgregarAUsuario=new ArrayList<>();
 	public List<ObserverBusqueda> accionesParaSacarAUsuario=new ArrayList<>();
 	
 	public List<Usuario> getUsuariosSegunCriterio(){
-		listaUsuarios=new ArrayList<>();
+	
+		
 		this.listaUsuarios.addAll(this.criterio.dameUsuarios(this.deComuna));
+		
 		return listaUsuarios;
 	}
 	
@@ -40,12 +45,19 @@ public class AsignacionDeAccionesParaUsuarios extends Proceso {
 		this.accionesParaSacarAUsuario.add(accion);
 	}
 	
+	public void setListaUsuariosAdmin(Usuario usuario){
+		this.listaUsuarios.add(usuario);
+	}
+	
 	public List<ObserverBusqueda> getAccionesParaAgregarAUsuario(){
 		return this.accionesParaAgregarAUsuario;
 	}
-	int cantidadElementosAfectados=0;
+	
 	@Override
 	public void ejecutarProceso() {
+		
+		int cantidadElementosAfectados=0;
+		
 		try{
 			
 			if(listaUsuarios != null){
