@@ -13,6 +13,7 @@ import grupo2.tpAnual.Procesos.ManejoDeErroresProcesos.EnviarMailFalloProceso;
 
 import static org.junit.Assert.*;
 
+import java.io.IOException;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -29,7 +30,7 @@ public class ActualizacionLocalesComercialesTest {
 	Rango rango;
 	
 	@Before
-	public void init() {
+	public void init() throws IOException {
 		origenesDeDatos = new OrigenesDeDatosPOIs();
 		unRango = new Rango();
 		otroRango = new Rango();
