@@ -5,28 +5,29 @@ import org.uqbar.geodds.Point;
 
 public class Parada extends POI {
 	private String linea;
-	
-<span class="fc" id="L9">	public Parada( String linea){</span>
+
+<span class="fc" id="L9">	public Parada(String linea) {</span>
 <span class="fc" id="L10">		this.linea = linea;</span>
 <span class="fc" id="L11">	}</span>
+
 	public String getLinea() {
-<span class="nc" id="L13">		return linea;</span>
+<span class="nc" id="L14">		return linea;</span>
 	}
 
 	@Override
 	public boolean tieneTextoEnOtrosAtributos(String texto) {
-<span class="nc" id="L18">		return linea.equals(texto);</span>
+<span class="nc" id="L19">		return linea.equals(texto);</span>
 	}
 
 	@Override
 	public boolean estaCerca(Point coordenadaDeseada) {
-<span class="nc bnc" id="L23" title="All 2 branches missed.">		return (this.ubicacion.distance(coordenadaDeseada) &lt; 0.1);</span>
+<span class="nc bnc" id="L24" title="All 2 branches missed.">		return (this.ubicacion.distance(coordenadaDeseada) &lt; 0.1);</span>
 	}
 
 	@Override
 	public boolean estaDisponible(DateTime momento, String nombreServicio) {
 		// las paradas siempre estan disponibles
-<span class="nc" id="L29">		return true;</span>
+<span class="nc" id="L30">		return true;</span>
 	}
 
 }

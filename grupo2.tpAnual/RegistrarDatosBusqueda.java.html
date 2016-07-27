@@ -5,19 +5,17 @@ import java.util.List;
 
 public class RegistrarDatosBusqueda {
 	private List&lt;DatosDeBusqueda&gt; listaDatosDeBusqueda;
-	
-<span class="fc" id="L9">	public RegistrarDatosBusqueda(){</span>
-<span class="fc" id="L10">		this.listaDatosDeBusqueda = new ArrayList&lt;DatosDeBusqueda&gt;();</span>
-		
-<span class="fc" id="L12">	}</span>
-	
-	public void agregarDatosBusqueda(DatosDeBusqueda registroBusqueda) {
 
-<span class="fc" id="L16">		this.listaDatosDeBusqueda.add(registroBusqueda);</span>
-<span class="fc" id="L17">	}</span>
+<span class="fc" id="L9">	public RegistrarDatosBusqueda() {</span>
+<span class="fc" id="L10">		this.listaDatosDeBusqueda = new ArrayList&lt;DatosDeBusqueda&gt;();</span>
+<span class="fc" id="L11">	}</span>
+
+	public void agregarDatosBusqueda(DatosDeBusqueda registroBusqueda) {
+<span class="fc" id="L14">		this.listaDatosDeBusqueda.add(registroBusqueda);</span>
+<span class="fc" id="L15">	}</span>
 
 	public List&lt;DatosDeBusqueda&gt; consultarDatos() {
-<span class="fc" id="L20">		return this.listaDatosDeBusqueda;</span>
+<span class="fc" id="L18">		return this.listaDatosDeBusqueda;</span>
 	}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

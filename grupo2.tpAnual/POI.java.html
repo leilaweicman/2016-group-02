@@ -8,9 +8,8 @@ import org.uqbar.geodds.Point;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-
 public abstract class POI {
-	
+
 	private Direccion direccion;
 	@JsonProperty(&quot;servicios&quot;)
 	private List&lt;String&gt; palabraClave;
@@ -18,75 +17,75 @@ public abstract class POI {
 	protected Comuna comuna;
 	@JsonProperty(&quot;id&quot;)
 	private Integer numeroVerificador;
-	
-<span class="fc" id="L22">	public POI() {</span>
-<span class="fc" id="L23">		palabraClave = new ArrayList&lt;String&gt;();</span>
-<span class="fc" id="L24">	}</span>
-	
+
+<span class="fc" id="L21">	public POI() {</span>
+<span class="fc" id="L22">		palabraClave = new ArrayList&lt;String&gt;();</span>
+<span class="fc" id="L23">	}</span>
+
 	public void setNumeroVerificador(Integer numeroVerificador) {
-<span class="fc" id="L27">		this.numeroVerificador = numeroVerificador;</span>
-<span class="fc" id="L28">	}</span>
+<span class="fc" id="L26">		this.numeroVerificador = numeroVerificador;</span>
+<span class="fc" id="L27">	}</span>
 
 	public Integer getNumeroVerificador() {
-<span class="fc" id="L31">		return this.numeroVerificador;</span>
+<span class="fc" id="L30">		return this.numeroVerificador;</span>
 	}
 
 	public Direccion getDireccion() {
-<span class="fc" id="L35">		return direccion;</span>
+<span class="fc" id="L34">		return direccion;</span>
 	}
 
 	public void setDireccion(Direccion dir) {
-<span class="fc" id="L39">		this.direccion = dir;</span>
-<span class="fc" id="L40">	}</span>
+<span class="fc" id="L38">		this.direccion = dir;</span>
+<span class="fc" id="L39">	}</span>
 
 	public void addPalabraClave(String pc) {
-<span class="fc" id="L43">		this.palabraClave.add(pc);</span>
-<span class="fc" id="L44">	}</span>
-	
-	public void setPalabrasClaves(List&lt;String&gt; palabras){
-<span class="fc" id="L47">		this.palabraClave = palabras;</span>
-<span class="fc" id="L48">	}</span>
+<span class="fc" id="L42">		this.palabraClave.add(pc);</span>
+<span class="fc" id="L43">	}</span>
+
+	public void setPalabrasClaves(List&lt;String&gt; palabras) {
+<span class="fc" id="L46">		this.palabraClave = palabras;</span>
+<span class="fc" id="L47">	}</span>
 
 	public List&lt;String&gt; getPalabraClave() {
-<span class="fc" id="L51">		return palabraClave;</span>
+<span class="fc" id="L50">		return palabraClave;</span>
 	}
 
 	abstract boolean estaDisponible(DateTime momento, String nombreServicio);
 
 	public boolean verificaPorTexto(String texto) {
-<span class="pc bpc" id="L57" title="1 of 4 branches missed.">		return getPalabraClave().contains(texto) || tieneTextoEnOtrosAtributos(texto);</span>
+<span class="pc bpc" id="L56" title="1 of 4 branches missed.">		return getPalabraClave().contains(texto) || tieneTextoEnOtrosAtributos(texto);</span>
 	}
 
 	// Seteado en false para aquellas implementaciones en las cuales no tengan
 	// busqueda particular
 	public boolean tieneTextoEnOtrosAtributos(String texto) {
-<span class="fc" id="L63">		return false;</span>
+<span class="fc" id="L62">		return false;</span>
 	};
 
 	public void setUbicacion(double latitud, double longitud) {
-<span class="nc" id="L67">		this.ubicacion = Point.and(latitud, longitud);</span>
-<span class="nc" id="L68">	}</span>
+<span class="nc" id="L66">		this.ubicacion = Point.and(latitud, longitud);</span>
+<span class="nc" id="L67">	}</span>
 
 	abstract boolean estaCerca(Point coordenadaDeseada);
 
 	public Point getUbicacion() {
-<span class="nc" id="L73">		return ubicacion;</span>
+<span class="nc" id="L72">		return ubicacion;</span>
 	}
 
 	public void setComuna(Comuna com) {
-<span class="fc" id="L77">		this.comuna = com;</span>
-<span class="fc" id="L78">	}</span>
+<span class="fc" id="L76">		this.comuna = com;</span>
+<span class="fc" id="L77">	}</span>
 
 	public Comuna getComuna() {
-<span class="fc" id="L81">		return comuna;</span>
+<span class="fc" id="L80">		return comuna;</span>
 	}
 
 	public List&lt;POI&gt; busqueda(String txtABuscar) {
-<span class="nc" id="L85">		List&lt;POI&gt; resultadoBusqueda = new ArrayList&lt;POI&gt;();</span>
-<span class="nc bnc" id="L86" title="All 2 branches missed.">		if (this.verificaPorTexto(txtABuscar)) {</span>
-<span class="nc" id="L87">			resultadoBusqueda.add(this);</span>
+<span class="nc" id="L84">		List&lt;POI&gt; resultadoBusqueda = new ArrayList&lt;POI&gt;();</span>
+<span class="nc bnc" id="L85" title="All 2 branches missed.">		if (this.verificaPorTexto(txtABuscar)) {</span>
+<span class="nc" id="L86">			resultadoBusqueda.add(this);</span>
 		}
-<span class="nc" id="L89">		return resultadoBusqueda;</span>
+<span class="nc" id="L88">		return resultadoBusqueda;</span>
 	}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

@@ -6,15 +6,16 @@ import java.util.List;
 public class LogEjecucionProcesos {
 	private List&lt;DatosParaLogEjecucionProcesos&gt; logDeProcesos;
 
-<span class="fc" id="L9">	public LogEjecucionProcesos(){</span>
+<span class="fc" id="L9">	public LogEjecucionProcesos() {</span>
 <span class="fc" id="L10">		logDeProcesos = new ArrayList&lt;&gt;();</span>
 <span class="fc" id="L11">	}</span>
-	public void loguearProceso(DatosParaLogEjecucionProcesos estadoProceso){
-<span class="fc" id="L13">		this.logDeProcesos.add(estadoProceso);</span>
-<span class="fc" id="L14">	}</span>
-	
-	public  List&lt;DatosParaLogEjecucionProcesos&gt; obtenerLog(){
-<span class="fc" id="L17">		return this.logDeProcesos;</span>
+
+	public void loguearProceso(DatosParaLogEjecucionProcesos estadoProceso) {
+<span class="fc" id="L14">		this.logDeProcesos.add(estadoProceso);</span>
+<span class="fc" id="L15">	}</span>
+
+	public List&lt;DatosParaLogEjecucionProcesos&gt; obtenerLog() {
+<span class="fc" id="L18">		return this.logDeProcesos;</span>
 	}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

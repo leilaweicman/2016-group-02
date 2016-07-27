@@ -3,20 +3,20 @@
 import grupo2.tpAnual.Procesos.Proceso;
 
 public class ReintentarEjecucionProceso implements AccionEnCasoDeFallo {
-	private int cantidadRepeticiones; 
-<span class="nc" id="L7">	public int prioridad=1;</span>
-	
-<span class="nc" id="L9">	public ReintentarEjecucionProceso(int cantidadRepeticiones){</span>
+	private int cantidadRepeticiones;
+<span class="nc" id="L7">	public int prioridad = 1;</span>
+
+<span class="nc" id="L9">	public ReintentarEjecucionProceso(int cantidadRepeticiones) {</span>
 <span class="nc" id="L10">		this.cantidadRepeticiones = cantidadRepeticiones;</span>
 <span class="nc" id="L11">	}</span>
 
 	@Override
-	public void ejecutarConfiguracionPorFallo(Proceso proceso) {		
-<span class="nc" id="L15">		int i=0;</span>
-<span class="nc bnc" id="L16" title="All 4 branches missed.">		while(i&lt;=cantidadRepeticiones &amp;&amp; !proceso.getEjecucionExitosa()){</span>
+	public void ejecutarConfiguracionPorFallo(Proceso proceso) {
+<span class="nc" id="L15">		int i = 0;</span>
+<span class="nc bnc" id="L16" title="All 4 branches missed.">		while (i &lt;= cantidadRepeticiones &amp;&amp; !proceso.getEjecucionExitosa()) {</span>
 <span class="nc" id="L17">			proceso.ejecutarProceso();</span>
 <span class="nc" id="L18">			i++;</span>
-		}		
+		}
 <span class="nc" id="L20">	}</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

@@ -10,63 +10,64 @@ import grupo2.tpAnual.Observers.ObserverBusqueda;
 import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosPOIs;
 import grupo2.tpAnual.Procesos.ManejoDeErroresProcesos.AccionEnCasoDeFallo;
 
-
 public class AsignacionDeAccionesParaUsuarios extends Proceso {
 
-	public AsignacionDeAccionesParaUsuarios(int hora, LocalDate fecha, List&lt;AccionEnCasoDeFallo&gt; configuraciones, OrigenesDeDatosPOIs origenesDeDatos) {
-<span class="fc" id="L17">		super(hora, fecha, configuraciones, origenesDeDatos);		</span>
+	public AsignacionDeAccionesParaUsuarios(int hora, LocalDate fecha, List&lt;AccionEnCasoDeFallo&gt; configuraciones,
+			OrigenesDeDatosPOIs origenesDeDatos) {
+<span class="fc" id="L17">		super(hora, fecha, configuraciones, origenesDeDatos);</span>
 <span class="fc" id="L18">	}</span>
-<span class="fc" id="L19">	public List&lt;Usuario&gt; listaUsuarios = new ArrayList&lt;&gt;();		</span>
-<span class="fc" id="L20">	public List&lt;ObserverBusqueda&gt; accionesParaAgregarAUsuario=new ArrayList&lt;&gt;();</span>
-<span class="fc" id="L21">	public List&lt;ObserverBusqueda&gt; accionesParaSacarAUsuario=new ArrayList&lt;&gt;();</span>
-	
-	public List&lt;Usuario&gt; getUsuariosSegunCriterio(){		
-<span class="fc" id="L24">		this.listaUsuarios.addAll(this.criterio.dameUsuarios(this.deComuna));		</span>
-<span class="fc" id="L25">		return listaUsuarios;</span>
+
+<span class="fc" id="L20">	public List&lt;Usuario&gt; listaUsuarios = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L21">	public List&lt;ObserverBusqueda&gt; accionesParaAgregarAUsuario = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L22">	public List&lt;ObserverBusqueda&gt; accionesParaSacarAUsuario = new ArrayList&lt;&gt;();</span>
+
+	public List&lt;Usuario&gt; getUsuariosSegunCriterio() {
+<span class="fc" id="L25">		this.listaUsuarios.addAll(this.criterio.dameUsuarios(this.deComuna));</span>
+<span class="fc" id="L26">		return listaUsuarios;</span>
 	}
-	
-	public void setAccionesParaAgregarAUsuario(ObserverBusqueda accion){
-<span class="fc" id="L29">		this.accionesParaAgregarAUsuario.add(accion);</span>
-<span class="fc" id="L30">	}</span>
-	
-	public List&lt;ObserverBusqueda&gt; getAccionesParaSacarAUsuario(){
-<span class="nc" id="L33">		return this.accionesParaSacarAUsuario;</span>
+
+	public void setAccionesParaAgregarAUsuario(ObserverBusqueda accion) {
+<span class="fc" id="L30">		this.accionesParaAgregarAUsuario.add(accion);</span>
+<span class="fc" id="L31">	}</span>
+
+	public List&lt;ObserverBusqueda&gt; getAccionesParaSacarAUsuario() {
+<span class="nc" id="L34">		return this.accionesParaSacarAUsuario;</span>
 	}
-	
-	public void setAccionesParaSacarAUsuario(ObserverBusqueda accion){
-<span class="nc" id="L37">		this.accionesParaSacarAUsuario.add(accion);</span>
-<span class="nc" id="L38">	}</span>
-	
-	public void setListaUsuariosAdmin(Usuario usuario){
-<span class="nc" id="L41">		this.listaUsuarios.add(usuario);</span>
-<span class="nc" id="L42">	}</span>
-	
-	public List&lt;ObserverBusqueda&gt; getAccionesParaAgregarAUsuario(){
-<span class="nc" id="L45">		return this.accionesParaAgregarAUsuario;</span>
+
+	public void setAccionesParaSacarAUsuario(ObserverBusqueda accion) {
+<span class="nc" id="L38">		this.accionesParaSacarAUsuario.add(accion);</span>
+<span class="nc" id="L39">	}</span>
+
+	public void setListaUsuariosAdmin(Usuario usuario) {
+<span class="nc" id="L42">		this.listaUsuarios.add(usuario);</span>
+<span class="nc" id="L43">	}</span>
+
+	public List&lt;ObserverBusqueda&gt; getAccionesParaAgregarAUsuario() {
+<span class="nc" id="L46">		return this.accionesParaAgregarAUsuario;</span>
 	}
-	
+
 	@Override
-	public void ejecutarProceso() {		
-<span class="fc" id="L50">		int cantidadElementosAfectados=0;		</span>
-		try{			
-<span class="pc bpc" id="L52" title="1 of 2 branches missed.">			if(listaUsuarios != null){							</span>
-<span class="fc bfc" id="L53" title="All 2 branches covered.">				for(Usuario usuario : listaUsuarios){				</span>
-<span class="pc bpc" id="L54" title="1 of 2 branches missed.">					if(accionesParaAgregarAUsuario != null){					</span>
-<span class="fc" id="L55">						usuario.agregarObserversBusqueda(this.accionesParaAgregarAUsuario);</span>
-					}			
-<span class="pc bpc" id="L57" title="1 of 2 branches missed.">					if(accionesParaSacarAUsuario != null){</span>
-<span class="fc" id="L58">						usuario.quitarObserversBusqueda(this.accionesParaSacarAUsuario);</span>
+	public void ejecutarProceso() {
+<span class="fc" id="L51">		int cantidadElementosAfectados = 0;</span>
+		try {
+<span class="pc bpc" id="L53" title="1 of 2 branches missed.">			if (listaUsuarios != null) {</span>
+<span class="fc bfc" id="L54" title="All 2 branches covered.">				for (Usuario usuario : listaUsuarios) {</span>
+<span class="pc bpc" id="L55" title="1 of 2 branches missed.">					if (accionesParaAgregarAUsuario != null) {</span>
+<span class="fc" id="L56">						usuario.agregarObserversBusqueda(this.accionesParaAgregarAUsuario);</span>
 					}
-<span class="fc" id="L60">					cantidadElementosAfectados++;				</span>
-<span class="fc" id="L61">				}</span>
+<span class="pc bpc" id="L58" title="1 of 2 branches missed.">					if (accionesParaSacarAUsuario != null) {</span>
+<span class="fc" id="L59">						usuario.quitarObserversBusqueda(this.accionesParaSacarAUsuario);</span>
+					}
+<span class="fc" id="L61">					cantidadElementosAfectados++;</span>
+<span class="fc" id="L62">				}</span>
 			}
-<span class="fc" id="L63">			this.setEstadoProceso(true);		</span>
-<span class="nc" id="L64">		}catch (Exception e){</span>
-<span class="nc" id="L65">			this.configuracionesFallo.forEach(configuracion -&gt; configuracion.ejecutarConfiguracionPorFallo(this));		</span>
-<span class="nc" id="L66">			this.setEstadoProceso(false);		</span>
-<span class="fc" id="L67">		}</span>
-<span class="fc" id="L68">		this.log.loguearProceso(new DatosParaLogEjecucionProcesos(this.getFechaEjecucion(), this.getHoraEjecucion(),</span>
-			this.ejecucionExitosa, cantidadElementosAfectados));
-<span class="fc" id="L70">	}</span>
+<span class="fc" id="L64">			this.setEstadoProceso(true);</span>
+<span class="nc" id="L65">		} catch (Exception e) {</span>
+<span class="nc" id="L66">			this.configuracionesFallo.forEach(configuracion -&gt; configuracion.ejecutarConfiguracionPorFallo(this));</span>
+<span class="nc" id="L67">			this.setEstadoProceso(false);</span>
+<span class="fc" id="L68">		}</span>
+<span class="fc" id="L69">		this.log.loguearProceso(new DatosParaLogEjecucionProcesos(this.getFechaEjecucion(), this.getHoraEjecucion(),</span>
+				this.ejecucionExitosa, cantidadElementosAfectados));
+<span class="fc" id="L71">	}</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

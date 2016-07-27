@@ -7,20 +7,20 @@ import grupo2.tpAnual.Comuna;
 import grupo2.tpAnual.UserRepository;
 import grupo2.tpAnual.Usuario;
 
-<span class="fc" id="L10">public class CriterioSeleccionFija implements Criterio{</span>
+<span class="fc" id="L10">public class CriterioSeleccionFija implements Criterio {</span>
 	public UserRepository repositorioUsuarios;
 <span class="fc" id="L12">	public List&lt;Usuario&gt; listaUsers = new ArrayList&lt;&gt;();</span>
-	
+
 	@Override
-	public List&lt;Usuario&gt; dameUsuarios(Comuna comuna) {		
+	public List&lt;Usuario&gt; dameUsuarios(Comuna comuna) {
 <span class="fc" id="L16">		return this.listaUsers;</span>
 	}
 
-	public void setRepositorioUsuarios(UserRepository repo){
-<span class="fc" id="L20">		this.repositorioUsuarios=repo;</span>
+	public void setRepositorioUsuarios(UserRepository repo) {
+<span class="fc" id="L20">		this.repositorioUsuarios = repo;</span>
 <span class="fc" id="L21">	}</span>
-	
-	public void agregarUsuario(Usuario user){
+
+	public void agregarUsuario(Usuario user) {
 <span class="fc" id="L24">		this.listaUsers.add(user);</span>
 <span class="fc" id="L25">	}</span>
 }

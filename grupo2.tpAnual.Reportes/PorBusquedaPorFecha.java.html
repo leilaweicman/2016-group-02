@@ -9,33 +9,33 @@ import grupo2.tpAnual.DatosDeBusqueda;
 import grupo2.tpAnual.RegistrarDatosBusqueda;
 import org.joda.time.LocalDate;
 
-public class PorBusquedaPorFecha{
+public class PorBusquedaPorFecha {
 <span class="fc" id="L13">	List&lt;DatosDeBusqueda&gt; registroBusqueda = new ArrayList&lt;DatosDeBusqueda&gt;();</span>
 	RegistrarDatosBusqueda register;
-	
-<span class="fc" id="L16">	public PorBusquedaPorFecha(RegistrarDatosBusqueda register){</span>
-<span class="fc" id="L17">		this.register = register; </span>
+
+<span class="fc" id="L16">	public PorBusquedaPorFecha(RegistrarDatosBusqueda register) {</span>
+<span class="fc" id="L17">		this.register = register;</span>
 <span class="fc" id="L18">	}</span>
 
-	public Map&lt;LocalDate, Integer&gt; busquedasPorFecha (){
+	public Map&lt;LocalDate, Integer&gt; busquedasPorFecha() {
 <span class="fc" id="L21">		Map&lt;LocalDate, Integer&gt; reporte = new HashMap&lt;LocalDate, Integer&gt;();</span>
 <span class="fc" id="L22">		this.registroBusqueda.addAll(this.register.consultarDatos());</span>
-<span class="fc bfc" id="L23" title="All 2 branches covered.">		for(DatosDeBusqueda registro : registroBusqueda){</span>
-<span class="fc" id="L24">			Integer cantidadXFecha = reporte.get(registro.getFecha().toString()) ;</span>
-<span class="pc bpc" id="L25" title="1 of 2 branches missed.">			if(cantidadXFecha != null){</span>
+<span class="fc bfc" id="L23" title="All 2 branches covered.">		for (DatosDeBusqueda registro : registroBusqueda) {</span>
+<span class="fc" id="L24">			Integer cantidadXFecha = reporte.get(registro.getFecha().toString());</span>
+<span class="pc bpc" id="L25" title="1 of 2 branches missed.">			if (cantidadXFecha != null) {</span>
 <span class="nc" id="L26">				reporte.put(registro.getFecha(), ++cantidadXFecha);</span>
-			}else{
+			} else {
 <span class="fc" id="L28">				reporte.put(registro.getFecha(), 1);</span>
 			}
 <span class="fc" id="L30">		}</span>
 <span class="fc" id="L31">		return reporte;</span>
-		
-		//Como recorrer el map despues
-		//for ( Map.Entry&lt;String, Label&gt; entry : map.entrySet() ) {
-		//    String key = entry.getKey();
-		//    Label value = entry.getValue();
-		//}
+
+		// Como recorrer el map despues
+		// for ( Map.Entry&lt;String, Label&gt; entry : map.entrySet() ) {
+		// String key = entry.getKey();
+		// Label value = entry.getValue();
+		// }
 	}
-	
+
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

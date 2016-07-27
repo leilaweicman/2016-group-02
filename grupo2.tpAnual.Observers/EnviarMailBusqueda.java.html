@@ -6,23 +6,24 @@ import grupo2.tpAnual.DatosDeBusqueda;
 import grupo2.tpAnual.MailSender;
 
 public class EnviarMailBusqueda implements ObserverBusqueda {
-	private long tiempoMaximo; 
+	private long tiempoMaximo;
 	private MailSender mailSender;
 	private String mailAdministrador;
-	
-<span class="fc" id="L13">	public EnviarMailBusqueda(long tiempoMaximoDeEjecucion){</span>
+
+<span class="fc" id="L13">	public EnviarMailBusqueda(long tiempoMaximoDeEjecucion) {</span>
 <span class="fc" id="L14">		this.tiempoMaximo = tiempoMaximoDeEjecucion;</span>
 <span class="fc" id="L15">		this.mailSender = Mockito.mock(MailSender.class);</span>
 <span class="fc" id="L16">	}</span>
+
 	@Override
 	public void notificarBusqueda(DatosDeBusqueda datosParaObserver) {
-<span class="fc bfc" id="L19" title="All 2 branches covered.">		if (datosParaObserver.getSegundosQueTardoLaBusqueda() &gt; this.tiempoMaximo) {</span>
-<span class="fc" id="L20">			mailSender.send(mailAdministrador, &quot;Notificacion de Busqueda&quot;, &quot;La busqueda tardo mas de lo esperado&quot;);</span>
-<span class="fc" id="L21">		System.out.print(&quot;Se envio el mail correctamente&quot;);</span>
-		}else{
-<span class="fc" id="L23">		System.out.print(&quot;La busqueda se ejecuto correctamente&quot;);</span>
+<span class="fc bfc" id="L20" title="All 2 branches covered.">		if (datosParaObserver.getSegundosQueTardoLaBusqueda() &gt; this.tiempoMaximo) {</span>
+<span class="fc" id="L21">			mailSender.send(mailAdministrador, &quot;Notificacion de Busqueda&quot;, &quot;La busqueda tardo mas de lo esperado&quot;);</span>
+<span class="fc" id="L22">			System.out.print(&quot;Se envio el mail correctamente&quot;);</span>
+		} else {
+<span class="fc" id="L24">			System.out.print(&quot;La busqueda se ejecuto correctamente&quot;);</span>
 		}
-<span class="fc" id="L25">	}</span>
+<span class="fc" id="L26">	}</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

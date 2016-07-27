@@ -6,20 +6,19 @@ import java.util.Timer;
 public class Cron {
 	private List&lt;Proceso&gt; procesos;
 	private Timer timer;
-
 	
-<span class="nc" id="L11">	public Cron(){</span>
-<span class="nc" id="L12">	    this.timer = new Timer();</span>
-<span class="nc" id="L13">	}</span>
+<span class="nc" id="L10">	public Cron(){</span>
+<span class="nc" id="L11">	    this.timer = new Timer();</span>
+<span class="nc" id="L12">	}</span>
 	
 	//validar que no haya dos para la misma fecha y horario
 	public void agregarProceso(Proceso proceso){		
-<span class="nc" id="L17">		this.procesos.add(proceso);		</span>
-<span class="nc" id="L18">	}</span>
+<span class="nc" id="L16">		this.procesos.add(proceso);		</span>
+<span class="nc" id="L17">	}</span>
 	
 	public void ejecutarProcesos(Proceso proceso){//no se pasa por parametro, lo tiene que ejecutar desde su lista
 		//hacer para que ejecute lo q tiene q ejecutar en horario
-<span class="nc" id="L22">		proceso.ejecutarProceso(); </span>
-<span class="nc" id="L23">	}</span>
+<span class="nc" id="L21">		proceso.ejecutarProceso(); </span>
+<span class="nc" id="L22">	}</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

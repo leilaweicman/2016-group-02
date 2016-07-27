@@ -12,14 +12,14 @@ import grupo2.tpAnual.Procesos.ManejoDeErroresProcesos.AccionEnCasoDeFallo;
 
 public abstract class Proceso {
 	private int horaEjecucion;
-	private LocalDate fechaEjecucion; 
+	private LocalDate fechaEjecucion;
 	protected OrigenesDeDatosPOIs origenesDeDatos;
-<span class="fc" id="L17">	protected List&lt;AccionEnCasoDeFallo&gt; configuracionesFallo= new ArrayList&lt;AccionEnCasoDeFallo&gt;();</span>
+<span class="fc" id="L17">	protected List&lt;AccionEnCasoDeFallo&gt; configuracionesFallo = new ArrayList&lt;AccionEnCasoDeFallo&gt;();</span>
 	public boolean ejecucionExitosa;
 	public LogEjecucionProcesos log;
 	public Criterio criterio; // todos comuna algunos
 	public Comuna deComuna;
-	
+
 	public List&lt;AccionEnCasoDeFallo&gt; getConfiguracionesFallo() {
 <span class="nc" id="L24">		return configuracionesFallo;</span>
 	}
@@ -44,43 +44,46 @@ public abstract class Proceso {
 <span class="fc" id="L44">		this.deComuna = deComuna;</span>
 <span class="fc" id="L45">	}</span>
 
-<span class="fc" id="L47">	public Proceso(int hora, LocalDate fecha, List&lt;AccionEnCasoDeFallo&gt; configuraciones, OrigenesDeDatosPOIs origenesDeDatos){</span>
-<span class="fc" id="L48">		this.horaEjecucion = hora;</span>
-<span class="fc" id="L49">		this.configuracionesFallo.addAll(configuraciones);</span>
-<span class="fc" id="L50">		this.fechaEjecucion = fecha;</span>
-<span class="fc" id="L51">		this.origenesDeDatos = origenesDeDatos;</span>
-<span class="fc" id="L52">		this.log= new LogEjecucionProcesos();</span>
-<span class="fc" id="L53">	}</span>
-	
+	public Proceso(int hora, LocalDate fecha, List&lt;AccionEnCasoDeFallo&gt; configuraciones,
+<span class="fc" id="L48">			OrigenesDeDatosPOIs origenesDeDatos) {</span>
+<span class="fc" id="L49">		this.horaEjecucion = hora;</span>
+<span class="fc" id="L50">		this.configuracionesFallo.addAll(configuraciones);</span>
+<span class="fc" id="L51">		this.fechaEjecucion = fecha;</span>
+<span class="fc" id="L52">		this.origenesDeDatos = origenesDeDatos;</span>
+<span class="fc" id="L53">		this.log = new LogEjecucionProcesos();</span>
+<span class="fc" id="L54">	}</span>
+
 	public abstract void ejecutarProceso();
-	
-	public LogEjecucionProcesos getLog(){
-<span class="fc" id="L58">		return this.log;</span>
-	}
-	
-	public boolean getEjecucionExitosa(){
-<span class="nc" id="L62">		return this.ejecucionExitosa;</span>
-	}
-	
-	public void setEstadoProceso(boolean estado){
-<span class="fc" id="L66">		this.ejecucionExitosa=estado;</span>
-<span class="fc" id="L67">	}</span>
-	
-	public int getHoraEjecucion(){
-<span class="fc" id="L70">		return this.horaEjecucion;</span>
-	}
-	
-	public LocalDate getFechaEjecucion(){
-<span class="fc" id="L74">		return this.fechaEjecucion;</span>
+
+	public LogEjecucionProcesos getLog() {
+<span class="fc" id="L59">		return this.log;</span>
 	}
 
-	public void ejecutarProcedimientoAnteFallo() {		
-<span class="nc" id="L78">		this.configuracionesFallo.forEach(configuracion -&gt; configuracion.ejecutarConfiguracionPorFallo(this));</span>
+	public boolean getEjecucionExitosa() {
+<span class="nc" id="L63">		return this.ejecucionExitosa;</span>
+	}
 
-<span class="nc" id="L80">	}</span>
-	
-	/*public List&lt;AccionEnCasoDeFallo&gt; ordenarLista(){		
-		this.configuracionesFallo.sort(elemento1.prioridad&gt;elemento2.prioridad);
-	}*/
+	public void setEstadoProceso(boolean estado) {
+<span class="fc" id="L67">		this.ejecucionExitosa = estado;</span>
+<span class="fc" id="L68">	}</span>
+
+	public int getHoraEjecucion() {
+<span class="fc" id="L71">		return this.horaEjecucion;</span>
+	}
+
+	public LocalDate getFechaEjecucion() {
+<span class="fc" id="L75">		return this.fechaEjecucion;</span>
+	}
+
+	public void ejecutarProcedimientoAnteFallo() {
+<span class="nc" id="L79">		this.configuracionesFallo.forEach(configuracion -&gt; configuracion.ejecutarConfiguracionPorFallo(this));</span>
+
+<span class="nc" id="L81">	}</span>
+
+	/*
+	 * public List&lt;AccionEnCasoDeFallo&gt; ordenarLista(){
+	 * this.configuracionesFallo.sort(elemento1.prioridad&gt;elemento2.prioridad);
+	 * }
+	 */
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>
