@@ -11,14 +11,12 @@ public class ReintentarEjecucionProceso implements AccionEnCasoDeFallo {
 <span class="nc" id="L11">	}</span>
 
 	@Override
-	public void ejecutarConfiguracionPorFallo(Proceso proceso) {
-		
-<span class="nc" id="L16">		int i=0;</span>
-<span class="nc bnc" id="L17" title="All 4 branches missed.">		while(i&lt;=cantidadRepeticiones &amp;&amp; !proceso.getEjecucionExitosa()){</span>
-<span class="nc" id="L18">			proceso.ejecutarProceso();</span>
-<span class="nc" id="L19">			i++;</span>
-		}
-		
-<span class="nc" id="L22">	}</span>
+	public void ejecutarConfiguracionPorFallo(Proceso proceso) {		
+<span class="nc" id="L15">		int i=0;</span>
+<span class="nc bnc" id="L16" title="All 4 branches missed.">		while(i&lt;=cantidadRepeticiones &amp;&amp; !proceso.getEjecucionExitosa()){</span>
+<span class="nc" id="L17">			proceso.ejecutarProceso();</span>
+<span class="nc" id="L18">			i++;</span>
+		}		
+<span class="nc" id="L20">	}</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

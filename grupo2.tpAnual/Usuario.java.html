@@ -19,23 +19,19 @@ import grupo2.tpAnual.Observers.ObserverBusqueda;
 	
 	public List&lt;ObserverBusqueda&gt; enviarObservers(){		
 <span class="fc" id="L21">		return this.accionesBusqueda;</span>
-}
-	
-	/*public void agregarObserverBusqueda(ObserverBusqueda observer) {
-		this.accionesBusqueda.add(observer);
-	}//este no va, pero hy que modificar los tests*/
+	}
 	
 	public void agregarObserversBusqueda(List&lt;ObserverBusqueda&gt; observers) {
-<span class="fc" id="L29">			this.accionesBusqueda.addAll(observers);</span>
-<span class="fc" id="L30">		}</span>
+<span class="fc" id="L25">			this.accionesBusqueda.addAll(observers);</span>
+<span class="fc" id="L26">		}</span>
 	public List&lt;ObserverBusqueda&gt; getAccionesBusqueda(){
-<span class="fc" id="L32">		return accionesBusqueda;</span>
+<span class="fc" id="L28">		return accionesBusqueda;</span>
 	}
 
 		public void quitarObserversBusqueda(List&lt;ObserverBusqueda&gt; observers) {
-<span class="fc" id="L36">			this.accionesBusqueda.removeAll(observers);</span>
+<span class="fc" id="L32">			this.accionesBusqueda.removeAll(observers);</span>
 		
 		
-<span class="fc" id="L39">	}</span>
+<span class="fc" id="L35">	}</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

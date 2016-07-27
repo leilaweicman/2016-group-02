@@ -7,25 +7,22 @@ import com.sun.jersey.api.client.WebResource;
 import javax.ws.rs.core.MediaType;
 
 public class RestServiceBajaPois {
-	  private Client client;
-	    private static final String API_BAJAPOIS = &quot;http://demo3537367.mockable.io/trash&quot;;
-	    private static final String RESOURCE = &quot;pois&quot;;	
+	private Client client;
+	private static final String API_BAJAPOIS = &quot;http://demo3537367.mockable.io/trash&quot;;
+	private static final String RESOURCE = &quot;pois&quot;;	
 	   
-<span class="fc" id="L14">	    public RestServiceBajaPois() {</span>
-<span class="fc" id="L15">	        this.client = Client.create();</span>
+<span class="fc" id="L14">    public RestServiceBajaPois() {</span>
+<span class="fc" id="L15">    	this.client = Client.create();</span>
 	        //En la documentacion se puede ver como al cliente agregarle un ClientConfig
-	        //para agregarle filtros en las respuestas (por ejemplo, para loguear).
-<span class="fc" id="L18">	    }</span>
+    	//para agregarle filtros en las respuestas (por ejemplo, para loguear).
+<span class="fc" id="L18">    }</span>
 	    
 	  //Prueba de concepto de un parametro y los mensajes por separado para identificar los tipos de datos.
-	    public String getPOIs(){ 
-<span class="fc" id="L22">	    	WebResource recurso = this.client.resource(API_BAJAPOIS).path(RESOURCE);</span>
-<span class="fc" id="L23">	        WebResource.Builder builder = recurso.accept(MediaType.APPLICATION_JSON);</span>
-<span class="fc" id="L24">	       String response = builder.get(String.class);</span>
-	     
-<span class="fc" id="L26">	        return response;</span>
-	    }
-		
-	}
-
+	public String getPOIs(){ 
+<span class="fc" id="L22">		WebResource recurso = this.client.resource(API_BAJAPOIS).path(RESOURCE);</span>
+<span class="fc" id="L23">	    WebResource.Builder builder = recurso.accept(MediaType.APPLICATION_JSON);</span>
+<span class="fc" id="L24">	    String response = builder.get(String.class);	 </span>
+<span class="fc" id="L25">	    return response;</span>
+	}		
+}
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

@@ -16,18 +16,17 @@ import grupo2.tpAnual.Usuario;
 	@Override
 	public List&lt;Usuario&gt; dameUsuarios(Comuna comuna) {
 <span class="fc" id="L18">		lista=new ArrayList&lt;&gt;();</span>
-<span class="fc" id="L19">		lista.addAll(this.repositorioUsuarios.getUsuarios().stream().</span>
-<span class="fc bfc" id="L20" title="All 2 branches covered.">				filter(usuario -&gt; usuario.comuna == comuna).collect(Collectors.toList()));</span>
-<span class="fc" id="L21">		return lista;</span>
+<span class="fc bfc" id="L19" title="All 2 branches covered.">		lista.addAll(this.repositorioUsuarios.getUsuarios().stream().filter(usuario -&gt; usuario.comuna == comuna).collect(Collectors.toList()));</span>
+<span class="fc" id="L20">		return lista;</span>
 	}
 	
 	public void setUsuarios(Usuario usuario){
-<span class="nc" id="L25">		this.repositorioUsuarios.setUsuarios(usuario);</span>
+<span class="nc" id="L24">		this.repositorioUsuarios.setUsuarios(usuario);</span>
 		
-<span class="nc" id="L27">	}</span>
+<span class="nc" id="L26">	}</span>
 	public void setRepositorioUsuarios(UserRepository repo){
-<span class="fc" id="L29">		this.repositorioUsuarios=repo;</span>
-<span class="fc" id="L30">	}</span>
+<span class="fc" id="L28">		this.repositorioUsuarios=repo;</span>
+<span class="fc" id="L29">	}</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

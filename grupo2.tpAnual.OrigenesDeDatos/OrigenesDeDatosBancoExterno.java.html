@@ -26,11 +26,10 @@ import java.util.List;
 <span class="fc" id="L26">		return listaPOI;</span>
 	}
 
-	public List&lt;POI&gt; transformarAPOI(String bancosExternosEnJson) throws Exception {
-		
-<span class="fc" id="L31">		mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false); //ignora los atributos que no uso</span>
-<span class="fc" id="L32">		List&lt;POI&gt; listaPOI = mapper.readValue(bancosExternosEnJson, mapper.getTypeFactory().constructCollectionType(ArrayList.class, Banco.class));</span>
-<span class="fc" id="L33">		return listaPOI;</span>
+	public List&lt;POI&gt; transformarAPOI(String bancosExternosEnJson) throws Exception {		
+<span class="fc" id="L30">		mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false); //ignora los atributos que no uso</span>
+<span class="fc" id="L31">		List&lt;POI&gt; listaPOI = mapper.readValue(bancosExternosEnJson, mapper.getTypeFactory().constructCollectionType(ArrayList.class, Banco.class));</span>
+<span class="fc" id="L32">		return listaPOI;</span>
 	}
 
 }
