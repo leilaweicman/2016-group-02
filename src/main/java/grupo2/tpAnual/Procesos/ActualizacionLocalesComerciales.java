@@ -32,6 +32,7 @@ public class ActualizacionLocalesComerciales extends Proceso {
 			for(Comercio com : comercios){
 				if(com.getNombre().equals(componente[0])){
 					com.setPalabrasClaves(Arrays.asList(componente[1].split(" ")));
+					System.out.println("Se ha modificado " + com.getNombre());
 				}
 			}	
 		} catch (IOException e) {
