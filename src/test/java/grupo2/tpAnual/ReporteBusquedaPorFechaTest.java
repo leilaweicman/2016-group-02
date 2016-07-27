@@ -8,7 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import grupo2.tpAnual.Reportes.PorBusquedaPorFecha;
-
+import org.joda.time.LocalDate;
 
 public class ReporteBusquedaPorFechaTest {
 	RegistrarDatosBusqueda registro;
@@ -32,7 +32,7 @@ public class ReporteBusquedaPorFechaTest {
 	@Test
 	public void obtenerReporteTest(){
 
-		Map<String, Integer> map = reporte.busquedasPorFecha();
+		Map<LocalDate, Integer> map = reporte.busquedasPorFecha();
 		Assert.assertEquals(map.size(), 3);
 	}
 }

@@ -23,8 +23,6 @@ public class ActualizacionLocalesComerciales extends Proceso {
 		origen = IOUtils.toString(this.getClass().getResourceAsStream("/Procesos/prueba.txt"),"UTF-8");
 	}
 	
-	
-
 	@Override
 	public void ejecutarProceso() {
 		int cantidadElementosAfectados = 0;
