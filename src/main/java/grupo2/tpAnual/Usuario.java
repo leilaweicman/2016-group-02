@@ -19,11 +19,7 @@ public class Usuario {
 	
 	public List<ObserverBusqueda> enviarObservers(){		
 		return this.accionesBusqueda;
-}
-	
-	/*public void agregarObserverBusqueda(ObserverBusqueda observer) {
-		this.accionesBusqueda.add(observer);
-	}//este no va, pero hy que modificar los tests*/
+	}
 	
 	public void agregarObserversBusqueda(List<ObserverBusqueda> observers) {
 			this.accionesBusqueda.addAll(observers);

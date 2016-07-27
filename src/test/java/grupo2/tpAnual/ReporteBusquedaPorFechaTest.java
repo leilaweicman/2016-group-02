@@ -31,7 +31,6 @@ public class ReporteBusquedaPorFechaTest {
 
 	@Test
 	public void obtenerReporteTest(){
-
 		Map<LocalDate, Integer> map = reporte.busquedasPorFecha();
 		Assert.assertEquals(map.size(), 3);
 	}

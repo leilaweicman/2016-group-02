@@ -11,13 +11,11 @@ public class ReintentarEjecucionProceso implements AccionEnCasoDeFallo {
 	}
 
 	@Override
-	public void ejecutarConfiguracionPorFallo(Proceso proceso) {
-		
+	public void ejecutarConfiguracionPorFallo(Proceso proceso) {		
 		int i=0;
 		while(i<=cantidadRepeticiones && !proceso.getEjecucionExitosa()){
 			proceso.ejecutarProceso();
 			i++;
-		}
-		
+		}		
 	}
 }

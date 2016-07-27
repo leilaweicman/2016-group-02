@@ -16,8 +16,7 @@ public class CriterioComuna implements Criterio{
 	@Override
 	public List<Usuario> dameUsuarios(Comuna comuna) {
 		lista=new ArrayList<>();
-		lista.addAll(this.repositorioUsuarios.getUsuarios().stream().
-				filter(usuario -> usuario.comuna == comuna).collect(Collectors.toList()));
+		lista.addAll(this.repositorioUsuarios.getUsuarios().stream().filter(usuario -> usuario.comuna == comuna).collect(Collectors.toList()));
 		return lista;
 	}
 	

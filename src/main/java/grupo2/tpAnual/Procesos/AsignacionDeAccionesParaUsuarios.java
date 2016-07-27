@@ -13,15 +13,10 @@ import grupo2.tpAnual.Procesos.ManejoDeErroresProcesos.AccionEnCasoDeFallo;
 
 public class AsignacionDeAccionesParaUsuarios extends Proceso {
 
-	public AsignacionDeAccionesParaUsuarios(int hora, LocalDate fecha, 
-			List<AccionEnCasoDeFallo> configuraciones, OrigenesDeDatosPOIs origenesDeDatos) {
-		super(hora, fecha, configuraciones, origenesDeDatos);
-		
+	public AsignacionDeAccionesParaUsuarios(int hora, LocalDate fecha, List<AccionEnCasoDeFallo> configuraciones, OrigenesDeDatosPOIs origenesDeDatos) {
+		super(hora, fecha, configuraciones, origenesDeDatos);		
 	}
-	public List<Usuario> listaUsuarios = new ArrayList<>();
-	
-	//public List<Usuario> listaConfigAdmin= new ArrayList<>();
-	
+	public List<Usuario> listaUsuarios = new ArrayList<>();		
 	public List<ObserverBusqueda> accionesParaAgregarAUsuario=new ArrayList<>();
 	public List<ObserverBusqueda> accionesParaSacarAUsuario=new ArrayList<>();
 	
@@ -62,15 +57,15 @@ public class AsignacionDeAccionesParaUsuarios extends Proceso {
 					if(accionesParaSacarAUsuario != null){
 						usuario.quitarObserversBusqueda(this.accionesParaSacarAUsuario);
 					}
-					cantidadElementosAfectados++;				}
+					cantidadElementosAfectados++;				
+				}
 			}
 			this.setEstadoProceso(true);		
 		}catch (Exception e){
-		this.configuracionesFallo.forEach(configuracion -> configuracion.ejecutarConfiguracionPorFallo(this));		
-		this.setEstadoProceso(false);		
+			this.configuracionesFallo.forEach(configuracion -> configuracion.ejecutarConfiguracionPorFallo(this));		
+			this.setEstadoProceso(false);		
 		}
-
-	this.log.loguearProceso(new DatosParaLogEjecucionProcesos(this.getFechaEjecucion(), this.getHoraEjecucion(),
+		this.log.loguearProceso(new DatosParaLogEjecucionProcesos(this.getFechaEjecucion(), this.getHoraEjecucion(),
 			this.ejecucionExitosa, cantidadElementosAfectados));
 	}
 }

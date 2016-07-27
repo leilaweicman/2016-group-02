@@ -14,8 +14,6 @@ import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosPOIs;
 import grupo2.tpAnual.Procesos.ManejoDeErroresProcesos.AccionEnCasoDeFallo;
 
 public class ActualizacionLocalesComerciales extends Proceso {
-	//HAY QUE VER DE DONDE OBTENGO EL ORIGEN
-
 	private String origen;
 			
 	public ActualizacionLocalesComerciales(int hora, LocalDate fecha, List<AccionEnCasoDeFallo> configuraciones, OrigenesDeDatosPOIs origenesDeDatos) throws IOException {

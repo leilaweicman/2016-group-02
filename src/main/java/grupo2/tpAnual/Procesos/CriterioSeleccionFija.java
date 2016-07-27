@@ -12,15 +12,13 @@ public class CriterioSeleccionFija implements Criterio{
 	public List<Usuario> listaUsers = new ArrayList<>();
 	
 	@Override
-	public List<Usuario> dameUsuarios(Comuna comuna) {
-		
+	public List<Usuario> dameUsuarios(Comuna comuna) {		
 		return this.listaUsers;
 	}
 
 	public void setRepositorioUsuarios(UserRepository repo){
 		this.repositorioUsuarios=repo;
 	}
-	
 	
 	public void agregarUsuario(Usuario user){
 		this.listaUsers.add(user);

@@ -10,12 +10,9 @@ public class CriterioTodos implements Criterio{
 	public UserRepository repositorioUsuarios;
 	
 	@Override
-	public List<Usuario> dameUsuarios(Comuna comuna) {
-		
-		return this.repositorioUsuarios.getUsuarios();
-		
+	public List<Usuario> dameUsuarios(Comuna comuna) {		
+		return this.repositorioUsuarios.getUsuarios();		
 	}
-
 	
 	public void setRepositorioUsuarios(UserRepository repo){
 		this.repositorioUsuarios=repo;

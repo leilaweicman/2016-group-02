@@ -14,5 +14,4 @@ public class DatosParaLogEjecucionProcesos {
 		this.hora = hora;
 		this.ejecucionExitosa=estadoEjecucion;
 	}
-
 }

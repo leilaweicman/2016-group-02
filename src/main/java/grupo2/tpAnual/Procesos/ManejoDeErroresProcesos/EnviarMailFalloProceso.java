@@ -14,10 +14,6 @@ public class EnviarMailFalloProceso implements AccionEnCasoDeFallo{
 	public void ejecutarConfiguracionPorFallo(Proceso proceso) {
 		if (!proceso.getEjecucionExitosa()){
 			mailSender.send(mailAdministrador, "Fallo al ejecutar un proceso", "Se ha producido un error al ejecutar el proceso");
-		}
-		
+		}		
 	}
-	
-	
-
 }
