@@ -23,29 +23,27 @@ public class ActualizacionLocalesComerciales extends Proceso {
 <span class="fc" id="L23">		origen = IOUtils.toString(this.getClass().getResourceAsStream(&quot;/Procesos/prueba.txt&quot;),&quot;UTF-8&quot;);</span>
 <span class="fc" id="L24">	}</span>
 	
-	
-
 	@Override
 	public void ejecutarProceso() {
-<span class="fc" id="L30">		int cantidadElementosAfectados = 0;</span>
+<span class="fc" id="L28">		int cantidadElementosAfectados = 0;</span>
 		try {
-<span class="fc" id="L32">			String response = origen;		</span>
-<span class="fc" id="L33">			String[] componente = response.split(&quot;;&quot;);</span>
+<span class="fc" id="L30">			String response = origen;		</span>
+<span class="fc" id="L31">			String[] componente = response.split(&quot;;&quot;);</span>
 			//Obtengo unicamente los que son comercio de la busqueda de pois
-<span class="fc" id="L35">			List&lt;Comercio&gt; comercios = this.origenesDeDatos.getPOIs().stream().filter(x-&gt; x instanceof Comercio)</span>
-<span class="fc" id="L36">										.map(p -&gt; (Comercio) p).collect(Collectors.toList());</span>
-<span class="fc bfc" id="L37" title="All 2 branches covered.">			for(Comercio com : comercios){</span>
-<span class="pc bpc" id="L38" title="1 of 2 branches missed.">				if(com.getNombre().equals(componente[0])){</span>
-<span class="fc" id="L39">					com.setPalabrasClaves(Arrays.asList(componente[1].split(&quot; &quot;)));</span>
-<span class="fc" id="L40">					cantidadElementosAfectados = cantidadElementosAfectados + 1;</span>
+<span class="fc" id="L33">			List&lt;Comercio&gt; comercios = this.origenesDeDatos.getPOIs().stream().filter(x-&gt; x instanceof Comercio)</span>
+<span class="fc" id="L34">										.map(p -&gt; (Comercio) p).collect(Collectors.toList());</span>
+<span class="fc bfc" id="L35" title="All 2 branches covered.">			for(Comercio com : comercios){</span>
+<span class="pc bpc" id="L36" title="1 of 2 branches missed.">				if(com.getNombre().equals(componente[0])){</span>
+<span class="fc" id="L37">					com.setPalabrasClaves(Arrays.asList(componente[1].split(&quot; &quot;)));</span>
+<span class="fc" id="L38">					cantidadElementosAfectados = cantidadElementosAfectados + 1;</span>
 				}
-<span class="fc" id="L42">			}	</span>
-<span class="nc" id="L43">		} catch (Exception e) {</span>
-<span class="nc" id="L44">			this.configuracionesFallo.forEach(configuracion -&gt; configuracion.ejecutarConfiguracionPorFallo(this));</span>
-<span class="nc" id="L45">			this.setEstadoProceso(false);</span>
-<span class="fc" id="L46">		}</span>
-<span class="fc" id="L47">		this.log.loguearProceso(new DatosParaLogEjecucionProcesos(this.getFechaEjecucion(), this.getHoraEjecucion(),</span>
+<span class="fc" id="L40">			}	</span>
+<span class="nc" id="L41">		} catch (Exception e) {</span>
+<span class="nc" id="L42">			this.configuracionesFallo.forEach(configuracion -&gt; configuracion.ejecutarConfiguracionPorFallo(this));</span>
+<span class="nc" id="L43">			this.setEstadoProceso(false);</span>
+<span class="fc" id="L44">		}</span>
+<span class="fc" id="L45">		this.log.loguearProceso(new DatosParaLogEjecucionProcesos(this.getFechaEjecucion(), this.getHoraEjecucion(),</span>
 				this.ejecucionExitosa, cantidadElementosAfectados));
-<span class="fc" id="L49">	}</span>
+<span class="fc" id="L47">	}</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

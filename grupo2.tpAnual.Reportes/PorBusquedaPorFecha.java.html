@@ -7,27 +7,28 @@ import java.util.Map;
 
 import grupo2.tpAnual.DatosDeBusqueda;
 import grupo2.tpAnual.RegistrarDatosBusqueda;
+import org.joda.time.LocalDate;
 
 public class PorBusquedaPorFecha{
-<span class="fc" id="L12">	List&lt;DatosDeBusqueda&gt; registroBusqueda = new ArrayList&lt;DatosDeBusqueda&gt;();</span>
+<span class="fc" id="L13">	List&lt;DatosDeBusqueda&gt; registroBusqueda = new ArrayList&lt;DatosDeBusqueda&gt;();</span>
 	RegistrarDatosBusqueda register;
 	
-<span class="fc" id="L15">	public PorBusquedaPorFecha(RegistrarDatosBusqueda register){</span>
-<span class="fc" id="L16">		this.register = register; </span>
-<span class="fc" id="L17">	}</span>
+<span class="fc" id="L16">	public PorBusquedaPorFecha(RegistrarDatosBusqueda register){</span>
+<span class="fc" id="L17">		this.register = register; </span>
+<span class="fc" id="L18">	}</span>
 
-	public Map&lt;String, Integer&gt; busquedasPorFecha (){
-<span class="fc" id="L20">		Map&lt;String, Integer&gt; reporte = new HashMap&lt;String, Integer&gt;();</span>
-<span class="fc" id="L21">		this.registroBusqueda.addAll(this.register.consultarDatos());</span>
-<span class="fc bfc" id="L22" title="All 2 branches covered.">		for(DatosDeBusqueda registro : registroBusqueda){</span>
-<span class="fc" id="L23">			Integer cantidadXFecha = reporte.get(registro.getFecha().toString()) ;</span>
-<span class="pc bpc" id="L24" title="1 of 2 branches missed.">			if(cantidadXFecha != null){</span>
-<span class="nc" id="L25">				reporte.put(registro.getFecha().toString(), ++cantidadXFecha);</span>
+	public Map&lt;LocalDate, Integer&gt; busquedasPorFecha (){
+<span class="fc" id="L21">		Map&lt;LocalDate, Integer&gt; reporte = new HashMap&lt;LocalDate, Integer&gt;();</span>
+<span class="fc" id="L22">		this.registroBusqueda.addAll(this.register.consultarDatos());</span>
+<span class="fc bfc" id="L23" title="All 2 branches covered.">		for(DatosDeBusqueda registro : registroBusqueda){</span>
+<span class="fc" id="L24">			Integer cantidadXFecha = reporte.get(registro.getFecha().toString()) ;</span>
+<span class="pc bpc" id="L25" title="1 of 2 branches missed.">			if(cantidadXFecha != null){</span>
+<span class="nc" id="L26">				reporte.put(registro.getFecha(), ++cantidadXFecha);</span>
 			}else{
-<span class="fc" id="L27">				reporte.put(registro.getFecha().toString(), 1);</span>
+<span class="fc" id="L28">				reporte.put(registro.getFecha(), 1);</span>
 			}
-<span class="fc" id="L29">		}</span>
-<span class="fc" id="L30">		return reporte;</span>
+<span class="fc" id="L30">		}</span>
+<span class="fc" id="L31">		return reporte;</span>
 		
 		//Como recorrer el map despues
 		//for ( Map.Entry&lt;String, Label&gt; entry : map.entrySet() ) {
