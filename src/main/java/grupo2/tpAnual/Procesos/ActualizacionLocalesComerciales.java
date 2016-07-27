@@ -23,6 +23,7 @@ public class ActualizacionLocalesComerciales extends Proceso {
 
 	@Override
 	public void ejecutarProceso() {
+		int cantidadElementosAfectados = 0;
 		try {
 			String response = getFile(origen);		
 			String[] componente = response.split(";");
@@ -32,13 +33,15 @@ public class ActualizacionLocalesComerciales extends Proceso {
 			for(Comercio com : comercios){
 				if(com.getNombre().equals(componente[0])){
 					com.setPalabrasClaves(Arrays.asList(componente[1].split(" ")));
-					System.out.println("Se ha modificado " + com.getNombre());
+					cantidadElementosAfectados = cantidadElementosAfectados + 1;
 				}
 			}	
 		} catch (IOException e) {
 			this.configuracionesFallo.forEach(configuracion -> configuracion.ejecutarConfiguracionPorFallo(this));
 			this.setEstadoProceso(false);
 		}
+		this.log.loguearProceso(new DatosParaLogEjecucionProcesos(this.getFechaEjecucion(), this.getHoraEjecucion(),
+				this.ejecucionExitosa, cantidadElementosAfectados));
 	}
 	
 	public String getFile(String ruta) throws IOException{		
