@@ -5,14 +5,12 @@ import java.util.List;
 
 public class RegistrarDatosBusqueda {
 	private List<DatosDeBusqueda> listaDatosDeBusqueda;
-	
-	public RegistrarDatosBusqueda(){
-		this.listaDatosDeBusqueda = new ArrayList<DatosDeBusqueda>();
-		
-	}
-	
-	public void agregarDatosBusqueda(DatosDeBusqueda registroBusqueda) {
 
+	public RegistrarDatosBusqueda() {
+		this.listaDatosDeBusqueda = new ArrayList<DatosDeBusqueda>();
+	}
+
+	public void agregarDatosBusqueda(DatosDeBusqueda registroBusqueda) {
 		this.listaDatosDeBusqueda.add(registroBusqueda);
 	}
 

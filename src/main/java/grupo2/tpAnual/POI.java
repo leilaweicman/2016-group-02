@@ -8,9 +8,8 @@ import org.uqbar.geodds.Point;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-
 public abstract class POI {
-	
+
 	private Direccion direccion;
 	@JsonProperty("servicios")
 	private List<String> palabraClave;
@@ -18,11 +17,11 @@ public abstract class POI {
 	protected Comuna comuna;
 	@JsonProperty("id")
 	private Integer numeroVerificador;
-	
+
 	public POI() {
 		palabraClave = new ArrayList<String>();
 	}
-	
+
 	public void setNumeroVerificador(Integer numeroVerificador) {
 		this.numeroVerificador = numeroVerificador;
 	}
@@ -42,8 +41,8 @@ public abstract class POI {
 	public void addPalabraClave(String pc) {
 		this.palabraClave.add(pc);
 	}
-	
-	public void setPalabrasClaves(List<String> palabras){
+
+	public void setPalabrasClaves(List<String> palabras) {
 		this.palabraClave = palabras;
 	}
 

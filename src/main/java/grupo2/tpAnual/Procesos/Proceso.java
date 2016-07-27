@@ -12,14 +12,14 @@ import grupo2.tpAnual.Procesos.ManejoDeErroresProcesos.AccionEnCasoDeFallo;
 
 public abstract class Proceso {
 	private int horaEjecucion;
-	private LocalDate fechaEjecucion; 
+	private LocalDate fechaEjecucion;
 	protected OrigenesDeDatosPOIs origenesDeDatos;
-	protected List<AccionEnCasoDeFallo> configuracionesFallo= new ArrayList<AccionEnCasoDeFallo>();
+	protected List<AccionEnCasoDeFallo> configuracionesFallo = new ArrayList<AccionEnCasoDeFallo>();
 	public boolean ejecucionExitosa;
 	public LogEjecucionProcesos log;
 	public Criterio criterio; // todos comuna algunos
 	public Comuna deComuna;
-	
+
 	public List<AccionEnCasoDeFallo> getConfiguracionesFallo() {
 		return configuracionesFallo;
 	}
@@ -44,42 +44,45 @@ public abstract class Proceso {
 		this.deComuna = deComuna;
 	}
 
-	public Proceso(int hora, LocalDate fecha, List<AccionEnCasoDeFallo> configuraciones, OrigenesDeDatosPOIs origenesDeDatos){
+	public Proceso(int hora, LocalDate fecha, List<AccionEnCasoDeFallo> configuraciones,
+			OrigenesDeDatosPOIs origenesDeDatos) {
 		this.horaEjecucion = hora;
 		this.configuracionesFallo.addAll(configuraciones);
 		this.fechaEjecucion = fecha;
 		this.origenesDeDatos = origenesDeDatos;
-		this.log= new LogEjecucionProcesos();
+		this.log = new LogEjecucionProcesos();
 	}
-	
+
 	public abstract void ejecutarProceso();
-	
-	public LogEjecucionProcesos getLog(){
+
+	public LogEjecucionProcesos getLog() {
 		return this.log;
 	}
-	
-	public boolean getEjecucionExitosa(){
+
+	public boolean getEjecucionExitosa() {
 		return this.ejecucionExitosa;
 	}
-	
-	public void setEstadoProceso(boolean estado){
-		this.ejecucionExitosa=estado;
+
+	public void setEstadoProceso(boolean estado) {
+		this.ejecucionExitosa = estado;
 	}
-	
-	public int getHoraEjecucion(){
+
+	public int getHoraEjecucion() {
 		return this.horaEjecucion;
 	}
-	
-	public LocalDate getFechaEjecucion(){
+
+	public LocalDate getFechaEjecucion() {
 		return this.fechaEjecucion;
 	}
 
-	public void ejecutarProcedimientoAnteFallo() {		
+	public void ejecutarProcedimientoAnteFallo() {
 		this.configuracionesFallo.forEach(configuracion -> configuracion.ejecutarConfiguracionPorFallo(this));
 
 	}
-	
-	/*public List<AccionEnCasoDeFallo> ordenarLista(){		
-		this.configuracionesFallo.sort(elemento1.prioridad>elemento2.prioridad);
-	}*/
+
+	/*
+	 * public List<AccionEnCasoDeFallo> ordenarLista(){
+	 * this.configuracionesFallo.sort(elemento1.prioridad>elemento2.prioridad);
+	 * }
+	 */
 }

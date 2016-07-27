@@ -20,10 +20,9 @@ public class OrigenesDeDatosPOIsTest {
 	private List<Rango> listaRangos;
 	private List<Servicio> servicios;
 
-	
 	@Before
 	public void init() {
-		
+
 		unRango = new Rango();
 		unRango.setDia(1);
 		unRango.setHoraDesde(LocalTime.of(9, 0, 0));
@@ -31,7 +30,7 @@ public class OrigenesDeDatosPOIsTest {
 		listaRangos = Arrays.asList(unRango);
 
 		this.origenesPOI = new OrigenesDeDatosPOIs();
-		
+
 		this.kosiuko = new Comercio(listaRangos, "");
 		this.kosiuko.setNumeroVerificador(1444);
 		this.bancoPiano = new Banco();
@@ -75,11 +74,10 @@ public class OrigenesDeDatosPOIsTest {
 		this.jubilacion.setNombre("jubilacionesPami");
 		servicios = Arrays.asList(jubilacion);
 		this.cgp.setServicios(servicios);
-		
+
 		this.cgp.addPalabraClave("muchaGente");
 		this.kosiuko.addPalabraClave("muchaGente");
 		this.bancoPiano.addPalabraClave("muchaGente");
-		
 
 		this.origenesPOI.agregarPOI(cgp);
 		this.origenesPOI.agregarPOI(kosiuko);

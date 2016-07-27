@@ -19,7 +19,7 @@ public class ComercioTest {
 
 	@Before
 	public void init() {
-		
+
 		unRango = new Rango();
 		otroRango = new Rango();
 		rango = new Rango();

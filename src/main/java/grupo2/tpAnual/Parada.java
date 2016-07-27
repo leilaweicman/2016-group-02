@@ -5,10 +5,11 @@ import org.uqbar.geodds.Point;
 
 public class Parada extends POI {
 	private String linea;
-	
-	public Parada( String linea){
+
+	public Parada(String linea) {
 		this.linea = linea;
 	}
+
 	public String getLinea() {
 		return linea;
 	}

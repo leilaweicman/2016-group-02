@@ -17,7 +17,6 @@ import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatos;
 import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosBancoExterno;
 import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosCentroDTO;
 import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosPOIs;
-	
 
 public class MapaTest {
 	private Usuario juan;
@@ -33,6 +32,7 @@ public class MapaTest {
 	private List<OrigenesDeDatos> listaDeOrigenes;
 	private List<ObserverBusqueda> listaMail;
 	private List<ObserverBusqueda> lista2;
+
 	@Before
 	public void init() {
 		this.listaDeOrigenes = new ArrayList<OrigenesDeDatos>();
@@ -40,12 +40,12 @@ public class MapaTest {
 		this.datosCentrosDTOs = new OrigenesDeDatosCentroDTO();
 		this.origenesDeDatosPois = new OrigenesDeDatosPOIs();
 		listaDeOrigenes = Arrays.asList(datosCentrosDTOs, datosBancosExternos, origenesDeDatosPois);
-		
-		this.juan=new Usuario();
-			
+
+		this.juan = new Usuario();
+
 		this.lasHeras = new Mapa(listaDeOrigenes);
 		this.lasHeras.setUsuario(juan);
-		
+
 		this.santander = new Banco();
 		this.santander.addPalabraClave("plazoFijo");
 		this.santander.addPalabraClave("dolar");
@@ -58,15 +58,16 @@ public class MapaTest {
 		servicios.add(ser);
 		this.rentas.setServicios(servicios);
 
-		//this.lasHeras.agregarPOI(santander); ahora se encarga el origenDeDatosPOIs de agregarlos 
+		// this.lasHeras.agregarPOI(santander); ahora se encarga el
+		// origenDeDatosPOIs de agregarlos
 		this.origenesDeDatosPois.agregarPOI(santander);
 		this.origenesDeDatosPois.agregarPOI(rentas);
 
 		this.observerRegistro = new NotificarDatosBusqueda();
 		this.observerMail = new EnviarMailBusqueda(2);
-		
-		listaMail=new ArrayList<>();
-		lista2= new ArrayList<>();
+
+		listaMail = new ArrayList<>();
+		lista2 = new ArrayList<>();
 		listaMail.add(observerMail);
 		lista2.add(observerMail);
 		lista2.add(observerRegistro);
@@ -79,7 +80,7 @@ public class MapaTest {
 		this.lasHeras.sacarOrigenesDeDatos(datosBancosExternos);
 		this.lasHeras.sacarOrigenesDeDatos(datosCentrosDTOs);
 		this.lasHeras.sacarOrigenesDeDatos(origenesDeDatosPois);
-		
+
 		Assert.assertEquals(this.lasHeras.busquedaRealizadaPorElUsuario("plazoFijo").size(), 0);
 	}
 
@@ -98,24 +99,25 @@ public class MapaTest {
 		this.lasHeras.sacarOrigenesDeDatos(datosCentrosDTOs);
 		Assert.assertEquals(lasHeras.busquedaRealizadaPorElUsuario("plazoFijo").size(), 1);
 	}
+
 	@Test
 	public void testBusquedaPorElUsuariConDatosBancoExterno() {
 		this.lasHeras.sacarOrigenesDeDatos(datosCentrosDTOs);
 		this.lasHeras.sacarOrigenesDeDatos(origenesDeDatosPois);
 		Assert.assertEquals(lasHeras.busquedaRealizadaPorElUsuario("dolar").size(), 2);
-	} 
+	}
 
 	@Test
 	public void testBusquedaPorElUsuarioConOrigenesDeDatos() {
-	
-	Assert.assertEquals(lasHeras.busquedaRealizadaPorElUsuario("plazoFijo").size(), 5);
-	} 
+
+		Assert.assertEquals(lasHeras.busquedaRealizadaPorElUsuario("plazoFijo").size(), 5);
+	}
 
 	@Test
 	public void testBusquedaPorElUsuarioConObservers() {
 		juan.agregarObserversBusqueda(listaMail);
 		System.setOut(new PrintStream(outContent));
-		
+
 		lasHeras.busquedaRealizadaPorElUsuario("plazoFijo");
 		Assert.assertEquals("La busqueda se ejecuto correctamente", outContent.toString());
 	}
@@ -127,13 +129,13 @@ public class MapaTest {
 		lasHeras.busquedaRealizadaPorElUsuario("plazoFijo");
 		Assert.assertEquals("La busqueda se ejecuto correctamente", outContent.toString());
 	}
-	
+
 	@Test
 	public void testBusquedaPorElUsuarioIntegrador_assertOrigenesDatos() {
 		juan.agregarObserversBusqueda(lista2);
 		System.setOut(new PrintStream(outContent));
 		lasHeras.busquedaRealizadaPorElUsuario("plazoFijo");
-		
+
 		Assert.assertEquals(lasHeras.busquedaRealizadaPorElUsuario("plazoFijo").size(), 5);
 	}
 

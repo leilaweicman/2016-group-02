@@ -16,8 +16,8 @@ public class Comercio extends POI {
 		this.rangoDisponibilidad = rango;
 		disponibilidad = new Disponibilidad(this.rangoDisponibilidad);
 	}
-	
-	public String getNombre(){
+
+	public String getNombre() {
 		return nombre;
 	}
 

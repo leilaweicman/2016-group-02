@@ -6,14 +6,15 @@ import java.util.List;
 public class LogEjecucionProcesos {
 	private List<DatosParaLogEjecucionProcesos> logDeProcesos;
 
-	public LogEjecucionProcesos(){
+	public LogEjecucionProcesos() {
 		logDeProcesos = new ArrayList<>();
 	}
-	public void loguearProceso(DatosParaLogEjecucionProcesos estadoProceso){
+
+	public void loguearProceso(DatosParaLogEjecucionProcesos estadoProceso) {
 		this.logDeProcesos.add(estadoProceso);
 	}
-	
-	public  List<DatosParaLogEjecucionProcesos> obtenerLog(){
+
+	public List<DatosParaLogEjecucionProcesos> obtenerLog() {
 		return this.logDeProcesos;
 	}
 }

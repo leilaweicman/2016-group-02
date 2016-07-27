@@ -6,7 +6,6 @@ import java.util.Timer;
 public class Cron {
 	private List<Proceso> procesos;
 	private Timer timer;
-
 	
 	public Cron(){
 	    this.timer = new Timer();

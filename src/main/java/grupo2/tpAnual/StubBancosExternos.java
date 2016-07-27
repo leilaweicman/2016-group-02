@@ -1,18 +1,17 @@
 package grupo2.tpAnual;
 
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class StubBancosExternos {
 
 	public ObjectMapper mapper = new ObjectMapper();
-	
-	public String busqueda(String Banco, String Servicio)throws Exception{
+
+	public String busqueda(String Banco, String Servicio) throws Exception {
 		// doc: https://github.com/FasterXML/jackson-databind/
 
 		// Falta hacer llamado a la api
 		// Por ahora setee el result para las pruebas
-	
+
 		String result = "[" + "{ \"banco\": \"Banco de la Plaza\"," + "\"x\": -35.9338322," + "\"y\": 72.348353,"
 				+ "\"sucursal\": \"Avellaneda\"," + "\"gerente\": \"Javier Loeschbor\","
 				+ " \"servicios\": [ \"cobro cheques\", \"depósitos\", \"extracciones\", \"transferencias\", \"créditos\", \"\", \"\", \"\" ]"
@@ -22,6 +21,5 @@ public class StubBancosExternos {
 				+ " }" + "]";
 
 		return result;
-		}
 	}
-
+}

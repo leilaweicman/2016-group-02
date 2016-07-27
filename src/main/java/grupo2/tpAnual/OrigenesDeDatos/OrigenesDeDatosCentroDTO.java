@@ -16,7 +16,7 @@ public class OrigenesDeDatosCentroDTO implements OrigenesDeDatos {
 	private StubCentroDTO mapaCentroDTO = new StubCentroDTO();
 
 	@Override
-	public List<POI> busqueda(String txtABuscar){
+	public List<POI> busqueda(String txtABuscar) {
 		List<CentroDTO> listaCentroDTO = new ArrayList<>();
 		List<POI> listaPOI = new ArrayList<>();
 		listaCentroDTO = this.mapaCentroDTO.busqueda(txtABuscar);

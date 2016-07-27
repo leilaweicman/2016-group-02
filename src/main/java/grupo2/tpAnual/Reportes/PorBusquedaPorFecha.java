@@ -9,32 +9,32 @@ import grupo2.tpAnual.DatosDeBusqueda;
 import grupo2.tpAnual.RegistrarDatosBusqueda;
 import org.joda.time.LocalDate;
 
-public class PorBusquedaPorFecha{
+public class PorBusquedaPorFecha {
 	List<DatosDeBusqueda> registroBusqueda = new ArrayList<DatosDeBusqueda>();
 	RegistrarDatosBusqueda register;
-	
-	public PorBusquedaPorFecha(RegistrarDatosBusqueda register){
-		this.register = register; 
+
+	public PorBusquedaPorFecha(RegistrarDatosBusqueda register) {
+		this.register = register;
 	}
 
-	public Map<LocalDate, Integer> busquedasPorFecha (){
+	public Map<LocalDate, Integer> busquedasPorFecha() {
 		Map<LocalDate, Integer> reporte = new HashMap<LocalDate, Integer>();
 		this.registroBusqueda.addAll(this.register.consultarDatos());
-		for(DatosDeBusqueda registro : registroBusqueda){
-			Integer cantidadXFecha = reporte.get(registro.getFecha().toString()) ;
-			if(cantidadXFecha != null){
+		for (DatosDeBusqueda registro : registroBusqueda) {
+			Integer cantidadXFecha = reporte.get(registro.getFecha().toString());
+			if (cantidadXFecha != null) {
 				reporte.put(registro.getFecha(), ++cantidadXFecha);
-			}else{
+			} else {
 				reporte.put(registro.getFecha(), 1);
 			}
 		}
 		return reporte;
-		
-		//Como recorrer el map despues
-		//for ( Map.Entry<String, Label> entry : map.entrySet() ) {
-		//    String key = entry.getKey();
-		//    Label value = entry.getValue();
-		//}
+
+		// Como recorrer el map despues
+		// for ( Map.Entry<String, Label> entry : map.entrySet() ) {
+		// String key = entry.getKey();
+		// Label value = entry.getValue();
+		// }
 	}
-	
+
 }

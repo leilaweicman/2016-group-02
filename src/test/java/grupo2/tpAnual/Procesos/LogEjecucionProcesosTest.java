@@ -19,16 +19,16 @@ import grupo2.tpAnual.Procesos.ManejoDeErroresProcesos.AccionEnCasoDeFallo;
 import grupo2.tpAnual.Procesos.ManejoDeErroresProcesos.EnviarMailFalloProceso;
 
 public class LogEjecucionProcesosTest {
-	
+
 	private BajaDePois proceso;
 	private OrigenesDeDatosPOIs origenesDeDatos;
 	private Banco banco;
 	private CGP cgp;
 	private Parada parada;
 	public EnviarMailFalloProceso config1;
-	
+
 	@Before
-	public void init(){
+	public void init() {
 		origenesDeDatos = new OrigenesDeDatosPOIs();
 		banco = new Banco();
 		cgp = new CGP();
@@ -39,18 +39,19 @@ public class LogEjecucionProcesosTest {
 		origenesDeDatos.agregarPOI(banco);
 		origenesDeDatos.agregarPOI(parada);
 		origenesDeDatos.agregarPOI(cgp);
-		List<AccionEnCasoDeFallo> configuraciones= new ArrayList<>();
+		List<AccionEnCasoDeFallo> configuraciones = new ArrayList<>();
 		configuraciones.add(config1);
-		this.proceso = new BajaDePois(17, new LocalDate(),configuraciones,origenesDeDatos);
+		this.proceso = new BajaDePois(17, new LocalDate(), configuraciones, origenesDeDatos);
 	}
+
 	@Test
-	public void registrarDatosDeLog(){
-		proceso.getLog().loguearProceso(new DatosParaLogEjecucionProcesos(new LocalDate(),18, false, 9));
-		Assert.assertEquals(proceso.getLog().obtenerLog().size(),1);
+	public void registrarDatosDeLog() {
+		proceso.getLog().loguearProceso(new DatosParaLogEjecucionProcesos(new LocalDate(), 18, false, 9));
+		Assert.assertEquals(proceso.getLog().obtenerLog().size(), 1);
 	}
-	
+
 	@Test
-	public void ejecucionDeProcesoConLogTest(){
+	public void ejecucionDeProcesoConLogTest() {
 		proceso.ejecutarProceso();
 		Assert.assertEquals(proceso.getLog().obtenerLog().size(), 1);
 	}

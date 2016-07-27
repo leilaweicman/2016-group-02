@@ -21,21 +21,21 @@ import java.util.List;
 
 public class ActualizacionLocalesComercialesTest {
 	private OrigenesDeDatosPOIs origenesDeDatos;
-	//private LogEjecucionProcesos log;
+	// private LogEjecucionProcesos log;
 	private ActualizacionLocalesComerciales proceso;
-	public EnviarMailFalloProceso config1;	
+	public EnviarMailFalloProceso config1;
 	List<AccionEnCasoDeFallo> configuraciones;
 	Rango unRango;
 	Rango otroRango;
 	Rango rango;
-	
+
 	@Before
 	public void init() throws IOException {
 		origenesDeDatos = new OrigenesDeDatosPOIs();
 		unRango = new Rango();
 		otroRango = new Rango();
 		rango = new Rango();
-		
+
 		unRango.setDia(1);
 		unRango.setHoraDesde(LocalTime.of(9, 0, 0));
 		unRango.setHoraHasta(LocalTime.of(18, 0, 0));
@@ -47,31 +47,30 @@ public class ActualizacionLocalesComercialesTest {
 		rango.setDia(3);
 		rango.setHoraDesde(LocalTime.of(15, 0, 0));
 		rango.setHoraHasta(LocalTime.of(18, 30, 0));
-		
-		configuraciones= new ArrayList<>();
-		config1 = new EnviarMailFalloProceso ();
+
+		configuraciones = new ArrayList<>();
+		config1 = new EnviarMailFalloProceso();
 		configuraciones.add(config1);
-		List<Rango>  listaRangos = Arrays.asList(unRango, otroRango, rango);
-		
-		
+		List<Rango> listaRangos = Arrays.asList(unRango, otroRango, rango);
+
 		Comercio comercio = new Comercio(listaRangos, "Carrousel");
 		origenesDeDatos.agregarPOI(comercio);
 
-		proceso = new ActualizacionLocalesComerciales(14, new LocalDate(),configuraciones,origenesDeDatos);
-		
-		
+		proceso = new ActualizacionLocalesComerciales(14, new LocalDate(), configuraciones, origenesDeDatos);
+
 	}
-	
-	//@Test
-	//No es un test, simplemente lo corro para ver si lee bien el archivo
-	//public void obtenerStringDeArchivo() throws Exception {
-	//	System.out.println(proceso.getFile("C:\\Users\\pc hogar.pc\\Desktop\\prueba.txt")); 
-	//}
-	
+
+	// @Test
+	// No es un test, simplemente lo corro para ver si lee bien el archivo
+	// public void obtenerStringDeArchivo() throws Exception {
+	// System.out.println(proceso.getFile("C:\\Users\\pc
+	// hogar.pc\\Desktop\\prueba.txt"));
+	// }
+
 	@Test
 	public void ejecutarProcesoTest() {
 		proceso.ejecutarProceso();
-		Comercio com = (Comercio)origenesDeDatos.getPOIs().iterator().next() ;
+		Comercio com = (Comercio) origenesDeDatos.getPOIs().iterator().next();
 		Assert.assertEquals(com.getPalabraClave().size(), 4);
 	}
 }

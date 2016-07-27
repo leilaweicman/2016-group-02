@@ -12,15 +12,15 @@ public class OrigenesDeDatosBancoExternoTest {
 
 	private OrigenesDeDatosBancoExterno origenDeDatos;
 
-	 @Before
-	 public void init(){
-		 origenDeDatos = new OrigenesDeDatosBancoExterno();
-	 }
-	 
-	 @Test
-	 public void busquedaTest() throws Exception{
-		 List<POI> bancos = origenDeDatos.busqueda("Hola");
-		 Assert.assertEquals(bancos.size(), 2);
-	 }
-	
+	@Before
+	public void init() {
+		origenDeDatos = new OrigenesDeDatosBancoExterno();
+	}
+
+	@Test
+	public void busquedaTest() throws Exception {
+		List<POI> bancos = origenDeDatos.busqueda("Hola");
+		Assert.assertEquals(bancos.size(), 2);
+	}
+
 }

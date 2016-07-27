@@ -23,11 +23,12 @@ public class BajaDePoisTest {
 
 	private BajaDePois procesoBajaDePois;
 	private OrigenesDeDatosPOIs origenesDeDatos;
-	//private LogEjecucionProcesos log;
+	// private LogEjecucionProcesos log;
 	private Banco banco;
 	private Parada parada;
 	private CGP cgp;
 	public EnviarMailFalloProceso config1;
+
 	@Before
 	public void init() {
 		origenesDeDatos = new OrigenesDeDatosPOIs();
@@ -40,24 +41,24 @@ public class BajaDePoisTest {
 		origenesDeDatos.agregarPOI(banco);
 		origenesDeDatos.agregarPOI(cgp);
 		origenesDeDatos.agregarPOI(parada);
-		List<AccionEnCasoDeFallo> configuraciones= new ArrayList<>();
+		List<AccionEnCasoDeFallo> configuraciones = new ArrayList<>();
 		configuraciones.add(config1);
-		procesoBajaDePois = new BajaDePois(17, new LocalDate(),configuraciones,origenesDeDatos);
+		procesoBajaDePois = new BajaDePois(17, new LocalDate(), configuraciones, origenesDeDatos);
 	}
 
 	@Test
 	public void obtenerListaDeIDPOIs() throws Exception {
 		assertTrue(this.procesoBajaDePois.getNumerosIdentificadoresDePois().contains(122));
 	}
-	
+
 	@Test
 	public void tamanoListaDeIDPOIs() throws Exception {
-		Assert.assertEquals(this.procesoBajaDePois.getNumerosIdentificadoresDePois().size(),2);
+		Assert.assertEquals(this.procesoBajaDePois.getNumerosIdentificadoresDePois().size(), 2);
 	}
-	
-		@Test
+
+	@Test
 	public void ejecutarTest() {
 		procesoBajaDePois.ejecutarProceso();
-		Assert.assertEquals(origenesDeDatos.getPOIs().size(),1);
+		Assert.assertEquals(origenesDeDatos.getPOIs().size(), 1);
 	}
 }

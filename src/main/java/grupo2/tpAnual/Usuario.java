@@ -8,7 +8,7 @@ import grupo2.tpAnual.Observers.ObserverBusqueda;
 public class Usuario {
 	private List<ObserverBusqueda> accionesBusqueda = new ArrayList<ObserverBusqueda>();
 	public Comuna comuna;
-	
+
 	public void setComuna(Comuna com) {
 		this.comuna = com;
 	}
@@ -16,21 +16,21 @@ public class Usuario {
 	public Comuna getComuna() {
 		return comuna;
 	}
-	
-	public List<ObserverBusqueda> enviarObservers(){		
+
+	public List<ObserverBusqueda> enviarObservers() {
 		return this.accionesBusqueda;
 	}
-	
+
 	public void agregarObserversBusqueda(List<ObserverBusqueda> observers) {
-			this.accionesBusqueda.addAll(observers);
-		}
-	public List<ObserverBusqueda> getAccionesBusqueda(){
+		this.accionesBusqueda.addAll(observers);
+	}
+
+	public List<ObserverBusqueda> getAccionesBusqueda() {
 		return accionesBusqueda;
 	}
 
-		public void quitarObserversBusqueda(List<ObserverBusqueda> observers) {
-			this.accionesBusqueda.removeAll(observers);
-		
-		
+	public void quitarObserversBusqueda(List<ObserverBusqueda> observers) {
+		this.accionesBusqueda.removeAll(observers);
+
 	}
 }

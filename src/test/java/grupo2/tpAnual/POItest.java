@@ -73,11 +73,13 @@ public class POItest {
 
 		Assert.assertTrue(zara.estaCerca(coordenadaRopa));
 	}
+
 	@Test
 	public void testEstaPalabraClave() {
 		this.santander.addPalabraClave("plazoFijo");
 		Assert.assertTrue(santander.verificaPorTexto("plazoFijo"));
 	}
+
 	@Test
 	public void testEstaCercaParada() {
 		this.p114 = new Parada("linea114");
