@@ -25,10 +25,8 @@ public class AsignacionDeAccionesParaUsuarios extends Proceso {
 	public List<ObserverBusqueda> accionesParaAgregarAUsuario=new ArrayList<>();
 	public List<ObserverBusqueda> accionesParaSacarAUsuario=new ArrayList<>();
 	
-	public List<Usuario> getUsuariosSegunCriterio(){	
-		
-		this.listaUsuarios.addAll(this.criterio.dameUsuarios(this.deComuna));
-		
+	public List<Usuario> getUsuariosSegunCriterio(){		
+		this.listaUsuarios.addAll(this.criterio.dameUsuarios(this.deComuna));		
 		return listaUsuarios;
 	}
 	
@@ -53,39 +51,26 @@ public class AsignacionDeAccionesParaUsuarios extends Proceso {
 	}
 	
 	@Override
-	public void ejecutarProceso() {
-		
-		int cantidadElementosAfectados=0;
-		
-		try{
-			
-			if(listaUsuarios != null){
-							
-				for(Usuario usuario : listaUsuarios){
-				
-					if(accionesParaAgregarAUsuario != null){
-					
+	public void ejecutarProceso() {		
+		int cantidadElementosAfectados=0;		
+		try{			
+			if(listaUsuarios != null){							
+				for(Usuario usuario : listaUsuarios){				
+					if(accionesParaAgregarAUsuario != null){					
 						usuario.agregarObserversBusqueda(this.accionesParaAgregarAUsuario);
-					}
-			
+					}			
 					if(accionesParaSacarAUsuario != null){
 						usuario.quitarObserversBusqueda(this.accionesParaSacarAUsuario);
 					}
-					cantidadElementosAfectados++;
-				}
+					cantidadElementosAfectados++;				}
 			}
-		
-		this.setEstadoProceso(true);
-		
+			this.setEstadoProceso(true);		
 		}catch (Exception e){
-		this.configuracionesFallo.forEach(configuracion -> configuracion.ejecutarConfiguracionPorFallo(this));
-		
-		this.setEstadoProceso(false);
-		
+		this.configuracionesFallo.forEach(configuracion -> configuracion.ejecutarConfiguracionPorFallo(this));		
+		this.setEstadoProceso(false);		
 		}
 
 	this.log.loguearProceso(new DatosParaLogEjecucionProcesos(this.getFechaEjecucion(), this.getHoraEjecucion(),
 			this.ejecucionExitosa, cantidadElementosAfectados));
 	}
-	
 }
