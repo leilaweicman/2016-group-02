@@ -7,13 +7,13 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import grupo2.tpAnual.DatosDeBusqueda;
-import grupo2.tpAnual.RegistrarDatosBusqueda;
+import grupo2.tpAnual.DatosBusquedaRepository;
 
 public class PorTerminalOUsuario {
-	RegistrarDatosBusqueda register;
+	DatosBusquedaRepository register;
 	List<DatosDeBusqueda> registroBusqueda = new ArrayList<DatosDeBusqueda>();
 
-	public PorTerminalOUsuario(RegistrarDatosBusqueda registro) {
+	public PorTerminalOUsuario(DatosBusquedaRepository registro) {
 		this.register = registro;
 
 	}

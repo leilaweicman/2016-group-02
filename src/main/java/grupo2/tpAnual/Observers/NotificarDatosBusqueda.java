@@ -1,13 +1,13 @@
 package grupo2.tpAnual.Observers;
 
 import grupo2.tpAnual.DatosDeBusqueda;
-import grupo2.tpAnual.RegistrarDatosBusqueda;
+import grupo2.tpAnual.DatosBusquedaRepository;
 
 public class NotificarDatosBusqueda implements ObserverBusqueda {
-	private RegistrarDatosBusqueda register;
+	private DatosBusquedaRepository register;
 
 	public NotificarDatosBusqueda() {
-		this.register = new RegistrarDatosBusqueda();
+		this.register = new DatosBusquedaRepository();
 	}
 
 	@Override
@@ -15,7 +15,7 @@ public class NotificarDatosBusqueda implements ObserverBusqueda {
 		this.register.agregarDatosBusqueda(datosParaObserver);
 	}
 
-	public RegistrarDatosBusqueda getRegister() {
+	public DatosBusquedaRepository getRegister() {
 		return this.register;
 	}
 }

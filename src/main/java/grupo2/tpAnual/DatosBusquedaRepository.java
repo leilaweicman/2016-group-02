@@ -3,10 +3,10 @@ package grupo2.tpAnual;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RegistrarDatosBusqueda {
+public class DatosBusquedaRepository {
 	private List<DatosDeBusqueda> listaDatosDeBusqueda;
 
-	public RegistrarDatosBusqueda() {
+	public DatosBusquedaRepository() {
 		this.listaDatosDeBusqueda = new ArrayList<DatosDeBusqueda>();
 	}
 

@@ -3,10 +3,10 @@ package grupo2.tpAnual.Procesos;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LogEjecucionProcesos {
+public class LogProcesosRepository {
 	private List<DatosParaLogEjecucionProcesos> logDeProcesos;
 
-	public LogEjecucionProcesos() {
+	public LogProcesosRepository() {
 		logDeProcesos = new ArrayList<>();
 	}
 

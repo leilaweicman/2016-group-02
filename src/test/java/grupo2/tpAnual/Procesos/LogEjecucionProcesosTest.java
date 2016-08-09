@@ -14,7 +14,7 @@ import grupo2.tpAnual.Parada;
 import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosPOIs;
 import grupo2.tpAnual.Procesos.BajaDePois;
 import grupo2.tpAnual.Procesos.DatosParaLogEjecucionProcesos;
-import grupo2.tpAnual.Procesos.LogEjecucionProcesos;
+import grupo2.tpAnual.Procesos.LogProcesosRepository;
 import grupo2.tpAnual.Procesos.ManejoDeErroresProcesos.AccionEnCasoDeFallo;
 import grupo2.tpAnual.Procesos.ManejoDeErroresProcesos.EnviarMailFalloProceso;
 

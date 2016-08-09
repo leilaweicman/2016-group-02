@@ -16,7 +16,7 @@ public abstract class Proceso {
 	protected OrigenesDeDatosPOIs origenesDeDatos;
 	protected List<AccionEnCasoDeFallo> configuracionesFallo = new ArrayList<AccionEnCasoDeFallo>();
 	public boolean ejecucionExitosa;
-	public LogEjecucionProcesos log;
+	public LogProcesosRepository log;
 	public Criterio criterio; // todos comuna algunos
 	public Comuna deComuna;
 
@@ -50,12 +50,12 @@ public abstract class Proceso {
 		this.configuracionesFallo.addAll(configuraciones);
 		this.fechaEjecucion = fecha;
 		this.origenesDeDatos = origenesDeDatos;
-		this.log = new LogEjecucionProcesos();
+		this.log = new LogProcesosRepository();
 	}
 
 	public abstract void ejecutarProceso();
 
-	public LogEjecucionProcesos getLog() {
+	public LogProcesosRepository getLog() {
 		return this.log;
 	}
 

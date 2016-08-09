@@ -11,7 +11,7 @@ import org.junit.Test;
 import grupo2.tpAnual.Reportes.PorTerminalOUsuario;
 
 public class ReportePorTerminalOUsuarioTest {
-	private RegistrarDatosBusqueda registro;
+	private DatosBusquedaRepository registro;
 	private DatosDeBusqueda datoBuscado;
 	private DatosDeBusqueda datoBuscado2;
 	private DatosDeBusqueda datoBuscado3;
@@ -20,7 +20,7 @@ public class ReportePorTerminalOUsuarioTest {
 
 	@Before
 	public void init() {
-		this.registro = new RegistrarDatosBusqueda();
+		this.registro = new DatosBusquedaRepository();
 		this.datoBuscado = new DatosDeBusqueda("lasHeras", "libros", 10, 15, new LocalDate());
 		this.datoBuscado2 = new DatosDeBusqueda("flores", "asado", 10, 15, new LocalDate());
 		this.datoBuscado3 = new DatosDeBusqueda("flores", "asado", 20, 25, new LocalDate());

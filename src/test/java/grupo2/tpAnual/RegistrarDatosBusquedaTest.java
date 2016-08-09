@@ -5,7 +5,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 public class RegistrarDatosBusquedaTest {
-	RegistrarDatosBusqueda registro = new RegistrarDatosBusqueda();
+	DatosBusquedaRepository registro = new DatosBusquedaRepository();
 	DatosDeBusqueda datoBuscado = new DatosDeBusqueda("lasHeras", "libros", 10, 15, new LocalDate());
 
 	@Test

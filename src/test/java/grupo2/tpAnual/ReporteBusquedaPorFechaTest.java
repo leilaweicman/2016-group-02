@@ -11,7 +11,7 @@ import grupo2.tpAnual.Reportes.PorBusquedaPorFecha;
 import org.joda.time.LocalDate;
 
 public class ReporteBusquedaPorFechaTest {
-	RegistrarDatosBusqueda registro;
+	DatosBusquedaRepository registro;
 	DatosDeBusqueda datoBuscado;
 	DatosDeBusqueda datoBuscado2;
 	DatosDeBusqueda datoBuscado3;
@@ -19,7 +19,7 @@ public class ReporteBusquedaPorFechaTest {
 
 	@Before
 	public void init() {
-		registro = new RegistrarDatosBusqueda();
+		registro = new DatosBusquedaRepository();
 		datoBuscado = new DatosDeBusqueda("lasHeras", "libros", 10, 15, new LocalDate());
 		datoBuscado2 = new DatosDeBusqueda("flores", "carpetas", 14, 15, new LocalDate().minusDays(1));
 		datoBuscado3 = new DatosDeBusqueda("flores", "carpetas", 14, 15, new LocalDate().minusDays(2));
