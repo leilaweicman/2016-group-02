@@ -35,9 +35,9 @@ public class BajaDePoisTest {
 		cgp = new CGP();
 		parada = new Parada("linea 7");
 		banco = new Banco();
-		cgp.setNumeroVerificador(122);
-		banco.setNumeroVerificador(123);
-		parada.setNumeroVerificador(12224);
+		cgp.setId(122);
+		banco.setId(123);
+		parada.setId(12224);
 		origenesDeDatos.agregarPOI(banco);
 		origenesDeDatos.agregarPOI(cgp);
 		origenesDeDatos.agregarPOI(parada);

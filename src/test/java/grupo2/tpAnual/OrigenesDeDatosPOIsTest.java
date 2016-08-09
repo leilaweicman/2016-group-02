@@ -32,11 +32,11 @@ public class OrigenesDeDatosPOIsTest {
 		this.origenesPOI = new OrigenesDeDatosPOIs();
 
 		this.kosiuko = new Comercio(listaRangos, "");
-		this.kosiuko.setNumeroVerificador(1444);
+		this.kosiuko.setId(1444);
 		this.bancoPiano = new Banco();
-		this.bancoPiano.setNumeroVerificador(145);
+		this.bancoPiano.setId(145);
 		this.cgp = new CGP();
-		this.cgp.setNumeroVerificador(4);
+		this.cgp.setId(4);
 	}
 
 	@Test
@@ -50,7 +50,7 @@ public class OrigenesDeDatosPOIsTest {
 		this.origenesPOI.agregarPOI(kosiuko);
 		this.origenesPOI.agregarPOI(bancoPiano);
 		this.origenesPOI.agregarPOI(cgp);
-		this.origenesPOI.darDeBajaPOI(kosiuko.getNumeroVerificador());
+		this.origenesPOI.darDeBajaPOI(kosiuko.getId());
 		Assert.assertEquals(this.origenesPOI.getPOIs().size(), 2);
 	}
 

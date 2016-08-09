@@ -33,9 +33,9 @@ public class LogEjecucionProcesosTest {
 		banco = new Banco();
 		cgp = new CGP();
 		parada = new Parada("linea 224");
-		banco.setNumeroVerificador(122);
-		cgp.setNumeroVerificador(123);
-		parada.setNumeroVerificador(155);
+		banco.setId(122);
+		cgp.setId(123);
+		parada.setId(155);
 		origenesDeDatos.agregarPOI(banco);
 		origenesDeDatos.agregarPOI(parada);
 		origenesDeDatos.agregarPOI(cgp);

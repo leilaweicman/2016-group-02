@@ -30,7 +30,7 @@ public class BajaDePois extends Proceso {
 
 		// agrego el numero de identificador del poi a la lista
 		List<Integer> numerosID = new ArrayList<>();
-		pois.forEach(poi -> numerosID.add(poi.getNumeroVerificador()));
+		pois.forEach(poi -> numerosID.add(poi.getId()));
 		return numerosID;
 	}
 

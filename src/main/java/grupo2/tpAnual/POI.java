@@ -16,18 +16,18 @@ public abstract class POI {
 	protected Point ubicacion;
 	protected Comuna comuna;
 	@JsonProperty("id")
-	private Integer numeroVerificador;
+	private Integer id;
 
 	public POI() {
 		palabraClave = new ArrayList<String>();
 	}
 
-	public void setNumeroVerificador(Integer numeroVerificador) {
-		this.numeroVerificador = numeroVerificador;
+	public void setId(Integer numeroVerificador) {
+		this.id = numeroVerificador;
 	}
 
-	public Integer getNumeroVerificador() {
-		return this.numeroVerificador;
+	public Integer getId() {
+		return this.id;
 	}
 
 	public Direccion getDireccion() {
