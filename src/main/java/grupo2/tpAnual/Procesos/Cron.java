@@ -11,13 +11,11 @@ public class Cron {
 	    this.timer = new Timer();
 	}
 	
-	//validar que no haya dos para la misma fecha y horario
 	public void agregarProceso(Proceso proceso){		
 		this.procesos.add(proceso);		
 	}
 	
-	public void ejecutarProcesos(Proceso proceso){//no se pasa por parametro, lo tiene que ejecutar desde su lista
-		//hacer para que ejecute lo q tiene q ejecutar en horario
+	public void ejecutarProcesos(Proceso proceso){
 		proceso.ejecutarProceso(); 
 	}
 }

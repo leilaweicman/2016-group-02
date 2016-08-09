@@ -21,7 +21,6 @@ import java.util.List;
 
 public class ActualizacionLocalesComercialesTest {
 	private OrigenesDeDatosPOIs origenesDeDatos;
-	// private LogEjecucionProcesos log;
 	private ActualizacionLocalesComerciales proceso;
 	public EnviarMailFalloProceso config1;
 	List<AccionEnCasoDeFallo> configuraciones;
@@ -59,13 +58,6 @@ public class ActualizacionLocalesComercialesTest {
 		proceso = new ActualizacionLocalesComerciales(14, new LocalDate(), configuraciones, origenesDeDatos);
 
 	}
-
-	// @Test
-	// No es un test, simplemente lo corro para ver si lee bien el archivo
-	// public void obtenerStringDeArchivo() throws Exception {
-	// System.out.println(proceso.getFile("C:\\Users\\pc
-	// hogar.pc\\Desktop\\prueba.txt"));
-	// }
 
 	@Test
 	public void ejecutarProcesoTest() {

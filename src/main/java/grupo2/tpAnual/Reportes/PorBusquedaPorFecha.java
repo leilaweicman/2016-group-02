@@ -30,11 +30,6 @@ public class PorBusquedaPorFecha {
 		}
 		return reporte;
 
-		// Como recorrer el map despues
-		// for ( Map.Entry<String, Label> entry : map.entrySet() ) {
-		// String key = entry.getKey();
-		// Label value = entry.getValue();
-		// }
 	}
 
 }

@@ -44,7 +44,6 @@ public class CGP extends POI {
 		return disponible;
 	}
 
-	// se lo delego a la comuna
 	@Override
 	public boolean estaCerca(Point punto) {
 		return (this.comuna.estaAdentro(punto));

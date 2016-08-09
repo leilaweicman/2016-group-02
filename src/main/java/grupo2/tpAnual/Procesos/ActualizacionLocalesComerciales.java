@@ -1,8 +1,6 @@
 package grupo2.tpAnual.Procesos;
 
-import java.io.File;
 import java.io.IOException;
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 
 import java.util.Arrays;
@@ -28,7 +26,6 @@ public class ActualizacionLocalesComerciales extends Proceso {
 		try {
 			String response = origen;
 			String[] componente = response.split(";");
-			// Obtengo unicamente los que son comercio de la busqueda de pois
 			List<Comercio> comercios = this.origenesDeDatos.getPOIs().stream().filter(x -> x instanceof Comercio)
 					.map(p -> (Comercio) p).collect(Collectors.toList());
 			for (Comercio com : comercios) {

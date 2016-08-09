@@ -10,7 +10,6 @@ public class Disponibilidad {
 
 	private List<Rango> rangoDisponibilidad = new ArrayList<Rango>();
 
-	// constructor
 	public Disponibilidad(List<Rango> rango) {
 		this.rangoDisponibilidad = rango;
 	}

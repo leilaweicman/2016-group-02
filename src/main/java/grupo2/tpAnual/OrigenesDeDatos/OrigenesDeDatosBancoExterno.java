@@ -27,7 +27,7 @@ public class OrigenesDeDatosBancoExterno implements OrigenesDeDatos {
 	}
 
 	public List<POI> transformarAPOI(String bancosExternosEnJson) throws Exception {		
-		mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false); //ignora los atributos que no uso
+		mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false); 
 		List<POI> listaPOI = mapper.readValue(bancosExternosEnJson,
 				mapper.getTypeFactory().constructCollectionType(ArrayList.class, Banco.class));
 		return listaPOI;

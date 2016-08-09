@@ -22,13 +22,10 @@ public class BajaDePois extends Proceso {
 	}
 
 	public List<Integer> getNumerosIdentificadoresDePois() throws Exception {
-		// obtengo los datos del servicio rest en formato json
 		String json = this.servicioRestBajaPois.getPOIs();
 		mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 		List<CGP> pois = mapper.readValue(json,
 				mapper.getTypeFactory().constructCollectionType(ArrayList.class, CGP.class));
-
-		// agrego el numero de identificador del poi a la lista
 		List<Integer> numerosID = new ArrayList<>();
 		pois.forEach(poi -> numerosID.add(poi.getId()));
 		return numerosID;

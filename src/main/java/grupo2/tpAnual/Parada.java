@@ -26,7 +26,6 @@ public class Parada extends POI {
 
 	@Override
 	public boolean estaDisponible(DateTime momento, String nombreServicio) {
-		// las paradas siempre estan disponibles
 		return true;
 	}
 

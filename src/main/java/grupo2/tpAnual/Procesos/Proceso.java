@@ -17,7 +17,7 @@ public abstract class Proceso {
 	protected List<AccionEnCasoDeFallo> configuracionesFallo = new ArrayList<AccionEnCasoDeFallo>();
 	public boolean ejecucionExitosa;
 	public LogProcesosRepository log;
-	public Criterio criterio; // todos comuna algunos
+	public Criterio criterio;
 	public Comuna deComuna;
 
 	public List<AccionEnCasoDeFallo> getConfiguracionesFallo() {
@@ -80,9 +80,4 @@ public abstract class Proceso {
 
 	}
 
-	/*
-	 * public List<AccionEnCasoDeFallo> ordenarLista(){
-	 * this.configuracionesFallo.sort(elemento1.prioridad>elemento2.prioridad);
-	 * }
-	 */
 }
