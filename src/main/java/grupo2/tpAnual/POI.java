@@ -56,8 +56,6 @@ public abstract class POI {
 		return getPalabraClave().contains(texto) || tieneTextoEnOtrosAtributos(texto);
 	}
 
-	// Seteado en false para aquellas implementaciones en las cuales no tengan
-	// busqueda particular
 	public boolean tieneTextoEnOtrosAtributos(String texto) {
 		return false;
 	};

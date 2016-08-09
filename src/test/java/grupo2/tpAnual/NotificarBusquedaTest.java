@@ -13,6 +13,6 @@ public class NotificarBusquedaTest {
 	@Test
 	public void notificarDatosDeBusquedaTest() {
 		this.observer.notificarBusqueda(datoBuscado);
-		Assert.assertEquals(this.observer.getRegister().consultarDatos().contains(datoBuscado), 1);
+		Assert.assertTrue(this.observer.getRegister().consultarDatos().contains(datoBuscado));
 	}
-}
+}	
