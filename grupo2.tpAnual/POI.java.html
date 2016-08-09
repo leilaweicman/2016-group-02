@@ -16,18 +16,18 @@ public abstract class POI {
 	protected Point ubicacion;
 	protected Comuna comuna;
 	@JsonProperty(&quot;id&quot;)
-	private Integer numeroVerificador;
+	private Integer id;
 
 <span class="fc" id="L21">	public POI() {</span>
 <span class="fc" id="L22">		palabraClave = new ArrayList&lt;String&gt;();</span>
 <span class="fc" id="L23">	}</span>
 
-	public void setNumeroVerificador(Integer numeroVerificador) {
-<span class="fc" id="L26">		this.numeroVerificador = numeroVerificador;</span>
+	public void setId(Integer numeroVerificador) {
+<span class="fc" id="L26">		this.id = numeroVerificador;</span>
 <span class="fc" id="L27">	}</span>
 
-	public Integer getNumeroVerificador() {
-<span class="fc" id="L30">		return this.numeroVerificador;</span>
+	public Integer getId() {
+<span class="fc" id="L30">		return this.id;</span>
 	}
 
 	public Direccion getDireccion() {
@@ -56,36 +56,34 @@ public abstract class POI {
 <span class="pc bpc" id="L56" title="1 of 4 branches missed.">		return getPalabraClave().contains(texto) || tieneTextoEnOtrosAtributos(texto);</span>
 	}
 
-	// Seteado en false para aquellas implementaciones en las cuales no tengan
-	// busqueda particular
 	public boolean tieneTextoEnOtrosAtributos(String texto) {
-<span class="fc" id="L62">		return false;</span>
+<span class="fc" id="L60">		return false;</span>
 	};
 
 	public void setUbicacion(double latitud, double longitud) {
-<span class="nc" id="L66">		this.ubicacion = Point.and(latitud, longitud);</span>
-<span class="nc" id="L67">	}</span>
+<span class="nc" id="L64">		this.ubicacion = Point.and(latitud, longitud);</span>
+<span class="nc" id="L65">	}</span>
 
 	abstract boolean estaCerca(Point coordenadaDeseada);
 
 	public Point getUbicacion() {
-<span class="nc" id="L72">		return ubicacion;</span>
+<span class="nc" id="L70">		return ubicacion;</span>
 	}
 
 	public void setComuna(Comuna com) {
-<span class="fc" id="L76">		this.comuna = com;</span>
-<span class="fc" id="L77">	}</span>
+<span class="fc" id="L74">		this.comuna = com;</span>
+<span class="fc" id="L75">	}</span>
 
 	public Comuna getComuna() {
-<span class="fc" id="L80">		return comuna;</span>
+<span class="fc" id="L78">		return comuna;</span>
 	}
 
 	public List&lt;POI&gt; busqueda(String txtABuscar) {
-<span class="nc" id="L84">		List&lt;POI&gt; resultadoBusqueda = new ArrayList&lt;POI&gt;();</span>
-<span class="nc bnc" id="L85" title="All 2 branches missed.">		if (this.verificaPorTexto(txtABuscar)) {</span>
-<span class="nc" id="L86">			resultadoBusqueda.add(this);</span>
+<span class="nc" id="L82">		List&lt;POI&gt; resultadoBusqueda = new ArrayList&lt;POI&gt;();</span>
+<span class="nc bnc" id="L83" title="All 2 branches missed.">		if (this.verificaPorTexto(txtABuscar)) {</span>
+<span class="nc" id="L84">			resultadoBusqueda.add(this);</span>
 		}
-<span class="nc" id="L88">		return resultadoBusqueda;</span>
+<span class="nc" id="L86">		return resultadoBusqueda;</span>
 	}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

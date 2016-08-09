@@ -13,16 +13,15 @@ public class RestServiceBajaPois {
 	   
 <span class="fc" id="L14">    public RestServiceBajaPois() {</span>
 <span class="fc" id="L15">    	this.client = Client.create();</span>
-	    //En la documentacion se puede ver como al cliente agregarle un ClientConfig
-    	//para agregarle filtros en las respuestas (por ejemplo, para loguear).
-<span class="fc" id="L18">    }</span>
 	    
-	//Prueba de concepto de un parametro y los mensajes por separado para identificar los tipos de datos.
+<span class="fc" id="L17">    }</span>
+	    
+	
 	public String getPOIs(){ 
-<span class="fc" id="L22">		WebResource recurso = this.client.resource(API_BAJAPOIS).path(RESOURCE);</span>
-<span class="fc" id="L23">	    WebResource.Builder builder = recurso.accept(MediaType.APPLICATION_JSON);</span>
-<span class="fc" id="L24">	    String response = builder.get(String.class);	 </span>
-<span class="fc" id="L25">	    return response;</span>
+<span class="fc" id="L21">		WebResource recurso = this.client.resource(API_BAJAPOIS).path(RESOURCE);</span>
+<span class="fc" id="L22">	    WebResource.Builder builder = recurso.accept(MediaType.APPLICATION_JSON);</span>
+<span class="fc" id="L23">	    String response = builder.get(String.class);	 </span>
+<span class="fc" id="L24">	    return response;</span>
 	}		
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

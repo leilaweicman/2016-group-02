@@ -22,8 +22,8 @@ public class OrigenesDeDatosPOIs implements OrigenesDeDatos {
 <span class="fc" id="L22">		pois.add(poi);</span>
 <span class="fc" id="L23">	}</span>
 
-	public void darDeBajaPOI(Integer numeroVerificador) {
-<span class="fc" id="L26">		this.pois.removeIf(poi -&gt; poi.getNumeroVerificador().equals(numeroVerificador));</span>
+	public void darDeBajaPOI(Integer id) {
+<span class="fc" id="L26">		this.pois.removeIf(poi -&gt; poi.getId().equals(id));</span>
 <span class="fc" id="L27">	}</span>
 
 	@Override

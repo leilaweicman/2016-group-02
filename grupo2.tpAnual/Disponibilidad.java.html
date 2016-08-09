@@ -10,33 +10,32 @@ public class Disponibilidad {
 
 <span class="fc" id="L11">	private List&lt;Rango&gt; rangoDisponibilidad = new ArrayList&lt;Rango&gt;();</span>
 
-	// constructor
-<span class="fc" id="L14">	public Disponibilidad(List&lt;Rango&gt; rango) {</span>
-<span class="fc" id="L15">		this.rangoDisponibilidad = rango;</span>
-<span class="fc" id="L16">	}</span>
+<span class="fc" id="L13">	public Disponibilidad(List&lt;Rango&gt; rango) {</span>
+<span class="fc" id="L14">		this.rangoDisponibilidad = rango;</span>
+<span class="fc" id="L15">	}</span>
 
 	public boolean estaDisponible(DateTime momento) {
-<span class="fc" id="L19">		int dia = momento.getDayOfWeek();</span>
-<span class="fc" id="L20">		int hora = momento.getHourOfDay();</span>
-<span class="fc" id="L21">		int minutos = momento.getMinuteOfHour();</span>
-<span class="fc" id="L22">		int segundos = momento.getSecondOfMinute();</span>
+<span class="fc" id="L18">		int dia = momento.getDayOfWeek();</span>
+<span class="fc" id="L19">		int hora = momento.getHourOfDay();</span>
+<span class="fc" id="L20">		int minutos = momento.getMinuteOfHour();</span>
+<span class="fc" id="L21">		int segundos = momento.getSecondOfMinute();</span>
 
-<span class="fc" id="L24">		LocalTime horaCompleta = LocalTime.of(hora, minutos, segundos);</span>
+<span class="fc" id="L23">		LocalTime horaCompleta = LocalTime.of(hora, minutos, segundos);</span>
 
-<span class="fc" id="L26">		boolean disponible = false;</span>
+<span class="fc" id="L25">		boolean disponible = false;</span>
 
-<span class="fc" id="L28">		disponible = this.rangoDisponibilidad.stream().anyMatch(rango -&gt; rango.estaDisponible(dia, horaCompleta));</span>
+<span class="fc" id="L27">		disponible = this.rangoDisponibilidad.stream().anyMatch(rango -&gt; rango.estaDisponible(dia, horaCompleta));</span>
 
-<span class="fc" id="L30">		return disponible;</span>
+<span class="fc" id="L29">		return disponible;</span>
 	}
 
 	public void setDisponibilidad(List&lt;Rango&gt; rango) {
-<span class="nc" id="L34">		this.rangoDisponibilidad = rango;</span>
-<span class="nc" id="L35">	}</span>
+<span class="nc" id="L33">		this.rangoDisponibilidad = rango;</span>
+<span class="nc" id="L34">	}</span>
 
 	public void addRango(Rango rango) {
-<span class="nc" id="L38">		this.rangoDisponibilidad.add(rango);</span>
-<span class="nc" id="L39">	}</span>
+<span class="nc" id="L37">		this.rangoDisponibilidad.add(rango);</span>
+<span class="nc" id="L38">	}</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

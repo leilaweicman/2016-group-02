@@ -16,8 +16,8 @@ public abstract class Proceso {
 	protected OrigenesDeDatosPOIs origenesDeDatos;
 <span class="fc" id="L17">	protected List&lt;AccionEnCasoDeFallo&gt; configuracionesFallo = new ArrayList&lt;AccionEnCasoDeFallo&gt;();</span>
 	public boolean ejecucionExitosa;
-	public LogEjecucionProcesos log;
-	public Criterio criterio; // todos comuna algunos
+	public LogProcesosRepository log;
+	public Criterio criterio;
 	public Comuna deComuna;
 
 	public List&lt;AccionEnCasoDeFallo&gt; getConfiguracionesFallo() {
@@ -50,12 +50,12 @@ public abstract class Proceso {
 <span class="fc" id="L50">		this.configuracionesFallo.addAll(configuraciones);</span>
 <span class="fc" id="L51">		this.fechaEjecucion = fecha;</span>
 <span class="fc" id="L52">		this.origenesDeDatos = origenesDeDatos;</span>
-<span class="fc" id="L53">		this.log = new LogEjecucionProcesos();</span>
+<span class="fc" id="L53">		this.log = new LogProcesosRepository();</span>
 <span class="fc" id="L54">	}</span>
 
 	public abstract void ejecutarProceso();
 
-	public LogEjecucionProcesos getLog() {
+	public LogProcesosRepository getLog() {
 <span class="fc" id="L59">		return this.log;</span>
 	}
 
@@ -80,10 +80,5 @@ public abstract class Proceso {
 
 <span class="nc" id="L81">	}</span>
 
-	/*
-	 * public List&lt;AccionEnCasoDeFallo&gt; ordenarLista(){
-	 * this.configuracionesFallo.sort(elemento1.prioridad&gt;elemento2.prioridad);
-	 * }
-	 */
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

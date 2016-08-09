@@ -22,37 +22,34 @@ public class BajaDePois extends Proceso {
 <span class="fc" id="L22">	}</span>
 
 	public List&lt;Integer&gt; getNumerosIdentificadoresDePois() throws Exception {
-		// obtengo los datos del servicio rest en formato json
-<span class="fc" id="L26">		String json = this.servicioRestBajaPois.getPOIs();</span>
-<span class="fc" id="L27">		mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);</span>
-<span class="fc" id="L28">		List&lt;CGP&gt; pois = mapper.readValue(json,</span>
-<span class="fc" id="L29">				mapper.getTypeFactory().constructCollectionType(ArrayList.class, CGP.class));</span>
-
-		// agrego el numero de identificador del poi a la lista
-<span class="fc" id="L32">		List&lt;Integer&gt; numerosID = new ArrayList&lt;&gt;();</span>
-<span class="fc" id="L33">		pois.forEach(poi -&gt; numerosID.add(poi.getNumeroVerificador()));</span>
-<span class="fc" id="L34">		return numerosID;</span>
+<span class="fc" id="L25">		String json = this.servicioRestBajaPois.getPOIs();</span>
+<span class="fc" id="L26">		mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);</span>
+<span class="fc" id="L27">		List&lt;CGP&gt; pois = mapper.readValue(json,</span>
+<span class="fc" id="L28">				mapper.getTypeFactory().constructCollectionType(ArrayList.class, CGP.class));</span>
+<span class="fc" id="L29">		List&lt;Integer&gt; numerosID = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L30">		pois.forEach(poi -&gt; numerosID.add(poi.getId()));</span>
+<span class="fc" id="L31">		return numerosID;</span>
 	}
 
 	@Override
 	public void ejecutarProceso() {
-<span class="fc" id="L39">		int cantidadElementosAfectados = 0;</span>
+<span class="fc" id="L36">		int cantidadElementosAfectados = 0;</span>
 		List&lt;Integer&gt; poisABorrar;
 		try {
-<span class="fc" id="L42">			poisABorrar = this.getNumerosIdentificadoresDePois();</span>
-<span class="pc bpc" id="L43" title="1 of 2 branches missed.">			if (poisABorrar != null) {</span>
-<span class="fc bfc" id="L44" title="All 2 branches covered.">				for (Integer pid : poisABorrar) {</span>
-<span class="fc" id="L45">					this.origenesDeDatos.darDeBajaPOI(pid);</span>
-<span class="fc" id="L46">					cantidadElementosAfectados = cantidadElementosAfectados + 1;</span>
-<span class="fc" id="L47">				}</span>
-<span class="fc" id="L48">				this.setEstadoProceso(true);</span>
+<span class="fc" id="L39">			poisABorrar = this.getNumerosIdentificadoresDePois();</span>
+<span class="pc bpc" id="L40" title="1 of 2 branches missed.">			if (poisABorrar != null) {</span>
+<span class="fc bfc" id="L41" title="All 2 branches covered.">				for (Integer pid : poisABorrar) {</span>
+<span class="fc" id="L42">					this.origenesDeDatos.darDeBajaPOI(pid);</span>
+<span class="fc" id="L43">					cantidadElementosAfectados = cantidadElementosAfectados + 1;</span>
+<span class="fc" id="L44">				}</span>
+<span class="fc" id="L45">				this.setEstadoProceso(true);</span>
 			}
-<span class="nc" id="L50">		} catch (Exception e) {</span>
-<span class="nc" id="L51">			this.configuracionesFallo.forEach(configuracion -&gt; configuracion.ejecutarConfiguracionPorFallo(this));</span>
-<span class="nc" id="L52">			this.setEstadoProceso(false);</span>
-<span class="fc" id="L53">		}</span>
-<span class="fc" id="L54">		this.log.loguearProceso(new DatosParaLogEjecucionProcesos(this.getFechaEjecucion(), this.getHoraEjecucion(),</span>
+<span class="nc" id="L47">		} catch (Exception e) {</span>
+<span class="nc" id="L48">			this.configuracionesFallo.forEach(configuracion -&gt; configuracion.ejecutarConfiguracionPorFallo(this));</span>
+<span class="nc" id="L49">			this.setEstadoProceso(false);</span>
+<span class="fc" id="L50">		}</span>
+<span class="fc" id="L51">		this.log.loguearProceso(new DatosParaLogEjecucionProcesos(this.getFechaEjecucion(), this.getHoraEjecucion(),</span>
 				this.ejecucionExitosa, cantidadElementosAfectados));
-<span class="fc" id="L56">	}</span>
+<span class="fc" id="L53">	}</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>
