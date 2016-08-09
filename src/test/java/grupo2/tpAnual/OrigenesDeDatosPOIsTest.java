@@ -42,32 +42,45 @@ public class OrigenesDeDatosPOIsTest {
 	@Test
 	public void crearPoiTest() {
 		this.origenesPOI.agregarPOI(kosiuko);
-		Assert.assertEquals(this.origenesPOI.getPOIs().size(), 1);
+		Assert.assertTrue(this.origenesPOI.getPOIs().contains(kosiuko));
 	}
 
 	@Test
 	public void darDeBajaPoiTest() {
 		this.origenesPOI.agregarPOI(kosiuko);
-		this.origenesPOI.agregarPOI(bancoPiano);
 		this.origenesPOI.agregarPOI(cgp);
 		this.origenesPOI.darDeBajaPOI(kosiuko.getId());
-		Assert.assertEquals(this.origenesPOI.getPOIs().size(), 2);
+		Assert.assertFalse(this.origenesPOI.getPOIs().contains(kosiuko));
 	}
 
 	@Test
-	public void busquedaTestAssert() {
+	public void busquedaTestAssertTrue() {
 
 		this.kosiuko.addPalabraClave("muchaGente");
 		this.bancoPiano.addPalabraClave("muchaGente");
-		this.cgp.addPalabraClave("muchaGente");
+		this.cgp.addPalabraClave("hola");
 
 		this.origenesPOI.agregarPOI(cgp);
 		this.origenesPOI.agregarPOI(kosiuko);
 		this.origenesPOI.agregarPOI(bancoPiano);
 
-		Assert.assertEquals(this.origenesPOI.busqueda("muchaGente").size(), 3);
+		Assert.assertTrue(this.origenesPOI.busqueda("muchaGente").contains(bancoPiano));
 	}
 
+	@Test
+	public void busquedaTestAssertFalse() {
+
+		this.kosiuko.addPalabraClave("muchaGente");
+		this.bancoPiano.addPalabraClave("muchaGente");
+		this.cgp.addPalabraClave("hola");
+
+		this.origenesPOI.agregarPOI(cgp);
+		this.origenesPOI.agregarPOI(kosiuko);
+		this.origenesPOI.agregarPOI(bancoPiano);
+
+		Assert.assertFalse(this.origenesPOI.busqueda("muchaGente").contains(cgp));
+	}
+	
 	@Test
 	public void busquedaTestFail() {
 		this.jubilacion = new Servicio(listaRangos);
@@ -83,6 +96,6 @@ public class OrigenesDeDatosPOIsTest {
 		this.origenesPOI.agregarPOI(kosiuko);
 		this.origenesPOI.agregarPOI(bancoPiano);
 
-		Assert.assertEquals(this.origenesPOI.busqueda("hola").size(), 0);
+		Assert.assertTrue(this.origenesPOI.busqueda("hola").isEmpty());
 	}
 }
