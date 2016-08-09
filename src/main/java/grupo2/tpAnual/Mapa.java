@@ -16,7 +16,7 @@ public class Mapa {
 	public Mapa(List<OrigenesDeDatos> listaDeOrigenes) {
 		observersBusqueda = new ArrayList<ObserverBusqueda>();
 		origenesDeDatos = new ArrayList<OrigenesDeDatos>();
-		listaDeOrigenes.forEach(origen -> this.agregarOrigenesDeDatos(origen));
+		this.origenesDeDatos.addAll(listaDeOrigenes);
 
 	}
 
