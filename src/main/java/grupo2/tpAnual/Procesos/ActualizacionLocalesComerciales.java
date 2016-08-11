@@ -21,24 +21,17 @@ public class ActualizacionLocalesComerciales extends Proceso {
 	}
 
 	@Override
-	public void ejecutarProceso() {
-		int cantidadElementosAfectados = 0;
-		try {
-			String response = origen;
-			String[] componente = response.split(";");
-			List<Comercio> comercios = this.origenesDeDatos.getPOIs().stream().filter(x -> x instanceof Comercio)
-					.map(p -> (Comercio) p).collect(Collectors.toList());
-			for (Comercio com : comercios) {
-				if (com.getNombre().equals(componente[0])) {
-					com.setPalabrasClaves(Arrays.asList(componente[1].split(" ")));
-					cantidadElementosAfectados = cantidadElementosAfectados + 1;
-				}
+	public void ejecutar() {
+		String response = origen;
+		String[] componente = response.split(";");
+		List<Comercio> comercios = this.origenesDeDatos.getPOIs().stream().filter(x -> x instanceof Comercio)
+				.map(p -> (Comercio) p).collect(Collectors.toList());
+		for (Comercio com : comercios) {
+			if (com.getNombre().equals(componente[0])) {
+				com.setPalabrasClaves(Arrays.asList(componente[1].split(" ")));
+				cantidadElementosAfectados++;
 			}
-		} catch (Exception e) {
-			this.configuracionesFallo.forEach(configuracion -> configuracion.ejecutarConfiguracionPorFallo(this));
-			this.setEstadoProceso(false);
 		}
-		this.log.loguearProceso(new DatosParaLogEjecucionProcesos(this.getFechaEjecucion(), this.getHoraEjecucion(),
-				this.ejecucionExitosa, cantidadElementosAfectados));
 	}
+
 }

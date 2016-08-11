@@ -47,26 +47,18 @@ public class AsignacionDeAccionesParaUsuarios extends Proceso {
 	}
 
 	@Override
-	public void ejecutarProceso() {
-		int cantidadElementosAfectados = 0;
-		try {
-			if (listaUsuarios != null) {
-				for (Usuario usuario : listaUsuarios) {
-					if (accionesParaAgregarAUsuario != null) {
-						usuario.agregarObserversBusqueda(this.accionesParaAgregarAUsuario);
-					}
-					if (accionesParaSacarAUsuario != null) {
-						usuario.quitarObserversBusqueda(this.accionesParaSacarAUsuario);
-					}
-					cantidadElementosAfectados++;
+	public void ejecutar() {
+		this.cantidadElementosAfectados = 0;
+		if (listaUsuarios != null) {
+			for (Usuario usuario : listaUsuarios) {
+				if (accionesParaAgregarAUsuario != null) {
+					usuario.agregarObserversBusqueda(this.accionesParaAgregarAUsuario);
 				}
+				if (accionesParaSacarAUsuario != null) {
+					usuario.quitarObserversBusqueda(this.accionesParaSacarAUsuario);
+				}
+				cantidadElementosAfectados++;
 			}
-			this.setEstadoProceso(true);
-		} catch (Exception e) {
-			this.configuracionesFallo.forEach(configuracion -> configuracion.ejecutarConfiguracionPorFallo(this));
-			this.setEstadoProceso(false);
 		}
-		this.log.loguearProceso(new DatosParaLogEjecucionProcesos(this.getFechaEjecucion(), this.getHoraEjecucion(),
-				this.ejecucionExitosa, cantidadElementosAfectados));
 	}
 }

@@ -2,10 +2,7 @@ package grupo2.tpAnual.Procesos;
 
 import java.util.ArrayList;
 import java.util.List;
-//import java.util.SortedSet;
-
 import org.joda.time.LocalDate;
-
 import grupo2.tpAnual.Comuna;
 import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosPOIs;
 import grupo2.tpAnual.Procesos.ManejoDeErroresProcesos.AccionEnCasoDeFallo;
@@ -19,6 +16,7 @@ public abstract class Proceso {
 	public LogProcesosRepository log;
 	public Criterio criterio;
 	public Comuna deComuna;
+	public Integer cantidadElementosAfectados;
 
 	public List<AccionEnCasoDeFallo> getConfiguracionesFallo() {
 		return configuracionesFallo;
@@ -53,7 +51,21 @@ public abstract class Proceso {
 		this.log = new LogProcesosRepository();
 	}
 
-	public abstract void ejecutarProceso();
+	public void ejecutarProceso(){
+		this.cantidadElementosAfectados = 0;
+		try {
+			ejecutar();
+			this.setEstadoProceso(true);
+		} catch (Exception e) {
+			this.configuracionesFallo.forEach(configuracion -> configuracion.ejecutarConfiguracionPorFallo(this));
+			this.setEstadoProceso(false);
+		}
+		this.log.loguearProceso(new DatosParaLogEjecucionProcesos(this.getFechaEjecucion(), this.getHoraEjecucion(),
+				this.ejecucionExitosa, cantidadElementosAfectados));
+	}
+
+	
+	public abstract void ejecutar();
 
 	public LogProcesosRepository getLog() {
 		return this.log;

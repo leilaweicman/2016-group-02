@@ -7,6 +7,7 @@ import org.joda.time.LocalDate;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import grupo2.tpAnual.CGP;
 import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosPOIs;
 import grupo2.tpAnual.Procesos.ManejoDeErroresProcesos.AccionEnCasoDeFallo;
@@ -21,34 +22,30 @@ public class BajaDePois extends Proceso {
 		this.servicioRestBajaPois = new RestServiceBajaPois();
 	}
 
-	public List<Integer> getNumerosIdentificadoresDePois() throws Exception {
+	public List<Integer> getNumerosIdentificadoresDePois() {
 		String json = this.servicioRestBajaPois.getPOIs();
 		mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-		List<CGP> pois = mapper.readValue(json,
-				mapper.getTypeFactory().constructCollectionType(ArrayList.class, CGP.class));
+		List<CGP> pois;
 		List<Integer> numerosID = new ArrayList<>();
-		pois.forEach(poi -> numerosID.add(poi.getId()));
+		try {
+			pois = mapper.readValue(json, mapper.getTypeFactory().constructCollectionType(ArrayList.class, CGP.class));
+			pois.forEach(poi -> numerosID.add(poi.getId()));
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return numerosID;
 	}
 
 	@Override
-	public void ejecutarProceso() {
-		int cantidadElementosAfectados = 0;
+	public void ejecutar() {
 		List<Integer> poisABorrar;
-		try {
-			poisABorrar = this.getNumerosIdentificadoresDePois();
-			if (poisABorrar != null) {
-				for (Integer pid : poisABorrar) {
-					this.origenesDeDatos.darDeBajaPOI(pid);
-					cantidadElementosAfectados = cantidadElementosAfectados + 1;
-				}
-				this.setEstadoProceso(true);
+		poisABorrar = this.getNumerosIdentificadoresDePois();
+		if (poisABorrar != null) {
+			for (Integer pid : poisABorrar) {
+				this.origenesDeDatos.darDeBajaPOI(pid);
+				cantidadElementosAfectados++;
 			}
-		} catch (Exception e) {
-			this.configuracionesFallo.forEach(configuracion -> configuracion.ejecutarConfiguracionPorFallo(this));
-			this.setEstadoProceso(false);
 		}
-		this.log.loguearProceso(new DatosParaLogEjecucionProcesos(this.getFechaEjecucion(), this.getHoraEjecucion(),
-				this.ejecucionExitosa, cantidadElementosAfectados));
 	}
 }
