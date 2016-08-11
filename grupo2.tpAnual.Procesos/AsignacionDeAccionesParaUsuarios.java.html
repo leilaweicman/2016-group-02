@@ -47,27 +47,19 @@ public class AsignacionDeAccionesParaUsuarios extends Proceso {
 	}
 
 	@Override
-	public void ejecutarProceso() {
-<span class="fc" id="L51">		int cantidadElementosAfectados = 0;</span>
-		try {
-<span class="pc bpc" id="L53" title="1 of 2 branches missed.">			if (listaUsuarios != null) {</span>
-<span class="fc bfc" id="L54" title="All 2 branches covered.">				for (Usuario usuario : listaUsuarios) {</span>
-<span class="pc bpc" id="L55" title="1 of 2 branches missed.">					if (accionesParaAgregarAUsuario != null) {</span>
-<span class="fc" id="L56">						usuario.agregarObserversBusqueda(this.accionesParaAgregarAUsuario);</span>
-					}
-<span class="pc bpc" id="L58" title="1 of 2 branches missed.">					if (accionesParaSacarAUsuario != null) {</span>
-<span class="fc" id="L59">						usuario.quitarObserversBusqueda(this.accionesParaSacarAUsuario);</span>
-					}
-<span class="fc" id="L61">					cantidadElementosAfectados++;</span>
-<span class="fc" id="L62">				}</span>
-			}
-<span class="fc" id="L64">			this.setEstadoProceso(true);</span>
-<span class="nc" id="L65">		} catch (Exception e) {</span>
-<span class="nc" id="L66">			this.configuracionesFallo.forEach(configuracion -&gt; configuracion.ejecutarConfiguracionPorFallo(this));</span>
-<span class="nc" id="L67">			this.setEstadoProceso(false);</span>
-<span class="fc" id="L68">		}</span>
-<span class="fc" id="L69">		this.log.loguearProceso(new DatosParaLogEjecucionProcesos(this.getFechaEjecucion(), this.getHoraEjecucion(),</span>
-				this.ejecucionExitosa, cantidadElementosAfectados));
-<span class="fc" id="L71">	}</span>
+	public void ejecutar() {
+<span class="fc" id="L51">		this.cantidadElementosAfectados = 0;</span>
+<span class="pc bpc" id="L52" title="1 of 2 branches missed.">		if (listaUsuarios != null) {</span>
+<span class="fc bfc" id="L53" title="All 2 branches covered.">			for (Usuario usuario : listaUsuarios) {</span>
+<span class="pc bpc" id="L54" title="1 of 2 branches missed.">				if (accionesParaAgregarAUsuario != null) {</span>
+<span class="fc" id="L55">					usuario.agregarObserversBusqueda(this.accionesParaAgregarAUsuario);</span>
+				}
+<span class="pc bpc" id="L57" title="1 of 2 branches missed.">				if (accionesParaSacarAUsuario != null) {</span>
+<span class="fc" id="L58">					usuario.quitarObserversBusqueda(this.accionesParaSacarAUsuario);</span>
+				}
+<span class="fc" id="L60">				cantidadElementosAfectados++;</span>
+<span class="fc" id="L61">			}</span>
+		}
+<span class="fc" id="L63">	}</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

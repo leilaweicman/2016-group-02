@@ -20,45 +20,37 @@ public class Mapa {
 
 <span class="fc" id="L21">	}</span>
 
-	public void agregarOrigenesDeDatos(OrigenesDeDatos integracion) {
-<span class="nc" id="L24">		this.origenesDeDatos.add(integracion);</span>
-<span class="nc" id="L25">	}</span>
-
-	public void sacarOrigenesDeDatos(OrigenesDeDatos integracion) {
-<span class="fc" id="L28">		this.origenesDeDatos.remove(integracion);</span>
-<span class="fc" id="L29">	}</span>
-
 	public List&lt;POI&gt; busquedaRealizadaPorElUsuario(String txtABuscar) {
-<span class="fc" id="L32">		long tiempoInicio = System.currentTimeMillis();</span>
-<span class="fc" id="L33">		List&lt;POI&gt; result = new ArrayList&lt;POI&gt;();</span>
+<span class="fc" id="L24">		long tiempoInicio = System.currentTimeMillis();</span>
+<span class="fc" id="L25">		List&lt;POI&gt; result = new ArrayList&lt;POI&gt;();</span>
 
-<span class="fc" id="L35">		this.observersBusqueda.addAll(usuario.enviarObservers());</span>
-<span class="fc" id="L36">		this.origenesDeDatos.forEach(integracion -&gt; result.addAll(integracion.busqueda(txtABuscar)));</span>
-<span class="fc" id="L37">		long tiempoFin = System.currentTimeMillis();</span>
+<span class="fc" id="L27">		this.observersBusqueda.addAll(usuario.enviarObservers());</span>
+<span class="fc" id="L28">		this.origenesDeDatos.forEach(integracion -&gt; result.addAll(integracion.busqueda(txtABuscar)));</span>
+<span class="fc" id="L29">		long tiempoFin = System.currentTimeMillis();</span>
 
-<span class="fc" id="L39">		long segundosTardados = (tiempoFin - tiempoInicio) / 1000;</span>
+<span class="fc" id="L31">		long segundosTardados = (tiempoFin - tiempoInicio) / 1000;</span>
 
-<span class="fc" id="L41">		DatosDeBusqueda datosParaObserver = new DatosDeBusqueda(this.nombre, txtABuscar, segundosTardados,</span>
-<span class="fc" id="L42">				result.size(), new LocalDate());</span>
-<span class="fc" id="L43">		this.observersBusqueda.forEach(observer -&gt; observer.notificarBusqueda(datosParaObserver));</span>
+<span class="fc" id="L33">		DatosDeBusqueda datosParaObserver = new DatosDeBusqueda(this.nombre, txtABuscar, segundosTardados,</span>
+<span class="fc" id="L34">				result.size(), new LocalDate());</span>
+<span class="fc" id="L35">		this.observersBusqueda.forEach(observer -&gt; observer.notificarBusqueda(datosParaObserver));</span>
 
-<span class="fc" id="L45">		return result;</span>
+<span class="fc" id="L37">		return result;</span>
 	}
 
 	public List&lt;OrigenesDeDatos&gt; getOrigenesDeDatos() {
-<span class="nc" id="L49">		return this.origenesDeDatos;</span>
+<span class="nc" id="L41">		return this.origenesDeDatos;</span>
 	}
 
 	public String getNombre() {
-<span class="nc" id="L53">		return nombre;</span>
+<span class="nc" id="L45">		return nombre;</span>
 	}
 
 	public void setNombre(String nombre) {
-<span class="nc" id="L57">		this.nombre = nombre;</span>
-<span class="nc" id="L58">	}</span>
+<span class="nc" id="L49">		this.nombre = nombre;</span>
+<span class="nc" id="L50">	}</span>
 
 	public void setUsuario(Usuario user) {
-<span class="fc" id="L61">		this.usuario = user;</span>
-<span class="fc" id="L62">	}</span>
+<span class="fc" id="L53">		this.usuario = user;</span>
+<span class="fc" id="L54">	}</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

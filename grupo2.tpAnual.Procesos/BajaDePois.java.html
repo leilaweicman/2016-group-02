@@ -7,49 +7,46 @@ import org.joda.time.LocalDate;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import grupo2.tpAnual.CGP;
 import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosPOIs;
 import grupo2.tpAnual.Procesos.ManejoDeErroresProcesos.AccionEnCasoDeFallo;
 
 public class BajaDePois extends Proceso {
 	RestServiceBajaPois servicioRestBajaPois;
-<span class="fc" id="L16">	public ObjectMapper mapper = new ObjectMapper();</span>
+<span class="fc" id="L17">	public ObjectMapper mapper = new ObjectMapper();</span>
 
 	public BajaDePois(int hora, LocalDate fecha, List&lt;AccionEnCasoDeFallo&gt; configuraciones,
 			OrigenesDeDatosPOIs origenesDeDatos) {
-<span class="fc" id="L20">		super(hora, fecha, configuraciones, origenesDeDatos);</span>
-<span class="fc" id="L21">		this.servicioRestBajaPois = new RestServiceBajaPois();</span>
-<span class="fc" id="L22">	}</span>
+<span class="fc" id="L21">		super(hora, fecha, configuraciones, origenesDeDatos);</span>
+<span class="fc" id="L22">		this.servicioRestBajaPois = new RestServiceBajaPois();</span>
+<span class="fc" id="L23">	}</span>
 
-	public List&lt;Integer&gt; getNumerosIdentificadoresDePois() throws Exception {
-<span class="fc" id="L25">		String json = this.servicioRestBajaPois.getPOIs();</span>
-<span class="fc" id="L26">		mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);</span>
-<span class="fc" id="L27">		List&lt;CGP&gt; pois = mapper.readValue(json,</span>
-<span class="fc" id="L28">				mapper.getTypeFactory().constructCollectionType(ArrayList.class, CGP.class));</span>
+	public List&lt;Integer&gt; getNumerosIdentificadoresDePois() {
+<span class="fc" id="L26">		String json = this.servicioRestBajaPois.getPOIs();</span>
+<span class="fc" id="L27">		mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);</span>
+		List&lt;CGP&gt; pois;
 <span class="fc" id="L29">		List&lt;Integer&gt; numerosID = new ArrayList&lt;&gt;();</span>
-<span class="fc" id="L30">		pois.forEach(poi -&gt; numerosID.add(poi.getId()));</span>
-<span class="fc" id="L31">		return numerosID;</span>
+		try {
+<span class="fc" id="L31">			pois = mapper.readValue(json, mapper.getTypeFactory().constructCollectionType(ArrayList.class, CGP.class));</span>
+<span class="fc" id="L32">			pois.forEach(poi -&gt; numerosID.add(poi.getId()));</span>
+
+<span class="nc" id="L34">		} catch (Exception e) {</span>
+<span class="nc" id="L35">			e.printStackTrace();</span>
+<span class="fc" id="L36">		}</span>
+<span class="fc" id="L37">		return numerosID;</span>
 	}
 
 	@Override
-	public void ejecutarProceso() {
-<span class="fc" id="L36">		int cantidadElementosAfectados = 0;</span>
+	public void ejecutar() {
 		List&lt;Integer&gt; poisABorrar;
-		try {
-<span class="fc" id="L39">			poisABorrar = this.getNumerosIdentificadoresDePois();</span>
-<span class="pc bpc" id="L40" title="1 of 2 branches missed.">			if (poisABorrar != null) {</span>
-<span class="fc bfc" id="L41" title="All 2 branches covered.">				for (Integer pid : poisABorrar) {</span>
-<span class="fc" id="L42">					this.origenesDeDatos.darDeBajaPOI(pid);</span>
-<span class="fc" id="L43">					cantidadElementosAfectados = cantidadElementosAfectados + 1;</span>
-<span class="fc" id="L44">				}</span>
-<span class="fc" id="L45">				this.setEstadoProceso(true);</span>
-			}
-<span class="nc" id="L47">		} catch (Exception e) {</span>
-<span class="nc" id="L48">			this.configuracionesFallo.forEach(configuracion -&gt; configuracion.ejecutarConfiguracionPorFallo(this));</span>
-<span class="nc" id="L49">			this.setEstadoProceso(false);</span>
-<span class="fc" id="L50">		}</span>
-<span class="fc" id="L51">		this.log.loguearProceso(new DatosParaLogEjecucionProcesos(this.getFechaEjecucion(), this.getHoraEjecucion(),</span>
-				this.ejecucionExitosa, cantidadElementosAfectados));
-<span class="fc" id="L53">	}</span>
+<span class="fc" id="L43">		poisABorrar = this.getNumerosIdentificadoresDePois();</span>
+<span class="pc bpc" id="L44" title="1 of 2 branches missed.">		if (poisABorrar != null) {</span>
+<span class="fc bfc" id="L45" title="All 2 branches covered.">			for (Integer pid : poisABorrar) {</span>
+<span class="fc" id="L46">				this.origenesDeDatos.darDeBajaPOI(pid);</span>
+<span class="fc" id="L47">				cantidadElementosAfectados++;</span>
+<span class="fc" id="L48">			}</span>
+		}
+<span class="fc" id="L50">	}</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>
