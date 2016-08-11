@@ -1,7 +1,5 @@
 package grupo2.tpAnual;
 
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -28,23 +26,18 @@ public class MapaTest {
 	private NotificarDatosBusqueda observerRegistro;
 	private OrigenesDeDatosCentroDTO datosCentrosDTOs;
 	private OrigenesDeDatosBancoExterno datosBancosExternos;
-	private ByteArrayOutputStream outContent;
 	private List<OrigenesDeDatos> listaDeOrigenes;
-	private List<ObserverBusqueda> listaMail;
 	private List<ObserverBusqueda> lista2;
 
 	@Before
 	public void init() {
 		this.listaDeOrigenes = new ArrayList<OrigenesDeDatos>();
+		
 		this.datosBancosExternos = new OrigenesDeDatosBancoExterno();
 		this.datosCentrosDTOs = new OrigenesDeDatosCentroDTO();
 		this.origenesDeDatosPois = new OrigenesDeDatosPOIs();
-		listaDeOrigenes = Arrays.asList(datosCentrosDTOs, datosBancosExternos, origenesDeDatosPois);
-
+		
 		this.juan = new Usuario();
-
-		this.lasHeras = new Mapa(listaDeOrigenes);
-		this.lasHeras.setUsuario(juan);
 
 		this.santander = new Banco();
 		this.santander.addPalabraClave("plazoFijo");
@@ -58,84 +51,77 @@ public class MapaTest {
 		servicios.add(ser);
 		this.rentas.setServicios(servicios);
 
-		// this.lasHeras.agregarPOI(santander); ahora se encarga el
-		// origenDeDatosPOIs de agregarlos
 		this.origenesDeDatosPois.agregarPOI(santander);
 		this.origenesDeDatosPois.agregarPOI(rentas);
 
 		this.observerRegistro = new NotificarDatosBusqueda();
 		this.observerMail = new EnviarMailBusqueda(2);
 
-		listaMail = new ArrayList<>();
-		lista2 = new ArrayList<>();
-		listaMail.add(observerMail);
-		lista2.add(observerMail);
-		lista2.add(observerRegistro);
-
-		this.outContent = new ByteArrayOutputStream();
 	}
 
 	@Test
 	public void testBusquedaPorElUsuarioSinObserversNiOrigenesDeDatos() {
-		this.lasHeras.sacarOrigenesDeDatos(datosBancosExternos);
-		this.lasHeras.sacarOrigenesDeDatos(datosCentrosDTOs);
-		this.lasHeras.sacarOrigenesDeDatos(origenesDeDatosPois);
-
+		listaDeOrigenes = Arrays.asList();
+		this.lasHeras = new Mapa(listaDeOrigenes);
+		this.lasHeras.setUsuario(juan);
 		Assert.assertEquals(this.lasHeras.busquedaRealizadaPorElUsuario("plazoFijo").size(), 0);
 	}
 
 	@Test
 	public void testBusquedaPorElUsuarioConDatosDTO() {
-
-		this.lasHeras.sacarOrigenesDeDatos(origenesDeDatosPois);
-		this.lasHeras.sacarOrigenesDeDatos(datosBancosExternos);
+		listaDeOrigenes = Arrays.asList(datosCentrosDTOs);
+		this.lasHeras = new Mapa(listaDeOrigenes);
+		this.lasHeras.setUsuario(juan);
 		Assert.assertEquals(lasHeras.busquedaRealizadaPorElUsuario("palabras").size(), 2);
 	}
 
 	@Test
 	public void testBusquedaPorElUsuarioConDatosPOIS() {
-
-		this.lasHeras.sacarOrigenesDeDatos(datosBancosExternos);
-		this.lasHeras.sacarOrigenesDeDatos(datosCentrosDTOs);
+		listaDeOrigenes = Arrays.asList(origenesDeDatosPois);
+		this.lasHeras = new Mapa(listaDeOrigenes);
+		this.lasHeras.setUsuario(juan);
 		Assert.assertEquals(lasHeras.busquedaRealizadaPorElUsuario("plazoFijo").size(), 1);
 	}
 
 	@Test
 	public void testBusquedaPorElUsuariConDatosBancoExterno() {
-		this.lasHeras.sacarOrigenesDeDatos(datosCentrosDTOs);
-		this.lasHeras.sacarOrigenesDeDatos(origenesDeDatosPois);
-		Assert.assertEquals(lasHeras.busquedaRealizadaPorElUsuario("dolar").size(), 2);
+		listaDeOrigenes = Arrays.asList(datosBancosExternos);
+		this.lasHeras = new Mapa(listaDeOrigenes);
+		this.lasHeras.setUsuario(juan);
+		Assert.assertEquals(lasHeras.busquedaRealizadaPorElUsuario("dolar").size(),2);
 	}
 
 	@Test
 	public void testBusquedaPorElUsuarioConOrigenesDeDatos() {
-
-		Assert.assertEquals(lasHeras.busquedaRealizadaPorElUsuario("plazoFijo").size(), 5);
-	}
-
-	@Test
-	public void testBusquedaPorElUsuarioConObservers() {
-		juan.agregarObserversBusqueda(listaMail);
-		System.setOut(new PrintStream(outContent));
-
-		lasHeras.busquedaRealizadaPorElUsuario("plazoFijo");
-		Assert.assertEquals("La busqueda se ejecuto correctamente", outContent.toString());
+		listaDeOrigenes = Arrays.asList(datosCentrosDTOs, datosBancosExternos, origenesDeDatosPois);
+		this.lasHeras = new Mapa(listaDeOrigenes);
+		this.lasHeras.setUsuario(juan);
+		Assert.assertTrue(lasHeras.busquedaRealizadaPorElUsuario("plazoFijo").contains(santander));
 	}
 
 	@Test
 	public void testBusquedaPorElUsuarioIntegrador_assertObservers() {
+		lista2 = new ArrayList<>();
+		lista2.add(observerMail);
+		lista2.add(observerRegistro);
+		listaDeOrigenes = Arrays.asList(datosCentrosDTOs, datosBancosExternos, origenesDeDatosPois);
+		this.lasHeras = new Mapa(listaDeOrigenes);
+		this.lasHeras.setUsuario(juan);
 		juan.agregarObserversBusqueda(lista2);
-		System.setOut(new PrintStream(outContent));
 		lasHeras.busquedaRealizadaPorElUsuario("plazoFijo");
-		Assert.assertEquals("La busqueda se ejecuto correctamente", outContent.toString());
+		Assert.assertEquals(observerRegistro.getRegister().consultarDatos().size(),1);
 	}
 
 	@Test
 	public void testBusquedaPorElUsuarioIntegrador_assertOrigenesDatos() {
+		lista2 = new ArrayList<>();
+		lista2.add(observerMail);
+		lista2.add(observerRegistro);
+		
 		juan.agregarObserversBusqueda(lista2);
-		System.setOut(new PrintStream(outContent));
-		lasHeras.busquedaRealizadaPorElUsuario("plazoFijo");
-
+		listaDeOrigenes = Arrays.asList(datosCentrosDTOs, datosBancosExternos, origenesDeDatosPois);
+		this.lasHeras = new Mapa(listaDeOrigenes);
+		this.lasHeras.setUsuario(juan);
 		Assert.assertEquals(lasHeras.busquedaRealizadaPorElUsuario("plazoFijo").size(), 5);
 	}
 

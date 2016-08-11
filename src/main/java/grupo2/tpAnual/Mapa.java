@@ -20,14 +20,6 @@ public class Mapa {
 
 	}
 
-	public void agregarOrigenesDeDatos(OrigenesDeDatos integracion) {
-		this.origenesDeDatos.add(integracion);
-	}
-
-	public void sacarOrigenesDeDatos(OrigenesDeDatos integracion) {
-		this.origenesDeDatos.remove(integracion);
-	}
-
 	public List<POI> busquedaRealizadaPorElUsuario(String txtABuscar) {
 		long tiempoInicio = System.currentTimeMillis();
 		List<POI> result = new ArrayList<POI>();
