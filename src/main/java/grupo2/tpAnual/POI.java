@@ -78,11 +78,10 @@ public abstract class POI {
 		return comuna;
 	}
 
-	public List<POI> busqueda(String txtABuscar) {
-		List<POI> resultadoBusqueda = new ArrayList<POI>();
+	public POI busqueda(String txtABuscar) {
 		if (this.verificaPorTexto(txtABuscar)) {
-			resultadoBusqueda.add(this);
+			return this;
 		}
-		return resultadoBusqueda;
+		return null;
 	}
 }
