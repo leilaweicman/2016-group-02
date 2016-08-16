@@ -40,7 +40,7 @@ public class AsignacionDeAccionesParaUsuariosTest {
 	private CriterioTodos todos;
 	private CriterioComuna porComuna;
 	private CriterioSeleccionFija picky;
-
+	private List<AccionEnCasoDeFallo> configuraciones;
 	private NotificarDatosBusqueda observerRegistro;
 
 	private UserRepository repo;
@@ -54,9 +54,8 @@ public class AsignacionDeAccionesParaUsuariosTest {
 		origenesDeDatos.agregarPOI(banco);
 		origenesDeDatos.agregarPOI(cgp);
 		origenesDeDatos.agregarPOI(parada);
-		List<AccionEnCasoDeFallo> configuraciones = new ArrayList<>();
+		configuraciones = new ArrayList<>();
 		configuraciones.add(config1);
-		proceso3 = new AsignacionDeAccionesParaUsuarios(17, new LocalDate(), configuraciones, origenesDeDatos);
 		juan = new Usuario();
 		ana = new Usuario();
 		todos = new CriterioTodos();
@@ -86,14 +85,14 @@ public class AsignacionDeAccionesParaUsuariosTest {
 		this.picky.agregarUsuario(juan);
 
 		observerRegistro = new NotificarDatosBusqueda();
-		this.proceso3.setAccionesParaAgregarAUsuario(observerRegistro);
-		this.proceso3.setDeComuna(comuna1);
+		
 	}
 
 	@Test
 	public void testEjecutarProceso() {
-		this.proceso3.setCriterio(todos);
-		proceso3.getUsuariosSegunCriterio();
+		proceso3 = new AsignacionDeAccionesParaUsuarios(17, new LocalDate(), configuraciones, origenesDeDatos, todos);
+		this.proceso3.setAccionesParaAgregarAUsuario(observerRegistro);
+		this.proceso3.setDeComuna(comuna1);
 		proceso3.ejecutarProceso();
 		Assert.assertEquals(juan.getAccionesBusqueda().size(), 1);
 		Assert.assertEquals(ana.getAccionesBusqueda().size(), 1);
@@ -102,8 +101,9 @@ public class AsignacionDeAccionesParaUsuariosTest {
 
 	@Test
 	public void testEjecutarProceso2() {
-		this.proceso3.setCriterio(porComuna);
-		proceso3.getUsuariosSegunCriterio();
+		proceso3 = new AsignacionDeAccionesParaUsuarios(17, new LocalDate(), configuraciones, origenesDeDatos, porComuna);
+		this.proceso3.setAccionesParaAgregarAUsuario(observerRegistro);
+		this.proceso3.setDeComuna(comuna1);
 		proceso3.ejecutarProceso();
 		Assert.assertEquals(juan.getAccionesBusqueda().size(), 1);
 		Assert.assertEquals(ana.getAccionesBusqueda().size(), 0);
@@ -112,8 +112,9 @@ public class AsignacionDeAccionesParaUsuariosTest {
 
 	@Test
 	public void testEjecutarProceso3() {
-		this.proceso3.setCriterio(picky);
-		proceso3.getUsuariosSegunCriterio();
+		proceso3 = new AsignacionDeAccionesParaUsuarios(17, new LocalDate(), configuraciones, origenesDeDatos, picky);
+		this.proceso3.setAccionesParaAgregarAUsuario(observerRegistro);
+		this.proceso3.setDeComuna(comuna1);
 		proceso3.ejecutarProceso();
 		Assert.assertEquals(juan.getAccionesBusqueda().size(), 1);
 		Assert.assertEquals(ana.getAccionesBusqueda().size(), 0);

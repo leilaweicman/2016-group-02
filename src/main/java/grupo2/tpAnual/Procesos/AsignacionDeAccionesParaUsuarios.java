@@ -12,18 +12,20 @@ import grupo2.tpAnual.Procesos.ManejoDeErroresProcesos.AccionEnCasoDeFallo;
 
 public class AsignacionDeAccionesParaUsuarios extends Proceso {
 
+	public Criterio criterio;
+
 	public AsignacionDeAccionesParaUsuarios(int hora, LocalDate fecha, List<AccionEnCasoDeFallo> configuraciones,
-			OrigenesDeDatosPOIs origenesDeDatos) {
+			OrigenesDeDatosPOIs origenesDeDatos, Criterio crit) {
 		super(hora, fecha, configuraciones, origenesDeDatos);
+		this.criterio = crit;
 	}
 
 	public List<Usuario> listaUsuarios = new ArrayList<>();
 	public List<ObserverBusqueda> accionesParaAgregarAUsuario = new ArrayList<>();
 	public List<ObserverBusqueda> accionesParaSacarAUsuario = new ArrayList<>();
 
-	public List<Usuario> getUsuariosSegunCriterio() {
-		this.listaUsuarios.addAll(this.criterio.dameUsuarios(this.deComuna));
-		return listaUsuarios;
+	public Criterio getCriterio() {
+		return criterio;
 	}
 
 	public void setAccionesParaAgregarAUsuario(ObserverBusqueda accion) {
@@ -49,6 +51,7 @@ public class AsignacionDeAccionesParaUsuarios extends Proceso {
 	@Override
 	public void ejecutar() {
 		this.cantidadElementosAfectados = 0;
+		this.listaUsuarios.addAll(this.criterio.dameUsuarios(this.deComuna));
 		if (listaUsuarios != null) {
 			for (Usuario usuario : listaUsuarios) {
 				if (accionesParaAgregarAUsuario != null) {
