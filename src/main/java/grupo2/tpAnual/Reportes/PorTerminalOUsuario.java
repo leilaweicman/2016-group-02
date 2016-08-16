@@ -14,12 +14,13 @@ public class PorTerminalOUsuario {
 
 	public PorTerminalOUsuario(DatosBusquedaRepository registro) {
 		this.register = registro;
+
 	}
 
 	public List<Integer> obtenerReportePorTerminal(String nombreTerminal) {
 		List<Integer> reporte = new ArrayList<Integer>();
-		reporte.addAll(register.obtenerPorNombre(nombreTerminal)
-				.map(registro -> registro.getTotalDeResultados()).collect(Collectors.toList()));
+		reporte.addAll(register.obtenerPorNombre(nombreTerminal).map(registro -> registro.getTotalDeResultados())
+				.collect(Collectors.toList()));
 		return reporte;
 	}
 
