@@ -5,16 +5,20 @@ import java.util.List;
 
 import org.uqbar.geodds.Point;
 
+import ServiciosExternos.CentroDTO;
+import ServiciosExternos.ServicioExternoCentroDTO;
 import grupo2.tpAnual.CGP;
-import grupo2.tpAnual.CentroDTO;
 import grupo2.tpAnual.Comuna;
 import grupo2.tpAnual.Direccion;
 import grupo2.tpAnual.POI;
-import grupo2.tpAnual.StubCentroDTO;
 
 public class OrigenesDeDatosCentroDTO implements OrigenesDeDatos {
-	private StubCentroDTO mapaCentroDTO = new StubCentroDTO();
-
+	private ServicioExternoCentroDTO mapaCentroDTO;
+	
+	public OrigenesDeDatosCentroDTO(ServicioExternoCentroDTO servicio){
+		this.mapaCentroDTO = servicio;
+	}
+	
 	@Override
 	public List<POI> busqueda(String txtABuscar) {
 		List<CentroDTO> listaCentroDTO = new ArrayList<>();

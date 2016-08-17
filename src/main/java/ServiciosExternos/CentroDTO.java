@@ -1,6 +1,8 @@
-package grupo2.tpAnual;
+package ServiciosExternos;
 
 import java.util.List;
+
+import grupo2.tpAnual.Servicio;
 
 public class CentroDTO {
 	private int numeroComuna;

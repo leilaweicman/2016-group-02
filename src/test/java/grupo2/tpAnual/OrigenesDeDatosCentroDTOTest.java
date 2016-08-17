@@ -1,18 +1,24 @@
 package grupo2.tpAnual;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+
 import org.junit.Assert;
 import org.junit.Test;
+import org.mockito.Mockito;
 
+import ServiciosExternos.CentroDTO;
+import ServiciosExternos.ServicioExternoCentroDTO;
 import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosCentroDTO;
 
 public class OrigenesDeDatosCentroDTOTest {
-	OrigenesDeDatosCentroDTO integracion = new OrigenesDeDatosCentroDTO();
+	ServicioExternoCentroDTO stub = Mockito.mock(ServicioExternoCentroDTO.class);
+	OrigenesDeDatosCentroDTO integracion = new OrigenesDeDatosCentroDTO(stub);
 	CentroDTO centroDTO = new CentroDTO(9, "Juan B Justo 1882");
 	CentroDTO centroDTO2 = new CentroDTO(7, "Corrientes 1234");
 	POI cgp = new CGP();
-	Object cgp2 = new CGP();
+	POI cgp2 = new CGP();
 
 	@Test
 	public void adapterPOIaCentroDTODireccionTest() {
@@ -30,16 +36,13 @@ public class OrigenesDeDatosCentroDTOTest {
 	public void transformarCentroDTOaPOITest() {
 		List<CentroDTO> listaCentroDTO = new ArrayList<CentroDTO>();
 		listaCentroDTO.add(centroDTO);
-		listaCentroDTO.add(centroDTO2);
-		integracion.transformarDTOaPOI(listaCentroDTO);
-		Assert.assertEquals(listaCentroDTO.size(), 2);
-
+		Assert.assertEquals(integracion.transformarDTOaPOI(listaCentroDTO).get(0).getClass(), CGP.class );
 	}
 
 	@Test
 	public void busquedaIntegracionTest() {
-		List<POI> listaPOI = new ArrayList<POI>();
-		listaPOI = integracion.busqueda("hola");
-		Assert.assertEquals(listaPOI.size(), 2);
+		List<CentroDTO> respuesta = Arrays.asList(centroDTO,centroDTO2);
+		Mockito.when(stub.busqueda("curso de cocina")).thenReturn(respuesta);
+		Assert.assertEquals(integracion.busqueda("curso de cocina").get(1).getComuna().getNumeroComuna(),7);
 	}
 }

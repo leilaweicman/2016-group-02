@@ -1,19 +1,22 @@
 package grupo2.tpAnual.OrigenesDeDatos;
 
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import grupo2.tpAnual.Banco;
-import grupo2.tpAnual.POI;
-import grupo2.tpAnual.StubBancosExternos;
-
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import ServiciosExternos.ServicioExternoBanco;
+import grupo2.tpAnual.Banco;
+import grupo2.tpAnual.POI;
+
 public class OrigenesDeDatosBancoExterno implements OrigenesDeDatos {
 	public ObjectMapper mapper = new ObjectMapper();
-	private StubBancosExternos mapaBancoExterno = new StubBancosExternos();
-
+	private ServicioExternoBanco mapaBancoExterno;
+	
+	public OrigenesDeDatosBancoExterno(ServicioExternoBanco servicio){
+		this.mapaBancoExterno = servicio; 
+	}
 	@Override
 	public List<POI> busqueda(String banco) {
 		List<POI> listaPOI = new ArrayList<>();
