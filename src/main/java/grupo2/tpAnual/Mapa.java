@@ -4,17 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 import org.joda.time.LocalDate;
 
-import grupo2.tpAnual.Observers.ObserverBusqueda;
 import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatos;
 
 public class Mapa {
 	private List<OrigenesDeDatos> origenesDeDatos;
-	private List<ObserverBusqueda> observersBusqueda;
 	private String nombre;
 	private Usuario usuario;
 
 	public Mapa(List<OrigenesDeDatos> listaDeOrigenes) {
-		observersBusqueda = new ArrayList<ObserverBusqueda>();
+		
 		origenesDeDatos = new ArrayList<OrigenesDeDatos>();
 		this.origenesDeDatos.addAll(listaDeOrigenes);
 
@@ -24,7 +22,7 @@ public class Mapa {
 		long tiempoInicio = System.currentTimeMillis();
 		List<POI> result = new ArrayList<POI>();
 
-		this.observersBusqueda.addAll(usuario.enviarObservers());
+		
 		this.origenesDeDatos.forEach(integracion -> result.addAll(integracion.busqueda(txtABuscar)));
 		long tiempoFin = System.currentTimeMillis();
 
@@ -32,7 +30,7 @@ public class Mapa {
 
 		DatosDeBusqueda datosParaObserver = new DatosDeBusqueda(this.nombre, txtABuscar, segundosTardados,
 				result.size(), new LocalDate());
-		this.observersBusqueda.forEach(observer -> observer.notificarBusqueda(datosParaObserver));
+		usuario.enviarObservers().forEach(observer -> observer.notificarBusqueda(datosParaObserver));
 
 		return result;
 	}

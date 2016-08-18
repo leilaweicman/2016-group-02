@@ -8,7 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import grupo2.tpAnual.Reportes.PorBusquedaPorFecha;
-import org.joda.time.LocalDate;
+
 
 public class ReporteBusquedaPorFechaTest {
 	DatosBusquedaRepository registro;
