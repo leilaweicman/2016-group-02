@@ -4,53 +4,51 @@ import java.util.ArrayList;
 import java.util.List;
 import org.joda.time.LocalDate;
 
-import grupo2.tpAnual.Observers.ObserverBusqueda;
 import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatos;
 
 public class Mapa {
 	private List&lt;OrigenesDeDatos&gt; origenesDeDatos;
-	private List&lt;ObserverBusqueda&gt; observersBusqueda;
 	private String nombre;
 	private Usuario usuario;
 
-<span class="fc" id="L16">	public Mapa(List&lt;OrigenesDeDatos&gt; listaDeOrigenes) {</span>
-<span class="fc" id="L17">		observersBusqueda = new ArrayList&lt;ObserverBusqueda&gt;();</span>
-<span class="fc" id="L18">		origenesDeDatos = new ArrayList&lt;OrigenesDeDatos&gt;();</span>
-<span class="fc" id="L19">		this.origenesDeDatos.addAll(listaDeOrigenes);</span>
+<span class="fc" id="L14">	public Mapa(List&lt;OrigenesDeDatos&gt; listaDeOrigenes) {</span>
+		
+<span class="fc" id="L16">		origenesDeDatos = new ArrayList&lt;OrigenesDeDatos&gt;();</span>
+<span class="fc" id="L17">		this.origenesDeDatos.addAll(listaDeOrigenes);</span>
 
-<span class="fc" id="L21">	}</span>
+<span class="fc" id="L19">	}</span>
 
 	public List&lt;POI&gt; busquedaRealizadaPorElUsuario(String txtABuscar) {
-<span class="fc" id="L24">		long tiempoInicio = System.currentTimeMillis();</span>
-<span class="fc" id="L25">		List&lt;POI&gt; result = new ArrayList&lt;POI&gt;();</span>
+<span class="fc" id="L22">		long tiempoInicio = System.currentTimeMillis();</span>
+<span class="fc" id="L23">		List&lt;POI&gt; result = new ArrayList&lt;POI&gt;();</span>
 
-<span class="fc" id="L27">		this.observersBusqueda.addAll(usuario.enviarObservers());</span>
-<span class="fc" id="L28">		this.origenesDeDatos.forEach(integracion -&gt; result.addAll(integracion.busqueda(txtABuscar)));</span>
-<span class="fc" id="L29">		long tiempoFin = System.currentTimeMillis();</span>
+		
+<span class="fc" id="L26">		this.origenesDeDatos.forEach(integracion -&gt; result.addAll(integracion.busqueda(txtABuscar)));</span>
+<span class="fc" id="L27">		long tiempoFin = System.currentTimeMillis();</span>
 
-<span class="fc" id="L31">		long segundosTardados = (tiempoFin - tiempoInicio) / 1000;</span>
+<span class="fc" id="L29">		long segundosTardados = (tiempoFin - tiempoInicio) / 1000;</span>
 
-<span class="fc" id="L33">		DatosDeBusqueda datosParaObserver = new DatosDeBusqueda(this.nombre, txtABuscar, segundosTardados,</span>
-<span class="fc" id="L34">				result.size(), new LocalDate());</span>
-<span class="pc" id="L35">		this.observersBusqueda.forEach(observer -&gt; observer.notificarBusqueda(datosParaObserver));</span>
+<span class="fc" id="L31">		DatosDeBusqueda datosParaObserver = new DatosDeBusqueda(this.nombre, txtABuscar, segundosTardados,</span>
+<span class="fc" id="L32">				result.size(), new LocalDate());</span>
+<span class="pc" id="L33">		usuario.enviarObservers().forEach(observer -&gt; observer.notificarBusqueda(datosParaObserver));</span>
 
-<span class="fc" id="L37">		return result;</span>
+<span class="fc" id="L35">		return result;</span>
 	}
 
 	public List&lt;OrigenesDeDatos&gt; getOrigenesDeDatos() {
-<span class="nc" id="L41">		return this.origenesDeDatos;</span>
+<span class="nc" id="L39">		return this.origenesDeDatos;</span>
 	}
 
 	public String getNombre() {
-<span class="nc" id="L45">		return nombre;</span>
+<span class="nc" id="L43">		return nombre;</span>
 	}
 
 	public void setNombre(String nombre) {
-<span class="nc" id="L49">		this.nombre = nombre;</span>
-<span class="nc" id="L50">	}</span>
+<span class="nc" id="L47">		this.nombre = nombre;</span>
+<span class="nc" id="L48">	}</span>
 
 	public void setUsuario(Usuario user) {
-<span class="fc" id="L53">		this.usuario = user;</span>
-<span class="fc" id="L54">	}</span>
+<span class="fc" id="L51">		this.usuario = user;</span>
+<span class="fc" id="L52">	}</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>
