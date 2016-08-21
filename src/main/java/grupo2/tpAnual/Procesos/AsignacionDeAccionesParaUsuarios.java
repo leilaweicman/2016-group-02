@@ -52,16 +52,10 @@ public class AsignacionDeAccionesParaUsuarios extends Proceso {
 	public void ejecutar() {
 		this.cantidadElementosAfectados = 0;
 		this.listaUsuarios.addAll(this.criterio.dameUsuarios(this.deComuna));
-		if (listaUsuarios != null) {
-			for (Usuario usuario : listaUsuarios) {
-				if (accionesParaAgregarAUsuario != null) {
-					usuario.agregarObserversBusqueda(this.accionesParaAgregarAUsuario);
-				}
-				if (accionesParaSacarAUsuario != null) {
-					usuario.quitarObserversBusqueda(this.accionesParaSacarAUsuario);
-				}
-				cantidadElementosAfectados++;
-			}
+		for (Usuario usuario : listaUsuarios) {
+			usuario.agregarObserversBusqueda(this.accionesParaAgregarAUsuario);
+			usuario.quitarObserversBusqueda(this.accionesParaSacarAUsuario);
+			cantidadElementosAfectados++;
 		}
 	}
 }

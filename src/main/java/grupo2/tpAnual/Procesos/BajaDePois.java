@@ -41,11 +41,9 @@ public class BajaDePois extends Proceso {
 	public void ejecutar() {
 		List<Integer> poisABorrar;
 		poisABorrar = this.getNumerosIdentificadoresDePois();
-		if (poisABorrar != null) {
-			for (Integer pid : poisABorrar) {
-				this.origenesDeDatos.darDeBajaPOI(pid);
-				cantidadElementosAfectados++;
-			}
+		for (Integer pid : poisABorrar) {
+			this.origenesDeDatos.darDeBajaPOI(pid);
+			cantidadElementosAfectados++;
 		}
 	}
 }
