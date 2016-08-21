@@ -10,23 +10,23 @@ import grupo2.tpAnual.DatosDeBusqueda;
 import grupo2.tpAnual.DatosBusquedaRepository;
 
 public class PorTerminalOUsuario {
-	DatosBusquedaRepository register;
+	DatosBusquedaRepository repositorio;
 
-<span class="fc" id="L15">	public PorTerminalOUsuario(DatosBusquedaRepository registro) {</span>
-<span class="fc" id="L16">		this.register = registro;</span>
+<span class="fc" id="L15">	public PorTerminalOUsuario(DatosBusquedaRepository datosDeBusquedaRepository) {</span>
+<span class="fc" id="L16">		this.repositorio = datosDeBusquedaRepository;</span>
 
 <span class="fc" id="L18">	}</span>
 
 	public List&lt;Integer&gt; obtenerReportePorTerminal(String nombreTerminal) {
 <span class="fc" id="L21">		List&lt;Integer&gt; reporte = new ArrayList&lt;Integer&gt;();</span>
-<span class="fc" id="L22">		reporte.addAll(register.obtenerPorNombre(nombreTerminal).map(registro -&gt; registro.getTotalDeResultados())</span>
+<span class="fc" id="L22">		reporte.addAll(repositorio.obtenerPorNombre(nombreTerminal).map(registro -&gt; registro.getTotalDeResultados())</span>
 <span class="fc" id="L23">				.collect(Collectors.toList()));</span>
 <span class="fc" id="L24">		return reporte;</span>
 	}
 
 	public Map&lt;String, Integer&gt; obtenerReportePorUsuario() {
 <span class="nc" id="L28">		Map&lt;String, Integer&gt; reporte = new HashMap&lt;String, Integer&gt;();</span>
-<span class="nc bnc" id="L29" title="All 2 branches missed.">		for (DatosDeBusqueda registro : this.register.consultarDatos()) {</span>
+<span class="nc bnc" id="L29" title="All 2 branches missed.">		for (DatosDeBusqueda registro : this.repositorio.consultarDatos()) {</span>
 <span class="nc" id="L30">			reporte.put(registro.getNombre(),</span>
 <span class="nc" id="L31">					this.obtenerReportePorTerminal(registro.getNombre()).stream().reduce(0, (a, b) -&gt; a + b));</span>
 <span class="nc" id="L32">		}</span>

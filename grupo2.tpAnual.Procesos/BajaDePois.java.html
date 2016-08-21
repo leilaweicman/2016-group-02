@@ -41,12 +41,10 @@ public class BajaDePois extends Proceso {
 	public void ejecutar() {
 		List&lt;Integer&gt; poisABorrar;
 <span class="fc" id="L43">		poisABorrar = this.getNumerosIdentificadoresDePois();</span>
-<span class="pc bpc" id="L44" title="1 of 2 branches missed.">		if (poisABorrar != null) {</span>
-<span class="fc bfc" id="L45" title="All 2 branches covered.">			for (Integer pid : poisABorrar) {</span>
-<span class="fc" id="L46">				this.origenesDeDatos.darDeBajaPOI(pid);</span>
-<span class="fc" id="L47">				cantidadElementosAfectados++;</span>
-<span class="fc" id="L48">			}</span>
-		}
-<span class="fc" id="L50">	}</span>
+<span class="fc bfc" id="L44" title="All 2 branches covered.">		for (Integer pid : poisABorrar) {</span>
+<span class="fc" id="L45">			this.origenesDeDatos.darDeBajaPOI(pid);</span>
+<span class="fc" id="L46">			cantidadElementosAfectados++;</span>
+<span class="fc" id="L47">		}</span>
+<span class="fc" id="L48">	}</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>
