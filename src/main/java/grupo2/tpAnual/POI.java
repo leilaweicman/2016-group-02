@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public abstract class POI {
 
 	private Direccion direccion;
-	@JsonProperty("servicios")
 	private List<String> palabraClave;
 	protected Point ubicacion;
 	protected Comuna comuna;
