@@ -30,7 +30,7 @@ public class Mapa {
 
 <span class="fc" id="L31">		DatosDeBusqueda datosParaObserver = new DatosDeBusqueda(this.nombre, txtABuscar, segundosTardados,</span>
 <span class="fc" id="L32">				result.size(), new LocalDate());</span>
-<span class="pc" id="L33">		usuario.enviarObservers().forEach(observer -&gt; observer.notificarBusqueda(datosParaObserver));</span>
+<span class="pc" id="L33">		usuario.accionesDeBusqueda().forEach(observer -&gt; observer.notificarBusqueda(datosParaObserver));</span>
 
 <span class="fc" id="L35">		return result;</span>
 	}
