@@ -78,10 +78,4 @@ public abstract class POI {
 		return comuna;
 	}
 
-	public POI busqueda(String txtABuscar) {
-		if (this.verificaPorTexto(txtABuscar)) {
-			return this;
-		}
-		return null;
-	}
 }
