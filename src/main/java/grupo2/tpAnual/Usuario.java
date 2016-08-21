@@ -17,7 +17,7 @@ public class Usuario {
 		return comuna;
 	}
 
-	public List<ObserverBusqueda> enviarObservers() {
+	public List<ObserverBusqueda> accionesDeBusqueda() {
 		return this.accionesBusqueda;
 	}
 
