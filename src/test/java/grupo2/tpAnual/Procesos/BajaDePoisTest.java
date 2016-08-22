@@ -1,23 +1,21 @@
 package grupo2.tpAnual.Procesos;
 
-import grupo2.tpAnual.Banco;
-import grupo2.tpAnual.CGP;
-import grupo2.tpAnual.Parada;
-import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosPOIs;
-import grupo2.tpAnual.Procesos.BajaDePois;
-import grupo2.tpAnual.Procesos.LogProcesosRepository;
-import grupo2.tpAnual.Procesos.ManejoDeErroresProcesos.AccionEnCasoDeFallo;
-import grupo2.tpAnual.Procesos.ManejoDeErroresProcesos.EnviarMailFalloProceso;
-
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.joda.time.LocalDate;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+
+import grupo2.tpAnual.Banco;
+import grupo2.tpAnual.CGP;
+import grupo2.tpAnual.Parada;
+import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosPOIs;
+import grupo2.tpAnual.Procesos.ManejoDeErroresProcesos.AccionEnCasoDeFallo;
+import grupo2.tpAnual.Procesos.ManejoDeErroresProcesos.EnviarMailFalloProceso;
 
 public class BajaDePoisTest {
 

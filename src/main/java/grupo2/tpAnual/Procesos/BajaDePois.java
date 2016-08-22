@@ -2,13 +2,14 @@ package grupo2.tpAnual.Procesos;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.joda.time.LocalDate;
 
-import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import grupo2.tpAnual.CGP;
+import grupo2.tpAnual.FromJsonToMap;
 import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosPOIs;
 import grupo2.tpAnual.Procesos.ManejoDeErroresProcesos.AccionEnCasoDeFallo;
 
@@ -24,19 +25,22 @@ public class BajaDePois extends Proceso {
 
 	public List<Integer> getNumerosIdentificadoresDePois() {
 		String json = this.servicioRestBajaPois.getPOIs();
-		mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-		List<CGP> pois;
+		
 		List<Integer> numerosID = new ArrayList<>();
 		try {
-			pois = mapper.readValue(json, mapper.getTypeFactory().constructCollectionType(ArrayList.class, CGP.class));
-			pois.forEach(poi -> numerosID.add(poi.getId()));
+			numerosID = FromJsonToMap.transformarAMap(json).stream().map((poiMap) -> transformarID(poiMap)).collect(Collectors.toList());
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return numerosID;
 	}
+	
+	public int transformarID(Map<String, Object> map){
+		int id = (int) map.getOrDefault("id", -1);
+		return id;
 
+	}
 	@Override
 	public void ejecutar() {
 		List<Integer> poisABorrar;

@@ -1,5 +1,11 @@
 package grupo2.tpAnual.Procesos;
 
+import java.io.IOException;
+import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import org.joda.time.LocalDate;
 import org.junit.Assert;
 import org.junit.Before;
@@ -10,14 +16,6 @@ import grupo2.tpAnual.Rango;
 import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosPOIs;
 import grupo2.tpAnual.Procesos.ManejoDeErroresProcesos.AccionEnCasoDeFallo;
 import grupo2.tpAnual.Procesos.ManejoDeErroresProcesos.EnviarMailFalloProceso;
-
-import static org.junit.Assert.*;
-
-import java.io.IOException;
-import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class ActualizacionLocalesComercialesTest {
 	private OrigenesDeDatosPOIs origenesDeDatos;

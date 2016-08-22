@@ -1,9 +1,10 @@
 package grupo2.tpAnual;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+
 import org.joda.time.LocalDate;
 import org.junit.Test;
 

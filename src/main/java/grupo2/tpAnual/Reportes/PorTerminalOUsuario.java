@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import grupo2.tpAnual.DatosDeBusqueda;
 import grupo2.tpAnual.DatosBusquedaRepository;
+import grupo2.tpAnual.DatosDeBusqueda;
 
 public class PorTerminalOUsuario {
 	DatosBusquedaRepository repositorio;

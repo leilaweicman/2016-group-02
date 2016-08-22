@@ -1,9 +1,10 @@
 package grupo2.tpAnual;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.joda.time.DateTime;
 import org.uqbar.geodds.Point;
-
-import java.util.*;
 
 public class Comercio extends POI {
 	private Rubro rubro;

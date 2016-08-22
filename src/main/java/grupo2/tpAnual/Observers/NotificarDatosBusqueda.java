@@ -1,7 +1,7 @@
 package grupo2.tpAnual.Observers;
 
-import grupo2.tpAnual.DatosDeBusqueda;
 import grupo2.tpAnual.DatosBusquedaRepository;
+import grupo2.tpAnual.DatosDeBusqueda;
 
 public class NotificarDatosBusqueda implements ObserverBusqueda {
 	private DatosBusquedaRepository register;

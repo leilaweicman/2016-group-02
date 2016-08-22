@@ -5,9 +5,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import grupo2.tpAnual.DatosDeBusqueda;
-import grupo2.tpAnual.DatosBusquedaRepository;
 import org.joda.time.LocalDate;
+
+import grupo2.tpAnual.DatosBusquedaRepository;
+import grupo2.tpAnual.DatosDeBusqueda;
 
 public class PorBusquedaPorFecha {
 	List<DatosDeBusqueda> registroBusqueda = new ArrayList<DatosDeBusqueda>();

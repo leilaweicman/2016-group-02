@@ -1,0 +1,21 @@
+[1mdiff --git a/src/main/java/grupo2/tpAnual/OrigenesDeDatos/OrigenesDeDatosBancoExterno.java b/src/main/java/grupo2/tpAnual/OrigenesDeDatos/OrigenesDeDatosBancoExterno.java[m
+[1mindex 2389102..0881664 100644[m
+[1m--- a/src/main/java/grupo2/tpAnual/OrigenesDeDatos/OrigenesDeDatosBancoExterno.java[m
+[1m+++ b/src/main/java/grupo2/tpAnual/OrigenesDeDatos/OrigenesDeDatosBancoExterno.java[m
+[36m@@ -24,7 +24,7 @@[m [mpublic class OrigenesDeDatosBancoExterno implements OrigenesDeDatos {[m
+ 			String json = this.mapaBancoExterno.busqueda(banco, "");[m
+ 			listaPOI = transformarAPOI(json);[m
+ 		} catch (Exception e) {[m
+[31m-			e.printStackTrace();[m
+[32m+[m			[32mthrow new RuntimeException("Error reading a json", e);[m
+ 		}[m
+ 		return listaPOI;[m
+ 	}[m
+[36m@@ -33,6 +33,7 @@[m [mpublic class OrigenesDeDatosBancoExterno implements OrigenesDeDatos {[m
+ 		mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false); [m
+ 		List<POI> listaPOI = mapper.readValue(bancosExternosEnJson,[m
+ 				mapper.getTypeFactory().constructCollectionType(ArrayList.class, Banco.class));[m
+[32m+[m[41m		[m
+ 		return listaPOI;[m
+ 	}[m
+ [m

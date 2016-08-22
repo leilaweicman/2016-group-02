@@ -1,10 +1,9 @@
 package grupo2.tpAnual.Procesos;
 
-import grupo2.tpAnual.Procesos.RestServiceBajaPois;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 public class RestServiceBajaPoisTest {
 

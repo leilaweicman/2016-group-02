@@ -11,7 +11,6 @@ import org.uqbar.geodds.Point;
 public class Banco extends POI {
 
 	private List<Rango> rangoDisponibilidad;
-
 	private List<Integer> dias;
 	private Disponibilidad disponibilidad;
 

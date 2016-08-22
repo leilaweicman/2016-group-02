@@ -1,12 +1,13 @@
 package grupo2.tpAnual.Procesos;
 
 import java.io.IOException;
-import org.apache.commons.io.IOUtils;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import org.apache.commons.io.IOUtils;
 import org.joda.time.LocalDate;
+
 import grupo2.tpAnual.Comercio;
 import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosPOIs;
 import grupo2.tpAnual.Procesos.ManejoDeErroresProcesos.AccionEnCasoDeFallo;

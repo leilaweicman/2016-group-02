@@ -1,10 +1,9 @@
 package grupo2.tpAnual.Procesos;
 
+import javax.ws.rs.core.MediaType;
+
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.WebResource;
-
-
-import javax.ws.rs.core.MediaType;
 
 public class RestServiceBajaPois {
 	private Client client;

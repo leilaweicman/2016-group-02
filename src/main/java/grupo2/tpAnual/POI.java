@@ -6,15 +6,13 @@ import java.util.List;
 import org.joda.time.DateTime;
 import org.uqbar.geodds.Point;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 public abstract class POI {
 
 	private Direccion direccion;
 	private List<String> palabraClave;
 	protected Point ubicacion;
 	protected Comuna comuna;
-	@JsonProperty("id")
+	private String nombre;
 	private Integer id;
 
 	public POI() {
@@ -75,6 +73,14 @@ public abstract class POI {
 
 	public Comuna getComuna() {
 		return comuna;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
 }
