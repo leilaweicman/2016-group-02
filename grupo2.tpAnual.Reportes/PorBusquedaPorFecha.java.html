@@ -5,30 +5,31 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import grupo2.tpAnual.DatosDeBusqueda;
-import grupo2.tpAnual.DatosBusquedaRepository;
 import org.joda.time.LocalDate;
 
+import grupo2.tpAnual.DatosBusquedaRepository;
+import grupo2.tpAnual.DatosDeBusqueda;
+
 public class PorBusquedaPorFecha {
-<span class="fc" id="L13">	List&lt;DatosDeBusqueda&gt; registroBusqueda = new ArrayList&lt;DatosDeBusqueda&gt;();</span>
+<span class="fc" id="L14">	List&lt;DatosDeBusqueda&gt; registroBusqueda = new ArrayList&lt;DatosDeBusqueda&gt;();</span>
 	DatosBusquedaRepository register;
 
-<span class="fc" id="L16">	public PorBusquedaPorFecha(DatosBusquedaRepository register) {</span>
-<span class="fc" id="L17">		this.register = register;</span>
-<span class="fc" id="L18">	}</span>
+<span class="fc" id="L17">	public PorBusquedaPorFecha(DatosBusquedaRepository register) {</span>
+<span class="fc" id="L18">		this.register = register;</span>
+<span class="fc" id="L19">	}</span>
 
 	public Map&lt;LocalDate, Integer&gt; busquedasPorFecha() {
-<span class="fc" id="L21">		Map&lt;LocalDate, Integer&gt; reporte = new HashMap&lt;LocalDate, Integer&gt;();</span>
-<span class="fc" id="L22">		this.registroBusqueda.addAll(this.register.consultarDatos());</span>
-<span class="fc bfc" id="L23" title="All 2 branches covered.">		for (DatosDeBusqueda registro : registroBusqueda) {</span>
-<span class="fc" id="L24">			Integer cantidadXFecha = reporte.get(registro.getFecha().toString());</span>
-<span class="pc bpc" id="L25" title="1 of 2 branches missed.">			if (cantidadXFecha != null) {</span>
-<span class="nc" id="L26">				reporte.put(registro.getFecha(), ++cantidadXFecha);</span>
+<span class="fc" id="L22">		Map&lt;LocalDate, Integer&gt; reporte = new HashMap&lt;LocalDate, Integer&gt;();</span>
+<span class="fc" id="L23">		this.registroBusqueda.addAll(this.register.consultarDatos());</span>
+<span class="fc bfc" id="L24" title="All 2 branches covered.">		for (DatosDeBusqueda registro : registroBusqueda) {</span>
+<span class="fc" id="L25">			Integer cantidadXFecha = reporte.get(registro.getFecha().toString());</span>
+<span class="pc bpc" id="L26" title="1 of 2 branches missed.">			if (cantidadXFecha != null) {</span>
+<span class="nc" id="L27">				reporte.put(registro.getFecha(), ++cantidadXFecha);</span>
 			} else {
-<span class="fc" id="L28">				reporte.put(registro.getFecha(), 1);</span>
+<span class="fc" id="L29">				reporte.put(registro.getFecha(), 1);</span>
 			}
-<span class="fc" id="L30">		}</span>
-<span class="fc" id="L31">		return reporte;</span>
+<span class="fc" id="L31">		}</span>
+<span class="fc" id="L32">		return reporte;</span>
 
 	}
 
