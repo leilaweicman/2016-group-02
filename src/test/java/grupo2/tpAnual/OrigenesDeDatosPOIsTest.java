@@ -24,19 +24,16 @@ public class OrigenesDeDatosPOIsTest {
 	@Before
 	public void init() {
 
-		unRango = new Rango();
-		unRango.setDia(1);
-		unRango.setHoraDesde(LocalTime.of(9, 0, 0));
-		unRango.setHoraHasta(LocalTime.of(18, 0, 0));
+		unRango = new Rango(1, LocalTime.of(9, 0, 0), LocalTime.of(18, 0, 0));
 		listaRangos = Arrays.asList(unRango);
 
 		this.origenesPOI = new OrigenesDeDatosPOIs();
 
-		this.kosiuko = new Comercio("kosiuko",Point.and(-34.664837, -58.385674) ,listaRangos);
+		this.kosiuko = new Comercio("kosiuko", Point.and(-34.664837, -58.385674), listaRangos);
 		this.kosiuko.setId(1444);
-		this.bancoPiano = new Banco("Banco piano",Point.and(-34.664837, -58.385674) );
+		this.bancoPiano = new Banco("Banco piano", Point.and(-34.664837, -58.385674));
 		this.bancoPiano.setId(145);
-		this.cgp = new CGP("Caballito",Point.and(-34.664837, -58.385674) );
+		this.cgp = new CGP("Caballito", Point.and(-34.664837, -58.385674));
 		this.cgp.setId(4);
 	}
 
@@ -81,7 +78,7 @@ public class OrigenesDeDatosPOIsTest {
 
 		Assert.assertFalse(this.origenesPOI.busqueda("muchaGente").contains(cgp));
 	}
-	
+
 	@Test
 	public void busquedaTestFail() {
 		this.jubilacion = new Servicio(listaRangos);

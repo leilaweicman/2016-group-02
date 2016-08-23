@@ -7,28 +7,22 @@ public class Rango {
 	private LocalTime horaDesde;
 	private LocalTime horaHasta;
 
-	public Integer getDay() {
-		return dia;
+	public Rango(Integer day, LocalTime horaD, LocalTime horaH) {
+		this.dia = day;
+		this.horaDesde = horaD;
+		this.horaHasta = horaH;
 	}
 
-	public void setDia(Integer day) {
-		this.dia = day;
+	public Integer getDay() {
+		return dia;
 	}
 
 	public LocalTime getHoraDesde() {
 		return horaDesde;
 	}
 
-	public void setHoraDesde(LocalTime horaD) {
-		this.horaDesde = horaD;
-	}
-
 	public LocalTime getHoraHasta() {
 		return horaHasta;
-	}
-
-	public void setHoraHasta(LocalTime horaH) {
-		this.horaHasta = horaH;
 	}
 
 	public boolean estaDisponible(int dia, LocalTime horaCompleta) {

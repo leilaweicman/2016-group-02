@@ -20,26 +20,12 @@ public class ComercioTest {
 
 	@Before
 	public void init() {
-
-		unRango = new Rango();
-		otroRango = new Rango();
-		rango = new Rango();
-
-		unRango.setDia(1);
-		unRango.setHoraDesde(LocalTime.of(9, 0, 0));
-		unRango.setHoraHasta(LocalTime.of(18, 0, 0));
-
-		otroRango.setDia(3);
-		otroRango.setHoraDesde(LocalTime.of(9, 0, 0));
-		otroRango.setHoraHasta(LocalTime.of(13, 0, 0));
-
-		rango.setDia(3);
-		rango.setHoraDesde(LocalTime.of(15, 0, 0));
-		rango.setHoraHasta(LocalTime.of(18, 30, 0));
+		unRango = new Rango(1, LocalTime.of(9, 0, 0), LocalTime.of(18, 0, 0));
+		otroRango = new Rango(3, LocalTime.of(9, 0, 0), LocalTime.of(13, 0, 0));
+		rango = new Rango(3, LocalTime.of(15, 0, 0), LocalTime.of(18, 30, 0));
 
 		listaRangos = Arrays.asList(unRango, otroRango, rango);
-
-		comercio = new Comercio("Supermercado argenChino",Point.and(-34.664837, -58.385674) ,listaRangos);
+		comercio = new Comercio("Supermercado argenChino", Point.and(-34.664837, -58.385674), listaRangos);
 	}
 
 	@Test

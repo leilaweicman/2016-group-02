@@ -24,22 +24,13 @@ public class CGPTest {
 
 	@Before
 	public void init() {
-		cgp = new CGP("comuna caballito",Point.and(-34.664837, -58.385674) );
-		unRango = new Rango();
-		otroRango = new Rango();
+		cgp = new CGP("comuna caballito", Point.and(-34.664837, -58.385674));
+		unRango = new Rango(1, LocalTime.of(9, 0, 0), LocalTime.of(18, 0, 0));
+		otroRango = new Rango(3, LocalTime.of(9, 0, 0), LocalTime.of(13, 0, 0));
 		rangoUnServicio = new ArrayList<Rango>();
 		rangoOtroServicio = new ArrayList<Rango>();
 
-		unRango.setDia(1);
-		unRango.setHoraDesde(LocalTime.of(9, 0, 0));
-		unRango.setHoraHasta(LocalTime.of(18, 0, 0));
-
 		rangoUnServicio.add(unRango);
-
-		otroRango.setDia(3);
-		otroRango.setHoraDesde(LocalTime.of(9, 0, 0));
-		otroRango.setHoraHasta(LocalTime.of(13, 0, 0));
-
 		rangoOtroServicio.add(otroRango);
 
 		unServicio = new Servicio(rangoUnServicio);

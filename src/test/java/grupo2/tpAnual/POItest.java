@@ -41,7 +41,7 @@ public class POItest {
 	@Test
 	public void testEstaCercaCGP() {
 
-		this.rentas = new CGP("Boedo",null);
+		this.rentas = new CGP("Boedo", null);
 		this.vertice1 = Point.and(-34.668075, -58.380060);
 		this.vertice2 = Point.and(-34.673044, -58.387755);
 		this.vertice3 = Point.and(-34.668363, -58.398441);
@@ -57,10 +57,7 @@ public class POItest {
 	@Test
 	public void testEstaCercaComercio() {
 
-		Rango rango = new Rango();
-		rango.setDia(3);
-		rango.setHoraDesde(LocalTime.of(15, 0, 0));
-		rango.setHoraHasta(LocalTime.of(18, 30, 0));
+		Rango rango = new Rango(3, LocalTime.of(15, 0, 0), LocalTime.of(18, 30, 0));
 		List<Rango> listaRangos = Arrays.asList(rango);
 		this.zara = new Comercio("Zara", Point.and(-34.663575, -58.384333), listaRangos);
 		this.ropa = new Rubro();
@@ -80,7 +77,7 @@ public class POItest {
 
 	@Test
 	public void testEstaCercaParada() {
-		this.p114 = new Parada("Colectivos S.A",Point.and(-34.664837, -58.385674) ,"linea114");
+		this.p114 = new Parada("Colectivos S.A", Point.and(-34.664837, -58.385674), "linea114");
 		this.coordenadaBondi = Point.and(-34.664634, -58.385459);
 		Assert.assertTrue(p114.estaCerca(coordenadaBondi));
 	}
