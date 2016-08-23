@@ -9,9 +9,8 @@ import org.uqbar.geodds.Point;
 
 import ServiciosExternos.ServicioExternoBanco;
 import grupo2.tpAnual.Banco;
-import grupo2.tpAnual.POI;
 import grupo2.tpAnual.FromJsonToMap;
-import grupo2.tpAnual.helpers.MapExtensions;
+import grupo2.tpAnual.POI;
 
 public class OrigenesDeDatosBancoExterno implements OrigenesDeDatos {
 	private ServicioExternoBanco mapaBancoExterno;
@@ -33,11 +32,10 @@ public class OrigenesDeDatosBancoExterno implements OrigenesDeDatos {
 	}
 
 	private POI adaptar(Map<String, Object> map) {
-
 		List<String> servicios = (List<String>) map.getOrDefault("servicios", new ArrayList<>());
-		String nombre = (String) map.getOrDefault("banco", "");
-		double latitud = (double) map.getOrDefault("x", 0.0);
-		double longitud = (double) map.getOrDefault("y", 0.0);
+		String nombre = (String) map.getOrDefault("banco", new RuntimeException());
+		double latitud = (double) map.get("x");
+		double longitud = (double) map.get("y");
 
 		POI poi = new Banco(nombre, Point.and(latitud, longitud));
 		poi.setPalabrasClaves(servicios);

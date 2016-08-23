@@ -57,4 +57,22 @@ public class OrigenesDeDatosBancoExternoTest {
 		Assert.assertEquals(bancos.get(0).getUbicacion().toString(), new Point(-35.5,72.5).toString());
 		
 	}
+	
+	@Test(expected=RuntimeException.class)
+	public void AdaptarBancoSinUbicacionTest(){
+		Mockito.when(bancos.busqueda("Hola", "")).thenReturn( "[" + "{ \"banco\": \"Banco de la Plaza\","
+				+ "\"sucursal\": \"Avellaneda\"," + "\"gerente\": \"Javier Loeschbor\","
+				+ " \"servicios\": [ \"cobro cheques\", \"depósitos\", \"extracciones\", \"transferencias\", \"créditos\", \"\", \"\", \"\" ]"
+				+ " }" + "]");
+		origenDeDatos.busqueda("Hola");
+	}
+	
+	@Test(expected=RuntimeException.class)
+	public void AdaptarBancoSinNombreTest(){
+		Mockito.when(bancos.busqueda("Hola", "")).thenReturn( "[" + "{ \"x\": -35.5," + "\"y\": 72.5,"
+				+ "\"sucursal\": \"Avellaneda\"," + "\"gerente\": \"Javier Loeschbor\","
+				+ " \"servicios\": [ \"cobro cheques\", \"depósitos\", \"extracciones\", \"transferencias\", \"créditos\", \"\", \"\", \"\" ]"
+				+ " }" + "]");
+		origenDeDatos.busqueda("Hola");
+	}
 }
