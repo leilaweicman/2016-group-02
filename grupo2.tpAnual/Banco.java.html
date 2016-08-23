@@ -24,41 +24,38 @@ public class Banco extends POI {
 <span class="fc" id="L24">	}</span>
 
 	private void crearRango(int dia) {
-<span class="fc" id="L27">		Rango unRango = new Rango();</span>
-<span class="fc" id="L28">		unRango.setDia(dia);</span>
-<span class="fc" id="L29">		unRango.setHoraDesde(LocalTime.of(10, 0, 0));</span>
-<span class="fc" id="L30">		unRango.setHoraHasta(LocalTime.of(15, 0, 0));</span>
-<span class="fc" id="L31">		rangoDisponibilidad.add(unRango);</span>
-<span class="fc" id="L32">	}</span>
+<span class="fc" id="L27">		Rango unRango = new Rango(dia, LocalTime.of(10, 0, 0), LocalTime.of(15, 0, 0));</span>
+<span class="fc" id="L28">		rangoDisponibilidad.add(unRango);</span>
+<span class="fc" id="L29">	}</span>
 
 	public List&lt;Rango&gt; getRango() {
-<span class="nc" id="L35">		return rangoDisponibilidad;</span>
+<span class="nc" id="L32">		return rangoDisponibilidad;</span>
 	}
 
 	public void setRango(ArrayList&lt;Rango&gt; rango) {
-<span class="nc" id="L39">		this.rangoDisponibilidad = rango;</span>
-<span class="nc" id="L40">	}</span>
+<span class="nc" id="L36">		this.rangoDisponibilidad = rango;</span>
+<span class="nc" id="L37">	}</span>
 
 	public void addRango(Rango rango) {
-<span class="nc" id="L43">		this.rangoDisponibilidad.add(rango);</span>
-<span class="nc" id="L44">	}</span>
+<span class="nc" id="L40">		this.rangoDisponibilidad.add(rango);</span>
+<span class="nc" id="L41">	}</span>
 
 	@Override
 	public boolean estaDisponible(DateTime momento, String nombre) {
-<span class="fc" id="L48">		return this.disponibilidad.estaDisponible(momento);</span>
+<span class="fc" id="L45">		return this.disponibilidad.estaDisponible(momento);</span>
 	}
 
 	public Disponibilidad getDisponibilidad() {
-<span class="nc" id="L52">		return disponibilidad;</span>
+<span class="nc" id="L49">		return disponibilidad;</span>
 	}
 
 	public void setDisponibilidad(Disponibilidad disponibilidad) {
-<span class="nc" id="L56">		this.disponibilidad = disponibilidad;</span>
-<span class="nc" id="L57">	}</span>
+<span class="nc" id="L53">		this.disponibilidad = disponibilidad;</span>
+<span class="nc" id="L54">	}</span>
 
 	@Override
 	public boolean estaCerca(Point coordenadaDeseada) {
-<span class="nc bnc" id="L61" title="All 2 branches missed.">		return (this.ubicacion.distance(coordenadaDeseada) &lt; 0.5);</span>
+<span class="nc bnc" id="L58" title="All 2 branches missed.">		return (this.ubicacion.distance(coordenadaDeseada) &lt; 0.5);</span>
 	}
 
 }

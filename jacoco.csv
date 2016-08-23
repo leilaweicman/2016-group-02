@@ -23,10 +23,10 @@ tpAnual,grupo2.tpAnual.Observers,NotificarDatosBusqueda,0,16,0,0,0,6,0,3,0,3
 tpAnual,grupo2.tpAnual,Parada,21,8,2,0,4,3,5,1,4,1
 tpAnual,grupo2.tpAnual,DatosDeBusqueda,3,30,0,0,1,11,1,5,1,5
 tpAnual,grupo2.tpAnual,FromJsonToMap,3,20,0,0,1,4,1,2,1,2
-tpAnual,grupo2.tpAnual,Rango,0,47,0,6,0,15,0,11,0,8
+tpAnual,grupo2.tpAnual,Rango,0,44,0,6,0,13,0,8,0,5
 tpAnual,grupo2.tpAnual,Servicio,20,30,0,0,8,9,5,4,5,4
 tpAnual,grupo2.tpAnual,Comercio,49,25,2,0,14,6,9,2,8,2
-tpAnual,grupo2.tpAnual,Banco,31,94,2,0,9,14,7,4,6,4
+tpAnual,grupo2.tpAnual,Banco,31,88,2,0,9,11,7,4,6,4
 tpAnual,grupo2.tpAnual,Usuario,3,30,0,0,1,10,1,6,1,6
 tpAnual,grupo2.tpAnual,Mapa,14,65,0,0,4,15,4,4,4,4
 tpAnual,grupo2.tpAnual,CGP,10,75,1,7,3,15,3,9,2,6

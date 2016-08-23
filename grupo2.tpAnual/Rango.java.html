@@ -2,44 +2,38 @@
 
 import java.time.LocalTime;
 
-<span class="fc" id="L5">public class Rango {</span>
+public class Rango {
 	private Integer dia;
 	private LocalTime horaDesde;
 	private LocalTime horaHasta;
 
-	public Integer getDay() {
-<span class="fc" id="L11">		return dia;</span>
-	}
+<span class="fc" id="L10">	public Rango(Integer day, LocalTime horaD, LocalTime horaH) {</span>
+<span class="fc" id="L11">		this.dia = day;</span>
+<span class="fc" id="L12">		this.horaDesde = horaD;</span>
+<span class="fc" id="L13">		this.horaHasta = horaH;</span>
+<span class="fc" id="L14">	}</span>
 
-	public void setDia(Integer day) {
-<span class="fc" id="L15">		this.dia = day;</span>
-<span class="fc" id="L16">	}</span>
+	public Integer getDay() {
+<span class="fc" id="L17">		return dia;</span>
+	}
 
 	public LocalTime getHoraDesde() {
-<span class="fc" id="L19">		return horaDesde;</span>
+<span class="fc" id="L21">		return horaDesde;</span>
 	}
-
-	public void setHoraDesde(LocalTime horaD) {
-<span class="fc" id="L23">		this.horaDesde = horaD;</span>
-<span class="fc" id="L24">	}</span>
 
 	public LocalTime getHoraHasta() {
-<span class="fc" id="L27">		return horaHasta;</span>
+<span class="fc" id="L25">		return horaHasta;</span>
 	}
-
-	public void setHoraHasta(LocalTime horaH) {
-<span class="fc" id="L31">		this.horaHasta = horaH;</span>
-<span class="fc" id="L32">	}</span>
 
 	public boolean estaDisponible(int dia, LocalTime horaCompleta) {
 
-<span class="fc" id="L36">		boolean disponible = false;</span>
-<span class="fc bfc" id="L37" title="All 4 branches covered.">		if ((dia == this.getDay()) &amp;&amp; ((this.getHoraDesde()).compareTo(horaCompleta) == -1)</span>
-<span class="fc bfc" id="L38" title="All 2 branches covered.">				&amp;&amp; ((this.getHoraHasta()).compareTo(horaCompleta) == 1)) {</span>
-<span class="fc" id="L39">			disponible = true;</span>
+<span class="fc" id="L30">		boolean disponible = false;</span>
+<span class="fc bfc" id="L31" title="All 4 branches covered.">		if ((dia == this.getDay()) &amp;&amp; ((this.getHoraDesde()).compareTo(horaCompleta) == -1)</span>
+<span class="fc bfc" id="L32" title="All 2 branches covered.">				&amp;&amp; ((this.getHoraHasta()).compareTo(horaCompleta) == 1)) {</span>
+<span class="fc" id="L33">			disponible = true;</span>
 		}
 
-<span class="fc" id="L42">		return disponible;</span>
+<span class="fc" id="L36">		return disponible;</span>
 	}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>
