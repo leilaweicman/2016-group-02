@@ -15,7 +15,6 @@ public class EnviarMailBusquedaTest {
 	public void enviarMailTest() {
 		EnviarMailBusqueda observer = new EnviarMailBusqueda(1, mockmail, "juan@gmail.com");
 		observer.notificarBusqueda(datoBuscado);
-		Mockito.doThrow(new RuntimeException()).when(mockmail).send("juan@gmail.com", "Notificacion de Busqueda", "La busqueda tardo mas de lo esperado");
 		Mockito.verify(mockmail).send("juan@gmail.com", "Notificacion de Busqueda", "La busqueda tardo mas de lo esperado");
 			}
 }

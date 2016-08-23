@@ -6,7 +6,8 @@ import org.uqbar.geodds.Point;
 public class Parada extends POI {
 	private String linea;
 
-	public Parada(String linea) {
+	public Parada(String nombre, Point ubicacion, String linea) {
+		super(nombre, ubicacion);
 		this.linea = linea;
 	}
 

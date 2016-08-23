@@ -8,6 +8,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
+import org.uqbar.geodds.Point;
 
 import ServiciosExternos.CentroDTO;
 import ServiciosExternos.ServicioExternoBanco;
@@ -28,7 +29,7 @@ public class MapaTest {
 	private List<OrigenesDeDatos> listaDeOrigenes;
 	private ServicioExternoBanco bancosStub;
 	private ServicioExternoCentroDTO centrosStub;
-
+	
 	@Before
 	public void init() {
 		this.listaDeOrigenes = new ArrayList<OrigenesDeDatos>();
@@ -42,11 +43,11 @@ public class MapaTest {
 		
 		this.juan = new Usuario();
 
-		this.santander = new Banco();
+		this.santander = new Banco("Santander",Point.and(-34.664837, -58.385674) );
 		this.santander.addPalabraClave("plazoFijo");
 		this.santander.addPalabraClave("dolar");
 
-		this.rentas = new CGP();
+		this.rentas = new CGP("Flores",Point.and(-34.664837, -58.385674) );
 		List<Servicio> servicios = new ArrayList<Servicio>();
 		List<Rango> listaRango = new ArrayList<>();
 		Servicio ser = new Servicio(listaRango);

@@ -10,7 +10,8 @@ import org.uqbar.geodds.Point;
 public class CGP extends POI {
 	private List<Servicio> servicios;
 
-	public CGP() {
+	public CGP(String nombre, Point ubicacion) {
+		super(nombre, ubicacion);
 		servicios = new ArrayList<>();
 	}
 

@@ -8,6 +8,7 @@ import org.joda.time.DateTime;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.uqbar.geodds.Point;
 
 public class ComercioTest {
 	private Comercio comercio;
@@ -38,7 +39,7 @@ public class ComercioTest {
 
 		listaRangos = Arrays.asList(unRango, otroRango, rango);
 
-		comercio = new Comercio(listaRangos, "");
+		comercio = new Comercio("Supermercado argenChino",Point.and(-34.664837, -58.385674) ,listaRangos);
 	}
 
 	@Test

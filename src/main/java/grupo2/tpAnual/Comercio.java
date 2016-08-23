@@ -10,17 +10,13 @@ public class Comercio extends POI {
 	private Rubro rubro;
 	private List<Rango> rangoDisponibilidad = new ArrayList<Rango>();
 	private Disponibilidad disponibilidad;
-	private String nombre;
 
-	public Comercio(List<Rango> rango, String nom) {
-		nombre = nom;
+	public Comercio(String nombre, Point ubicacion, List<Rango> rango) {
+		super(nombre, ubicacion);
 		this.rangoDisponibilidad = rango;
 		disponibilidad = new Disponibilidad(this.rangoDisponibilidad);
 	}
 
-	public String getNombre() {
-		return nombre;
-	}
 
 	public List<Rango> getRango() {
 		return rangoDisponibilidad;

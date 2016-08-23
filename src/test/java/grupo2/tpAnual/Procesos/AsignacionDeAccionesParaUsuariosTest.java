@@ -48,9 +48,9 @@ public class AsignacionDeAccionesParaUsuariosTest {
 	@Before
 	public void init() {
 		origenesDeDatos = new OrigenesDeDatosPOIs();
-		cgp = new CGP();
-		parada = new Parada("linea 7");
-		banco = new Banco();
+		cgp = new CGP("Parque Chacabuco", Point.and(-34.664837, -58.385674));
+		parada = new Parada("Amigos del bondi SA", Point.and(-34.664837, -58.385674), "linea 7");
+		banco = new Banco("Banco nacion", Point.and(-34.664837, -58.385674));
 		origenesDeDatos.agregarPOI(banco);
 		origenesDeDatos.agregarPOI(cgp);
 		origenesDeDatos.agregarPOI(parada);

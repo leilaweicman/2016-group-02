@@ -10,6 +10,7 @@ import org.joda.time.LocalDate;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.uqbar.geodds.Point;
 
 import grupo2.tpAnual.Comercio;
 import grupo2.tpAnual.Rango;
@@ -50,7 +51,7 @@ public class ActualizacionLocalesComercialesTest {
 		configuraciones.add(config1);
 		List<Rango> listaRangos = Arrays.asList(unRango, otroRango, rango);
 
-		Comercio comercio = new Comercio(listaRangos, "Carrousel");
+		Comercio comercio = new Comercio("Carrousel", Point.and(-34.664837, -58.385674),listaRangos);
 		origenesDeDatos.agregarPOI(comercio);
 
 		proceso = new ActualizacionLocalesComerciales(14, new LocalDate(), configuraciones, origenesDeDatos);

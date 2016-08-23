@@ -30,19 +30,18 @@ public class POItest {
 	public void init() {
 
 		this.coordenada = Point.and(-34.666025, -58.385053);
-		this.santander = new Banco();
 	}
 
 	@Test
 	public void testEstaCercaBanco() {
-		this.santander.setUbicacion(-34.666612, -58.3858490);
+		this.santander = new Banco("Santander", Point.and(-34.666612, -58.3858490));
 		Assert.assertTrue(santander.estaCerca(coordenada));
 	}
 
 	@Test
 	public void testEstaCercaCGP() {
 
-		this.rentas = new CGP();
+		this.rentas = new CGP("Boedo",null);
 		this.vertice1 = Point.and(-34.668075, -58.380060);
 		this.vertice2 = Point.and(-34.673044, -58.387755);
 		this.vertice3 = Point.and(-34.668363, -58.398441);
@@ -63,11 +62,10 @@ public class POItest {
 		rango.setHoraDesde(LocalTime.of(15, 0, 0));
 		rango.setHoraHasta(LocalTime.of(18, 30, 0));
 		List<Rango> listaRangos = Arrays.asList(rango);
-		this.zara = new Comercio(listaRangos, "");
+		this.zara = new Comercio("Zara", Point.and(-34.663575, -58.384333), listaRangos);
 		this.ropa = new Rubro();
 		this.zara.setRubro(ropa);
 		this.ropa.setRadioCercania(0.3);
-		this.zara.setUbicacion(-34.663575, -58.384333);
 		this.coordenadaRopa = Point.and(-34.664775, -58.382917);
 
 		Assert.assertTrue(zara.estaCerca(coordenadaRopa));
@@ -75,14 +73,14 @@ public class POItest {
 
 	@Test
 	public void testEstaPalabraClave() {
+		this.santander = new Banco("Santander", Point.and(-34.666612, -58.3858490));
 		this.santander.addPalabraClave("plazoFijo");
 		Assert.assertTrue(santander.verificaPorTexto("plazoFijo"));
 	}
 
 	@Test
 	public void testEstaCercaParada() {
-		this.p114 = new Parada("linea114");
-		this.p114.setUbicacion(-34.664837, -58.385674);
+		this.p114 = new Parada("Colectivos S.A",Point.and(-34.664837, -58.385674) ,"linea114");
 		this.coordenadaBondi = Point.and(-34.664634, -58.385459);
 		Assert.assertTrue(p114.estaCerca(coordenadaBondi));
 	}

@@ -7,6 +7,7 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.uqbar.geodds.Point;
 
 import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosPOIs;
 
@@ -31,11 +32,11 @@ public class OrigenesDeDatosPOIsTest {
 
 		this.origenesPOI = new OrigenesDeDatosPOIs();
 
-		this.kosiuko = new Comercio(listaRangos, "");
+		this.kosiuko = new Comercio("kosiuko",Point.and(-34.664837, -58.385674) ,listaRangos);
 		this.kosiuko.setId(1444);
-		this.bancoPiano = new Banco();
+		this.bancoPiano = new Banco("Banco piano",Point.and(-34.664837, -58.385674) );
 		this.bancoPiano.setId(145);
-		this.cgp = new CGP();
+		this.cgp = new CGP("Caballito",Point.and(-34.664837, -58.385674) );
 		this.cgp.setId(4);
 	}
 

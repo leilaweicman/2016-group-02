@@ -35,7 +35,7 @@ public class OrigenesDeDatosCentroDTO implements OrigenesDeDatos {
 	}
 
 	public POI adapter(CentroDTO dto) {
-		CGP poi = new CGP();
+		CGP poi = new CGP("",null);
 		List<Point> listaVertices = new ArrayList<>();
 		poi.setComuna(new Comuna(dto.getNumeroComuna(), listaVertices));
 		poi.setDireccion(new Direccion(dto.getDomicilio(), dto.getZona()));

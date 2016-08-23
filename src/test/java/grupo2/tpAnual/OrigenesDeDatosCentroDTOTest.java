@@ -7,6 +7,7 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
+import org.uqbar.geodds.Point;
 
 import ServiciosExternos.CentroDTO;
 import ServiciosExternos.ServicioExternoCentroDTO;
@@ -17,8 +18,8 @@ public class OrigenesDeDatosCentroDTOTest {
 	OrigenesDeDatosCentroDTO integracion = new OrigenesDeDatosCentroDTO(stub);
 	CentroDTO centroDTO = new CentroDTO(9, "Juan B Justo 1882");
 	CentroDTO centroDTO2 = new CentroDTO(7, "Corrientes 1234");
-	POI cgp = new CGP();
-	POI cgp2 = new CGP();
+	POI cgp = new CGP("Palermo", Point.and(-34.664837, -58.385674));
+	POI cgp2 = new CGP("Colegiales", Point.and(-34.664837, -58.385674));
 
 	@Test
 	public void adapterPOIaCentroDTODireccionTest() {

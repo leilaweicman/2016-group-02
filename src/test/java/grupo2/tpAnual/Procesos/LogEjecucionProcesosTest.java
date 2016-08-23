@@ -7,6 +7,7 @@ import org.joda.time.LocalDate;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.uqbar.geodds.Point;
 
 import grupo2.tpAnual.Banco;
 import grupo2.tpAnual.CGP;
@@ -27,9 +28,9 @@ public class LogEjecucionProcesosTest {
 	@Before
 	public void init() {
 		origenesDeDatos = new OrigenesDeDatosPOIs();
-		banco = new Banco();
-		cgp = new CGP();
-		parada = new Parada("linea 224");
+		banco = new Banco("Piano", Point.and(-34.664837, -58.385674));
+		cgp = new CGP("Chacabuco", Point.and(-34.664837, -58.385674));
+		parada = new Parada("Colectivos SA", Point.and(-34.664837, -58.385674), "linea 224");
 		banco.setId(122);
 		cgp.setId(123);
 		parada.setId(155);

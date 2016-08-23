@@ -8,6 +8,7 @@ import org.joda.time.DateTime;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.uqbar.geodds.Point;
 
 public class CGPTest {
 
@@ -23,7 +24,7 @@ public class CGPTest {
 
 	@Before
 	public void init() {
-		cgp = new CGP();
+		cgp = new CGP("comuna caballito",Point.and(-34.664837, -58.385674) );
 		unRango = new Rango();
 		otroRango = new Rango();
 		rangoUnServicio = new ArrayList<Rango>();

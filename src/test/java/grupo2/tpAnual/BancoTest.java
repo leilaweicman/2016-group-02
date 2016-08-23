@@ -4,6 +4,7 @@ import org.joda.time.DateTime;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.uqbar.geodds.Point;
 
 public class BancoTest {
 
@@ -12,7 +13,7 @@ public class BancoTest {
 
 	@Before
 	public void init() {
-		banco = new Banco();
+		banco = new Banco("santander", Point.and(-34.664837, -58.385674));
 	}
 
 	@Test

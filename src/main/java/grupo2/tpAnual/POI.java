@@ -15,8 +15,10 @@ public abstract class POI {
 	private String nombre;
 	private Integer id;
 
-	public POI() {
-		palabraClave = new ArrayList<String>();
+	public POI(String nombre, Point ubicacion) {
+		this.ubicacion = ubicacion;
+		this.nombre = nombre;
+		this.palabraClave = new ArrayList<String>();
 	}
 
 	public void setId(Integer numeroVerificador) {
