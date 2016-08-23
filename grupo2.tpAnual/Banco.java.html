@@ -14,8 +14,8 @@ public class Banco extends POI {
 	private List&lt;Integer&gt; dias;
 	private Disponibilidad disponibilidad;
 
-<span class="fc" id="L17">	public Banco() {</span>
-
+	public Banco(String nombre, Point ubicacion) {
+<span class="fc" id="L18">		super(nombre, ubicacion);</span>
 <span class="fc" id="L19">		this.rangoDisponibilidad = new ArrayList&lt;Rango&gt;();</span>
 <span class="fc" id="L20">		this.dias = new ArrayList&lt;Integer&gt;();</span>
 <span class="fc" id="L21">		dias = Arrays.asList(1, 2, 3, 4, 5);</span>

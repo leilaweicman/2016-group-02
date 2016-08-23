@@ -8,9 +8,9 @@ import org.apache.commons.beanutils.BeanUtils;
 
 	public static &lt;T&gt; T toObject(Map&lt;String, Object&gt; map, Class&lt;T&gt; clazz) {
 		try {
-<span class="fc" id="L11">			T instance = clazz.newInstance();</span>
-<span class="fc" id="L12">			BeanUtils.populate(instance, map);</span>
-<span class="fc" id="L13">			return instance;</span>
+<span class="nc" id="L11">			T instance = clazz.newInstance();</span>
+<span class="nc" id="L12">			BeanUtils.populate(instance, map);</span>
+<span class="nc" id="L13">			return instance;</span>
 <span class="nc" id="L14">		} catch (Exception e) {</span>
 <span class="nc" id="L15">			throw new RuntimeException(e);</span>
 		}
