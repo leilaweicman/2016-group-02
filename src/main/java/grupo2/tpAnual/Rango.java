@@ -26,13 +26,6 @@ public class Rango {
 	}
 
 	public boolean estaDisponible(int dia, LocalTime horaCompleta) {
-
-		boolean disponible = false;
-		if ((dia == this.getDay()) && ((this.getHoraDesde()).compareTo(horaCompleta) == -1)
-				&& ((this.getHoraHasta()).compareTo(horaCompleta) == 1)) {
-			disponible = true;
-		}
-
-		return disponible;
+		return this.dia.equals(dia) && horaDesde.isBefore(horaCompleta) && horaHasta.isAfter(horaCompleta);
 	}
 }
