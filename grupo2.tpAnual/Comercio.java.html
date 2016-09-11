@@ -3,60 +3,63 @@
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Entity;
+
 import org.joda.time.DateTime;
 import org.uqbar.geodds.Point;
 
+@Entity
 public class Comercio extends POI {
 	private Rubro rubro;
-<span class="fc" id="L11">	private List&lt;Rango&gt; rangoDisponibilidad = new ArrayList&lt;Rango&gt;();</span>
+<span class="fc" id="L14">	private List&lt;Rango&gt; rangoDisponibilidad = new ArrayList&lt;Rango&gt;();</span>
 	private Disponibilidad disponibilidad;
 
 	public Comercio(String nombre, Point ubicacion, List&lt;Rango&gt; rango) {
-<span class="fc" id="L15">		super(nombre, ubicacion);</span>
-<span class="fc" id="L16">		this.rangoDisponibilidad = rango;</span>
-<span class="fc" id="L17">		disponibilidad = new Disponibilidad(this.rangoDisponibilidad);</span>
-<span class="fc" id="L18">	}</span>
+<span class="fc" id="L18">		super(nombre, ubicacion);</span>
+<span class="fc" id="L19">		this.rangoDisponibilidad = rango;</span>
+<span class="fc" id="L20">		disponibilidad = new Disponibilidad(this.rangoDisponibilidad);</span>
+<span class="fc" id="L21">	}</span>
 
 
 	public List&lt;Rango&gt; getRango() {
-<span class="nc" id="L22">		return rangoDisponibilidad;</span>
+<span class="nc" id="L25">		return rangoDisponibilidad;</span>
 	}
 
 	public void setRango(List&lt;Rango&gt; rango) {
-<span class="nc" id="L26">		this.rangoDisponibilidad = rango;</span>
-<span class="nc" id="L27">		this.disponibilidad.setDisponibilidad(this.rangoDisponibilidad);</span>
-<span class="nc" id="L28">	}</span>
+<span class="nc" id="L29">		this.rangoDisponibilidad = rango;</span>
+<span class="nc" id="L30">		this.disponibilidad.setDisponibilidad(this.rangoDisponibilidad);</span>
+<span class="nc" id="L31">	}</span>
 
 	public void addRango(Rango rango) {
-<span class="nc" id="L31">		this.rangoDisponibilidad.add(rango);</span>
-<span class="nc" id="L32">		this.disponibilidad.addRango(rango);</span>
-<span class="nc" id="L33">	}</span>
+<span class="nc" id="L34">		this.rangoDisponibilidad.add(rango);</span>
+<span class="nc" id="L35">		this.disponibilidad.addRango(rango);</span>
+<span class="nc" id="L36">	}</span>
 
 	public Rubro getRubro() {
-<span class="nc" id="L36">		return rubro;</span>
+<span class="nc" id="L39">		return rubro;</span>
 	}
 
 	public void setRubro(Rubro rub) {
-<span class="nc" id="L40">		this.rubro = rub;</span>
-<span class="nc" id="L41">	}</span>
+<span class="nc" id="L43">		this.rubro = rub;</span>
+<span class="nc" id="L44">	}</span>
 
 	@Override
 	public boolean estaDisponible(DateTime momento, String nombre) {
-<span class="fc" id="L45">		return this.disponibilidad.estaDisponible(momento);</span>
+<span class="fc" id="L48">		return this.disponibilidad.estaDisponible(momento);</span>
 	}
 
 	@Override
 	public boolean estaCerca(Point coordenadaDeseada) {
-<span class="nc bnc" id="L50" title="All 2 branches missed.">		return (this.ubicacion.distance(coordenadaDeseada) &lt; rubro.getRadioCercania());</span>
+<span class="nc bnc" id="L53" title="All 2 branches missed.">		return (this.ubicacion.distance(coordenadaDeseada) &lt; rubro.getRadioCercania());</span>
 	}
 
 	public Disponibilidad getDisponibilidad() {
-<span class="nc" id="L54">		return disponibilidad;</span>
+<span class="nc" id="L57">		return disponibilidad;</span>
 	}
 
 	public void setDisponibilidad(Disponibilidad disponibilidad) {
-<span class="nc" id="L58">		this.disponibilidad = disponibilidad;</span>
-<span class="nc" id="L59">	}</span>
+<span class="nc" id="L61">		this.disponibilidad = disponibilidad;</span>
+<span class="nc" id="L62">	}</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

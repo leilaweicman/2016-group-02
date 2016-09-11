@@ -3,34 +3,37 @@
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Entity;
+
 import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 
+@Entity
 public class Comuna {
 	private Polygon comuna;
-<span class="fc" id="L11">	private List&lt;Point&gt; vertices = new ArrayList&lt;Point&gt;();</span>
+<span class="fc" id="L14">	private List&lt;Point&gt; vertices = new ArrayList&lt;Point&gt;();</span>
 	private int numeroComuna;
 
-<span class="fc" id="L14">	public Comuna(int numero, List&lt;Point&gt; vertices) {</span>
-<span class="fc" id="L15">		this.numeroComuna = numero;</span>
-<span class="fc" id="L16">		this.comuna = new Polygon(vertices);</span>
-<span class="fc" id="L17">	}</span>
+<span class="fc" id="L17">	public Comuna(int numero, List&lt;Point&gt; vertices) {</span>
+<span class="fc" id="L18">		this.numeroComuna = numero;</span>
+<span class="fc" id="L19">		this.comuna = new Polygon(vertices);</span>
+<span class="fc" id="L20">	}</span>
 
 	public void agregarVertice(Point vertice) {
-<span class="nc" id="L20">		this.vertices.add(vertice);</span>
-<span class="nc" id="L21">		this.comuna = new Polygon(vertices);</span>
-<span class="nc" id="L22">	}</span>
+<span class="nc" id="L23">		this.vertices.add(vertice);</span>
+<span class="nc" id="L24">		this.comuna = new Polygon(vertices);</span>
+<span class="nc" id="L25">	}</span>
 
 	public int getNumeroComuna() {
-<span class="fc" id="L25">		return this.numeroComuna;</span>
+<span class="fc" id="L28">		return this.numeroComuna;</span>
 	}
 
 	public Polygon getComuna() {
-<span class="nc" id="L29">		return comuna;</span>
+<span class="nc" id="L32">		return comuna;</span>
 	}
 
 	public boolean estaAdentro(Point punto) {
-<span class="nc" id="L33">		return (this.comuna.isInside(punto));</span>
+<span class="nc" id="L36">		return (this.comuna.isInside(punto));</span>
 	}
 
 }
