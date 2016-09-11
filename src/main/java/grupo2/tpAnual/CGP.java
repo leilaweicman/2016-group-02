@@ -4,9 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.persistence.Entity;
+
 import org.joda.time.DateTime;
 import org.uqbar.geodds.Point;
 
+@Entity
 public class CGP extends POI {
 	private List<Servicio> servicios;
 

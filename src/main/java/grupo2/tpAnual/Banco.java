@@ -5,9 +5,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.persistence.Entity;
+
 import org.joda.time.DateTime;
 import org.uqbar.geodds.Point;
 
+@Entity
 public class Banco extends POI {
 
 	private List<Rango> rangoDisponibilidad;

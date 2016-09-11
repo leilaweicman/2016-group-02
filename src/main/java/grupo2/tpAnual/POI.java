@@ -3,9 +3,12 @@ package grupo2.tpAnual;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Entity;
+
 import org.joda.time.DateTime;
 import org.uqbar.geodds.Point;
 
+@Entity
 public abstract class POI {
 
 	private Direccion direccion;
