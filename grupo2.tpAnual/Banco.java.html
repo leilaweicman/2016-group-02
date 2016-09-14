@@ -6,11 +6,14 @@ import java.util.Arrays;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.*;
 
 import org.joda.time.DateTime;
 import org.uqbar.geodds.Point;
 
 @Entity
+@Table(name=&quot;banco&quot;)
+@PrimaryKeyJoinColumn(name=&quot;id&quot;, referencedColumnName=&quot;id&quot;)
 public class Banco extends POI {
 
 	private List&lt;Rango&gt; rangoDisponibilidad;
@@ -18,47 +21,47 @@ public class Banco extends POI {
 	private Disponibilidad disponibilidad;
 
 	public Banco(String nombre, Point ubicacion) {
-<span class="fc" id="L21">		super(nombre, ubicacion);</span>
-<span class="fc" id="L22">		this.rangoDisponibilidad = new ArrayList&lt;Rango&gt;();</span>
-<span class="fc" id="L23">		this.dias = new ArrayList&lt;Integer&gt;();</span>
-<span class="fc" id="L24">		dias = Arrays.asList(1, 2, 3, 4, 5);</span>
-<span class="fc" id="L25">		dias.stream().forEach(dia -&gt; crearRango(dia));</span>
-<span class="fc" id="L26">		this.disponibilidad = new Disponibilidad(rangoDisponibilidad);</span>
-<span class="fc" id="L27">	}</span>
+<span class="fc" id="L24">		super(nombre, ubicacion);</span>
+<span class="fc" id="L25">		this.rangoDisponibilidad = new ArrayList&lt;Rango&gt;();</span>
+<span class="fc" id="L26">		this.dias = new ArrayList&lt;Integer&gt;();</span>
+<span class="fc" id="L27">		dias = Arrays.asList(1, 2, 3, 4, 5);</span>
+<span class="fc" id="L28">		dias.stream().forEach(dia -&gt; crearRango(dia));</span>
+<span class="fc" id="L29">		this.disponibilidad = new Disponibilidad(rangoDisponibilidad);</span>
+<span class="fc" id="L30">	}</span>
 
 	private void crearRango(int dia) {
-<span class="fc" id="L30">		Rango unRango = new Rango(dia, LocalTime.of(10, 0, 0), LocalTime.of(15, 0, 0));</span>
-<span class="fc" id="L31">		rangoDisponibilidad.add(unRango);</span>
-<span class="fc" id="L32">	}</span>
+<span class="fc" id="L33">		Rango unRango = new Rango(dia, LocalTime.of(10, 0, 0), LocalTime.of(15, 0, 0));</span>
+<span class="fc" id="L34">		rangoDisponibilidad.add(unRango);</span>
+<span class="fc" id="L35">	}</span>
 
 	public List&lt;Rango&gt; getRango() {
-<span class="nc" id="L35">		return rangoDisponibilidad;</span>
+<span class="nc" id="L38">		return rangoDisponibilidad;</span>
 	}
 
 	public void setRango(ArrayList&lt;Rango&gt; rango) {
-<span class="nc" id="L39">		this.rangoDisponibilidad = rango;</span>
-<span class="nc" id="L40">	}</span>
+<span class="nc" id="L42">		this.rangoDisponibilidad = rango;</span>
+<span class="nc" id="L43">	}</span>
 
 	public void addRango(Rango rango) {
-<span class="nc" id="L43">		this.rangoDisponibilidad.add(rango);</span>
-<span class="nc" id="L44">	}</span>
+<span class="nc" id="L46">		this.rangoDisponibilidad.add(rango);</span>
+<span class="nc" id="L47">	}</span>
 
 	@Override
 	public boolean estaDisponible(DateTime momento, String nombre) {
-<span class="fc" id="L48">		return this.disponibilidad.estaDisponible(momento);</span>
+<span class="fc" id="L51">		return this.disponibilidad.estaDisponible(momento);</span>
 	}
 
 	public Disponibilidad getDisponibilidad() {
-<span class="nc" id="L52">		return disponibilidad;</span>
+<span class="nc" id="L55">		return disponibilidad;</span>
 	}
 
 	public void setDisponibilidad(Disponibilidad disponibilidad) {
-<span class="nc" id="L56">		this.disponibilidad = disponibilidad;</span>
-<span class="nc" id="L57">	}</span>
+<span class="nc" id="L59">		this.disponibilidad = disponibilidad;</span>
+<span class="nc" id="L60">	}</span>
 
 	@Override
 	public boolean estaCerca(Point coordenadaDeseada) {
-<span class="nc bnc" id="L61" title="All 2 branches missed.">		return (this.ubicacion.distance(coordenadaDeseada) &lt; 0.5);</span>
+<span class="nc bnc" id="L64" title="All 2 branches missed.">		return (this.ubicacion.distance(coordenadaDeseada) &lt; 0.5);</span>
 	}
 
 }

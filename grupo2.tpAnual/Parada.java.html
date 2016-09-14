@@ -3,31 +3,41 @@
 import org.joda.time.DateTime;
 import org.uqbar.geodds.Point;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name=&quot;parada&quot;)
+@PrimaryKeyJoinColumn(name=&quot;parada_id&quot;, referencedColumnName=&quot;poi_id&quot;)
 public class Parada extends POI {
+	@Id
+	@GeneratedValue
+	@Column(name=&quot;parada_id&quot;)
+	private Integer id;
+	
 	private String linea;
 
 	public Parada(String nombre, Point ubicacion, String linea) {
-<span class="fc" id="L10">		super(nombre, ubicacion);</span>
-<span class="fc" id="L11">		this.linea = linea;</span>
-<span class="fc" id="L12">	}</span>
+<span class="fc" id="L20">		super(nombre, ubicacion);</span>
+<span class="fc" id="L21">		this.linea = linea;</span>
+<span class="fc" id="L22">	}</span>
 
 	public String getLinea() {
-<span class="nc" id="L15">		return linea;</span>
+<span class="nc" id="L25">		return linea;</span>
 	}
 
 	@Override
 	public boolean tieneTextoEnOtrosAtributos(String texto) {
-<span class="nc" id="L20">		return linea.equals(texto);</span>
+<span class="nc" id="L30">		return linea.equals(texto);</span>
 	}
 
 	@Override
 	public boolean estaCerca(Point coordenadaDeseada) {
-<span class="nc bnc" id="L25" title="All 2 branches missed.">		return (this.ubicacion.distance(coordenadaDeseada) &lt; 0.1);</span>
+<span class="nc bnc" id="L35" title="All 2 branches missed.">		return (this.ubicacion.distance(coordenadaDeseada) &lt; 0.1);</span>
 	}
 
 	@Override
 	public boolean estaDisponible(DateTime momento, String nombreServicio) {
-<span class="nc" id="L30">		return true;</span>
+<span class="nc" id="L40">		return true;</span>
 	}
 
 }
