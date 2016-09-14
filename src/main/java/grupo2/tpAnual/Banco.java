@@ -6,11 +6,14 @@ import java.util.Arrays;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.*;
 
 import org.joda.time.DateTime;
 import org.uqbar.geodds.Point;
 
 @Entity
+@Table(name="banco")
+@PrimaryKeyJoinColumn(name="id", referencedColumnName="id")
 public class Banco extends POI {
 
 	private List<Rango> rangoDisponibilidad;

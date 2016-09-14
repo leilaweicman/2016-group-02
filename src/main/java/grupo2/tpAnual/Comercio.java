@@ -3,13 +3,21 @@ package grupo2.tpAnual;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 
 import org.joda.time.DateTime;
 import org.uqbar.geodds.Point;
 
 @Entity
+@Table(name="comercio")
+@PrimaryKeyJoinColumn(name="comercio_id", referencedColumnName="poi_id")
 public class Comercio extends POI {
+	
+	@Id
+	@GeneratedValue
+	@Column(name="comercio_id")
+	private Integer id;
+	
 	private Rubro rubro;
 	private List<Rango> rangoDisponibilidad = new ArrayList<Rango>();
 	private Disponibilidad disponibilidad;

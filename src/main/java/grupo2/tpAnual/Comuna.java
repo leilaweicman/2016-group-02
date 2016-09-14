@@ -4,11 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.*;
 
 import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 
 @Entity
+@Table(name="comuna")
 public class Comuna {
 	private Polygon comuna;
 	private List<Point> vertices = new ArrayList<Point>();

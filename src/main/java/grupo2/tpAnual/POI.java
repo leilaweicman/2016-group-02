@@ -4,20 +4,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.*;
 
 import org.joda.time.DateTime;
 import org.uqbar.geodds.Point;
 
 @Entity
+@Table(name="POI")
+@Inheritance(strategy=InheritanceType.JOINED)
 public abstract class POI {
 
+	@Id
+	@GeneratedValue
+	@Column(name="poi_id")
+	private Integer id;
+	
 	private Direccion direccion;
 	private List<String> palabraClave;
 	protected Point ubicacion;
 	protected Comuna comuna;
 	private String nombre;
-	private Integer id;
-
+	
 	public POI(String nombre, Point ubicacion) {
 		this.ubicacion = ubicacion;
 		this.nombre = nombre;
@@ -72,6 +80,7 @@ public abstract class POI {
 		return ubicacion;
 	}
 
+	
 	public void setComuna(Comuna com) {
 		this.comuna = com;
 	}

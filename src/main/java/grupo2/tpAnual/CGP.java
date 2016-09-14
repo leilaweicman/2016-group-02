@@ -4,13 +4,21 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 
 import org.joda.time.DateTime;
 import org.uqbar.geodds.Point;
 
 @Entity
+@Table(name="cgp")
+@PrimaryKeyJoinColumn(name="cgp_id", referencedColumnName="poi_id")
 public class CGP extends POI {
+	
+	@Id
+	@GeneratedValue
+	@Column(name="cgp_id")
+	private Integer id;	
+	
 	private List<Servicio> servicios;
 
 	public CGP(String nombre, Point ubicacion) {
