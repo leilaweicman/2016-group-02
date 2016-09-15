@@ -3,42 +3,46 @@
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import grupo2.tpAnual.Observers.ObserverBusqueda;
 
-<span class="fc" id="L12">public class Usuario {</span>
-<span class="fc" id="L13">	@OneToMany</span>
+<span class="fc" id="L14">public class Usuario {</span>
+	@Id @GeneratedValue
+	private long id; 
+<span class="fc" id="L17">	@OneToMany</span>
 	@JoinColumn
 	private List&lt;ObserverBusqueda&gt; accionesBusqueda = new ArrayList&lt;ObserverBusqueda&gt;();
 	@ManyToOne
 	public Comuna comuna;
 
 	public void setComuna(Comuna com) {
-<span class="fc" id="L20">		this.comuna = com;</span>
-<span class="fc" id="L21">	}</span>
+<span class="fc" id="L24">		this.comuna = com;</span>
+<span class="fc" id="L25">	}</span>
 
 	public Comuna getComuna() {
-<span class="nc" id="L24">		return comuna;</span>
+<span class="nc" id="L28">		return comuna;</span>
 	}
 
 	public List&lt;ObserverBusqueda&gt; accionesDeBusqueda() {
-<span class="fc" id="L28">		return this.accionesBusqueda;</span>
+<span class="fc" id="L32">		return this.accionesBusqueda;</span>
 	}
 
 	public void agregarObserversBusqueda(List&lt;ObserverBusqueda&gt; observers) {
-<span class="fc" id="L32">		this.accionesBusqueda.addAll(observers);</span>
-<span class="fc" id="L33">	}</span>
+<span class="fc" id="L36">		this.accionesBusqueda.addAll(observers);</span>
+<span class="fc" id="L37">	}</span>
 
 	public List&lt;ObserverBusqueda&gt; getAccionesBusqueda() {
-<span class="fc" id="L36">		return accionesBusqueda;</span>
+<span class="fc" id="L40">		return accionesBusqueda;</span>
 	}
 
 	public void quitarObserversBusqueda(List&lt;ObserverBusqueda&gt; observers) {
-<span class="fc" id="L40">		this.accionesBusqueda.removeAll(observers);</span>
+<span class="fc" id="L44">		this.accionesBusqueda.removeAll(observers);</span>
 
-<span class="fc" id="L42">	}</span>
+<span class="fc" id="L46">	}</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

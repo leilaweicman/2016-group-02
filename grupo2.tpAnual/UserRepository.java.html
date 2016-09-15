@@ -3,15 +3,25 @@
 import java.util.ArrayList;
 import java.util.List;
 
-<span class="fc" id="L6">public class UserRepository {</span>
-<span class="fc" id="L7">	public List&lt;Usuario&gt; usuarios = new ArrayList&lt;&gt;();</span>
-
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+@Entity
+<span class="fc" id="L13">public class UserRepository {</span>
+<span class="fc" id="L14">	@ElementCollection @OneToMany @JoinColumn</span>
+	public List&lt;Usuario&gt; usuarios = new ArrayList&lt;&gt;();
+	@Id @GeneratedValue
+	private long id;
+	
 	public void setUsuarios(Usuario usuario) {
-<span class="fc" id="L10">		this.usuarios.add(usuario);</span>
-<span class="fc" id="L11">	}</span>
+<span class="fc" id="L20">		this.usuarios.add(usuario);</span>
+<span class="fc" id="L21">	}</span>
 
 	public List&lt;Usuario&gt; getUsuarios() {
-<span class="fc" id="L14">		return this.usuarios;</span>
+<span class="fc" id="L24">		return this.usuarios;</span>
 	}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>
