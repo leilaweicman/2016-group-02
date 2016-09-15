@@ -3,53 +3,65 @@
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.ElementCollection;
+
+
 import org.joda.time.LocalDate;
 
 import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatos;
 
 public class Mapa {
+	@ElementCollection
+	@OneToMany
+	@JoinColumn
 	private List&lt;OrigenesDeDatos&gt; origenesDeDatos;
+	@Id
 	private String nombre;
+	@OneToOne
 	private Usuario usuario;
 
-<span class="fc" id="L15">	public Mapa(List&lt;OrigenesDeDatos&gt; listaDeOrigenes) {</span>
+<span class="fc" id="L27">	public Mapa(List&lt;OrigenesDeDatos&gt; listaDeOrigenes) {</span>
 		
-<span class="fc" id="L17">		origenesDeDatos = new ArrayList&lt;OrigenesDeDatos&gt;();</span>
-<span class="fc" id="L18">		this.origenesDeDatos.addAll(listaDeOrigenes);</span>
+<span class="fc" id="L29">		origenesDeDatos = new ArrayList&lt;OrigenesDeDatos&gt;();</span>
+<span class="fc" id="L30">		this.origenesDeDatos.addAll(listaDeOrigenes);</span>
 
-<span class="fc" id="L20">	}</span>
+<span class="fc" id="L32">	}</span>
 
 	public List&lt;POI&gt; busquedaRealizadaPorElUsuario(String txtABuscar) {
-<span class="fc" id="L23">		long tiempoInicio = System.currentTimeMillis();</span>
-<span class="fc" id="L24">		List&lt;POI&gt; result = new ArrayList&lt;POI&gt;();</span>
+<span class="fc" id="L35">		long tiempoInicio = System.currentTimeMillis();</span>
+<span class="fc" id="L36">		List&lt;POI&gt; result = new ArrayList&lt;POI&gt;();</span>
 
 		
-<span class="fc" id="L27">		this.origenesDeDatos.forEach(integracion -&gt; result.addAll(integracion.busqueda(txtABuscar)));</span>
-<span class="fc" id="L28">		long tiempoFin = System.currentTimeMillis();</span>
+<span class="fc" id="L39">		this.origenesDeDatos.forEach(integracion -&gt; result.addAll(integracion.busqueda(txtABuscar)));</span>
+<span class="fc" id="L40">		long tiempoFin = System.currentTimeMillis();</span>
 
-<span class="fc" id="L30">		long segundosTardados = (tiempoFin - tiempoInicio) / 1000;</span>
+<span class="fc" id="L42">		long segundosTardados = (tiempoFin - tiempoInicio) / 1000;</span>
 
-<span class="fc" id="L32">		DatosDeBusqueda datosParaObserver = new DatosDeBusqueda(this.nombre, txtABuscar, segundosTardados,</span>
-<span class="fc" id="L33">				result.size(), new LocalDate());</span>
-<span class="pc" id="L34">		usuario.accionesDeBusqueda().forEach(observer -&gt; observer.notificarBusqueda(datosParaObserver));</span>
+<span class="fc" id="L44">		DatosDeBusqueda datosParaObserver = new DatosDeBusqueda(this.nombre, txtABuscar, segundosTardados,</span>
+<span class="fc" id="L45">				result.size(), new LocalDate());</span>
+<span class="pc" id="L46">		usuario.accionesDeBusqueda().forEach(observer -&gt; observer.notificarBusqueda(datosParaObserver));</span>
 
-<span class="fc" id="L36">		return result;</span>
+<span class="fc" id="L48">		return result;</span>
 	}
 
 	public List&lt;OrigenesDeDatos&gt; getOrigenesDeDatos() {
-<span class="nc" id="L40">		return this.origenesDeDatos;</span>
+<span class="nc" id="L52">		return this.origenesDeDatos;</span>
 	}
 
 	public String getNombre() {
-<span class="nc" id="L44">		return nombre;</span>
+<span class="nc" id="L56">		return nombre;</span>
 	}
 
 	public void setNombre(String nombre) {
-<span class="nc" id="L48">		this.nombre = nombre;</span>
-<span class="nc" id="L49">	}</span>
+<span class="nc" id="L60">		this.nombre = nombre;</span>
+<span class="nc" id="L61">	}</span>
 
 	public void setUsuario(Usuario user) {
-<span class="fc" id="L52">		this.usuario = user;</span>
-<span class="fc" id="L53">	}</span>
+<span class="fc" id="L64">		this.usuario = user;</span>
+<span class="fc" id="L65">	}</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>
