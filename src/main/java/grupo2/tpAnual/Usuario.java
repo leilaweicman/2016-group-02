@@ -3,6 +3,8 @@ package grupo2.tpAnual;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -10,6 +12,8 @@ import javax.persistence.OneToMany;
 import grupo2.tpAnual.Observers.ObserverBusqueda;
 
 public class Usuario {
+	@Id @GeneratedValue
+	private long id; 
 	@OneToMany
 	@JoinColumn
 	private List<ObserverBusqueda> accionesBusqueda = new ArrayList<ObserverBusqueda>();
