@@ -3,6 +3,8 @@
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.ManyToOne;
+
 import org.joda.time.LocalDate;
 
 import grupo2.tpAnual.Usuario;
@@ -11,52 +13,52 @@ import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosPOIs;
 import grupo2.tpAnual.Procesos.ManejoDeErroresProcesos.AccionEnCasoDeFallo;
 
 public class AsignacionDeAccionesParaUsuarios extends Proceso {
-
+	@ManyToOne
 	public Criterio criterio;
 
 	public AsignacionDeAccionesParaUsuarios(int hora, LocalDate fecha, List&lt;AccionEnCasoDeFallo&gt; configuraciones,
 			OrigenesDeDatosPOIs origenesDeDatos, Criterio crit) {
-<span class="fc" id="L19">		super(hora, fecha, configuraciones, origenesDeDatos);</span>
-<span class="fc" id="L20">		this.criterio = crit;</span>
-<span class="fc" id="L21">	}</span>
+<span class="fc" id="L21">		super(hora, fecha, configuraciones, origenesDeDatos);</span>
+<span class="fc" id="L22">		this.criterio = crit;</span>
+<span class="fc" id="L23">	}</span>
 
-<span class="fc" id="L23">	public List&lt;Usuario&gt; listaUsuarios = new ArrayList&lt;&gt;();</span>
-<span class="fc" id="L24">	public List&lt;ObserverBusqueda&gt; accionesParaAgregarAUsuario = new ArrayList&lt;&gt;();</span>
-<span class="fc" id="L25">	public List&lt;ObserverBusqueda&gt; accionesParaSacarAUsuario = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L25">	public List&lt;Usuario&gt; listaUsuarios = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L26">	public List&lt;ObserverBusqueda&gt; accionesParaAgregarAUsuario = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L27">	public List&lt;ObserverBusqueda&gt; accionesParaSacarAUsuario = new ArrayList&lt;&gt;();</span>
 
 	public Criterio getCriterio() {
-<span class="nc" id="L28">		return criterio;</span>
+<span class="nc" id="L30">		return criterio;</span>
 	}
 
 	public void setAccionesParaAgregarAUsuario(ObserverBusqueda accion) {
-<span class="fc" id="L32">		this.accionesParaAgregarAUsuario.add(accion);</span>
-<span class="fc" id="L33">	}</span>
+<span class="fc" id="L34">		this.accionesParaAgregarAUsuario.add(accion);</span>
+<span class="fc" id="L35">	}</span>
 
 	public List&lt;ObserverBusqueda&gt; getAccionesParaSacarAUsuario() {
-<span class="nc" id="L36">		return this.accionesParaSacarAUsuario;</span>
+<span class="nc" id="L38">		return this.accionesParaSacarAUsuario;</span>
 	}
 
 	public void setAccionesParaSacarAUsuario(ObserverBusqueda accion) {
-<span class="nc" id="L40">		this.accionesParaSacarAUsuario.add(accion);</span>
-<span class="nc" id="L41">	}</span>
+<span class="nc" id="L42">		this.accionesParaSacarAUsuario.add(accion);</span>
+<span class="nc" id="L43">	}</span>
 
 	public void setListaUsuariosAdmin(Usuario usuario) {
-<span class="nc" id="L44">		this.listaUsuarios.add(usuario);</span>
-<span class="nc" id="L45">	}</span>
+<span class="nc" id="L46">		this.listaUsuarios.add(usuario);</span>
+<span class="nc" id="L47">	}</span>
 
 	public List&lt;ObserverBusqueda&gt; getAccionesParaAgregarAUsuario() {
-<span class="nc" id="L48">		return this.accionesParaAgregarAUsuario;</span>
+<span class="nc" id="L50">		return this.accionesParaAgregarAUsuario;</span>
 	}
 
 	@Override
 	public void ejecutar() {
-<span class="fc" id="L53">		this.cantidadElementosAfectados = 0;</span>
-<span class="fc" id="L54">		this.listaUsuarios.addAll(this.criterio.dameUsuarios(this.deComuna));</span>
-<span class="fc bfc" id="L55" title="All 2 branches covered.">		for (Usuario usuario : listaUsuarios) {</span>
-<span class="fc" id="L56">			usuario.agregarObserversBusqueda(this.accionesParaAgregarAUsuario);</span>
-<span class="fc" id="L57">			usuario.quitarObserversBusqueda(this.accionesParaSacarAUsuario);</span>
-<span class="fc" id="L58">			cantidadElementosAfectados++;</span>
-<span class="fc" id="L59">		}</span>
-<span class="fc" id="L60">	}</span>
+<span class="fc" id="L55">		this.cantidadElementosAfectados = 0;</span>
+<span class="fc" id="L56">		this.listaUsuarios.addAll(this.criterio.dameUsuarios(this.deComuna));</span>
+<span class="fc bfc" id="L57" title="All 2 branches covered.">		for (Usuario usuario : listaUsuarios) {</span>
+<span class="fc" id="L58">			usuario.agregarObserversBusqueda(this.accionesParaAgregarAUsuario);</span>
+<span class="fc" id="L59">			usuario.quitarObserversBusqueda(this.accionesParaSacarAUsuario);</span>
+<span class="fc" id="L60">			cantidadElementosAfectados++;</span>
+<span class="fc" id="L61">		}</span>
+<span class="fc" id="L62">	}</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>
