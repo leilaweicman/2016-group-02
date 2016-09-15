@@ -3,7 +3,11 @@ package grupo2.tpAnual.Procesos;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import org.joda.time.LocalDate;
 
@@ -13,6 +17,9 @@ import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosPOIs;
 import grupo2.tpAnual.Procesos.ManejoDeErroresProcesos.AccionEnCasoDeFallo;
 
 public class AsignacionDeAccionesParaUsuarios extends Proceso {
+	@Id @GeneratedValue
+	private long id;
+	
 	@ManyToOne
 	public Criterio criterio;
 
@@ -21,9 +28,14 @@ public class AsignacionDeAccionesParaUsuarios extends Proceso {
 		super(hora, fecha, configuraciones, origenesDeDatos);
 		this.criterio = crit;
 	}
-
+	@OneToMany
+	@JoinColumn
 	public List<Usuario> listaUsuarios = new ArrayList<>();
+	@OneToMany
+	@JoinColumn	
 	public List<ObserverBusqueda> accionesParaAgregarAUsuario = new ArrayList<>();
+	@OneToMany
+	@JoinColumn
 	public List<ObserverBusqueda> accionesParaSacarAUsuario = new ArrayList<>();
 
 	public Criterio getCriterio() {
@@ -42,6 +54,7 @@ public class AsignacionDeAccionesParaUsuarios extends Proceso {
 		this.accionesParaSacarAUsuario.add(accion);
 	}
 
+	
 	public void setListaUsuariosAdmin(Usuario usuario) {
 		this.listaUsuarios.add(usuario);
 	}
