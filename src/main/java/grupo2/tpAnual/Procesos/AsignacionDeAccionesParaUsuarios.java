@@ -3,6 +3,8 @@ package grupo2.tpAnual.Procesos;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.ManyToOne;
+
 import org.joda.time.LocalDate;
 
 import grupo2.tpAnual.Usuario;
@@ -11,7 +13,7 @@ import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosPOIs;
 import grupo2.tpAnual.Procesos.ManejoDeErroresProcesos.AccionEnCasoDeFallo;
 
 public class AsignacionDeAccionesParaUsuarios extends Proceso {
-
+	@ManyToOne
 	public Criterio criterio;
 
 	public AsignacionDeAccionesParaUsuarios(int hora, LocalDate fecha, List<AccionEnCasoDeFallo> configuraciones,

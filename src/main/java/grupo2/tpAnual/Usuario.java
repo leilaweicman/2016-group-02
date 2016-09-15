@@ -3,10 +3,17 @@ package grupo2.tpAnual;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
 import grupo2.tpAnual.Observers.ObserverBusqueda;
 
 public class Usuario {
+	@OneToMany
+	@JoinColumn
 	private List<ObserverBusqueda> accionesBusqueda = new ArrayList<ObserverBusqueda>();
+	@ManyToOne
 	public Comuna comuna;
 
 	public void setComuna(Comuna com) {
