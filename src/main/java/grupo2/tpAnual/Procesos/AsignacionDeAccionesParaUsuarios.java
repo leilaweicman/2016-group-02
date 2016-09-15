@@ -3,6 +3,8 @@ package grupo2.tpAnual.Procesos;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -15,6 +17,9 @@ import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosPOIs;
 import grupo2.tpAnual.Procesos.ManejoDeErroresProcesos.AccionEnCasoDeFallo;
 
 public class AsignacionDeAccionesParaUsuarios extends Proceso {
+	@Id @GeneratedValue
+	private long id;
+	
 	@ManyToOne
 	public Criterio criterio;
 

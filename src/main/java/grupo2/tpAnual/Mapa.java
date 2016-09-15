@@ -3,13 +3,25 @@ package grupo2.tpAnual;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.ElementCollection;
+
+
 import org.joda.time.LocalDate;
 
 import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatos;
 
 public class Mapa {
+	@ElementCollection
+	@OneToMany
+	@JoinColumn
 	private List<OrigenesDeDatos> origenesDeDatos;
+	@Id
 	private String nombre;
+	@OneToOne
 	private Usuario usuario;
 
 	public Mapa(List<OrigenesDeDatos> listaDeOrigenes) {
