@@ -1,9 +1,14 @@
 package grupo2.tpAnual;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
 import org.joda.time.LocalDate;
-
+@Entity
 public class DatosDeBusqueda {
-
+	@Id @GeneratedValue
+	private long id;
 	private String txtBuscado;
 	private long segundosQueTardoLaBusqueda;
 	private int totalDeResultados;

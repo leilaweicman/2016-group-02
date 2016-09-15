@@ -5,8 +5,18 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+@Entity
 public class DatosBusquedaRepository {
+	@OneToMany @JoinColumn @ElementCollection
 	private List<DatosDeBusqueda> listaDatosDeBusqueda;
+	@Id @GeneratedValue
+	private long id;
 
 	public DatosBusquedaRepository() {
 		this.listaDatosDeBusqueda = new ArrayList<DatosDeBusqueda>();
