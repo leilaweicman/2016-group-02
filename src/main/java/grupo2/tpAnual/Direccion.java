@@ -1,5 +1,8 @@
 package grupo2.tpAnual;
 
+import javax.persistence.Entity;
+
+@Entity
 public class Direccion {
 	private String calle;
 	private int altura;
