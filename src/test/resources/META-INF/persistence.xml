@@ -7,7 +7,7 @@
  
   <!-- EJEMPLO DE COMO AGREGAR UNA ENTIDAD -->
  <persistence-unit name="GuestbookPU" transaction-type="JTA">
-    <provider>org.hibernate.ejb.HibernatePersistence</provider>
+    <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
      
     <class>grupo2.tpAnual.Direccion</class>   
     <properties> 
