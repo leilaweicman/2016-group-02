@@ -7,20 +7,22 @@ import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.*;
 
+import org.hibernate.annotations.Cascade;
 import org.joda.time.DateTime;
 import org.uqbar.geodds.Point;
 
 @Entity
-@Table(name="POI")
 @Inheritance(strategy=InheritanceType.JOINED)
 public abstract class POI {
 
-	@Id
-	@GeneratedValue
-	@Column(name="poi_id")
+	@Id	@GeneratedValue
 	private Integer id;
 	
+	@OneToOne @JoinColumn 
+	//@Cascade(value=CascadeType.ALL)
 	private Direccion direccion;
+	
+	@ElementCollection
 	private List<String> palabraClave;
 	protected Point ubicacion;
 	protected Comuna comuna;
