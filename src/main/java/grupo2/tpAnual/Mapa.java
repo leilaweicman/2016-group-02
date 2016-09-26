@@ -8,12 +8,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.ElementCollection;
-
+import javax.persistence.Entity;
 
 import org.joda.time.LocalDate;
 
 import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatos;
 
+@Entity
 public class Mapa {
 	@ElementCollection
 	@OneToMany
