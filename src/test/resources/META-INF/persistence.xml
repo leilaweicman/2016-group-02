@@ -6,20 +6,11 @@
     version="2.0"> 
  
   <!-- EJEMPLO DE COMO AGREGAR UNA ENTIDAD -->
- <persistence-unit name="GuestbookPU" transaction-type="JTA">
+ <persistence-unit name="db" transaction-type="RESOURCE_LOCAL">
     <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
      
     <class>grupo2.tpAnual.Direccion</class>   
-    <class>grupo2.tpAnual.DatosDeBusqueda</class>
-    <class>grupo2.tpAnual.Direccion</class>   
-    <class>grupo2.tpAnual.UserRepository</class>   
-    <class>grupo2.tpAnual.CGP</class>   
-    <class>grupo2.tpAnual.Comercio</class>
-    <class>grupo2.tpAnual.Banco</class>
-    <class>grupo2.tpAnual.Comuna</class>
-    <class>grupo2.tpAnual.Parada</class>
-    <class>grupo2.tpAnual.POI</class>   
-       
+   
     <properties> 
     	<property name="hibernate.archive.autodetection" value="class"/>        
        
@@ -37,11 +28,7 @@
         <property name="hibernate.show_sql" value="true" /> 
         <property name="hibernate.format_sql" value="true" /> 
         <property name="use_sql_comments" value="true" /> 
-        <property name="hibernate.hbm2ddl.auto" value="update" /> 
-        
-        
-    </properties>
-    
-    
+        <property name="hibernate.hbm2ddl.auto" value="update" />         
+    </properties> 
   </persistence-unit> 
 </persistence>
