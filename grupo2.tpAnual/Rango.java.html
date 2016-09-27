@@ -2,31 +2,32 @@
 
 import java.time.LocalTime;
 
+@org.mongodb.morphia.annotations.Entity
 public class Rango {
 	private Integer dia;
 	private LocalTime horaDesde;
 	private LocalTime horaHasta;
 
-<span class="fc" id="L10">	public Rango(Integer day, LocalTime horaD, LocalTime horaH) {</span>
-<span class="fc" id="L11">		this.dia = day;</span>
-<span class="fc" id="L12">		this.horaDesde = horaD;</span>
-<span class="fc" id="L13">		this.horaHasta = horaH;</span>
-<span class="fc" id="L14">	}</span>
+<span class="fc" id="L11">	public Rango(Integer day, LocalTime horaD, LocalTime horaH) {</span>
+<span class="fc" id="L12">		this.dia = day;</span>
+<span class="fc" id="L13">		this.horaDesde = horaD;</span>
+<span class="fc" id="L14">		this.horaHasta = horaH;</span>
+<span class="fc" id="L15">	}</span>
 
 	public Integer getDay() {
-<span class="nc" id="L17">		return dia;</span>
+<span class="nc" id="L18">		return dia;</span>
 	}
 
 	public LocalTime getHoraDesde() {
-<span class="nc" id="L21">		return horaDesde;</span>
+<span class="nc" id="L22">		return horaDesde;</span>
 	}
 
 	public LocalTime getHoraHasta() {
-<span class="nc" id="L25">		return horaHasta;</span>
+<span class="nc" id="L26">		return horaHasta;</span>
 	}
 
 	public boolean estaDisponible(int dia, LocalTime horaCompleta) {
-<span class="fc bfc" id="L29" title="All 6 branches covered.">		return this.dia.equals(dia) &amp;&amp; horaDesde.isBefore(horaCompleta) &amp;&amp; horaHasta.isAfter(horaCompleta);</span>
+<span class="fc bfc" id="L30" title="All 6 branches covered.">		return this.dia.equals(dia) &amp;&amp; horaDesde.isBefore(horaCompleta) &amp;&amp; horaHasta.isAfter(horaCompleta);</span>
 	}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

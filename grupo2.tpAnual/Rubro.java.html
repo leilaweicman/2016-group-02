@@ -4,35 +4,36 @@
 <span class="nc" id="L4">public class Rubro {</span>
 	private String tipoRubro;
 	private double radioCercania;
+	@org.mongodb.morphia.annotations.Embedded
 	private Rango disponibilidad;
 
 	public String getTipo() {
-<span class="nc" id="L10">		return tipoRubro;</span>
+<span class="nc" id="L11">		return tipoRubro;</span>
 	}
 
 	public void setTipo(String tip) {
-<span class="nc" id="L14">		this.tipoRubro = tip;</span>
-<span class="nc" id="L15">	}</span>
+<span class="nc" id="L15">		this.tipoRubro = tip;</span>
+<span class="nc" id="L16">	}</span>
 
 	public Rango getDisponibilidad() {
-<span class="nc" id="L18">		return disponibilidad;</span>
+<span class="nc" id="L19">		return disponibilidad;</span>
 	}
 
 	public void setDisponibilidad(Rango dis) {
-<span class="nc" id="L22">		this.disponibilidad = dis;</span>
-<span class="nc" id="L23">	}</span>
+<span class="nc" id="L23">		this.disponibilidad = dis;</span>
+<span class="nc" id="L24">	}</span>
 
 	public double getRadioCercania() {
-<span class="nc" id="L26">		return radioCercania;</span>
+<span class="nc" id="L27">		return radioCercania;</span>
 	}
 
 	public void setRadioCercania(double Radio) {
 
-<span class="nc" id="L31">		this.radioCercania = Radio;</span>
-<span class="nc" id="L32">	}</span>
+<span class="nc" id="L32">		this.radioCercania = Radio;</span>
+<span class="nc" id="L33">	}</span>
 
 	public boolean Busqueda(String tipo) {
-<span class="nc" id="L35">		return tipoRubro.equals(tipo);</span>
+<span class="nc" id="L36">		return tipoRubro.equals(tipo);</span>
 	}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>
