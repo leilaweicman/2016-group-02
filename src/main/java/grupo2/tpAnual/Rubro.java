@@ -1,5 +1,6 @@
 package grupo2.tpAnual;
 
+@org.mongodb.morphia.annotations.Entity
 public class Rubro {
 	private String tipoRubro;
 	private double radioCercania;

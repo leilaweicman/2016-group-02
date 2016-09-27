@@ -8,6 +8,7 @@ import javax.persistence.*;
 import org.joda.time.DateTime;
 import org.uqbar.geodds.Point;
 
+@org.mongodb.morphia.annotations.Entity
 @Entity
 @Table(name="comercio")
 @PrimaryKeyJoinColumn(name="comercio_id", referencedColumnName="poi_id")
@@ -18,6 +19,7 @@ public class Comercio extends POI {
 	@Column(name="comercio_id")
 	private Integer id;
 	
+	@org.mongodb.morphia.annotations.Embedded
 	private Rubro rubro;
 	private List<Rango> rangoDisponibilidad = new ArrayList<Rango>();
 	private Disponibilidad disponibilidad;
@@ -27,7 +29,6 @@ public class Comercio extends POI {
 		this.rangoDisponibilidad = rango;
 		disponibilidad = new Disponibilidad(this.rangoDisponibilidad);
 	}
-
 
 	public List<Rango> getRango() {
 		return rangoDisponibilidad;

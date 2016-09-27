@@ -11,6 +11,7 @@ import org.hibernate.annotations.Cascade;
 import org.joda.time.DateTime;
 import org.uqbar.geodds.Point;
 
+@org.mongodb.morphia.annotations.Entity
 @Entity
 @Inheritance(strategy=InheritanceType.JOINED)
 public abstract class POI {
