@@ -4,6 +4,7 @@ package grupo2.tpAnual;
 public class Rubro {
 	private String tipoRubro;
 	private double radioCercania;
+	@org.mongodb.morphia.annotations.Embedded
 	private Rango disponibilidad;
 
 	public String getTipo() {

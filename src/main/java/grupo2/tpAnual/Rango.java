@@ -2,6 +2,7 @@ package grupo2.tpAnual;
 
 import java.time.LocalTime;
 
+@org.mongodb.morphia.annotations.Entity
 public class Rango {
 	private Integer dia;
 	private LocalTime horaDesde;
