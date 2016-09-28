@@ -3,23 +3,28 @@ package grupo2.tpAnual;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 import grupo2.tpAnual.Observers.ObserverBusqueda;
-
+@Entity
+@Table(name ="Usuario")
 public class Usuario {
-	@Id @GeneratedValue
+	@Id @GeneratedValue @Column(name="id_usuario")
 	private long id; 
-	@OneToMany
-	@JoinColumn
+	
 	private List<ObserverBusqueda> accionesBusqueda = new ArrayList<ObserverBusqueda>();
-	@ManyToOne
+	@ManyToOne @Column(name="comuna") @JoinColumn(name="id_comuna")
 	public Comuna comuna;
 
+	public long getId(){
+		return id;
+	}
 	public void setComuna(Comuna com) {
 		this.comuna = com;
 	}

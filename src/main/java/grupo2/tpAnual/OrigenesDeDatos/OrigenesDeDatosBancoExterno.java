@@ -11,12 +11,15 @@ import ServiciosExternos.ServicioExternoBanco;
 import grupo2.tpAnual.Banco;
 import grupo2.tpAnual.FromJsonToMap;
 import grupo2.tpAnual.POI;
+import redis.clients.jedis.Jedis;
 
 public class OrigenesDeDatosBancoExterno implements OrigenesDeDatos {
 	private ServicioExternoBanco mapaBancoExterno;
-
+	private Jedis jedis;
+	
 	public OrigenesDeDatosBancoExterno(ServicioExternoBanco servicio) {
 		this.mapaBancoExterno = servicio;
+		jedis = new Jedis();
 	}
 
 	@Override

@@ -1,0 +1,26 @@
+============PARA CREAR LA BD==============
+create database db; 
+
+============PARA CREAR TABLAS=================
+
+create table Comuna (id_comuna int auto_increment primary key, vertice int);
+
+create table Usuario (id_usuario int auto_increment primary key, id_comuna int references Comuna (id_comuna))
+
+create table UserRepository(
+    id_repository int auto_increment primary key,
+    id_user int references Usuario(id_usuario));
+
+create table DatosDeBusqueda(
+id_datosDeBusqueda int auto_increment primary key,
+txtBuscado varchar(100) NOT NULL,
+segundosTardados int NOT NULL,
+totalDeResultados bigint NOT NULL,
+fecha Date NOT NULL,
+nombre varchar(60) NOT NULL
+)
+
+create table DatosDeBusquedaRepository(
+id_repository int auto_increment primary key,
+id_datoBuscado int references DatosDeBusqueda(id_datosDeBusqueda)
+);

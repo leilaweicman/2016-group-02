@@ -10,14 +10,19 @@
     <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
      
     <class>grupo2.tpAnual.Direccion</class>   
+    <class>grupo2.tpAnual.Usuario</class>
+    <class>grupo2.tpAnual.UserRepository</class>
+    <class>grupo2.tpAnual.DatosDeBusqueda</class>
+    <class>grupo2.tpAnual.DatosDeBusquedaRepository</class>
+    <class>grupo2.tpAnual.Comuna</class>
    
     <properties> 
     	<property name="hibernate.archive.autodetection" value="class"/>        
        
         <!--property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" /> 
-        <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/prueba" /> 
+        <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/db" /> 
         <property name="hibernate.connection.username" value="root" /> 
-        <property name="hibernate.connection.password" value="mysql" /--> 
+        <property name="hibernate.connection.password" value="1165932228." /--> 
 
         <property name="hibernate.connection.driver_class" value="org.hsqldb.jdbcDriver" /> 
         <property name="hibernate.connection.url" value="jdbc:hsqldb:mem:app-db" /> 
