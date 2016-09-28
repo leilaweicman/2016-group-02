@@ -5,41 +5,47 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
-@Entity
-public class DatosBusquedaRepository {
-	@OneToMany @JoinColumn @ElementCollection
-	private List&lt;DatosDeBusqueda&gt; listaDatosDeBusqueda;
-	@Id @GeneratedValue
-	private long id;
+import javax.persistence.Table;
 
-<span class="fc" id="L21">	public DatosBusquedaRepository() {</span>
-<span class="fc" id="L22">		this.listaDatosDeBusqueda = new ArrayList&lt;DatosDeBusqueda&gt;();</span>
-<span class="fc" id="L23">	}</span>
+@Entity
+@Table(name=&quot;DatosDeBusquedaRepository&quot;)
+public class DatosBusquedaRepository {
+	@Id @GeneratedValue  @Column(name=&quot;id_repository&quot;)
+	private long id;
+	
+	@OneToMany @JoinColumn(name=&quot;id_datoBuscado&quot;) @ElementCollection
+	private List&lt;DatosDeBusqueda&gt; listaDatosDeBusqueda;
+
+
+<span class="fc" id="L27">	public DatosBusquedaRepository() {</span>
+<span class="fc" id="L28">		this.listaDatosDeBusqueda = new ArrayList&lt;DatosDeBusqueda&gt;();</span>
+<span class="fc" id="L29">	}</span>
 
 	public void agregarDatosBusqueda(DatosDeBusqueda registroBusqueda) {
-<span class="fc" id="L26">		this.listaDatosDeBusqueda.add(registroBusqueda);</span>
-<span class="fc" id="L27">	}</span>
+<span class="fc" id="L32">		this.listaDatosDeBusqueda.add(registroBusqueda);</span>
+<span class="fc" id="L33">	}</span>
 
 	public List&lt;DatosDeBusqueda&gt; consultarDatos() {
-<span class="fc" id="L30">		return this.listaDatosDeBusqueda;</span>
+<span class="fc" id="L36">		return this.listaDatosDeBusqueda;</span>
 	}
 
 	public Stream&lt;DatosDeBusqueda&gt; obtenerPorNombre(String nombreTerminal) {
-<span class="fc" id="L34">		return listaDatosDeBusqueda.stream().filter(registro -&gt; registro.getNombre().equals(nombreTerminal));</span>
+<span class="fc" id="L40">		return listaDatosDeBusqueda.stream().filter(registro -&gt; registro.getNombre().equals(nombreTerminal));</span>
 	}
 
 	public List&lt;Integer&gt; obtenerTotalResultadosPorTerminal(String nombreTerminal) {
-<span class="fc" id="L38">		return this.obtenerPorNombre(nombreTerminal).map(registro -&gt; registro.getTotalDeResultados()).collect(Collectors.toList());</span>
+<span class="fc" id="L44">		return this.obtenerPorNombre(nombreTerminal).map(registro -&gt; registro.getTotalDeResultados()).collect(Collectors.toList());</span>
 	}
 
 	public Integer cantidadDeBusquedasDe(String nombre) {
-<span class="nc" id="L42">		return this.obtenerTotalResultadosPorTerminal(nombre).stream().reduce(0, (a, b) -&gt; a + b);</span>
+<span class="nc" id="L48">		return this.obtenerTotalResultadosPorTerminal(nombre).stream().reduce(0, (a, b) -&gt; a + b);</span>
 	}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

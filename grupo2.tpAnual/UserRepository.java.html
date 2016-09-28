@@ -3,25 +3,28 @@
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 @Entity
-<span class="fc" id="L13">public class UserRepository {</span>
-<span class="fc" id="L14">	@ElementCollection @OneToMany @JoinColumn</span>
+@Table(name = &quot;UserRepository&quot;)
+<span class="fc" id="L16">public class UserRepository {</span>
+<span class="fc" id="L17">	@ElementCollection @OneToMany @JoinColumn  @Column(name=&quot;id_user&quot;)</span>
 	public List&lt;Usuario&gt; usuarios = new ArrayList&lt;&gt;();
-	@Id @GeneratedValue
+	@Id @GeneratedValue  @Column(name=&quot;id_repository&quot;)
 	private long id;
 	
 	public void setUsuarios(Usuario usuario) {
-<span class="fc" id="L20">		this.usuarios.add(usuario);</span>
-<span class="fc" id="L21">	}</span>
+<span class="fc" id="L23">		this.usuarios.add(usuario);</span>
+<span class="fc" id="L24">	}</span>
 
 	public List&lt;Usuario&gt; getUsuarios() {
-<span class="fc" id="L24">		return this.usuarios;</span>
+<span class="fc" id="L27">		return this.usuarios;</span>
 	}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

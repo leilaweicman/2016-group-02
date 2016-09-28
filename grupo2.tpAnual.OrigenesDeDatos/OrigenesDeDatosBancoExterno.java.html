@@ -11,35 +11,38 @@ import ServiciosExternos.ServicioExternoBanco;
 import grupo2.tpAnual.Banco;
 import grupo2.tpAnual.FromJsonToMap;
 import grupo2.tpAnual.POI;
+import redis.clients.jedis.Jedis;
 
 public class OrigenesDeDatosBancoExterno implements OrigenesDeDatos {
 	private ServicioExternoBanco mapaBancoExterno;
-
-<span class="fc" id="L18">	public OrigenesDeDatosBancoExterno(ServicioExternoBanco servicio) {</span>
-<span class="fc" id="L19">		this.mapaBancoExterno = servicio;</span>
-<span class="fc" id="L20">	}</span>
+	private Jedis jedis;
+	
+<span class="fc" id="L20">	public OrigenesDeDatosBancoExterno(ServicioExternoBanco servicio) {</span>
+<span class="fc" id="L21">		this.mapaBancoExterno = servicio;</span>
+<span class="fc" id="L22">		jedis = new Jedis();</span>
+<span class="fc" id="L23">	}</span>
 
 	@Override
 	public List&lt;POI&gt; busqueda(String banco) {
 		try {
-<span class="fc" id="L25">			String json = this.mapaBancoExterno.busqueda(banco, &quot;&quot;);</span>
+<span class="fc" id="L28">			String json = this.mapaBancoExterno.busqueda(banco, &quot;&quot;);</span>
 
-<span class="fc" id="L27">			return FromJsonToMap.transformarAMap(json).stream().map((poiMap) -&gt; adaptar(poiMap))</span>
-<span class="fc" id="L28">					.collect(Collectors.toList());</span>
-<span class="fc" id="L29">		} catch (Exception e) {</span>
-<span class="fc" id="L30">			throw new RuntimeException(e);</span>
+<span class="fc" id="L30">			return FromJsonToMap.transformarAMap(json).stream().map((poiMap) -&gt; adaptar(poiMap))</span>
+<span class="fc" id="L31">					.collect(Collectors.toList());</span>
+<span class="fc" id="L32">		} catch (Exception e) {</span>
+<span class="fc" id="L33">			throw new RuntimeException(e);</span>
 		}
 	}
 
 	private POI adaptar(Map&lt;String, Object&gt; map) {
-<span class="fc" id="L35">		List&lt;String&gt; servicios = (List&lt;String&gt;) map.getOrDefault(&quot;servicios&quot;, new ArrayList&lt;&gt;());</span>
-<span class="fc" id="L36">		String nombre = (String) map.getOrDefault(&quot;banco&quot;, new RuntimeException());</span>
-<span class="fc" id="L37">		double latitud = (double) map.get(&quot;x&quot;);</span>
-<span class="fc" id="L38">		double longitud = (double) map.get(&quot;y&quot;);</span>
+<span class="fc" id="L38">		List&lt;String&gt; servicios = (List&lt;String&gt;) map.getOrDefault(&quot;servicios&quot;, new ArrayList&lt;&gt;());</span>
+<span class="fc" id="L39">		String nombre = (String) map.getOrDefault(&quot;banco&quot;, new RuntimeException());</span>
+<span class="fc" id="L40">		double latitud = (double) map.get(&quot;x&quot;);</span>
+<span class="fc" id="L41">		double longitud = (double) map.get(&quot;y&quot;);</span>
 
-<span class="fc" id="L40">		POI poi = new Banco(nombre, Point.and(latitud, longitud));</span>
-<span class="fc" id="L41">		poi.setPalabrasClaves(servicios);</span>
-<span class="fc" id="L42">		return poi;</span>
+<span class="fc" id="L43">		POI poi = new Banco(nombre, Point.and(latitud, longitud));</span>
+<span class="fc" id="L44">		poi.setPalabrasClaves(servicios);</span>
+<span class="fc" id="L45">		return poi;</span>
 	}
 
 }
