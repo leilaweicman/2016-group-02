@@ -1,11 +1,19 @@
 package grupo2.tpAnual;
 
 import java.time.LocalTime;
+import javax.persistence.*;
 
 @org.mongodb.morphia.annotations.Entity
+@Entity
+@Table(name="Rango") 
 public class Rango {
+	@Id	@GeneratedValue @Column(name="id_rango")
+	private Integer id;
+	@Column(name="dia")
 	private Integer dia;
+	@Column(name="horaDesde")
 	private LocalTime horaDesde;
+	@Column(name="horaHasta")
 	private LocalTime horaHasta;
 
 	public Rango(Integer day, LocalTime horaD, LocalTime horaH) {
