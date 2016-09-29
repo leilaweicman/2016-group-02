@@ -14,9 +14,7 @@ import org.uqbar.geodds.Point;
 @PrimaryKeyJoinColumn(name="comercio_id", referencedColumnName="poi_id")
 public class Comercio extends POI {
 	
-	@Id
-	@GeneratedValue
-	@Column(name="comercio_id")
+	@Id	@GeneratedValue	@Column(name="comercio_id")
 	private Integer id;
 	
 	@org.mongodb.morphia.annotations.Embedded
