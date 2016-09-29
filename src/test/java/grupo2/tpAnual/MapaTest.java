@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -35,7 +36,6 @@ public class MapaTest {
 		this.listaDeOrigenes = new ArrayList<OrigenesDeDatos>();
 		
 		this.bancosStub = Mockito.mock(ServicioExternoBanco.class);
-		this.datosBancosExternos = new OrigenesDeDatosBancoExterno(bancosStub);
 		
 		this.centrosStub = Mockito.mock(ServicioExternoCentroDTO.class);
 		this.datosCentrosDTOs = new OrigenesDeDatosCentroDTO(centrosStub);
@@ -54,8 +54,6 @@ public class MapaTest {
 		ser.setNombre("Jubilados");
 		servicios.add(ser);
 		this.rentas.setServicios(servicios);
-		String key = datosBancosExternos.getKeyJedis();
-		datosBancosExternos.getJedis().del(key);
 
 		this.origenesDeDatosPois.agregarPOI(santander);
 		this.origenesDeDatosPois.agregarPOI(rentas);
@@ -78,6 +76,7 @@ public class MapaTest {
 		this.lasHeras = new Mapa(listaDeOrigenes);
 		this.lasHeras.setUsuario(juan);
 		Assert.assertEquals(lasHeras.busquedaRealizadaPorElUsuario("centros").get(0).getDireccion().getCalle(), "Juan B Justo 1841");
+
 	}
 
 	@Test
@@ -90,28 +89,34 @@ public class MapaTest {
 
 	@Test
 	public void testBusquedaPorElUsuariConDatosBancoExterno() {
-		listaDeOrigenes = Arrays.asList(datosBancosExternos);
-		Mockito.when(bancosStub.busqueda("dolar", "")).thenReturn( "[" + "{ \"banco\": \"Banco de la Plaza\"," + "\"x\": -35.9338322," + "\"y\": 72.348353,"
+		Mockito.when(bancosStub.busqueda("", "")).thenReturn( "[" + "{ \"banco\": \"Banco de la Plaza\"," + "\"x\": -35.9338322," + "\"y\": 72.348353,"
 				+ "\"sucursal\": \"Avellaneda\"," + "\"gerente\": \"Javier Loeschbor\","
 				+ " \"servicios\": [ \"cobro cheques\", \"depósitos\", \"extracciones\", \"transferencias\", \"créditos\", \"\", \"\", \"\" ]"
 				+ " }" + "]");
+		this.datosBancosExternos = new OrigenesDeDatosBancoExterno(bancosStub);
+		listaDeOrigenes = Arrays.asList(datosBancosExternos);
 		this.lasHeras = new Mapa(listaDeOrigenes);
 		this.lasHeras.setUsuario(juan);
-		Assert.assertEquals(lasHeras.busquedaRealizadaPorElUsuario("dolar").get(0).getClass(), Banco.class);
+		Assert.assertEquals(lasHeras.busquedaRealizadaPorElUsuario("extracciones").get(0).getClass(), Banco.class);
+		String key = datosBancosExternos.getKeyJedis();
+		datosBancosExternos.getJedis().del(key);
 	}
 
 	@Test
 	public void testBusquedaPorElUsuarioConOrigenesDeDatos() {
-		listaDeOrigenes = Arrays.asList(datosCentrosDTOs, datosBancosExternos, origenesDeDatosPois);
-		Mockito.when(bancosStub.busqueda("plazoFijo", "")).thenReturn( "[" + "{ \"banco\": \"Banco de la Plaza\"," + "\"x\": -35.9338322," + "\"y\": 72.348353,"
+		Mockito.when(bancosStub.busqueda("", "")).thenReturn( "[" + "{ \"banco\": \"Banco de la Plaza\"," + "\"x\": -35.9338322," + "\"y\": 72.348353,"
 				+ "\"sucursal\": \"Avellaneda\"," + "\"gerente\": \"Javier Loeschbor\","
-				+ " \"servicios\": [ \"cobro cheques\", \"depósitos\", \"extracciones\", \"transferencias\", \"créditos\", \"\", \"\", \"\" ]"
+				+ " \"servicios\": [ \"plazoFijo\", \"depósitos\", \"extracciones\", \"transferencias\", \"créditos\", \"\", \"\", \"\" ]"
 				+ " }" + "]");
+		this.datosBancosExternos = new OrigenesDeDatosBancoExterno(bancosStub);
+		listaDeOrigenes = Arrays.asList(datosCentrosDTOs, datosBancosExternos, origenesDeDatosPois);
 		List<CentroDTO> respuesta = Arrays.asList(new CentroDTO(1, "Pedro Goyena 1825"));
 		Mockito.when(centrosStub.busqueda("plazoFijo")).thenReturn(respuesta);
 		this.lasHeras = new Mapa(listaDeOrigenes);
 		this.lasHeras.setUsuario(juan);
 		Assert.assertEquals(lasHeras.busquedaRealizadaPorElUsuario("plazoFijo").size(), 3);
+		String key = datosBancosExternos.getKeyJedis();
+		datosBancosExternos.getJedis().del(key);
 	}
 
 }

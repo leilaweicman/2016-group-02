@@ -5,7 +5,9 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mockito;
 
+import ServiciosExternos.ServicioExternoBanco;
 import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosBancoExterno;
 import redis.clients.jedis.Jedis;
 
@@ -18,10 +20,6 @@ public class RedisTest {
 	
 	@Before
 	public void init(){
-	 mapa = new OrigenesDeDatosBancoExterno(null); 
-	 
-	 jedis = mapa.getJedis();
-	 jedis.del("Bancos");
 	json = "[" + "{ \"banco\": \"Banco de la Plaza\"," + "\"x\": -35.9338322," + "\"y\": 72.348353,"
 				+ "\"sucursal\": \"Avellaneda\"," + "\"gerente\": \"Javier Loeschbor\","
 				+ " \"servicios\": [ \"cobro cheques\", \"depósitos\", \"extracciones\", \"transferencias\", \"créditos\", \"\", \"\", \"\" ]"
@@ -35,7 +33,11 @@ public class RedisTest {
 			+ "\"sucursal\": \"Devoto\"," + "\"gerente\": \"Susana Torio\","
 			+ " \"servicios\": [ \"venta al por mayor\", \"depósitos\", \"impuestos\", \"dolar\", \"plazo fijo\", \"\", \"\", \"\" ]"
 			+ " }" + "]";
-
+	ServicioExternoBanco serv = Mockito.mock(ServicioExternoBanco.class);
+	Mockito.when(serv.busqueda("","")).thenReturn(json,json2,json3);
+	mapa = new OrigenesDeDatosBancoExterno(serv);
+	jedis = mapa.getJedis();
+	jedis.del("Bancos");
 	}
 	
 	@Test
@@ -49,7 +51,7 @@ public class RedisTest {
 	public void testBancoExterno(){
 		jedis.lpush("Bancos", json2);
 		
-		 List<POI> pois = mapa.busqueda("hola");
+		 List<POI> pois = mapa.busqueda("Banco Frances");
 		 Assert.assertEquals(pois.get(0).getNombre(), "Banco Frances");
 	}
 	
