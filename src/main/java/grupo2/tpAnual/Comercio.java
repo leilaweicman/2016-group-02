@@ -18,6 +18,7 @@ public class Comercio extends POI {
 	private Integer id;
 	
 	@org.mongodb.morphia.annotations.Embedded
+	@Column(name="id_rubro") @ManyToOne @JoinColumn(name="id_rubro")
 	private Rubro rubro;
 	private List<Rango> rangoDisponibilidad = new ArrayList<Rango>();
 	private Disponibilidad disponibilidad;
