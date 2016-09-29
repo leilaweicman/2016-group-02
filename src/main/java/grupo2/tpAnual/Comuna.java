@@ -13,10 +13,12 @@ import org.uqbar.geodds.Polygon;
 public class Comuna {
 	@Transient
 	private Polygon comuna;
+	
 	@OneToMany @Column(name="vertice") @Convert(converter = ConverterPoint.class)
 	private List<Point> vertices = new ArrayList<Point>();
-	 @Id @GeneratedValue @Column(name="id_usuario")
-	 private int numeroComuna;
+	
+	@Id @GeneratedValue @Column(name="id_comuna")
+	private int numeroComuna;
 
 	public Comuna(int numero, List<Point> vertices) {
 		this.numeroComuna = numero;
