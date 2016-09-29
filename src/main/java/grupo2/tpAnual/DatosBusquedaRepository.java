@@ -3,7 +3,7 @@ package grupo2.tpAnual;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
+
 
 import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.Entity;
@@ -32,12 +32,12 @@ public class DatosBusquedaRepository {
 		return this.listaDatosDeBusqueda;
 	}
 
-	public Stream<DatosDeBusqueda> obtenerPorNombre(String nombreTerminal) {
-		return listaDatosDeBusqueda.stream().filter(registro -> registro.getNombre().equals(nombreTerminal));
+	public List<DatosDeBusqueda> obtenerPorNombre(String nombreTerminal) {
+		return listaDatosDeBusqueda.stream().filter(registro -> registro.getNombre().equals(nombreTerminal)).collect(Collectors.toList());
 	}
 
 	public List<Integer> obtenerTotalResultadosPorTerminal(String nombreTerminal) {
-		return this.obtenerPorNombre(nombreTerminal).map(registro -> registro.getTotalDeResultados()).collect(Collectors.toList());
+		return this.obtenerPorNombre(nombreTerminal).stream().map(registro -> registro.getTotalDeResultados()).collect(Collectors.toList());
 	}
 
 	public Integer cantidadDeBusquedasDe(String nombre) {

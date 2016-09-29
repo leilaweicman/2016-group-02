@@ -8,7 +8,7 @@ import org.mongodb.morphia.dao.DAO;
 
 public interface datosDeBusquedaRepositoryDAO extends DAO<DatosDeBusqueda, ObjectId>{
 	
-	public Stream<DatosDeBusqueda> obtenerPorNombre(String nombreTerminal);
+	public List<DatosDeBusqueda> obtenerPorNombre(String nombreTerminal);
 	
 	public void agregarDatosBusqueda(DatosDeBusqueda registroBusqueda);
 	

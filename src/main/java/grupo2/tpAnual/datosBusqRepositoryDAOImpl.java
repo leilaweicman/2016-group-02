@@ -20,13 +20,12 @@ public class datosBusqRepositoryDAOImpl extends BasicDAO<DatosDeBusqueda, Object
 		
 	}
 	
-	public Stream<DatosDeBusqueda> obtenerPorNombre(String nombreTerminal){
+	public List<DatosDeBusqueda> obtenerPorNombre(String nombreTerminal){
 		Query<DatosDeBusqueda> query = createQuery().
 				field("nombreTerminal").equal(nombreTerminal);
 		
-		//return (Stream<DatosDeBusqueda>) query.asList();
-		return null;
-		
+		return query.asList();
+
 	}
 	
 	public void agregarDatosBusqueda(DatosDeBusqueda registroBusqueda){
