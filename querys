@@ -24,3 +24,63 @@ create table DatosDeBusquedaRepository(
 id_repository int auto_increment primary key,
 id_datoBuscado int references DatosDeBusqueda(id_datosDeBusqueda)
 );
+
+
+create table Servicio(
+id_servicio int, 
+foreign key (id_servicio) references poi(id_poi),
+nombre varchar(100) NOT NULL,
+id_rango int references rango(id_rango)
+);
+
+create table CGP(
+id_cgp int, 
+foreign key (id_cgp) references poi(id_poi),
+id_servicio int references servicio(id_servicio)
+);
+
+create table Parada(
+id_parada int, 
+foreign key (id_parada) references poi(id_poi),
+linea int NOT NULL
+);
+
+create table Comercio(
+id_comercio int, 
+foreign key (id_comercio) references poi(id_poi),
+id_rango int references rango(id_rango)
+);
+
+
+
+create table Rango(
+id_rango int auto_increment primary key,
+dia varchar(10) NOT NULL,
+horaDesde varchar(20) NOT NULL,
+horaHasta varchar(20) NOT NULL
+);
+
+
+create table Banco(
+id_banco int, 
+foreign key (id_banco) references poi(id_poi),
+id_rango int references rango(id_rango)
+);
+
+
+create table Direccion(
+id_direccion int auto_increment primary key,
+calle varchar(100) NOT NULL,
+altura int NOT NULL,
+zona varchar(100)
+);
+
+
+create table POI(
+id_poi int auto_increment primary key,
+id_direccion int references Direccion(id_direccion),
+id_comuna int references comuna(id_comuna),
+nombre varchar(60) NOT NULL,
+palabraClave varchar (60)
+);
+
