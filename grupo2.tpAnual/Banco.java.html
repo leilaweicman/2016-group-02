@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Banco.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tpAnual</a> &gt; <a href="index.source.html" class="el_package">grupo2.tpAnual</a> &gt; <span class="el_source">Banco.java</span></div><h1>Banco.java</h1><pre class="source lang-java linenums">package grupo2.tpAnual;
+
+import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import javax.persistence.Entity;
+import javax.persistence.*;
+
+import org.joda.time.DateTime;
+import org.uqbar.geodds.Point;
+
+@Entity
+@Table(name=&quot;banco&quot;)
+@PrimaryKeyJoinColumn(name=&quot;id&quot;, referencedColumnName=&quot;id&quot;)
+public class Banco extends POI {
+
+	private List&lt;Rango&gt; rangoDisponibilidad;
+	private List&lt;Integer&gt; dias;
+	private Disponibilidad disponibilidad;
+
+	public Banco(String nombre, Point ubicacion) {
+<span class="fc" id="L24">		super(nombre, ubicacion);</span>
+<span class="fc" id="L25">		this.rangoDisponibilidad = new ArrayList&lt;Rango&gt;();</span>
+<span class="fc" id="L26">		this.dias = new ArrayList&lt;Integer&gt;();</span>
+<span class="fc" id="L27">		dias = Arrays.asList(1, 2, 3, 4, 5);</span>
+<span class="fc" id="L28">		dias.stream().forEach(dia -&gt; crearRango(dia));</span>
+<span class="fc" id="L29">		this.disponibilidad = new Disponibilidad(rangoDisponibilidad);</span>
+<span class="fc" id="L30">	}</span>
+
+	private void crearRango(int dia) {
+<span class="fc" id="L33">		Rango unRango = new Rango(dia, LocalTime.of(10, 0, 0), LocalTime.of(15, 0, 0));</span>
+<span class="fc" id="L34">		rangoDisponibilidad.add(unRango);</span>
+<span class="fc" id="L35">	}</span>
+
+	public List&lt;Rango&gt; getRango() {
+<span class="nc" id="L38">		return rangoDisponibilidad;</span>
+	}
+
+	public void setRango(ArrayList&lt;Rango&gt; rango) {
+<span class="nc" id="L42">		this.rangoDisponibilidad = rango;</span>
+<span class="nc" id="L43">	}</span>
+
+	public void addRango(Rango rango) {
+<span class="nc" id="L46">		this.rangoDisponibilidad.add(rango);</span>
+<span class="nc" id="L47">	}</span>
+
+	@Override
+	public boolean estaDisponible(DateTime momento, String nombre) {
+<span class="fc" id="L51">		return this.disponibilidad.estaDisponible(momento);</span>
+	}
+
+	public Disponibilidad getDisponibilidad() {
+<span class="nc" id="L55">		return disponibilidad;</span>
+	}
+
+	public void setDisponibilidad(Disponibilidad disponibilidad) {
+<span class="nc" id="L59">		this.disponibilidad = disponibilidad;</span>
+<span class="nc" id="L60">	}</span>
+
+	@Override
+	public boolean estaCerca(Point coordenadaDeseada) {
+<span class="nc bnc" id="L64" title="All 2 branches missed.">		return (this.ubicacion.distance(coordenadaDeseada) &lt; 0.5);</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

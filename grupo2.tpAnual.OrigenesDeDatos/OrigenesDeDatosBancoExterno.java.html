@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>OrigenesDeDatosBancoExterno.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tpAnual</a> &gt; <a href="index.source.html" class="el_package">grupo2.tpAnual.OrigenesDeDatos</a> &gt; <span class="el_source">OrigenesDeDatosBancoExterno.java</span></div><h1>OrigenesDeDatosBancoExterno.java</h1><pre class="source lang-java linenums">package grupo2.tpAnual.OrigenesDeDatos;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+import org.uqbar.geodds.Point;
+
+import ServiciosExternos.ServicioExternoBanco;
+import grupo2.tpAnual.Banco;
+import grupo2.tpAnual.FromJsonToMap;
+import grupo2.tpAnual.POI;
+import redis.clients.jedis.Jedis;
+
+public class OrigenesDeDatosBancoExterno implements OrigenesDeDatos {
+	private ServicioExternoBanco mapaBancoExterno;
+	private Jedis jedis;
+	private static final String BANCOS = &quot;Bancos&quot;;
+
+<span class="fc" id="L21">	public OrigenesDeDatosBancoExterno(ServicioExternoBanco servicio) {</span>
+<span class="fc" id="L22">		this.mapaBancoExterno = servicio;</span>
+<span class="fc" id="L23">		jedis = new Jedis(&quot;localhost&quot;);</span>
+<span class="fc" id="L24">	}</span>
+
+	public String getKeyJedis() {
+<span class="fc" id="L27">		return BANCOS;</span>
+	}
+
+	public Jedis getJedis() {
+<span class="fc" id="L31">		return jedis;</span>
+	}
+
+	@Override
+	public List&lt;POI&gt; busqueda(String banco) {
+		try {
+<span class="fc" id="L37">			List&lt;String&gt; jsons = jedis.lrange(BANCOS, 0, -1);</span>
+<span class="fc" id="L38">			List&lt;POI&gt; pois = new ArrayList&lt;&gt;();</span>
+<span class="fc bfc" id="L39" title="All 2 branches covered.">			if (jsons.isEmpty()) {</span>
+<span class="fc" id="L40">				String json2 = this.mapaBancoExterno.busqueda(banco, &quot;&quot;);</span>
+<span class="fc" id="L41">				jedis.lpush(BANCOS, json2);</span>
+<span class="fc" id="L42">				return FromJsonToMap.transformarAMap(json2).stream().map((poiMap) -&gt; adaptar(poiMap))</span>
+<span class="fc" id="L43">						.collect(Collectors.toList());</span>
+			} else {
+<span class="fc bfc" id="L45" title="All 2 branches covered.">				for (String json : jsons) {</span>
+<span class="fc" id="L46">					pois.addAll(FromJsonToMap.transformarAMap(json).stream().map((poiMap) -&gt; adaptar(poiMap))</span>
+<span class="fc" id="L47">							.collect(Collectors.toList()));</span>
+<span class="fc" id="L48">				}</span>
+<span class="fc" id="L49">				return pois;</span>
+
+			}
+<span class="fc" id="L52">		} catch (Exception e) {</span>
+<span class="fc" id="L53">			throw new RuntimeException(e);</span>
+		}
+	}
+
+	private POI adaptar(Map&lt;String, Object&gt; map) {
+<span class="fc" id="L58">		List&lt;String&gt; servicios = (List&lt;String&gt;) map.getOrDefault(&quot;servicios&quot;, new ArrayList&lt;&gt;());</span>
+<span class="fc" id="L59">		String nombre = (String) map.getOrDefault(&quot;banco&quot;, new RuntimeException());</span>
+<span class="fc" id="L60">		double latitud = (double) map.get(&quot;x&quot;);</span>
+<span class="fc" id="L61">		double longitud = (double) map.get(&quot;y&quot;);</span>
+
+<span class="fc" id="L63">		POI poi = new Banco(nombre, Point.and(latitud, longitud));</span>
+<span class="fc" id="L64">		poi.setPalabrasClaves(servicios);</span>
+<span class="fc" id="L65">		return poi;</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>
