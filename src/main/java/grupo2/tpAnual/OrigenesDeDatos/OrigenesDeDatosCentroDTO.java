@@ -11,9 +11,6 @@ import grupo2.tpAnual.CGP;
 import grupo2.tpAnual.Comuna;
 import grupo2.tpAnual.Direccion;
 import grupo2.tpAnual.POI;
-import redis.clients.jedis.Jedis;
-import redis.clients.jedis.Response;
-import redis.clients.jedis.Transaction;
 
 public class OrigenesDeDatosCentroDTO implements OrigenesDeDatos {
 	private ServicioExternoCentroDTO mapaCentroDTO;

@@ -2,7 +2,6 @@ package grupo2.tpAnual;
 
 import java.util.List;
 
-import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -12,7 +11,6 @@ import org.uqbar.geodds.Point;
 
 import ServiciosExternos.ServicioExternoBanco;
 import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosBancoExterno;
-import redis.clients.jedis.Jedis;
 
 public class OrigenesDeDatosBancoExternoTest {
 
@@ -26,14 +24,9 @@ public class OrigenesDeDatosBancoExternoTest {
 		bancos = Mockito.mock(ServicioExternoBanco.class);
 	}
 
-	@After
-	public void after(){
-		String key = origenDeDatos.getKeyJedis();
-		origenDeDatos.getJedis().del(key);
-	}
 	@Test
 	public void adaptarNombreTest(){
-		Mockito.when(bancos.busqueda("", "")).thenReturn( "[" + "{ \"banco\": \"Banco de la Plaza\"," + "\"x\": -35.9338322," + "\"y\": 72.348353,"
+		Mockito.when(bancos.busqueda("Banco de la Plaza", "")).thenReturn( "[" + "{ \"banco\": \"Banco de la Plaza\"," + "\"x\": -35.9338322," + "\"y\": 72.348353,"
 				+ "\"sucursal\": \"Avellaneda\"," + "\"gerente\": \"Javier Loeschbor\","
 				+ " \"servicios\": [ \"cobro cheques\", \"depósitos\", \"extracciones\", \"transferencias\", \"créditos\", \"\", \"\", \"\" ]"
 				+ " }" + "]");
@@ -44,7 +37,7 @@ public class OrigenesDeDatosBancoExternoTest {
 
 	@Test
 	public void adaptarServiciosTest(){
-		Mockito.when(bancos.busqueda("", "")).thenReturn( "[" + "{ \"banco\": \"Banco de la Plaza\"," + "\"x\": -35.9338322," + "\"y\": 72.348353,"
+		Mockito.when(bancos.busqueda("cobro cheques", "")).thenReturn( "[" + "{ \"banco\": \"Banco de la Plaza\"," + "\"x\": -35.9338322," + "\"y\": 72.348353,"
 				+ "\"sucursal\": \"Avellaneda\"," + "\"gerente\": \"Javier Loeschbor\","
 				+ " \"servicios\": [ \"cobro cheques\", \"depósitos\", \"extracciones\", \"transferencias\", \"créditos\", \"\", \"\", \"\" ]"
 				+ " }" + "]");
@@ -55,7 +48,7 @@ public class OrigenesDeDatosBancoExternoTest {
 	
 	@Test
 	public void adaptarUbicacionTest(){
-		Mockito.when(bancos.busqueda("", "")).thenReturn( "[" + "{ \"banco\": \"Banco de la Plaza\"," + "\"x\": -35.5," + "\"y\": 72.5,"
+		Mockito.when(bancos.busqueda("depósitos", "")).thenReturn( "[" + "{ \"banco\": \"Banco de la Plaza\"," + "\"x\": -35.5," + "\"y\": 72.5,"
 				+ "\"sucursal\": \"Avellaneda\"," + "\"gerente\": \"Javier Loeschbor\","
 				+ " \"servicios\": [ \"cobro cheques\", \"depósitos\", \"extracciones\", \"transferencias\", \"créditos\", \"\", \"\", \"\" ]"
 				+ " }" + "]");

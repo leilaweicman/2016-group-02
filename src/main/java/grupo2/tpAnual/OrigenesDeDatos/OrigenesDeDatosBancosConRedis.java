@@ -11,23 +11,34 @@ import ServiciosExternos.ServicioExternoBanco;
 import grupo2.tpAnual.Banco;
 import grupo2.tpAnual.FromJsonToMap;
 import grupo2.tpAnual.POI;
+import redis.clients.jedis.Jedis;
 
-public class OrigenesDeDatosBancoExterno implements OrigenesDeDatos {
+public class OrigenesDeDatosBancosConRedis extends Decorator{
+
 	private ServicioExternoBanco mapaBancoExterno;
-
-	public OrigenesDeDatosBancoExterno(ServicioExternoBanco servicio) {
-		this.mapaBancoExterno = servicio;
+	private Jedis jedis;
+	private static final String BANCOS = "Bancos";
+	
+	public OrigenesDeDatosBancosConRedis(OrigenesDeDatos origen, ServicioExternoBanco servicio) {
+		super(origen);
+		mapaBancoExterno = servicio;
+		jedis = new Jedis("localhost");
+		jedis.del(BANCOS);
 	}
-
+	
 	@Override
 	public List<POI> busqueda(String banco) {
 		try {
-			String json = mapaBancoExterno.busqueda(banco, "");
-			return FromJsonToMap.transformarAMap(json).stream().map((poiMap) -> adaptar(poiMap)).collect(Collectors.toList());		
+			String json = jedis.get(BANCOS);
+			if (json==null){
+				json = this.mapaBancoExterno.busqueda(banco, "");
+				jedis.set(BANCOS, json);
+			}
+			return FromJsonToMap.transformarAMap(json).stream().map((poiMap) -> adaptar(poiMap)).collect(Collectors.toList());
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
-	}
+}
 
 	private POI adaptar(Map<String, Object> map) {
 		List<String> servicios = (List<String>) map.getOrDefault("servicios", new ArrayList<>());
