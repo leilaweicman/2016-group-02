@@ -16,19 +16,39 @@ import redis.clients.jedis.Jedis;
 public class OrigenesDeDatosBancoExterno implements OrigenesDeDatos {
 	private ServicioExternoBanco mapaBancoExterno;
 	private Jedis jedis;
-	
+	private static final String BANCOS = "Bancos";
+
 	public OrigenesDeDatosBancoExterno(ServicioExternoBanco servicio) {
 		this.mapaBancoExterno = servicio;
-		jedis = new Jedis();
+		jedis = new Jedis("localhost");
+	}
+
+	public String getKeyJedis() {
+		return BANCOS;
+	}
+
+	public Jedis getJedis() {
+		return jedis;
 	}
 
 	@Override
 	public List<POI> busqueda(String banco) {
 		try {
-			String json = this.mapaBancoExterno.busqueda(banco, "");
+			List<String> jsons = jedis.lrange(BANCOS, 0, -1);
+			List<POI> pois = new ArrayList<>();
+			if (jsons.isEmpty()) {
+				String json2 = this.mapaBancoExterno.busqueda(banco, "");
+				jedis.lpush(BANCOS, json2);
+				return FromJsonToMap.transformarAMap(json2).stream().map((poiMap) -> adaptar(poiMap))
+						.collect(Collectors.toList());
+			} else {
+				for (String json : jsons) {
+					pois.addAll(FromJsonToMap.transformarAMap(json).stream().map((poiMap) -> adaptar(poiMap))
+							.collect(Collectors.toList()));
+				}
+				return pois;
 
-			return FromJsonToMap.transformarAMap(json).stream().map((poiMap) -> adaptar(poiMap))
-					.collect(Collectors.toList());
+			}
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}

@@ -17,11 +17,9 @@ import redis.clients.jedis.Transaction;
 
 public class OrigenesDeDatosCentroDTO implements OrigenesDeDatos {
 	private ServicioExternoCentroDTO mapaCentroDTO;
-	private Jedis jedis;
 	
 	public OrigenesDeDatosCentroDTO(ServicioExternoCentroDTO servicio){
 		this.mapaCentroDTO = servicio;
-		jedis= new Jedis("localhost");
 	}
 	
 	@Override
