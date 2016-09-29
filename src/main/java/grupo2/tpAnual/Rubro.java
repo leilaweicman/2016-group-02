@@ -1,8 +1,15 @@
 package grupo2.tpAnual;
+import javax.persistence.*;
 
 @org.mongodb.morphia.annotations.Entity
+@Entity
+@Table(name="Rubro")
 public class Rubro {
+	@Id	@GeneratedValue @Column(name="id_rubro")
+	private Integer id;
+	@Column(name="tipo")
 	private String tipoRubro;
+	@Column(name="radioCercania")
 	private double radioCercania;
 	@org.mongodb.morphia.annotations.Embedded
 	private Rango disponibilidad;
