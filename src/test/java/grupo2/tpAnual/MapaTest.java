@@ -54,6 +54,8 @@ public class MapaTest {
 		ser.setNombre("Jubilados");
 		servicios.add(ser);
 		this.rentas.setServicios(servicios);
+		String key = datosBancosExternos.getKeyJedis();
+		datosBancosExternos.getJedis().del(key);
 
 		this.origenesDeDatosPois.agregarPOI(santander);
 		this.origenesDeDatosPois.agregarPOI(rentas);

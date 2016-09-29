@@ -11,6 +11,7 @@ import org.uqbar.geodds.Point;
 
 import ServiciosExternos.ServicioExternoBanco;
 import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosBancoExterno;
+import redis.clients.jedis.Jedis;
 
 public class OrigenesDeDatosBancoExternoTest {
 
@@ -23,6 +24,8 @@ public class OrigenesDeDatosBancoExternoTest {
 	public void init() {
 		bancos = Mockito.mock(ServicioExternoBanco.class);
 		origenDeDatos = new OrigenesDeDatosBancoExterno(bancos);
+		String key = origenDeDatos.getKeyJedis();
+		origenDeDatos.getJedis().del(key);
 	}
 
 	@Test
@@ -32,8 +35,7 @@ public class OrigenesDeDatosBancoExternoTest {
 				+ " \"servicios\": [ \"cobro cheques\", \"depósitos\", \"extracciones\", \"transferencias\", \"créditos\", \"\", \"\", \"\" ]"
 				+ " }" + "]");
 		List<POI> bancos = origenDeDatos.busqueda("Hola");
-		Assert.assertEquals(bancos.get(0).getNombre(), "Banco de la Plaza");
-		
+		Assert.assertEquals(bancos.get(0).getNombre(), "Banco de la Plaza");		
 	}
 
 	@Test
@@ -44,7 +46,6 @@ public class OrigenesDeDatosBancoExternoTest {
 				+ " }" + "]");
 		List<POI> bancos = origenDeDatos.busqueda("Hola");
 		Assert.assertEquals(bancos.get(0).getPalabraClave().get(0), "cobro cheques");
-		
 	}
 	
 	@Test
@@ -73,6 +74,6 @@ public class OrigenesDeDatosBancoExternoTest {
 				+ "\"sucursal\": \"Avellaneda\"," + "\"gerente\": \"Javier Loeschbor\","
 				+ " \"servicios\": [ \"cobro cheques\", \"depósitos\", \"extracciones\", \"transferencias\", \"créditos\", \"\", \"\", \"\" ]"
 				+ " }" + "]");
-		origenDeDatos.busqueda("Hola");
+		 origenDeDatos.busqueda("Hola");
 	}
 }

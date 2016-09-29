@@ -11,8 +11,7 @@ public class FromJsonToMap {
 
 	public static List<Map<String, Object>> transformarAMap(String txtEnJson) throws Exception {		
 		mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false); 
-		return mapper.readValue(txtEnJson,
-				mapper.getTypeFactory().constructCollectionType(ArrayList.class, Map.class));
+		return mapper.readValue(txtEnJson,mapper.getTypeFactory().constructCollectionType(ArrayList.class, Map.class));
 	}
 
 }

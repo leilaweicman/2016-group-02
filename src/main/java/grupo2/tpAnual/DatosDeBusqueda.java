@@ -19,7 +19,7 @@ public class DatosDeBusqueda {
 	private long segundosQueTardoLaBusqueda;
 	@Column(name="totalDeResultados")
 	private int totalDeResultados;
-	@Column(name="fecha") @Convert(converter = LocalDateAttributeConverter.class)
+	//@Column(name="fecha") @Convert(converter = LocalDateAttributeConverter.class)
 	private LocalDate fecha;
 	@Column(name="nombre")
 	private String nombre;
