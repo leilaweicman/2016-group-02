@@ -12,8 +12,8 @@ import org.joda.time.DateTime;
 import org.uqbar.geodds.Point;
 
 @Entity
-@Table(name=&quot;banco&quot;)
-@PrimaryKeyJoinColumn(name=&quot;id&quot;, referencedColumnName=&quot;id&quot;)
+@Table(name=&quot;Banco&quot;)
+@PrimaryKeyJoinColumn(name=&quot;id_banco&quot;, referencedColumnName=&quot;id_poi&quot;)
 public class Banco extends POI {
 
 	private List&lt;Rango&gt; rangoDisponibilidad;

@@ -3,51 +3,62 @@
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 import org.joda.time.DateTime;
 
+@Entity
+@Table(name=&quot;Servicio&quot;) 
 public class Servicio {
+	@Id	@GeneratedValue @Column(name=&quot;id_rango&quot;)
+	private Integer id;
+	@Column(name=&quot;nombre&quot;)
 	private String nombre;
 
-<span class="fc" id="L11">	private List&lt;Rango&gt; rangoDisponibilidad = new ArrayList&lt;Rango&gt;();</span>
+<span class="fc" id="L22">	private List&lt;Rango&gt; rangoDisponibilidad = new ArrayList&lt;Rango&gt;();</span>
 
 	private Disponibilidad disponibilidad;
 
-<span class="fc" id="L15">	public Servicio(List&lt;Rango&gt; rango) {</span>
-<span class="fc" id="L16">		this.rangoDisponibilidad = rango;</span>
-<span class="fc" id="L17">		disponibilidad = new Disponibilidad(this.rangoDisponibilidad);</span>
-<span class="fc" id="L18">	}</span>
+<span class="fc" id="L26">	public Servicio(List&lt;Rango&gt; rango) {</span>
+<span class="fc" id="L27">		this.rangoDisponibilidad = rango;</span>
+<span class="fc" id="L28">		disponibilidad = new Disponibilidad(this.rangoDisponibilidad);</span>
+<span class="fc" id="L29">	}</span>
 
 	public String getNombre() {
-<span class="fc" id="L21">		return nombre;</span>
+<span class="fc" id="L32">		return nombre;</span>
 	}
 
 	public void setNombre(String Nom) {
-<span class="fc" id="L25">		this.nombre = Nom;</span>
-<span class="fc" id="L26">	}</span>
+<span class="fc" id="L36">		this.nombre = Nom;</span>
+<span class="fc" id="L37">	}</span>
 
 	public List&lt;Rango&gt; getRango() {
-<span class="nc" id="L29">		return rangoDisponibilidad;</span>
+<span class="nc" id="L40">		return rangoDisponibilidad;</span>
 	}
 
 	public void setRango(List&lt;Rango&gt; rango) {
-<span class="nc" id="L33">		this.rangoDisponibilidad = rango;</span>
-<span class="nc" id="L34">	}</span>
+<span class="nc" id="L44">		this.rangoDisponibilidad = rango;</span>
+<span class="nc" id="L45">	}</span>
 
 	public void addRango(Rango rango) {
-<span class="nc" id="L37">		this.rangoDisponibilidad.add(rango);</span>
-<span class="nc" id="L38">	}</span>
+<span class="nc" id="L48">		this.rangoDisponibilidad.add(rango);</span>
+<span class="nc" id="L49">	}</span>
 
 	public boolean estaDisponible(DateTime momento) {
-<span class="fc" id="L41">		return this.disponibilidad.estaDisponible(momento);</span>
+<span class="fc" id="L52">		return this.disponibilidad.estaDisponible(momento);</span>
 	}
 
 	public Disponibilidad getDisponibilidad() {
-<span class="nc" id="L45">		return disponibilidad;</span>
+<span class="nc" id="L56">		return disponibilidad;</span>
 	}
 
 	public void setDisponibilidad(Disponibilidad disponibilidad) {
-<span class="nc" id="L49">		this.disponibilidad = disponibilidad;</span>
-<span class="nc" id="L50">	}</span>
+<span class="nc" id="L60">		this.disponibilidad = disponibilidad;</span>
+<span class="nc" id="L61">	}</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>
