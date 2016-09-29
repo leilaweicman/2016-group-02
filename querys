@@ -3,10 +3,23 @@ create database db;
 
 ============PARA CREAR TABLAS=================
 
-create table Comuna (id_comuna int auto_increment primary key, vertice int);
+create table Direccion(
+id_direccion int auto_increment primary key,
+calle varchar(100) NOT NULL,
+altura int NOT NULL,
+zona varchar(100)
+);
 
-create table Usuario (id_usuario int auto_increment primary key, id_comuna int references Comuna (id_comuna))
 
+create table Comuna (
+id_comuna int auto_increment primary key, 
+vertice int)
+;
+
+create table Usuario (
+id_usuario int auto_increment primary key, 
+id_comuna int references Comuna (id_comuna)
+);
 create table UserRepository(
     id_repository int auto_increment primary key,
     id_user int references Usuario(id_usuario));
@@ -18,9 +31,100 @@ segundosTardados int NOT NULL,
 totalDeResultados bigint NOT NULL,
 fecha Date NOT NULL,
 nombre varchar(60) NOT NULL
-)
+);
 
 create table DatosDeBusquedaRepository(
 id_repository int auto_increment primary key,
 id_datoBuscado int references DatosDeBusqueda(id_datosDeBusqueda)
+);
+
+
+create table POI(
+id_poi int auto_increment primary key,
+id_direccion int references Direccion(id_direccion),
+id_comuna int references comuna(id_comuna),
+nombre varchar(60) NOT NULL,
+palabraClave varchar (60)
+);
+
+create table Servicio(
+id_servicio int primary key, 
+nombre varchar(100) NOT NULL
+);
+
+create table CGP(
+id_cgp int primary key, 
+foreign key (id_cgp) references poi(id_poi)
+);
+
+create table Parada(
+id_parada int primary key, 
+foreign key (id_parada) references poi(id_poi),
+linea int NOT NULL
+);
+
+create table Rubro(
+id_rubro int auto_increment key,
+tipo varchar(60) NOT NULL,
+radioCercania double NOT NULL
+);
+
+create table Comercio(
+id_comercio int primary key, 
+foreign key (id_comercio) references poi(id_poi)
+id_rubro int,
+foreign key (id_rubro) rubro(id_rubro)
+);
+
+create table Rango(
+id_rango int auto_increment primary key,
+dia varchar(10) NOT NULL,
+horaDesde time NOT NULL,
+horaHasta time NOT NULL
+);
+
+create table Banco(
+id_banco int primary key, 
+foreign key (id_banco) references poi(id_poi)
+);
+
+create table RangoPorComercio(
+id_rango int, 
+id_comercio int,
+foreign key (id_rango) references rango(id_rango),
+foreign key (id_comercio) references comercio(id_comercio),
+primary key(id_rango, id_comercio)
+);
+
+create table RangoPorBanco(
+id_rango int, 
+id_banco int,
+foreign key (id_rango) references rango(id_rango),
+foreign key (id_banco) references banco(id_banco),
+primary key(id_rango, id_banco)
+);
+
+create table RangoPorServicio(
+id_servicio int,
+id_rango int,
+foreign key (id_servicio) references servicio(id_servicio),
+foreign key (id_rango) references rango(id_rango),
+primary key (id_servicio, id_rango)
+);
+
+create table ServicioPorCGP(
+id_servicio int, 
+id_cgp int,
+foreign key (id_servicio) references servicio(id_servicio),
+foreign key (id_cgp) references cgp(id_cgp),
+primary key(id_servicio, id_cgp)
+);
+
+
+//DUDOSO, VER SI ESTA BIEN
+create table Mapa(
+id_mapa int auto_increment primary key,
+nombre varchar(60) NOT NULL,
+id_usuario int NOT NULL, 
+foreign key (id_usuario) references usuario(id_usuario)
 );

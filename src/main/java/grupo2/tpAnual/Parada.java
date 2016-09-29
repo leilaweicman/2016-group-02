@@ -9,9 +9,7 @@ import javax.persistence.*;
 @Table(name="parada")
 @PrimaryKeyJoinColumn(name="parada_id", referencedColumnName="poi_id")
 public class Parada extends POI {
-	@Id
-	@GeneratedValue
-	@Column(name="parada_id")
+	@Id	@GeneratedValue	@Column(name="parada_id")
 	private Integer id;
 	
 	private String linea;

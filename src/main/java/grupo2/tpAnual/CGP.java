@@ -11,12 +11,10 @@ import org.uqbar.geodds.Point;
 
 @Entity
 @Table(name="cgp")
-@PrimaryKeyJoinColumn(name="cgp_id", referencedColumnName="poi_id")
+@PrimaryKeyJoinColumn(name="id_cgp", referencedColumnName="id_poi")
 public class CGP extends POI {
 	
-	@Id
-	@GeneratedValue
-	@Column(name="cgp_id")
+	@Id	@GeneratedValue	@Column(name="id_cgp")
 	private Integer id;	
 	
 	private List<Servicio> servicios;

@@ -5,9 +5,11 @@ import static org.junit.Assert.assertNotNull;
 
 import javax.persistence.EntityManager;
 
+import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 import org.junit.Before;
 import org.junit.Test;
+import org.uqbar.geodds.Point;
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
@@ -41,7 +43,24 @@ public class DBTest extends AbstractPersistenceTest implements WithGlobalEntityM
 		assertEquals(direccionBuscada.getZona(),"Almagro");
 		assertEquals(direccionBuscada.getCalle(),"Medrano");
 		
-	}	
+	}
+	
+	/*@Test
+	public void persistirBanco(){
+		Banco banco;
+		//DateTime momento;
+
+		beginTransaction();
+		banco = new Banco("santander", Point.and(-34.664837, -58.385674));
+		persist(banco);
+		commitTransaction();
+		
+		Banco bancoBuscado = (Banco) em.createQuery("from Banco where id_banco = :id").setParameter("id", banco.getId()).getSingleResult();
+		assertEquals(bancoBuscado.getId(),banco.getId());
+		
+		
+		//ver como tendria que hacer para conseguir el rango de disponibilidad desde la db
+	}*/
 	
 	//Estos son los que no funcionan
 	/*@Test

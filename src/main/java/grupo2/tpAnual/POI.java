@@ -3,8 +3,6 @@ package grupo2.tpAnual;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.Inheritance;
 import javax.persistence.*;
 
 import org.hibernate.annotations.Cascade;
@@ -12,21 +10,28 @@ import org.joda.time.DateTime;
 import org.uqbar.geodds.Point;
 
 @org.mongodb.morphia.annotations.Entity
-@Entity
+@Entity 
+@Table(name="POI") 
 @Inheritance(strategy=InheritanceType.JOINED)
 public abstract class POI {
 
-	@Id	@GeneratedValue
+	@Id	@GeneratedValue @Column(name="id_poi")
 	private Integer id;
 	
-	@OneToOne @JoinColumn 
+	@Column(name="id_direccion") @OneToOne @JoinColumn(name="id_direccion")
 	//@Cascade(value=CascadeType.ALL)
 	private Direccion direccion;
 	
+	@Column(name="id_comuna")@ManyToOne @JoinColumn(name="id_comuna")
+	protected Comuna comuna;
+	
 	@ElementCollection
 	private List<String> palabraClave;
+	
+	@Column(name="ubicacion") @Convert(converter = ConverterPoint.class)
 	protected Point ubicacion;
-	protected Comuna comuna;
+	
+	@Column(name="nombre")
 	private String nombre;
 	
 	public POI(String nombre, Point ubicacion) {
