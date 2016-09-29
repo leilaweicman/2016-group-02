@@ -4,11 +4,9 @@ cache:
 
 language: java
 
-services:
-  - redis-server
-
 jdk:
   - oraclejdk8
+  - openjdk8
 
 after_script:
   - "./.utility/.coverage.sh"
