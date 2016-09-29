@@ -5,27 +5,23 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import javax.persistence.Column;
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import org.bson.types.ObjectId;
+import org.mongodb.morphia.annotations.Entity;
+import org.mongodb.morphia.annotations.Id;
+import org.mongodb.morphia.annotations.Reference;
 
-@Entity
-@Table(name="DatosDeBusquedaRepository")
+@Entity("datosDeBusquedaRepository")
 public class DatosBusquedaRepository {
-	@Id @GeneratedValue  @Column(name="id_repository")
-	private long id;
 	
-	@OneToMany @JoinColumn(name="id_datoBuscado") @ElementCollection
-	private List<DatosDeBusqueda> listaDatosDeBusqueda;
+	@Id
+	private ObjectId id;
 
-
+	@Reference
+	private List<DatosDeBusqueda> listaDatosDeBusqueda;	
+	
 	public DatosBusquedaRepository() {
 		this.listaDatosDeBusqueda = new ArrayList<DatosDeBusqueda>();
+		
 	}
 
 	public void agregarDatosBusqueda(DatosDeBusqueda registroBusqueda) {
