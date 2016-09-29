@@ -63,9 +63,17 @@ foreign key (id_parada) references poi(id_poi),
 linea int NOT NULL
 );
 
+create table Rubro(
+id_rubro int auto_increment key,
+tipo varchar(60) NOT NULL,
+radioCercania double NOT NULL
+);
+
 create table Comercio(
 id_comercio int primary key, 
 foreign key (id_comercio) references poi(id_poi)
+id_rubro int,
+foreign key (id_rubro) rubro(id_rubro)
 );
 
 create table Rango(
@@ -110,4 +118,13 @@ id_cgp int,
 foreign key (id_servicio) references servicio(id_servicio),
 foreign key (id_cgp) references cgp(id_cgp),
 primary key(id_servicio, id_cgp)
+);
+
+
+//DUDOSO, VER SI ESTA BIEN
+create table Mapa(
+id_mapa int auto_increment primary key,
+nombre varchar(60) NOT NULL,
+id_usuario int NOT NULL, 
+foreign key (id_usuario) references usuario(id_usuario)
 );
