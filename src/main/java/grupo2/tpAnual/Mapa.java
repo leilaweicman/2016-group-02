@@ -3,26 +3,24 @@ package grupo2.tpAnual;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
+import javax.persistence.*;
 
 import org.joda.time.LocalDate;
 
 import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatos;
 
 @Entity
+@Table(name="Mapa") 
 public class Mapa {
 	@ElementCollection
 	@OneToMany
-	@JoinColumn
+	@JoinColumn //ver que onda esto
 	private List<OrigenesDeDatos> origenesDeDatos;
-	@Id
+	@Id @GeneratedValue @Column(name="id_mapa")
+	private Integer id;
+	@Column(name="nombre")
 	private String nombre;
-	@OneToOne
+	@Column(name="usuario") @OneToMany @JoinColumn(name="id_usuario")
 	private Usuario usuario;
 
 	public Mapa(List<OrigenesDeDatos> listaDeOrigenes) {
