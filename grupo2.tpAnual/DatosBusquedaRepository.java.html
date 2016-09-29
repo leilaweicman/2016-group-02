@@ -3,7 +3,7 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
+
 
 import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.Entity;
@@ -32,12 +32,12 @@ public class DatosBusquedaRepository {
 <span class="fc" id="L32">		return this.listaDatosDeBusqueda;</span>
 	}
 
-	public Stream&lt;DatosDeBusqueda&gt; obtenerPorNombre(String nombreTerminal) {
-<span class="fc" id="L36">		return listaDatosDeBusqueda.stream().filter(registro -&gt; registro.getNombre().equals(nombreTerminal));</span>
+	public List&lt;DatosDeBusqueda&gt; obtenerPorNombre(String nombreTerminal) {
+<span class="fc" id="L36">		return listaDatosDeBusqueda.stream().filter(registro -&gt; registro.getNombre().equals(nombreTerminal)).collect(Collectors.toList());</span>
 	}
 
 	public List&lt;Integer&gt; obtenerTotalResultadosPorTerminal(String nombreTerminal) {
-<span class="fc" id="L40">		return this.obtenerPorNombre(nombreTerminal).map(registro -&gt; registro.getTotalDeResultados()).collect(Collectors.toList());</span>
+<span class="fc" id="L40">		return this.obtenerPorNombre(nombreTerminal).stream().map(registro -&gt; registro.getTotalDeResultados()).collect(Collectors.toList());</span>
 	}
 
 	public Integer cantidadDeBusquedasDe(String nombre) {
