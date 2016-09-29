@@ -17,38 +17,38 @@ public class OrigenesDeDatosBancoExterno implements OrigenesDeDatos {
 	private ServicioExternoBanco mapaBancoExterno;
 	private Jedis jedis;
 	private static final String BANCOS = &quot;Bancos&quot;;
-
+	
 <span class="fc" id="L21">	public OrigenesDeDatosBancoExterno(ServicioExternoBanco servicio) {</span>
 <span class="fc" id="L22">		this.mapaBancoExterno = servicio;</span>
 <span class="fc" id="L23">		jedis = new Jedis(&quot;localhost&quot;);</span>
-<span class="fc" id="L24">	}</span>
+<span class="fc" id="L24">		jedis.lpush(BANCOS,mapaBancoExterno.busqueda(&quot;&quot;,&quot;&quot;));</span>
+<span class="fc" id="L25">	}</span>
 
 	public String getKeyJedis() {
-<span class="fc" id="L27">		return BANCOS;</span>
+<span class="fc" id="L28">		return BANCOS;</span>
 	}
 
 	public Jedis getJedis() {
-<span class="fc" id="L31">		return jedis;</span>
+<span class="fc" id="L32">		return jedis;</span>
 	}
 
 	@Override
 	public List&lt;POI&gt; busqueda(String banco) {
 		try {
-<span class="fc" id="L37">			List&lt;String&gt; jsons = jedis.lrange(BANCOS, 0, -1);</span>
-<span class="fc" id="L38">			List&lt;POI&gt; pois = new ArrayList&lt;&gt;();</span>
-<span class="fc bfc" id="L39" title="All 2 branches covered.">			if (jsons.isEmpty()) {</span>
-<span class="fc" id="L40">				String json2 = this.mapaBancoExterno.busqueda(banco, &quot;&quot;);</span>
-<span class="fc" id="L41">				jedis.lpush(BANCOS, json2);</span>
-<span class="fc" id="L42">				return FromJsonToMap.transformarAMap(json2).stream().map((poiMap) -&gt; adaptar(poiMap))</span>
-<span class="fc" id="L43">						.collect(Collectors.toList());</span>
-			} else {
-<span class="fc bfc" id="L45" title="All 2 branches covered.">				for (String json : jsons) {</span>
-<span class="fc" id="L46">					pois.addAll(FromJsonToMap.transformarAMap(json).stream().map((poiMap) -&gt; adaptar(poiMap))</span>
-<span class="fc" id="L47">							.collect(Collectors.toList()));</span>
-<span class="fc" id="L48">				}</span>
-<span class="fc" id="L49">				return pois;</span>
-
-			}
+<span class="fc" id="L38">			List&lt;String&gt; jsons = jedis.lrange(BANCOS, 0, -1);</span>
+<span class="fc" id="L39">			List&lt;POI&gt; pois = new ArrayList&lt;&gt;();</span>
+			/*if (jsons.isEmpty()) {
+				String json2 = this.mapaBancoExterno.busqueda(banco, &quot;&quot;);
+				jedis.lpush(BANCOS, json2);
+				return FromJsonToMap.transformarAMap(json2).stream().map((poiMap) -&gt; adaptar(poiMap))
+						.collect(Collectors.toList());
+			} else {*/
+<span class="fc bfc" id="L46" title="All 2 branches covered.">				for (String json : jsons) {</span>
+<span class="fc" id="L47">					pois.addAll(FromJsonToMap.transformarAMap(json).stream().map((poiMap) -&gt; adaptar(poiMap))</span>
+<span class="fc" id="L48">							.collect(Collectors.toList()));</span>
+<span class="fc" id="L49">				}</span>
+<span class="pc bnc" id="L50" title="All 4 branches missed.">				pois.stream().filter(poi -&gt; poi.getPalabraClave().contains(banco) || poi.getNombre().contains(banco));</span>
+<span class="fc" id="L51">				return pois;</span>
 <span class="fc" id="L52">		} catch (Exception e) {</span>
 <span class="fc" id="L53">			throw new RuntimeException(e);</span>
 		}
