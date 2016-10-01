@@ -24,13 +24,8 @@ public class Comuna {
 	private int numeroComuna;
 
 	public Comuna(int numero, List<Point> vertices) {
-		/*EntityManagerFactory emf =Persistence.createEntityManagerFactory("db");
-		em = emf.createEntityManager();
-		em.getTransaction().begin();*/
 		this.numeroComuna = numero;
 		this.comuna = new Polygon(vertices);
-		/*em.persist(this);
-		em.getTransaction().commit();*/
 	}
 
 	public void agregarVertice(Point vertice) {

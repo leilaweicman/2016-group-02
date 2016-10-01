@@ -126,6 +126,7 @@ public class SQLTest extends AbstractPersistenceTest implements WithGlobalEntity
 		assertTrue(repo.getUsuarios().contains(usuario1));
 		repo.deleteUsuario(usuario1);
 	}
+	
 	@Test
 	public void queryBusquedaTest(){
 		OrigenesDeDatosPOIs repo = new OrigenesDeDatosPOIsSQL(); 
@@ -140,11 +141,19 @@ public class SQLTest extends AbstractPersistenceTest implements WithGlobalEntity
 	
 	@Test
 	public void persistirPOISTest(){
+		//TODO persistir los dif atributos y en comuna el point
 		OrigenesDeDatosPOIs repo = new OrigenesDeDatosPOIsSQL(); 
+		
 		POI banco = new Banco("Santander Rio", null);
+		Comuna comuna = new Comuna(3,null);
+		Direccion direccion = new Direccion("Medrano"," Almagro");
+		banco.setComuna(comuna);
+		banco.setDireccion(direccion);
+		
 		POI comercio = new Comercio("Kosiuko", null, null);
 		POI cgp = new CGP("Centro de Atención comuna 15", null);
 		POI parada = new Parada("Linea 114", null, null);
+		
 		repo.agregarPOI(banco);
 		repo.agregarPOI(comercio);
 		repo.agregarPOI(cgp);

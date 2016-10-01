@@ -3,6 +3,7 @@ package grupo2.tpAnual.Pois;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -29,10 +30,10 @@ public abstract class POI {
 	@Id	@GeneratedValue
 	private Integer id;
 	
-	@OneToOne
+	@OneToOne(cascade=CascadeType.ALL) //para que lo hereden todos los hijos
 	private Direccion direccion;
 	
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	protected Comuna comuna;
 	
 	@ElementCollection
