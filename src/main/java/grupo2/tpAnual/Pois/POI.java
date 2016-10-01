@@ -3,15 +3,22 @@ package grupo2.tpAnual.Pois;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.*;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 
-import org.hibernate.annotations.Cascade;
 import org.joda.time.DateTime;
 import org.uqbar.geodds.Point;
 
-import grupo2.tpAnual.ConverterPoint;
-import grupo2.tpAnual.Direccion;
 import grupo2.tpAnual.AccesoriosPois.Comuna;
+import grupo2.tpAnual.AccesoriosPois.Direccion;
 
 @org.mongodb.morphia.annotations.Entity
 @Entity 
@@ -22,12 +29,10 @@ public abstract class POI {
 	@Id	@GeneratedValue
 	private Integer id;
 	
-	//@Column(name="id_direccion") @OneToOne @JoinColumn(name="id_direccion")
-	//@Cascade(value=CascadeType.ALL)
-	@Transient
+	@OneToOne
 	private Direccion direccion;
 	
-	@Transient //@Column(name="id_comuna")@ManyToOne @JoinColumn(name="id_comuna")
+	@ManyToOne
 	protected Comuna comuna;
 	
 	@ElementCollection

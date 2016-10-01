@@ -16,12 +16,11 @@ import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
 
-import grupo2.tpAnual.Direccion;
 import grupo2.tpAnual.AccesoriosPois.Comuna;
+import grupo2.tpAnual.AccesoriosPois.Direccion;
 import grupo2.tpAnual.Observers.EnviarMailBusqueda;
 import grupo2.tpAnual.Observers.NotificarDatosBusqueda;
 import grupo2.tpAnual.Observers.ObserverBusqueda;
-import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatos;
 import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosPOIs;
 import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosPOIsSQL;
 import grupo2.tpAnual.Pois.Banco;

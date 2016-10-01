@@ -7,8 +7,8 @@ import org.uqbar.geodds.Point;
 
 import ServiciosExternos.CentroDTO;
 import ServiciosExternos.ServicioExternoCentroDTO;
-import grupo2.tpAnual.Direccion;
 import grupo2.tpAnual.AccesoriosPois.Comuna;
+import grupo2.tpAnual.AccesoriosPois.Direccion;
 import grupo2.tpAnual.Pois.CGP;
 import grupo2.tpAnual.Pois.POI;
 

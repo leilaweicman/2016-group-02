@@ -1,4 +1,4 @@
-package grupo2.tpAnual;
+package grupo2.tpAnual.AccesoriosPois;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
