@@ -9,10 +9,10 @@ import org.junit.Before;
 import org.junit.Test;
 import org.uqbar.geodds.Point;
 
-import grupo2.tpAnual.Banco;
-import grupo2.tpAnual.CGP;
-import grupo2.tpAnual.Parada;
 import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosPOIs;
+import grupo2.tpAnual.Pois.Banco;
+import grupo2.tpAnual.Pois.CGP;
+import grupo2.tpAnual.Pois.Parada;
 import grupo2.tpAnual.Procesos.ManejoDeErroresProcesos.AccionEnCasoDeFallo;
 import grupo2.tpAnual.Procesos.ManejoDeErroresProcesos.EnviarMailFalloProceso;
 

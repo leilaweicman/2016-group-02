@@ -8,9 +8,9 @@ import java.util.stream.Collectors;
 import org.uqbar.geodds.Point;
 
 import ServiciosExternos.ServicioExternoBanco;
-import grupo2.tpAnual.Banco;
 import grupo2.tpAnual.FromJsonToMap;
-import grupo2.tpAnual.POI;
+import grupo2.tpAnual.Pois.Banco;
+import grupo2.tpAnual.Pois.POI;
 import redis.clients.jedis.Jedis;
 
 public class OrigenesDeDatosBancosConRedis extends Decorator{

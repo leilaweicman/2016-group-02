@@ -8,6 +8,9 @@ import javax.persistence.*;
 import org.joda.time.LocalDate;
 
 import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatos;
+import grupo2.tpAnual.Pois.POI;
+import grupo2.tpAnual.Repositorios.DatosDeBusqueda;
+import grupo2.tpAnual.Repositorios.Usuario;
 
 @Entity
 @Table(name="Mapa") 
@@ -42,7 +45,7 @@ public class Mapa {
 
 		DatosDeBusqueda datosParaObserver = new DatosDeBusqueda(this.nombre, txtABuscar, segundosTardados,
 				result.size(), new LocalDate());
-		usuario.accionesDeBusqueda().forEach(observer -> observer.notificarBusqueda(datosParaObserver));
+		usuario.getAccionesBusqueda().forEach(observer -> observer.notificarBusqueda(datosParaObserver));
 
 		return result;
 	}

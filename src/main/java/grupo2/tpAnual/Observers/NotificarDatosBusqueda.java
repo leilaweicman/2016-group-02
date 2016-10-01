@@ -1,13 +1,22 @@
 package grupo2.tpAnual.Observers;
 
-import grupo2.tpAnual.DatosBusquedaRepository;
-import grupo2.tpAnual.DatosDeBusqueda;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Transient;
 
-public class NotificarDatosBusqueda implements ObserverBusqueda {
+import grupo2.tpAnual.Repositorios.DatosBusquedaRepository;
+import grupo2.tpAnual.Repositorios.DatosDeBusqueda;
+
+@Entity
+public class NotificarDatosBusqueda extends ObserverBusqueda {
+
+	@Transient
 	private DatosBusquedaRepository register;
 
 	public NotificarDatosBusqueda() {
 		this.register = new DatosBusquedaRepository();
+		this.id=1;
 	}
 
 	@Override

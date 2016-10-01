@@ -17,6 +17,12 @@ import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatos;
 import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosBancoExterno;
 import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosCentroDTO;
 import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosPOIs;
+import grupo2.tpAnual.Pois.Banco;
+import grupo2.tpAnual.Pois.CGP;
+import grupo2.tpAnual.Pois.POI;
+import grupo2.tpAnual.Pois.Rango;
+import grupo2.tpAnual.Pois.Servicio;
+import grupo2.tpAnual.Repositorios.Usuario;
 
 public class MapaTest {
 	private Usuario juan;

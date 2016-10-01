@@ -12,9 +12,9 @@ import org.junit.Before;
 import org.junit.Test;
 import org.uqbar.geodds.Point;
 
-import grupo2.tpAnual.Comercio;
-import grupo2.tpAnual.Rango;
 import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosPOIs;
+import grupo2.tpAnual.Pois.Comercio;
+import grupo2.tpAnual.Pois.Rango;
 import grupo2.tpAnual.Procesos.ManejoDeErroresProcesos.AccionEnCasoDeFallo;
 import grupo2.tpAnual.Procesos.ManejoDeErroresProcesos.EnviarMailFalloProceso;
 

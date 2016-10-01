@@ -2,7 +2,7 @@ package grupo2.tpAnual.OrigenesDeDatos;
 
 import java.util.List;
 
-import grupo2.tpAnual.POI;
+import grupo2.tpAnual.Pois.POI;
 
 public interface OrigenesDeDatos {
 	

@@ -7,8 +7,8 @@ import java.util.Map;
 
 import org.joda.time.LocalDate;
 
-import grupo2.tpAnual.DatosBusquedaRepository;
-import grupo2.tpAnual.DatosDeBusqueda;
+import grupo2.tpAnual.Repositorios.DatosBusquedaRepository;
+import grupo2.tpAnual.Repositorios.DatosDeBusqueda;
 
 public class PorBusquedaPorFecha {
 	List<DatosDeBusqueda> registroBusqueda = new ArrayList<DatosDeBusqueda>();

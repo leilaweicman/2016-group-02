@@ -3,7 +3,7 @@ package grupo2.tpAnual.OrigenesDeDatos;
 import java.util.List;
 
 import ServiciosExternos.ServicioExternoBanco;
-import grupo2.tpAnual.POI;
+import grupo2.tpAnual.Pois.POI;
 
 public abstract class Decorator implements OrigenesDeDatos{
 	OrigenesDeDatos origen;

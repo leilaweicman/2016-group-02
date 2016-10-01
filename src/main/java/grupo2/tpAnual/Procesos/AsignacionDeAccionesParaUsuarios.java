@@ -11,10 +11,10 @@ import javax.persistence.OneToMany;
 
 import org.joda.time.LocalDate;
 
-import grupo2.tpAnual.Usuario;
 import grupo2.tpAnual.Observers.ObserverBusqueda;
 import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosPOIs;
 import grupo2.tpAnual.Procesos.ManejoDeErroresProcesos.AccionEnCasoDeFallo;
+import grupo2.tpAnual.Repositorios.Usuario;
 
 public class AsignacionDeAccionesParaUsuarios extends Proceso {
 	@Id @GeneratedValue
@@ -68,7 +68,7 @@ public class AsignacionDeAccionesParaUsuarios extends Proceso {
 		this.cantidadElementosAfectados = 0;
 		this.listaUsuarios.addAll(this.criterio.dameUsuarios(this.deComuna));
 		for (Usuario usuario : listaUsuarios) {
-			usuario.agregarObserversBusqueda(this.accionesParaAgregarAUsuario);
+			usuario.setAccionesBusqueda(this.accionesParaAgregarAUsuario);
 			usuario.quitarObserversBusqueda(this.accionesParaSacarAUsuario);
 			cantidadElementosAfectados++;
 		}

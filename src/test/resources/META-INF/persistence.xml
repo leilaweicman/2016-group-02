@@ -9,8 +9,13 @@
  <persistence-unit name="db" transaction-type="RESOURCE_LOCAL">
     <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
      
-    <class>grupo2.tpAnual.Direccion</class>   
-   
+    <class>grupo2.tpAnual.Direccion</class> 
+    <class>grupo2.tpAnual.Repositorios.Usuario</class>   
+    <class>grupo2.tpAnual.Pois.Comuna</class>  
+    <class>grupo2.tpAnual.Observers.NotificarDatosBusqueda</class>
+    <class>grupo2.tpAnual.Observers.EnviarMailBusqueda</class> 
+    <class>grupo2.tpAnual.Observers.ObserverBusqueda</class>  
+      
     <properties> 
     	<property name="hibernate.archive.autodetection" value="class"/>        
        
