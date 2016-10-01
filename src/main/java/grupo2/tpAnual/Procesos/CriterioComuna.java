@@ -8,7 +8,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
-import grupo2.tpAnual.Pois.Comuna;
+import grupo2.tpAnual.AccesoriosPois.Comuna;
 import grupo2.tpAnual.Repositorios.MemoryUserRepository;
 import grupo2.tpAnual.Repositorios.Usuario;
 

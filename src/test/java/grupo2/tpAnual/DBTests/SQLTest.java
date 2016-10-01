@@ -17,10 +17,18 @@ import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
 
 import grupo2.tpAnual.Direccion;
+import grupo2.tpAnual.AccesoriosPois.Comuna;
 import grupo2.tpAnual.Observers.EnviarMailBusqueda;
 import grupo2.tpAnual.Observers.NotificarDatosBusqueda;
 import grupo2.tpAnual.Observers.ObserverBusqueda;
-import grupo2.tpAnual.Pois.Comuna;
+import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatos;
+import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosPOIs;
+import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosPOIsSQL;
+import grupo2.tpAnual.Pois.Banco;
+import grupo2.tpAnual.Pois.CGP;
+import grupo2.tpAnual.Pois.Comercio;
+import grupo2.tpAnual.Pois.POI;
+import grupo2.tpAnual.Pois.Parada;
 import grupo2.tpAnual.Repositorios.SQLUserRepository;
 import grupo2.tpAnual.Repositorios.UserRepository;
 import grupo2.tpAnual.Repositorios.Usuario;
@@ -119,6 +127,38 @@ public class SQLTest extends AbstractPersistenceTest implements WithGlobalEntity
 		assertTrue(repo.getUsuarios().contains(usuario1));
 		repo.deleteUsuario(usuario1);
 	}
+	@Test
+	public void queryBusquedaTest(){
+		OrigenesDeDatosPOIs repo = new OrigenesDeDatosPOIsSQL(); 
+		POI banco = new Banco("Santander Rio", null);
+		List <String> palabras = Arrays.asList("depositos","moneda extranjera", "pago de impuestos");
+		banco.setPalabrasClaves(palabras);
+		repo.agregarPOI(banco);
+		assertEquals(repo.busqueda("Santander Rio").size(),1);
+		
+		repo.darDeBajaPOI(banco.getId());
+	}
+	
+	@Test
+	public void persistirPOISTest(){
+		OrigenesDeDatosPOIs repo = new OrigenesDeDatosPOIsSQL(); 
+		POI banco = new Banco("Santander Rio", null);
+		POI comercio = new Comercio("Kosiuko", null, null);
+		POI cgp = new CGP("Centro de Atención comuna 15", null);
+		POI parada = new Parada("Linea 114", null, null);
+		repo.agregarPOI(banco);
+		repo.agregarPOI(comercio);
+		repo.agregarPOI(cgp);
+		repo.agregarPOI(parada);
+		assertEquals(repo.getPOIs().size(),4);
+		
+		repo.darDeBajaPOI(banco.getId());
+		repo.darDeBajaPOI(comercio.getId());
+		repo.darDeBajaPOI(parada.getId());
+		repo.darDeBajaPOI(cgp.getId());
+		assertEquals(repo.getPOIs().size(),0);
+	}
+	
 	/*@Test
 	public void persistirBanco(){
 		Banco banco;

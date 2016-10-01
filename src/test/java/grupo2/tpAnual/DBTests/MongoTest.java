@@ -13,9 +13,9 @@ import org.uqbar.geodds.Point;
 
 import com.mongodb.MongoClient;
 
+import grupo2.tpAnual.AccesoriosPois.Rango;
+import grupo2.tpAnual.AccesoriosPois.Rubro;
 import grupo2.tpAnual.Pois.Comercio;
-import grupo2.tpAnual.Pois.Rango;
-import grupo2.tpAnual.Pois.Rubro;
 
 public class MongoTest {
 	private MongoClient mongo;

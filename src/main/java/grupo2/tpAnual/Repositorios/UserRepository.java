@@ -2,7 +2,7 @@ package grupo2.tpAnual.Repositorios;
 
 import java.util.List;
 
-import grupo2.tpAnual.Pois.Comuna;
+import grupo2.tpAnual.AccesoriosPois.Comuna;
 
 public interface UserRepository {
 	

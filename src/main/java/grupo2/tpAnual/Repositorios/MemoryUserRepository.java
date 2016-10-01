@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import grupo2.tpAnual.Pois.Comuna;
+import grupo2.tpAnual.AccesoriosPois.Comuna;
 
 public class MemoryUserRepository implements UserRepository {
 	

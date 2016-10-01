@@ -9,7 +9,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.uqbar.geodds.Point;
 
-import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosPOIs;
+import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosPOIsMemory;
 import grupo2.tpAnual.Pois.Banco;
 import grupo2.tpAnual.Pois.CGP;
 import grupo2.tpAnual.Pois.Parada;
@@ -19,7 +19,7 @@ import grupo2.tpAnual.Procesos.ManejoDeErroresProcesos.EnviarMailFalloProceso;
 public class LogEjecucionProcesosTest {
 
 	private BajaDePois proceso;
-	private OrigenesDeDatosPOIs origenesDeDatos;
+	private OrigenesDeDatosPOIsMemory origenesDeDatos;
 	private Banco banco;
 	private CGP cgp;
 	private Parada parada;
@@ -27,7 +27,7 @@ public class LogEjecucionProcesosTest {
 
 	@Before
 	public void init() {
-		origenesDeDatos = new OrigenesDeDatosPOIs();
+		origenesDeDatos = new OrigenesDeDatosPOIsMemory();
 		banco = new Banco("Piano", Point.and(-34.664837, -58.385674));
 		cgp = new CGP("Chacabuco", Point.and(-34.664837, -58.385674));
 		parada = new Parada("Colectivos SA", Point.and(-34.664837, -58.385674), "linea 224");

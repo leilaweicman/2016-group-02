@@ -13,15 +13,15 @@ import org.uqbar.geodds.Point;
 import ServiciosExternos.CentroDTO;
 import ServiciosExternos.ServicioExternoBanco;
 import ServiciosExternos.ServicioExternoCentroDTO;
+import grupo2.tpAnual.AccesoriosPois.Rango;
+import grupo2.tpAnual.AccesoriosPois.Servicio;
 import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatos;
 import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosBancoExterno;
 import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosCentroDTO;
-import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosPOIs;
+import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosPOIsMemory;
 import grupo2.tpAnual.Pois.Banco;
 import grupo2.tpAnual.Pois.CGP;
 import grupo2.tpAnual.Pois.POI;
-import grupo2.tpAnual.Pois.Rango;
-import grupo2.tpAnual.Pois.Servicio;
 import grupo2.tpAnual.Repositorios.Usuario;
 
 public class MapaTest {
@@ -29,7 +29,7 @@ public class MapaTest {
 	private Mapa lasHeras;
 	private POI santander;
 	private CGP rentas;
-	private OrigenesDeDatosPOIs origenesDeDatosPois;
+	private OrigenesDeDatosPOIsMemory origenesDeDatosPois;
 	private OrigenesDeDatosCentroDTO datosCentrosDTOs;
 	private OrigenesDeDatosBancoExterno datosBancosExternos;
 	private List<OrigenesDeDatos> listaDeOrigenes;
@@ -44,7 +44,7 @@ public class MapaTest {
 
 		this.centrosStub = Mockito.mock(ServicioExternoCentroDTO.class);
 		this.datosCentrosDTOs = new OrigenesDeDatosCentroDTO(centrosStub);
-		this.origenesDeDatosPois = new OrigenesDeDatosPOIs();
+		this.origenesDeDatosPois = new OrigenesDeDatosPOIsMemory();
 
 		this.juan = new Usuario();
 

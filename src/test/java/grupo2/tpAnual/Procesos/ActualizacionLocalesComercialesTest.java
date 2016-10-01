@@ -12,14 +12,14 @@ import org.junit.Before;
 import org.junit.Test;
 import org.uqbar.geodds.Point;
 
-import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosPOIs;
+import grupo2.tpAnual.AccesoriosPois.Rango;
+import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosPOIsMemory;
 import grupo2.tpAnual.Pois.Comercio;
-import grupo2.tpAnual.Pois.Rango;
 import grupo2.tpAnual.Procesos.ManejoDeErroresProcesos.AccionEnCasoDeFallo;
 import grupo2.tpAnual.Procesos.ManejoDeErroresProcesos.EnviarMailFalloProceso;
 
 public class ActualizacionLocalesComercialesTest {
-	private OrigenesDeDatosPOIs origenesDeDatos;
+	private OrigenesDeDatosPOIsMemory origenesDeDatos;
 	private ActualizacionLocalesComerciales proceso;
 	public EnviarMailFalloProceso config1;
 	List<AccionEnCasoDeFallo> configuraciones;
@@ -29,7 +29,7 @@ public class ActualizacionLocalesComercialesTest {
 
 	@Before
 	public void init() throws IOException {
-		origenesDeDatos = new OrigenesDeDatosPOIs();
+		origenesDeDatos = new OrigenesDeDatosPOIsMemory();
 		unRango = new Rango(1, LocalTime.of(9, 0, 0), LocalTime.of(18, 0, 0));
 		otroRango = new Rango(3, LocalTime.of(9, 0, 0), LocalTime.of(13, 0, 0));
 		rango = new Rango(3, LocalTime.of(15, 0, 0), LocalTime.of(18, 30, 0));

@@ -8,19 +8,22 @@ import javax.persistence.*;
 import org.joda.time.DateTime;
 import org.uqbar.geodds.Point;
 
+import grupo2.tpAnual.AccesoriosPois.Disponibilidad;
+import grupo2.tpAnual.AccesoriosPois.Rango;
+import grupo2.tpAnual.AccesoriosPois.Rubro;
+
 @org.mongodb.morphia.annotations.Entity
 @Entity
-@Table(name="comercio")
-@PrimaryKeyJoinColumn(name="comercio_id", referencedColumnName="poi_id")
+//@Table(name="comercio")
+//@PrimaryKeyJoinColumn(name="comercio_id", referencedColumnName="poi_id")
 public class Comercio extends POI {
 	
-	@Id	@GeneratedValue	@Column(name="comercio_id")
-	private Integer id;
-	
 	@org.mongodb.morphia.annotations.Embedded
-	@Column(name="id_rubro") @ManyToOne @JoinColumn(name="id_rubro")
+	@Transient //@Column(name="id_rubro") @ManyToOne @JoinColumn(name="id_rubro")
 	private Rubro rubro;
+	@Transient
 	private List<Rango> rangoDisponibilidad = new ArrayList<Rango>();
+	@Transient
 	private Disponibilidad disponibilidad;
 
 	public Comercio(String nombre, Point ubicacion, List<Rango> rango) {

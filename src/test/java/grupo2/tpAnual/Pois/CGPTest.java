@@ -10,9 +10,9 @@ import org.junit.Before;
 import org.junit.Test;
 import org.uqbar.geodds.Point;
 
+import grupo2.tpAnual.AccesoriosPois.Rango;
+import grupo2.tpAnual.AccesoriosPois.Servicio;
 import grupo2.tpAnual.Pois.CGP;
-import grupo2.tpAnual.Pois.Rango;
-import grupo2.tpAnual.Pois.Servicio;
 
 public class CGPTest {
 

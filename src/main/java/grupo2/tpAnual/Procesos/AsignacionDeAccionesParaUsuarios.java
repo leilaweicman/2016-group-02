@@ -12,7 +12,7 @@ import javax.persistence.OneToMany;
 import org.joda.time.LocalDate;
 
 import grupo2.tpAnual.Observers.ObserverBusqueda;
-import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosPOIs;
+import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosPOIsMemory;
 import grupo2.tpAnual.Procesos.ManejoDeErroresProcesos.AccionEnCasoDeFallo;
 import grupo2.tpAnual.Repositorios.Usuario;
 
@@ -24,7 +24,7 @@ public class AsignacionDeAccionesParaUsuarios extends Proceso {
 	public Criterio criterio;
 
 	public AsignacionDeAccionesParaUsuarios(int hora, LocalDate fecha, List<AccionEnCasoDeFallo> configuraciones,
-			OrigenesDeDatosPOIs origenesDeDatos, Criterio crit) {
+			OrigenesDeDatosPOIsMemory origenesDeDatos, Criterio crit) {
 		super(hora, fecha, configuraciones, origenesDeDatos);
 		this.criterio = crit;
 	}

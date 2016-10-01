@@ -10,11 +10,11 @@ import org.junit.Before;
 import org.junit.Test;
 import org.uqbar.geodds.Point;
 
+import grupo2.tpAnual.AccesoriosPois.Comuna;
 import grupo2.tpAnual.Observers.NotificarDatosBusqueda;
-import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosPOIs;
+import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosPOIsMemory;
 import grupo2.tpAnual.Pois.Banco;
 import grupo2.tpAnual.Pois.CGP;
-import grupo2.tpAnual.Pois.Comuna;
 import grupo2.tpAnual.Pois.Parada;
 import grupo2.tpAnual.Procesos.ManejoDeErroresProcesos.AccionEnCasoDeFallo;
 import grupo2.tpAnual.Procesos.ManejoDeErroresProcesos.EnviarMailFalloProceso;
@@ -23,7 +23,7 @@ import grupo2.tpAnual.Repositorios.Usuario;
 
 public class AsignacionDeAccionesParaUsuariosTest {
 	private AsignacionDeAccionesParaUsuarios proceso3;
-	private OrigenesDeDatosPOIs origenesDeDatos;
+	private OrigenesDeDatosPOIsMemory origenesDeDatos;
 	private Banco banco;
 	private Parada parada;
 	private CGP cgp;
@@ -47,7 +47,7 @@ public class AsignacionDeAccionesParaUsuariosTest {
 
 	@Before
 	public void init() {
-		origenesDeDatos = new OrigenesDeDatosPOIs();
+		origenesDeDatos = new OrigenesDeDatosPOIsMemory();
 		cgp = new CGP("Parque Chacabuco", Point.and(-34.664837, -58.385674));
 		parada = new Parada("Amigos del bondi SA", Point.and(-34.664837, -58.385674), "linea 7");
 		banco = new Banco("Banco nacion", Point.and(-34.664837, -58.385674));

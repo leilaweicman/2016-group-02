@@ -10,7 +10,7 @@ import org.joda.time.LocalDate;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import grupo2.tpAnual.FromJsonToMap;
-import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosPOIs;
+import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosPOIsMemory;
 import grupo2.tpAnual.Procesos.ManejoDeErroresProcesos.AccionEnCasoDeFallo;
 
 public class BajaDePois extends Proceso {
@@ -18,7 +18,7 @@ public class BajaDePois extends Proceso {
 	public ObjectMapper mapper = new ObjectMapper();
 
 	public BajaDePois(int hora, LocalDate fecha, List<AccionEnCasoDeFallo> configuraciones,
-			OrigenesDeDatosPOIs origenesDeDatos) {
+			OrigenesDeDatosPOIsMemory origenesDeDatos) {
 		super(hora, fecha, configuraciones, origenesDeDatos);
 		this.servicioRestBajaPois = new RestServiceBajaPois();
 	}

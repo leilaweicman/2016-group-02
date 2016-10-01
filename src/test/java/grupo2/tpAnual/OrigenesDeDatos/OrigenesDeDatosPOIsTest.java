@@ -9,15 +9,15 @@ import org.junit.Before;
 import org.junit.Test;
 import org.uqbar.geodds.Point;
 
-import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosPOIs;
+import grupo2.tpAnual.AccesoriosPois.Rango;
+import grupo2.tpAnual.AccesoriosPois.Servicio;
+import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosPOIsMemory;
 import grupo2.tpAnual.Pois.Banco;
 import grupo2.tpAnual.Pois.CGP;
 import grupo2.tpAnual.Pois.Comercio;
-import grupo2.tpAnual.Pois.Rango;
-import grupo2.tpAnual.Pois.Servicio;
 
 public class OrigenesDeDatosPOIsTest {
-	private OrigenesDeDatosPOIs origenesPOI;
+	private OrigenesDeDatosPOIsMemory origenesPOI;
 	private Comercio kosiuko;
 	private Banco bancoPiano;
 	private CGP cgp;
@@ -32,7 +32,7 @@ public class OrigenesDeDatosPOIsTest {
 		unRango = new Rango(1, LocalTime.of(9, 0, 0), LocalTime.of(18, 0, 0));
 		listaRangos = Arrays.asList(unRango);
 
-		this.origenesPOI = new OrigenesDeDatosPOIs();
+		this.origenesPOI = new OrigenesDeDatosPOIsMemory();
 
 		this.kosiuko = new Comercio("kosiuko", Point.and(-34.664837, -58.385674), listaRangos);
 		this.kosiuko.setId(1444);

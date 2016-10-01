@@ -10,8 +10,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.uqbar.geodds.Point;
 
+import grupo2.tpAnual.AccesoriosPois.Rango;
 import grupo2.tpAnual.Pois.Comercio;
-import grupo2.tpAnual.Pois.Rango;
 
 public class ComercioTest {
 	private Comercio comercio;

@@ -9,8 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import grupo2.tpAnual.AccesoriosPois.Comuna;
 import grupo2.tpAnual.Observers.ObserverBusqueda;
-import grupo2.tpAnual.Pois.Comuna;
 @Entity
 public class Usuario {
 	@Id @GeneratedValue

@@ -9,14 +9,14 @@ import org.junit.Before;
 import org.junit.Test;
 import org.uqbar.geodds.Point;
 
+import grupo2.tpAnual.AccesoriosPois.Comuna;
+import grupo2.tpAnual.AccesoriosPois.Rango;
+import grupo2.tpAnual.AccesoriosPois.Rubro;
 import grupo2.tpAnual.Pois.Banco;
 import grupo2.tpAnual.Pois.CGP;
 import grupo2.tpAnual.Pois.Comercio;
-import grupo2.tpAnual.Pois.Comuna;
 import grupo2.tpAnual.Pois.POI;
 import grupo2.tpAnual.Pois.Parada;
-import grupo2.tpAnual.Pois.Rango;
-import grupo2.tpAnual.Pois.Rubro;
 
 public class POItest {
 

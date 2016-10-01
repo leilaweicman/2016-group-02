@@ -1,4 +1,4 @@
-package grupo2.tpAnual.Pois;
+package grupo2.tpAnual.AccesoriosPois;
 
 import java.util.ArrayList;
 import java.util.List;

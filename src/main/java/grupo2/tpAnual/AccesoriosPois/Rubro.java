@@ -1,4 +1,4 @@
-package grupo2.tpAnual.Pois;
+package grupo2.tpAnual.AccesoriosPois;
 import javax.persistence.*;
 
 @org.mongodb.morphia.annotations.Entity

@@ -5,19 +5,23 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import javax.persistence.Entity;
 import javax.persistence.*;
 
 import org.joda.time.DateTime;
 import org.uqbar.geodds.Point;
 
-@Entity
-@Table(name="Banco")
-@PrimaryKeyJoinColumn(name="id_banco", referencedColumnName="id_poi")
-public class Banco extends POI {
+import grupo2.tpAnual.AccesoriosPois.Disponibilidad;
+import grupo2.tpAnual.AccesoriosPois.Rango;
 
+@Entity
+//@Table(name="Banco")
+//@PrimaryKeyJoinColumn(name="id_banco", referencedColumnName="id_poi")
+public class Banco extends POI {
+	@Transient
 	private List<Rango> rangoDisponibilidad;
+	@Transient
 	private List<Integer> dias;
+	@Transient
 	private Disponibilidad disponibilidad;
 
 	public Banco(String nombre, Point ubicacion) {

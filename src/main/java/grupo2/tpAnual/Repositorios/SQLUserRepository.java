@@ -7,7 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-import grupo2.tpAnual.Pois.Comuna;
+import grupo2.tpAnual.AccesoriosPois.Comuna;
 
 public class SQLUserRepository implements UserRepository {
 	private EntityManager em;

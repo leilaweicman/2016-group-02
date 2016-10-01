@@ -11,30 +11,31 @@ import org.uqbar.geodds.Point;
 
 import grupo2.tpAnual.ConverterPoint;
 import grupo2.tpAnual.Direccion;
+import grupo2.tpAnual.AccesoriosPois.Comuna;
 
 @org.mongodb.morphia.annotations.Entity
 @Entity 
 @Table(name="POI") 
-@Inheritance(strategy=InheritanceType.JOINED)
+@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 public abstract class POI {
 
-	@Id	@GeneratedValue @Column(name="id_poi")
+	@Id	@GeneratedValue
 	private Integer id;
 	
-	@Column(name="id_direccion") @OneToOne @JoinColumn(name="id_direccion")
+	//@Column(name="id_direccion") @OneToOne @JoinColumn(name="id_direccion")
 	//@Cascade(value=CascadeType.ALL)
+	@Transient
 	private Direccion direccion;
 	
-	@Column(name="id_comuna")@ManyToOne @JoinColumn(name="id_comuna")
+	@Transient //@Column(name="id_comuna")@ManyToOne @JoinColumn(name="id_comuna")
 	protected Comuna comuna;
 	
 	@ElementCollection
 	private List<String> palabraClave;
-	
-	@Column(name="ubicacion") @Convert(converter = ConverterPoint.class)
+
+	@Transient //@Column(name="ubicacion") @Convert(converter = ConverterPoint.class)
 	protected Point ubicacion;
-	
-	@Column(name="nombre")
+
 	private String nombre;
 	
 	public POI(String nombre, Point ubicacion) {

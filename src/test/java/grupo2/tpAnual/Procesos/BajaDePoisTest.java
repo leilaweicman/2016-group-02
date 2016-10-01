@@ -11,7 +11,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.uqbar.geodds.Point;
 
-import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosPOIs;
+import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosPOIsMemory;
 import grupo2.tpAnual.Pois.Banco;
 import grupo2.tpAnual.Pois.CGP;
 import grupo2.tpAnual.Pois.Parada;
@@ -21,7 +21,7 @@ import grupo2.tpAnual.Procesos.ManejoDeErroresProcesos.EnviarMailFalloProceso;
 public class BajaDePoisTest {
 
 	private BajaDePois procesoBajaDePois;
-	private OrigenesDeDatosPOIs origenesDeDatos;
+	private OrigenesDeDatosPOIsMemory origenesDeDatos;
 	// private LogEjecucionProcesos log;
 	private Banco banco;
 	private Parada parada;
@@ -30,7 +30,7 @@ public class BajaDePoisTest {
 
 	@Before
 	public void init() {
-		origenesDeDatos = new OrigenesDeDatosPOIs();
+		origenesDeDatos = new OrigenesDeDatosPOIsMemory();
 		cgp = new CGP("Juncal", Point.and(-34.664837, -58.385674));
 		parada = new Parada("Amigos del bondi SA", Point.and(-34.664837, -58.385674), "linea 7");
 		banco = new Banco("Provincia", Point.and(-34.664837, -58.385674));

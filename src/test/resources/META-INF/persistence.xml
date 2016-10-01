@@ -11,11 +11,17 @@
      
     <class>grupo2.tpAnual.Direccion</class> 
     <class>grupo2.tpAnual.Repositorios.Usuario</class>   
-    <class>grupo2.tpAnual.Pois.Comuna</class>  
+    <class>grupo2.tpAnual.AccesoriosPois.Comuna</class> 
+    <class>grupo2.tpAnual.Pois.CGP</class>
+    <class>grupo2.tpAnual.Pois.POI</class>
+    <class>grupo2.tpAnual.Pois.Banco</class>
+    <class>grupo2.tpAnual.Pois.Parada</class> 
+    <class>grupo2.tpAnual.Pois.Comercio</class>     
     <class>grupo2.tpAnual.Observers.NotificarDatosBusqueda</class>
     <class>grupo2.tpAnual.Observers.EnviarMailBusqueda</class> 
     <class>grupo2.tpAnual.Observers.ObserverBusqueda</class>  
-      
+    <class>grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosPOIsSQL</class>  
+    
     <properties> 
     	<property name="hibernate.archive.autodetection" value="class"/>        
        

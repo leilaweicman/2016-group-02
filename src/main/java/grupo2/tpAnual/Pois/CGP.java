@@ -9,14 +9,14 @@ import javax.persistence.*;
 import org.joda.time.DateTime;
 import org.uqbar.geodds.Point;
 
+import grupo2.tpAnual.AccesoriosPois.Servicio;
+
 @Entity
-@Table(name="cgp")
-@PrimaryKeyJoinColumn(name="id_cgp", referencedColumnName="id_poi")
+//@Table(name="cgp")
+//@PrimaryKeyJoinColumn(name="id_cgp", referencedColumnName="id_poi")
 public class CGP extends POI {
 	
-	@Id	@GeneratedValue	@Column(name="id_cgp")
-	private Integer id;	
-	
+	@Transient
 	private List<Servicio> servicios;
 
 	public CGP(String nombre, Point ubicacion) {

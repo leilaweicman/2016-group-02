@@ -1,37 +1,17 @@
 package grupo2.tpAnual.OrigenesDeDatos;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import grupo2.tpAnual.Pois.POI;
 
-public class OrigenesDeDatosPOIs implements OrigenesDeDatos {
-
-	private List<POI> pois;
-
-	public OrigenesDeDatosPOIs() {
-		this.pois = new ArrayList<POI>();
-	}
-
-	public List<POI> getPOIs() {
-		return pois;
-	}
-
-	public void agregarPOI(POI poi) {
-		pois.add(poi);
-	}
-
-	public void darDeBajaPOI(Integer id) {
-		this.pois.removeIf(poi -> poi.getId().equals(id));
-	}
-
-	@Override
-	public List<POI> busqueda(String txtABuscar) {
-		List<POI> resultados = new ArrayList<POI>();
-		resultados.addAll(
-				this.pois.stream().filter(poi -> poi.verificaPorTexto(txtABuscar)).collect(Collectors.toList()));
-		return resultados;
-	}
+public interface OrigenesDeDatosPOIs extends OrigenesDeDatos{
+	
+	public List<POI> getPOIs();
+	
+	public void agregarPOI(POI poi);
+	
+	public abstract List<POI> busqueda(String txtABuscar);
+	
+	public void darDeBajaPOI(Integer id);
 
 }
