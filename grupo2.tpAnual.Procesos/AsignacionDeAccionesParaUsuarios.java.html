@@ -11,10 +11,10 @@ import javax.persistence.OneToMany;
 
 import org.joda.time.LocalDate;
 
-import grupo2.tpAnual.Usuario;
 import grupo2.tpAnual.Observers.ObserverBusqueda;
-import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosPOIs;
+import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosPOIsMemory;
 import grupo2.tpAnual.Procesos.ManejoDeErroresProcesos.AccionEnCasoDeFallo;
+import grupo2.tpAnual.Repositorios.Usuario;
 
 public class AsignacionDeAccionesParaUsuarios extends Proceso {
 	@Id @GeneratedValue
@@ -24,7 +24,7 @@ public class AsignacionDeAccionesParaUsuarios extends Proceso {
 	public Criterio criterio;
 
 	public AsignacionDeAccionesParaUsuarios(int hora, LocalDate fecha, List&lt;AccionEnCasoDeFallo&gt; configuraciones,
-			OrigenesDeDatosPOIs origenesDeDatos, Criterio crit) {
+			OrigenesDeDatosPOIsMemory origenesDeDatos, Criterio crit) {
 <span class="fc" id="L28">		super(hora, fecha, configuraciones, origenesDeDatos);</span>
 <span class="fc" id="L29">		this.criterio = crit;</span>
 <span class="fc" id="L30">	}</span>
@@ -68,7 +68,7 @@ public class AsignacionDeAccionesParaUsuarios extends Proceso {
 <span class="fc" id="L68">		this.cantidadElementosAfectados = 0;</span>
 <span class="fc" id="L69">		this.listaUsuarios.addAll(this.criterio.dameUsuarios(this.deComuna));</span>
 <span class="fc bfc" id="L70" title="All 2 branches covered.">		for (Usuario usuario : listaUsuarios) {</span>
-<span class="fc" id="L71">			usuario.agregarObserversBusqueda(this.accionesParaAgregarAUsuario);</span>
+<span class="fc" id="L71">			usuario.setAccionesBusqueda(this.accionesParaAgregarAUsuario);</span>
 <span class="fc" id="L72">			usuario.quitarObserversBusqueda(this.accionesParaSacarAUsuario);</span>
 <span class="fc" id="L73">			cantidadElementosAfectados++;</span>
 <span class="fc" id="L74">		}</span>

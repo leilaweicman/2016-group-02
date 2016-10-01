@@ -8,13 +8,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
-import grupo2.tpAnual.Comuna;
-import grupo2.tpAnual.UserRepository;
-import grupo2.tpAnual.Usuario;
+import grupo2.tpAnual.AccesoriosPois.Comuna;
+import grupo2.tpAnual.Repositorios.MemoryUserRepository;
+import grupo2.tpAnual.Repositorios.Usuario;
 
 <span class="fc" id="L15">public class CriterioComuna implements Criterio {</span>
 <span class="fc" id="L16">	@OneToOne</span>
-	public UserRepository repositorioUsuarios = new UserRepository();
+	public MemoryUserRepository repositorioUsuarios = new MemoryUserRepository();
 	@OneToMany
 	@JoinColumn
 	private List&lt;Usuario&gt; listaUsuarios;
@@ -28,11 +28,11 @@ import grupo2.tpAnual.Usuario;
 	}
 
 	public void setUsuarios(Usuario usuario) {
-<span class="nc" id="L31">		this.repositorioUsuarios.setUsuarios(usuario);</span>
+<span class="nc" id="L31">		this.repositorioUsuarios.setUsuario(usuario);</span>
 
 <span class="nc" id="L33">	}</span>
 
-	public void setRepositorioUsuarios(UserRepository repo) {
+	public void setRepositorioUsuarios(MemoryUserRepository repo) {
 <span class="fc" id="L36">		this.repositorioUsuarios = repo;</span>
 <span class="fc" id="L37">	}</span>
 

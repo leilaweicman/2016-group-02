@@ -5,14 +5,14 @@ import java.util.List;
 
 import org.joda.time.LocalDate;
 
-import grupo2.tpAnual.Comuna;
-import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosPOIs;
+import grupo2.tpAnual.AccesoriosPois.Comuna;
+import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosPOIsMemory;
 import grupo2.tpAnual.Procesos.ManejoDeErroresProcesos.AccionEnCasoDeFallo;
 
 public abstract class Proceso {
 	private int horaEjecucion;
 	private LocalDate fechaEjecucion;
-	protected OrigenesDeDatosPOIs origenesDeDatos;
+	protected OrigenesDeDatosPOIsMemory origenesDeDatos;
 <span class="fc" id="L16">	protected List&lt;AccionEnCasoDeFallo&gt; configuracionesFallo = new ArrayList&lt;AccionEnCasoDeFallo&gt;();</span>
 	public boolean ejecucionExitosa;
 	public LogProcesosRepository log;
@@ -20,7 +20,7 @@ public abstract class Proceso {
 	public Integer cantidadElementosAfectados;
 
 	public Proceso(int hora, LocalDate fecha, List&lt;AccionEnCasoDeFallo&gt; configuraciones,
-<span class="fc" id="L23">			OrigenesDeDatosPOIs origenesDeDatos) {</span>
+<span class="fc" id="L23">			OrigenesDeDatosPOIsMemory origenesDeDatos) {</span>
 <span class="fc" id="L24">		this.horaEjecucion = hora;</span>
 <span class="fc" id="L25">		this.configuracionesFallo.addAll(configuraciones);</span>
 <span class="fc" id="L26">		this.fechaEjecucion = fecha;</span>

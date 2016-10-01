@@ -7,13 +7,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
-import grupo2.tpAnual.Comuna;
-import grupo2.tpAnual.UserRepository;
-import grupo2.tpAnual.Usuario;
+import grupo2.tpAnual.AccesoriosPois.Comuna;
+import grupo2.tpAnual.Repositorios.MemoryUserRepository;
+import grupo2.tpAnual.Repositorios.Usuario;
 
 <span class="fc" id="L14">public class CriterioSeleccionFija implements Criterio {</span>
 	@OneToOne
-	public UserRepository repositorioUsuarios;
+	public MemoryUserRepository repositorioUsuarios;
 	
 <span class="fc" id="L18">	@OneToMany</span>
 	@JoinColumn
@@ -24,7 +24,7 @@ import grupo2.tpAnual.Usuario;
 <span class="fc" id="L24">		return this.listaUsers;</span>
 	}
 
-	public void setRepositorioUsuarios(UserRepository repo) {
+	public void setRepositorioUsuarios(MemoryUserRepository repo) {
 <span class="fc" id="L28">		this.repositorioUsuarios = repo;</span>
 <span class="fc" id="L29">	}</span>
 
