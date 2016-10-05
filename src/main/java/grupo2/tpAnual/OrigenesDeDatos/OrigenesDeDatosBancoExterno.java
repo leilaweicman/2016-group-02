@@ -12,7 +12,7 @@ import grupo2.tpAnual.FromJsonToMap;
 import grupo2.tpAnual.Pois.Banco;
 import grupo2.tpAnual.Pois.POI;
 
-public class OrigenesDeDatosBancoExterno implements OrigenesDeDatos {
+public class OrigenesDeDatosBancoExterno extends OrigenesDeDatos {
 	private ServicioExternoBanco mapaBancoExterno;
 
 	public OrigenesDeDatosBancoExterno(ServicioExternoBanco servicio) {

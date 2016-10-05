@@ -12,7 +12,7 @@ import grupo2.tpAnual.AccesoriosPois.Direccion;
 import grupo2.tpAnual.Pois.CGP;
 import grupo2.tpAnual.Pois.POI;
 
-public class OrigenesDeDatosCentroDTO implements OrigenesDeDatos {
+public class OrigenesDeDatosCentroDTO extends OrigenesDeDatos {
 	private ServicioExternoCentroDTO mapaCentroDTO;
 	
 	public OrigenesDeDatosCentroDTO(ServicioExternoCentroDTO servicio){
