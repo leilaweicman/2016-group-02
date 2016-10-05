@@ -9,7 +9,7 @@ import javax.persistence.Persistence;
 
 import grupo2.tpAnual.Pois.POI;
 
-public class OrigenesDeDatosPOIsSQL implements OrigenesDeDatosPOIs{
+public class OrigenesDeDatosPOIsSQL extends OrigenesDeDatosPOIs{
 	
 	private EntityManager em;
 	

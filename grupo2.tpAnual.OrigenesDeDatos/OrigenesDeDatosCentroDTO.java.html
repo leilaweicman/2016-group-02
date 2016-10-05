@@ -3,6 +3,10 @@
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Transient;
+
 import org.uqbar.geodds.Point;
 
 import ServiciosExternos.CentroDTO;
@@ -12,34 +16,40 @@ import grupo2.tpAnual.AccesoriosPois.Direccion;
 import grupo2.tpAnual.Pois.CGP;
 import grupo2.tpAnual.Pois.POI;
 
-public class OrigenesDeDatosCentroDTO implements OrigenesDeDatos {
+@Entity
+public class OrigenesDeDatosCentroDTO extends OrigenesDeDatos {
+	
+	@Id
+	public Integer id;
+	@Transient
 	private ServicioExternoCentroDTO mapaCentroDTO;
 	
-<span class="fc" id="L18">	public OrigenesDeDatosCentroDTO(ServicioExternoCentroDTO servicio){</span>
-<span class="fc" id="L19">		this.mapaCentroDTO = servicio;</span>
-<span class="fc" id="L20">	}</span>
+<span class="fc" id="L27">	public OrigenesDeDatosCentroDTO(ServicioExternoCentroDTO servicio){</span>
+<span class="fc" id="L28">		this.mapaCentroDTO = servicio;</span>
+<span class="fc" id="L29">		this.id = 2;</span>
+<span class="fc" id="L30">	}</span>
 	
 	@Override
 	public List&lt;POI&gt; busqueda(String txtABuscar) {
-<span class="fc" id="L24">		List&lt;CentroDTO&gt; listaCentroDTO = new ArrayList&lt;&gt;();</span>
-<span class="fc" id="L25">		List&lt;POI&gt; listaPOI = new ArrayList&lt;&gt;();</span>
-<span class="fc" id="L26">		listaCentroDTO = this.mapaCentroDTO.busqueda(txtABuscar);</span>
-<span class="fc" id="L27">		listaPOI = transformarDTOaPOI(listaCentroDTO);</span>
-<span class="fc" id="L28">		return listaPOI;</span>
+<span class="fc" id="L34">		List&lt;CentroDTO&gt; listaCentroDTO = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L35">		List&lt;POI&gt; listaPOI = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L36">		listaCentroDTO = this.mapaCentroDTO.busqueda(txtABuscar);</span>
+<span class="fc" id="L37">		listaPOI = transformarDTOaPOI(listaCentroDTO);</span>
+<span class="fc" id="L38">		return listaPOI;</span>
 	}
 
 	public List&lt;POI&gt; transformarDTOaPOI(List&lt;CentroDTO&gt; listaCentroDTO) {
-<span class="fc" id="L32">		List&lt;POI&gt; listaPOI = new ArrayList&lt;&gt;();</span>
-<span class="fc" id="L33">		listaCentroDTO.forEach(elementoDto -&gt; listaPOI.add(adapter(elementoDto)));</span>
-<span class="fc" id="L34">		return listaPOI;</span>
+<span class="fc" id="L42">		List&lt;POI&gt; listaPOI = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L43">		listaCentroDTO.forEach(elementoDto -&gt; listaPOI.add(adapter(elementoDto)));</span>
+<span class="fc" id="L44">		return listaPOI;</span>
 	}
 
 	public POI adapter(CentroDTO dto) {
-<span class="fc" id="L38">		CGP poi = new CGP(&quot;&quot;,null);</span>
-<span class="fc" id="L39">		List&lt;Point&gt; listaVertices = new ArrayList&lt;&gt;();</span>
-<span class="fc" id="L40">		poi.setComuna(new Comuna(dto.getNumeroComuna(), listaVertices));</span>
-<span class="fc" id="L41">		poi.setDireccion(new Direccion(dto.getDomicilio(), dto.getZona()));</span>
-<span class="fc" id="L42">		return poi;</span>
+<span class="fc" id="L48">		CGP poi = new CGP(&quot;&quot;,null);</span>
+<span class="fc" id="L49">		List&lt;Point&gt; listaVertices = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L50">		poi.setComuna(new Comuna(dto.getNumeroComuna(), listaVertices));</span>
+<span class="fc" id="L51">		poi.setDireccion(new Direccion(dto.getDomicilio(), dto.getZona()));</span>
+<span class="fc" id="L52">		return poi;</span>
 	}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>
