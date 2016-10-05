@@ -5,6 +5,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Transient;
+
 import org.uqbar.geodds.Point;
 
 import ServiciosExternos.ServicioExternoBanco;
@@ -12,11 +16,17 @@ import grupo2.tpAnual.FromJsonToMap;
 import grupo2.tpAnual.Pois.Banco;
 import grupo2.tpAnual.Pois.POI;
 
+@Entity
 public class OrigenesDeDatosBancoExterno extends OrigenesDeDatos {
+	
+	@Id
+	public Integer id;
+	@Transient
 	private ServicioExternoBanco mapaBancoExterno;
 
 	public OrigenesDeDatosBancoExterno(ServicioExternoBanco servicio) {
 		this.mapaBancoExterno = servicio;
+		this.id = 1;
 	}
 
 	@Override

@@ -3,6 +3,10 @@ package grupo2.tpAnual.OrigenesDeDatos;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Transient;
+
 import org.uqbar.geodds.Point;
 
 import ServiciosExternos.CentroDTO;
@@ -12,11 +16,17 @@ import grupo2.tpAnual.AccesoriosPois.Direccion;
 import grupo2.tpAnual.Pois.CGP;
 import grupo2.tpAnual.Pois.POI;
 
+@Entity
 public class OrigenesDeDatosCentroDTO extends OrigenesDeDatos {
+	
+	@Id
+	public Integer id;
+	@Transient
 	private ServicioExternoCentroDTO mapaCentroDTO;
 	
 	public OrigenesDeDatosCentroDTO(ServicioExternoCentroDTO servicio){
 		this.mapaCentroDTO = servicio;
+		this.id = 2;
 	}
 	
 	@Override
