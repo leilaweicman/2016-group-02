@@ -21,6 +21,7 @@ public class MorphiaService {
 		this.morphia = new Morphia(); 
 		String databaseName = "foobar_academy";
 		this.datastore = morphia.createDatastore(mongoClient, databaseName);
+		datastore.createQuery(DatosDeBusqueda.class).asList();
 	}
 
 	

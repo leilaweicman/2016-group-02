@@ -11,12 +11,9 @@ import org.uqbar.geodds.Point;
 
 @Entity
 @Table(name="cgp")
-@PrimaryKeyJoinColumn(name="id_cgp", referencedColumnName="id_poi")
 public class CGP extends POI {
 	
-	@Id	@GeneratedValue	@Column(name="id_cgp")
-	private Integer id;	
-	
+	@OneToMany @JoinColumn(name="id_servicio")
 	private List<Servicio> servicios;
 
 	public CGP(String nombre, Point ubicacion) {

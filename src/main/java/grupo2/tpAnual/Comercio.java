@@ -11,11 +11,7 @@ import org.uqbar.geodds.Point;
 @org.mongodb.morphia.annotations.Entity
 @Entity
 @Table(name="comercio")
-@PrimaryKeyJoinColumn(name="comercio_id", referencedColumnName="poi_id")
 public class Comercio extends POI {
-	
-	@Id	@GeneratedValue	@Column(name="comercio_id")
-	private Integer id;
 	
 	@org.mongodb.morphia.annotations.Embedded
 	@Column(name="id_rubro") @ManyToOne @JoinColumn(name="id_rubro")

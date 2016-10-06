@@ -37,7 +37,6 @@ public class DBTest extends AbstractPersistenceTest implements WithGlobalEntityM
 		beginTransaction();
 		Direccion dire= new Direccion("Medrano", "Almagro");
 		persist(dire);
-		commitTransaction();
 		
 		Direccion direccionBuscada = (Direccion) em.createQuery("from Direccion where zona = :zona").setParameter("zona", "Almagro").getSingleResult();
 		assertEquals(direccionBuscada.getZona(),"Almagro");
@@ -109,4 +108,6 @@ public class DBTest extends AbstractPersistenceTest implements WithGlobalEntityM
 		DatosDeBusqueda datoBuscado = (DatosDeBusqueda) em.createQuery("from DatosDeBusqueda where nombre = :nombre").setParameter("nombre", "San Juan");
 		assertEquals(datoBuscado.getTotalDeResultados(), 15);
 	}*/
+	
+	/*HACER ROLLBACK*/
 }

@@ -19,7 +19,7 @@ public class Usuario {
 	private long id; 
 	
 	private List<ObserverBusqueda> accionesBusqueda = new ArrayList<ObserverBusqueda>();
-	@ManyToOne @Column(name="comuna") @JoinColumn(name="id_comuna")
+	@ManyToOne @Column(name="comuna")
 	public Comuna comuna;
 
 	public long getId(){
