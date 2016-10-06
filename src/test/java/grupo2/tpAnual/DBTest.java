@@ -14,6 +14,8 @@ import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
 
+import grupo2.tpAnual.AccesoriosPois.Direccion;
+
 public class DBTest extends AbstractPersistenceTest implements WithGlobalEntityManager {
 	private EntityManager em;
 	

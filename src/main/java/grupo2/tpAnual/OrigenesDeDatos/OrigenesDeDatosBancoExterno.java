@@ -5,50 +5,35 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Transient;
+
 import org.uqbar.geodds.Point;
 
 import ServiciosExternos.ServicioExternoBanco;
-import grupo2.tpAnual.Banco;
 import grupo2.tpAnual.FromJsonToMap;
-import grupo2.tpAnual.POI;
-import redis.clients.jedis.Jedis;
+import grupo2.tpAnual.Pois.Banco;
+import grupo2.tpAnual.Pois.POI;
 
-public class OrigenesDeDatosBancoExterno implements OrigenesDeDatos {
-	private ServicioExternoBanco mapaBancoExterno;
-	private Jedis jedis;
-	private static final String BANCOS = "Bancos";
+@Entity
+public class OrigenesDeDatosBancoExterno extends OrigenesDeDatos {
 	
+	@Id
+	public Integer id;
+	@Transient
+	private ServicioExternoBanco mapaBancoExterno;
+
 	public OrigenesDeDatosBancoExterno(ServicioExternoBanco servicio) {
 		this.mapaBancoExterno = servicio;
-		jedis = new Jedis("localhost");
-		jedis.lpush(BANCOS,mapaBancoExterno.busqueda("",""));
-	}
-
-	public String getKeyJedis() {
-		return BANCOS;
-	}
-
-	public Jedis getJedis() {
-		return jedis;
+		this.id = 1;
 	}
 
 	@Override
 	public List<POI> busqueda(String banco) {
 		try {
-			List<String> jsons = jedis.lrange(BANCOS, 0, -1);
-			List<POI> pois = new ArrayList<>();
-			/*if (jsons.isEmpty()) {
-				String json2 = this.mapaBancoExterno.busqueda(banco, "");
-				jedis.lpush(BANCOS, json2);
-				return FromJsonToMap.transformarAMap(json2).stream().map((poiMap) -> adaptar(poiMap))
-						.collect(Collectors.toList());
-			} else {*/
-				for (String json : jsons) {
-					pois.addAll(FromJsonToMap.transformarAMap(json).stream().map((poiMap) -> adaptar(poiMap))
-							.collect(Collectors.toList()));
-				}
-				pois.stream().filter(poi -> poi.getPalabraClave().contains(banco) || poi.getNombre().contains(banco));
-				return pois;
+			String json = mapaBancoExterno.busqueda(banco, "");
+			return FromJsonToMap.transformarAMap(json).stream().map((poiMap) -> adaptar(poiMap)).collect(Collectors.toList());		
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}

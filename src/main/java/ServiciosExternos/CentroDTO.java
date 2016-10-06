@@ -2,7 +2,7 @@ package ServiciosExternos;
 
 import java.util.List;
 
-import grupo2.tpAnual.Servicio;
+import grupo2.tpAnual.AccesoriosPois.Servicio;
 
 public class CentroDTO {
 	private int numeroComuna;

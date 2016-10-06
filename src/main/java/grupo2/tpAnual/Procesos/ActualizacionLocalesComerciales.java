@@ -8,15 +8,15 @@ import java.util.stream.Collectors;
 import org.apache.commons.io.IOUtils;
 import org.joda.time.LocalDate;
 
-import grupo2.tpAnual.Comercio;
-import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosPOIs;
+import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosPOIsMemory;
+import grupo2.tpAnual.Pois.Comercio;
 import grupo2.tpAnual.Procesos.ManejoDeErroresProcesos.AccionEnCasoDeFallo;
 
 public class ActualizacionLocalesComerciales extends Proceso {
 	private String origen;
 
 	public ActualizacionLocalesComerciales(int hora, LocalDate fecha, List<AccionEnCasoDeFallo> configuraciones,
-			OrigenesDeDatosPOIs origenesDeDatos) throws IOException {
+			OrigenesDeDatosPOIsMemory origenesDeDatos) throws IOException {
 		super(hora, fecha, configuraciones, origenesDeDatos);
 		origen = IOUtils.toString(this.getClass().getResourceAsStream("/Procesos/prueba.txt"), "UTF-8");
 	}

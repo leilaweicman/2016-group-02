@@ -10,20 +10,20 @@ import org.junit.Before;
 import org.junit.Test;
 import org.uqbar.geodds.Point;
 
-import grupo2.tpAnual.Banco;
-import grupo2.tpAnual.CGP;
-import grupo2.tpAnual.Comuna;
-import grupo2.tpAnual.Parada;
-import grupo2.tpAnual.UserRepository;
-import grupo2.tpAnual.Usuario;
+import grupo2.tpAnual.AccesoriosPois.Comuna;
 import grupo2.tpAnual.Observers.NotificarDatosBusqueda;
-import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosPOIs;
+import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosPOIsMemory;
+import grupo2.tpAnual.Pois.Banco;
+import grupo2.tpAnual.Pois.CGP;
+import grupo2.tpAnual.Pois.Parada;
 import grupo2.tpAnual.Procesos.ManejoDeErroresProcesos.AccionEnCasoDeFallo;
 import grupo2.tpAnual.Procesos.ManejoDeErroresProcesos.EnviarMailFalloProceso;
+import grupo2.tpAnual.Repositorios.MemoryUserRepository;
+import grupo2.tpAnual.Repositorios.Usuario;
 
 public class AsignacionDeAccionesParaUsuariosTest {
 	private AsignacionDeAccionesParaUsuarios proceso3;
-	private OrigenesDeDatosPOIs origenesDeDatos;
+	private OrigenesDeDatosPOIsMemory origenesDeDatos;
 	private Banco banco;
 	private Parada parada;
 	private CGP cgp;
@@ -43,11 +43,11 @@ public class AsignacionDeAccionesParaUsuariosTest {
 	private List<AccionEnCasoDeFallo> configuraciones;
 	private NotificarDatosBusqueda observerRegistro;
 
-	private UserRepository repo;
+	private MemoryUserRepository repo;
 
 	@Before
 	public void init() {
-		origenesDeDatos = new OrigenesDeDatosPOIs();
+		origenesDeDatos = new OrigenesDeDatosPOIsMemory();
 		cgp = new CGP("Parque Chacabuco", Point.and(-34.664837, -58.385674));
 		parada = new Parada("Amigos del bondi SA", Point.and(-34.664837, -58.385674), "linea 7");
 		banco = new Banco("Banco nacion", Point.and(-34.664837, -58.385674));
@@ -71,9 +71,9 @@ public class AsignacionDeAccionesParaUsuariosTest {
 		this.comuna1 = new Comuna(1, listaVertices);
 		this.comuna2 = new Comuna(2, listaVertices);
 
-		repo = new UserRepository();
-		this.repo.setUsuarios(juan);
-		this.repo.setUsuarios(ana);
+		repo = new MemoryUserRepository();
+		this.repo.setUsuario(juan);
+		this.repo.setUsuario(ana);
 
 		this.juan.setComuna(comuna1);
 		this.ana.setComuna(comuna2);

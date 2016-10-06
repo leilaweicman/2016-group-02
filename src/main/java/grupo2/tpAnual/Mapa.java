@@ -8,25 +8,33 @@ import javax.persistence.*;
 import org.joda.time.LocalDate;
 
 import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatos;
+import grupo2.tpAnual.Pois.POI;
+import grupo2.tpAnual.Repositorios.DatosDeBusqueda;
+import grupo2.tpAnual.Repositorios.Usuario;
 
 @Entity
 @Table(name="Mapa") 
 public class Mapa {
-	@ElementCollection
-	@OneToMany
-	@JoinColumn //ver que onda esto
+	@Transient
+	private EntityManager em;
+	@OneToMany @JoinColumn (name="id_origenes")
 	private List<OrigenesDeDatos> origenesDeDatos;
 	@Id @GeneratedValue @Column(name="id_mapa")
 	private Integer id;
-	@Column(name="nombre")
+	@Transient
+	//@Column(name="nombre")
 	private String nombre;
-	@Column(name="usuario") @OneToMany @JoinColumn(name="id_usuario")
+	@Transient
+	//@Column(name="usuario") @OneToMany @JoinColumn(name="id_usuario")
 	private Usuario usuario;
 
 	public Mapa(List<OrigenesDeDatos> listaDeOrigenes) {
 		
 		origenesDeDatos = new ArrayList<OrigenesDeDatos>();
 		this.origenesDeDatos.addAll(listaDeOrigenes);
+		
+		EntityManagerFactory emf =Persistence.createEntityManagerFactory("db");
+		em = emf.createEntityManager();
 
 	}
 
@@ -42,12 +50,18 @@ public class Mapa {
 
 		DatosDeBusqueda datosParaObserver = new DatosDeBusqueda(this.nombre, txtABuscar, segundosTardados,
 				result.size(), new LocalDate());
-		usuario.accionesDeBusqueda().forEach(observer -> observer.notificarBusqueda(datosParaObserver));
+		usuario.getAccionesBusqueda().forEach(observer -> observer.notificarBusqueda(datosParaObserver));
 
 		return result;
 	}
 
 	public List<OrigenesDeDatos> getOrigenesDeDatos() {
+		/*em.getTransaction().begin();
+		List<OrigenesDeDatos> origenes = new ArrayList<OrigenesDeDatos>();
+		origenes = (List<OrigenesDeDatos>) em.createQuery("from origenesDeDatos").getResultList();
+		em.getTransaction().commit();
+		return origenes;*/
+		
 		return this.origenesDeDatos;
 	}
 
