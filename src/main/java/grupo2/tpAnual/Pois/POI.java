@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,6 +20,7 @@ import javax.persistence.Transient;
 import org.joda.time.DateTime;
 import org.uqbar.geodds.Point;
 
+import grupo2.tpAnual.ConverterPoint;
 import grupo2.tpAnual.AccesoriosPois.Comuna;
 import grupo2.tpAnual.AccesoriosPois.Direccion;
 
@@ -39,7 +42,7 @@ public abstract class POI {
 	@ElementCollection
 	private List<String> palabraClave;
 
-	@Transient //@Column(name="ubicacion") @Convert(converter = ConverterPoint.class)
+	@Column(name="ubicacion") @Convert(converter = ConverterPoint.class)
 	protected Point ubicacion;
 
 	private String nombre;

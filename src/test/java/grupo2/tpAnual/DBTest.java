@@ -15,6 +15,7 @@ import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
 
 import grupo2.tpAnual.AccesoriosPois.Direccion;
+import grupo2.tpAnual.Pois.Banco;
 
 public class DBTest extends AbstractPersistenceTest implements WithGlobalEntityManager {
 	private EntityManager em;
@@ -46,7 +47,7 @@ public class DBTest extends AbstractPersistenceTest implements WithGlobalEntityM
 		
 	}
 	
-	/*@Test
+	@Test
 	public void persistirBanco(){
 		Banco banco;
 		//DateTime momento;
@@ -56,12 +57,13 @@ public class DBTest extends AbstractPersistenceTest implements WithGlobalEntityM
 		persist(banco);
 		commitTransaction();
 		
-		Banco bancoBuscado = (Banco) em.createQuery("from Banco where id_banco = :id").setParameter("id", banco.getId()).getSingleResult();
-		assertEquals(bancoBuscado.getId(),banco.getId());
+		Banco bancoBuscado = (Banco) em.createQuery("from Banco where nombre = :nombre").setParameter("nombre", "santander").getSingleResult();
+		assertEquals(bancoBuscado.getNombre(),banco.getNombre());
+		assertEquals(-34.664837, bancoBuscado.getUbicacion().latitude(), 1e-15);
 		
 		
 		//ver como tendria que hacer para conseguir el rango de disponibilidad desde la db
-	}*/
+	}
 	
 	//Estos son los que no funcionan
 	/*@Test
