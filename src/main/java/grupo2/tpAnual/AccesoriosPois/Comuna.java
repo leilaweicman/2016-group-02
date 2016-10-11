@@ -17,6 +17,7 @@ public class Comuna {
 	@Transient
 	private EntityManager em;
 	//@OneToMany @Convert(converter = ConverterPoint.class) @JoinColumn
+	//@ElementCollection @Convert(converter = ConverterPoint.class)
 	@Transient
 	private List<Point> vertices = new ArrayList<Point>();
 	
