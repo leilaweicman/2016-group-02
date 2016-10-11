@@ -17,32 +17,33 @@ public class Comuna {
 	@Transient
 	private EntityManager em;
 	//@OneToMany @Convert(converter = ConverterPoint.class) @JoinColumn
-<span class="fc" id="L20">	@Transient</span>
+	//@ElementCollection @Convert(converter = ConverterPoint.class)
+<span class="fc" id="L21">	@Transient</span>
 	private List&lt;Point&gt; vertices = new ArrayList&lt;Point&gt;();
 	
 	@Id
 	private int numeroComuna;
 
-<span class="fc" id="L26">	public Comuna(int numero, List&lt;Point&gt; vertices) {</span>
-<span class="fc" id="L27">		this.numeroComuna = numero;</span>
-<span class="fc" id="L28">		this.comuna = new Polygon(vertices);</span>
-<span class="fc" id="L29">	}</span>
+<span class="fc" id="L27">	public Comuna(int numero, List&lt;Point&gt; vertices) {</span>
+<span class="fc" id="L28">		this.numeroComuna = numero;</span>
+<span class="fc" id="L29">		this.comuna = new Polygon(vertices);</span>
+<span class="fc" id="L30">	}</span>
 
 	public void agregarVertice(Point vertice) {
-<span class="nc" id="L32">		this.vertices.add(vertice);</span>
-<span class="nc" id="L33">		this.comuna = new Polygon(vertices);</span>
-<span class="nc" id="L34">	}</span>
+<span class="nc" id="L33">		this.vertices.add(vertice);</span>
+<span class="nc" id="L34">		this.comuna = new Polygon(vertices);</span>
+<span class="nc" id="L35">	}</span>
 
 	public int getNumeroComuna() {
-<span class="fc" id="L37">		return this.numeroComuna;</span>
+<span class="fc" id="L38">		return this.numeroComuna;</span>
 	}
 
 	public Polygon getComuna() {
-<span class="nc" id="L41">		return comuna;</span>
+<span class="nc" id="L42">		return comuna;</span>
 	}
 
 	public boolean estaAdentro(Point punto) {
-<span class="nc" id="L45">		return (this.comuna.isInside(punto));</span>
+<span class="nc" id="L46">		return (this.comuna.isInside(punto));</span>
 	}
 
 }
