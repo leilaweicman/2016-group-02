@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -12,16 +13,27 @@ import javax.persistence.EntityManager;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mockito;
+import org.uqbar.geodds.Point;
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
 
+import ServiciosExternos.ServicioExternoBanco;
+import ServiciosExternos.ServicioExternoCentroDTO;
+import grupo2.tpAnual.Mapa;
 import grupo2.tpAnual.AccesoriosPois.Comuna;
 import grupo2.tpAnual.AccesoriosPois.Direccion;
+import grupo2.tpAnual.AccesoriosPois.Rango;
+import grupo2.tpAnual.AccesoriosPois.Servicio;
 import grupo2.tpAnual.Observers.EnviarMailBusqueda;
 import grupo2.tpAnual.Observers.NotificarDatosBusqueda;
 import grupo2.tpAnual.Observers.ObserverBusqueda;
+import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatos;
+import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosBancoExterno;
+import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosCentroDTO;
 import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosPOIs;
+import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosPOIsMemory;
 import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosPOIsSQL;
 import grupo2.tpAnual.Pois.Banco;
 import grupo2.tpAnual.Pois.CGP;
@@ -34,10 +46,19 @@ import grupo2.tpAnual.Repositorios.Usuario;
 
 public class SQLTest extends AbstractPersistenceTest implements WithGlobalEntityManager {
 	private EntityManager em;
+	private OrigenesDeDatosPOIsMemory origenesDeDatosPois;
+	private List<OrigenesDeDatos> listaDeOrigenes;
+	
 	
 	@Before
 	public void init(){
 		em = PerThreadEntityManagers.getEntityManager();
+		
+		this.listaDeOrigenes = new ArrayList<OrigenesDeDatos>();
+
+		this.origenesDeDatosPois = new OrigenesDeDatosPOIsMemory();
+
+		
 		beginTransaction();
 	}
 	
@@ -50,6 +71,37 @@ public class SQLTest extends AbstractPersistenceTest implements WithGlobalEntity
 	public void contextUpWithTransaction() throws Exception {
 		withTransaction(() -> {});
 	}
+	
+	/*rompe y no entiendo por que 
+	@Test
+	public void persistirMapa(){
+	
+		Banco santander = new Banco("Santander", Point.and(-34.664837, -58.385674));
+		santander.addPalabraClave("plazoFijo");
+		santander.addPalabraClave("dolar");
+		persist(santander);
+		
+		CGP rentas = new CGP("Flores", Point.and(-34.664837, -58.385674));
+		List<Servicio> servicios = new ArrayList<Servicio>();
+		List<Rango> listaRango = new ArrayList<>();
+		Servicio ser = new Servicio(listaRango);
+		ser.setNombre("Jubilados");
+		servicios.add(ser);
+		rentas.setServicios(servicios);
+		persist(rentas);
+		
+		this.origenesDeDatosPois.agregarPOI(santander);
+		this.origenesDeDatosPois.agregarPOI(rentas);
+
+		
+		listaDeOrigenes = Arrays.asList(origenesDeDatosPois);
+		Mapa mapa = new Mapa(listaDeOrigenes);
+		mapa.setNombre("MapaPrueba");
+		persist(mapa);
+		
+		Mapa mapaBuscado = (Mapa) em.createQuery("from Mapa where nombre = :nombre").setParameter("nombre", "MapaPrueba").getSingleResult();
+		assertEquals(mapaBuscado.getNombre(), "MapaPrueba");
+	}*/
 	
 	@Test
 	public void persistirDireccion(){

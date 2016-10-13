@@ -17,12 +17,14 @@ import grupo2.tpAnual.Repositorios.Usuario;
 public class Mapa {
 	@Transient
 	private EntityManager em;
-	@OneToMany @JoinColumn (name="id_origenes")
+	//@OneToMany @JoinColumn (name="id_origenes")
+	
+	@Transient 
 	private List<OrigenesDeDatos> origenesDeDatos;
 	@Id @GeneratedValue @Column(name="id_mapa")
 	private Integer id;
-	@Transient
-	//@Column(name="nombre")
+	//@Transient
+	@Column(name="nombre")
 	private String nombre;
 	@Transient
 	//@Column(name="usuario") @OneToMany @JoinColumn(name="id_usuario")
