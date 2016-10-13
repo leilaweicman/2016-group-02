@@ -17,42 +17,44 @@ import grupo2.tpAnual.Repositorios.Usuario;
 public class Mapa {
 	@Transient
 	private EntityManager em;
-	@OneToMany @JoinColumn (name=&quot;id_origenes&quot;)
+	//@OneToMany @JoinColumn (name=&quot;id_origenes&quot;)
+	
+	@Transient 
 	private List&lt;OrigenesDeDatos&gt; origenesDeDatos;
 	@Id @GeneratedValue @Column(name=&quot;id_mapa&quot;)
 	private Integer id;
-	@Transient
-	//@Column(name=&quot;nombre&quot;)
+	//@Transient
+	@Column(name=&quot;nombre&quot;)
 	private String nombre;
 	@Transient
 	//@Column(name=&quot;usuario&quot;) @OneToMany @JoinColumn(name=&quot;id_usuario&quot;)
 	private Usuario usuario;
 
-<span class="fc" id="L31">	public Mapa(List&lt;OrigenesDeDatos&gt; listaDeOrigenes) {</span>
+<span class="fc" id="L33">	public Mapa(List&lt;OrigenesDeDatos&gt; listaDeOrigenes) {</span>
 		
-<span class="fc" id="L33">		origenesDeDatos = new ArrayList&lt;OrigenesDeDatos&gt;();</span>
-<span class="fc" id="L34">		this.origenesDeDatos.addAll(listaDeOrigenes);</span>
+<span class="fc" id="L35">		origenesDeDatos = new ArrayList&lt;OrigenesDeDatos&gt;();</span>
+<span class="fc" id="L36">		this.origenesDeDatos.addAll(listaDeOrigenes);</span>
 		
-<span class="fc" id="L36">		EntityManagerFactory emf =Persistence.createEntityManagerFactory(&quot;db&quot;);</span>
-<span class="fc" id="L37">		em = emf.createEntityManager();</span>
+<span class="fc" id="L38">		EntityManagerFactory emf =Persistence.createEntityManagerFactory(&quot;db&quot;);</span>
+<span class="fc" id="L39">		em = emf.createEntityManager();</span>
 
-<span class="fc" id="L39">	}</span>
+<span class="fc" id="L41">	}</span>
 
 	public List&lt;POI&gt; busquedaRealizadaPorElUsuario(String txtABuscar) {
-<span class="fc" id="L42">		long tiempoInicio = System.currentTimeMillis();</span>
-<span class="fc" id="L43">		List&lt;POI&gt; result = new ArrayList&lt;POI&gt;();</span>
+<span class="fc" id="L44">		long tiempoInicio = System.currentTimeMillis();</span>
+<span class="fc" id="L45">		List&lt;POI&gt; result = new ArrayList&lt;POI&gt;();</span>
 
 		
-<span class="fc" id="L46">		this.origenesDeDatos.forEach(integracion -&gt; result.addAll(integracion.busqueda(txtABuscar)));</span>
-<span class="fc" id="L47">		long tiempoFin = System.currentTimeMillis();</span>
+<span class="fc" id="L48">		this.origenesDeDatos.forEach(integracion -&gt; result.addAll(integracion.busqueda(txtABuscar)));</span>
+<span class="fc" id="L49">		long tiempoFin = System.currentTimeMillis();</span>
 
-<span class="fc" id="L49">		long segundosTardados = (tiempoFin - tiempoInicio) / 1000;</span>
+<span class="fc" id="L51">		long segundosTardados = (tiempoFin - tiempoInicio) / 1000;</span>
 
-<span class="fc" id="L51">		DatosDeBusqueda datosParaObserver = new DatosDeBusqueda(this.nombre, txtABuscar, segundosTardados,</span>
-<span class="fc" id="L52">				result.size(), new LocalDate());</span>
-<span class="pc" id="L53">		usuario.getAccionesBusqueda().forEach(observer -&gt; observer.notificarBusqueda(datosParaObserver));</span>
+<span class="fc" id="L53">		DatosDeBusqueda datosParaObserver = new DatosDeBusqueda(this.nombre, txtABuscar, segundosTardados,</span>
+<span class="fc" id="L54">				result.size(), new LocalDate());</span>
+<span class="pc" id="L55">		usuario.getAccionesBusqueda().forEach(observer -&gt; observer.notificarBusqueda(datosParaObserver));</span>
 
-<span class="fc" id="L55">		return result;</span>
+<span class="fc" id="L57">		return result;</span>
 	}
 
 	public List&lt;OrigenesDeDatos&gt; getOrigenesDeDatos() {
@@ -62,19 +64,19 @@ public class Mapa {
 		em.getTransaction().commit();
 		return origenes;*/
 		
-<span class="nc" id="L65">		return this.origenesDeDatos;</span>
+<span class="nc" id="L67">		return this.origenesDeDatos;</span>
 	}
 
 	public String getNombre() {
-<span class="nc" id="L69">		return nombre;</span>
+<span class="nc" id="L71">		return nombre;</span>
 	}
 
 	public void setNombre(String nombre) {
-<span class="nc" id="L73">		this.nombre = nombre;</span>
-<span class="nc" id="L74">	}</span>
+<span class="nc" id="L75">		this.nombre = nombre;</span>
+<span class="nc" id="L76">	}</span>
 
 	public void setUsuario(Usuario user) {
-<span class="fc" id="L77">		this.usuario = user;</span>
-<span class="fc" id="L78">	}</span>
+<span class="fc" id="L79">		this.usuario = user;</span>
+<span class="fc" id="L80">	}</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>
