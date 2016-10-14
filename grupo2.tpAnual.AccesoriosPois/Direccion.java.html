@@ -7,32 +7,31 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name= &quot;Direccion&quot;)
 public class Direccion {
-	@Id	@GeneratedValue @Column(name=&quot;id_direccion&quot;)
+	@Id	@GeneratedValue
 	private Integer id;
-	@Column(name=&quot;calle&quot;)
+	@Column
 	private String calle;
-	@Column(name=&quot;altura&quot;)
+	@Column
 	private int altura;
-	@Column(name=&quot;zona&quot;)
+	@Column
 	private String zona;
 
-<span class="fc" id="L21">	public Direccion(String calle, String zona) {</span>
-<span class="fc" id="L22">		this.calle = calle;</span>
-<span class="fc" id="L23">		this.zona = zona;</span>
-<span class="fc" id="L24">	}</span>
+<span class="fc" id="L20">	public Direccion(String calle, String zona) {</span>
+<span class="fc" id="L21">		this.calle = calle;</span>
+<span class="fc" id="L22">		this.zona = zona;</span>
+<span class="fc" id="L23">	}</span>
 
 	public String getCalle() {
-<span class="fc" id="L27">		return calle;</span>
+<span class="fc" id="L26">		return calle;</span>
 	}
 
 	public int getAltura() {
-<span class="nc" id="L31">		return altura;</span>
+<span class="nc" id="L30">		return altura;</span>
 	}
 
 	public String getZona() {
-<span class="fc" id="L35">		return zona;</span>
+<span class="fc" id="L34">		return zona;</span>
 	}
 
 }

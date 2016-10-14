@@ -5,50 +5,52 @@ import org.bson.types.ObjectId;
 import org.joda.time.LocalDate;
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
+
+import grupo2.tpAnual.LocalDateAttributeConverter;
+
+import javax.persistence.*;
+
 @Entity(&quot;datosDeBusqueda&quot;)
-//@Table(name=&quot;DatosDeBusqueda&quot;)
 public class DatosDeBusqueda {
-	//@Id @GeneratedValue  @Column(name=&quot;id_usuario&quot;)
-	//private long id;
 	@Id
 	private ObjectId id;
-	//@Column(name=&quot;txtBuscado&quot;)
+	@Column
 	private String txtBuscado;
-	//@Column(name=&quot;segundosTardados&quot;)
+	@Column
 	private long segundosQueTardoLaBusqueda;
-	//@Column(name=&quot;totalDeResultados&quot;)
+	@Column
 	private int totalDeResultados;
-	//@Column(name=&quot;fecha&quot;) @Convert(converter = LocalDateAttributeConverter.class)
+	@Column(name=&quot;fecha&quot;) @Convert(converter = LocalDateAttributeConverter.class)
 	private LocalDate fecha;
-	//@Column(name=&quot;nombre&quot;)
+	@Column
 	private String nombre;
 
-<span class="fc" id="L26">	public DatosDeBusqueda(String nombre, String texto, long segundos, int totalResultados, LocalDate fecha) {</span>
-<span class="fc" id="L27">		this.txtBuscado = texto;</span>
-<span class="fc" id="L28">		this.segundosQueTardoLaBusqueda = segundos;</span>
-<span class="fc" id="L29">		this.totalDeResultados = totalResultados;</span>
-<span class="fc" id="L30">		this.fecha = fecha;</span>
-<span class="fc" id="L31">		this.nombre = nombre;</span>
-<span class="fc" id="L32">	}</span>
+<span class="fc" id="L28">	public DatosDeBusqueda(String nombre, String texto, long segundos, int totalResultados, LocalDate fecha) {</span>
+<span class="fc" id="L29">		this.txtBuscado = texto;</span>
+<span class="fc" id="L30">		this.segundosQueTardoLaBusqueda = segundos;</span>
+<span class="fc" id="L31">		this.totalDeResultados = totalResultados;</span>
+<span class="fc" id="L32">		this.fecha = fecha;</span>
+<span class="fc" id="L33">		this.nombre = nombre;</span>
+<span class="fc" id="L34">	}</span>
 
 	public String getTxtBuscado() {
-<span class="nc" id="L35">		return txtBuscado;</span>
+<span class="nc" id="L37">		return txtBuscado;</span>
 	}
 
 	public long getSegundosQueTardoLaBusqueda() {
-<span class="fc" id="L39">		return segundosQueTardoLaBusqueda;</span>
+<span class="fc" id="L41">		return segundosQueTardoLaBusqueda;</span>
 	}
 
 	public int getTotalDeResultados() {
-<span class="fc" id="L43">		return totalDeResultados;</span>
+<span class="fc" id="L45">		return totalDeResultados;</span>
 	}
 
 	public LocalDate getFecha() {
-<span class="fc" id="L47">		return fecha;</span>
+<span class="fc" id="L49">		return fecha;</span>
 	}
 
 	public String getNombre() {
-<span class="fc" id="L51">		return nombre;</span>
+<span class="fc" id="L53">		return nombre;</span>
 	}
 
 }
