@@ -7,15 +7,14 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name= "Direccion")
 public class Direccion {
-	@Id	@GeneratedValue @Column(name="id_direccion")
+	@Id	@GeneratedValue
 	private Integer id;
-	@Column(name="calle")
+	@Column
 	private String calle;
-	@Column(name="altura")
+	@Column
 	private int altura;
-	@Column(name="zona")
+	@Column
 	private String zona;
 
 	public Direccion(String calle, String zona) {
