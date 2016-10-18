@@ -5,15 +5,14 @@ import javax.persistence.*;
 
 @org.mongodb.morphia.annotations.Entity
 @Entity
-@Table(name="Rango") 
 public class Rango {
-	@Id	@GeneratedValue @Column(name="id_rango")
+	@Id	@GeneratedValue 
 	private Integer id;
-	@Column(name="dia")
+	@Column
 	private Integer dia;
-	@Column(name="horaDesde")
+	@Column
 	private LocalTime horaDesde;
-	@Column(name="horaHasta")
+	@Column
 	private LocalTime horaHasta;
 
 	public Rango(Integer day, LocalTime horaD, LocalTime horaH) {

@@ -11,7 +11,8 @@
      
     <class>grupo2.tpAnual.AccesoriosPois.Direccion</class> 
     <class>grupo2.tpAnual.Repositorios.Usuario</class>   
-    <class>grupo2.tpAnual.AccesoriosPois.Comuna</class> 
+    <class>grupo2.tpAnual.AccesoriosPois.Comuna</class>
+    <class>grupo2.tpAnual.AccesoriosPois.Rango</class> 
     <class>grupo2.tpAnual.Pois.CGP</class>
     <class>grupo2.tpAnual.Pois.POI</class>
     <class>grupo2.tpAnual.Pois.Banco</class>

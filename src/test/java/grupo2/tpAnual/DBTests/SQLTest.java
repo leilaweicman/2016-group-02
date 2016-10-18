@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -218,6 +219,19 @@ public class SQLTest extends AbstractPersistenceTest implements WithGlobalEntity
 		repo.darDeBajaPOI(cgp.getId());
 		assertEquals(repo.getPOIs().size(),0);
 	}
+	@Test
+	public void persistirRango(){
+		Integer dia = 1;
+		LocalTime horaDesde = LocalTime.of(10,0,0);
+		LocalTime horaHasta = LocalTime.of(15, 0,0);
+		Rango rango = new Rango(dia, horaDesde, horaHasta);
+		persist(rango);
+		
+		Rango rangoBuscado = (Rango) em.createQuery("from Rango where horaDesde = :horaDesde").setParameter("horaDesde", rango.getHoraDesde()).getSingleResult();
+		assertEquals(rangoBuscado.getHoraDesde(),rango.getHoraDesde());
+		
+	}
+	
 	
 	/*@Test
 	public void persistirBanco(){
