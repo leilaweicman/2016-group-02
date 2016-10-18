@@ -4,24 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-
 import org.bson.types.ObjectId;
-import org.mongodb.morphia.annotations.Entity;
-import org.mongodb.morphia.annotations.Id;
-import org.mongodb.morphia.annotations.Reference;
+import org.mongodb.morphia.dao.BasicDAO;
 
-@Entity("datosDeBusquedaRepository")
-public class DatosBusquedaRepository {
+public class DatosBusquedaRepositoryMemory /*extends BasicDAO<DatosDeBusqueda, ObjectId>*/ implements DatosDeBusquedaRepository{
 	
-	@Id
-	private ObjectId id;
-
-	@Reference
 	private List<DatosDeBusqueda> listaDatosDeBusqueda;	
 	
-	public DatosBusquedaRepository() {
-		this.listaDatosDeBusqueda = new ArrayList<DatosDeBusqueda>();
-		
+	public DatosBusquedaRepositoryMemory() {
+		this.listaDatosDeBusqueda = new ArrayList<DatosDeBusqueda>();		
 	}
 
 	public void agregarDatosBusqueda(DatosDeBusqueda registroBusqueda) {
