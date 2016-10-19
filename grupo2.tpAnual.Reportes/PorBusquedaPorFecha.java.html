@@ -7,14 +7,14 @@ import java.util.Map;
 
 import org.joda.time.LocalDate;
 
-import grupo2.tpAnual.Repositorios.DatosBusquedaRepository;
+import grupo2.tpAnual.Repositorios.DatosBusquedaRepositoryMemory;
 import grupo2.tpAnual.Repositorios.DatosDeBusqueda;
 
 public class PorBusquedaPorFecha {
 <span class="fc" id="L14">	List&lt;DatosDeBusqueda&gt; registroBusqueda = new ArrayList&lt;DatosDeBusqueda&gt;();</span>
-	DatosBusquedaRepository register;
+	DatosBusquedaRepositoryMemory register;
 
-<span class="fc" id="L17">	public PorBusquedaPorFecha(DatosBusquedaRepository register) {</span>
+<span class="fc" id="L17">	public PorBusquedaPorFecha(DatosBusquedaRepositoryMemory register) {</span>
 <span class="fc" id="L18">		this.register = register;</span>
 <span class="fc" id="L19">	}</span>
 
