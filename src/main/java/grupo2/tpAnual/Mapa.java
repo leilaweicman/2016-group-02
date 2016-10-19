@@ -29,6 +29,8 @@ public class Mapa {
 	@Transient
 	//@Column(name="usuario") @OneToMany @JoinColumn(name="id_usuario")
 	private Usuario usuario;
+	
+	private MorphiaService morphia= new MorphiaService();
 
 	public Mapa(List<OrigenesDeDatos> listaDeOrigenes) {
 		
@@ -52,6 +54,9 @@ public class Mapa {
 
 		DatosDeBusqueda datosParaObserver = new DatosDeBusqueda(this.nombre, txtABuscar, segundosTardados,
 				result.size(), new LocalDate());
+		
+		morphia.getDatastore().save(datosParaObserver); //no estoy segura porque es un valor que se sobreescribe constantemente
+		
 		usuario.getAccionesBusqueda().forEach(observer -> observer.notificarBusqueda(datosParaObserver));
 
 		return result;

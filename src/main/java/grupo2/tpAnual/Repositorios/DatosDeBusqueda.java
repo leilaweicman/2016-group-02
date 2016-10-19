@@ -5,24 +5,25 @@ import org.bson.types.ObjectId;
 import org.joda.time.LocalDate;
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
+import org.mongodb.morphia.annotations.Property;
 
 import grupo2.tpAnual.LocalDateAttributeConverter;
 
 import javax.persistence.*;
 
-@Entity("datosDeBusqueda")
+@Entity
 public class DatosDeBusqueda {
 	@Id
 	private ObjectId id;
-	@Column
+	@Property
 	private String txtBuscado;
-	@Column
+	@Property
 	private long segundosQueTardoLaBusqueda;
-	@Column
+	@Property
 	private int totalDeResultados;
-	@Column(name="fecha") @Convert(converter = LocalDateAttributeConverter.class)
+	@Property("fecha") @Convert(converter = LocalDateAttributeConverter.class)
 	private LocalDate fecha;
-	@Column
+	@Property
 	private String nombre;
 
 	public DatosDeBusqueda(String nombre, String texto, long segundos, int totalResultados, LocalDate fecha) {
@@ -32,7 +33,7 @@ public class DatosDeBusqueda {
 		this.fecha = fecha;
 		this.nombre = nombre;
 	}
-
+	
 	public String getTxtBuscado() {
 		return txtBuscado;
 	}
