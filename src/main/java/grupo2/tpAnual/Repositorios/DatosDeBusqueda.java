@@ -8,6 +8,9 @@ import org.mongodb.morphia.annotations.Id;
 import org.mongodb.morphia.annotations.Property;
 
 import grupo2.tpAnual.LocalDateAttributeConverter;
+import grupo2.tpAnual.Pois.POI;
+
+import java.util.List;
 
 import javax.persistence.*;
 
@@ -25,13 +28,16 @@ public class DatosDeBusqueda {
 	private LocalDate fecha;
 	@Property
 	private String nombre;
+	
+	private List<POI> poisRespuestaBusqueda;
 
-	public DatosDeBusqueda(String nombre, String texto, long segundos, int totalResultados, LocalDate fecha) {
+	public DatosDeBusqueda(String nombre, String texto, long segundos, int totalResultados, LocalDate fecha,List<POI> poisRespuesta ) {
 		this.txtBuscado = texto;
 		this.segundosQueTardoLaBusqueda = segundos;
 		this.totalDeResultados = totalResultados;
 		this.fecha = fecha;
 		this.nombre = nombre;
+		this.poisRespuestaBusqueda.addAll(poisRespuesta);
 	}
 	
 	public String getTxtBuscado() {

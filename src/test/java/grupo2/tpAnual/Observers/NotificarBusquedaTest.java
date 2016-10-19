@@ -8,7 +8,7 @@ import grupo2.tpAnual.Observers.NotificarDatosBusqueda;
 import grupo2.tpAnual.Repositorios.DatosDeBusqueda;
 
 public class NotificarBusquedaTest {
-	DatosDeBusqueda datoBuscado = new DatosDeBusqueda("corrientes", "peras", 10, 15, new LocalDate());
+	DatosDeBusqueda datoBuscado = new DatosDeBusqueda("corrientes", "peras", 10, 15, new LocalDate(),null);
 	NotificarDatosBusqueda observer = new NotificarDatosBusqueda();
 
 	@Test

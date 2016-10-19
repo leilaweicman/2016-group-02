@@ -30,7 +30,7 @@ public class Mapa {
 	//@Column(name="usuario") @OneToMany @JoinColumn(name="id_usuario")
 	private Usuario usuario;
 	
-	private MorphiaService morphia= new MorphiaService();
+	//private MorphiaService morphia= new MorphiaService();
 
 	public Mapa(List<OrigenesDeDatos> listaDeOrigenes) {
 		
@@ -53,9 +53,9 @@ public class Mapa {
 		long segundosTardados = (tiempoFin - tiempoInicio) / 1000;
 
 		DatosDeBusqueda datosParaObserver = new DatosDeBusqueda(this.nombre, txtABuscar, segundosTardados,
-				result.size(), new LocalDate());
+				result.size(), new LocalDate(), result);
 		
-		morphia.getDatastore().save(datosParaObserver); //no estoy segura porque es un valor que se sobreescribe constantemente
+		//morphia.getDatastore().save(datosParaObserver); //no estoy segura porque es un valor que se sobreescribe constantemente
 		
 		usuario.getAccionesBusqueda().forEach(observer -> observer.notificarBusqueda(datosParaObserver));
 

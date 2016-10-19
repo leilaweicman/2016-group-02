@@ -1,5 +1,6 @@
 package grupo2.tpAnual.Reportes;
 
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -8,7 +9,11 @@ import org.joda.time.LocalDate;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.uqbar.geodds.Point;
 
+import grupo2.tpAnual.AccesoriosPois.Rango;
+import grupo2.tpAnual.Pois.Comercio;
+import grupo2.tpAnual.Pois.POI;
 import grupo2.tpAnual.Reportes.PorTerminalOUsuario;
 import grupo2.tpAnual.Repositorios.DatosBusquedaRepositoryMemory;
 import grupo2.tpAnual.Repositorios.DatosDeBusqueda;
@@ -20,13 +25,26 @@ public class ReportePorTerminalOUsuarioTest {
 	private DatosDeBusqueda datoBuscado3;
 	private String nombreTerminal;
 	private PorTerminalOUsuario reporte;
+	private Rango unRango;
+	private Rango otroRango;
+	private Rango rango;
+	private List<Rango> listaRangos;
+	private Comercio comercio;
+	private List<POI> pois;
 
 	@Before
 	public void init() {
+		unRango = new Rango(1, LocalTime.of(9, 0, 0), LocalTime.of(18, 0, 0));
+		otroRango = new Rango(3, LocalTime.of(9, 0, 0), LocalTime.of(13, 0, 0));
+		rango = new Rango(3, LocalTime.of(15, 0, 0), LocalTime.of(18, 30, 0));
+		listaRangos = Arrays.asList(unRango, otroRango, rango);
+		comercio = new Comercio("Supermercado argenChino", Point.and(-34.664837, -58.385674), listaRangos);
+		pois= new ArrayList<>();
+		pois.add(comercio);
 		this.registro = new DatosBusquedaRepositoryMemory();
-		this.datoBuscado = new DatosDeBusqueda("lasHeras", "libros", 10, 15, new LocalDate());
-		this.datoBuscado2 = new DatosDeBusqueda("flores", "asado", 10, 15, new LocalDate());
-		this.datoBuscado3 = new DatosDeBusqueda("flores", "asado", 20, 25, new LocalDate());
+		this.datoBuscado = new DatosDeBusqueda("lasHeras", "libros", 10, 15, new LocalDate(),pois);
+		this.datoBuscado2 = new DatosDeBusqueda("flores", "asado", 10, 15, new LocalDate(),pois);
+		this.datoBuscado3 = new DatosDeBusqueda("flores", "asado", 20, 25, new LocalDate(),pois);
 		this.registro.agregarDatosBusqueda(datoBuscado);
 		this.registro.agregarDatosBusqueda(datoBuscado2);
 		this.registro.agregarDatosBusqueda(datoBuscado3);

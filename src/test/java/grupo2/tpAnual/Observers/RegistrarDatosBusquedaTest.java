@@ -9,7 +9,7 @@ import grupo2.tpAnual.Repositorios.DatosDeBusqueda;
 
 public class RegistrarDatosBusquedaTest {
 	DatosBusquedaRepositoryMemory registro = new DatosBusquedaRepositoryMemory();
-	DatosDeBusqueda datoBuscado = new DatosDeBusqueda("lasHeras", "libros", 10, 15, new LocalDate());
+	DatosDeBusqueda datoBuscado = new DatosDeBusqueda("lasHeras", "libros", 10, 15, new LocalDate(),null);
 
 	@Test
 	public void agregarDatosBusquedaTest() {
