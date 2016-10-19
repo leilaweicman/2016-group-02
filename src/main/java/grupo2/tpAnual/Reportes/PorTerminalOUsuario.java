@@ -5,13 +5,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import grupo2.tpAnual.Repositorios.DatosBusquedaRepository;
+import grupo2.tpAnual.Repositorios.DatosBusquedaRepositoryMemory;
 import grupo2.tpAnual.Repositorios.DatosDeBusqueda;
 
 public class PorTerminalOUsuario {
-	DatosBusquedaRepository repositorio;
+	DatosBusquedaRepositoryMemory repositorio;
 
-	public PorTerminalOUsuario(DatosBusquedaRepository datosDeBusquedaRepository) {
+	public PorTerminalOUsuario(DatosBusquedaRepositoryMemory datosDeBusquedaRepository) {
 		this.repositorio = datosDeBusquedaRepository;
 	}
 

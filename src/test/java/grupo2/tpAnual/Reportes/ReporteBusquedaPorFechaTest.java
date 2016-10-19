@@ -8,12 +8,13 @@ import org.junit.Before;
 import org.junit.Test;
 
 import grupo2.tpAnual.Reportes.PorBusquedaPorFecha;
-import grupo2.tpAnual.Repositorios.DatosBusquedaRepository;
+import grupo2.tpAnual.Repositorios.DatosBusquedaRepositoryMemory;
 import grupo2.tpAnual.Repositorios.DatosDeBusqueda;
 
-
+ 
 public class ReporteBusquedaPorFechaTest {
-	DatosBusquedaRepository registro;
+	 
+	DatosBusquedaRepositoryMemory registro;
 	DatosDeBusqueda datoBuscado;
 	DatosDeBusqueda datoBuscado2;
 	DatosDeBusqueda datoBuscado3;
@@ -21,7 +22,7 @@ public class ReporteBusquedaPorFechaTest {
 
 	@Before
 	public void init() {
-		registro = new DatosBusquedaRepository();
+		registro = new DatosBusquedaRepositoryMemory();
 		datoBuscado = new DatosDeBusqueda("lasHeras", "libros", 10, 15, new LocalDate());
 		datoBuscado2 = new DatosDeBusqueda("flores", "carpetas", 14, 15, new LocalDate().minusDays(1));
 		datoBuscado3 = new DatosDeBusqueda("flores", "carpetas", 14, 15, new LocalDate().minusDays(2));

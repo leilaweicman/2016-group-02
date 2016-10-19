@@ -10,11 +10,11 @@ import org.junit.Before;
 import org.junit.Test;
 
 import grupo2.tpAnual.Reportes.PorTerminalOUsuario;
-import grupo2.tpAnual.Repositorios.DatosBusquedaRepository;
+import grupo2.tpAnual.Repositorios.DatosBusquedaRepositoryMemory;
 import grupo2.tpAnual.Repositorios.DatosDeBusqueda;
 
 public class ReportePorTerminalOUsuarioTest {
-	private DatosBusquedaRepository registro;
+	private DatosBusquedaRepositoryMemory registro;
 	private DatosDeBusqueda datoBuscado;
 	private DatosDeBusqueda datoBuscado2;
 	private DatosDeBusqueda datoBuscado3;
@@ -23,7 +23,7 @@ public class ReportePorTerminalOUsuarioTest {
 
 	@Before
 	public void init() {
-		this.registro = new DatosBusquedaRepository();
+		this.registro = new DatosBusquedaRepositoryMemory();
 		this.datoBuscado = new DatosDeBusqueda("lasHeras", "libros", 10, 15, new LocalDate());
 		this.datoBuscado2 = new DatosDeBusqueda("flores", "asado", 10, 15, new LocalDate());
 		this.datoBuscado3 = new DatosDeBusqueda("flores", "asado", 20, 25, new LocalDate());

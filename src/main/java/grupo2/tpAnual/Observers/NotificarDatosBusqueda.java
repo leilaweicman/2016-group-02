@@ -5,17 +5,17 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Transient;
 
-import grupo2.tpAnual.Repositorios.DatosBusquedaRepository;
+import grupo2.tpAnual.Repositorios.DatosBusquedaRepositoryMemory;
 import grupo2.tpAnual.Repositorios.DatosDeBusqueda;
 
 @Entity
 public class NotificarDatosBusqueda extends ObserverBusqueda {
 
 	@Transient
-	private DatosBusquedaRepository register;
+	private DatosBusquedaRepositoryMemory register;
 
 	public NotificarDatosBusqueda() {
-		this.register = new DatosBusquedaRepository();
+		this.register = new DatosBusquedaRepositoryMemory();
 		this.id=1;
 	}
 
@@ -24,7 +24,7 @@ public class NotificarDatosBusqueda extends ObserverBusqueda {
 		this.register.agregarDatosBusqueda(datosParaObserver);
 	}
 
-	public DatosBusquedaRepository getRegister() {
+	public DatosBusquedaRepositoryMemory getRegister() {
 		return this.register;
 	}
 }
