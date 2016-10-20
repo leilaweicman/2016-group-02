@@ -22,6 +22,7 @@ import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosPOIsMemory;
 import grupo2.tpAnual.Pois.Banco;
 import grupo2.tpAnual.Pois.CGP;
 import grupo2.tpAnual.Pois.POI;
+import grupo2.tpAnual.Repositorios.DatosBusquedaRepositoryMemory;
 import grupo2.tpAnual.Repositorios.Usuario;
 
 public class MapaTest {
@@ -35,9 +36,11 @@ public class MapaTest {
 	private List<OrigenesDeDatos> listaDeOrigenes;
 	private ServicioExternoBanco bancosStub;
 	private ServicioExternoCentroDTO centrosStub;
-
+	private DatosBusquedaRepositoryMemory repositorioDB;
+	
 	@Before
 	public void init() {
+		this.repositorioDB = new DatosBusquedaRepositoryMemory();
 		this.listaDeOrigenes = new ArrayList<OrigenesDeDatos>();
 
 		this.bancosStub = Mockito.mock(ServicioExternoBanco.class);
@@ -68,7 +71,7 @@ public class MapaTest {
 	@Test
 	public void testBusquedaPorElUsuarioSinObserversNiOrigenesDeDatos() {
 		listaDeOrigenes = Arrays.asList();
-		this.lasHeras = new Mapa(listaDeOrigenes);
+		this.lasHeras = new Mapa(listaDeOrigenes,repositorioDB);
 		this.lasHeras.setUsuario(juan);
 		Assert.assertEquals(this.lasHeras.busquedaRealizadaPorElUsuario("plazoFijo").size(), 0);
 	}
@@ -78,7 +81,7 @@ public class MapaTest {
 		List<CentroDTO> respuesta = Arrays.asList(new CentroDTO(1, "Juan B Justo 1841"));
 		Mockito.when(centrosStub.busqueda("centros")).thenReturn(respuesta);
 		listaDeOrigenes = Arrays.asList(datosCentrosDTOs);
-		this.lasHeras = new Mapa(listaDeOrigenes);
+		this.lasHeras = new Mapa(listaDeOrigenes, repositorioDB);
 		this.lasHeras.setUsuario(juan);
 		Assert.assertEquals(lasHeras.busquedaRealizadaPorElUsuario("centros").get(0).getDireccion().getCalle(),
 				"Juan B Justo 1841");
@@ -88,7 +91,7 @@ public class MapaTest {
 	@Test
 	public void testBusquedaPorElUsuarioConDatosPOIS() {
 		listaDeOrigenes = Arrays.asList(origenesDeDatosPois);
-		this.lasHeras = new Mapa(listaDeOrigenes);
+		this.lasHeras = new Mapa(listaDeOrigenes, repositorioDB);
 		this.lasHeras.setUsuario(juan);
 		Assert.assertEquals(lasHeras.busquedaRealizadaPorElUsuario("plazoFijo").size(), 1);
 	}
@@ -102,7 +105,7 @@ public class MapaTest {
 						+ " }" + "]");
 		this.datosBancosExternos = new OrigenesDeDatosBancoExterno(bancosStub);
 		listaDeOrigenes = Arrays.asList(datosBancosExternos);
-		this.lasHeras = new Mapa(listaDeOrigenes);
+		this.lasHeras = new Mapa(listaDeOrigenes, repositorioDB);
 		this.lasHeras.setUsuario(juan);
 		Assert.assertEquals(lasHeras.busquedaRealizadaPorElUsuario("extracciones").get(0).getClass(), Banco.class);
 	}
@@ -118,7 +121,7 @@ public class MapaTest {
 		listaDeOrigenes = Arrays.asList(datosCentrosDTOs, datosBancosExternos, origenesDeDatosPois);
 		List<CentroDTO> respuesta = Arrays.asList(new CentroDTO(1, "Pedro Goyena 1825"));
 		Mockito.when(centrosStub.busqueda("plazoFijo")).thenReturn(respuesta);
-		this.lasHeras = new Mapa(listaDeOrigenes);
+		this.lasHeras = new Mapa(listaDeOrigenes, repositorioDB);
 		this.lasHeras.setUsuario(juan);
 		Assert.assertEquals(lasHeras.busquedaRealizadaPorElUsuario("plazoFijo").size(), 3);
 	}

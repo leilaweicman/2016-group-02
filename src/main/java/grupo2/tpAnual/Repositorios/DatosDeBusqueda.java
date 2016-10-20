@@ -11,6 +11,7 @@ import org.mongodb.morphia.annotations.Reference;
 import grupo2.tpAnual.LocalDateAttributeConverter;
 import grupo2.tpAnual.Pois.POI;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
@@ -39,6 +40,7 @@ public class DatosDeBusqueda {
 		this.totalDeResultados = totalResultados;
 		this.fecha = fecha;
 		this.nombre = nombre;
+		this.poisRespuestaBusqueda=new ArrayList<>();
 		this.poisRespuestaBusqueda.addAll(poisRespuesta);
 	}
 	
