@@ -9,16 +9,14 @@ import org.mongodb.morphia.query.Query;
 
 public class DatosBusquedaRepositoryMongoDB extends BasicDAO<DatosDeBusqueda, ObjectId> implements DatosDeBusquedaRepository{
 	
-	private Datastore datastore;
-	
 	public DatosBusquedaRepositoryMongoDB(Class<DatosDeBusqueda> entityClass, Datastore dataStore) {
 		super(entityClass, dataStore);
-		this.datastore=dataStore;
 	}
 	
 	public List<DatosDeBusqueda> consultarDatos(){		
 		
-		return null;
+		Query<DatosDeBusqueda> query = createQuery();		
+		return query.asList();
 		
 	}
 	
@@ -31,10 +29,15 @@ public class DatosBusquedaRepositoryMongoDB extends BasicDAO<DatosDeBusqueda, Ob
 	}
 	
 	public void agregarDatosBusqueda(DatosDeBusqueda registroBusqueda){
-		datastore.save(registroBusqueda);
+		save(registroBusqueda);
 	}
 	
 	public List<Integer> obtenerTotalResultadosPorTerminal(String nombreTerminal) {
+		
+		List<DatosDeBusqueda> lista = this.obtenerPorNombre(nombreTerminal);
+		//lista.stream()
+		//TODO buscar en la query la cantidad de resultados
+		
 		return null;
 	}
 

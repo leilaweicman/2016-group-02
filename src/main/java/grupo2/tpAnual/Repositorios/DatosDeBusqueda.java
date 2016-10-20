@@ -24,7 +24,8 @@ public class DatosDeBusqueda {
 	private long segundosQueTardoLaBusqueda;
 	@Property
 	private int totalDeResultados;
-	@Property("fecha") @Convert(converter = LocalDateAttributeConverter.class)
+	
+	@Transient //@Property("fecha") @Convert(converter = LocalDateAttributeConverter.class)
 	private LocalDate fecha;
 	@Property
 	private String nombre;
