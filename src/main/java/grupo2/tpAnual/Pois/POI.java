@@ -33,26 +33,28 @@ import grupo2.tpAnual.AccesoriosPois.Direccion;
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 public abstract class POI {
 
+	@org.mongodb.morphia.annotations.Id
 	@Id	@GeneratedValue
 	private Integer id;
 	
-	@Reference
+	@org.mongodb.morphia.annotations.Reference
 	@OneToOne(cascade=CascadeType.ALL) //para que lo hereden todos los hijos
 	private Direccion direccion;
 	
-	@Reference
+	@org.mongodb.morphia.annotations.Reference
 	@ManyToOne(cascade=CascadeType.ALL)
 	protected Comuna comuna;
 	
-	@Embedded //Morphia
+	@org.mongodb.morphia.annotations.Embedded //Morphia
 	@ElementCollection
 	private List<String> palabraClave;
 	
-	@Reference
+	//@org.mongodb.morphia.annotations.Reference
 	@Column @Convert(converter = ConverterPoint.class)
+	@Transient
 	protected Point ubicacion;
 	
-	@Property
+	@org.mongodb.morphia.annotations.Property
 	private String nombre;
 	
 	public POI(String nombre, Point ubicacion) {

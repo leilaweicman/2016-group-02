@@ -1,42 +1,121 @@
 package grupo2.tpAnual.DBTests;
+
+import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
-import org.mongodb.morphia.Datastore;
-import org.mongodb.morphia.Morphia;
+import org.uqbar.geodds.Point;
 
 import com.mongodb.MongoClient;
-
 import grupo2.tpAnual.Repositorios.DatosBusquedaRepositoryMongoDB;
 import grupo2.tpAnual.Repositorios.DatosDeBusqueda;
-import grupo2.tpAnual.Repositorios.DatosDeBusquedaRepository;
 import grupo2.tpAnual.MorphiaService;
+import grupo2.tpAnual.AccesoriosPois.Rango;
+import grupo2.tpAnual.Pois.Comercio;
 import grupo2.tpAnual.Pois.POI;
 
-
 public class DatosBusquedaRepostoryMorphiaTest {
-	
-	private static List<POI> pois;
-	
+
 	public static void main(String[] args) {
+
+		DatosDeBusqueda datoBuscado;
+		DatosDeBusqueda datoBuscado2;
+		DatosDeBusqueda datoBuscado3;
+		Comercio comercio;
+		Rango unRango;
+		Rango otroRango;
+		Rango rango;
+		List<Rango> listaRangos;
+		List<POI> pois;
+		DatosBusquedaRepositoryMongoDB repositorioDB;
 		
-		pois= new ArrayList<>();
-		DatosDeBusqueda datos = new DatosDeBusqueda("nombre", "texto", 60, 20, LocalDate.now(),pois);
+		
+		unRango = new Rango(1, LocalTime.of(9, 0, 0), LocalTime.of(18, 0, 0));
+		otroRango = new Rango(3, LocalTime.of(9, 0, 0), LocalTime.of(13, 0, 0));
+		rango = new Rango(3, LocalTime.of(15, 0, 0), LocalTime.of(18, 30, 0));
+		listaRangos = Arrays.asList(unRango, otroRango, rango);
+		comercio = new Comercio("Supermercado argenChino", Point.and(-34.664837, -58.385674), listaRangos);
+		comercio.setId(4);
+		pois = new ArrayList<>();
+		pois.add(comercio);
+		datoBuscado = new DatosDeBusqueda("lasHeras", "libros", 10, 15, new LocalDate(), pois);
+		datoBuscado2 = new DatosDeBusqueda("flores", "carpetas", 14, 15, new LocalDate().minusDays(1), pois);
+		datoBuscado3 = new DatosDeBusqueda("flores", "carpetas", 14, 15, new LocalDate().minusDays(2), pois);
 
-	    try (MongoClient client = new MongoClient()) {
-	     /* Morphia morphia = new Morphia();
-	      morphia.mapPackage("model");
+		try (MongoClient client = new MongoClient()) {
 
-	      Datastore datastore = morphia.createDatastore(client, "datosDeBusqueda");*/
+			MorphiaService morphia = new MorphiaService();
+			morphia.getDatastore();
 
-	      MorphiaService morphia= new MorphiaService();
-	      morphia.getDatastore();
-	      
-	      DatosDeBusquedaRepository repositorio = new DatosBusquedaRepositoryMongoDB(DatosDeBusqueda.class, morphia.getDatastore()/*datastore*/);
-	      repositorio.agregarDatosBusqueda(datos);
-	    }
-	  }
+			repositorioDB = new DatosBusquedaRepositoryMongoDB(DatosDeBusqueda.class, morphia.getDatastore());
+			repositorioDB.agregarDatosBusqueda(datoBuscado);
+			repositorioDB.agregarDatosBusqueda(datoBuscado2);
+			repositorioDB.agregarDatosBusqueda(datoBuscado3);
+		}		
+		
+		/*pois = new ArrayList<>();
+		DatosDeBusqueda datos = new DatosDeBusqueda("nombre", "texto", 60, 20, LocalDate.now(), pois);
+
+		try (MongoClient client = new MongoClient()) {
+
+			MorphiaService morphia = new MorphiaService();
+			morphia.getDatastore();
+
+			DatosDeBusquedaRepository repositorio = new DatosBusquedaRepositoryMongoDB(DatosDeBusqueda.class,
+					morphia.getDatastore()/* datastore );
+			repositorio.agregarDatosBusqueda(datos);
+		}*/
+	}
 	
+	
+	
+	
+	/*DatosBusquedaRepositoryMemory registro;
+	DatosDeBusqueda datoBuscado;
+	DatosDeBusqueda datoBuscado2;
+	DatosDeBusqueda datoBuscado3;
+	private Comercio comercio;
+	private Rango unRango;
+	private Rango otroRango;
+	private Rango rango;
+	private List<Rango> listaRangos;
+	private List<POI> pois;
+	private DatosBusquedaRepositoryMongoDB repositorioDB;*/
+
+	/*@Before
+	public void init() {
+		unRango = new Rango(1, LocalTime.of(9, 0, 0), LocalTime.of(18, 0, 0));
+		otroRango = new Rango(3, LocalTime.of(9, 0, 0), LocalTime.of(13, 0, 0));
+		rango = new Rango(3, LocalTime.of(15, 0, 0), LocalTime.of(18, 30, 0));
+		listaRangos = Arrays.asList(unRango, otroRango, rango);
+		comercio = new Comercio("Supermercado argenChino", Point.and(-34.664837, -58.385674), listaRangos);
+		pois = new ArrayList<>();
+		pois.add(comercio);
+		datoBuscado = new DatosDeBusqueda("lasHeras", "libros", 10, 15, new LocalDate(), pois);
+		datoBuscado2 = new DatosDeBusqueda("flores", "carpetas", 14, 15, new LocalDate().minusDays(1), pois);
+		datoBuscado3 = new DatosDeBusqueda("flores", "carpetas", 14, 15, new LocalDate().minusDays(2), pois);
+
+		try (MongoClient client = new MongoClient()) {
+
+			MorphiaService morphia = new MorphiaService();
+			morphia.getDatastore();
+
+			repositorioDB = new DatosBusquedaRepositoryMongoDB(DatosDeBusqueda.class, morphia.getDatastore());
+			repositorioDB.agregarDatosBusqueda(datoBuscado);
+			repositorioDB.agregarDatosBusqueda(datoBuscado2);
+			repositorioDB.agregarDatosBusqueda(datoBuscado3);
+		}		
+	}
+	
+	
+	@Test
+	public void testBusquedaPorElUsuarioSinObserversNiOrigenesDeDatos() {
+		
+		//Assert.assertEquals(this.lasHeras.busquedaRealizadaPorElUsuario("plazoFijo").size(), 0);
+	}	*/
+
+	
+
 }

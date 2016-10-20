@@ -31,7 +31,7 @@ public class DatosDeBusqueda {
 	private LocalDate fecha;
 	@Property
 	private String nombre;
-	@Reference
+	@Embedded
 	private List<POI> poisRespuestaBusqueda;
 
 	public DatosDeBusqueda(String nombre, String texto, long segundos, int totalResultados, LocalDate fecha,List<POI> poisRespuesta ) {

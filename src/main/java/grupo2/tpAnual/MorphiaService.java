@@ -19,10 +19,9 @@ public class MorphiaService {
 		
 		//create a new morphia instance
 		this.morphia = new Morphia(); 
-		String databaseName = "foobar_academy";
+		String databaseName = "mongo_persistance_dds";
 		this.datastore = morphia.createDatastore(mongoClient, databaseName);
-		//datastore.createQuery(DatosDeBusqueda.class).asList();
-		/*esta ultima linea de arriba la hicimos con gaston pero no se quien la puso ni por que*/
+		
 	}
 
 	
