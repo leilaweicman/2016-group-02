@@ -10,6 +10,7 @@ import org.joda.time.LocalDate;
 import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatos;
 import grupo2.tpAnual.Pois.POI;
 import grupo2.tpAnual.Repositorios.DatosDeBusqueda;
+import grupo2.tpAnual.Repositorios.DatosDeBusquedaRepository;
 import grupo2.tpAnual.Repositorios.Usuario;
 
 @Entity
@@ -29,13 +30,15 @@ public class Mapa {
 	@Transient
 	//@Column(name="usuario") @OneToMany @JoinColumn(name="id_usuario")
 	private Usuario usuario;
+	private DatosDeBusquedaRepository repositorioDB;
 	
-	//private MorphiaService morphia= new MorphiaService();
+	
 
-	public Mapa(List<OrigenesDeDatos> listaDeOrigenes) {
+	public Mapa(List<OrigenesDeDatos> listaDeOrigenes, DatosDeBusquedaRepository repositorio) {
 		
 		origenesDeDatos = new ArrayList<OrigenesDeDatos>();
 		this.origenesDeDatos.addAll(listaDeOrigenes);
+		this.repositorioDB=repositorio;
 		
 		EntityManagerFactory emf =Persistence.createEntityManagerFactory("db");
 		em = emf.createEntityManager();
@@ -55,7 +58,7 @@ public class Mapa {
 		DatosDeBusqueda datosParaObserver = new DatosDeBusqueda(this.nombre, txtABuscar, segundosTardados,
 				result.size(), new LocalDate(), result);
 		
-		//morphia.getDatastore().save(datosParaObserver); //no estoy segura porque es un valor que se sobreescribe constantemente
+		this.repositorioDB.agregarDatosBusqueda(datosParaObserver); 
 		
 		usuario.getAccionesBusqueda().forEach(observer -> observer.notificarBusqueda(datosParaObserver));
 

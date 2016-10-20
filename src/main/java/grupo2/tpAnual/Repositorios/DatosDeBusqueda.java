@@ -6,6 +6,7 @@ import org.joda.time.LocalDate;
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
 import org.mongodb.morphia.annotations.Property;
+import org.mongodb.morphia.annotations.Reference;
 
 import grupo2.tpAnual.LocalDateAttributeConverter;
 import grupo2.tpAnual.Pois.POI;
@@ -29,7 +30,7 @@ public class DatosDeBusqueda {
 	private LocalDate fecha;
 	@Property
 	private String nombre;
-	
+	@Reference
 	private List<POI> poisRespuestaBusqueda;
 
 	public DatosDeBusqueda(String nombre, String texto, long segundos, int totalResultados, LocalDate fecha,List<POI> poisRespuesta ) {
@@ -60,5 +61,7 @@ public class DatosDeBusqueda {
 	public String getNombre() {
 		return nombre;
 	}
-
+	 public List<POI> getPoisRespuestaBusqueda() {
+		 return poisRespuestaBusqueda;
+	 }
 }

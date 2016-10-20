@@ -18,6 +18,9 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import org.joda.time.DateTime;
+import org.mongodb.morphia.annotations.Embedded;
+import org.mongodb.morphia.annotations.Property;
+import org.mongodb.morphia.annotations.Reference;
 import org.uqbar.geodds.Point;
 
 import grupo2.tpAnual.ConverterPoint;
@@ -33,18 +36,23 @@ public abstract class POI {
 	@Id	@GeneratedValue
 	private Integer id;
 	
+	@Reference
 	@OneToOne(cascade=CascadeType.ALL) //para que lo hereden todos los hijos
 	private Direccion direccion;
 	
+	@Reference
 	@ManyToOne(cascade=CascadeType.ALL)
 	protected Comuna comuna;
 	
+	@Embedded //Morphia
 	@ElementCollection
 	private List<String> palabraClave;
-
-	@Column(name="ubicacion") @Convert(converter = ConverterPoint.class)
+	
+	@Reference
+	@Column @Convert(converter = ConverterPoint.class)
 	protected Point ubicacion;
-
+	
+	@Property
 	private String nombre;
 	
 	public POI(String nombre, Point ubicacion) {
