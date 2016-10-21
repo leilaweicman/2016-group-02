@@ -9,13 +9,14 @@ public class MorphiaService {
 
 	private Morphia morphia;
 	private Datastore datastore;
+	private MongoClient mongoClient;
 	
 	public MorphiaService(){
 
 		// we use MongoClient to connect the local host (127.0.0.1)
 		// (assuming this is where your mongodb instance is running) 
 		// on port 27017 (the default port)
-		MongoClient mongoClient = new MongoClient("127.0.0.1:27017");
+		mongoClient = new MongoClient("127.0.0.1:27017");
 		
 		//create a new morphia instance
 		this.morphia = new Morphia(); 
@@ -24,6 +25,9 @@ public class MorphiaService {
 		
 	}
 
+	public MongoClient getMongoClient() {
+		return mongoClient;
+	}
 	
 	public Morphia getMorphia() {
 		return morphia;

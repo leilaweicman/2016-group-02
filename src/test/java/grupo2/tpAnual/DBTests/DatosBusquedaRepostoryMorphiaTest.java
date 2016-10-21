@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.joda.time.LocalDate;
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -63,7 +64,9 @@ public class DatosBusquedaRepostoryMorphiaTest {
 	private List<Rango> listaRangos;
 	private List<POI> pois;
 	private DatosBusquedaRepositoryMongoDB repositorioDB;
-
+	//private MongoClient client;
+	MorphiaService morphia;
+	
 	@Before
 	public void init() {
 
@@ -79,16 +82,20 @@ public class DatosBusquedaRepostoryMorphiaTest {
 		datoBuscado2 = new DatosDeBusqueda("flores", "carpetas", 14, 15, new LocalDate().minusDays(1), pois);
 		datoBuscado3 = new DatosDeBusqueda("flores", "carpetas", 14, 15, new LocalDate().minusDays(2), pois);
 
-		try (MongoClient client = new MongoClient()) {
+		//try (MongoClient client = new MongoClient()) { //YA SE ESTA CREANDO EN MORPHIA SERVICE
 
-			MorphiaService morphia = new MorphiaService();
-			morphia.getDatastore();
+			morphia = new MorphiaService();
 
 			repositorioDB = new DatosBusquedaRepositoryMongoDB(DatosDeBusqueda.class, morphia.getDatastore());
 			repositorioDB.agregarDatosBusqueda(datoBuscado);
 			repositorioDB.agregarDatosBusqueda(datoBuscado2);
 			repositorioDB.agregarDatosBusqueda(datoBuscado3);
-		}
+		//}
+	}
+	
+	@After
+	public void terminar(){
+		morphia.getMongoClient().dropDatabase("mongo_persistance_dds");
 	}
 
 	/*@Test
