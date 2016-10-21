@@ -18,6 +18,7 @@ public class DatosBusquedaRepositoryMongoDB extends BasicDAO<DatosDeBusqueda, Ob
 	public List<DatosDeBusqueda> consultarDatos() {
 
 		Query<DatosDeBusqueda> query = createQuery();
+		
 		return query.asList();
 
 	}
@@ -35,6 +36,8 @@ public class DatosBusquedaRepositoryMongoDB extends BasicDAO<DatosDeBusqueda, Ob
 
 	public List<Integer> obtenerTotalResultadosPorTerminal(String nombreTerminal) {
 
+		//Query<DatosDeBusqueda> query = createQuery().field("nombreTerminal").equal(nombreTerminal);
+		//Query<DatosDeBusqueda> query2= query.search("totalDeResultados");
 		List<DatosDeBusqueda> lista = this.obtenerPorNombre(nombreTerminal);
 
 		return lista.stream().map(datoDeBusqueda -> datoDeBusqueda.getTotalDeResultados()).collect(Collectors.toList());

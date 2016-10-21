@@ -61,6 +61,7 @@ public class DatosBusquedaRepostoryMorphiaTest {
 	private Rango unRango;
 	private Rango otroRango;
 	private Rango rango;
+	private String nombreTerminal;
 	private List<Rango> listaRangos;
 	private List<POI> pois;
 	private DatosBusquedaRepositoryMongoDB repositorioDB;
@@ -108,16 +109,21 @@ public class DatosBusquedaRepostoryMorphiaTest {
 	
 	@Test
 	public void testObtenerTotalResultadosPorTerminal(){
-		
+		this.nombreTerminal="lasHeras";
+		Assert.assertTrue(repositorioDB.obtenerTotalResultadosPorTerminal(nombreTerminal).get(1)==15);
 	}
 	
 	@Test
 	public void testCantidadDeBusquedasDe(){
+		this.nombreTerminal="flores";
+		Assert.assertTrue(repositorioDB.cantidadDeBusquedasDe(nombreTerminal)== 2);
+
 		
 	}
 	
 	@Test
 	public void testObtenerPorNombre(){
-		
+		this.nombreTerminal="lasHeras";
+		Assert.assertEquals(repositorioDB.obtenerPorNombre(nombreTerminal).size(), 1);	
 	}*/
 }
