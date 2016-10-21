@@ -91,7 +91,7 @@ public class DatosBusquedaRepostoryMorphiaTest {
 		}
 	}
 
-	@Test
+	/*@Test
 	public void testConsultarDatos() {
 		//List<DatosDeBusqueda> datosDeBusquedaList= new ArrayList<>();
 		//datosDeBusquedaList=this.repositorioDB.consultarDatos();
@@ -112,5 +112,5 @@ public class DatosBusquedaRepostoryMorphiaTest {
 	@Test
 	public void testObtenerPorNombre(){
 		
-	}
+	}*/
 }
