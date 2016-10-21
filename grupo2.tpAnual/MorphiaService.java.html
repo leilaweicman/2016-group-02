@@ -9,37 +9,41 @@ public class MorphiaService {
 
 	private Morphia morphia;
 	private Datastore datastore;
+	private MongoClient mongoClient;
 	
-<span class="nc" id="L13">	public MorphiaService(){</span>
+<span class="nc" id="L14">	public MorphiaService(){</span>
 
 		// we use MongoClient to connect the local host (127.0.0.1)
 		// (assuming this is where your mongodb instance is running) 
 		// on port 27017 (the default port)
-<span class="nc" id="L18">		MongoClient mongoClient = new MongoClient(&quot;127.0.0.1:27017&quot;);</span>
+<span class="nc" id="L19">		mongoClient = new MongoClient(&quot;127.0.0.1:27017&quot;);</span>
 		
 		//create a new morphia instance
-<span class="nc" id="L21">		this.morphia = new Morphia(); </span>
-<span class="nc" id="L22">		String databaseName = &quot;mongo_persistance_dds&quot;;</span>
-<span class="nc" id="L23">		this.datastore = morphia.createDatastore(mongoClient, databaseName);</span>
+<span class="nc" id="L22">		this.morphia = new Morphia(); </span>
+<span class="nc" id="L23">		String databaseName = &quot;mongo_persistance_dds&quot;;</span>
+<span class="nc" id="L24">		this.datastore = morphia.createDatastore(mongoClient, databaseName);</span>
 		
-<span class="nc" id="L25">	}</span>
+<span class="nc" id="L26">	}</span>
 
+	public MongoClient getMongoClient() {
+<span class="nc" id="L29">		return mongoClient;</span>
+	}
 	
 	public Morphia getMorphia() {
-<span class="nc" id="L29">		return morphia;</span>
+<span class="nc" id="L33">		return morphia;</span>
 	}
 
 	public void setMorphia(Morphia morphia) {
-<span class="nc" id="L33">		this.morphia = morphia;</span>
-<span class="nc" id="L34">	}</span>
+<span class="nc" id="L37">		this.morphia = morphia;</span>
+<span class="nc" id="L38">	}</span>
 
 	public Datastore getDatastore() {
-<span class="nc" id="L37">		return datastore;</span>
+<span class="nc" id="L41">		return datastore;</span>
 	}
 
 	public void setDatastore(Datastore datastore) {
-<span class="nc" id="L41">		this.datastore = datastore;</span>
-<span class="nc" id="L42">	}</span>
+<span class="nc" id="L45">		this.datastore = datastore;</span>
+<span class="nc" id="L46">	}</span>
 	
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>
