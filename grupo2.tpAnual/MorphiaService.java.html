@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>MorphiaService.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tpAnual</a> &gt; <a href="index.source.html" class="el_package">grupo2.tpAnual</a> &gt; <span class="el_source">MorphiaService.java</span></div><h1>MorphiaService.java</h1><pre class="source lang-java linenums">package grupo2.tpAnual;
+
+import org.mongodb.morphia.Datastore;
+import org.mongodb.morphia.Morphia;
+
+import com.mongodb.MongoClient;
+
+public class MorphiaService {
+
+	private Morphia morphia;
+	private Datastore datastore;
+	
+<span class="nc" id="L13">	public MorphiaService(){</span>
+
+		// we use MongoClient to connect the local host (127.0.0.1)
+		// (assuming this is where your mongodb instance is running) 
+		// on port 27017 (the default port)
+<span class="nc" id="L18">		MongoClient mongoClient = new MongoClient(&quot;127.0.0.1:27017&quot;);</span>
+		
+		//create a new morphia instance
+<span class="nc" id="L21">		this.morphia = new Morphia(); </span>
+<span class="nc" id="L22">		String databaseName = &quot;mongo_persistance_dds&quot;;</span>
+<span class="nc" id="L23">		this.datastore = morphia.createDatastore(mongoClient, databaseName);</span>
+		
+<span class="nc" id="L25">	}</span>
+
+	
+	public Morphia getMorphia() {
+<span class="nc" id="L29">		return morphia;</span>
+	}
+
+	public void setMorphia(Morphia morphia) {
+<span class="nc" id="L33">		this.morphia = morphia;</span>
+<span class="nc" id="L34">	}</span>
+
+	public Datastore getDatastore() {
+<span class="nc" id="L37">		return datastore;</span>
+	}
+
+	public void setDatastore(Datastore datastore) {
+<span class="nc" id="L41">		this.datastore = datastore;</span>
+<span class="nc" id="L42">	}</span>
+	
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>
