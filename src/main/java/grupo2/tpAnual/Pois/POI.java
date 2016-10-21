@@ -18,9 +18,6 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import org.joda.time.DateTime;
-import org.mongodb.morphia.annotations.Embedded;
-import org.mongodb.morphia.annotations.Property;
-import org.mongodb.morphia.annotations.Reference;
 import org.uqbar.geodds.Point;
 
 import grupo2.tpAnual.ConverterPoint;
@@ -45,7 +42,7 @@ public abstract class POI {
 	@ManyToOne(cascade=CascadeType.ALL)
 	protected Comuna comuna;
 	
-	@org.mongodb.morphia.annotations.Embedded //Morphia
+	@org.mongodb.morphia.annotations.Embedded
 	@ElementCollection
 	private List<String> palabraClave;
 	
