@@ -1,11 +1,11 @@
 package grupo2.tpAnual.Reportes;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.joda.time.LocalDate;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -31,9 +31,11 @@ public class ReportePorTerminalOUsuarioTest {
 	private List<Rango> listaRangos;
 	private Comercio comercio;
 	private List<POI> pois;
+	private LocalDate today;
 
 	@Before
 	public void init() {
+		today= LocalDate.now();
 		unRango = new Rango(1, LocalTime.of(9, 0, 0), LocalTime.of(18, 0, 0));
 		otroRango = new Rango(3, LocalTime.of(9, 0, 0), LocalTime.of(13, 0, 0));
 		rango = new Rango(3, LocalTime.of(15, 0, 0), LocalTime.of(18, 30, 0));
@@ -42,9 +44,9 @@ public class ReportePorTerminalOUsuarioTest {
 		pois= new ArrayList<>();
 		pois.add(comercio);
 		this.registro = new DatosBusquedaRepositoryMemory();
-		this.datoBuscado = new DatosDeBusqueda("lasHeras", "libros", 10, 15, new LocalDate(),pois);
-		this.datoBuscado2 = new DatosDeBusqueda("flores", "asado", 10, 15, new LocalDate(),pois);
-		this.datoBuscado3 = new DatosDeBusqueda("flores", "asado", 20, 25, new LocalDate(),pois);
+		this.datoBuscado = new DatosDeBusqueda("lasHeras", "libros", 10, 15, today,pois);
+		this.datoBuscado2 = new DatosDeBusqueda("flores", "asado", 10, 15, today,pois);
+		this.datoBuscado3 = new DatosDeBusqueda("flores", "asado", 20, 25, today,pois);
 		this.registro.agregarDatosBusqueda(datoBuscado);
 		this.registro.agregarDatosBusqueda(datoBuscado2);
 		this.registro.agregarDatosBusqueda(datoBuscado3);

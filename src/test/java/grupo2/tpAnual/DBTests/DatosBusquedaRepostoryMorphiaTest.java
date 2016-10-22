@@ -1,11 +1,11 @@
 package grupo2.tpAnual.DBTests;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.joda.time.LocalDate;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -70,7 +70,7 @@ public class DatosBusquedaRepostoryMorphiaTest {
 	
 	@Before
 	public void init() {
-
+		LocalDate today=LocalDate.now();
 		unRango = new Rango(1, LocalTime.of(9, 0, 0), LocalTime.of(18, 0, 0));
 		otroRango = new Rango(3, LocalTime.of(9, 0, 0), LocalTime.of(13, 0, 0));
 		rango = new Rango(3, LocalTime.of(15, 0, 0), LocalTime.of(18, 30, 0));
@@ -79,9 +79,9 @@ public class DatosBusquedaRepostoryMorphiaTest {
 		comercio.setId(4);
 		pois = new ArrayList<>();
 		pois.add(comercio);
-		datoBuscado = new DatosDeBusqueda("lasHeras", "libros", 10, 15, new LocalDate(), pois);
-		datoBuscado2 = new DatosDeBusqueda("flores", "carpetas", 14, 15, new LocalDate().minusDays(1), pois);
-		datoBuscado3 = new DatosDeBusqueda("flores", "carpetas", 14, 15, new LocalDate().minusDays(2), pois);
+		datoBuscado = new DatosDeBusqueda("lasHeras", "libros", 10, 15, today , pois);
+		datoBuscado2 = new DatosDeBusqueda("flores", "carpetas", 14, 15, today.minusDays(1), pois);
+		datoBuscado3 = new DatosDeBusqueda("flores", "carpetas", 14, 15, today.minusDays(2), pois);
 
 		//try (MongoClient client = new MongoClient()) { //YA SE ESTA CREANDO EN MORPHIA SERVICE
 

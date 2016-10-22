@@ -1,11 +1,11 @@
 package grupo2.tpAnual;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
 
-import org.joda.time.LocalDate;
 
 import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatos;
 import grupo2.tpAnual.Pois.POI;
@@ -52,11 +52,11 @@ public class Mapa {
 		
 		this.origenesDeDatos.forEach(integracion -> result.addAll(integracion.busqueda(txtABuscar)));
 		long tiempoFin = System.currentTimeMillis();
-
+		LocalDate today= LocalDate.now();
 		long segundosTardados = (tiempoFin - tiempoInicio) / 1000;
 
 		DatosDeBusqueda datosParaObserver = new DatosDeBusqueda(this.nombre, txtABuscar, segundosTardados,
-				result.size(), new LocalDate(), result);
+				result.size(), today , result);
 		
 		this.repositorioDB.agregarDatosBusqueda(datosParaObserver); 
 		

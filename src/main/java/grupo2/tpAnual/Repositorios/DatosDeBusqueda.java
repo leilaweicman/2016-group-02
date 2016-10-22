@@ -2,15 +2,13 @@ package grupo2.tpAnual.Repositorios;
 
 
 import org.bson.types.ObjectId;
-import org.joda.time.LocalDate;
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
 import org.mongodb.morphia.annotations.Property;
-import org.mongodb.morphia.annotations.Reference;
-
-import grupo2.tpAnual.LocalDateAttributeConverter;
+import grupo2.tpAnual.LocalDateConverter.LocalDateConverter;
 import grupo2.tpAnual.Pois.POI;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,7 +25,7 @@ public class DatosDeBusqueda {
 	@Property
 	private int totalDeResultados;
 	
-	@Transient //@Property("fecha") @Convert(converter = LocalDateAttributeConverter.class)
+	@Property("fecha") @Convert(converter = LocalDateConverter.class)
 	private LocalDate fecha;
 	@Property
 	private String nombreTerminal;
