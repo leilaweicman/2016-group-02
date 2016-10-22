@@ -18,32 +18,35 @@ public class DatosBusquedaRepositoryMongoDB extends BasicDAO&lt;DatosDeBusqueda,
 	public List&lt;DatosDeBusqueda&gt; consultarDatos() {
 
 <span class="nc" id="L20">		Query&lt;DatosDeBusqueda&gt; query = createQuery();</span>
-<span class="nc" id="L21">		return query.asList();</span>
+		
+<span class="nc" id="L22">		return query.asList();</span>
 
 	}
 
 	public List&lt;DatosDeBusqueda&gt; obtenerPorNombre(String nombreTerminal) {
-<span class="nc" id="L26">		Query&lt;DatosDeBusqueda&gt; query = createQuery().field(&quot;nombreTerminal&quot;).equal(nombreTerminal);</span>
+<span class="nc" id="L27">		Query&lt;DatosDeBusqueda&gt; query = createQuery().field(&quot;nombreTerminal&quot;).equal(nombreTerminal);</span>
 
-<span class="nc" id="L28">		return query.asList();</span>
+<span class="nc" id="L29">		return query.asList();</span>
 
 	}
 
 	public void agregarDatosBusqueda(DatosDeBusqueda registroBusqueda) {
-<span class="nc" id="L33">		save(registroBusqueda);</span>
-<span class="nc" id="L34">	}</span>
+<span class="nc" id="L34">		save(registroBusqueda);</span>
+<span class="nc" id="L35">	}</span>
 
 	public List&lt;Integer&gt; obtenerTotalResultadosPorTerminal(String nombreTerminal) {
 
-<span class="nc" id="L38">		List&lt;DatosDeBusqueda&gt; lista = this.obtenerPorNombre(nombreTerminal);</span>
+		//Query&lt;DatosDeBusqueda&gt; query = createQuery().field(&quot;nombreTerminal&quot;).equal(nombreTerminal);
+		//Query&lt;DatosDeBusqueda&gt; query2= query.search(&quot;totalDeResultados&quot;);
+<span class="nc" id="L41">		List&lt;DatosDeBusqueda&gt; lista = this.obtenerPorNombre(nombreTerminal);</span>
 
-<span class="nc" id="L40">		return lista.stream().map(datoDeBusqueda -&gt; datoDeBusqueda.getTotalDeResultados()).collect(Collectors.toList());</span>
+<span class="nc" id="L43">		return lista.stream().map(datoDeBusqueda -&gt; datoDeBusqueda.getTotalDeResultados()).collect(Collectors.toList());</span>
 
 	}
 
 	public Integer cantidadDeBusquedasDe(String nombre) {
 
-<span class="nc" id="L46">		return this.obtenerTotalResultadosPorTerminal(nombre).stream().reduce(0, (a, b) -&gt; a + b);</span>
+<span class="nc" id="L49">		return this.obtenerTotalResultadosPorTerminal(nombre).stream().reduce(0, (a, b) -&gt; a + b);</span>
 	}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

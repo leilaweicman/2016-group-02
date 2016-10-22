@@ -30,7 +30,7 @@ public class DatosDeBusqueda {
 	@Transient //@Property(&quot;fecha&quot;) @Convert(converter = LocalDateAttributeConverter.class)
 	private LocalDate fecha;
 	@Property
-	private String nombre;
+	private String nombreTerminal;
 	@Embedded
 	private List&lt;POI&gt; poisRespuestaBusqueda;
 
@@ -39,7 +39,7 @@ public class DatosDeBusqueda {
 <span class="fc" id="L39">		this.segundosQueTardoLaBusqueda = segundos;</span>
 <span class="fc" id="L40">		this.totalDeResultados = totalResultados;</span>
 <span class="fc" id="L41">		this.fecha = fecha;</span>
-<span class="fc" id="L42">		this.nombre = nombre;</span>
+<span class="fc" id="L42">		this.nombreTerminal = nombre;</span>
 <span class="fc" id="L43">		this.poisRespuestaBusqueda=new ArrayList&lt;&gt;();</span>
 <span class="fc" id="L44">		this.poisRespuestaBusqueda.addAll(poisRespuesta);</span>
 <span class="fc" id="L45">	}</span>
@@ -61,7 +61,7 @@ public class DatosDeBusqueda {
 	}
 
 	public String getNombre() {
-<span class="fc" id="L64">		return nombre;</span>
+<span class="fc" id="L64">		return nombreTerminal;</span>
 	}
 	 public List&lt;POI&gt; getPoisRespuestaBusqueda() {
 <span class="nc" id="L67">		 return poisRespuestaBusqueda;</span>
