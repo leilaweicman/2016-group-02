@@ -5,13 +5,14 @@ import javax.persistence.*;
 @Entity
 @Table(name="Rubro")
 public class Rubro {
-	@Id	@GeneratedValue @Column(name="id_rubro")
+	@Id	@GeneratedValue 
 	private Integer id;
 	@Column(name="tipo")
 	private String tipoRubro;
 	@Column(name="radioCercania")
 	private double radioCercania;
 	@org.mongodb.morphia.annotations.Embedded
+	@OneToOne
 	private Rango disponibilidad;
 
 	public String getTipo() {
@@ -37,6 +38,10 @@ public class Rubro {
 	public void setRadioCercania(double Radio) {
 
 		this.radioCercania = Radio;
+	}
+	
+	public Integer getId(){
+		return this.id;
 	}
 
 	public boolean Busqueda(String tipo) {

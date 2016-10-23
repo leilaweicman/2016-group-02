@@ -28,6 +28,7 @@ import grupo2.tpAnual.AccesoriosPois.Comuna;
 import grupo2.tpAnual.AccesoriosPois.Direccion;
 import grupo2.tpAnual.AccesoriosPois.Disponibilidad;
 import grupo2.tpAnual.AccesoriosPois.Rango;
+import grupo2.tpAnual.AccesoriosPois.Rubro;
 import grupo2.tpAnual.AccesoriosPois.Servicio;
 import grupo2.tpAnual.Observers.EnviarMailBusqueda;
 import grupo2.tpAnual.Observers.NotificarDatosBusqueda;
@@ -244,6 +245,19 @@ public class SQLTest extends AbstractPersistenceTest implements WithGlobalEntity
 		
 		Parada paradaBuscada = (Parada) em.createQuery("from Parada where id = :id").setParameter("id", parada.getId()).getSingleResult();
 		assertEquals(parada.getLinea(), paradaBuscada.getLinea());
+	}
+	
+	@Test
+	public void persistirRubro(){
+		persist(rango);
+		
+		Rubro rubro = new Rubro();
+		rubro.setDisponibilidad(rango);
+		rubro.setTipo("ropa");
+		persist(rubro);
+		
+		Rubro rubroBuscado = (Rubro) em.createQuery("from Rubro where id = :id").setParameter("id", rubro.getId()).getSingleResult();
+		assertEquals(rubro.getTipo(), rubroBuscado.getTipo());
 	}
 	
 	@Test
