@@ -2,9 +2,12 @@
 
 
 import org.bson.types.ObjectId;
+import org.mongodb.morphia.annotations.Converters;
+import org.mongodb.morphia.annotations.Embedded;
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
 import org.mongodb.morphia.annotations.Property;
+
 import grupo2.tpAnual.LocalDateConverter.LocalDateConverter;
 import grupo2.tpAnual.Pois.POI;
 
@@ -12,9 +15,11 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.*;
+//import javax.persistence.*;
 
 @Entity
+@Converters(LocalDateConverter.class)
+
 public class DatosDeBusqueda {
 	@Id
 	private ObjectId id;
@@ -23,46 +28,50 @@ public class DatosDeBusqueda {
 	@Property
 	private long segundosQueTardoLaBusqueda;
 	@Property
-	private int totalDeResultados;
-	
-	@Property(&quot;fecha&quot;) @Convert(converter = LocalDateConverter.class)
+	private int totalDeResultados;		
+	@Property //@Convert(LocalDateConverter.class)	
 	private LocalDate fecha;
 	@Property
 	private String nombreTerminal;
 	@Embedded
 	private List&lt;POI&gt; poisRespuestaBusqueda;
 
-<span class="fc" id="L35">	public DatosDeBusqueda(String nombre, String texto, long segundos, int totalResultados, LocalDate fecha,List&lt;POI&gt; poisRespuesta ) {</span>
-<span class="fc" id="L36">		this.txtBuscado = texto;</span>
-<span class="fc" id="L37">		this.segundosQueTardoLaBusqueda = segundos;</span>
-<span class="fc" id="L38">		this.totalDeResultados = totalResultados;</span>
-<span class="fc" id="L39">		this.fecha = fecha;</span>
-<span class="fc" id="L40">		this.nombreTerminal = nombre;</span>
-<span class="fc" id="L41">		this.poisRespuestaBusqueda=new ArrayList&lt;&gt;();</span>
-<span class="fc" id="L42">		this.poisRespuestaBusqueda.addAll(poisRespuesta);</span>
-<span class="fc" id="L43">	}</span>
+<span class="fc" id="L39">	public DatosDeBusqueda(String nombre, String texto, long segundos, int totalResultados, LocalDate fecha,List&lt;POI&gt; poisRespuesta ) {</span>
+<span class="fc" id="L40">		this.txtBuscado = texto;</span>
+<span class="fc" id="L41">		this.segundosQueTardoLaBusqueda = segundos;</span>
+<span class="fc" id="L42">		this.totalDeResultados = totalResultados;</span>
+<span class="fc" id="L43">		this.fecha = fecha;</span>
+<span class="fc" id="L44">		this.nombreTerminal = nombre;</span>
+<span class="fc" id="L45">		this.poisRespuestaBusqueda=new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L46">		this.poisRespuestaBusqueda.addAll(poisRespuesta);</span>
+<span class="fc" id="L47">	}</span>
+	
+<span class="nc" id="L49">	public DatosDeBusqueda() {</span>
+		
+<span class="nc" id="L51">	}</span>
+	
 	
 	public String getTxtBuscado() {
-<span class="nc" id="L46">		return txtBuscado;</span>
+<span class="nc" id="L55">		return txtBuscado;</span>
 	}
 
 	public long getSegundosQueTardoLaBusqueda() {
-<span class="fc" id="L50">		return segundosQueTardoLaBusqueda;</span>
+<span class="fc" id="L59">		return segundosQueTardoLaBusqueda;</span>
 	}
 
 	public int getTotalDeResultados() {
-<span class="fc" id="L54">		return totalDeResultados;</span>
+<span class="fc" id="L63">		return totalDeResultados;</span>
 	}
 
 	public LocalDate getFecha() {
-<span class="fc" id="L58">		return fecha;</span>
+<span class="fc" id="L67">		return fecha;</span>
 	}
 
 	public String getNombre() {
-<span class="fc" id="L62">		return nombreTerminal;</span>
+<span class="fc" id="L71">		return nombreTerminal;</span>
 	}
 	 public List&lt;POI&gt; getPoisRespuestaBusqueda() {
-<span class="nc" id="L65">		 return poisRespuestaBusqueda;</span>
+<span class="nc" id="L74">		 return poisRespuestaBusqueda;</span>
 	 }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

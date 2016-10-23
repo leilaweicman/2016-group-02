@@ -20,21 +20,24 @@ public class Rango {
 <span class="fc" id="L20">		this.horaDesde = horaD;</span>
 <span class="fc" id="L21">		this.horaHasta = horaH;</span>
 <span class="fc" id="L22">	}</span>
+	
+<span class="fc" id="L24">	public Rango() {</span>
+<span class="fc" id="L25">	}</span>
 
 	public Integer getDay() {
-<span class="nc" id="L25">		return dia;</span>
+<span class="nc" id="L28">		return dia;</span>
 	}
 
 	public LocalTime getHoraDesde() {
-<span class="fc" id="L29">		return horaDesde;</span>
+<span class="fc" id="L32">		return horaDesde;</span>
 	}
 
 	public LocalTime getHoraHasta() {
-<span class="nc" id="L33">		return horaHasta;</span>
+<span class="nc" id="L36">		return horaHasta;</span>
 	}
 
 	public boolean estaDisponible(int dia, LocalTime horaCompleta) {
-<span class="fc bfc" id="L37" title="All 6 branches covered.">		return this.dia.equals(dia) &amp;&amp; horaDesde.isBefore(horaCompleta) &amp;&amp; horaHasta.isAfter(horaCompleta);</span>
+<span class="fc bfc" id="L40" title="All 6 branches covered.">		return this.dia.equals(dia) &amp;&amp; horaDesde.isBefore(horaCompleta) &amp;&amp; horaHasta.isAfter(horaCompleta);</span>
 	}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>
