@@ -21,8 +21,10 @@ public class Comercio extends POI {
 	@OneToOne
 	private Rubro rubro;
 	@Transient
+	@org.mongodb.morphia.annotations.Transient
 	private List<Rango> rangoDisponibilidad = new ArrayList<Rango>();
 	@OneToOne
+	@org.mongodb.morphia.annotations.Transient
 	private Disponibilidad disponibilidad;
 
 	public Comercio(String nombre, Point ubicacion, List<Rango> rango) {
@@ -31,6 +33,10 @@ public class Comercio extends POI {
 		disponibilidad = new Disponibilidad(this.rangoDisponibilidad);
 	}
 
+	public Comercio() {
+		
+	}
+	
 	public List<Rango> getRango() {
 		return rangoDisponibilidad;
 	}

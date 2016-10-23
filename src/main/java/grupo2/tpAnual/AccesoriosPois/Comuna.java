@@ -11,17 +11,25 @@ import org.uqbar.geodds.Polygon;
 import grupo2.tpAnual.ConverterPoint;
 
 @Entity
+@org.mongodb.morphia.annotations.Entity
 public class Comuna {
 	@Transient
+	@org.mongodb.morphia.annotations.Transient
+
 	private Polygon comuna;
 	@Transient
+	@org.mongodb.morphia.annotations.Transient
+
 	private EntityManager em;
 	//@OneToMany @Convert(converter = ConverterPoint.class) @JoinColumn
 	//@ElementCollection @Convert(converter = ConverterPoint.class)
 	@Transient
+	@org.mongodb.morphia.annotations.Transient
+
 	private List<Point> vertices = new ArrayList<Point>();
 	
 	@Id
+	@org.mongodb.morphia.annotations.Transient
 	private int numeroComuna;
 
 	public Comuna(int numero, List<Point> vertices) {

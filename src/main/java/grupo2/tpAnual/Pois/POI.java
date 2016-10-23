@@ -37,11 +37,12 @@ public abstract class POI {
 	@Id	@GeneratedValue
 	private Integer id;
 	
-	@org.mongodb.morphia.annotations.Reference
+	//@org.mongodb.morphia.annotations.Reference
+	@org.mongodb.morphia.annotations.Transient
 	@OneToOne(cascade=CascadeType.ALL) //para que lo hereden todos los hijos
 	private Direccion direccion;
 	
-	@org.mongodb.morphia.annotations.Reference
+	@org.mongodb.morphia.annotations.Transient
 	@ManyToOne(cascade=CascadeType.ALL)
 	protected Comuna comuna;
 	
@@ -52,6 +53,8 @@ public abstract class POI {
 	//@org.mongodb.morphia.annotations.Reference
 	@Column @Convert(converter = ConverterPoint.class)
 	@Transient
+	@org.mongodb.morphia.annotations.Transient
+
 	protected Point ubicacion;
 	
 	@org.mongodb.morphia.annotations.Property
@@ -63,6 +66,10 @@ public abstract class POI {
 		this.palabraClave = new ArrayList<String>();
 	}
 
+	public POI() {
+	
+	}
+	
 	public void setId(Integer numeroVerificador) {
 		this.id = numeroVerificador;
 	}
