@@ -234,7 +234,7 @@ public class SQLTest extends AbstractPersistenceTest implements WithGlobalEntity
 		
 	}
 	
-
+	@Test
 	public void persistirDisponibilidad(){
 		
 		Integer dia = 1;
@@ -260,15 +260,12 @@ public class SQLTest extends AbstractPersistenceTest implements WithGlobalEntity
 	/*@Test
 	public void persistirBanco(){
 		Banco banco;
-		//DateTime momento;
 
-		beginTransaction();
 		banco = new Banco("santander", Point.and(-34.664837, -58.385674));
 		persist(banco);
-		commitTransaction();
 		
-		Banco bancoBuscado = (Banco) em.createQuery("from Banco where id_banco = :id").setParameter("id", banco.getId()).getSingleResult();
-		assertEquals(bancoBuscado.getId(),banco.getId());
+		Banco bancoBuscado = (Banco) em.createQuery("from Banco where id = :id").setParameter("id", banco.getId()).getSingleResult();
+		assertEquals(bancoBuscado.getId(), banco.getId());
 		
 		
 		//ver como tendria que hacer para conseguir el rango de disponibilidad desde la db

@@ -8,11 +8,12 @@ import javax.persistence.*;
 
 import org.joda.time.DateTime;
 
+@Entity
 public class Disponibilidad {
 
 	@Id @GeneratedValue
 	private Integer id;
-	@OneToMany @JoinColumn(name="id")
+	@OneToMany //@JoinColumn(name="id")
 	private List<Rango> rangoDisponibilidad = new ArrayList<Rango>();
 
 	public Disponibilidad(List<Rango> rango) {
