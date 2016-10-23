@@ -273,6 +273,24 @@ public class SQLTest extends AbstractPersistenceTest implements WithGlobalEntity
 		assertEquals(servicio.getNombre(), servicioBuscado.getNombre());
 	}
 	
+	/*@Test
+	public void persistirCGP(){
+		persist(disponibilidad);
+		
+		Servicio servicio = new Servicio(rangoDisponibilidad);
+		servicio.setDisponibilidad(disponibilidad);
+		servicio.setNombre("Renovacion dni");
+		
+		persist(servicio);
+		
+		CGP cgp = new CGP("CGP1", null);
+		cgp.agregarServicio(servicio);
+		persist(cgp);
+		
+		CGP cgpBuscado = (CGP) em.createQuery("from CGP where id = :id").setParameter("id", servicio.getId()).getSingleResult();
+		assertEquals(cgp.getNombre(), cgpBuscado.getNombre());
+	}*/
+	
 	@Test
 	public void persistirComercio(){
 		persist(rango);

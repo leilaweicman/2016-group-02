@@ -12,9 +12,10 @@ import org.uqbar.geodds.Point;
 import grupo2.tpAnual.AccesoriosPois.Servicio;
 
 @Entity
+@DiscriminatorValue("2")
 public class CGP extends POI {
 	
-	@Transient//@OneToMany @JoinColumn(name="id_servicio")
+	@OneToMany
 	private List<Servicio> servicios;
 
 	public CGP(String nombre, Point ubicacion) {
@@ -30,6 +31,10 @@ public class CGP extends POI {
 		this.servicios = ser;
 	}
 
+	public void agregarServicio(Servicio serv){
+		this.servicios.add(serv);
+	}
+	
 	@Override
 	public boolean tieneTextoEnOtrosAtributos(String texto) {
 		for (Servicio ser : servicios) {
