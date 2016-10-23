@@ -14,20 +14,20 @@ import grupo2.tpAnual.AccesoriosPois.Disponibilidad;
 import grupo2.tpAnual.AccesoriosPois.Rango;
 
 @Entity
-//@Table(name="Banco")
-//@PrimaryKeyJoinColumn(name="id_banco", referencedColumnName="id_poi")
+@DiscriminatorValue("1")
 public class Banco extends POI {
 	@Transient
 	private List<Rango> rangoDisponibilidad;
-	@Transient
-	private List<Integer> dias;
-	@Transient
+	/*@Transient
+	private List<Integer> dias;*/
+	//@Transient
+	@OneToOne
 	private Disponibilidad disponibilidad;
 
 	public Banco(String nombre, Point ubicacion) {
 		super(nombre, ubicacion);
 		this.rangoDisponibilidad = new ArrayList<Rango>();
-		this.dias = new ArrayList<Integer>();
+		List<Integer> dias = new ArrayList<Integer>();
 		dias = Arrays.asList(1, 2, 3, 4, 5);
 		dias.stream().forEach(dia -> crearRango(dia));
 		this.disponibilidad = new Disponibilidad(rangoDisponibilidad);

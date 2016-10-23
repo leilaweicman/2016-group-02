@@ -51,6 +51,12 @@ public class SQLTest extends AbstractPersistenceTest implements WithGlobalEntity
 	private EntityManager em;
 	private OrigenesDeDatosPOIsMemory origenesDeDatosPois;
 	private List<OrigenesDeDatos> listaDeOrigenes;
+	private Integer dia;
+	private LocalTime horaDesde;
+	private LocalTime horaHasta;
+	private Rango rango;
+	List<Rango> rangoDisponibilidad;
+	Disponibilidad disponibilidad;
 	
 	
 	@Before
@@ -61,6 +67,17 @@ public class SQLTest extends AbstractPersistenceTest implements WithGlobalEntity
 
 		this.origenesDeDatosPois = new OrigenesDeDatosPOIsMemory();
 
+		this.dia = 1;
+		this.horaDesde = LocalTime.of(10,0,0);
+		this.horaHasta = LocalTime.of(15, 0,0);
+		this.rango = new Rango(dia, horaDesde, horaHasta);
+
+		this.rangoDisponibilidad = new ArrayList<Rango>();
+		rangoDisponibilidad.add(rango);
+
+		this.disponibilidad = new Disponibilidad(rangoDisponibilidad);
+
+		
 		
 		beginTransaction();
 	}
@@ -73,39 +90,8 @@ public class SQLTest extends AbstractPersistenceTest implements WithGlobalEntity
 	@Test
 	public void contextUpWithTransaction() throws Exception {
 		withTransaction(() -> {});
-	}
-	
-	/*rompe y no entiendo por que 
-	@Test
-	public void persistirMapa(){
-	
-		Banco santander = new Banco("Santander", Point.and(-34.664837, -58.385674));
-		santander.addPalabraClave("plazoFijo");
-		santander.addPalabraClave("dolar");
-		persist(santander);
-		
-		CGP rentas = new CGP("Flores", Point.and(-34.664837, -58.385674));
-		List<Servicio> servicios = new ArrayList<Servicio>();
-		List<Rango> listaRango = new ArrayList<>();
-		Servicio ser = new Servicio(listaRango);
-		ser.setNombre("Jubilados");
-		servicios.add(ser);
-		rentas.setServicios(servicios);
-		persist(rentas);
-		
-		this.origenesDeDatosPois.agregarPOI(santander);
-		this.origenesDeDatosPois.agregarPOI(rentas);
+	}	
 
-		
-		listaDeOrigenes = Arrays.asList(origenesDeDatosPois);
-		Mapa mapa = new Mapa(listaDeOrigenes);
-		mapa.setNombre("MapaPrueba");
-		persist(mapa);
-		
-		Mapa mapaBuscado = (Mapa) em.createQuery("from Mapa where nombre = :nombre").setParameter("nombre", "MapaPrueba").getSingleResult();
-		assertEquals(mapaBuscado.getNombre(), "MapaPrueba");
-	}*/
-	
 	@Test
 	public void persistirDireccion(){
 		Direccion dire= new Direccion("Medrano", "Almagro");
@@ -182,14 +168,17 @@ public class SQLTest extends AbstractPersistenceTest implements WithGlobalEntity
 		repo.deleteUsuario(usuario1);
 	}
 	
-	@Test
+	
+	/*@Test
 	public void queryBusquedaTest(){
+		persist(this.disponibilidad);
 		OrigenesDeDatosPOIs repo = new OrigenesDeDatosPOIsSQL(); 
-		POI banco = new Banco("Santander Rio", null);
+		Banco banco = new Banco("Santander Rio", null);
 		List <String> palabras = Arrays.asList("depositos","moneda extranjera", "pago de impuestos");
 		banco.setPalabrasClaves(palabras);
+		banco.setDisponibilidad(this.disponibilidad);
 		repo.agregarPOI(banco);
-		assertEquals(repo.busqueda("Santander Rio").size(),1);
+		assertEquals((repo.busqueda("Santander Rio").size()),1);
 		
 		repo.darDeBajaPOI(banco.getId());
 	}
@@ -197,22 +186,27 @@ public class SQLTest extends AbstractPersistenceTest implements WithGlobalEntity
 	@Test
 	public void persistirPOISTest(){
 		//TODO persistir los dif atributos y en comuna el point
+		
+		persist(this.disponibilidad);
+		
 		OrigenesDeDatosPOIs repo = new OrigenesDeDatosPOIsSQL(); 
 		
-		POI banco = new Banco("Santander Rio", null);
+		Banco banco = new Banco("Santander Rio", null);
 		Comuna comuna = new Comuna(3,null);
 		Direccion direccion = new Direccion("Medrano"," Almagro");
+		persist(comuna);
 		banco.setComuna(comuna);
 		banco.setDireccion(direccion);
+		banco.setDisponibilidad(this.disponibilidad);
 		
 		POI comercio = new Comercio("Kosiuko", null, null);
 		POI cgp = new CGP("Centro de Atención comuna 15", null);
 		POI parada = new Parada("Linea 114", null, null);
 		
-		repo.agregarPOI(banco);
 		repo.agregarPOI(comercio);
 		repo.agregarPOI(cgp);
 		repo.agregarPOI(parada);
+		repo.agregarPOI(banco);
 		assertEquals(repo.getPOIs().size(),4);
 		
 		repo.darDeBajaPOI(banco.getId());
@@ -220,14 +214,11 @@ public class SQLTest extends AbstractPersistenceTest implements WithGlobalEntity
 		repo.darDeBajaPOI(parada.getId());
 		repo.darDeBajaPOI(cgp.getId());
 		assertEquals(repo.getPOIs().size(),0);
-	}
+	}*/
+	
 	@Test
 	public void persistirRango(){
-		Integer dia = 1;
-		LocalTime horaDesde = LocalTime.of(10,0,0);
-		LocalTime horaHasta = LocalTime.of(15, 0,0);
-		Rango rango = new Rango(dia, horaDesde, horaHasta);
-		persist(rango);
+		persist(this.rango);
 		
 		Rango rangoBuscado = (Rango) em.createQuery("from Rango where horaDesde = :horaDesde").setParameter("horaDesde", rango.getHoraDesde()).getSingleResult();
 		assertEquals(rangoBuscado.getHoraDesde(),rango.getHoraDesde());
@@ -237,17 +228,7 @@ public class SQLTest extends AbstractPersistenceTest implements WithGlobalEntity
 	@Test
 	public void persistirDisponibilidad(){
 		
-		Integer dia = 1;
-		LocalTime horaDesde = LocalTime.of(10,0,0);
-		LocalTime horaHasta = LocalTime.of(15, 0,0);
-		Rango rango = new Rango(dia, horaDesde, horaHasta);
-
-		List<Rango> rangoDisponibilidad = new ArrayList<Rango>();
-		rangoDisponibilidad.add(rango);
-
-		Disponibilidad disponibilidad = new Disponibilidad(rangoDisponibilidad);
-				
-		persist(disponibilidad);
+		persist(this.disponibilidad);
 		
 		DateTime momento = new DateTime("2016-04-25T11:00:00");
 		
@@ -257,19 +238,21 @@ public class SQLTest extends AbstractPersistenceTest implements WithGlobalEntity
 	}
 	
 	
-	/*@Test
+	@Test
 	public void persistirBanco(){
+		
+		persist(this.disponibilidad);
+		
 		Banco banco;
 
 		banco = new Banco("santander", Point.and(-34.664837, -58.385674));
+		banco.setDisponibilidad(this.disponibilidad);
 		persist(banco);
 		
 		Banco bancoBuscado = (Banco) em.createQuery("from Banco where id = :id").setParameter("id", banco.getId()).getSingleResult();
 		assertEquals(bancoBuscado.getId(), banco.getId());
 		
-		
-		//ver como tendria que hacer para conseguir el rango de disponibilidad desde la db
-	}*/
+	}
 	
 	@After
 	public void after(){

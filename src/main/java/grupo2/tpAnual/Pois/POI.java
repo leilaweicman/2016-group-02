@@ -6,6 +6,8 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Convert;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -28,6 +30,7 @@ import grupo2.tpAnual.AccesoriosPois.Direccion;
 @Entity 
 @Table(name="POI") 
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name="tipo", discriminatorType = DiscriminatorType.INTEGER)
 public abstract class POI {
 
 	@org.mongodb.morphia.annotations.Id
