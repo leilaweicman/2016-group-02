@@ -15,6 +15,7 @@
     <class>grupo2.tpAnual.AccesoriosPois.Rango</class> 
     <class>grupo2.tpAnual.AccesoriosPois.Disponibilidad</class> 
     <class>grupo2.tpAnual.AccesoriosPois.Rubro</class> 
+    <class>grupo2.tpAnual.AccesoriosPois.Servicio</class> 
     <class>grupo2.tpAnual.Pois.CGP</class>
     <class>grupo2.tpAnual.Pois.POI</class>
     <class>grupo2.tpAnual.Pois.Banco</class>

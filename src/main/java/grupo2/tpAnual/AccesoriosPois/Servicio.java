@@ -3,24 +3,19 @@ package grupo2.tpAnual.AccesoriosPois;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import org.joda.time.DateTime;
 
 @Entity
-@Table(name="Servicio") 
 public class Servicio {
-	@Id	@GeneratedValue @Column(name="id_rango")
+	@Id	@GeneratedValue 
 	private Integer id;
-	@Column(name="nombre")
+	@Column
 	private String nombre;
-
+	@Transient
 	private List<Rango> rangoDisponibilidad = new ArrayList<Rango>();
-
+	@OneToOne
 	private Disponibilidad disponibilidad;
 
 	public Servicio(List<Rango> rango) {
@@ -58,6 +53,10 @@ public class Servicio {
 
 	public void setDisponibilidad(Disponibilidad disponibilidad) {
 		this.disponibilidad = disponibilidad;
+	}
+
+	public Integer getId() {
+		return this.id;
 	}
 
 }

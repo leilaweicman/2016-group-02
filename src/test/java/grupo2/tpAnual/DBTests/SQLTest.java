@@ -261,6 +261,19 @@ public class SQLTest extends AbstractPersistenceTest implements WithGlobalEntity
 	}
 	
 	@Test
+	public void persistirServicio(){
+		persist(disponibilidad);
+		
+		Servicio servicio = new Servicio(rangoDisponibilidad);
+		servicio.setDisponibilidad(disponibilidad);
+		servicio.setNombre("Renovacion dni");
+		persist(servicio);
+		
+		Servicio servicioBuscado = (Servicio) em.createQuery("from Servicio where id = :id").setParameter("id", servicio.getId()).getSingleResult();
+		assertEquals(servicio.getNombre(), servicioBuscado.getNombre());
+	}
+	
+	@Test
 	public void persistirComercio(){
 		persist(rango);
 		persist(disponibilidad);
