@@ -14,14 +14,15 @@ import grupo2.tpAnual.AccesoriosPois.Rubro;
 
 @org.mongodb.morphia.annotations.Entity
 @Entity
+@DiscriminatorValue("3")
 public class Comercio extends POI {
 	
 	@org.mongodb.morphia.annotations.Embedded
-	@Transient //@Column(name="id_rubro") @ManyToOne @JoinColumn(name="id_rubro")
+	@OneToOne
 	private Rubro rubro;
 	@Transient
 	private List<Rango> rangoDisponibilidad = new ArrayList<Rango>();
-	@Transient
+	@OneToOne
 	private Disponibilidad disponibilidad;
 
 	public Comercio(String nombre, Point ubicacion, List<Rango> rango) {
