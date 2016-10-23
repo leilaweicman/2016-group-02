@@ -20,8 +20,10 @@ public class Comercio extends POI {
 	@Transient //@Column(name="id_rubro") @ManyToOne @JoinColumn(name="id_rubro")
 	private Rubro rubro;
 	@Transient
+	@org.mongodb.morphia.annotations.Transient
 	private List<Rango> rangoDisponibilidad = new ArrayList<Rango>();
 	@Transient
+	@org.mongodb.morphia.annotations.Transient
 	private Disponibilidad disponibilidad;
 
 	public Comercio(String nombre, Point ubicacion, List<Rango> rango) {

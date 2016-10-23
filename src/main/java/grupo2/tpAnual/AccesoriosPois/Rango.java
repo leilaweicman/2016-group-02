@@ -7,12 +7,16 @@ import javax.persistence.*;
 @Entity
 public class Rango {
 	@Id	@GeneratedValue 
+	@org.mongodb.morphia.annotations.Transient
 	private Integer id;
 	@Column
+	@org.mongodb.morphia.annotations.Transient
 	private Integer dia;
 	@Column
+	@org.mongodb.morphia.annotations.Transient
 	private LocalTime horaDesde;
 	@Column
+	@org.mongodb.morphia.annotations.Transient
 	private LocalTime horaHasta;
 
 	public Rango(Integer day, LocalTime horaD, LocalTime horaH) {

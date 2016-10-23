@@ -100,12 +100,12 @@ public class DatosBusquedaRepostoryMorphiaTest {
 		morphia.getMongoClient().dropDatabase("mongo_persistance_dds");
 	}
 
-	/*@Test
+	@Test
 	public void testConsultarDatos() {
 		List<DatosDeBusqueda> datosDeBusquedaList= new ArrayList<>();
 		datosDeBusquedaList=this.repositorioDB.consultarDatos();
 		
-		//Assert.assertEquals(datosDeBusquedaList.size(), 3);
+		Assert.assertEquals(datosDeBusquedaList.size(), 3);
 	}
 	
 	/*@Test

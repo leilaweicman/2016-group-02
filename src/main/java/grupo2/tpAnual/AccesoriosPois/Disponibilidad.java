@@ -9,11 +9,15 @@ import javax.persistence.*;
 import org.joda.time.DateTime;
 
 @Entity
+@org.mongodb.morphia.annotations.Entity
+
 public class Disponibilidad {
 
 	@Id @GeneratedValue
+	@org.mongodb.morphia.annotations.Transient
 	private Integer id;
 	@OneToMany //@JoinColumn(name="id")
+	@org.mongodb.morphia.annotations.Transient
 	private List<Rango> rangoDisponibilidad = new ArrayList<Rango>();
 
 	public Disponibilidad(List<Rango> rango) {
