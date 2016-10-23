@@ -12,7 +12,7 @@ tpAnual,grupo2.tpAnual.OrigenesDeDatos,OrigenesDeDatosCentroDTO,0,76,0,0,0,17,0,
 tpAnual,grupo2.tpAnual.OrigenesDeDatos,OrigenesDeDatos,0,3,0,0,0,1,0,1,0,1
 tpAnual,grupo2.tpAnual.OrigenesDeDatos,OrigenesDeDatosPOIs,0,3,0,0,0,1,0,1,0,1
 tpAnual,grupo2.tpAnual.Repositorios,DatosBusquedaRepositoryMemory,17,46,0,0,1,8,2,7,2,7
-tpAnual,grupo2.tpAnual.Repositorios,DatosBusquedaRepositoryMongoDB,33,27,0,0,3,8,4,4,4,4
+tpAnual,grupo2.tpAnual.Repositorios,DatosBusquedaRepositoryMongoDB,0,60,0,0,0,11,0,8,0,8
 tpAnual,grupo2.tpAnual.Repositorios,Usuario,9,37,0,0,3,14,2,8,2,8
 tpAnual,grupo2.tpAnual.Repositorios,MemoryUserRepository,26,17,2,0,3,5,4,3,3,3
 tpAnual,grupo2.tpAnual.Repositorios,SQLUserRepository,23,56,0,0,5,17,1,4,1,4
