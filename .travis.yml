@@ -6,9 +6,11 @@ language: java
 
 services:
   - redis-server
+  - mongodb
 
 jdk:
   - oraclejdk8
+
 
 after_script:
   - "./.utility/.coverage.sh"

@@ -17,23 +17,23 @@ import java.util.List;
 
 //import javax.persistence.*;
 
-@Entity
-@Converters(LocalDateConverter.class)
+@org.mongodb.morphia.annotations.Entity
+@org.mongodb.morphia.annotations.Converters(LocalDateConverter.class)
 
 public class DatosDeBusqueda {
-	@Id
+	@org.mongodb.morphia.annotations.Id
 	private ObjectId id;
-	@Property
+	@org.mongodb.morphia.annotations.Property
 	private String txtBuscado;
-	@Property
+	@org.mongodb.morphia.annotations.Property
 	private long segundosQueTardoLaBusqueda;
-	@Property
+	@org.mongodb.morphia.annotations.Property
 	private int totalDeResultados;		
-	@Property //@Convert(LocalDateConverter.class)	
+	@org.mongodb.morphia.annotations.Property //@Convert(LocalDateConverter.class)	
 	private LocalDate fecha;
-	@Property
+	@org.mongodb.morphia.annotations.Property
 	private String nombreTerminal;
-	@Embedded
+	@org.mongodb.morphia.annotations.Embedded
 	private List<POI> poisRespuestaBusqueda;
 
 	public DatosDeBusqueda(String nombre, String texto, long segundos, int totalResultados, LocalDate fecha,List<POI> poisRespuesta ) {
