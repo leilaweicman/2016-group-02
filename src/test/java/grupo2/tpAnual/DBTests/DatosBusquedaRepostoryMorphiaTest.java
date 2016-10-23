@@ -67,9 +67,12 @@ public class DatosBusquedaRepostoryMorphiaTest {
 	private DatosBusquedaRepositoryMongoDB repositorioDB;
 	//private MongoClient client;
 	MorphiaService morphia;
+	private String nombreTerminal2;
+	private List<Integer> listaTotResult;
 	
 	@Before
 	public void init() {
+		listaTotResult=new ArrayList<>();
 		LocalDate today=LocalDate.now();
 		unRango = new Rango(1, LocalTime.of(9, 0, 0), LocalTime.of(18, 0, 0));
 		otroRango = new Rango(3, LocalTime.of(9, 0, 0), LocalTime.of(13, 0, 0));
@@ -108,22 +111,34 @@ public class DatosBusquedaRepostoryMorphiaTest {
 		Assert.assertEquals(datosDeBusquedaList.size(), 3);
 	}
 	
-	/*@Test
+	@Test
 	public void testObtenerTotalResultadosPorTerminal(){
+		this.listaTotResult.add(15);
 		this.nombreTerminal="lasHeras";
-		Assert.assertTrue(repositorioDB.obtenerTotalResultadosPorTerminal(nombreTerminal).get(1)==15);
+		Assert.assertEquals(repositorioDB.obtenerTotalResultadosPorTerminal(nombreTerminal),this.listaTotResult);
+	}
+	
+	@Test
+	public void testObtenerTotalResultadosPorTerminal2(){
+		this.listaTotResult.add(15);
+		this.listaTotResult.add(15);
+		this.nombreTerminal="flores";
+		Assert.assertEquals(repositorioDB.obtenerTotalResultadosPorTerminal(nombreTerminal),this.listaTotResult);
 	}
 	
 	@Test
 	public void testCantidadDeBusquedasDe(){
-		this.nombreTerminal="flores";
-		Assert.assertTrue(repositorioDB.cantidadDeBusquedasDe(nombreTerminal)== 2);
 		
-	}*/
+		this.nombreTerminal="flores";
+		Assert.assertTrue(repositorioDB.cantidadDeBusquedasDe(nombreTerminal)== 30);
+		
+	}
 	
 	@Test
 	public void testObtenerPorNombre(){
 		this.nombreTerminal="lasHeras";
+		this.nombreTerminal2="flores";
+		Assert.assertEquals(repositorioDB.obtenerPorNombre(nombreTerminal2).size(), 2);
 		Assert.assertEquals(repositorioDB.obtenerPorNombre(nombreTerminal).size(), 1);	
 	}
 }
