@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>CGP.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tpAnual</a> &gt; <a href="index.source.html" class="el_package">grupo2.tpAnual.Pois</a> &gt; <span class="el_source">CGP.java</span></div><h1>CGP.java</h1><pre class="source lang-java linenums">package grupo2.tpAnual.Pois;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import javax.persistence.*;
+
+import org.joda.time.DateTime;
+import org.uqbar.geodds.Point;
+
+import grupo2.tpAnual.AccesoriosPois.Servicio;
+
+@Entity
+@DiscriminatorValue(&quot;2&quot;)
+public class CGP extends POI {
+	
+	@OneToMany
+	private List&lt;Servicio&gt; servicios;
+
+	public CGP(String nombre, Point ubicacion) {
+<span class="fc" id="L22">		super(nombre, ubicacion);</span>
+<span class="fc" id="L23">		servicios = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L24">	}</span>
+
+	public List&lt;Servicio&gt; getServicios() {
+<span class="nc" id="L27">		return servicios;</span>
+	}
+
+	public void setServicios(List&lt;Servicio&gt; ser) {
+<span class="fc" id="L31">		this.servicios = ser;</span>
+<span class="fc" id="L32">	}</span>
+
+	public void agregarServicio(Servicio serv){
+<span class="nc" id="L35">		this.servicios.add(serv);</span>
+<span class="nc" id="L36">	}</span>
+	
+	@Override
+	public boolean tieneTextoEnOtrosAtributos(String texto) {
+<span class="fc bfc" id="L40" title="All 2 branches covered.">		for (Servicio ser : servicios) {</span>
+<span class="pc bpc" id="L41" title="1 of 2 branches missed.">			if (ser.getNombre().contains(texto)) {</span>
+<span class="nc" id="L42">				return true;</span>
+			}
+<span class="fc" id="L44">		}</span>
+<span class="fc" id="L45">		return false;</span>
+	}
+
+	@Override
+	public boolean estaDisponible(DateTime momento, String nombreServicio) {
+<span class="fc" id="L50">		boolean disponible = false;</span>
+<span class="fc bfc" id="L51" title="All 2 branches covered.">		if (nombreServicio != &quot;&quot;) {</span>
+<span class="fc bfc" id="L52" title="All 2 branches covered.">			disponible = servicios.stream().filter(x -&gt; x.getNombre() == nombreServicio).collect(Collectors.toList())</span>
+<span class="fc" id="L53">					.get(0).estaDisponible(momento);</span>
+		} else {
+<span class="fc" id="L55">			disponible = servicios.stream().anyMatch(servicio -&gt; servicio.estaDisponible(momento));</span>
+		}
+<span class="fc" id="L57">		return disponible;</span>
+	}
+
+	@Override
+	public boolean estaCerca(Point punto) {
+<span class="nc" id="L62">		return (this.comuna.estaAdentro(punto));</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>BajaDePois.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tpAnual</a> &gt; <a href="index.source.html" class="el_package">grupo2.tpAnual.Procesos</a> &gt; <span class="el_source">BajaDePois.java</span></div><h1>BajaDePois.java</h1><pre class="source lang-java linenums">package grupo2.tpAnual.Procesos;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+import org.joda.time.LocalDate;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import grupo2.tpAnual.FromJsonToMap;
+import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosPOIsMemory;
+import grupo2.tpAnual.Procesos.ManejoDeErroresProcesos.AccionEnCasoDeFallo;
+
+public class BajaDePois extends Proceso {
+	RestServiceBajaPois servicioRestBajaPois;
+<span class="fc" id="L18">	public ObjectMapper mapper = new ObjectMapper();</span>
+
+	public BajaDePois(int hora, LocalDate fecha, List&lt;AccionEnCasoDeFallo&gt; configuraciones,
+			OrigenesDeDatosPOIsMemory origenesDeDatos) {
+<span class="fc" id="L22">		super(hora, fecha, configuraciones, origenesDeDatos);</span>
+<span class="fc" id="L23">		this.servicioRestBajaPois = new RestServiceBajaPois();</span>
+<span class="fc" id="L24">	}</span>
+
+	public List&lt;Integer&gt; getNumerosIdentificadoresDePois() {
+<span class="fc" id="L27">		String json = this.servicioRestBajaPois.getPOIs();</span>
+		
+<span class="fc" id="L29">		List&lt;Integer&gt; numerosID = new ArrayList&lt;&gt;();</span>
+		try {
+<span class="fc" id="L31">			numerosID = FromJsonToMap.transformarAMap(json).stream().map((poiMap) -&gt; transformarID(poiMap)).collect(Collectors.toList());</span>
+
+<span class="nc" id="L33">		} catch (Exception e) {</span>
+<span class="nc" id="L34">			e.printStackTrace();</span>
+<span class="fc" id="L35">		}</span>
+<span class="fc" id="L36">		return numerosID;</span>
+	}
+	
+	public int transformarID(Map&lt;String, Object&gt; map){
+<span class="fc" id="L40">		int id = (int) map.getOrDefault(&quot;id&quot;, -1);</span>
+<span class="fc" id="L41">		return id;</span>
+
+	}
+	@Override
+	public void ejecutar() {
+		List&lt;Integer&gt; poisABorrar;
+<span class="fc" id="L47">		poisABorrar = this.getNumerosIdentificadoresDePois();</span>
+<span class="fc bfc" id="L48" title="All 2 branches covered.">		for (Integer pid : poisABorrar) {</span>
+<span class="fc" id="L49">			this.origenesDeDatos.darDeBajaPOI(pid);</span>
+<span class="fc" id="L50">			cantidadElementosAfectados++;</span>
+<span class="fc" id="L51">		}</span>
+<span class="fc" id="L52">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>
