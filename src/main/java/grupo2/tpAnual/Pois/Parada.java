@@ -7,9 +7,10 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="parada")
-//@PrimaryKeyJoinColumn(name="parada_id", referencedColumnName="poi_id")
+@DiscriminatorValue("4")
 public class Parada extends POI {
 	
+	@Column
 	private String linea;
 
 	public Parada(String nombre, Point ubicacion, String linea) {

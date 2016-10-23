@@ -237,6 +237,14 @@ public class SQLTest extends AbstractPersistenceTest implements WithGlobalEntity
 
 	}
 	
+	@Test
+	public void persistirParada(){
+		Parada parada = new Parada("Linea 114", null, "114");
+		persist(parada);
+		
+		Parada paradaBuscada = (Parada) em.createQuery("from Parada where id = :id").setParameter("id", parada.getId()).getSingleResult();
+		assertEquals(parada.getLinea(), paradaBuscada.getLinea());
+	}
 	
 	@Test
 	public void persistirBanco(){
