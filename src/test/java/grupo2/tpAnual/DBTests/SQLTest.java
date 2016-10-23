@@ -11,6 +11,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
+import org.joda.time.DateTime;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -25,6 +26,7 @@ import ServiciosExternos.ServicioExternoCentroDTO;
 import grupo2.tpAnual.Mapa;
 import grupo2.tpAnual.AccesoriosPois.Comuna;
 import grupo2.tpAnual.AccesoriosPois.Direccion;
+import grupo2.tpAnual.AccesoriosPois.Disponibilidad;
 import grupo2.tpAnual.AccesoriosPois.Rango;
 import grupo2.tpAnual.AccesoriosPois.Servicio;
 import grupo2.tpAnual.Observers.EnviarMailBusqueda;
@@ -230,6 +232,28 @@ public class SQLTest extends AbstractPersistenceTest implements WithGlobalEntity
 		Rango rangoBuscado = (Rango) em.createQuery("from Rango where horaDesde = :horaDesde").setParameter("horaDesde", rango.getHoraDesde()).getSingleResult();
 		assertEquals(rangoBuscado.getHoraDesde(),rango.getHoraDesde());
 		
+	}
+	
+
+	public void persistirDisponibilidad(){
+		
+		Integer dia = 1;
+		LocalTime horaDesde = LocalTime.of(10,0,0);
+		LocalTime horaHasta = LocalTime.of(15, 0,0);
+		Rango rango = new Rango(dia, horaDesde, horaHasta);
+
+		List<Rango> rangoDisponibilidad = new ArrayList<Rango>();
+		rangoDisponibilidad.add(rango);
+
+		Disponibilidad disponibilidad = new Disponibilidad(rangoDisponibilidad);
+				
+		persist(disponibilidad);
+		
+		DateTime momento = new DateTime("2016-04-25T11:00:00");
+		
+		Disponibilidad disponibilidadBuscada = (Disponibilidad) em.createQuery("from Disponibilidad where id = :id").setParameter("id", disponibilidad.getId()).getSingleResult();
+		assertEquals(disponibilidad.estaDisponible(momento),disponibilidadBuscada.estaDisponible(momento));
+
 	}
 	
 	

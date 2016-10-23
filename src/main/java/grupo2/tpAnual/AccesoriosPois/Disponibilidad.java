@@ -4,16 +4,25 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.*;
+
 import org.joda.time.DateTime;
 
 public class Disponibilidad {
 
+	@Id @GeneratedValue
+	private Integer id;
+	@OneToMany @JoinColumn(name="id")
 	private List<Rango> rangoDisponibilidad = new ArrayList<Rango>();
 
 	public Disponibilidad(List<Rango> rango) {
 		this.rangoDisponibilidad = rango;
 	}
 
+	public Integer getId(){
+		return this.id;
+	}
+	
 	public boolean estaDisponible(DateTime momento) {
 		int dia = momento.getDayOfWeek();
 		int hora = momento.getHourOfDay();
@@ -37,4 +46,7 @@ public class Disponibilidad {
 		this.rangoDisponibilidad.add(rango);
 	}
 
+	/*public List<Rango> getDisponibilidad(){
+		return this.rangoDisponibilidad;
+	}*/
 }
