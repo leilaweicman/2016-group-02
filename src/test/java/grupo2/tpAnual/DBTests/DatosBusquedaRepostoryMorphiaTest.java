@@ -79,6 +79,7 @@ public class DatosBusquedaRepostoryMorphiaTest {
 		comercio.setId(4);
 		pois = new ArrayList<>();
 		pois.add(comercio);
+		
 		datoBuscado = new DatosDeBusqueda("lasHeras", "libros", 10, 15, today , pois);
 		datoBuscado2 = new DatosDeBusqueda("flores", "carpetas", 14, 15, today.minusDays(1), pois);
 		datoBuscado3 = new DatosDeBusqueda("flores", "carpetas", 14, 15, today.minusDays(2), pois);
@@ -101,13 +102,13 @@ public class DatosBusquedaRepostoryMorphiaTest {
 
 	/*@Test
 	public void testConsultarDatos() {
-		//List<DatosDeBusqueda> datosDeBusquedaList= new ArrayList<>();
-		//datosDeBusquedaList=this.repositorioDB.consultarDatos();
+		List<DatosDeBusqueda> datosDeBusquedaList= new ArrayList<>();
+		datosDeBusquedaList=this.repositorioDB.consultarDatos();
 		
 		//Assert.assertEquals(datosDeBusquedaList.size(), 3);
 	}
 	
-	@Test
+	/*@Test
 	public void testObtenerTotalResultadosPorTerminal(){
 		this.nombreTerminal="lasHeras";
 		Assert.assertTrue(repositorioDB.obtenerTotalResultadosPorTerminal(nombreTerminal).get(1)==15);

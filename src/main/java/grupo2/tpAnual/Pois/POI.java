@@ -60,6 +60,10 @@ public abstract class POI {
 		this.palabraClave = new ArrayList<String>();
 	}
 
+	public POI() {
+	
+	}
+	
 	public void setId(Integer numeroVerificador) {
 		this.id = numeroVerificador;
 	}

@@ -30,6 +30,10 @@ public class Comercio extends POI {
 		disponibilidad = new Disponibilidad(this.rangoDisponibilidad);
 	}
 
+	public Comercio() {
+		
+	}
+	
 	public List<Rango> getRango() {
 		return rangoDisponibilidad;
 	}

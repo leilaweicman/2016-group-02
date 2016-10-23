@@ -20,6 +20,9 @@ public class Rango {
 		this.horaDesde = horaD;
 		this.horaHasta = horaH;
 	}
+	
+	public Rango() {
+	}
 
 	public Integer getDay() {
 		return dia;
