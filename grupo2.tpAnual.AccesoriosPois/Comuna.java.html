@@ -22,36 +22,37 @@ public class Comuna {
 
 	private EntityManager em;
 	//@OneToMany @Convert(converter = ConverterPoint.class) @JoinColumn
-	//@ElementCollection @Convert(converter = ConverterPoint.class)
-<span class="fc" id="L26">	@Transient</span>
-	@org.mongodb.morphia.annotations.Transient
-
+	 //@Convert(converter = ConverterPoint.class)
+	//@Transient
+	
+<span class="fc" id="L28">	@org.mongodb.morphia.annotations.Transient</span>
+	@Embedded
 	private List&lt;Point&gt; vertices = new ArrayList&lt;Point&gt;();
 	
 	@Id
 	@org.mongodb.morphia.annotations.Transient
 	private int numeroComuna;
 
-<span class="fc" id="L35">	public Comuna(int numero, List&lt;Point&gt; vertices) {</span>
-<span class="fc" id="L36">		this.numeroComuna = numero;</span>
-<span class="fc" id="L37">		this.comuna = new Polygon(vertices);</span>
-<span class="fc" id="L38">	}</span>
+<span class="fc" id="L36">	public Comuna(int numero, List&lt;Point&gt; vertices) {</span>
+<span class="fc" id="L37">		this.numeroComuna = numero;</span>
+<span class="fc" id="L38">		this.comuna = new Polygon(vertices);</span>
+<span class="fc" id="L39">	}</span>
 
 	public void agregarVertice(Point vertice) {
-<span class="nc" id="L41">		this.vertices.add(vertice);</span>
-<span class="nc" id="L42">		this.comuna = new Polygon(vertices);</span>
-<span class="nc" id="L43">	}</span>
+<span class="nc" id="L42">		this.vertices.add(vertice);	</span>
+<span class="nc" id="L43">		this.comuna = new Polygon(this.vertices);</span>
+<span class="nc" id="L44">	}</span>
 
 	public int getNumeroComuna() {
-<span class="fc" id="L46">		return this.numeroComuna;</span>
+<span class="fc" id="L47">		return this.numeroComuna;</span>
 	}
 
 	public Polygon getComuna() {
-<span class="nc" id="L50">		return comuna;</span>
+<span class="nc" id="L51">		return comuna;</span>
 	}
 
 	public boolean estaAdentro(Point punto) {
-<span class="nc" id="L54">		return (this.comuna.isInside(punto));</span>
+<span class="nc" id="L55">		return (this.comuna.isInside(punto));</span>
 	}
 
 }
