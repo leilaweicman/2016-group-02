@@ -35,24 +35,25 @@ public class Comuna {
 
 <span class="fc" id="L36">	public Comuna(int numero, List&lt;Point&gt; vertices) {</span>
 <span class="fc" id="L37">		this.numeroComuna = numero;</span>
-<span class="fc" id="L38">		this.comuna = new Polygon(vertices);</span>
-<span class="fc" id="L39">	}</span>
+<span class="fc" id="L38">		this.vertices = vertices;</span>
+<span class="fc" id="L39">		this.comuna = new Polygon(vertices);</span>
+<span class="fc" id="L40">	}</span>
 
 	public void agregarVertice(Point vertice) {
-<span class="nc" id="L42">		this.vertices.add(vertice);	</span>
-<span class="nc" id="L43">		this.comuna = new Polygon(this.vertices);</span>
-<span class="nc" id="L44">	}</span>
+<span class="nc" id="L43">		this.vertices.add(vertice);	</span>
+<span class="nc" id="L44">		this.comuna = new Polygon(this.vertices);</span>
+<span class="nc" id="L45">	}</span>
 
 	public int getNumeroComuna() {
-<span class="fc" id="L47">		return this.numeroComuna;</span>
+<span class="fc" id="L48">		return this.numeroComuna;</span>
 	}
 
 	public Polygon getComuna() {
-<span class="nc" id="L51">		return comuna;</span>
+<span class="nc" id="L52">		return comuna;</span>
 	}
 
 	public boolean estaAdentro(Point punto) {
-<span class="nc" id="L55">		return (this.comuna.isInside(punto));</span>
+<span class="nc" id="L56">		return (this.comuna.isInside(punto));</span>
 	}
 
 }
