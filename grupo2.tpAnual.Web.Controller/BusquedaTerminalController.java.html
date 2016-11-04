@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>BusquedaTerminalController.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tpAnual</a> &gt; <a href="index.source.html" class="el_package">grupo2.tpAnual.Web.Controller</a> &gt; <span class="el_source">BusquedaTerminalController.java</span></div><h1>BusquedaTerminalController.java</h1><pre class="source lang-java linenums">package grupo2.tpAnual.Web.Controller;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.uqbar.geodds.Point;
+
+import ServiciosExternos.CentroDTO;
+import grupo2.tpAnual.Mapa;
+import grupo2.tpAnual.Pois.Banco;
+import grupo2.tpAnual.Pois.CGP;
+import grupo2.tpAnual.Pois.Comercio;
+import grupo2.tpAnual.Pois.POI;
+import grupo2.tpAnual.Pois.Parada;
+import spark.ModelAndView;
+import spark.Request;
+import spark.Response;
+
+<span class="nc" id="L22">public class BusquedaTerminalController {</span>
+	public static ModelAndView get(Request req, Response res) {
+		Mapa mapa;
+<span class="nc" id="L25">		String palabraBuscada = req.queryParams(&quot;buscando&quot;);</span>
+<span class="nc" id="L26">		List&lt;POI&gt; resultadoBusqueda = new ArrayList&lt;&gt;();</span>
+	//	resultadoBusqueda = mapa.busquedaRealizadaPorElUsuario(&quot;buscando&quot;);
+<span class="nc" id="L28">		resultadoBusqueda = Arrays.asList(new Banco(&quot;Santander Rio&quot;,Point.and(-34.554, 98.255)), new CGP(&quot;Comuna 3&quot;, Point.and(54.327, 98.765)), new Parada(&quot;Los Amigos S.A&quot;,Point.and(-85.254, -56.222),&quot;114&quot;));</span>
+<span class="nc" id="L29">		return new ModelAndView(resultadoBusqueda, &quot;busquedaTerminal.hbs&quot;);</span>
+}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>
