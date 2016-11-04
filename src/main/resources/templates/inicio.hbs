@@ -1,0 +1,24 @@
+<html>
+	<head>
+		<title>Iniciar sesion</title>
+		<link rel="stylesheet" href="main.css" type="text/css">
+	</head>
+	<body>
+		<h1></h1>
+		<div class="form-upper default-alert">
+		<div class="alert-subtitle">Iniciar Sesion en POIS</div>
+		<br>
+		<input type="text" name="j_username" placeholder="User" autofocus />  {{ usuario }}
+		<br>
+		<br>
+		<input type="password" name="j_password" placeholder="Password"/>
+		<br>
+	</div>
+	<form method="post" action="/administrador">
+    <button type="submit">Ingresar como Administrador</button>
+	</form>
+	 <form method="post" action= "/terminal">
+    <button type="submit">Ingresar como Terminal</button>
+	</form>
+	</body>
+</html>

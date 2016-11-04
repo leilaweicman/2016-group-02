@@ -18,9 +18,6 @@ import grupo2.tpAnual.AccesoriosPois.Rango;
 public class Banco extends POI {
 	@Transient
 	private List<Rango> rangoDisponibilidad;
-	/*@Transient
-	private List<Integer> dias;*/
-	//@Transient
 	@OneToOne
 	private Disponibilidad disponibilidad;
 

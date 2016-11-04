@@ -113,6 +113,17 @@
 			<artifactId>commons-beanutils</artifactId>
 			<version>1.9.2</version>
 		</dependency>
+		<dependency>
+			<groupId>com.github.jknack</groupId>
+			<artifactId>handlebars-helpers</artifactId>
+			<version>4.0.6</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.jknack</groupId>
+			<artifactId>handlebars-humanize</artifactId>
+			<version>4.0.6</version>
+</dependency>
 	  	<dependency>
 			<groupId>org.uqbar-project</groupId>
 			<artifactId>jpa-java8-extras</artifactId>
@@ -134,6 +145,23 @@
 		    <artifactId>morphia</artifactId>
 		    <version>1.2.1</version>
 		</dependency>
+<dependency>
+			<groupId>com.sparkjava</groupId>
+			<artifactId>spark-core</artifactId>
+			<version>2.5</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.sparkjava</groupId>
+			<artifactId>spark-template-handlebars</artifactId>
+			<version>2.3</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.sparkjava</groupId>
+			<artifactId>spark-debug-tools</artifactId>
+			<version>0.5</version>
+</dependency>
 		<dependency>
     <groupId>org.redisson</groupId>
     <artifactId>redisson</artifactId>

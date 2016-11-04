@@ -20,35 +20,35 @@ public class OrigenesDeDatosPOIsSQL extends OrigenesDeDatosPOIs{
 	}
 	
 	public List<POI> getPOIs() {
-		//em.getTransaction().begin();
+		em.getTransaction().begin();
 		List<POI> pois = new ArrayList<POI>();
 		pois = (List<POI>) em.createQuery("from POI").getResultList();
-		//em.getTransaction().commit();
+		em.getTransaction().commit();
 		return pois;
 	}
 
 	public void agregarPOI(POI poi) {
-		//em.getTransaction().begin();
+		em.getTransaction().begin();
 		em.persist(poi);
-		//em.getTransaction().commit();
+		em.getTransaction().commit();
 	}
 
 	public void darDeBajaPOI(Integer id) {
-		//em.getTransaction().begin();
+		em.getTransaction().begin();
 		List<POI> pois = new ArrayList<POI>();
 		pois = (List<POI>) em.createQuery("from POI where id = :id").setParameter("id", id).getResultList();
 		pois.forEach(poi -> em.remove(poi));
-		//em.getTransaction().commit();
+		em.getTransaction().commit();
 	}
 
 	@Override
 	public List<POI> busqueda(String txtABuscar) {
-		//em.getTransaction().begin();
+		em.getTransaction().begin();
 		List<POI> resultados = new ArrayList<POI>();
 		List<String> palClaves = Arrays.asList(txtABuscar);
 		resultados =(List<POI>) em.createQuery("from POI where nombre= :nombre").setParameter("nombre", txtABuscar).getResultList(); 
-		//resultados.addAll((List<POI>) em.createQuery("from POI where palabraClave in (:palabra)").setParameter("palabra", palClaves).getResultList());
-		//em.getTransaction().commit();
+		resultados.addAll((List<POI>) em.createQuery("from POI where palabraClave in (:palabra)").setParameter("palabra", palClaves).getResultList());
+		em.getTransaction().commit();
 		return resultados;
 	}
 	
