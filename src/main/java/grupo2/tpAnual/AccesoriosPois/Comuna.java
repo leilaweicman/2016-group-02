@@ -27,7 +27,7 @@ public class Comuna {
 	
 	@org.mongodb.morphia.annotations.Transient
 	@Embedded
-	private List<PointComuna> vertices = new ArrayList<PointComuna>();
+	private List<Point> vertices = new ArrayList<Point>();
 	
 	@Id
 	@org.mongodb.morphia.annotations.Transient
@@ -39,12 +39,8 @@ public class Comuna {
 	}
 
 	public void agregarVertice(Point vertice) {
-		this.vertices.add(new PointComuna(vertice.latitude(), vertice.longitude()));
-		List<Point> points = new ArrayList<Point>();
-		for(int i = 0; i < points.size(); i++){
-			points.add(this.vertices.get(i).GetPoint());
-		}
-		this.comuna = new Polygon(points);
+		this.vertices.add(vertice);	
+		this.comuna = new Polygon(this.vertices);
 	}
 
 	public int getNumeroComuna() {
