@@ -17,6 +17,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 import org.uqbar.geodds.Point;
+import org.uqbar.geodds.Polygon;
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
@@ -116,7 +117,9 @@ public class SQLTest extends AbstractPersistenceTest implements WithGlobalEntity
 	public void persistirUsuarioConComuna(){
 		Usuario user = new Usuario();
 		user.setNombre("juan");
-		Comuna comuna1 = new Comuna(1, null);
+		List<Point> points = new ArrayList<Point>();
+		points.add(Point.and(-34.664837, -58.385674));
+		Comuna comuna1 = new Comuna(1, points);
 		user.setComuna(comuna1);
 		persist(comuna1);
 		persist(user);

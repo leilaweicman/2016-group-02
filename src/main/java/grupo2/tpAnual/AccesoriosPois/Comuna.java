@@ -22,11 +22,12 @@ public class Comuna {
 
 	private EntityManager em;
 	//@OneToMany @Convert(converter = ConverterPoint.class) @JoinColumn
-	//@ElementCollection @Convert(converter = ConverterPoint.class)
-	@Transient
+	 //@Convert(converter = ConverterPoint.class)
+	//@Transient
+	
 	@org.mongodb.morphia.annotations.Transient
-
-	private List<Point> vertices = new ArrayList<Point>();
+	@Embedded
+	private List<PointComuna> vertices = new ArrayList<PointComuna>();
 	
 	@Id
 	@org.mongodb.morphia.annotations.Transient
@@ -38,8 +39,12 @@ public class Comuna {
 	}
 
 	public void agregarVertice(Point vertice) {
-		this.vertices.add(vertice);
-		this.comuna = new Polygon(vertices);
+		this.vertices.add(new PointComuna(vertice.latitude(), vertice.longitude()));
+		List<Point> points = new ArrayList<Point>();
+		for(int i = 0; i < points.size(); i++){
+			points.add(this.vertices.get(i).GetPoint());
+		}
+		this.comuna = new Polygon(points);
 	}
 
 	public int getNumeroComuna() {
