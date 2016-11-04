@@ -35,6 +35,7 @@ public class Comuna {
 
 	public Comuna(int numero, List<Point> vertices) {
 		this.numeroComuna = numero;
+		this.vertices = vertices;
 		this.comuna = new Polygon(vertices);
 	}
 
