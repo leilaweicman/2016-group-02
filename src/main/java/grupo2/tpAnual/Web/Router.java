@@ -1,5 +1,6 @@
 package grupo2.tpAnual.Web;
 
+import grupo2.tpAnual.Web.Controller.AdministracionPoisController;
 import grupo2.tpAnual.Web.Controller.BusquedaTerminalController;
 import grupo2.tpAnual.Web.Controller.InicioController;
 import grupo2.tpAnual.Web.Controller.ResultadoBusquedaController;
@@ -16,5 +17,6 @@ public class Router {
 		Spark.get("/terminal", BusquedaTerminalController::get, engine);
 		Spark.get("/administrador", BusquedaTerminalController::get, engine);
 		Spark.get("/resultadoBusqueda",ResultadoBusquedaController::get, engine);
+		Spark.get("/administrarPois", AdministracionPoisController::get, engine);
 }
 }
