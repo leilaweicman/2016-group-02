@@ -14,6 +14,7 @@ public class Router {
 //aca van las paginas que vamos creando. son en hbs El servidor levanta, y le dice a Router que ejecute su config. Aca agregamos el controller a cada ruta. Ver en cada controller que se hace 
 		Spark.get("/", InicioController::get,engine);
 		Spark.get("/terminal", BusquedaTerminalController::get, engine);
+		Spark.get("/administrador", BusquedaTerminalController::get, engine);
 		Spark.get("/resultadoBusqueda",ResultadoBusquedaController::get, engine);
 }
 }

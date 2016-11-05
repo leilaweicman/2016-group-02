@@ -1,10 +1,67 @@
 <html>
 	<head>
 		<title>Terminal</title>
+		<style type="text/css">
+		centrado {
+  position: absolute;
+  top: 50%; 
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+button {
+  position:Absolute; 
+  top:62%;
+  left:48%;
+  border: 1px solid #dedede;
+  border-radius: 3px;
+  color: #555;
+  display: inline-block;
+  font: bold 12px/12px HelveticaNeue, Arial;
+  box-shadow: inset 0 0 0 3px #3a7999;
+  padding: 8px 11px;
+  text-decoration: none;
+  }
+ 
+#criterios {
+ position: absolute;
+    left: 50%;
+    top: 40%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+  text-align: left;
+  background: white;
+  padding-left:  50px;
+  padding-right: 50px;
+  border: 1px solid grey;
+}
+
+  body {
+   padding-left:  50px;
+  padding-right: 50px;
+   background-image: url(http://conceptodefinicion.de/wp-content/uploads/2014/03/ciudad.jpg);
+   background-size:100%;
+   text-align: center;
+    font-family: times, Times New Roman, times-roman, georgia, serif;
+ font-size: 28px;
+ line-height: 40px;
+ letter-spacing: -1px;color: #444;
+           }
+  h1 {
+  text-align: center;
+     font-family: times, Times New Roman, times-roman, georgia, serif;
+ font-size: 48px;
+         line-height: 40px;
+         letter-spacing: -1px;
+ color: #444;
+ margin: 0 0 0 0;
+ padding: 0 0 0 0;
+                font-weight: 100;     }
+         </style>
 	</head>
 	<body>
 	<h1>Busqueda de POIs</h1>
-	<div class="flexsearch">
+	<br>
+	<div class="buscador">
 		<div class="flexsearch--wrapper">
 			<form class="flexsearch--form" action="/resultadoBusqueda" method="post">
 				<div class="flexsearch--input-wrapper">
@@ -13,6 +70,23 @@
 				</div>
 			</form>
 		</div>
+	</div>
+<div id="criterios">
+<h3 align= center>Filtrar por: </h3>
+        <table>
+            <tr>
+<td>Por tipo: <br>
+<label><input type="checkbox" id="cbox2" value="TipoCGP">CGP<label for="cbox2"></label><br>
+<label><input type="checkbox" id="cbox2" value="TipoBanco">Banco<label for="cbox2"></label><br>
+<label><input type="checkbox" id="cbox2" value="TipoParada">Parada<label for="cbox2"></label><br>
+<label><input type="checkbox" id="cbox2" value="TipoComercio">Comercio<label for="cbox2"></label><br>
+<td><label><input type="checkbox" id="cbox1" value="porNombre">Por nombre</label><br>
+<label><input type="checkbox" id="cbox1" value="porComuna">Por Comuna</label></td>
+</td>
+   </tr>
+        </table>
+        <br>
 </div>
+     <button id="buscar" type="submit"> Buscar </button>
 	</body>
 </html>
