@@ -11,7 +11,7 @@ public class ResultadoBusquedaController {
 	
 	public static ModelAndView get(Request req, Response res) {
 
-		return new ModelAndView(null, "resultadoBusquedaTerminal.hbs");
+		return new ModelAndView(null, "administracionPois.hbs");
 }
 
 }
