@@ -48,7 +48,7 @@ tpAnual,grupo2.tpAnual.helpers,MapExtensions,17,0,0,0,6,0,2,0,2,0
 tpAnual,grupo2.tpAnual.Procesos.ManejoDeErroresProcesos,EnviarMailFalloProceso,11,11,2,0,3,3,2,1,1,1
 tpAnual,grupo2.tpAnual.Procesos.ManejoDeErroresProcesos,ReintentarEjecucionProceso,23,0,4,0,9,0,4,0,2,0
 tpAnual,ServiciosExternos,CentroDTO,9,18,0,0,3,7,3,4,3,4
-tpAnual,grupo2.tpAnual.Web.Controller,AdministracionPoisController,9,0,0,0,2,0,2,0,2,0
+tpAnual,grupo2.tpAnual.Web.Controller,AdministracionPoisController,17,0,0,0,4,0,2,0,2,0
 tpAnual,grupo2.tpAnual.Web.Controller,AdminController,9,0,0,0,2,0,2,0,2,0
 tpAnual,grupo2.tpAnual.Web.Controller,TerminalController,41,0,0,0,8,0,3,0,3,0
 tpAnual,grupo2.tpAnual.Web.Controller,InicioController,9,0,0,0,2,0,2,0,2,0
