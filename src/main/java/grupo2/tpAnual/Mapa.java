@@ -13,35 +13,19 @@ import grupo2.tpAnual.Repositorios.DatosDeBusqueda;
 import grupo2.tpAnual.Repositorios.DatosDeBusquedaRepository;
 import grupo2.tpAnual.Repositorios.Usuario;
 
-@Entity
-@Table(name="Mapa") 
 public class Mapa {
-	@Transient
-	private EntityManager em;
-	//@OneToMany @JoinColumn (name="id_origenes")
-	
-	@Transient 
+
 	private List<OrigenesDeDatos> origenesDeDatos;
-	@Id @GeneratedValue @Column(name="id_mapa")
-	private Integer id;
-	//@Transient
-	@Column(name="nombre")
 	private String nombre;
-	@Transient
-	//@Column(name="usuario") @OneToMany @JoinColumn(name="id_usuario")
 	private Usuario usuario;
 	private DatosDeBusquedaRepository repositorioDB;
 	
 	
 
 	public Mapa(List<OrigenesDeDatos> listaDeOrigenes, DatosDeBusquedaRepository repositorio) {
-		
 		origenesDeDatos = new ArrayList<OrigenesDeDatos>();
 		this.origenesDeDatos.addAll(listaDeOrigenes);
 		this.repositorioDB=repositorio;
-		
-		EntityManagerFactory emf =Persistence.createEntityManagerFactory("db");
-		em = emf.createEntityManager();
 
 	}
 
@@ -66,12 +50,6 @@ public class Mapa {
 	}
 
 	public List<OrigenesDeDatos> getOrigenesDeDatos() {
-		/*em.getTransaction().begin();
-		List<OrigenesDeDatos> origenes = new ArrayList<OrigenesDeDatos>();
-		origenes = (List<OrigenesDeDatos>) em.createQuery("from origenesDeDatos").getResultList();
-		em.getTransaction().commit();
-		return origenes;*/
-		
 		return this.origenesDeDatos;
 	}
 

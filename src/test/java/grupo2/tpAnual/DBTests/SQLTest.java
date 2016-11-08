@@ -15,16 +15,11 @@ import org.joda.time.DateTime;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mockito;
 import org.uqbar.geodds.Point;
-import org.uqbar.geodds.Polygon;
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
 
-import ServiciosExternos.ServicioExternoBanco;
-import ServiciosExternos.ServicioExternoCentroDTO;
-import grupo2.tpAnual.Mapa;
 import grupo2.tpAnual.AccesoriosPois.Comuna;
 import grupo2.tpAnual.AccesoriosPois.Direccion;
 import grupo2.tpAnual.AccesoriosPois.Disponibilidad;
@@ -35,8 +30,6 @@ import grupo2.tpAnual.Observers.EnviarMailBusqueda;
 import grupo2.tpAnual.Observers.NotificarDatosBusqueda;
 import grupo2.tpAnual.Observers.ObserverBusqueda;
 import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatos;
-import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosBancoExterno;
-import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosCentroDTO;
 import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosPOIs;
 import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosPOIsMemory;
 import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosPOIsSQL;
@@ -51,8 +44,6 @@ import grupo2.tpAnual.Repositorios.Usuario;
 
 public class SQLTest extends AbstractPersistenceTest implements WithGlobalEntityManager {
 	private EntityManager em;
-	private OrigenesDeDatosPOIsMemory origenesDeDatosPois;
-	private List<OrigenesDeDatos> listaDeOrigenes;
 	private Integer dia;
 	private LocalTime horaDesde;
 	private LocalTime horaHasta;
@@ -65,10 +56,7 @@ public class SQLTest extends AbstractPersistenceTest implements WithGlobalEntity
 	public void init(){
 		em = PerThreadEntityManagers.getEntityManager();
 		
-		this.listaDeOrigenes = new ArrayList<OrigenesDeDatos>();
-
-		this.origenesDeDatosPois = new OrigenesDeDatosPOIsMemory();
-
+	
 		this.dia = 1;
 		this.horaDesde = LocalTime.of(10,0,0);
 		this.horaHasta = LocalTime.of(15, 0,0);
@@ -171,28 +159,26 @@ public class SQLTest extends AbstractPersistenceTest implements WithGlobalEntity
 		assertTrue(repo.getUsuarios().contains(usuario1));
 		repo.deleteUsuario(usuario1);
 	}
-	
-	
-	/*@Test
+
+	@Test
 	public void queryBusquedaTest(){
-		persist(this.disponibilidad);
-		OrigenesDeDatosPOIs repo = new OrigenesDeDatosPOIsSQL(); 
-		Banco banco = new Banco("Santander Rio", null);
+		em.persist(this.rango);
+		em.persist(this.disponibilidad);
+		OrigenesDeDatosPOIs repo = new OrigenesDeDatosPOIsSQL();
+		Banco banco = new Banco("Santander Rio", Point.and(-32.555, 52.222));
 		List <String> palabras = Arrays.asList("depositos","moneda extranjera", "pago de impuestos");
 		banco.setPalabrasClaves(palabras);
 		banco.setDisponibilidad(this.disponibilidad);
-		repo.agregarPOI(banco);
-		assertEquals((repo.busqueda("Santander Rio").size()),1);
-		
-		repo.darDeBajaPOI(banco.getId());
+	    repo.agregarPOI(banco);
+	    em.flush();
+	    assertEquals((repo.busqueda("Santander Rio").size()),1);
 	}
 	
 	@Test
 	public void persistirPOISTest(){
-		//TODO persistir los dif atributos y en comuna el point
-		
-		persist(this.disponibilidad);
-		
+		//TODO persistir los dif atributos y en comuna el pont
+		em.persist(rango);
+		em.persist(this.disponibilidad);
 		OrigenesDeDatosPOIs repo = new OrigenesDeDatosPOIsSQL(); 
 		
 		Banco banco = new Banco("Santander Rio", null);
@@ -201,24 +187,16 @@ public class SQLTest extends AbstractPersistenceTest implements WithGlobalEntity
 		persist(comuna);
 		banco.setComuna(comuna);
 		banco.setDireccion(direccion);
-		banco.setDisponibilidad(this.disponibilidad);
-		
-		POI comercio = new Comercio("Kosiuko", null, null);
+		banco.setDisponibilidad(disponibilidad);
 		POI cgp = new CGP("Centro de Atención comuna 15", null);
 		POI parada = new Parada("Linea 114", null, null);
 		
-		repo.agregarPOI(comercio);
 		repo.agregarPOI(cgp);
 		repo.agregarPOI(parada);
 		repo.agregarPOI(banco);
-		assertEquals(repo.getPOIs().size(),4);
-		
-		repo.darDeBajaPOI(banco.getId());
-		repo.darDeBajaPOI(comercio.getId());
-		repo.darDeBajaPOI(parada.getId());
-		repo.darDeBajaPOI(cgp.getId());
-		assertEquals(repo.getPOIs().size(),0);
-	}*/
+		em.flush();
+		assertEquals(repo.getPOIs().size(),3);
+	}
 	
 	@Test
 	public void persistirRango(){

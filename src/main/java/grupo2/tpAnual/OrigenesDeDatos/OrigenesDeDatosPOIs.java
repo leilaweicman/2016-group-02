@@ -2,6 +2,8 @@ package grupo2.tpAnual.OrigenesDeDatos;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
+
 import grupo2.tpAnual.Pois.POI;
 
 public abstract class OrigenesDeDatosPOIs extends OrigenesDeDatos{
