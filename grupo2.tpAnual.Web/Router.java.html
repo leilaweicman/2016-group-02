@@ -16,8 +16,8 @@ import spark.template.handlebars.HandlebarsTemplateEngine;
 		//aca van las paginas que vamos creando. son en hbs El servidor levanta, y le dice a Router que ejecute su config. Aca agregamos el controller a cada ruta. Ver en cada controller que se hace 
 <span class="nc" id="L17">		Spark.get(&quot;/&quot;, InicioController::get,engine);</span>
 <span class="nc" id="L18">		Spark.get(&quot;/terminal&quot;, TerminalController::get, engine);</span>
-<span class="nc" id="L19">		Spark.get(&quot;/admin&quot;, AdminController::get, engine);</span>
-<span class="nc" id="L20">		Spark.get(&quot;/terminal/resultadosBusqueda&quot;,TerminalController::get, engine);</span>
+<span class="nc" id="L19">		Spark.get(&quot;/terminal/:palabraBuscada&quot;,TerminalController::show, engine);</span>
+<span class="nc" id="L20">		Spark.get(&quot;/admin&quot;, AdminController::get, engine);</span>
 <span class="nc" id="L21">		Spark.get(&quot;/admin/historicoConsultas&quot;, HistoricoConsultasController::get, engine);</span>
 		
 <span class="nc" id="L23">		Spark.get(&quot;/admin/pois&quot;, AdministracionPoisController::get, engine);</span>

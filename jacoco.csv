@@ -51,7 +51,7 @@ tpAnual,grupo2.tpAnual.Procesos.ManejoDeErroresProcesos,ReintentarEjecucionProce
 tpAnual,ServiciosExternos,CentroDTO,9,18,0,0,3,7,3,4,3,4
 tpAnual,grupo2.tpAnual.Web.Controller,AdministracionPoisController,97,0,0,0,22,0,6,0,6,0
 tpAnual,grupo2.tpAnual.Web.Controller,AdminController,9,0,0,0,2,0,2,0,2,0
-tpAnual,grupo2.tpAnual.Web.Controller,TerminalController,29,0,0,0,7,0,3,0,3,0
+tpAnual,grupo2.tpAnual.Web.Controller,TerminalController,69,0,0,0,9,0,3,0,3,0
 tpAnual,grupo2.tpAnual.Web.Controller,InicioController,9,0,0,0,2,0,2,0,2,0
 tpAnual,grupo2.tpAnual.Web.Controller,HistoricoConsultasController,9,0,0,0,2,0,2,0,2,0
 tpAnual,grupo2.tpAnual.Observers,ObserverBusqueda,0,3,0,0,0,1,0,1,0,1
