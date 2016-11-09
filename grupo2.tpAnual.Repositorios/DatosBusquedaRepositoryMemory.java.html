@@ -9,30 +9,32 @@ import org.mongodb.morphia.dao.BasicDAO;
 
 public class DatosBusquedaRepositoryMemory /*extends BasicDAO&lt;DatosDeBusqueda, ObjectId&gt;*/ implements DatosDeBusquedaRepository{
 	
+<span class="fc" id="L12">	public static DatosBusquedaRepositoryMemory instancia = new DatosBusquedaRepositoryMemory(); </span>
+	
 	private List&lt;DatosDeBusqueda&gt; listaDatosDeBusqueda;	
 	
-<span class="fc" id="L14">	public DatosBusquedaRepositoryMemory() {</span>
-<span class="fc" id="L15">		this.listaDatosDeBusqueda = new ArrayList&lt;DatosDeBusqueda&gt;();		</span>
-<span class="fc" id="L16">	}</span>
+<span class="fc" id="L16">	public DatosBusquedaRepositoryMemory() {</span>
+<span class="fc" id="L17">		this.listaDatosDeBusqueda = new ArrayList&lt;DatosDeBusqueda&gt;();		</span>
+<span class="fc" id="L18">	}</span>
 
 	public void agregarDatosBusqueda(DatosDeBusqueda registroBusqueda) {
-<span class="fc" id="L19">		this.listaDatosDeBusqueda.add(registroBusqueda);</span>
-<span class="fc" id="L20">	}</span>
+<span class="fc" id="L21">		this.listaDatosDeBusqueda.add(registroBusqueda);</span>
+<span class="fc" id="L22">	}</span>
 
 	public List&lt;DatosDeBusqueda&gt; consultarDatos() {
-<span class="fc" id="L23">		return this.listaDatosDeBusqueda;</span>
+<span class="fc" id="L25">		return this.listaDatosDeBusqueda;</span>
 	}
 
 	public List&lt;DatosDeBusqueda&gt; obtenerPorNombre(String nombreTerminal) {
-<span class="fc" id="L27">		return listaDatosDeBusqueda.stream().filter(registro -&gt; registro.getNombre().equals(nombreTerminal)).collect(Collectors.toList());</span>
+<span class="fc" id="L29">		return listaDatosDeBusqueda.stream().filter(registro -&gt; registro.getNombre().equals(nombreTerminal)).collect(Collectors.toList());</span>
 	}
 
 	public List&lt;Integer&gt; obtenerTotalResultadosPorTerminal(String nombreTerminal) {
-<span class="fc" id="L31">		return this.obtenerPorNombre(nombreTerminal).stream().map(registro -&gt; registro.getTotalDeResultados()).collect(Collectors.toList());</span>
+<span class="fc" id="L33">		return this.obtenerPorNombre(nombreTerminal).stream().map(registro -&gt; registro.getTotalDeResultados()).collect(Collectors.toList());</span>
 	}
 
 	public Integer cantidadDeBusquedasDe(String nombre) {
-<span class="nc" id="L35">		return this.obtenerTotalResultadosPorTerminal(nombre).stream().reduce(0, (a, b) -&gt; a + b);</span>
+<span class="nc" id="L37">		return this.obtenerTotalResultadosPorTerminal(nombre).stream().reduce(0, (a, b) -&gt; a + b);</span>
 	}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>
