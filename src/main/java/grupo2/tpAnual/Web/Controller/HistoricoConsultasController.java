@@ -12,13 +12,13 @@ import spark.Response;
 
 public class HistoricoConsultasController {
 	
-	public static ModelAndView listar(Request req, Response res) {
+	public static ModelAndView get(Request req, Response res) {
 		Map<String, List<DatosDeBusqueda>> model = new HashMap<>();
 		List<DatosDeBusqueda> datosDeBusqueda = DatosBusquedaRepositoryMongoDB.instancia.consultarDatos();
 		
 		model.put("datosDebusqueda", datosDeBusqueda);
 		
-		return new ModelAndView(model, "historicoConsultas.hbs");
+		return new ModelAndView(model, "historicoConsultas/historicoConsultas.hbs");
 		
 	}
 	
@@ -31,7 +31,20 @@ public class HistoricoConsultasController {
 		
 		model.put("datosDebusqueda", datosDeBusqueda);
 		
-		return new ModelAndView(model, "historicoConsultas.hbs");
+		return new ModelAndView(model, "historicoConsultas/listarPorTerminal.hbs");
+		
+	}
+	
+	public static ModelAndView listarPorCantidad(Request req, Response res) {
+		Map<String, List<DatosDeBusqueda>> model = new HashMap<>();
+		
+		Integer cantidad= Integer.parseInt(req.params("cantidad"));
+		
+		List<DatosDeBusqueda> datosDeBusqueda = DatosBusquedaRepositoryMongoDB.instancia.cantidadDePois(cantidad);
+		
+		model.put("datosDebusqueda", datosDeBusqueda);
+		
+		return new ModelAndView(model, "historicoConsultas/listarPorCantidad.hbs");
 		
 	}
 	
@@ -44,7 +57,7 @@ public class HistoricoConsultasController {
 		
 		model.put("datosDebusqueda", datosDeBusqueda);
 		
-		return new ModelAndView(model, "historicoConsultas.hbs");
+		return new ModelAndView(model, "historicoConsultas/listarPorFecha.hbs");
 		
 	}*/
 }
