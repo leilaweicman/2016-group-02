@@ -21,6 +21,8 @@ public class Usuario {
 	@ManyToOne 
 	public Comuna comuna;
 	
+	private int esAdmin; //es 1 si es admin, 0 si es terminal
+	
 	public Usuario(){
 		
 	}
@@ -59,5 +61,13 @@ public class Usuario {
 	public void quitarObserversBusqueda(List<ObserverBusqueda> observers) {
 		this.accionesBusqueda.removeAll(observers);
 
+	}
+	
+	public void setEsAdmin(int admin){
+		esAdmin = admin;
+	}
+	
+	public int getEsAdmin(){
+		return esAdmin;
 	}
 }
