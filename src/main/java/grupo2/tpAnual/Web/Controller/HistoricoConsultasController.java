@@ -18,7 +18,7 @@ public class HistoricoConsultasController {
 		
 		model.put("datosDebusqueda", datosDeBusqueda);
 		
-		return new ModelAndView(model, "historicoConsultas/historicoConsultas.hbs");
+		return new ModelAndView(model, "historicoConsultas/historico.hbs");
 		
 	}
 	
@@ -38,7 +38,11 @@ public class HistoricoConsultasController {
 	public static ModelAndView listarPorCantidad(Request req, Response res) {
 		Map<String, List<DatosDeBusqueda>> model = new HashMap<>();
 		
-		Integer cantidad= Integer.parseInt(req.params("cantidad"));
+		//int cantidad= Integer.parseInt(req.params("cantidad"));
+		
+		String cant = req.params("cantidad");
+		
+		double cantidad =  Double.parseDouble(cant);
 		
 		List<DatosDeBusqueda> datosDeBusqueda = DatosBusquedaRepositoryMongoDB.instancia.cantidadDePois(cantidad);
 		
