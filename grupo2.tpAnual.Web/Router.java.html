@@ -18,8 +18,16 @@ import spark.template.handlebars.HandlebarsTemplateEngine;
 <span class="nc" id="L18">		Spark.get(&quot;/terminal&quot;, TerminalController::get, engine);</span>
 <span class="nc" id="L19">		Spark.get(&quot;/admin&quot;, AdminController::get, engine);</span>
 <span class="nc" id="L20">		Spark.get(&quot;/terminal/resultadosBusqueda&quot;,TerminalController::get, engine);</span>
-<span class="nc" id="L21">		Spark.get(&quot;/admin/pois&quot;, AdministracionPoisController::get, engine);</span>
-<span class="nc" id="L22">		Spark.get(&quot;/admin/historicoConsultas&quot;, HistoricoConsultasController::get, engine);</span>
-<span class="nc" id="L23">	}</span>
+<span class="nc" id="L21">		Spark.get(&quot;/admin/historicoConsultas&quot;, HistoricoConsultasController::get, engine);</span>
+		
+<span class="nc" id="L23">		Spark.get(&quot;/admin/pois&quot;, AdministracionPoisController::get, engine);</span>
+<span class="nc" id="L24">		Spark.get(&quot;/admin/pois/lista&quot;, AdministracionPoisController::lista, engine);</span>
+<span class="nc" id="L25">		Spark.get(&quot;/admin/pois/editar/:id&quot;, AdministracionPoisController::editar, engine);</span>
+		
+		//TODO ver como hacer para que funcione
+		//Spark.put(&quot;/admin/pois/editar&quot;, AdministracionPoisController::editarPut);
+		//Spark.delete(&quot;/admin/pois/borrar/:id&quot;, AdministracionPoisController::borrar, engine);
+
+<span class="nc" id="L31">	}</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>
