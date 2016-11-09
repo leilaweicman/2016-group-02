@@ -2,6 +2,7 @@ package grupo2.tpAnual.Web;
 
 import grupo2.tpAnual.Web.Controller.AdminController;
 import grupo2.tpAnual.Web.Controller.AdministracionPoisController;
+import grupo2.tpAnual.Web.Controller.AdministracionTerminalController;
 import grupo2.tpAnual.Web.Controller.HistoricoConsultasController;
 import grupo2.tpAnual.Web.Controller.InicioController;
 import grupo2.tpAnual.Web.Controller.TerminalController;
@@ -27,6 +28,11 @@ public class Router {
 		Spark.get("/admin/pois", AdministracionPoisController::get, engine);
 		Spark.get("/admin/pois/lista", AdministracionPoisController::lista, engine);
 		Spark.get("/admin/pois/editar/:id", AdministracionPoisController::editar, engine);
+		
+		Spark.get("/admin/terminal", AdministracionTerminalController::get, engine);
+		//Spark.get("/admin", AdministracionTerminalController::listar, engine);
+
+
 		
 		//TODO ver como hacer para que funcione
 		//Spark.put("/admin/pois/editar", AdministracionPoisController::editarPut);
