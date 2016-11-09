@@ -1,27 +1,16 @@
 package grupo2.tpAnual.Web.Controller;
 
-import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.junit.Test;
 import org.uqbar.geodds.Point;
 
-import grupo2.tpAnual.Mapa;
 import grupo2.tpAnual.AccesoriosPois.Comuna;
-import grupo2.tpAnual.AccesoriosPois.Rango;
-import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosPOIsMemory;
-import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosPOIsSQL;
-import grupo2.tpAnual.Pois.Banco;
-import grupo2.tpAnual.Pois.CGP;
-import grupo2.tpAnual.Pois.Comercio;
 import grupo2.tpAnual.Pois.POI;
 import grupo2.tpAnual.Repositorios.MemoryUserRepository;
 import grupo2.tpAnual.Repositorios.POIsRepository;
-import grupo2.tpAnual.Repositorios.SQLUserRepository;
 import grupo2.tpAnual.Repositorios.Usuario;
 import spark.ModelAndView;
 import spark.Request;
