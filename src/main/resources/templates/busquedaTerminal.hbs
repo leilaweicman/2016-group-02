@@ -1,93 +1,20 @@
 <html>
-   <head>
-      <title>Terminal</title>
-      <style type="text/css">
-         centrado {
-         position: absolute;
-         top: 50%; 
-         left: 50%;
-         transform: translate(-50%, -50%);
-         }
-         button {
-         border: 1px solid #dedede;
-         border-radius: 3px;
-         color: #555;
-         display: inline-block;
-         font: bold 12px/12px HelveticaNeue, Arial;
-         padding: 8px 11px;
-         text-decoration: none;
-         }
-         #buscar{
-         position:Absolute; 
-         top:62%;
-         left:48%;
-         }
-         #criterios {
-         position: absolute;
-         left: 50%;
-         top: 40%;
-         transform: translate(-50%, -50%);
-         -webkit-transform: translate(-50%, -50%);
-         text-align: left;
-         background: white;
-         padding-left:  50px;
-         padding-right: 50px;
-         border: 1px solid grey;
-         }
-         body {
-         padding-left:  50px;
-         padding-right: 50px;
-         background-image: url(http://conceptodefinicion.de/wp-content/uploads/2014/03/ciudad.jpg);
-         background-size:100%;
-         text-align: center;
-         font-family: times, Times New Roman, times-roman, georgia, serif;
-         font-size: 28px;
-         line-height: 40px;
-         letter-spacing: -1px;color: #444;
-         }
-         h1 {
-         text-align: center;
-         font-family: times, Times New Roman, times-roman, georgia, serif;
-         font-size: 48px;
-         line-height: 40px;
-         letter-spacing: -1px;
-         color: #444;
-         margin: 0 0 0 0;
-         padding: 0 0 0 0;
-         font-weight: 100;     }
-      </style>
-   </head>
+	<head>
+		<title>Terminal | Busqueda de Pois</title>
+		<link rel="stylesheet"  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">		
+	</head>
    <body>
-      <h1>Busqueda de POIs</h1>
+	  <nav class="navbar navbar-default">
+      <h1 align = "center" >Terminal | Busqueda de Pois</h1>
+      </nav>
       <br>
-      <div class="buscador">
-         <div class="flexsearch--wrapper">
-            <form class="flexsearch--form" action="/terminal/resultadoBusqueda" method="get">
-               <div class="flexsearch--input-wrapper">
-                  <input class="flexsearch--input" type="search" placeholder="search"> {{palabraBuscada}}
-                  <input class="flexsearch--submit" type="submit" value="&#10140;"/>
-               </div>
-            </form>
-         </div>
+         <form class="navbar-form navbar-left" role="search" action="/terminal/resultadoBusqueda" method="get">
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="Buscar"> {{palabraBuscada}}
       </div>
-      <div id="criterios">
-         <h3 align= center>Filtrar por: </h3>
-         <table>
-            <tr>
-               <td>Por tipo: <br>
-                  <label><input type="checkbox" id="cbox2" value="TipoCGP">CGP<label for="cbox2"></label><br>
-                  <label><input type="checkbox" id="cbox2" value="TipoBanco">Banco<label for="cbox2"></label><br>
-                  <label><input type="checkbox" id="cbox2" value="TipoParada">Parada<label for="cbox2"></label><br>
-                  <label><input type="checkbox" id="cbox2" value="TipoComercio">Comercio<label for="cbox2"></label><br>
-               <td><label><input type="checkbox" id="cbox1" value="porNombre">Por nombre</label><br>
-                  <label><input type="checkbox" id="cbox1" value="porComuna">Por Comuna</label>
-               </td>
-               </td>
-            </tr>
-         </table>
-         <br>
+      <button type="submit" class="btn btn-default">Enviar</button>
+    </form>
       </div>
-      <button id="buscar" type="submit"> Buscar </button>
    </body>
 </html>
 

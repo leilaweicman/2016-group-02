@@ -6,7 +6,7 @@ import java.util.List;
 import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatos;
 import grupo2.tpAnual.Repositorios.DatosBusquedaRepositoryMemory;
 
-public class Mapa {
+public class SingletonMapa {
 	private static grupo2.tpAnual.Mapa instance;
 
 	public static grupo2.tpAnual.Mapa get() {
