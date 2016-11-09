@@ -24,8 +24,12 @@ import grupo2.tpAnual.AccesoriosPois.Comuna;
 	}
 
 	@Override
+	public List&lt;Usuario&gt; getUsuariosByNombre(String nombre){
+<span class="nc" id="L28">		return this.usuarios.stream().filter(usuario -&gt; (usuario.getNombre().equals(nombre))).collect(Collectors.toList());</span>
+	}
+	@Override
 	public void deleteUsuario(Usuario usuario) {
-<span class="nc" id="L28">		usuarios.remove(usuario);</span>
-<span class="nc" id="L29">	}</span>
+<span class="nc" id="L32">		usuarios.remove(usuario);</span>
+<span class="nc" id="L33">	}</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

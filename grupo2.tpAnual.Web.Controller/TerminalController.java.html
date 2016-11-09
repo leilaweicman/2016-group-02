@@ -14,22 +14,22 @@ import grupo2.tpAnual.Pois.Banco;
 import grupo2.tpAnual.Pois.CGP;
 import grupo2.tpAnual.Pois.POI;
 import grupo2.tpAnual.Pois.Parada;
+import grupo2.tpAnual.Web.Models.SingletonMapa;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
-<span class="nc" id="L21">public class TerminalController {</span>
-
+<span class="nc" id="L22">public class TerminalController {</span>
+	
 	public static ModelAndView get(Request req, Response res) {
-<span class="nc" id="L24">		return new ModelAndView(null, &quot;busquedaTerminal.hbs&quot;);</span>
+<span class="nc" id="L25">		return new ModelAndView(null, &quot;busquedaTerminal.hbs&quot;);</span>
 }
 	
 	public static ModelAndView show(Request req, Response res) {
-<span class="nc" id="L28">		OrigenesDeDatos pois = new OrigenesDeDatosPOIsMemory();</span>
-<span class="nc" id="L29">		List&lt;OrigenesDeDatos&gt; origenes = new ArrayList&lt;&gt;();</span>
-<span class="nc" id="L30">		origenes = Arrays.asList(pois);</span>
-<span class="nc" id="L31">		Mapa mapa = new Mapa(origenes,null);</span>
-<span class="nc" id="L32">		List&lt;POI&gt; resultadoBusqueda = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L29">		String palabraBuscada = req.queryParams(&quot;palabraBuscada&quot;);</span>
+<span class="nc" id="L30">		Mapa mapa = SingletonMapa.get();</span>
+<span class="nc" id="L31">		List&lt;POI&gt; resultadoBusqueda = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L32">		resultadoBusqueda = mapa.busquedaRealizadaPorElUsuario(palabraBuscada);</span>
 <span class="nc" id="L33">		return new ModelAndView(resultadoBusqueda, &quot;resultadoBusquedaTerminal.hbs&quot;);</span>
 }
 

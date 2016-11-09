@@ -10,7 +10,7 @@ import org.uqbar.geodds.Point;
 import grupo2.tpAnual.AccesoriosPois.Direccion;
 import grupo2.tpAnual.Pois.Banco;
 import grupo2.tpAnual.Pois.POI;
-import grupo2.tpAnual.Web.Models.Mapa;
+import grupo2.tpAnual.Web.Models.SingletonMapa;
 import grupo2.tpAnual.Web.Models.adminPois;
 import spark.ModelAndView;
 import spark.Request;
