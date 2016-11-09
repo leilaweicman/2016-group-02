@@ -35,7 +35,9 @@ public class DatosDeBusqueda {
 	private String nombreTerminal;
 	@org.mongodb.morphia.annotations.Embedded
 	private List<POI> poisRespuestaBusqueda;
-
+	@org.mongodb.morphia.annotations.Property
+	private Integer cantidadDePois;
+	
 	public DatosDeBusqueda(String nombre, String texto, long segundos, int totalResultados, LocalDate fecha,List<POI> poisRespuesta ) {
 		this.txtBuscado = texto;
 		this.segundosQueTardoLaBusqueda = segundos;
@@ -44,12 +46,12 @@ public class DatosDeBusqueda {
 		this.nombreTerminal = nombre;
 		this.poisRespuestaBusqueda=new ArrayList<>();
 		this.poisRespuestaBusqueda.addAll(poisRespuesta);
+		this.cantidadDePois = this.poisRespuestaBusqueda.size();
 	}
 	
 	public DatosDeBusqueda() {
 		
 	}
-	
 	
 	public String getTxtBuscado() {
 		return txtBuscado;

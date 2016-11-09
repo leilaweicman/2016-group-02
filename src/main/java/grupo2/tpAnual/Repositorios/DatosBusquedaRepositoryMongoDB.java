@@ -8,9 +8,15 @@ import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.dao.BasicDAO;
 import org.mongodb.morphia.query.Query;
 
+import grupo2.tpAnual.MorphiaService;
+
 public class DatosBusquedaRepositoryMongoDB extends BasicDAO<DatosDeBusqueda, ObjectId>
 		implements DatosDeBusquedaRepository {
-
+	
+	static MorphiaService morphia = new MorphiaService();
+	
+	public static DatosBusquedaRepositoryMongoDB instancia = new DatosBusquedaRepositoryMongoDB(DatosDeBusqueda.class, morphia.getDatastore());
+	
 	public DatosBusquedaRepositoryMongoDB(Class<DatosDeBusqueda> entityClass, Datastore dataStore) {
 		super(entityClass, dataStore);
 	}
@@ -46,4 +52,13 @@ public class DatosBusquedaRepositoryMongoDB extends BasicDAO<DatosDeBusqueda, Ob
 
 		return this.obtenerTotalResultadosPorTerminal(nombre).stream().reduce(0, (a, b) -> a + b);
 	}
+	
+	
+	public List<DatosDeBusqueda> cantidadDePois(Integer cantidad){
+		
+		Query<DatosDeBusqueda> query = createQuery().field("cantidadDePois").equal(cantidad);
+
+		return query.asList();
+	}
+	
 }

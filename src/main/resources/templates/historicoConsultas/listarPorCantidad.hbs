@@ -1,0 +1,36 @@
+<html>
+	<head>
+		<title>Historico de Consultas</title>
+		<link rel="stylesheet"  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	</head>
+	
+	<body>
+		
+		<h1>Historico de consultas</h1>
+		
+		
+		<form action="" method="">
+			<input class="form-control" id="ex2" type="text" placeholder=""> <br/>
+			<input type="radio" name="filtro" value="cantidad"> Cantidad De POIS<br>
+  			<input type="radio" name="filtro" value="teminal"> Terminal<br>
+ 			<input type="radio" name="filtro" value="fecha"> Fecha (dd/mm/aaaa)
+				
+			<br/>
+			<br/>
+			
+			<button type="submit" class="btn btn-primary">Filtrar</button>
+			
+		</form>
+		
+		{{#each datosDeBusqueda}}
+		
+			<tr>
+				
+				<td>{{nombreTerminal}}</td>
+			</tr>
+			
+		{{/#each}}
+		
+		
+	</body>
+</html>
