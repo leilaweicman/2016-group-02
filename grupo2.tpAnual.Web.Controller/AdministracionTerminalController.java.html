@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>AdministracionTerminalController.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tpAnual</a> &gt; <a href="index.source.html" class="el_package">grupo2.tpAnual.Web.Controller</a> &gt; <span class="el_source">AdministracionTerminalController.java</span></div><h1>AdministracionTerminalController.java</h1><pre class="source lang-java linenums">package grupo2.tpAnual.Web.Controller;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.uqbar.geodds.Point;
+
+import grupo2.tpAnual.AccesoriosPois.Comuna;
+import grupo2.tpAnual.Pois.POI;
+import grupo2.tpAnual.Repositorios.MemoryUserRepository;
+import grupo2.tpAnual.Repositorios.Usuario;
+import spark.ModelAndView;
+import spark.Request;
+import spark.Response;
+
+<span class="nc" id="L18">public class AdministracionTerminalController {</span>
+	
+	public static ModelAndView get(Request req, Response res) {
+<span class="nc" id="L21">		Map&lt;String, List&lt;Usuario&gt;&gt; model = new HashMap&lt;&gt;();</span>
+		
+<span class="nc" id="L23">		List&lt;Point&gt; points = new ArrayList&lt;Point&gt;();</span>
+<span class="nc" id="L24">		points.add(Point.and(-34.664837, -58.385674));</span>
+<span class="nc" id="L25">		Comuna comuna1 = new Comuna(1, points);</span>
+		
+		
+<span class="nc" id="L28">		Usuario user = new Usuario();</span>
+<span class="nc" id="L29">		user.setNombre(&quot;Las heras&quot;);</span>
+<span class="nc" id="L30">		user.setComuna(comuna1);</span>
+		
+<span class="nc" id="L32">		user.setComuna(comuna1);</span>
+
+<span class="nc" id="L34">		Comuna comuna2 = new Comuna(2, points);</span>
+				
+<span class="nc" id="L36">		Usuario usuario = new Usuario();</span>
+<span class="nc" id="L37">		usuario.setNombre(&quot;Abasto&quot;);</span>
+<span class="nc" id="L38">		usuario.setComuna(comuna2);</span>
+		
+<span class="nc" id="L40">		usuario.setComuna(comuna2);</span>
+
+
+<span class="nc" id="L43">		MemoryUserRepository repoUsuarios = new MemoryUserRepository();</span>
+		
+<span class="nc" id="L45">		repoUsuarios.setUsuario(user);</span>
+<span class="nc" id="L46">		repoUsuarios.setUsuario(usuario);</span>
+		
+<span class="nc" id="L48">		List&lt;Usuario&gt; usuarios = repoUsuarios.getUsuarios();</span>
+
+		//List&lt;Usuario&gt; usuarios = SQLUserRepository.instance.getUsuarios();
+		
+<span class="nc" id="L52">		model.put(&quot;terminales&quot;, usuarios);</span>
+<span class="nc" id="L53">		return new ModelAndView(model, &quot;administracionTerminal.hbs&quot;);</span>
+		
+	}
+	
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

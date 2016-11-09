@@ -54,10 +54,11 @@ tpAnual,grupo2.tpAnual.Web.Controller,AdminController,9,0,0,0,2,0,2,0,2,0
 tpAnual,grupo2.tpAnual.Web.Controller,TerminalController,69,0,0,0,9,0,3,0,3,0
 tpAnual,grupo2.tpAnual.Web.Controller,InicioController,9,0,0,0,2,0,2,0,2,0
 tpAnual,grupo2.tpAnual.Web.Controller,HistoricoConsultasController,69,0,0,0,15,0,4,0,4,0
+tpAnual,grupo2.tpAnual.Web.Controller,AdministracionTerminalController,79,0,0,0,20,0,2,0,2,0
 tpAnual,grupo2.tpAnual.Observers,ObserverBusqueda,0,3,0,0,0,1,0,1,0,1
 tpAnual,grupo2.tpAnual.Observers,EnviarMailBusqueda,0,29,1,1,0,9,1,2,0,2
 tpAnual,grupo2.tpAnual.Observers,NotificarDatosBusqueda,0,19,0,0,0,7,0,3,0,3
 tpAnual,grupo2.tpAnual.Web,HandlebarsTemplateEngineBuilder,46,0,0,0,13,0,6,0,6,0
 tpAnual,grupo2.tpAnual.Web,Server,8,0,0,0,5,0,2,0,2,0
 tpAnual,grupo2.tpAnual.Web,DarkMagic,20,0,0,0,5,0,2,0,2,0
-tpAnual,grupo2.tpAnual.Web,Router,51,0,0,0,14,0,2,0,2,0
+tpAnual,grupo2.tpAnual.Web,Router,55,0,0,0,15,0,2,0,2,0
