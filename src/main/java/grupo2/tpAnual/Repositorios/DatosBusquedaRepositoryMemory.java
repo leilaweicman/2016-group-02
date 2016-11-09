@@ -9,6 +9,8 @@ import org.mongodb.morphia.dao.BasicDAO;
 
 public class DatosBusquedaRepositoryMemory /*extends BasicDAO<DatosDeBusqueda, ObjectId>*/ implements DatosDeBusquedaRepository{
 	
+	public static DatosBusquedaRepositoryMemory instancia = new DatosBusquedaRepositoryMemory(); 
+	
 	private List<DatosDeBusqueda> listaDatosDeBusqueda;	
 	
 	public DatosBusquedaRepositoryMemory() {
