@@ -13,4 +13,6 @@ public interface UserRepository {
 	public List<Usuario> getUsuariosByComuna(Comuna comuna);
 
 	public List<Usuario> getUsuarios();
+
+	public List<Usuario> getUsuariosByNombre(String nombre);
 }

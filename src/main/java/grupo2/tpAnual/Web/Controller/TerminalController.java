@@ -14,22 +14,22 @@ import grupo2.tpAnual.Pois.Banco;
 import grupo2.tpAnual.Pois.CGP;
 import grupo2.tpAnual.Pois.POI;
 import grupo2.tpAnual.Pois.Parada;
+import grupo2.tpAnual.Web.Models.SingletonMapa;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
 public class TerminalController {
-
+	
 	public static ModelAndView get(Request req, Response res) {
 		return new ModelAndView(null, "busquedaTerminal.hbs");
 }
 	
 	public static ModelAndView show(Request req, Response res) {
-		OrigenesDeDatos pois = new OrigenesDeDatosPOIsMemory();
-		List<OrigenesDeDatos> origenes = new ArrayList<>();
-		origenes = Arrays.asList(pois);
-		Mapa mapa = new Mapa(origenes,null);
+		String palabraBuscada = req.queryParams("palabraBuscada");
+		Mapa mapa = SingletonMapa.get();
 		List<POI> resultadoBusqueda = new ArrayList<>();
+		resultadoBusqueda = mapa.busquedaRealizadaPorElUsuario(palabraBuscada);
 		return new ModelAndView(resultadoBusqueda, "resultadoBusquedaTerminal.hbs");
 }
 
