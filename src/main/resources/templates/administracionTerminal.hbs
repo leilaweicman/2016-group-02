@@ -1,0 +1,33 @@
+<html>
+	<head>
+		<title>Administracion terminales</title>
+    	<link rel="stylesheet"  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	</head>
+
+	<body>
+		<div class="container">
+			<table class="table table-stripped">
+				<tr>
+					<th>Nombre</th>
+				</tr>
+				
+				{{#each terminales}}
+					<tr>
+						<td>{{id}}</td>
+						<td>{{nombre}}</td>
+						<td><a href="{{url}}">Ver mas</a><td>
+						<td><a href="{{url}}">Editar</a><td>
+						<td><a href="{{url}}">Eliminar</a><td>
+					</tr>
+				{{/each}}
+			</table>
+
+
+		</div>	
+
+	</body>
+
+	<footer>
+
+	</footer>
+</html>
