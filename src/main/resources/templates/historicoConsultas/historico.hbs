@@ -5,24 +5,34 @@
 	</head>
 	
 	<body>
+	
+	<div class="container">
+         <div class="row">
+            <div class="col-md-6 col-md-offset-3">
 		
-		<h1>Historico de consultas</h1>
-		
-		
-		<form action="" method="">
-			<input class="form-control" id="ex2" type="text" placeholder=""> <br/>
-			<input type="radio" name="filtro" value="cantidad"> Cantidad De POIS<br>
-  			<input type="radio" name="filtro" value="teminal"> Terminal<br>
- 			<input type="radio" name="filtro" value="fecha"> Fecha (dd/mm/aaaa)
+				<h1 align="center">Historico de consultas</h1>
 				
-			<br/>
-			<br/>
+					<br/>
+					<br/>
+				
+				<form action="" method="">
+					<input class="form-control" id="ex2" type="text" placeholder=""> <br/>
+					<input type="radio" name="filtro" value="cantidad"> Cantidad De POIS<br>
+		  			<input type="radio" name="filtro" value="teminal"> Terminal<br>
+		 			<input type="radio" name="filtro" value="fecha"> Fecha (dd/mm/aaaa)
+						
+					<br/>
+					<br/>
+					
+					<button type="submit" class="btn btn-primary">Filtrar</button>
+					
+				</form>
+				{{#block "contenido"}}
+				{{/block}}	
+				</div>
+			</div>
+		</div>	
+		
 			
-			<button type="submit" class="btn btn-primary">Filtrar</button>
-			
-		</form>
-		
-		
-		
 	</body>
 </html>
