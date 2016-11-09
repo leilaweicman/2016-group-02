@@ -52,4 +52,13 @@ public class DatosBusquedaRepositoryMongoDB extends BasicDAO<DatosDeBusqueda, Ob
 
 		return this.obtenerTotalResultadosPorTerminal(nombre).stream().reduce(0, (a, b) -> a + b);
 	}
+	
+	
+	public List<DatosDeBusqueda> cantidadDePois(Integer cantidad){
+		
+		Query<DatosDeBusqueda> query = createQuery().field("cantidadDePois").equal(cantidad);
+
+		return query.asList();
+	}
+	
 }
