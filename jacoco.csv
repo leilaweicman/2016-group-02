@@ -10,7 +10,7 @@ tpAnual,grupo2.tpAnual.OrigenesDeDatos,OrigenesDeDatosCentroDTO,0,76,0,0,0,17,0,
 tpAnual,grupo2.tpAnual.OrigenesDeDatos,OrigenesDeDatos,0,3,0,0,0,1,0,1,0,1
 tpAnual,grupo2.tpAnual.OrigenesDeDatos,OrigenesDeDatosPOIs,0,3,0,0,0,1,0,1,0,1
 tpAnual,grupo2.tpAnual.Repositorios,DatosBusquedaRepositoryMemory,17,51,0,0,1,9,2,8,2,8
-tpAnual,grupo2.tpAnual.Repositorios,DatosBusquedaRepositoryMongoDB,11,72,0,0,2,13,1,9,1,9
+tpAnual,grupo2.tpAnual.Repositorios,DatosBusquedaRepositoryMongoDB,12,72,0,0,2,13,1,9,1,9
 tpAnual,grupo2.tpAnual.Repositorios,Usuario,9,37,0,0,3,14,2,8,2,8
 tpAnual,grupo2.tpAnual.Repositorios,MemoryUserRepository,41,17,2,0,4,5,6,3,5,3
 tpAnual,grupo2.tpAnual.Repositorios,SQLUserRepository,38,28,2,0,9,10,4,4,3,4
@@ -53,7 +53,7 @@ tpAnual,grupo2.tpAnual.Web.Controller,AdministracionPoisController,97,0,0,0,22,0
 tpAnual,grupo2.tpAnual.Web.Controller,AdminController,9,0,0,0,2,0,2,0,2,0
 tpAnual,grupo2.tpAnual.Web.Controller,TerminalController,69,0,0,0,9,0,3,0,3,0
 tpAnual,grupo2.tpAnual.Web.Controller,InicioController,9,0,0,0,2,0,2,0,2,0
-tpAnual,grupo2.tpAnual.Web.Controller,HistoricoConsultasController,69,0,0,0,15,0,4,0,4,0
+tpAnual,grupo2.tpAnual.Web.Controller,HistoricoConsultasController,70,0,0,0,16,0,4,0,4,0
 tpAnual,grupo2.tpAnual.Web.Controller,AdministracionTerminalController,79,0,0,0,20,0,2,0,2,0
 tpAnual,grupo2.tpAnual.Observers,ObserverBusqueda,0,3,0,0,0,1,0,1,0,1
 tpAnual,grupo2.tpAnual.Observers,EnviarMailBusqueda,0,29,1,1,0,9,1,2,0,2

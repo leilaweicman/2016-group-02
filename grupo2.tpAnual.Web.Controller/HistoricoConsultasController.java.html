@@ -18,7 +18,7 @@ import spark.Response;
 		
 <span class="nc" id="L19">		model.put(&quot;datosDebusqueda&quot;, datosDeBusqueda);</span>
 		
-<span class="nc" id="L21">		return new ModelAndView(model, &quot;historicoConsultas/historicoConsultas.hbs&quot;);</span>
+<span class="nc" id="L21">		return new ModelAndView(model, &quot;historicoConsultas/historico.hbs&quot;);</span>
 		
 	}
 	
@@ -38,13 +38,17 @@ import spark.Response;
 	public static ModelAndView listarPorCantidad(Request req, Response res) {
 <span class="nc" id="L39">		Map&lt;String, List&lt;DatosDeBusqueda&gt;&gt; model = new HashMap&lt;&gt;();</span>
 		
-<span class="nc" id="L41">		Integer cantidad= Integer.parseInt(req.params(&quot;cantidad&quot;));</span>
+		//int cantidad= Integer.parseInt(req.params(&quot;cantidad&quot;));
 		
-<span class="nc" id="L43">		List&lt;DatosDeBusqueda&gt; datosDeBusqueda = DatosBusquedaRepositoryMongoDB.instancia.cantidadDePois(cantidad);</span>
+<span class="nc" id="L43">		String cant = req.params(&quot;cantidad&quot;);</span>
 		
-<span class="nc" id="L45">		model.put(&quot;datosDebusqueda&quot;, datosDeBusqueda);</span>
+<span class="nc" id="L45">		double cantidad =  Double.parseDouble(cant);</span>
 		
-<span class="nc" id="L47">		return new ModelAndView(model, &quot;historicoConsultas/listarPorCantidad.hbs&quot;);</span>
+<span class="nc" id="L47">		List&lt;DatosDeBusqueda&gt; datosDeBusqueda = DatosBusquedaRepositoryMongoDB.instancia.cantidadDePois(cantidad);</span>
+		
+<span class="nc" id="L49">		model.put(&quot;datosDebusqueda&quot;, datosDeBusqueda);</span>
+		
+<span class="nc" id="L51">		return new ModelAndView(model, &quot;historicoConsultas/listarPorCantidad.hbs&quot;);</span>
 		
 	}
 	
