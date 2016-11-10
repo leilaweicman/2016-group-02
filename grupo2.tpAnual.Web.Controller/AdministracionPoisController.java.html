@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.uqbar.geodds.Point;
 
+import grupo2.tpAnual.Mapa;
 import grupo2.tpAnual.AccesoriosPois.Direccion;
 import grupo2.tpAnual.Pois.Banco;
 import grupo2.tpAnual.Pois.POI;
@@ -16,53 +17,54 @@ import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
-<span class="nc" id="L19">public class AdministracionPoisController {</span>
+<span class="nc" id="L20">public class AdministracionPoisController {</span>
 	private static adminPois admin;
 	public static ModelAndView get(Request req, Response res) {
 		//grupo2.tpAnual.Mapa mapa = Mapa.get();
 		//mapa.busquedaRealizadaPorElUsuario(&quot;&quot;);
-<span class="nc" id="L24">		admin = new adminPois();		</span>
-<span class="nc" id="L25">		return new ModelAndView(admin, &quot;admin/pois/index.hbs&quot;);</span>
+<span class="nc" id="L25">		admin = new adminPois();		</span>
+<span class="nc" id="L26">		return new ModelAndView(admin, &quot;admin/pois/index.hbs&quot;);</span>
 	}
 	
 	public static ModelAndView lista(Request req, Response res){
-<span class="nc" id="L29">		String nombre = req.queryParams(&quot;nombre&quot;);</span>
-<span class="nc" id="L30">		String tipo = req.queryParams(&quot;tipo&quot;);</span>
-		
+<span class="nc" id="L30">		String nombre = req.queryParams(&quot;nombre&quot;);</span>
+<span class="nc" id="L31">		String tipo = req.queryParams(&quot;tipo&quot;);</span>
+<span class="nc" id="L32">		List&lt;POI&gt; lista = new ArrayList();</span>
+//		Mapa mapa = SingletonMapa.get();
+//		lista = mapa.busquedaRealizadaPorElUsuario(nombre);
 		//Hardcode
-<span class="nc" id="L33">		Banco prueba = new Banco(&quot;Santander&quot;, Point.and(-34.664837, -58.385674));</span>
-<span class="nc" id="L34">		prueba.setId(4);</span>
-<span class="nc" id="L35">		List&lt;POI&gt; lista = new ArrayList();</span>
-<span class="nc" id="L36">		lista.add(prueba);</span>
-<span class="nc" id="L37">		Map&lt;String, List&lt;POI&gt;&gt; model = new HashMap&lt;&gt;();</span>
-<span class="nc" id="L38">		model.put(&quot;pois&quot;, lista);</span>
-<span class="nc" id="L39">		return new ModelAndView(model, &quot;admin/pois/lista.hbs&quot;);</span>
+<span class="nc" id="L36">		Banco prueba = new Banco(&quot;Santander&quot;, Point.and(-34.664837, -58.385674));</span>
+<span class="nc" id="L37">		prueba.setId(4);</span>
+<span class="nc" id="L38">		lista.add(prueba);</span>
+<span class="nc" id="L39">		Map&lt;String, List&lt;POI&gt;&gt; model = new HashMap&lt;&gt;();</span>
+<span class="nc" id="L40">		model.put(&quot;pois&quot;, lista);</span>
+<span class="nc" id="L41">		return new ModelAndView(model, &quot;admin/pois/lista.hbs&quot;);</span>
 	}
 	
 	public static ModelAndView editar(Request req, Response res){
-<span class="nc" id="L43">		String id = req.params(&quot;id&quot;);</span>
+<span class="nc" id="L45">		String id = req.params(&quot;id&quot;);</span>
 		
 		//Hardcode
-<span class="nc" id="L46">		Banco prueba = new Banco(&quot;Santander&quot;, Point.and(-34.664837, -58.385674));</span>
-<span class="nc" id="L47">		prueba.setDireccion(new Direccion(&quot;calle&quot;, &quot;zona&quot;));</span>
-<span class="nc" id="L48">		prueba.setId(4);</span>
-<span class="nc" id="L49">		return new ModelAndView(prueba, &quot;admin/pois/editar.hbs&quot;);</span>
+<span class="nc" id="L48">		Banco prueba = new Banco(&quot;Santander&quot;, Point.and(-34.664837, -58.385674));</span>
+<span class="nc" id="L49">		prueba.setDireccion(new Direccion(&quot;calle&quot;, &quot;zona&quot;));</span>
+<span class="nc" id="L50">		prueba.setId(4);</span>
+<span class="nc" id="L51">		return new ModelAndView(prueba, &quot;admin/pois/editar.hbs&quot;);</span>
 	}
 	
 	public static ModelAndView editarPut(Request req, Response res){
-<span class="nc" id="L53">		String id = req.queryParams(&quot;id&quot;);</span>
-<span class="nc" id="L54">		String nombre = req.queryParams(&quot;nombre&quot;);</span>
-<span class="nc" id="L55">		String direccion = req.queryParams(&quot;direccion&quot;);</span>
-<span class="nc" id="L56">		String x = req.queryParams(&quot;x&quot;);</span>
-<span class="nc" id="L57">		String y = req.queryParams(&quot;y&quot;);</span>
+<span class="nc" id="L55">		String id = req.queryParams(&quot;id&quot;);</span>
+<span class="nc" id="L56">		String nombre = req.queryParams(&quot;nombre&quot;);</span>
+<span class="nc" id="L57">		String direccion = req.queryParams(&quot;direccion&quot;);</span>
+<span class="nc" id="L58">		String x = req.queryParams(&quot;x&quot;);</span>
+<span class="nc" id="L59">		String y = req.queryParams(&quot;y&quot;);</span>
 		
 		//TODO obtener por id el POI de mapa y guardar el editado
-<span class="nc" id="L60">		return new ModelAndView(null, &quot;admin/pois/index.hbs&quot;);	</span>
+<span class="nc" id="L62">		return new ModelAndView(null, &quot;admin/pois/index.hbs&quot;);	</span>
 	}
 	
 	public static void borrar(Request req, Response res){
-<span class="nc" id="L64">		String id = req.queryParams(&quot;id&quot;);</span>
-<span class="nc" id="L65">		res.redirect(&quot;/admin/pois&quot;);</span>
-<span class="nc" id="L66">	}</span>
+<span class="nc" id="L66">		String id = req.queryParams(&quot;id&quot;);</span>
+<span class="nc" id="L67">		res.redirect(&quot;/admin/pois&quot;);</span>
+<span class="nc" id="L68">	}</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>
