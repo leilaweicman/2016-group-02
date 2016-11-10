@@ -54,7 +54,7 @@ public class DatosBusquedaRepositoryMongoDB extends BasicDAO<DatosDeBusqueda, Ob
 	}
 	
 	
-	public List<DatosDeBusqueda> cantidadDePois(Integer cantidad){
+	public List<DatosDeBusqueda> cantidadDePois(double cantidad){
 		
 		Query<DatosDeBusqueda> query = createQuery().field("cantidadDePois").equal(cantidad);
 
