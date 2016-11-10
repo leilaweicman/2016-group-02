@@ -49,9 +49,15 @@ public class AdministracionPoisController {
 		return new ModelAndView(prueba, "admin/pois/editar.hbs");
 	}
 	
-	public static void editarPut(Request req, Response res){
-		//TODO guardar el poi editado
-		res.redirect("/admin/pois");
+	public static ModelAndView editarPut(Request req, Response res){
+		String id = req.queryParams("id");
+		String nombre = req.queryParams("nombre");
+		String direccion = req.queryParams("direccion");
+		String x = req.queryParams("x");
+		String y = req.queryParams("y");
+		
+		//TODO obtener por id el POI de mapa y guardar el editado
+		return new ModelAndView(null, "admin/pois/index.hbs");	
 	}
 	
 	public static void borrar(Request req, Response res){
