@@ -53,5 +53,17 @@ public class AdministracionTerminalController {
 		return new ModelAndView(model, "administracionTerminal.hbs");
 		
 	}
+
+	/* PARA NO OLVIDARME
+	 * cada href de cada row deberia tener una forma de agarrar el id de la 
+	 * terminal para poder editarla o eliminarla
+	 * 
+	 * no me agarra mi css
+	 * 
+	 * que onda con los repos, me tira null pointer exception, por eso harcodee
+	 * 
+	 * para editar, como es otra vista deberia hacer otro controller o desde este 
+	 * mismo puedo meter un metodo editar que muestre otro .hbs?
+	 */
 	
 }
