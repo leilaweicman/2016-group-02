@@ -21,44 +21,54 @@ public class Usuario {
 	@ManyToOne 
 	public Comuna comuna;
 	
-<span class="fc" id="L24">	public Usuario(){</span>
+	private int esAdmin; //es 1 si es admin, 0 si es terminal
+	
+<span class="fc" id="L26">	public Usuario(){</span>
 		
-<span class="fc" id="L26">	}</span>
+<span class="fc" id="L28">	}</span>
 	public void setNombre(String nombre){
-<span class="fc" id="L28">		this.nombre = nombre;</span>
-<span class="fc" id="L29">	}</span>
+<span class="fc" id="L30">		this.nombre = nombre;</span>
+<span class="fc" id="L31">	}</span>
 	
 	public String getNombre(){
-<span class="fc" id="L32">		return this.nombre;</span>
+<span class="fc" id="L34">		return this.nombre;</span>
 	}
 	public long getId(){
-<span class="nc" id="L35">		return id;</span>
+<span class="nc" id="L37">		return id;</span>
 	}
 	public void setComuna(Comuna com) {
-<span class="fc" id="L38">		this.comuna = com;</span>
-<span class="fc" id="L39">	}</span>
+<span class="fc" id="L40">		this.comuna = com;</span>
+<span class="fc" id="L41">	}</span>
 
 	public Comuna getComuna() {
-<span class="fc" id="L42">		return comuna;</span>
+<span class="fc" id="L44">		return comuna;</span>
 	}
 
 
 	public void setAccionesBusqueda(List&lt;ObserverBusqueda&gt; observers) {
-<span class="fc" id="L47">		this.accionesBusqueda.addAll(observers);</span>
-<span class="fc" id="L48">	}</span>
+<span class="fc" id="L49">		this.accionesBusqueda.addAll(observers);</span>
+<span class="fc" id="L50">	}</span>
 
 
 	public void setAccionBusqueda(ObserverBusqueda observer) {
-<span class="nc" id="L52">		this.accionesBusqueda.add(observer);</span>
-<span class="nc" id="L53">	}</span>
+<span class="nc" id="L54">		this.accionesBusqueda.add(observer);</span>
+<span class="nc" id="L55">	}</span>
 	
 	public List&lt;ObserverBusqueda&gt; getAccionesBusqueda() {
-<span class="fc" id="L56">		return accionesBusqueda;</span>
+<span class="fc" id="L58">		return accionesBusqueda;</span>
 	}
 
 	public void quitarObserversBusqueda(List&lt;ObserverBusqueda&gt; observers) {
-<span class="fc" id="L60">		this.accionesBusqueda.removeAll(observers);</span>
+<span class="fc" id="L62">		this.accionesBusqueda.removeAll(observers);</span>
 
-<span class="fc" id="L62">	}</span>
+<span class="fc" id="L64">	}</span>
+	
+	public void setEsAdmin(int admin){
+<span class="nc" id="L67">		esAdmin = admin;</span>
+<span class="nc" id="L68">	}</span>
+	
+	public int getEsAdmin(){
+<span class="nc" id="L71">		return esAdmin;</span>
+	}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>
