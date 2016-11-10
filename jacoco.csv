@@ -49,7 +49,7 @@ tpAnual,grupo2.tpAnual.helpers,MapExtensions,17,0,0,0,6,0,2,0,2,0
 tpAnual,grupo2.tpAnual.Procesos.ManejoDeErroresProcesos,EnviarMailFalloProceso,11,11,2,0,3,3,2,1,1,1
 tpAnual,grupo2.tpAnual.Procesos.ManejoDeErroresProcesos,ReintentarEjecucionProceso,23,0,4,0,9,0,4,0,2,0
 tpAnual,ServiciosExternos,CentroDTO,9,18,0,0,3,7,3,4,3,4
-tpAnual,grupo2.tpAnual.Web.Controller,AdministracionPoisController,97,0,0,0,22,0,6,0,6,0
+tpAnual,grupo2.tpAnual.Web.Controller,AdministracionPoisController,119,0,0,0,26,0,6,0,6,0
 tpAnual,grupo2.tpAnual.Web.Controller,AdminController,9,0,0,0,2,0,2,0,2,0
 tpAnual,grupo2.tpAnual.Web.Controller,TerminalController,69,0,0,0,9,0,3,0,3,0
 tpAnual,grupo2.tpAnual.Web.Controller,InicioController,9,0,0,0,2,0,2,0,2,0
@@ -61,4 +61,4 @@ tpAnual,grupo2.tpAnual.Observers,NotificarDatosBusqueda,0,19,0,0,0,7,0,3,0,3
 tpAnual,grupo2.tpAnual.Web,HandlebarsTemplateEngineBuilder,46,0,0,0,13,0,6,0,6,0
 tpAnual,grupo2.tpAnual.Web,Server,8,0,0,0,5,0,2,0,2,0
 tpAnual,grupo2.tpAnual.Web,DarkMagic,20,0,0,0,5,0,2,0,2,0
-tpAnual,grupo2.tpAnual.Web,Router,55,0,0,0,15,0,2,0,2,0
+tpAnual,grupo2.tpAnual.Web,Router,59,0,0,0,16,0,2,0,2,0

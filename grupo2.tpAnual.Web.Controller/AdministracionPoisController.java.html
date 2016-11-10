@@ -49,14 +49,20 @@ import spark.Response;
 <span class="nc" id="L49">		return new ModelAndView(prueba, &quot;admin/pois/editar.hbs&quot;);</span>
 	}
 	
-	public static void editarPut(Request req, Response res){
-		//TODO guardar el poi editado
-<span class="nc" id="L54">		res.redirect(&quot;/admin/pois&quot;);</span>
-<span class="nc" id="L55">	}</span>
+	public static ModelAndView editarPut(Request req, Response res){
+<span class="nc" id="L53">		String id = req.queryParams(&quot;id&quot;);</span>
+<span class="nc" id="L54">		String nombre = req.queryParams(&quot;nombre&quot;);</span>
+<span class="nc" id="L55">		String direccion = req.queryParams(&quot;direccion&quot;);</span>
+<span class="nc" id="L56">		String x = req.queryParams(&quot;x&quot;);</span>
+<span class="nc" id="L57">		String y = req.queryParams(&quot;y&quot;);</span>
+		
+		//TODO obtener por id el POI de mapa y guardar el editado
+<span class="nc" id="L60">		return new ModelAndView(null, &quot;admin/pois/index.hbs&quot;);	</span>
+	}
 	
 	public static void borrar(Request req, Response res){
-<span class="nc" id="L58">		String id = req.queryParams(&quot;id&quot;);</span>
-<span class="nc" id="L59">		res.redirect(&quot;/admin/pois&quot;);</span>
-<span class="nc" id="L60">	}</span>
+<span class="nc" id="L64">		String id = req.queryParams(&quot;id&quot;);</span>
+<span class="nc" id="L65">		res.redirect(&quot;/admin/pois&quot;);</span>
+<span class="nc" id="L66">	}</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>
