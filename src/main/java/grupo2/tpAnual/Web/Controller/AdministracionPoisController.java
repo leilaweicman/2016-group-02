@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.uqbar.geodds.Point;
 
+import grupo2.tpAnual.Mapa;
 import grupo2.tpAnual.AccesoriosPois.Direccion;
 import grupo2.tpAnual.Pois.Banco;
 import grupo2.tpAnual.Pois.POI;
@@ -28,11 +29,12 @@ public class AdministracionPoisController {
 	public static ModelAndView lista(Request req, Response res){
 		String nombre = req.queryParams("nombre");
 		String tipo = req.queryParams("tipo");
-		
+		List<POI> lista = new ArrayList();
+//		Mapa mapa = SingletonMapa.get();
+//		lista = mapa.busquedaRealizadaPorElUsuario(nombre);
 		//Hardcode
 		Banco prueba = new Banco("Santander", Point.and(-34.664837, -58.385674));
 		prueba.setId(4);
-		List<POI> lista = new ArrayList();
 		lista.add(prueba);
 		Map<String, List<POI>> model = new HashMap<>();
 		model.put("pois", lista);
