@@ -2,7 +2,7 @@
 	<head>
 		<title>Administracion terminales</title>
     	<link rel="stylesheet"  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    	<link rel="stylesheet"  href="../css/administracionTerminales.css">
+    	<link rel="stylesheet"  href="/css/administracionTerminales.css">
 
 	</head>
 
@@ -30,17 +30,20 @@
 				</div>
 
 				<div class="row">
-					<table class="table table-stripped">
+					<table class="table table-striped">
 						<tr class="first-row">
 							<th  style="border-top: none">Nombre</th>
+							<th  style="border-top: none">Comuna</th>
+							
 						</tr>
 						
 						{{#each terminales}}
 							<tr>
 								<td>{{nombre}}</td>
-								<td><a href="admin/terminal/info">Ver mas</a><td>
-								<td><a href="admin/terminal/editar">Editar</a><td>
-								<td><a href="admin/terminal/eliminar">Eliminar</a><td>
+								<td>{{comuna.numeroComuna}}</td>
+								<td><a href="terminal/info?id={{id}}">Ver mas</a><td>
+								<td><a href="terminal/editar?id={{id}}">Editar</a><td>
+								<td><a href="terminal/eliminar?id={{id}}">Eliminar</a><td>
 							</tr>
 						{{/each}}
 					</table>

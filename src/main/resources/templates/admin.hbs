@@ -1,71 +1,33 @@
 <html>
    <head>
       <title>Administrador</title>
-      <style type="text/css">
-         centrado {
-         position: absolute;
-         top: 50%; 
-         left: 50%;
-         transform: translate(-50%, -50%);
-         }
-         button {
-         border: 1px solid #dedede;
-         border-radius: 3px;
-         color: #555;
-         display: inline-block;
-         font: bold 12px/12px HelveticaNeue, Arial;
-         padding: 8px 11px;
-         text-decoration: none;
-         }
-         div {
-         position: absolute;
-         left: 50%;
-         top: 50%;
-         transform: translate(-50%, -50%);
-         -webkit-transform: translate(-50%, -50%);
-         text-align: center;
-         background: white;
-         padding-left:  50px;
-         padding-right: 50px;
-         border: 1px solid black;
-         }
-         body {
-         padding-left:  50px;
-         padding-right: 50px;
-         background-image: url(http://conceptodefinicion.de/wp-content/uploads/2014/03/ciudad.jpg);
-         background-size:100%;
-         text-align: center;
-         font-family: times, Times New Roman, times-roman, georgia, serif;
-         font-size: 28px;
-         line-height: 40px;
-         letter-spacing: -1px;color: #444;
-         }
-         h1 {
-         text-align: center;
-         font-family: times, Times New Roman, times-roman, georgia, serif;
-         font-size: 48px;
-         line-height: 40px;
-         letter-spacing: -1px;
-         color: #444;
-         margin: 0 0 0 0;
-         padding: 0 0 0 0;
-         font-weight: 100; 
-         }
-      </style>
+      <link rel="stylesheet"  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
    </head>
    <body>
 	   	<div class="container">
-	         <div class="row">
-	     
-	            
-	            <div class="col-md-6 col-md-offset-5">
-	               <form method="get" action= "/admin/terminal">
-	                  <button type="submit" class="btn btn-primary">Terminales</button>
-	               </form>
-	            </div>
-	            
-	            
-	         </div>
+	        
+            <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+               <nav class="navbar navbar-default">
+                  <h1 align="center">Bienvenido</h1>
+               </nav>
+            </div>
+            <div class="col-md-6 col-md-offset-5">
+                              <form method="get" action="/admin/terminal">
+
+                     <button type="submit" class="btn btn-primary">Terminales</button>
+                  </form>
+               
+            </div>
+            
+            <div class="col-md-6 col-md-offset-5">
+               <form method="get" action="/admin/pois">
+
+                  <button type="submit" class="btn btn-primary">POIs</button>
+               </form>
+            <div>
+         </div>
 	     </div>
    
    
