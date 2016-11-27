@@ -24,7 +24,7 @@ public class TerminalController implements WithGlobalEntityManager, Transactiona
 	public static ModelAndView show(Request req, Response res) {
 		Map<String, List<POI>> model = new HashMap<>();
 		String palabraBuscada = req.queryParams("palabraBuscada");
-		Mapa mapa = SingletonMapa.getMemory();
+		Mapa mapa = SingletonMapa.get();
 		List<POI> resultadoBusqueda = new ArrayList<>();
 		resultadoBusqueda = mapa.busquedaRealizadaPorElUsuario(palabraBuscada);
 		model.put("pois",resultadoBusqueda);

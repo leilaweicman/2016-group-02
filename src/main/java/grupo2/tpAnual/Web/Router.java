@@ -15,6 +15,7 @@ public class Router {
 		HandlebarsTemplateEngine engine = HandlebarsTemplateEngineBuilder.create().withDefaultHelpers().build();
 		Spark.staticFiles.location("/public");
 		Spark.get("/", InicioController::get,engine);
+		Spark.get("/home", InicioController::home, engine); //Se inicia con usuario Administrador o Terminal (son los unicos creados) 
 		Spark.get("/terminal", TerminalController::get, engine);
 		Spark.get("/terminal/",TerminalController::show, engine);
 		Spark.get("/admin", AdminController::get, engine);
