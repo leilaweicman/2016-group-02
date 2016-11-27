@@ -21,9 +21,6 @@ public class Comuna {
 	@org.mongodb.morphia.annotations.Transient
 
 	private EntityManager em;
-	//@OneToMany @Convert(converter = ConverterPoint.class) @JoinColumn
-	 //@Convert(converter = ConverterPoint.class)
-	//@Transient
 	
 	@org.mongodb.morphia.annotations.Transient
 	@Embedded

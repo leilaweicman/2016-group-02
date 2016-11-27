@@ -20,8 +20,6 @@ public class Mapa {
 	private Usuario usuario;
 	private DatosDeBusquedaRepository repositorioDB;
 	
-	
-
 	public Mapa(List<OrigenesDeDatos> listaDeOrigenes, DatosDeBusquedaRepository repositorio) {
 		origenesDeDatos = new ArrayList<OrigenesDeDatos>();
 		this.origenesDeDatos.addAll(listaDeOrigenes);
