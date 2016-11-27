@@ -4,45 +4,41 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-
-import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
+import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 
 import grupo2.tpAnual.Pois.POI;
 
-public class OrigenesDeDatosPOIsSQL extends OrigenesDeDatosPOIs{
+<span class="fc" id="L11">public class OrigenesDeDatosPOIsSQL extends OrigenesDeDatosPOIs implements WithGlobalEntityManager{</span>
+
+	private static OrigenesDeDatosPOIsSQL instance;
 	
-	private EntityManager em;
-	
-<span class="fc" id="L19">	public OrigenesDeDatosPOIsSQL(){</span>
-<span class="fc" id="L20">		em = PerThreadEntityManagers.getEntityManager();</span>
-<span class="fc" id="L21">	}</span>
-	
+	public static OrigenesDeDatosPOIsSQL get() {
+<span class="nc bnc" id="L16" title="All 2 branches missed.">		if (instance == null) {</span>
+<span class="nc" id="L17">			instance = new OrigenesDeDatosPOIsSQL();</span>
+		}
+<span class="nc" id="L19">		return instance;</span>
+}	
 	public List&lt;POI&gt; getPOIs() {
-<span class="fc" id="L24">		List&lt;POI&gt; pois = new ArrayList&lt;POI&gt;();</span>
-<span class="fc" id="L25">		pois = (List&lt;POI&gt;) em.createQuery(&quot;from POI&quot;).getResultList();</span>
-<span class="fc" id="L26">		return pois;</span>
+<span class="fc" id="L22">		return entityManager().createQuery(&quot;from POI&quot;, POI.class).getResultList();</span>
 	}
 
 	public void agregarPOI(POI poi) {
-<span class="fc" id="L30">		em.persist(poi);</span>
-<span class="fc" id="L31">	}</span>
+<span class="fc" id="L26">		entityManager().persist(poi);</span>
+<span class="fc" id="L27">	}</span>
 
 	public void darDeBajaPOI(Integer id) {
-<span class="nc" id="L34">		List&lt;POI&gt; pois = new ArrayList&lt;POI&gt;();</span>
-<span class="nc" id="L35">		pois = (List&lt;POI&gt;) em.createQuery(&quot;from POI where id = :id&quot;).setParameter(&quot;id&quot;, id).getResultList();</span>
-<span class="nc" id="L36">		pois.forEach(poi -&gt; em.remove(poi));</span>
-<span class="nc" id="L37">	}</span>
+<span class="nc" id="L30">		List&lt;POI&gt; pois = new ArrayList&lt;POI&gt;();</span>
+<span class="nc" id="L31">		pois = entityManager().createQuery(&quot;from POI where id = :id&quot;, POI.class).setParameter(&quot;id&quot;, id).getResultList();</span>
+<span class="nc" id="L32">		pois.forEach(poi -&gt; entityManager().remove(poi));</span>
+<span class="nc" id="L33">	}</span>
 
 	@Override
 	public List&lt;POI&gt; busqueda(String txtABuscar) {
-<span class="fc" id="L41">		List&lt;POI&gt; resultados = new ArrayList&lt;POI&gt;();</span>
-<span class="fc" id="L42">		List&lt;String&gt; palClaves = Arrays.asList(txtABuscar);</span>
-<span class="fc" id="L43">		resultados =(List&lt;POI&gt;) em.createQuery(&quot;from POI where nombre= :nombre&quot;).setParameter(&quot;nombre&quot;, txtABuscar).getResultList(); </span>
+<span class="fc" id="L37">		List&lt;POI&gt; resultados = new ArrayList&lt;POI&gt;();</span>
+<span class="fc" id="L38">		List&lt;String&gt; palClaves = Arrays.asList(txtABuscar);</span>
+<span class="fc" id="L39">		resultados = entityManager().createQuery(&quot;from POI where nombre= :nombre&quot;, POI.class).setParameter(&quot;nombre&quot;, txtABuscar).getResultList(); </span>
 		//resultados.addAll((List&lt;POI&gt;) em.createQuery(&quot;from POI where palabraClave in (:palabra)&quot;).setParameter(&quot;palabra&quot;, palClaves).getResultList());
-<span class="fc" id="L45">		return resultados;</span>
+<span class="fc" id="L41">		return resultados;</span>
 	}
 	
 

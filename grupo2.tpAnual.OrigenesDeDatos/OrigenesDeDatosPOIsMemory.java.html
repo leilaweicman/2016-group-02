@@ -9,29 +9,34 @@ import grupo2.tpAnual.Pois.POI;
 public class OrigenesDeDatosPOIsMemory extends OrigenesDeDatosPOIs {
 
 	private List&lt;POI&gt; pois;
-
-<span class="fc" id="L13">	public OrigenesDeDatosPOIsMemory() {</span>
-<span class="fc" id="L14">		this.pois = new ArrayList&lt;POI&gt;();</span>
-<span class="fc" id="L15">	}</span>
+	private static OrigenesDeDatosPOIsMemory instance;
+	
+	public static OrigenesDeDatosPOIsMemory get(){
+<span class="nc bnc" id="L15" title="All 2 branches missed.">		if (instance == null) instance = new OrigenesDeDatosPOIsMemory();</span>
+<span class="nc" id="L16">		return instance;</span>
+	}
+	
+<span class="fc" id="L19">	public OrigenesDeDatosPOIsMemory() {</span>
+<span class="fc" id="L20">		this.pois = new ArrayList&lt;POI&gt;();</span>
+<span class="fc" id="L21">	}</span>
 
 	public List&lt;POI&gt; getPOIs() {
-<span class="fc" id="L18">		return pois;</span>
+<span class="fc" id="L24">		return pois;</span>
 	}
 
 	public void agregarPOI(POI poi) {
-<span class="fc" id="L22">		pois.add(poi);</span>
-<span class="fc" id="L23">	}</span>
+<span class="fc" id="L28">		pois.add(poi);</span>
+<span class="fc" id="L29">	}</span>
 
 	public void darDeBajaPOI(Integer id) {
-<span class="fc" id="L26">		this.pois.removeIf(poi -&gt; poi.getId().equals(id));</span>
-<span class="fc" id="L27">	}</span>
+<span class="fc" id="L32">		this.pois.removeIf(poi -&gt; poi.getId().equals(id));</span>
+<span class="fc" id="L33">	}</span>
 
 	@Override
 	public List&lt;POI&gt; busqueda(String txtABuscar) {
-<span class="fc" id="L31">		List&lt;POI&gt; resultados = new ArrayList&lt;POI&gt;();</span>
-<span class="fc" id="L32">		resultados.addAll(</span>
-<span class="fc" id="L33">				this.pois.stream().filter(poi -&gt; poi.verificaPorTexto(txtABuscar)).collect(Collectors.toList()));</span>
-<span class="fc" id="L34">		return resultados;</span>
+<span class="fc" id="L37">		List&lt;POI&gt; resultados = new ArrayList&lt;POI&gt;();</span>
+<span class="fc" id="L38">		resultados.addAll(this.pois.stream().filter(poi -&gt; poi.verificaPorTexto(txtABuscar)).collect(Collectors.toList()));</span>
+<span class="fc" id="L39">		return resultados;</span>
 	}
 
 }

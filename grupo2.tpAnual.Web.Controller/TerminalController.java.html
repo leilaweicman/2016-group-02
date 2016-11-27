@@ -1,46 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>TerminalController.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tpAnual</a> &gt; <a href="index.source.html" class="el_package">grupo2.tpAnual.Web.Controller</a> &gt; <span class="el_source">TerminalController.java</span></div><h1>TerminalController.java</h1><pre class="source lang-java linenums">package grupo2.tpAnual.Web.Controller;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.uqbar.geodds.Point;
+import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
+import org.uqbarproject.jpa.java8.extras.transaction.TransactionalOps;
 
 import grupo2.tpAnual.Mapa;
-import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatos;
-import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosPOIs;
-import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosPOIsMemory;
-import grupo2.tpAnual.Pois.Banco;
-import grupo2.tpAnual.Pois.CGP;
-import grupo2.tpAnual.Pois.Comercio;
 import grupo2.tpAnual.Pois.POI;
-import grupo2.tpAnual.Pois.Parada;
-import grupo2.tpAnual.Repositorios.SQLUserRepository;
-import grupo2.tpAnual.Repositorios.UserRepository;
-import grupo2.tpAnual.Repositorios.Usuario;
 import grupo2.tpAnual.Web.Models.SingletonMapa;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
-<span class="nc" id="L28">public class TerminalController {</span>
+<span class="nc" id="L18">public class TerminalController implements WithGlobalEntityManager, TransactionalOps {</span>
 
 	public static ModelAndView get(Request req, Response res) {
-<span class="nc" id="L31">		return new ModelAndView(null, &quot;busquedaTerminal.hbs&quot;);</span>
+<span class="nc" id="L21">		return new ModelAndView(null, &quot;busquedaTerminal.hbs&quot;);</span>
 	}
 
 	public static ModelAndView show(Request req, Response res) {
-<span class="nc" id="L35">		Map&lt;String, List&lt;POI&gt;&gt; model = new HashMap&lt;&gt;();</span>
-<span class="nc" id="L36">		String palabraBuscada = req.params(&quot;palabraBuscada&quot;);</span>
-<span class="nc" id="L37">		Mapa mapa = SingletonMapa.get();</span>
-<span class="nc" id="L38">		List&lt;POI&gt; resultadoBusqueda = new ArrayList&lt;&gt;();</span>
-		//resultadoBusqueda = mapa.busquedaRealizadaPorElUsuario(palabraBuscada);
-<span class="nc" id="L40">		resultadoBusqueda = Arrays.asList(new Banco(&quot;Santander&quot;, Point.and(123.4, 223.4)), new Comercio(&quot;Zara&quot;,Point.and(87.777, 55.435),null), new CGP(&quot;Comuna 9&quot;, Point.and(255.4, 333.2)));</span>
-<span class="nc" id="L41">		model.put(&quot;pois&quot;,resultadoBusqueda);</span>
-<span class="nc" id="L42">		return new ModelAndView(model, &quot;resultadoBusquedaTerminal.hbs&quot;);</span>
+<span class="nc" id="L25">		Map&lt;String, List&lt;POI&gt;&gt; model = new HashMap&lt;&gt;();</span>
+<span class="nc" id="L26">		String palabraBuscada = req.queryParams(&quot;palabraBuscada&quot;);</span>
+<span class="nc" id="L27">		Mapa mapa = SingletonMapa.getMemory();</span>
+<span class="nc" id="L28">		List&lt;POI&gt; resultadoBusqueda = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L29">		resultadoBusqueda = mapa.busquedaRealizadaPorElUsuario(palabraBuscada);</span>
+<span class="nc" id="L30">		model.put(&quot;pois&quot;,resultadoBusqueda);</span>
+<span class="nc" id="L31">		return new ModelAndView(model, &quot;resultadoBusquedaTerminal.hbs&quot;);</span>
 	}
-
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>
