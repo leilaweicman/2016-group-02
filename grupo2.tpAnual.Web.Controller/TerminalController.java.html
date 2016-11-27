@@ -24,7 +24,7 @@ import spark.Response;
 	public static ModelAndView show(Request req, Response res) {
 <span class="nc" id="L25">		Map&lt;String, List&lt;POI&gt;&gt; model = new HashMap&lt;&gt;();</span>
 <span class="nc" id="L26">		String palabraBuscada = req.queryParams(&quot;palabraBuscada&quot;);</span>
-<span class="nc" id="L27">		Mapa mapa = SingletonMapa.getMemory();</span>
+<span class="nc" id="L27">		Mapa mapa = SingletonMapa.get();</span>
 <span class="nc" id="L28">		List&lt;POI&gt; resultadoBusqueda = new ArrayList&lt;&gt;();</span>
 <span class="nc" id="L29">		resultadoBusqueda = mapa.busquedaRealizadaPorElUsuario(palabraBuscada);</span>
 <span class="nc" id="L30">		model.put(&quot;pois&quot;,resultadoBusqueda);</span>

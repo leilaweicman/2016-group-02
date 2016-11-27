@@ -24,8 +24,8 @@ import grupo2.tpAnual.AccesoriosPois.Comuna;
 	}
 
 	@Override
-	public List&lt;Usuario&gt; getUsuariosByNombre(String nombre){
-<span class="nc" id="L28">		return this.usuarios.stream().filter(usuario -&gt; (usuario.getNombre().equals(nombre))).collect(Collectors.toList());</span>
+	public Usuario getUsuarioByNombre(String nombre){
+<span class="nc" id="L28">		return (this.usuarios.stream().filter(usuario -&gt; (usuario.getNombre().equals(nombre))).collect(Collectors.toList())).get(0);</span>
 	}
 	@Override
 	public void deleteUsuario(Usuario usuario) {

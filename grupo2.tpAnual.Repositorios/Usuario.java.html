@@ -21,7 +21,7 @@ public class Usuario {
 	@ManyToOne 
 	public Comuna comuna;
 	
-	private int esAdmin; //es 1 si es admin, 0 si es terminal
+	private boolean esAdmin;
 	
 <span class="fc" id="L26">	public Usuario(){</span>
 		
@@ -63,11 +63,11 @@ public class Usuario {
 
 <span class="fc" id="L64">	}</span>
 	
-	public void setEsAdmin(int admin){
+	public void setEsAdmin(boolean admin){
 <span class="nc" id="L67">		esAdmin = admin;</span>
 <span class="nc" id="L68">	}</span>
 	
-	public int getEsAdmin(){
+	public boolean getEsAdmin(){
 <span class="nc" id="L71">		return esAdmin;</span>
 	}
 }
