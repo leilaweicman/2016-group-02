@@ -48,27 +48,29 @@ import spark.Response;
 	}
 	
 	public static ModelAndView editarPut(Request req, Response res){
-<span class="nc" id="L51">		String id = req.queryParams(&quot;id&quot;);</span>
+<span class="nc" id="L51">		String ids = req.queryParams(&quot;id&quot;);</span>
 
-<span class="nc" id="L53">		Mapa mapa = SingletonMapa.get();</span>
-<span class="nc" id="L54">		POI poi = mapa.buscarPorId(Integer.parseInt(id));</span>
-<span class="nc" id="L55">		poi.setNombre(req.queryParams(&quot;nombre&quot;));</span>
-<span class="nc" id="L56">		Direccion dir = poi.getDireccion();</span>
-<span class="nc" id="L57">		dir.setCalle(req.queryParams(&quot;direccion&quot;));</span>
-<span class="nc" id="L58">		poi.setDireccion(dir);</span>
-<span class="nc" id="L59">		poi.setUbicacion(Double.parseDouble(req.queryParams(&quot;x&quot;)), Double.parseDouble(req.queryParams(&quot;y&quot;)));</span>
+<span class="nc" id="L53">		Integer id = Integer.parseInt(ids);</span>
 
-<span class="nc" id="L61">		OrigenesDeDatosPOIs origen = (OrigenesDeDatosPOIs) mapa.getOrigenesDeDatos().get(0);</span>
-<span class="nc" id="L62">		origen.darDeBajaPOI(Integer.parseInt(id));</span>
-<span class="nc" id="L63">		origen.agregarPOI(poi);</span>
-<span class="nc" id="L64">		return new ModelAndView(null, &quot;admin/pois/index.hbs&quot;);	</span>
+<span class="nc" id="L55">		Mapa mapa = SingletonMapa.get();</span>
+<span class="nc" id="L56">		POI poi = mapa.buscarPorId(id);</span>
+<span class="nc" id="L57">		poi.setNombre(req.queryParams(&quot;nombre&quot;));</span>
+<span class="nc" id="L58">		Direccion dir = poi.getDireccion();</span>
+<span class="nc" id="L59">		dir.setCalle(req.queryParams(&quot;direccion&quot;));</span>
+<span class="nc" id="L60">		poi.setDireccion(dir);</span>
+<span class="nc" id="L61">		poi.setUbicacion(Double.parseDouble(req.queryParams(&quot;x&quot;)), Double.parseDouble(req.queryParams(&quot;y&quot;)));</span>
+
+<span class="nc" id="L63">		OrigenesDeDatosPOIs origen = (OrigenesDeDatosPOIs) mapa.getOrigenesDeDatos().get(0);</span>
+<span class="nc" id="L64">		origen.darDeBajaPOI(id);</span>
+<span class="nc" id="L65">		origen.agregarPOI(poi);</span>
+<span class="nc" id="L66">		return new ModelAndView(null, &quot;admin/pois/index.hbs&quot;);	</span>
 	}
 	
 	public static ModelAndView borrar(Request req, Response res){
-<span class="nc" id="L68">		String id = req.queryParams(&quot;id&quot;);</span>
-<span class="nc" id="L69">		OrigenesDeDatosPOIs origen = (OrigenesDeDatosPOIs) SingletonMapa.get().getOrigenesDeDatos().get(0);</span>
-<span class="nc" id="L70">		origen.darDeBajaPOI(Integer.parseInt(id));</span>
-<span class="nc" id="L71">		return new ModelAndView(null, &quot;admin/pois/index.hbs&quot;);</span>
+<span class="nc" id="L70">		String id = req.params(&quot;id&quot;);</span>
+<span class="nc" id="L71">		OrigenesDeDatosPOIs origen = (OrigenesDeDatosPOIs) SingletonMapa.get().getOrigenesDeDatos().get(0);</span>
+<span class="nc" id="L72">		origen.darDeBajaPOI(Integer.parseInt(id));</span>
+<span class="nc" id="L73">		return new ModelAndView(null, &quot;admin/pois/index.hbs&quot;);</span>
 	}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>
