@@ -64,8 +64,10 @@ public class AdministracionPoisController {
 		return new ModelAndView(null, "admin/pois/index.hbs");	
 	}
 	
-	public static void borrar(Request req, Response res){
+	public static ModelAndView borrar(Request req, Response res){
 		String id = req.queryParams("id");
-		res.redirect("/admin/pois");
+		OrigenesDeDatosPOIs origen = (OrigenesDeDatosPOIs) SingletonMapa.get().getOrigenesDeDatos().get(0);
+		origen.darDeBajaPOI(Integer.parseInt(id));
+		return new ModelAndView(null, "admin/pois/index.hbs");
 	}
 }

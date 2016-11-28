@@ -5,34 +5,16 @@
 
    </head>
    <body>
+   		<nav class="navbar navbar-default">
+   			<ul class="nav navbar-nav">   		
+			  <li><a href="/admin/pois">Administración de Pois</a></li>
+			  <li><a href="/admin/terminal">Terminales</a></li>
+			</ul>			  
+		</nav>
 	   	<div class="container">
-	        
-            <div class="row">
-            <div class="col-md-6 col-md-offset-3">
-               <nav class="navbar navbar-default">
-                  <h1 align="center">Bienvenido</h1>
-               </nav>
-            </div>
-            <div class="col-md-6 col-md-offset-5">
-                              <form method="get" action="/admin/terminal">
-
-                     <button type="submit" class="btn btn-primary">Terminales</button>
-                  </form>
-               
-            </div>
-            
-            <div class="col-md-6 col-md-offset-5">
-               <form method="get" action="/admin/pois">
-
-                  <button type="submit" class="btn btn-primary">POIs</button>
-               </form>
-            <div>
-         </div>
-	     </div>
-   
-   
-   
-   
+			{{#block "index"}}
+			{{/block}}
+	    </div>  
    </body>
 </html>
 

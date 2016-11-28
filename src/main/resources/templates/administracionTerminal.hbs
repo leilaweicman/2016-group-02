@@ -1,59 +1,44 @@
-<html>
-	<head>
+{{#partial "index"}}
+	<!--<head>
 		<title>Administracion terminales</title>
     	<link rel="stylesheet"  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     	<link rel="stylesheet"  href="/css/administracionTerminales.css">
 
-	</head>
+	</head>-->
 
-	<body>
-		<div class="container">
-			<div class="col-md-6 col-md-offset-3">
+	<div class="container">	
+		<div class="row">
+			<div style="float:left">
+				<form action="" method="post">
+					<input id="comuna"/>
+					<button type="submit" class="btn btn-primary">Filtrar</button>
+				</form>	
+			</div>
+			<div class="agregarTerminal" style="float: right;border: 1px solid;border-radius: 5px;padding: 7px;">
+				<!--boton de agregar terminal-->
+				<a href="admin/terminal/agregar">Agregar terminal</a>
+			</div>	
+		</div>
 
-				<div class="row">
-		               <nav class="navbar navbar-default">
-		                  <h1 align="center">Terminales</h1>
-		               </nav>
-				</div>
-
-				<div class="row">
-					<div style="float:left">
-						<form action="" method="post">
-							<input id="comuna"/>
-							<button type="submit" class="btn btn-primary">Filtrar</button>
-						</form>	
-					</div>
-					<div class="agregarTerminal" style="float: right;border: 1px solid;border-radius: 5px;padding: 7px;">
-						<!--boton de agregar terminal-->
-						<a href="admin/terminal/agregar">Agregar terminal</a>
-					</div>	
-				</div>
-
-				<div class="row">
-					<table class="table table-striped">
-						<tr class="first-row">
-							<th  style="border-top: none">Nombre</th>
-							<th  style="border-top: none">Comuna</th>
-							
-						</tr>
-						
-						{{#each terminales}}
-							<tr>
-								<td>{{nombre}}</td>
-								<td>{{comuna.numeroComuna}}</td>
-								<td><a href="terminal/info?id={{id}}">Ver mas</a><td>
-								<td><a href="terminal/editar?id={{id}}">Editar</a><td>
-								<td><a href="terminal/eliminar?id={{id}}">Eliminar</a><td>
-							</tr>
-						{{/each}}
-					</table>
-				</div>
-			</div>       			
-		</div>	
-
-	</body>
-
-	<footer>
-
-	</footer>
-</html>
+		<div class="row">
+			<table class="table table-striped">
+				<tr class="first-row">
+					<th  style="border-top: none">Nombre</th>
+					<th  style="border-top: none">Comuna</th>
+					
+				</tr>
+				
+				{{#each terminales}}
+					<tr>
+						<td>{{nombre}}</td>
+						<td>{{comuna.numeroComuna}}</td>
+						<td><a href="terminal/info?id={{id}}">Ver mas</a><td>
+						<td><a href="terminal/editar?id={{id}}">Editar</a><td>
+						<td><a href="terminal/eliminar?id={{id}}">Eliminar</a><td>
+					</tr>
+				{{/each}}
+			</table>
+		</div>
+	</div>	
+{{/partial}}
+{{>admin.hbs}}
