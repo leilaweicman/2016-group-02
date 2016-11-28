@@ -14,4 +14,5 @@ public abstract class OrigenesDeDatosPOIs extends OrigenesDeDatos{
 	
 	public abstract void darDeBajaPOI(Integer id);
 
+	public abstract POI buscarPorId (Integer id);
 }

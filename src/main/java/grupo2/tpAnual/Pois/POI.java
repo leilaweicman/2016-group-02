@@ -85,7 +85,15 @@ public abstract class POI {
 	public void setDireccion(Direccion dir) {
 		this.direccion = dir;
 	}
-
+	
+	public double getX(){
+		return this.ubicacion.longitude();
+	}
+	
+	public double getY(){
+		return this.ubicacion.latitude();
+	}
+	
 	public void addPalabraClave(String pc) {
 		this.palabraClave.add(pc);
 	}

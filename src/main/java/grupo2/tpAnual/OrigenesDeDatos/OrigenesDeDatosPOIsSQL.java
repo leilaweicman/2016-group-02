@@ -41,5 +41,12 @@ public class OrigenesDeDatosPOIsSQL extends OrigenesDeDatosPOIs implements WithG
 		return resultados;
 	}
 	
-
+	@Override
+	public POI buscarPorId(Integer id){
+		List<POI> pois =  entityManager().createQuery("from POI where id= :id", POI.class).setParameter("id", id).getResultList(); 
+		if(pois.size()> 0){
+			return pois.get(0);
+		}
+		return null;	
+	}
 }

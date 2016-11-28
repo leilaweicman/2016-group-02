@@ -38,5 +38,13 @@ public class OrigenesDeDatosPOIsMemory extends OrigenesDeDatosPOIs {
 		resultados.addAll(this.pois.stream().filter(poi -> poi.verificaPorTexto(txtABuscar)).collect(Collectors.toList()));
 		return resultados;
 	}
-
+	
+	@Override
+	public POI buscarPorId(Integer id){
+		List<POI> pois = this.pois.stream().filter(poi -> poi.getId().equals(id)).collect(Collectors.toList());
+		if(pois.size()> 0){
+			return pois.get(0);
+		}
+		return null;		
+	}
 }
