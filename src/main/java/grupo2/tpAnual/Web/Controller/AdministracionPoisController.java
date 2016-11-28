@@ -48,10 +48,12 @@ public class AdministracionPoisController {
 	}
 	
 	public static ModelAndView editarPut(Request req, Response res){
-		String id = req.queryParams("id");
+		String ids = req.queryParams("id");
+
+		Integer id = Integer.parseInt(ids);
 
 		Mapa mapa = SingletonMapa.get();
-		POI poi = mapa.buscarPorId(Integer.parseInt(id));
+		POI poi = mapa.buscarPorId(id);
 		poi.setNombre(req.queryParams("nombre"));
 		Direccion dir = poi.getDireccion();
 		dir.setCalle(req.queryParams("direccion"));
@@ -59,13 +61,13 @@ public class AdministracionPoisController {
 		poi.setUbicacion(Double.parseDouble(req.queryParams("x")), Double.parseDouble(req.queryParams("y")));
 
 		OrigenesDeDatosPOIs origen = (OrigenesDeDatosPOIs) mapa.getOrigenesDeDatos().get(0);
-		origen.darDeBajaPOI(Integer.parseInt(id));
+		origen.darDeBajaPOI(id);
 		origen.agregarPOI(poi);
 		return new ModelAndView(null, "admin/pois/index.hbs");	
 	}
 	
 	public static ModelAndView borrar(Request req, Response res){
-		String id = req.queryParams("id");
+		String id = req.params("id");
 		OrigenesDeDatosPOIs origen = (OrigenesDeDatosPOIs) SingletonMapa.get().getOrigenesDeDatos().get(0);
 		origen.darDeBajaPOI(Integer.parseInt(id));
 		return new ModelAndView(null, "admin/pois/index.hbs");
