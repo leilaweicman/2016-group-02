@@ -1,11 +1,11 @@
 GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
 tpAnual,grupo2.tpAnual.Reportes,PorTerminalOUsuario,29,11,2,0,5,4,2,2,1,2
 tpAnual,grupo2.tpAnual.Reportes,PorBusquedaPorFecha,13,52,1,3,1,12,1,3,0,2
-tpAnual,grupo2.tpAnual.OrigenesDeDatos,OrigenesDeDatosPOIsMemory,8,51,2,0,2,11,2,7,1,7
+tpAnual,grupo2.tpAnual.OrigenesDeDatos,OrigenesDeDatosPOIsMemory,33,51,4,0,6,11,5,7,3,7
 tpAnual,grupo2.tpAnual.OrigenesDeDatos,Decorator,0,6,0,0,0,3,0,1,0,1
 tpAnual,grupo2.tpAnual.OrigenesDeDatos,OrigenesDeDatosBancoExterno,0,77,0,0,0,15,0,4,0,4
 tpAnual,grupo2.tpAnual.OrigenesDeDatos,OrigenesDeDatosBancosConRedis,6,92,0,2,2,17,0,5,0,4
-tpAnual,grupo2.tpAnual.OrigenesDeDatos,OrigenesDeDatosPOIsSQL,32,39,2,0,7,8,4,4,3,4
+tpAnual,grupo2.tpAnual.OrigenesDeDatos,OrigenesDeDatosPOIsSQL,52,39,4,0,11,8,6,4,4,4
 tpAnual,grupo2.tpAnual.OrigenesDeDatos,OrigenesDeDatosCentroDTO,0,76,0,0,0,17,0,5,0,5
 tpAnual,grupo2.tpAnual.OrigenesDeDatos,OrigenesDeDatos,0,3,0,0,0,1,0,1,0,1
 tpAnual,grupo2.tpAnual.OrigenesDeDatos,OrigenesDeDatosPOIs,0,3,0,0,0,1,0,1,0,1
@@ -15,7 +15,7 @@ tpAnual,grupo2.tpAnual.Repositorios,Usuario,16,37,0,0,6,14,4,8,4,8
 tpAnual,grupo2.tpAnual.Repositorios,MemoryUserRepository,44,17,2,0,4,5,6,3,5,3
 tpAnual,grupo2.tpAnual.Repositorios,SQLUserRepository,41,28,2,0,9,10,4,4,3,4
 tpAnual,grupo2.tpAnual.Repositorios,DatosDeBusqueda,6,49,0,0,2,16,2,6,2,6
-tpAnual,grupo2.tpAnual.Pois,POI,10,72,1,3,4,25,3,16,2,15
+tpAnual,grupo2.tpAnual.Pois,POI,18,72,1,3,6,25,5,16,4,15
 tpAnual,grupo2.tpAnual.Pois,Banco,27,89,2,0,7,13,6,5,5,5
 tpAnual,grupo2.tpAnual.Pois,CGP,10,81,1,7,3,17,3,10,2,7
 tpAnual,grupo2.tpAnual.Pois,Parada,18,11,2,0,3,4,4,2,3,2
@@ -35,11 +35,11 @@ tpAnual,grupo2.tpAnual,FromJsonToMap,3,20,0,0,1,3,1,2,1,2
 tpAnual,grupo2.tpAnual,ConverterPoint,36,0,0,0,6,0,3,0,3,0
 tpAnual,grupo2.tpAnual,LocalDateAttributeConverter,17,0,4,0,3,0,5,0,3,0
 tpAnual,grupo2.tpAnual,MorphiaService,11,31,0,0,5,8,3,3,3,3
-tpAnual,grupo2.tpAnual,Mapa,14,73,0,0,4,18,4,4,4,4
+tpAnual,grupo2.tpAnual,Mapa,67,73,6,0,13,18,9,4,6,4
 tpAnual,grupo2.tpAnual.AccesoriosPois,Rango,6,38,0,6,2,9,2,7,2,4
 tpAnual,grupo2.tpAnual.AccesoriosPois,Rubro,15,17,0,0,5,7,4,5,4,5
 tpAnual,grupo2.tpAnual.AccesoriosPois,Disponibilidad,10,48,0,0,4,13,2,4,2,4
-tpAnual,grupo2.tpAnual.AccesoriosPois,Direccion,3,15,0,0,1,6,1,3,1,3
+tpAnual,grupo2.tpAnual.AccesoriosPois,Direccion,7,15,0,0,3,6,2,3,2,3
 tpAnual,grupo2.tpAnual.AccesoriosPois,Servicio,16,37,0,0,6,12,4,6,4,6
 tpAnual,grupo2.tpAnual.AccesoriosPois,Comuna,21,23,0,0,5,7,3,2,3,2
 tpAnual,grupo2.tpAnual.Web.Models,adminPois,6,0,0,0,2,0,2,0,2,0
@@ -50,7 +50,7 @@ tpAnual,grupo2.tpAnual.helpers,MapExtensions,17,0,0,0,6,0,2,0,2,0
 tpAnual,grupo2.tpAnual.Procesos.ManejoDeErroresProcesos,EnviarMailFalloProceso,11,11,2,0,3,3,2,1,1,1
 tpAnual,grupo2.tpAnual.Procesos.ManejoDeErroresProcesos,ReintentarEjecucionProceso,23,0,4,0,9,0,4,0,2,0
 tpAnual,ServiciosExternos,CentroDTO,9,18,0,0,3,7,3,4,3,4
-tpAnual,grupo2.tpAnual.Web.Controller,AdministracionPoisController,119,0,0,0,26,0,6,0,6,0
+tpAnual,grupo2.tpAnual.Web.Controller,AdministracionPoisController,128,0,0,0,29,0,6,0,6,0
 tpAnual,grupo2.tpAnual.Web.Controller,AdminController,9,0,0,0,2,0,2,0,2,0
 tpAnual,grupo2.tpAnual.Web.Controller,TerminalController,38,0,0,0,9,0,3,0,3,0
 tpAnual,grupo2.tpAnual.Web.Controller,InicioController,31,0,2,0,8,0,4,0,3,0

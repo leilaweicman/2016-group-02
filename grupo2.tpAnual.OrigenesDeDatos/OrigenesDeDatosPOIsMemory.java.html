@@ -38,6 +38,14 @@ public class OrigenesDeDatosPOIsMemory extends OrigenesDeDatosPOIs {
 <span class="fc" id="L38">		resultados.addAll(this.pois.stream().filter(poi -&gt; poi.verificaPorTexto(txtABuscar)).collect(Collectors.toList()));</span>
 <span class="fc" id="L39">		return resultados;</span>
 	}
-
+	
+	@Override
+	public POI buscarPorId(Integer id){
+<span class="nc" id="L44">		List&lt;POI&gt; pois = this.pois.stream().filter(poi -&gt; poi.getId().equals(id)).collect(Collectors.toList());</span>
+<span class="nc bnc" id="L45" title="All 2 branches missed.">		if(pois.size()&gt; 0){</span>
+<span class="nc" id="L46">			return pois.get(0);</span>
+		}
+<span class="nc" id="L48">		return null;		</span>
+	}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>
