@@ -18,7 +18,7 @@ import spark.Response;
 public class TerminalController implements WithGlobalEntityManager, TransactionalOps {
 
 	public static ModelAndView get(Request req, Response res) {
-		return new ModelAndView(null, "busquedaTerminal.hbs");
+		return new ModelAndView(null, "terminal/busquedaTerminal.hbs");
 	}
 
 	public static ModelAndView show(Request req, Response res) {
@@ -28,6 +28,10 @@ public class TerminalController implements WithGlobalEntityManager, Transactiona
 		List<POI> resultadoBusqueda = new ArrayList<>();
 		resultadoBusqueda = mapa.busquedaRealizadaPorElUsuario(palabraBuscada);
 		model.put("pois",resultadoBusqueda);
-		return new ModelAndView(model, "resultadoBusquedaTerminal.hbs");
+		return new ModelAndView(model, "terminal/resultadoBusquedaTerminal.hbs");
+	}
+	
+	public static ModelAndView inicio(Request req, Response res) {
+		return new ModelAndView(null, "terminal/index.hbs");
 	}
 }

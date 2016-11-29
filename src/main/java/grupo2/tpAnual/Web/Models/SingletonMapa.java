@@ -4,7 +4,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.persistence.EntityManager;
+
 import org.uqbar.geodds.Point;
+import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
+import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
+import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
 
 import grupo2.tpAnual.Mapa;
 import grupo2.tpAnual.AccesoriosPois.Comuna;
@@ -24,9 +29,10 @@ import grupo2.tpAnual.Repositorios.DatosDeBusquedaRepository;
 import grupo2.tpAnual.Repositorios.Usuario;
 import grupo2.tpAnual.Web.Server;
 
-public class SingletonMapa {
+public class SingletonMapa  extends AbstractPersistenceTest implements WithGlobalEntityManager {
 	private static Mapa instance;
-
+	private static EntityManager em;
+	
 	public static Mapa get() {
 		if (instance == null) {
 			if (Server.inMemory == true)
@@ -41,11 +47,14 @@ public class SingletonMapa {
 		Usuario usuario = new Usuario();
 		List<OrigenesDeDatos> listaDeOrigenes = new ArrayList<>();
 		DatosDeBusquedaRepository repositorioDatosBusqueda = new DatosBusquedaRepositoryMongoDB(null, null);
+		em = PerThreadEntityManagers.getEntityManager();
+		em.getTransaction().begin();
 		OrigenesDeDatosPOIs pois = OrigenesDeDatosPOIsSQL.get();
 		agregarPoisAlRepo(pois);
 		listaDeOrigenes = Arrays.asList(pois);
 		instance = new Mapa(listaDeOrigenes, repositorioDatosBusqueda);
 		instance.setUsuario(usuario);
+		em.getTransaction().commit();
 	}
 
 	private static void inMemory() {

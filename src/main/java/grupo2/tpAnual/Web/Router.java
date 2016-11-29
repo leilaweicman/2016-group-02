@@ -16,8 +16,9 @@ public class Router {
 		Spark.staticFiles.location("/public");
 		Spark.get("/", InicioController::get,engine);
 		Spark.get("/home", InicioController::home, engine); //Se inicia con usuario Administrador o Terminal (son los unicos creados) 
-		Spark.get("/terminal", TerminalController::get, engine);
-		Spark.get("/terminal/",TerminalController::show, engine);
+		Spark.get("/terminal", TerminalController::inicio, engine);
+		Spark.get("/terminal/busqueda", TerminalController::get, engine);
+		Spark.get("/terminal/busqueda/",TerminalController::show, engine);
 		Spark.get("/admin", AdminController::get, engine);
 		Spark.get("/admin/historico", HistoricoConsultasController::get, engine);
 		Spark.get("/admin/listarPorTerminal", HistoricoConsultasController::listarPorTerminal, engine);

@@ -5,17 +5,28 @@
 
    </head>
    <body>
-   		<nav class="navbar navbar-default">
-   			<ul class="nav navbar-nav">   		
+   <nav class="navbar navbar-default">
+   		{{#block "titulo"}}
+		{{/block}}
+   			<ul class="nav navbar-nav">   
+			  <li><a href="/admin">Inicio</a></li>		
 			  <li><a href="/admin/pois">Administración de Pois</a></li>
 			  <li><a href="/admin/terminal">Terminales</a></li>
+			  <li><a href="/admin/historico">Historico de Consultas</a></li>
 			</ul>			  
 		</nav>
 	   	<div class="container">
 			{{#block "index"}}
 			{{/block}}
-	    </div>  
+			{{#block "historico"}}
+			{{/block}}
+	    </div>
    </body>
+   <footer class="footer navbar-fixed-bottom">
+     <div class="panel panel-default">
+		<div class="panel-body">Nosotros | Contacto | Terminos y condiciones | Políticas de privacidad | Dónde estamos | </div>
+	 </div>
+   </footer> 
 </html>
 
 
