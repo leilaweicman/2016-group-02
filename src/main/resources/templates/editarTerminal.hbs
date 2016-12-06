@@ -1,6 +1,6 @@
 <html>
 	<head>
-		<title>Administracion terminales</title>
+		<title>Editar terminal</title>
     	<link rel="stylesheet"  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     	<link rel="stylesheet"  href="/css/administracionTerminales.css">
 
@@ -17,10 +17,22 @@
 				</div>
 
 				<div class="row">
-					<div style="float:left">
-						<form action="" method="post">
+					<div>
+						<form action="/admin/terminal" method="post">
+							
+							<input id="nombre" value="{{nombre}}"/>
 							<input id="comuna" placeholder="Numero comuna"/>
-							<button type="submit" class="btn btn-primary">Filtrar</button>
+
+							<input id="comuna" placeholder="Numero comuna"/>
+
+							<input id="comuna" placeholder="Numero comuna"/>
+
+							<input id="comuna" placeholder="Numero comuna"/>
+
+							
+							<button type="submit" class="btn btn-primary">Guardar</button>
+							<button href="/admin/terminal" class="btn btn-primary">Guardar</button>
+
 						</form>	
 					</div>
 					<div class="agregarTerminal" style="float: right;border: 1px solid;border-radius: 5px;padding: 7px;">
@@ -37,16 +49,15 @@
 							
 						</tr>
 						
-						{{#each terminales}}
+						<!--{{#each terminales}}
 							<tr>
 								<td>{{nombre}}</td>
 								<td>{{comuna.numeroComuna}}</td>
 								<td><a href="terminal/info?id={{id}}">Ver mas</a><td>
-								<!--<td><a href="terminal/editar?id={{id}}">Editar</a><td>-->
-								<td><a href="terminal/editar">Editar</a><td>
+								<td><a href="terminal/editar?id={{id}}">Editar</a><td>
 								<td><a href="terminal/eliminar?id={{id}}">Eliminar</a><td>
 							</tr>
-						{{/each}}
+						{{/each}}-->
 					</table>
 				</div>
 			</div>       			
