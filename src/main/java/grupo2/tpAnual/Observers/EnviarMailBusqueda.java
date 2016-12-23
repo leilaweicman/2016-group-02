@@ -17,6 +17,10 @@ public class EnviarMailBusqueda extends ObserverBusqueda {
 	private MailSender mailSender;
 
 	private String mailAdministrador;
+	
+	public EnviarMailBusqueda(){
+		
+	}
 
 	public EnviarMailBusqueda(long tiempoMaximoDeEjecucion, MailSender mailsender, String mailAdministrador) {
 		this.tiempoMaximo = tiempoMaximoDeEjecucion;

@@ -5,8 +5,8 @@ import org.mockito.Mockito;
 
 import ServiciosExternos.ServicioExternoBanco;
 import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatos;
-import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosBancoExterno;
-import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosBancosConRedis;
+import grupo2.tpAnual.OrigenesDeDatos.BancosExternos;
+import grupo2.tpAnual.OrigenesDeDatos.BancosConRedis;
 
 public class RedisTest {
 	private OrigenesDeDatos mapa;
@@ -15,8 +15,8 @@ public class RedisTest {
 	@Before
 	public void init(){
 	serv = Mockito.mock(ServicioExternoBanco.class);
-	mapa = new OrigenesDeDatosBancoExterno(serv);
-	mapa = new OrigenesDeDatosBancosConRedis(mapa,serv);
+	mapa = new BancosExternos(serv);
+	mapa = new BancosConRedis(mapa,serv);
 	}
 	
 	@Test

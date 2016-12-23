@@ -1,8 +1,6 @@
 package grupo2.tpAnual.Observers;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.Transient;
 
 import grupo2.tpAnual.MorphiaService;
@@ -27,6 +25,7 @@ public class NotificarDatosBusqueda extends ObserverBusqueda {
 			this.register= new DatosBusquedaRepositoryMongoDB(DatosDeBusqueda.class,morphia.getDatastore());
 			morphia = new MorphiaService();
 		}
+		this.id=1;
 	}
 
 	@Override

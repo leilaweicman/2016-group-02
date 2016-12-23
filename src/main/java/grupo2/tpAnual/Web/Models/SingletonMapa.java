@@ -33,7 +33,7 @@ import grupo2.tpAnual.Web.Server;
 
 public class SingletonMapa  extends AbstractPersistenceTest implements WithGlobalEntityManager {
 	private static Mapa instance;
-	private static EntityManager em;
+	private static EntityManager em;	
 	private static MorphiaService morphia;
 	
 	

@@ -31,7 +31,8 @@ public class BajaDePois extends Proceso {
 			numerosID = FromJsonToMap.transformarAMap(json).stream().map((poiMap) -> transformarID(poiMap)).collect(Collectors.toList());
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			this.configuracionesFallo.forEach(configuracion -> configuracion.ejecutarConfiguracionPorFallo(this));
+			this.setEstadoProceso(false);
 		}
 		return numerosID;
 	}

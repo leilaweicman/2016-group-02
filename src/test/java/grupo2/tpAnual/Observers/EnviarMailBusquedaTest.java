@@ -1,20 +1,12 @@
 package grupo2.tpAnual.Observers;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
-import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
-import org.uqbar.geodds.Point;
 
 import grupo2.tpAnual.MailSender;
-import grupo2.tpAnual.AccesoriosPois.Rango;
-import grupo2.tpAnual.Observers.EnviarMailBusqueda;
-import grupo2.tpAnual.Pois.Comercio;
 import grupo2.tpAnual.Pois.POI;
 import grupo2.tpAnual.Repositorios.DatosDeBusqueda;
 

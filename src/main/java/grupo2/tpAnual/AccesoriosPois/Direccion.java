@@ -7,9 +7,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Embeddable
+@Entity @Embeddable
 public class Direccion {
-
+	@Id @GeneratedValue
+	private long id;
 	@Column
 	private String calle;
 	@Column

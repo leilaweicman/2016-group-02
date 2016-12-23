@@ -10,12 +10,12 @@ import org.mockito.Mockito;
 import org.uqbar.geodds.Point;
 
 import ServiciosExternos.ServicioExternoBanco;
-import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosBancoExterno;
+import grupo2.tpAnual.OrigenesDeDatos.BancosExternos;
 import grupo2.tpAnual.Pois.POI;
 
 public class OrigenesDeDatosBancoExternoTest {
 
-	private OrigenesDeDatosBancoExterno origenDeDatos;
+	private BancosExternos origenDeDatos;
 	
 	@Mock
 	private ServicioExternoBanco bancos; 
@@ -31,7 +31,7 @@ public class OrigenesDeDatosBancoExternoTest {
 				+ "\"sucursal\": \"Avellaneda\"," + "\"gerente\": \"Javier Loeschbor\","
 				+ " \"servicios\": [ \"cobro cheques\", \"depósitos\", \"extracciones\", \"transferencias\", \"créditos\", \"\", \"\", \"\" ]"
 				+ " }" + "]");
-		origenDeDatos = new OrigenesDeDatosBancoExterno(bancos);
+		origenDeDatos = new BancosExternos(bancos);
 		List<POI> bancos = origenDeDatos.busqueda("Banco de la Plaza");
 		Assert.assertEquals(bancos.get(0).getNombre(), "Banco de la Plaza");		
 	}
@@ -42,7 +42,7 @@ public class OrigenesDeDatosBancoExternoTest {
 				+ "\"sucursal\": \"Avellaneda\"," + "\"gerente\": \"Javier Loeschbor\","
 				+ " \"servicios\": [ \"cobro cheques\", \"depósitos\", \"extracciones\", \"transferencias\", \"créditos\", \"\", \"\", \"\" ]"
 				+ " }" + "]");
-		origenDeDatos = new OrigenesDeDatosBancoExterno(bancos);
+		origenDeDatos = new BancosExternos(bancos);
 		List<POI> bancos = origenDeDatos.busqueda("cobro cheques");
 		Assert.assertEquals(bancos.get(0).getPalabraClave().get(0), "cobro cheques");
 	}
@@ -53,7 +53,7 @@ public class OrigenesDeDatosBancoExternoTest {
 				+ "\"sucursal\": \"Avellaneda\"," + "\"gerente\": \"Javier Loeschbor\","
 				+ " \"servicios\": [ \"cobro cheques\", \"depósitos\", \"extracciones\", \"transferencias\", \"créditos\", \"\", \"\", \"\" ]"
 				+ " }" + "]");
-		origenDeDatos = new OrigenesDeDatosBancoExterno(bancos);
+		origenDeDatos = new BancosExternos(bancos);
 		List<POI> bancos = origenDeDatos.busqueda("depósitos");
 		Assert.assertEquals(bancos.get(0).getUbicacion().toString(), new Point(-35.5,72.5).toString());
 		
@@ -65,7 +65,7 @@ public class OrigenesDeDatosBancoExternoTest {
 				+ "\"sucursal\": \"Avellaneda\"," + "\"gerente\": \"Javier Loeschbor\","
 				+ " \"servicios\": [ \"cobro cheques\", \"depósitos\", \"extracciones\", \"transferencias\", \"créditos\", \"\", \"\", \"\" ]"
 				+ " }" + "]");
-		origenDeDatos = new OrigenesDeDatosBancoExterno(bancos);
+		origenDeDatos = new BancosExternos(bancos);
 		origenDeDatos.busqueda("Hola");
 	}
 	
@@ -75,7 +75,7 @@ public class OrigenesDeDatosBancoExternoTest {
 				+ "\"sucursal\": \"Avellaneda\"," + "\"gerente\": \"Javier Loeschbor\","
 				+ " \"servicios\": [ \"cobro cheques\", \"depósitos\", \"extracciones\", \"transferencias\", \"créditos\", \"\", \"\", \"\" ]"
 				+ " }" + "]");
-		origenDeDatos = new OrigenesDeDatosBancoExterno(bancos);
+		origenDeDatos = new BancosExternos(bancos);
 		 origenDeDatos.busqueda("Hola");
 	}
 }

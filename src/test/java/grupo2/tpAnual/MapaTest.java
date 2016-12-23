@@ -16,7 +16,7 @@ import ServiciosExternos.ServicioExternoCentroDTO;
 import grupo2.tpAnual.AccesoriosPois.Rango;
 import grupo2.tpAnual.AccesoriosPois.Servicio;
 import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatos;
-import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosBancoExterno;
+import grupo2.tpAnual.OrigenesDeDatos.BancosExternos;
 import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosCentroDTO;
 import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosPOIsMemory;
 import grupo2.tpAnual.Pois.Banco;
@@ -32,7 +32,7 @@ public class MapaTest {
 	private CGP rentas;
 	private OrigenesDeDatosPOIsMemory origenesDeDatosPois;
 	private OrigenesDeDatosCentroDTO datosCentrosDTOs;
-	private OrigenesDeDatosBancoExterno datosBancosExternos;
+	private BancosExternos datosBancosExternos;
 	private List<OrigenesDeDatos> listaDeOrigenes;
 	private ServicioExternoBanco bancosStub;
 	private ServicioExternoCentroDTO centrosStub;
@@ -103,7 +103,7 @@ public class MapaTest {
 						+ "\"sucursal\": \"Avellaneda\"," + "\"gerente\": \"Javier Loeschbor\","
 						+ " \"servicios\": [ \"cobro cheques\", \"depósitos\", \"extracciones\", \"transferencias\", \"créditos\", \"\", \"\", \"\" ]"
 						+ " }" + "]");
-		this.datosBancosExternos = new OrigenesDeDatosBancoExterno(bancosStub);
+		this.datosBancosExternos = new BancosExternos(bancosStub);
 		listaDeOrigenes = Arrays.asList(datosBancosExternos);
 		this.lasHeras = new Mapa(listaDeOrigenes, repositorioDB);
 		this.lasHeras.setUsuario(juan);
@@ -117,7 +117,7 @@ public class MapaTest {
 						+ "\"sucursal\": \"Avellaneda\"," + "\"gerente\": \"Javier Loeschbor\","
 						+ " \"servicios\": [ \"plazoFijo\", \"depósitos\", \"extracciones\", \"transferencias\", \"créditos\", \"\", \"\", \"\" ]"
 						+ " }" + "]");
-		this.datosBancosExternos = new OrigenesDeDatosBancoExterno(bancosStub);
+		this.datosBancosExternos = new BancosExternos(bancosStub);
 		listaDeOrigenes = Arrays.asList(datosCentrosDTOs, datosBancosExternos, origenesDeDatosPois);
 		List<CentroDTO> respuesta = Arrays.asList(new CentroDTO(1, "Pedro Goyena 1825"));
 		Mockito.when(centrosStub.busqueda("plazoFijo")).thenReturn(respuesta);
