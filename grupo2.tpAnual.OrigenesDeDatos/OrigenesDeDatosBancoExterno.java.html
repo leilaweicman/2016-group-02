@@ -16,38 +16,34 @@ import grupo2.tpAnual.FromJsonToMap;
 import grupo2.tpAnual.Pois.Banco;
 import grupo2.tpAnual.Pois.POI;
 
-@Entity
 public class OrigenesDeDatosBancoExterno extends OrigenesDeDatos {
 	
-	@Id
-	public Integer id;
 	@Transient
 	private ServicioExternoBanco mapaBancoExterno;
 
-<span class="fc" id="L27">	public OrigenesDeDatosBancoExterno(ServicioExternoBanco servicio) {</span>
-<span class="fc" id="L28">		this.mapaBancoExterno = servicio;</span>
-<span class="fc" id="L29">		this.id = 1;</span>
-<span class="fc" id="L30">	}</span>
+<span class="fc" id="L24">	public OrigenesDeDatosBancoExterno(ServicioExternoBanco servicio) {</span>
+<span class="fc" id="L25">		this.mapaBancoExterno = servicio;</span>
+<span class="fc" id="L26">	}</span>
 
 	@Override
 	public List&lt;POI&gt; busqueda(String banco) {
 		try {
-<span class="fc" id="L35">			String json = mapaBancoExterno.busqueda(banco, &quot;&quot;);</span>
-<span class="fc" id="L36">			return FromJsonToMap.transformarAMap(json).stream().map((poiMap) -&gt; adaptar(poiMap)).collect(Collectors.toList());		</span>
-<span class="fc" id="L37">		} catch (Exception e) {</span>
-<span class="fc" id="L38">			throw new RuntimeException(e);</span>
+<span class="fc" id="L31">			String json = mapaBancoExterno.busqueda(banco, &quot;&quot;);</span>
+<span class="fc" id="L32">			return FromJsonToMap.transformarAMap(json).stream().map((poiMap) -&gt; adaptar(poiMap)).collect(Collectors.toList());		</span>
+<span class="fc" id="L33">		} catch (Exception e) {</span>
+<span class="fc" id="L34">			throw new RuntimeException(e);</span>
 		}
 	}
 
 	private POI adaptar(Map&lt;String, Object&gt; map) {
-<span class="fc" id="L43">		List&lt;String&gt; servicios = (List&lt;String&gt;) map.getOrDefault(&quot;servicios&quot;, new ArrayList&lt;&gt;());</span>
-<span class="fc" id="L44">		String nombre = (String) map.getOrDefault(&quot;banco&quot;, new RuntimeException());</span>
-<span class="fc" id="L45">		double latitud = (double) map.get(&quot;x&quot;);</span>
-<span class="fc" id="L46">		double longitud = (double) map.get(&quot;y&quot;);</span>
+<span class="fc" id="L39">		List&lt;String&gt; servicios = (List&lt;String&gt;) map.getOrDefault(&quot;servicios&quot;, new ArrayList&lt;&gt;());</span>
+<span class="fc" id="L40">		String nombre = (String) map.getOrDefault(&quot;banco&quot;, new RuntimeException());</span>
+<span class="fc" id="L41">		double latitud = (double) map.get(&quot;x&quot;);</span>
+<span class="fc" id="L42">		double longitud = (double) map.get(&quot;y&quot;);</span>
 
-<span class="fc" id="L48">		POI poi = new Banco(nombre, Point.and(latitud, longitud));</span>
-<span class="fc" id="L49">		poi.setPalabrasClaves(servicios);</span>
-<span class="fc" id="L50">		return poi;</span>
+<span class="fc" id="L44">		POI poi = new Banco(nombre, Point.and(latitud, longitud));</span>
+<span class="fc" id="L45">		poi.setPalabrasClaves(servicios);</span>
+<span class="fc" id="L46">		return poi;</span>
 	}
 
 }

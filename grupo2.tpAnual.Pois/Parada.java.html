@@ -6,7 +6,6 @@ import org.uqbar.geodds.Point;
 import javax.persistence.*;
 
 @Entity
-@Table(name=&quot;parada&quot;)
 @DiscriminatorValue(&quot;4&quot;)
 public class Parada extends POI {
 	
@@ -14,27 +13,27 @@ public class Parada extends POI {
 	private String linea;
 
 	public Parada(String nombre, Point ubicacion, String linea) {
-<span class="fc" id="L17">		super(nombre, ubicacion);</span>
-<span class="fc" id="L18">		this.linea = linea;</span>
-<span class="fc" id="L19">	}</span>
+<span class="fc" id="L16">		super(nombre, ubicacion);</span>
+<span class="fc" id="L17">		this.linea = linea;</span>
+<span class="fc" id="L18">	}</span>
 
 	public String getLinea() {
-<span class="fc" id="L22">		return linea;</span>
+<span class="fc" id="L21">		return linea;</span>
 	}
 
 	@Override
 	public boolean tieneTextoEnOtrosAtributos(String texto) {
-<span class="nc" id="L27">		return linea.equals(texto);</span>
+<span class="nc" id="L26">		return linea.equals(texto);</span>
 	}
 
 	@Override
 	public boolean estaCerca(Point coordenadaDeseada) {
-<span class="nc bnc" id="L32" title="All 2 branches missed.">		return (this.ubicacion.distance(coordenadaDeseada) &lt; 0.1);</span>
+<span class="nc bnc" id="L31" title="All 2 branches missed.">		return (this.ubicacion.distance(coordenadaDeseada) &lt; 0.1);</span>
 	}
 
 	@Override
 	public boolean estaDisponible(DateTime momento, String nombreServicio) {
-<span class="nc" id="L37">		return true;</span>
+<span class="nc" id="L36">		return true;</span>
 	}
 
 }
