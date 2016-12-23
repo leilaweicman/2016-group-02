@@ -12,6 +12,7 @@ import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
 
 import grupo2.tpAnual.Mapa;
+import grupo2.tpAnual.MorphiaService;
 import grupo2.tpAnual.AccesoriosPois.Comuna;
 import grupo2.tpAnual.AccesoriosPois.Direccion;
 import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatos;
@@ -25,6 +26,7 @@ import grupo2.tpAnual.Pois.POI;
 import grupo2.tpAnual.Pois.Parada;
 import grupo2.tpAnual.Repositorios.DatosBusquedaRepositoryMemory;
 import grupo2.tpAnual.Repositorios.DatosBusquedaRepositoryMongoDB;
+import grupo2.tpAnual.Repositorios.DatosDeBusqueda;
 import grupo2.tpAnual.Repositorios.DatosDeBusquedaRepository;
 import grupo2.tpAnual.Repositorios.Usuario;
 import grupo2.tpAnual.Web.Server;
@@ -32,6 +34,8 @@ import grupo2.tpAnual.Web.Server;
 public class SingletonMapa  extends AbstractPersistenceTest implements WithGlobalEntityManager {
 	private static Mapa instance;
 	private static EntityManager em;
+	private static MorphiaService morphia;
+	
 	
 	public static Mapa get() {
 		if (instance == null) {
@@ -46,7 +50,7 @@ public class SingletonMapa  extends AbstractPersistenceTest implements WithGloba
 	private static void inDB() {
 		Usuario usuario = new Usuario();
 		List<OrigenesDeDatos> listaDeOrigenes = new ArrayList<>();
-		DatosDeBusquedaRepository repositorioDatosBusqueda = new DatosBusquedaRepositoryMongoDB(null, null);
+		DatosDeBusquedaRepository repositorioDatosBusqueda = new DatosBusquedaRepositoryMongoDB(DatosDeBusqueda.class, morphia.getDatastore());
 		em = PerThreadEntityManagers.getEntityManager();
 		em.getTransaction().begin();
 		OrigenesDeDatosPOIs pois = OrigenesDeDatosPOIsSQL.get();

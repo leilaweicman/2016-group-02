@@ -6,7 +6,6 @@ import org.uqbar.geodds.Point;
 import javax.persistence.*;
 
 @Entity
-@Table(name="parada")
 @DiscriminatorValue("4")
 public class Parada extends POI {
 	

@@ -17,7 +17,7 @@ import grupo2.tpAnual.Pois.POI;
 
 public abstract class OrigenesDeDatos {
 	@Id	
-	public Integer id;
+	private Integer id;
 	@Transient 
 	public abstract List<POI> busqueda(String txtABuscar);
 }

@@ -18,15 +18,12 @@ import grupo2.tpAnual.Pois.POI;
 
 @Entity
 public class OrigenesDeDatosCentroDTO extends OrigenesDeDatos {
-	
-	@Id
-	public Integer id;
+
 	@Transient
 	private ServicioExternoCentroDTO mapaCentroDTO;
 	
 	public OrigenesDeDatosCentroDTO(ServicioExternoCentroDTO servicio){
 		this.mapaCentroDTO = servicio;
-		this.id = 2;
 	}
 	
 	@Override
