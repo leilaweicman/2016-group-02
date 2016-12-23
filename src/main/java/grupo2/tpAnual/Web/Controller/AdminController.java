@@ -7,6 +7,6 @@ import spark.Response;
 public class AdminController {
 
 	public static ModelAndView get(Request req, Response res){
-		return new ModelAndView(null, "admin.hbs");
+		return new ModelAndView(null, "inicioAdmin.hbs");
 	}
 }

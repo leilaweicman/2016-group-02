@@ -33,5 +33,9 @@ public class Direccion {
 	public String getZona() {
 		return zona;
 	}
+	
+	public void setCalle(String calle){
+		this.calle = calle;
+	}
 
 }

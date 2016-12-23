@@ -21,7 +21,7 @@ public class Usuario {
 	@ManyToOne 
 	public Comuna comuna;
 	
-	private int esAdmin; //es 1 si es admin, 0 si es terminal
+	private boolean esAdmin;
 	
 	public Usuario(){
 		
@@ -63,11 +63,11 @@ public class Usuario {
 
 	}
 	
-	public void setEsAdmin(int admin){
+	public void setEsAdmin(boolean admin){
 		esAdmin = admin;
 	}
 	
-	public int getEsAdmin(){
+	public boolean getEsAdmin(){
 		return esAdmin;
 	}
 }

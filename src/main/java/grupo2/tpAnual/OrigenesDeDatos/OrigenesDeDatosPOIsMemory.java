@@ -9,7 +9,13 @@ import grupo2.tpAnual.Pois.POI;
 public class OrigenesDeDatosPOIsMemory extends OrigenesDeDatosPOIs {
 
 	private List<POI> pois;
-
+	private static OrigenesDeDatosPOIsMemory instance;
+	
+	public static OrigenesDeDatosPOIsMemory get(){
+		if (instance == null) instance = new OrigenesDeDatosPOIsMemory();
+		return instance;
+	}
+	
 	public OrigenesDeDatosPOIsMemory() {
 		this.pois = new ArrayList<POI>();
 	}
@@ -29,9 +35,16 @@ public class OrigenesDeDatosPOIsMemory extends OrigenesDeDatosPOIs {
 	@Override
 	public List<POI> busqueda(String txtABuscar) {
 		List<POI> resultados = new ArrayList<POI>();
-		resultados.addAll(
-				this.pois.stream().filter(poi -> poi.verificaPorTexto(txtABuscar)).collect(Collectors.toList()));
+		resultados.addAll(this.pois.stream().filter(poi -> poi.verificaPorTexto(txtABuscar)).collect(Collectors.toList()));
 		return resultados;
 	}
-
+	
+	@Override
+	public POI buscarPorId(Integer id){
+		List<POI> pois = this.pois.stream().filter(poi -> poi.getId().equals(id)).collect(Collectors.toList());
+		if(pois.size()> 0){
+			return pois.get(0);
+		}
+		return null;		
+	}
 }

@@ -4,14 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
+import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 
 import grupo2.tpAnual.AccesoriosPois.Comuna;
 
-public class SQLUserRepository implements UserRepository {
+public class SQLUserRepository implements UserRepository, WithGlobalEntityManager{
 	private EntityManager em;
 	private static SQLUserRepository instance;
 	
@@ -50,10 +49,10 @@ public class SQLUserRepository implements UserRepository {
 	}
 	
 	@Override
-	public List<Usuario> getUsuariosByNombre(String nombre){
+	public Usuario getUsuarioByNombre(String nombre){
 		List<Usuario> usuarios = new ArrayList<Usuario>();
 		usuarios = (List<Usuario>) em.createQuery("from Usuario where nombre = :nombre").setParameter("nombre", nombre).getResultList();
-		return usuarios;
+		return usuarios.get(0);
 	}
 
 }

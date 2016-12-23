@@ -24,8 +24,8 @@ public class MemoryUserRepository implements UserRepository {
 	}
 
 	@Override
-	public List<Usuario> getUsuariosByNombre(String nombre){
-		return this.usuarios.stream().filter(usuario -> (usuario.getNombre().equals(nombre))).collect(Collectors.toList());
+	public Usuario getUsuarioByNombre(String nombre){
+		return (this.usuarios.stream().filter(usuario -> (usuario.getNombre().equals(nombre))).collect(Collectors.toList())).get(0);
 	}
 	@Override
 	public void deleteUsuario(Usuario usuario) {

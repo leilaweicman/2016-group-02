@@ -14,5 +14,5 @@ public interface UserRepository {
 
 	public List<Usuario> getUsuarios();
 
-	public List<Usuario> getUsuariosByNombre(String nombre);
+	public Usuario getUsuarioByNombre(String nombre);
 }

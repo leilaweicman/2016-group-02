@@ -16,7 +16,6 @@ import grupo2.tpAnual.Pois.POI;
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 
 public abstract class OrigenesDeDatos {
-	
 	@Id	
 	public Integer id;
 	@Transient 

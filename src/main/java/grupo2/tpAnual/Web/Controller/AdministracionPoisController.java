@@ -9,6 +9,7 @@ import org.uqbar.geodds.Point;
 
 import grupo2.tpAnual.Mapa;
 import grupo2.tpAnual.AccesoriosPois.Direccion;
+import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosPOIs;
 import grupo2.tpAnual.Pois.Banco;
 import grupo2.tpAnual.Pois.POI;
 import grupo2.tpAnual.Web.Models.SingletonMapa;
@@ -29,13 +30,10 @@ public class AdministracionPoisController {
 	public static ModelAndView lista(Request req, Response res){
 		String nombre = req.queryParams("nombre");
 		String tipo = req.queryParams("tipo");
-		List<POI> lista = new ArrayList();
-//		Mapa mapa = SingletonMapa.get();
-//		lista = mapa.busquedaRealizadaPorElUsuario(nombre);
-		//Hardcode
-		Banco prueba = new Banco("Santander", Point.and(-34.664837, -58.385674));
-		prueba.setId(4);
-		lista.add(prueba);
+		List<POI> lista = new ArrayList<POI>();
+		Mapa mapa = SingletonMapa.get();
+		
+		lista = mapa.busquedaRealizadaPorElUsuario(nombre);
 		Map<String, List<POI>> model = new HashMap<>();
 		model.put("pois", lista);
 		return new ModelAndView(model, "admin/pois/lista.hbs");
@@ -44,26 +42,34 @@ public class AdministracionPoisController {
 	public static ModelAndView editar(Request req, Response res){
 		String id = req.params("id");
 		
-		//Hardcode
-		Banco prueba = new Banco("Santander", Point.and(-34.664837, -58.385674));
-		prueba.setDireccion(new Direccion("calle", "zona"));
-		prueba.setId(4);
-		return new ModelAndView(prueba, "admin/pois/editar.hbs");
+		POI poi = SingletonMapa.get().buscarPorId(Integer.parseInt(id));
+		
+		return new ModelAndView(poi, "admin/pois/editar.hbs");
 	}
 	
 	public static ModelAndView editarPut(Request req, Response res){
-		String id = req.queryParams("id");
-		String nombre = req.queryParams("nombre");
-		String direccion = req.queryParams("direccion");
-		String x = req.queryParams("x");
-		String y = req.queryParams("y");
-		
-		//TODO obtener por id el POI de mapa y guardar el editado
+		String ids = req.queryParams("id");
+
+		Integer id = Integer.parseInt(ids);
+
+		Mapa mapa = SingletonMapa.get();
+		POI poi = mapa.buscarPorId(id);
+		poi.setNombre(req.queryParams("nombre"));
+		Direccion dir = poi.getDireccion();
+		dir.setCalle(req.queryParams("direccion"));
+		poi.setDireccion(dir);
+		poi.setUbicacion(Double.parseDouble(req.queryParams("x")), Double.parseDouble(req.queryParams("y")));
+
+		OrigenesDeDatosPOIs origen = (OrigenesDeDatosPOIs) mapa.getOrigenesDeDatos().get(0);
+		origen.darDeBajaPOI(id);
+		origen.agregarPOI(poi);
 		return new ModelAndView(null, "admin/pois/index.hbs");	
 	}
 	
-	public static void borrar(Request req, Response res){
-		String id = req.queryParams("id");
-		res.redirect("/admin/pois");
+	public static ModelAndView borrar(Request req, Response res){
+		String id = req.params("id");
+		OrigenesDeDatosPOIs origen = (OrigenesDeDatosPOIs) SingletonMapa.get().getOrigenesDeDatos().get(0);
+		origen.darDeBajaPOI(Integer.parseInt(id));
+		return new ModelAndView(null, "admin/pois/index.hbs");
 	}
 }

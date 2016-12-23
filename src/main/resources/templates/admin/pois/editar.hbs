@@ -12,7 +12,7 @@
 		</nav>
 		<div class="container">		
 			<form action="/admin/pois/editarPut" method="GET">
-				<input type="hidden" name="country" value="{{id}}">
+				<input type="hidden" name="id" value="{{id}}">
 				<div class="form-group">
 				    <label for="nombre">Nombre</label>
 				    <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Ej: Banco nacion" value="{{nombre}}">
@@ -23,11 +23,11 @@
 				</div>
 				<div class="form-group">
 				    <label for="x">X</label>
-				    <input type="text" class="form-control" name="x" id="x" placeholder="134" value="{{ubicacion.x}}">
+				    <input type="text" class="form-control" name="x" id="x" placeholder="134" value="{{x}}">
 				</div>
 				<div class="form-group">
 				    <label for="y">Y</label>
-				    <input type="text" class="form-control" name="y" id="y" placeholder="4231" value="{{ubicacion.y}}">
+				    <input type="text" class="form-control" name="y" id="y" placeholder="4231" value="{{y}}">
 				</div>
   				<button type="submit" class="btn btn-default">Guardar</button>
 			</form>		

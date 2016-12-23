@@ -1,0 +1,31 @@
+<html>
+   <head>
+      <title>Terminal</title>
+      <link rel="stylesheet"  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+   </head>
+   <body>
+   <nav class="navbar navbar-default">
+   		{{#block "titulo"}}
+		{{/block}}
+   			<ul class="nav navbar-nav">   		
+			  <li><a href="/terminal">Inicio</a></li>
+			  <li><a href="/terminal/busqueda">Búsqueda</a></li>
+			</ul>			  
+		</nav>
+	   	<div class="container">
+			{{#block "busqueda"}}
+			{{/block}}
+			{{#block "resultados"}}
+			{{/block}}
+	    </div>  
+   </body>
+   <footer class="footer navbar-fixed-bottom">  
+     <div class="panel panel-default">
+		<div class="panel-body">Nosotros | Contacto | Terminos y condiciones | Políticas de privacidad | Dónde estamos | </div>
+	 </div>
+   </footer> 
+</html>
+
