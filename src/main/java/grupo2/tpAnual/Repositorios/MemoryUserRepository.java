@@ -31,4 +31,9 @@ public class MemoryUserRepository implements UserRepository {
 	public void deleteUsuario(Usuario usuario) {
 		usuarios.remove(usuario);
 	}
+
+	@Override
+	public List<Usuario> getUsauriosTerminal() {
+		return this.usuarios.stream().filter(usuario -> (usuario.getEsAdmin() == false)).collect(Collectors.toList());
+	}
 }

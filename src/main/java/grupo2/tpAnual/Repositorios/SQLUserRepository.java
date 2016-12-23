@@ -55,4 +55,17 @@ public class SQLUserRepository implements UserRepository, WithGlobalEntityManage
 		return usuarios.get(0);
 	}
 
+	@Override
+	public EntityManager entityManager() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Usuario> getUsauriosTerminal() {
+		List<Usuario> terminales = new ArrayList<Usuario>();
+		terminales = (List<Usuario>) em.createQuery("from Usuario where esAdmin = 0").getResultList();
+		return terminales;
+	}
+
 }
