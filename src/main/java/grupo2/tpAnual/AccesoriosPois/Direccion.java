@@ -1,22 +1,25 @@
 package grupo2.tpAnual.AccesoriosPois;
 
 import javax.persistence.Column;
+import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Entity
+@Embeddable
 public class Direccion {
-	@Id	@GeneratedValue
-	private Integer id;
+
 	@Column
 	private String calle;
 	@Column
 	private int altura;
 	@Column
 	private String zona;
-
+	
+	public Direccion(){
+		
+	}
 	public Direccion(String calle, String zona) {
 		this.calle = calle;
 		this.zona = zona;

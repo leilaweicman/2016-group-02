@@ -81,16 +81,6 @@ public class SQLTest extends AbstractPersistenceTest implements WithGlobalEntity
 	public void contextUpWithTransaction() throws Exception {
 		withTransaction(() -> {});
 	}	
-
-	@Test
-	public void persistirDireccion(){
-		Direccion dire= new Direccion("Medrano", "Almagro");
-		persist(dire);
-	
-		Direccion direccionBuscada = (Direccion) em.createQuery("from Direccion where zona = :zona").setParameter("zona", "Almagro").getSingleResult();
-		assertEquals(direccionBuscada.getZona(),"Almagro");
-		assertEquals(direccionBuscada.getCalle(),"Medrano");
-	}
 	
 	@Test
 	public void persistirUsuario(){

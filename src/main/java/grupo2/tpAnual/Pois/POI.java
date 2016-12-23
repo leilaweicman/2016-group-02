@@ -9,6 +9,7 @@ import javax.persistence.Convert;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
 import javax.persistence.ElementCollection;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -39,7 +40,7 @@ public abstract class POI {
 	
 	//@org.mongodb.morphia.annotations.Reference
 	@org.mongodb.morphia.annotations.Transient
-	@OneToOne(cascade=CascadeType.ALL) //para que lo hereden todos los hijos
+	//@OneToOne(cascade=CascadeType.ALL) @Embedded
 	private Direccion direccion;
 	
 	@org.mongodb.morphia.annotations.Transient
