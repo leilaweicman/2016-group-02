@@ -16,10 +16,9 @@ import grupo2.tpAnual.AccesoriosPois.Direccion;
 import grupo2.tpAnual.Pois.CGP;
 import grupo2.tpAnual.Pois.POI;
 
-@Entity
+
 public class OrigenesDeDatosCentroDTO extends OrigenesDeDatos {
 
-	@Transient
 	private ServicioExternoCentroDTO mapaCentroDTO;
 	
 	public OrigenesDeDatosCentroDTO(ServicioExternoCentroDTO servicio){

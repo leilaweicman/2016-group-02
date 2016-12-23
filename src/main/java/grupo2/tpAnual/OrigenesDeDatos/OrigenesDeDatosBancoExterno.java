@@ -18,7 +18,6 @@ import grupo2.tpAnual.Pois.POI;
 
 public class OrigenesDeDatosBancoExterno extends OrigenesDeDatos {
 	
-	@Transient
 	private ServicioExternoBanco mapaBancoExterno;
 
 	public OrigenesDeDatosBancoExterno(ServicioExternoBanco servicio) {

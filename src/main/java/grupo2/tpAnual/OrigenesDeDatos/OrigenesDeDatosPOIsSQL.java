@@ -4,12 +4,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import javax.persistence.Entity;
-
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 
 import grupo2.tpAnual.Pois.POI;
-@Entity
+
 public class OrigenesDeDatosPOIsSQL extends OrigenesDeDatosPOIs implements WithGlobalEntityManager{
 
 	private static OrigenesDeDatosPOIsSQL instance;
