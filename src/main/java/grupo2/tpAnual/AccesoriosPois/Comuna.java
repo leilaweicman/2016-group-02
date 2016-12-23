@@ -15,12 +15,7 @@ import grupo2.tpAnual.ConverterPoint;
 public class Comuna {
 	@Transient
 	@org.mongodb.morphia.annotations.Transient
-
 	private Polygon comuna;
-	@Transient
-	@org.mongodb.morphia.annotations.Transient
-
-	private EntityManager em;
 	
 	@org.mongodb.morphia.annotations.Transient
 	@Embedded
