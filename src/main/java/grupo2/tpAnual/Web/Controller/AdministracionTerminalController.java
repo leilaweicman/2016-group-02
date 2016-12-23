@@ -10,7 +10,9 @@ import org.uqbar.geodds.Point;
 import grupo2.tpAnual.AccesoriosPois.Comuna;
 import grupo2.tpAnual.Pois.POI;
 import grupo2.tpAnual.Repositorios.MemoryUserRepository;
+import grupo2.tpAnual.Repositorios.UserRepository;
 import grupo2.tpAnual.Repositorios.Usuario;
+import grupo2.tpAnual.Web.Models.SingletonUserRepository;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
@@ -20,36 +22,10 @@ public class AdministracionTerminalController {
 	public static ModelAndView get(Request req, Response res) {
 		Map<String, List<Usuario>> model = new HashMap<>();
 		
-		List<Point> points = new ArrayList<Point>();
-		points.add(Point.and(-34.664837, -58.385674));
-		Comuna comuna1 = new Comuna(1, points);
+		UserRepository repo = SingletonUserRepository.get();
+		List<Usuario> terminales = repo.getUsauriosTerminal();
 		
-		
-		Usuario user = new Usuario();
-		user.setNombre("Las heras");
-		user.setComuna(comuna1);
-		
-		user.setComuna(comuna1);
-
-		Comuna comuna2 = new Comuna(2, points);
-				
-		Usuario usuario = new Usuario();
-		usuario.setNombre("Abasto");
-		usuario.setComuna(comuna2);
-		
-		usuario.setComuna(comuna2);
-
-
-		MemoryUserRepository repoUsuarios = new MemoryUserRepository();
-		
-		repoUsuarios.setUsuario(user);
-		repoUsuarios.setUsuario(usuario);
-		
-		List<Usuario> usuarios = repoUsuarios.getUsuarios();
-
-		//List<Usuario> usuarios = SQLUserRepository.instance.getUsuarios();
-		
-		model.put("terminales", usuarios);
+		model.put("terminales", terminales);
 		return new ModelAndView(model, "administracionTerminal.hbs");
 		
 	}
@@ -57,6 +33,9 @@ public class AdministracionTerminalController {
 	public static ModelAndView editar(Request req, Response res) {
 		Map<String, Usuario> model = new HashMap<>();
 		
+		/*long id = req.queryParams("id");
+		String id = req.headers("id");
+		long idPosta = id.to*/
 		List<Point> points = new ArrayList<Point>();
 		points.add(Point.and(-34.664837, -58.385674));
 		Comuna comuna1 = new Comuna(1, points);

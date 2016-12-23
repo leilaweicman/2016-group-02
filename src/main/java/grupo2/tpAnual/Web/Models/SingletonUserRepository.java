@@ -20,6 +20,8 @@ public class SingletonUserRepository  extends AbstractPersistenceTest implements
 	public static UserRepository get() {
 		Usuario admin = new Usuario();
 		Usuario terminal = new Usuario();
+		Usuario terminal2 = new Usuario();
+
 
 		admin.setEsAdmin(true);
 		admin.setNombre("Administrador");
@@ -27,11 +29,17 @@ public class SingletonUserRepository  extends AbstractPersistenceTest implements
 		terminal.setEsAdmin(false);
 		terminal.setNombre("Terminal");
 		
+		terminal2.setEsAdmin(false);
+		terminal2.setNombre("Terminal2");
+
 		if (instance == null) {
 			if (Server.inMemory == true){
+				terminal.setId(1);
+				terminal2.setId(2);				
 				instance = new MemoryUserRepository();
 				instance.setUsuario(admin);
 				instance.setUsuario(terminal);
+				instance.setUsuario(terminal2);
 			}
 			else{
 				em = PerThreadEntityManagers.getEntityManager();
@@ -39,6 +47,7 @@ public class SingletonUserRepository  extends AbstractPersistenceTest implements
 				instance = SQLUserRepository.get();
 				instance.setUsuario(admin);
 				instance.setUsuario(terminal);
+				instance.setUsuario(terminal2);				
 				em.getTransaction().commit();
 			}
 		}

@@ -32,7 +32,7 @@ public class Router {
 		Spark.get("/admin/pois/borrar/:id", AdministracionPoisController::borrar, engine);
 
 		Spark.get("/admin/terminal", AdministracionTerminalController::get, engine);
-		Spark.get("/admin/terminal/editar", AdministracionTerminalController::editar, engine);
+		Spark.get("/admin/terminal/editar/:id", AdministracionTerminalController::editar, engine);
 		//Spark.get("/admin", AdministracionTerminalController::listar, engine);
 
 
