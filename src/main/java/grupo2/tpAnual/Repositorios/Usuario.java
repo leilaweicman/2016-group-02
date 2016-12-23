@@ -26,6 +26,7 @@ public class Usuario {
 	public Usuario(){
 		
 	}
+
 	public void setNombre(String nombre){
 		this.nombre = nombre;
 	}
@@ -33,6 +34,11 @@ public class Usuario {
 	public String getNombre(){
 		return this.nombre;
 	}
+
+	public void setId(long id){
+		this.id = id;
+	}
+	
 	public long getId(){
 		return id;
 	}
