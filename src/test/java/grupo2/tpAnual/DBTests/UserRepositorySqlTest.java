@@ -43,7 +43,7 @@ public class UserRepositorySqlTest  extends AbstractPersistenceTest implements W
 	
 	@Test
 	public void persistirUsuario(){
-		repo.setUsuario(user);
+		repo.saveUser(user);
 		Usuario userBuscado = (Usuario) em.createQuery("from Usuario where nombre = :nombre").setParameter("nombre","juan").getSingleResult();
 		assertEquals(userBuscado.getNombre(),user.getNombre());
 	}
@@ -55,14 +55,14 @@ public class UserRepositorySqlTest  extends AbstractPersistenceTest implements W
 		Comuna comuna1 = new Comuna(1, points);
 		persist(comuna1);
 		user.setComuna(comuna1);
-		repo.setUsuario(user);
+		repo.saveUser(user);
 		Usuario userBuscado = (Usuario) em.createQuery("from Usuario where nombre = :nombre").setParameter("nombre","juan").getSingleResult();
 		assertEquals(userBuscado.getComuna().getNumeroComuna(), comuna1.getNumeroComuna());
 		}
 	
 	@Test
 	public void persitirObservers(){
-		ObserverBusqueda notificarDatos = new NotificarDatosBusqueda();
+		ObserverBusqueda notificarDatos = new NotificarDatosBusqueda(true);
 		ObserverBusqueda enviarMail = new EnviarMailBusqueda(0, null, null);
 		persist(notificarDatos);
 		persist(enviarMail);
@@ -78,20 +78,20 @@ public class UserRepositorySqlTest  extends AbstractPersistenceTest implements W
 		usuario1.setNombre("Pablo");
 		usuario2.setNombre("Rodrigo");
 		
-		repo.setUsuario(usuario1);
-		repo.setUsuario(usuario2);
+		repo.saveUser(usuario1);
+		repo.saveUser(usuario2);
 		assertEquals(repo.getUsuarios().size(),2);
 	}
 	
 
 	@Test
 	public void UsuarioConObservers(){
-		ObserverBusqueda notificar = new NotificarDatosBusqueda();
+		ObserverBusqueda notificar = new NotificarDatosBusqueda(true);
 		ObserverBusqueda enviarMail = new EnviarMailBusqueda(15, null, "juan@gmail.com");
 		List <ObserverBusqueda> observers = Arrays.asList(enviarMail,notificar);
 		user.setAccionesBusqueda(observers);
 		
-		repo.setUsuario(user);
+		repo.saveUser(user);
 		assertTrue(repo.getUsuarios().contains(user));
 	}
 	

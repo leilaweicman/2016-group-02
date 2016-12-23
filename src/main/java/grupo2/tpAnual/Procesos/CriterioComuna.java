@@ -28,7 +28,7 @@ public class CriterioComuna implements Criterio {
 	}
 
 	public void setUsuarios(Usuario usuario) {
-		this.repositorioUsuarios.setUsuario(usuario);
+		this.repositorioUsuarios.saveUser(usuario);
 
 	}
 

@@ -47,11 +47,6 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>org.springframework.data</groupId>
-			<artifactId>spring-data-redis</artifactId>
-			<version>1.3.2.RELEASE</version>
-		</dependency>
-		<dependency>
 			<groupId>org.uqbar-project</groupId>
 			<artifactId>geodds-xtend</artifactId>
 			<version>1.0.0</version>
@@ -161,11 +156,6 @@
 			<groupId>com.sparkjava</groupId>
 			<artifactId>spark-debug-tools</artifactId>
 			<version>0.5</version>
-</dependency>
-		<dependency>
-    <groupId>org.redisson</groupId>
-    <artifactId>redisson</artifactId>
-    <version>1.0.1</version>
 </dependency>
 	</dependencies>
 </project>

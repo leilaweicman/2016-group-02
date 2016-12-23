@@ -50,6 +50,7 @@ public class SingletonMapa  extends AbstractPersistenceTest implements WithGloba
 	private static void inDB() {
 		Usuario usuario = new Usuario();
 		List<OrigenesDeDatos> listaDeOrigenes = new ArrayList<>();
+		morphia = new MorphiaService();
 		DatosDeBusquedaRepository repositorioDatosBusqueda = new DatosBusquedaRepositoryMongoDB(DatosDeBusqueda.class, morphia.getDatastore());
 		em = PerThreadEntityManagers.getEntityManager();
 		em.getTransaction().begin();

@@ -13,7 +13,7 @@ import grupo2.tpAnual.Repositorios.DatosDeBusqueda;
 public class NotificarBusquedaTest {
 	LocalDate today=LocalDate.now();
 	DatosDeBusqueda datoBuscado = new DatosDeBusqueda("corrientes", "peras", 10, 15, today,new ArrayList<POI>());
-	NotificarDatosBusqueda observer = new NotificarDatosBusqueda();
+	NotificarDatosBusqueda observer = new NotificarDatosBusqueda(true);
 
 	@Test
 	public void notificarDatosDeBusquedaTest() {

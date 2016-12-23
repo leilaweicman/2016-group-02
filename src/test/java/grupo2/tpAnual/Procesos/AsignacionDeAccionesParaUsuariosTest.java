@@ -72,8 +72,8 @@ public class AsignacionDeAccionesParaUsuariosTest {
 		this.comuna2 = new Comuna(2, listaVertices);
 
 		repo = new MemoryUserRepository();
-		this.repo.setUsuario(juan);
-		this.repo.setUsuario(ana);
+		this.repo.saveUser(juan);
+		this.repo.saveUser(ana);
 
 		this.juan.setComuna(comuna1);
 		this.ana.setComuna(comuna2);
@@ -84,7 +84,7 @@ public class AsignacionDeAccionesParaUsuariosTest {
 
 		this.picky.agregarUsuario(juan);
 
-		observerRegistro = new NotificarDatosBusqueda();
+		observerRegistro = new NotificarDatosBusqueda(true);
 		
 	}
 

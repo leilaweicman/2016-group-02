@@ -1,7 +1,6 @@
 package grupo2.tpAnual.DBTests;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 
 import java.time.LocalTime;
 import java.util.ArrayList;

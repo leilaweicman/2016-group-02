@@ -5,7 +5,7 @@ import org.bson.types.ObjectId;
 import org.mongodb.morphia.dao.DAO;
 
 
-public interface DatosDeBusquedaRepository /*extends DAO<DatosDeBusqueda, ObjectId>*/{
+public interface DatosDeBusquedaRepository {
 	
 	public List<DatosDeBusqueda> obtenerPorNombre(String nombreTerminal);
 	

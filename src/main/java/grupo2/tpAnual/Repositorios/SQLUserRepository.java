@@ -3,9 +3,6 @@ package grupo2.tpAnual.Repositorios;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.EntityManager;
-
-import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 
 import grupo2.tpAnual.AccesoriosPois.Comuna;
@@ -25,7 +22,7 @@ public class SQLUserRepository implements UserRepository, WithGlobalEntityManage
 	}
 	
 	@Override
-	public void setUsuario(Usuario usuario) {
+	public void saveUser(Usuario usuario) {
 		entityManager().persist(usuario);
 	}
 

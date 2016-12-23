@@ -37,17 +37,17 @@ public class SingletonUserRepository  extends AbstractPersistenceTest implements
 				terminal.setId(1);
 				terminal2.setId(2);				
 				instance = new MemoryUserRepository();
-				instance.setUsuario(admin);
-				instance.setUsuario(terminal);
-				instance.setUsuario(terminal2);
+				instance.saveUser(admin);
+				instance.saveUser(terminal);
+				instance.saveUser(terminal2);
 			}
 			else{
 				em = PerThreadEntityManagers.getEntityManager();
 				em.getTransaction().begin();
 				instance = SQLUserRepository.get();
-				instance.setUsuario(admin);
-				instance.setUsuario(terminal);
-				instance.setUsuario(terminal2);				
+				instance.saveUser(admin);
+				instance.saveUser(terminal);
+				instance.saveUser(terminal2);				
 				em.getTransaction().commit();
 			}
 		}

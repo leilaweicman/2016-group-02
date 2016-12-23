@@ -10,7 +10,7 @@ public class MemoryUserRepository implements UserRepository {
 	
 	public List<Usuario> usuarios = new ArrayList<>();
 	
-	public void setUsuario(Usuario usuario) {
+	public void saveUser(Usuario usuario) {
 		this.usuarios.add(usuario);
 	}
 
