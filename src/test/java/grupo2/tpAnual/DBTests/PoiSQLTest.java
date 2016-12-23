@@ -2,7 +2,6 @@ package grupo2.tpAnual.DBTests;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -26,23 +25,15 @@ import grupo2.tpAnual.AccesoriosPois.Disponibilidad;
 import grupo2.tpAnual.AccesoriosPois.Rango;
 import grupo2.tpAnual.AccesoriosPois.Rubro;
 import grupo2.tpAnual.AccesoriosPois.Servicio;
-import grupo2.tpAnual.Observers.EnviarMailBusqueda;
-import grupo2.tpAnual.Observers.NotificarDatosBusqueda;
-import grupo2.tpAnual.Observers.ObserverBusqueda;
-import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatos;
 import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosPOIs;
-import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosPOIsMemory;
 import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosPOIsSQL;
 import grupo2.tpAnual.Pois.Banco;
 import grupo2.tpAnual.Pois.CGP;
 import grupo2.tpAnual.Pois.Comercio;
 import grupo2.tpAnual.Pois.POI;
 import grupo2.tpAnual.Pois.Parada;
-import grupo2.tpAnual.Repositorios.SQLUserRepository;
-import grupo2.tpAnual.Repositorios.UserRepository;
-import grupo2.tpAnual.Repositorios.Usuario;
 
-public class SQLTest extends AbstractPersistenceTest implements WithGlobalEntityManager {
+public class PoiSQLTest extends AbstractPersistenceTest implements WithGlobalEntityManager {
 	private EntityManager em;
 	private Integer dia;
 	private LocalTime horaDesde;
@@ -50,8 +41,7 @@ public class SQLTest extends AbstractPersistenceTest implements WithGlobalEntity
 	private Rango rango;
 	List<Rango> rangoDisponibilidad;
 	Disponibilidad disponibilidad;
-	
-	
+
 	@Before
 	public void init(){
 		em = PerThreadEntityManagers.getEntityManager();
@@ -72,84 +62,7 @@ public class SQLTest extends AbstractPersistenceTest implements WithGlobalEntity
 		beginTransaction();
 	}
 	
-	@Test
-	public void contextUp() {
-		assertNotNull(entityManager());
-	}
-
-	@Test
-	public void contextUpWithTransaction() throws Exception {
-		withTransaction(() -> {});
-	}	
 	
-	@Test
-	public void persistirUsuario(){
-		Usuario user = new Usuario();
-		user.setNombre("juan");
-		persist(user);
-		Usuario userBuscado = (Usuario) em.createQuery("from Usuario where nombre = :nombre").setParameter("nombre","juan").getSingleResult();
-		assertEquals(userBuscado.getNombre(),user.getNombre());
-	}
-	
-	@Test
-	public void persistirUsuarioConComuna(){
-		Usuario user = new Usuario();
-		user.setNombre("juan");
-		List<Point> points = new ArrayList<Point>();
-		points.add(Point.and(-34.664837, -58.385674));
-		Comuna comuna1 = new Comuna(1, points);
-		user.setComuna(comuna1);
-		persist(comuna1);
-		persist(user);
-		Usuario userBuscado = (Usuario) em.createQuery("from Usuario where nombre = :nombre").setParameter("nombre","juan").getSingleResult();
-		assertEquals(userBuscado.getComuna().getNumeroComuna(), comuna1.getNumeroComuna());
-		}
-	
-	@Test
-	public void persitirObservers(){
-		ObserverBusqueda notificarDatos = new NotificarDatosBusqueda();
-		ObserverBusqueda enviarMail = new EnviarMailBusqueda(0, null, null);
-		persist(notificarDatos);
-		persist(enviarMail);
-		List <ObserverBusqueda> obsBuscado = (List <ObserverBusqueda>) em.createQuery("from ObserverBusqueda").getResultList();
-		assertEquals(obsBuscado.size(),2);
-	}
-	
-	@Test
-	public void userRepositoryTest(){
-		UserRepository repo = new SQLUserRepository();
-		
-		Usuario usuario1 = new Usuario();
-		Usuario usuario2 = new Usuario();
-		
-		usuario1.setNombre("Pablo");
-		usuario2.setNombre("Rodrigo");
-		
-		repo.setUsuario(usuario1);
-		repo.setUsuario(usuario2);
-		assertEquals(repo.getUsuarios().size(),2);
-		repo.deleteUsuario(usuario1);
-		repo.deleteUsuario(usuario2);
-	}
-	
-
-	@Test
-	public void UsuarioConObservers(){
-		UserRepository repo = new SQLUserRepository();
-		
-		ObserverBusqueda notificar = new NotificarDatosBusqueda();
-		ObserverBusqueda enviarMail = new EnviarMailBusqueda(15, null, "juan@gmail.com");
-		List <ObserverBusqueda> observers = Arrays.asList(enviarMail,notificar);
-		
-		Usuario usuario1 = new Usuario();
-		usuario1.setNombre("Pablo");
-		usuario1.setAccionesBusqueda(observers);
-		
-		repo.setUsuario(usuario1);
-		assertTrue(repo.getUsuarios().contains(usuario1));
-		repo.deleteUsuario(usuario1);
-	}
-
 	@Test
 	public void queryBusquedaTest(){
 		em.persist(this.rango);
