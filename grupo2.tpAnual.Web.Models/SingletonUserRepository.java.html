@@ -20,29 +20,38 @@ import grupo2.tpAnual.Web.Server;
 	public static UserRepository get() {
 <span class="nc" id="L21">		Usuario admin = new Usuario();</span>
 <span class="nc" id="L22">		Usuario terminal = new Usuario();</span>
+<span class="nc" id="L23">		Usuario terminal2 = new Usuario();</span>
 
-<span class="nc" id="L24">		admin.setEsAdmin(true);</span>
-<span class="nc" id="L25">		admin.setNombre(&quot;Administrador&quot;);</span>
 
-<span class="nc" id="L27">		terminal.setEsAdmin(false);</span>
-<span class="nc" id="L28">		terminal.setNombre(&quot;Terminal&quot;);</span>
+<span class="nc" id="L26">		admin.setEsAdmin(true);</span>
+<span class="nc" id="L27">		admin.setNombre(&quot;Administrador&quot;);</span>
+
+<span class="nc" id="L29">		terminal.setEsAdmin(false);</span>
+<span class="nc" id="L30">		terminal.setNombre(&quot;Terminal&quot;);</span>
 		
-<span class="nc bnc" id="L30" title="All 2 branches missed.">		if (instance == null) {</span>
-<span class="nc bnc" id="L31" title="All 2 branches missed.">			if (Server.inMemory == true){</span>
-<span class="nc" id="L32">				instance = new MemoryUserRepository();</span>
-<span class="nc" id="L33">				instance.setUsuario(admin);</span>
-<span class="nc" id="L34">				instance.setUsuario(terminal);</span>
-			}
-			else{
-<span class="nc" id="L37">				em = PerThreadEntityManagers.getEntityManager();</span>
-<span class="nc" id="L38">				em.getTransaction().begin();</span>
-<span class="nc" id="L39">				instance = SQLUserRepository.get();</span>
+<span class="nc" id="L32">		terminal2.setEsAdmin(false);</span>
+<span class="nc" id="L33">		terminal2.setNombre(&quot;Terminal2&quot;);</span>
+
+<span class="nc bnc" id="L35" title="All 2 branches missed.">		if (instance == null) {</span>
+<span class="nc bnc" id="L36" title="All 2 branches missed.">			if (Server.inMemory == true){</span>
+<span class="nc" id="L37">				terminal.setId(1);</span>
+<span class="nc" id="L38">				terminal2.setId(2);				</span>
+<span class="nc" id="L39">				instance = new MemoryUserRepository();</span>
 <span class="nc" id="L40">				instance.setUsuario(admin);</span>
 <span class="nc" id="L41">				instance.setUsuario(terminal);</span>
-<span class="nc" id="L42">				em.getTransaction().commit();</span>
+<span class="nc" id="L42">				instance.setUsuario(terminal2);</span>
+			}
+			else{
+<span class="nc" id="L45">				em = PerThreadEntityManagers.getEntityManager();</span>
+<span class="nc" id="L46">				em.getTransaction().begin();</span>
+<span class="nc" id="L47">				instance = SQLUserRepository.get();</span>
+<span class="nc" id="L48">				instance.setUsuario(admin);</span>
+<span class="nc" id="L49">				instance.setUsuario(terminal);</span>
+<span class="nc" id="L50">				instance.setUsuario(terminal2);				</span>
+<span class="nc" id="L51">				em.getTransaction().commit();</span>
 			}
 		}
-<span class="nc" id="L45">		return instance;</span>
+<span class="nc" id="L54">		return instance;</span>
 	}
 
 }

@@ -55,5 +55,18 @@ public class SQLUserRepository implements UserRepository, WithGlobalEntityManage
 <span class="nc" id="L55">		return usuarios.get(0);</span>
 	}
 
+	@Override
+	public EntityManager entityManager() {
+		// TODO Auto-generated method stub
+<span class="nc" id="L61">		return null;</span>
+	}
+
+	@Override
+	public List&lt;Usuario&gt; getUsauriosTerminal() {
+<span class="nc" id="L66">		List&lt;Usuario&gt; terminales = new ArrayList&lt;Usuario&gt;();</span>
+<span class="nc" id="L67">		terminales = (List&lt;Usuario&gt;) em.createQuery(&quot;from Usuario where esAdmin = 0&quot;).getResultList();</span>
+<span class="nc" id="L68">		return terminales;</span>
+	}
+
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>
