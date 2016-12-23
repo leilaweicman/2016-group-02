@@ -37,17 +37,17 @@ import grupo2.tpAnual.Web.Server;
 <span class="nc" id="L37">				terminal.setId(1);</span>
 <span class="nc" id="L38">				terminal2.setId(2);				</span>
 <span class="nc" id="L39">				instance = new MemoryUserRepository();</span>
-<span class="nc" id="L40">				instance.setUsuario(admin);</span>
-<span class="nc" id="L41">				instance.setUsuario(terminal);</span>
-<span class="nc" id="L42">				instance.setUsuario(terminal2);</span>
+<span class="nc" id="L40">				instance.saveUser(admin);</span>
+<span class="nc" id="L41">				instance.saveUser(terminal);</span>
+<span class="nc" id="L42">				instance.saveUser(terminal2);</span>
 			}
 			else{
 <span class="nc" id="L45">				em = PerThreadEntityManagers.getEntityManager();</span>
 <span class="nc" id="L46">				em.getTransaction().begin();</span>
 <span class="nc" id="L47">				instance = SQLUserRepository.get();</span>
-<span class="nc" id="L48">				instance.setUsuario(admin);</span>
-<span class="nc" id="L49">				instance.setUsuario(terminal);</span>
-<span class="nc" id="L50">				instance.setUsuario(terminal2);				</span>
+<span class="nc" id="L48">				instance.saveUser(admin);</span>
+<span class="nc" id="L49">				instance.saveUser(terminal);</span>
+<span class="nc" id="L50">				instance.saveUser(terminal2);				</span>
 <span class="nc" id="L51">				em.getTransaction().commit();</span>
 			}
 		}

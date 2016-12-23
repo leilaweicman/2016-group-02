@@ -31,24 +31,25 @@ public class BajaDePois extends Proceso {
 <span class="fc" id="L31">			numerosID = FromJsonToMap.transformarAMap(json).stream().map((poiMap) -&gt; transformarID(poiMap)).collect(Collectors.toList());</span>
 
 <span class="nc" id="L33">		} catch (Exception e) {</span>
-<span class="nc" id="L34">			e.printStackTrace();</span>
-<span class="fc" id="L35">		}</span>
-<span class="fc" id="L36">		return numerosID;</span>
+<span class="nc" id="L34">			this.configuracionesFallo.forEach(configuracion -&gt; configuracion.ejecutarConfiguracionPorFallo(this));</span>
+<span class="nc" id="L35">			this.setEstadoProceso(false);</span>
+<span class="fc" id="L36">		}</span>
+<span class="fc" id="L37">		return numerosID;</span>
 	}
 	
 	public int transformarID(Map&lt;String, Object&gt; map){
-<span class="fc" id="L40">		int id = (int) map.getOrDefault(&quot;id&quot;, -1);</span>
-<span class="fc" id="L41">		return id;</span>
+<span class="fc" id="L41">		int id = (int) map.getOrDefault(&quot;id&quot;, -1);</span>
+<span class="fc" id="L42">		return id;</span>
 
 	}
 	@Override
 	public void ejecutar() {
 		List&lt;Integer&gt; poisABorrar;
-<span class="fc" id="L47">		poisABorrar = this.getNumerosIdentificadoresDePois();</span>
-<span class="fc bfc" id="L48" title="All 2 branches covered.">		for (Integer pid : poisABorrar) {</span>
-<span class="fc" id="L49">			this.origenesDeDatos.darDeBajaPOI(pid);</span>
-<span class="fc" id="L50">			cantidadElementosAfectados++;</span>
-<span class="fc" id="L51">		}</span>
-<span class="fc" id="L52">	}</span>
+<span class="fc" id="L48">		poisABorrar = this.getNumerosIdentificadoresDePois();</span>
+<span class="fc bfc" id="L49" title="All 2 branches covered.">		for (Integer pid : poisABorrar) {</span>
+<span class="fc" id="L50">			this.origenesDeDatos.darDeBajaPOI(pid);</span>
+<span class="fc" id="L51">			cantidadElementosAfectados++;</span>
+<span class="fc" id="L52">		}</span>
+<span class="fc" id="L53">	}</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

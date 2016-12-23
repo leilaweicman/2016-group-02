@@ -9,9 +9,11 @@ import javax.persistence.InheritanceType;
 import grupo2.tpAnual.Repositorios.DatosDeBusqueda;
 @Entity
 @Inheritance(strategy=InheritanceType.TABLE_PER_CLASS )
-<span class="fc" id="L12">public abstract class ObserverBusqueda {</span>
+<span class="fc" id="L12">public abstract class ObserverBusqueda{</span>
+	
 	@Id
 	protected long id;
+	
 	public abstract void notificarBusqueda(DatosDeBusqueda datosParaObserver);
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

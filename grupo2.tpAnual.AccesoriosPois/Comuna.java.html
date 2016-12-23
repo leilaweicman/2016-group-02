@@ -15,14 +15,9 @@ import grupo2.tpAnual.ConverterPoint;
 public class Comuna {
 	@Transient
 	@org.mongodb.morphia.annotations.Transient
-
 	private Polygon comuna;
-	@Transient
-	@org.mongodb.morphia.annotations.Transient
-
-	private EntityManager em;
 	
-<span class="fc" id="L25">	@org.mongodb.morphia.annotations.Transient</span>
+<span class="fc" id="L20">	@org.mongodb.morphia.annotations.Transient</span>
 	@Embedded
 	private List&lt;Point&gt; vertices = new ArrayList&lt;Point&gt;();
 	
@@ -30,27 +25,27 @@ public class Comuna {
 	@org.mongodb.morphia.annotations.Transient
 	private int numeroComuna;
 
-<span class="fc" id="L33">	public Comuna(int numero, List&lt;Point&gt; vertices) {</span>
-<span class="fc" id="L34">		this.numeroComuna = numero;</span>
-<span class="fc" id="L35">		this.vertices = vertices;</span>
-<span class="fc" id="L36">		this.comuna = new Polygon(vertices);</span>
-<span class="fc" id="L37">	}</span>
+<span class="fc" id="L28">	public Comuna(int numero, List&lt;Point&gt; vertices) {</span>
+<span class="fc" id="L29">		this.numeroComuna = numero;</span>
+<span class="fc" id="L30">		this.vertices = vertices;</span>
+<span class="fc" id="L31">		this.comuna = new Polygon(vertices);</span>
+<span class="fc" id="L32">	}</span>
 
 	public void agregarVertice(Point vertice) {
-<span class="nc" id="L40">		this.vertices.add(vertice);	</span>
-<span class="nc" id="L41">		this.comuna = new Polygon(this.vertices);</span>
-<span class="nc" id="L42">	}</span>
+<span class="nc" id="L35">		this.vertices.add(vertice);	</span>
+<span class="nc" id="L36">		this.comuna = new Polygon(this.vertices);</span>
+<span class="nc" id="L37">	}</span>
 
 	public int getNumeroComuna() {
-<span class="fc" id="L45">		return this.numeroComuna;</span>
+<span class="fc" id="L40">		return this.numeroComuna;</span>
 	}
 
 	public Polygon getComuna() {
-<span class="nc" id="L49">		return comuna;</span>
+<span class="nc" id="L44">		return comuna;</span>
 	}
 
 	public boolean estaAdentro(Point punto) {
-<span class="nc" id="L53">		return (this.comuna.isInside(punto));</span>
+<span class="nc" id="L48">		return (this.comuna.isInside(punto));</span>
 	}
 
 }

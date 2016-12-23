@@ -6,30 +6,31 @@ import java.util.List;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Transient;
 
 import grupo2.tpAnual.AccesoriosPois.Comuna;
 import grupo2.tpAnual.Repositorios.MemoryUserRepository;
 import grupo2.tpAnual.Repositorios.Usuario;
 
-<span class="fc" id="L14">public class CriterioSeleccionFija implements Criterio {</span>
-	@OneToOne
+<span class="fc" id="L15">public class CriterioSeleccionFija implements Criterio {</span>
+	@Transient
 	public MemoryUserRepository repositorioUsuarios;
 	
-<span class="fc" id="L18">	@OneToMany</span>
+<span class="fc" id="L19">	@OneToMany</span>
 	@JoinColumn
 	public List&lt;Usuario&gt; listaUsers = new ArrayList&lt;&gt;();
 
 	@Override
 	public List&lt;Usuario&gt; dameUsuarios(Comuna comuna) {
-<span class="fc" id="L24">		return this.listaUsers;</span>
+<span class="fc" id="L25">		return this.listaUsers;</span>
 	}
 
 	public void setRepositorioUsuarios(MemoryUserRepository repo) {
-<span class="fc" id="L28">		this.repositorioUsuarios = repo;</span>
-<span class="fc" id="L29">	}</span>
+<span class="fc" id="L29">		this.repositorioUsuarios = repo;</span>
+<span class="fc" id="L30">	}</span>
 
 	public void agregarUsuario(Usuario user) {
-<span class="fc" id="L32">		this.listaUsers.add(user);</span>
-<span class="fc" id="L33">	}</span>
+<span class="fc" id="L33">		this.listaUsers.add(user);</span>
+<span class="fc" id="L34">	}</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>
