@@ -26,47 +26,23 @@ public class AdministracionTerminalController {
 		List<Usuario> terminales = repo.getUsauriosTerminal();
 		
 		model.put("terminales", terminales);
-		return new ModelAndView(model, "administracionTerminal.hbs");
+		return new ModelAndView(model, "admin/terminales/administracionTerminal.hbs");
 		
 	}
 	
 	public static ModelAndView editar(Request req, Response res) {
 		Map<String, Usuario> model = new HashMap<>();
 		
-		/*long id = req.queryParams("id");
-		String id = req.headers("id");
-		long idPosta = id.to*/
-		List<Point> points = new ArrayList<Point>();
-		points.add(Point.and(-34.664837, -58.385674));
-		Comuna comuna1 = new Comuna(1, points);
+		//String id = req.params("id");
+		/*long id = req.queryParams("id");*/
+		long id = Long.parseLong(req.params("id"));
 		
+		UserRepository usuarios = SingletonUserRepository.get();
 		
-		Usuario user = new Usuario();
-		user.setNombre("Las heras");
-		user.setComuna(comuna1);
-		
-		user.setComuna(comuna1);
-
-		/*Comuna comuna2 = new Comuna(2, points);
-				
-		Usuario usuario = new Usuario();
-		usuario.setNombre("Abasto");
-		usuario.setComuna(comuna2);
-		
-		usuario.setComuna(comuna2);
-
-
-		MemoryUserRepository repoUsuarios = new MemoryUserRepository();
-		
-		repoUsuarios.setUsuario(user);
-		//repoUsuarios.setUsuario(usuario);
-		
-		List<Usuario> usuarios = repoUsuarios.getUsuarios();*/
-
-		//List<Usuario> usuarios = SQLUserRepository.instance.getUsuarios();
+		Usuario user = usuarios.getUsuarioById(id);//Integer.parseInt(req.params("id")));
 		
 		model.put("terminal", user);
-		return new ModelAndView(model, "editarTerminal.hbs");
+		return new ModelAndView(model, "admin/terminales/editarTerminal.hbs");
 		
 	}
 
