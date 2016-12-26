@@ -3,6 +3,8 @@ package grupo2.tpAnual.Repositorios;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.EntityManager;
+
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 
 import grupo2.tpAnual.AccesoriosPois.Comuna;
@@ -52,6 +54,17 @@ public class SQLUserRepository implements UserRepository, WithGlobalEntityManage
 		List<Usuario> terminales = new ArrayList<Usuario>();
 		terminales = (List<Usuario>) entityManager().createQuery("from Usuario where esAdmin = 0").getResultList();
 		return terminales;
+	}
+	@Override
+	public EntityManager entityManager() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public Usuario getUsuarioById(long id) {
+		List<Usuario> usuarios = new ArrayList<Usuario>();
+		usuarios = (List<Usuario>) entityManager().createQuery("from Usuario where id = :id").setParameter("id", id).getResultList();
+		return usuarios.get(0);
 	}
 
 }

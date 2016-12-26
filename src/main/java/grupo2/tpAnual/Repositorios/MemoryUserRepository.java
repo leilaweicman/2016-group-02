@@ -36,4 +36,9 @@ public class MemoryUserRepository implements UserRepository {
 	public List<Usuario> getUsauriosTerminal() {
 		return this.usuarios.stream().filter(usuario -> (usuario.getEsAdmin() == false)).collect(Collectors.toList());
 	}
+
+	@Override
+	public Usuario getUsuarioById(long id) {
+		return (this.usuarios.stream().filter(usuario -> (usuario.getId()==id)).collect(Collectors.toList())).get(0);
+	}
 }

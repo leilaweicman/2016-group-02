@@ -11,6 +11,7 @@ import javax.persistence.OneToMany;
 
 import grupo2.tpAnual.AccesoriosPois.Comuna;
 import grupo2.tpAnual.Observers.ObserverBusqueda;
+import grupo2.tpAnual.Web.Server;
 @Entity
 public class Usuario {
 	@Id @GeneratedValue
@@ -24,6 +25,9 @@ public class Usuario {
 	private boolean esAdmin;
 	
 	public Usuario(){
+		if(Server.inMemory){
+			//generarId();
+		}
 		
 	}
 
@@ -75,5 +79,9 @@ public class Usuario {
 	
 	public boolean getEsAdmin(){
 		return esAdmin;
+	}
+	
+	private void generarId(){
+		//this.id = java.util.UUID.randomUUID().;
 	}
 }
