@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import grupo2.tpAnual.Pois.Comercio;
 import grupo2.tpAnual.Pois.POI;
 
 public class OrigenesDeDatosPOIsMemory extends OrigenesDeDatosPOIs {
@@ -46,5 +47,10 @@ public class OrigenesDeDatosPOIsMemory extends OrigenesDeDatosPOIs {
 			return pois.get(0);
 		}
 		return null;		
+	}
+	
+	public List<Comercio> getComercios(){
+		return pois.stream().filter(x -> x instanceof Comercio)
+		.map(p -> (Comercio) p).collect(Collectors.toList());
 	}
 }

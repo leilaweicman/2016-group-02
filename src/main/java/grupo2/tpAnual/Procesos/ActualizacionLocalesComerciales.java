@@ -25,8 +25,7 @@ public class ActualizacionLocalesComerciales extends Proceso {
 	public void ejecutar() {
 		String response = origen;
 		String[] componente = response.split(";");
-		List<Comercio> comercios = this.origenesDeDatos.getPOIs().stream().filter(x -> x instanceof Comercio)
-				.map(p -> (Comercio) p).collect(Collectors.toList());
+		List<Comercio> comercios = this.origenesDeDatos.getComercios();
 		for (Comercio com : comercios) {
 			if (com.getNombre().equals(componente[0])) {
 				com.setPalabrasClaves(Arrays.asList(componente[1].split(" ")));
