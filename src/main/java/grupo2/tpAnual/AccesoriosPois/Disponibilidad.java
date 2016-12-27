@@ -13,7 +13,7 @@ public class Disponibilidad {
 
 	@Id @GeneratedValue
 	private Integer id;
-	@OneToMany //@JoinColumn(name="id")
+	@OneToMany @JoinColumn
 	private List<Rango> rangoDisponibilidad = new ArrayList<Rango>();
 
 	public Disponibilidad(List<Rango> rango) {
