@@ -15,8 +15,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-//import javax.persistence.*;
-
 @org.mongodb.morphia.annotations.Entity
 @org.mongodb.morphia.annotations.Converters(LocalDateConverter.class)
 
@@ -29,7 +27,7 @@ public class DatosDeBusqueda {
 	private long segundosQueTardoLaBusqueda;
 	@org.mongodb.morphia.annotations.Property
 	private int totalDeResultados;		
-	@org.mongodb.morphia.annotations.Property //@Convert(LocalDateConverter.class)	
+	@org.mongodb.morphia.annotations.Property 	
 	private LocalDate fecha;
 	@org.mongodb.morphia.annotations.Property
 	private String nombreTerminal;

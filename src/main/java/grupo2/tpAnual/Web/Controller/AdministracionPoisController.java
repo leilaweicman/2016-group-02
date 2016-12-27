@@ -21,8 +21,6 @@ import spark.Response;
 public class AdministracionPoisController {
 	private static adminPois admin;
 	public static ModelAndView get(Request req, Response res) {
-		//grupo2.tpAnual.Mapa mapa = Mapa.get();
-		//mapa.busquedaRealizadaPorElUsuario("");
 		admin = new adminPois();		
 		return new ModelAndView(admin, "admin/pois/index.hbs");
 	}

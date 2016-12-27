@@ -11,14 +11,9 @@ import java.util.Date;
 
 import static java.time.ZoneId.systemDefault;
 
-/**
- * Provides a converter for {@link LocalDate} converting the value to the Date at the start of that day.
- */
 @SuppressWarnings("Since15")
 public class LocalDateConverter extends TypeConverter implements SimpleValueConverter {
-    /**
-     * Creates the Converter.
-     */
+
     public LocalDateConverter() {
         super(LocalDate.class);
     }

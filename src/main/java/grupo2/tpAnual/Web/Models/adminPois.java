@@ -6,9 +6,6 @@ import java.util.List;
 public class adminPois {
 	private List<String> tipos;
 	
-	//public adminPois(){
-	//}
-	
 	public List<String> getTipos(){
 		return tipos;
 	}

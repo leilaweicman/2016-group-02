@@ -46,8 +46,4 @@ public class Disponibilidad {
 	public void addRango(Rango rango) {
 		this.rangoDisponibilidad.add(rango);
 	}
-
-	/*public List<Rango> getDisponibilidad(){
-		return this.rangoDisponibilidad;
-	}*/
 }

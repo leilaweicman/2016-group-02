@@ -37,7 +37,6 @@ public class OrigenesDeDatosPOIsSQL extends OrigenesDeDatosPOIs implements WithG
 		List<POI> resultados = new ArrayList<POI>();
 		List<String> palClaves = Arrays.asList(txtABuscar);
 		resultados = entityManager().createQuery("from POI where nombre= :nombre", POI.class).setParameter("nombre", txtABuscar).getResultList(); 
-		//resultados.addAll((List<POI>) em.createQuery("from POI where palabraClave in (:palabra)").setParameter("palabra", palClaves).getResultList());
 		return resultados;
 	}
 	

@@ -38,7 +38,6 @@ public abstract class POI {
 	@Id	@GeneratedValue
 	private Integer id;
 	
-	//@org.mongodb.morphia.annotations.Reference
 	@org.mongodb.morphia.annotations.Transient
 	@OneToOne(cascade=CascadeType.ALL) @Embedded
 	private Direccion direccion;
@@ -51,7 +50,6 @@ public abstract class POI {
 	@ElementCollection
 	private List<String> palabraClave;
 	
-	//@org.mongodb.morphia.annotations.Reference
 	@Column @Convert(converter = ConverterPoint.class)
 	@Transient
 	@org.mongodb.morphia.annotations.Transient
