@@ -20,7 +20,7 @@ public class Comercio extends POI {
 	@org.mongodb.morphia.annotations.Embedded
 	@OneToOne
 	private Rubro rubro;
-	@Transient
+	@OneToMany
 	@org.mongodb.morphia.annotations.Transient
 	private List<Rango> rangoDisponibilidad = new ArrayList<Rango>();
 	@OneToOne

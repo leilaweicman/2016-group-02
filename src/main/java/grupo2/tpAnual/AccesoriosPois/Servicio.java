@@ -13,7 +13,7 @@ public class Servicio {
 	private Integer id;
 	@Column
 	private String nombre;
-	@Transient
+	@OneToMany
 	private List<Rango> rangoDisponibilidad = new ArrayList<Rango>();
 	@OneToOne
 	private Disponibilidad disponibilidad;
