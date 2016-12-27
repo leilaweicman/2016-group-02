@@ -2,14 +2,14 @@ package grupo2.tpAnual.Procesos;
 
 import java.util.List;
 
-import javax.persistence.OneToOne;
+import javax.persistence.Transient;
 
 import grupo2.tpAnual.AccesoriosPois.Comuna;
 import grupo2.tpAnual.Repositorios.MemoryUserRepository;
 import grupo2.tpAnual.Repositorios.Usuario;
 
 public class CriterioTodos implements Criterio {
-	@OneToOne
+	@Transient
 	public MemoryUserRepository repositorioUsuarios;
 
 	@Override
