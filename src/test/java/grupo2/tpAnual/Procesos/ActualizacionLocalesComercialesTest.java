@@ -50,6 +50,8 @@ public class ActualizacionLocalesComercialesTest {
 	public void ejecutarProcesoTest() {
 		proceso.ejecutarProceso();
 		Comercio com = (Comercio) origenesDeDatos.getPOIs().iterator().next();
+		Assert.assertEquals(com.getPalabraClave().get(0), "colegio");
+		Assert.assertEquals(com.getPalabraClave().get(1), "escolar");
 		Assert.assertEquals(com.getPalabraClave().size(), 4);
 	}
 }
