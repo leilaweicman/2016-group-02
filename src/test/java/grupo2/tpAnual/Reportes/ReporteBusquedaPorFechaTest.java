@@ -58,6 +58,8 @@ public class ReporteBusquedaPorFechaTest {
 	@Test
 	public void obtenerReporteTest() {
 		Map<LocalDate, Integer> map = reporte.busquedasPorFecha();
+		Assert.assertEquals(map.get(today).intValue(), 1);
+		Assert.assertEquals(map.get(today.minusDays(1)).intValue(), 1);
 		Assert.assertEquals(map.size(), 3);
 	}
 }
