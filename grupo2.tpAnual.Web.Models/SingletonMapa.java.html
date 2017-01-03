@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>SingletonMapa.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tpAnual</a> &gt; <a href="index.source.html" class="el_package">grupo2.tpAnual.Web.Models</a> &gt; <span class="el_source">SingletonMapa.java</span></div><h1>SingletonMapa.java</h1><pre class="source lang-java linenums">package grupo2.tpAnual.Web.Models;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import javax.persistence.EntityManager;
+
+import org.uqbar.geodds.Point;
+import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
+import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
+import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
+
+import grupo2.tpAnual.Mapa;
+import grupo2.tpAnual.MorphiaService;
+import grupo2.tpAnual.AccesoriosPois.Comuna;
+import grupo2.tpAnual.AccesoriosPois.Direccion;
+import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatos;
+import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosPOIs;
+import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosPOIsMemory;
+import grupo2.tpAnual.OrigenesDeDatos.OrigenesDeDatosPOIsSQL;
+import grupo2.tpAnual.Pois.Banco;
+import grupo2.tpAnual.Pois.CGP;
+import grupo2.tpAnual.Pois.Comercio;
+import grupo2.tpAnual.Pois.POI;
+import grupo2.tpAnual.Pois.Parada;
+import grupo2.tpAnual.Repositorios.DatosBusquedaRepositoryMemory;
+import grupo2.tpAnual.Repositorios.DatosBusquedaRepositoryMongoDB;
+import grupo2.tpAnual.Repositorios.DatosDeBusqueda;
+import grupo2.tpAnual.Repositorios.DatosDeBusquedaRepository;
+import grupo2.tpAnual.Repositorios.Usuario;
+import grupo2.tpAnual.Web.Server;
+
+<span class="nc" id="L34">public class SingletonMapa  extends AbstractPersistenceTest implements WithGlobalEntityManager {</span>
+	private static Mapa instance;
+	private static EntityManager em;	
+	private static MorphiaService morphia;
+	
+	
+	public static Mapa get() {
+<span class="nc bnc" id="L41" title="All 2 branches missed.">		if (instance == null) {</span>
+<span class="nc bnc" id="L42" title="All 2 branches missed.">			if (Server.inMemory == true)</span>
+<span class="nc" id="L43">				inMemory();</span>
+			else
+<span class="nc" id="L45">				inDB();</span>
+		}
+<span class="nc" id="L47">		return instance;</span>
+	}
+
+	private static void inDB() {
+<span class="nc" id="L51">		Usuario usuario = new Usuario();</span>
+<span class="nc" id="L52">		List&lt;OrigenesDeDatos&gt; listaDeOrigenes = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L53">		morphia = new MorphiaService();</span>
+<span class="nc" id="L54">		DatosDeBusquedaRepository repositorioDatosBusqueda = new DatosBusquedaRepositoryMongoDB(DatosDeBusqueda.class, morphia.getDatastore());</span>
+<span class="nc" id="L55">		em = PerThreadEntityManagers.getEntityManager();</span>
+<span class="nc" id="L56">		em.getTransaction().begin();</span>
+<span class="nc" id="L57">		OrigenesDeDatosPOIs pois = OrigenesDeDatosPOIsSQL.get();</span>
+<span class="nc" id="L58">		agregarPoisAlRepo(pois);</span>
+<span class="nc" id="L59">		listaDeOrigenes = Arrays.asList(pois);</span>
+<span class="nc" id="L60">		instance = new Mapa(listaDeOrigenes, repositorioDatosBusqueda);</span>
+<span class="nc" id="L61">		instance.setUsuario(usuario);</span>
+<span class="nc" id="L62">		em.getTransaction().commit();</span>
+<span class="nc" id="L63">	}</span>
+
+	private static void inMemory() {
+<span class="nc" id="L66">		Usuario usuario = new Usuario();</span>
+<span class="nc" id="L67">		List&lt;OrigenesDeDatos&gt; listaDeOrigenes = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L68">		DatosDeBusquedaRepository repositorioDatosBusqueda = new DatosBusquedaRepositoryMemory();</span>
+<span class="nc" id="L69">		OrigenesDeDatosPOIs pois = OrigenesDeDatosPOIsMemory.get();</span>
+<span class="nc" id="L70">		agregarPoisAlRepo(pois);</span>
+<span class="nc" id="L71">		listaDeOrigenes = Arrays.asList(pois);</span>
+<span class="nc" id="L72">		instance = new Mapa(listaDeOrigenes, repositorioDatosBusqueda);</span>
+<span class="nc" id="L73">		instance.setUsuario(usuario);</span>
+<span class="nc" id="L74">	}</span>
+
+	private static void agregarPoisAlRepo(OrigenesDeDatosPOIs repo) {
+<span class="nc" id="L77">		POI banco = new Banco(&quot;Banco Nación&quot;, Point.and(12.584, -39.458));</span>
+<span class="nc" id="L78">		POI comercio = new Comercio();</span>
+<span class="nc" id="L79">		POI cgp = new CGP(&quot;Comuna 6&quot;, Point.and(15.674, -12.432));</span>
+<span class="nc" id="L80">		POI parada = new Parada(&quot;Linea 48&quot;, Point.and(-98.342, -39.342), &quot;Los amigos sa&quot;);</span>
+
+<span class="nc" id="L82">		List&lt;Point&gt; points = Arrays.asList(Point.and(15.674, -12.432), Point.and(-98.342, -39.342),</span>
+<span class="nc" id="L83">				Point.and(12.584, -39.458));</span>
+<span class="nc" id="L84">		Comuna comuna6 = new Comuna(6, points);</span>
+
+<span class="nc" id="L86">		List&lt;String&gt; pcBanco = Arrays.asList(&quot;Tarjeta Nativa&quot;, &quot;Moneda extranjera&quot;, &quot;dolar&quot;, &quot;depositos&quot;);</span>
+<span class="nc" id="L87">		List&lt;String&gt; pcComercio = Arrays.asList(&quot;Ahora 12&quot;, &quot;indumentaria femenina&quot;, &quot;ropa&quot;);</span>
+<span class="nc" id="L88">		List&lt;String&gt; pcCGP = Arrays.asList(&quot;Cursos&quot;, &quot;Actividades&quot;, &quot;Comunas&quot;, &quot;Tarjeta Nativa&quot;);</span>
+<span class="nc" id="L89">		List&lt;String&gt; pcParada = Arrays.asList(&quot;48&quot;, &quot;Los amigos sa&quot;, &quot;paradas por rivadavia&quot;, &quot;rivadavia derecho&quot;);</span>
+
+<span class="nc" id="L91">		banco.setId(1);</span>
+<span class="nc" id="L92">		banco.setComuna(comuna6);</span>
+<span class="nc" id="L93">		banco.setDireccion(new Direccion(&quot;Pedro goyena 525&quot;, &quot;Caballito&quot;));</span>
+<span class="nc" id="L94">		banco.setPalabrasClaves(pcBanco);</span>
+<span class="nc" id="L95">		repo.agregarPOI(banco);</span>
+
+<span class="nc" id="L97">		cgp.setId(2);</span>
+<span class="nc" id="L98">		cgp.setComuna(comuna6);</span>
+<span class="nc" id="L99">		cgp.setDireccion(new Direccion(&quot;Parque Centenario&quot;, &quot;Caballito&quot;));</span>
+<span class="nc" id="L100">		cgp.setPalabrasClaves(pcCGP);</span>
+<span class="nc" id="L101">		repo.agregarPOI(cgp);</span>
+
+<span class="nc" id="L103">		parada.setId(3);</span>
+<span class="nc" id="L104">		parada.setComuna(comuna6);</span>
+<span class="nc" id="L105">		parada.setDireccion(new Direccion(&quot;Rivadavia 5520&quot;, &quot;Caballito&quot;));</span>
+<span class="nc" id="L106">		parada.setPalabrasClaves(pcParada);</span>
+<span class="nc" id="L107">		repo.agregarPOI(parada);</span>
+
+<span class="nc" id="L109">		comercio.setId(4);</span>
+<span class="nc" id="L110">		comercio.setComuna(comuna6);</span>
+<span class="nc" id="L111">		comercio.setDireccion(new Direccion(&quot;Acoyte y Rivadavia&quot;, &quot;Caballito&quot;));</span>
+<span class="nc" id="L112">		comercio.setNombre(&quot;Zara&quot;);</span>
+<span class="nc" id="L113">		comercio.setPalabrasClaves(pcComercio);</span>
+<span class="nc" id="L114">		repo.agregarPOI(comercio);</span>
+<span class="nc" id="L115">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

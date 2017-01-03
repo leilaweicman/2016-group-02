@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>AdministracionTerminalController.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tpAnual</a> &gt; <a href="index.source.html" class="el_package">grupo2.tpAnual.Web.Controller</a> &gt; <span class="el_source">AdministracionTerminalController.java</span></div><h1>AdministracionTerminalController.java</h1><pre class="source lang-java linenums">package grupo2.tpAnual.Web.Controller;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.uqbar.geodds.Point;
+
+import grupo2.tpAnual.AccesoriosPois.Comuna;
+import grupo2.tpAnual.Pois.POI;
+import grupo2.tpAnual.Repositorios.MemoryUserRepository;
+import grupo2.tpAnual.Repositorios.UserRepository;
+import grupo2.tpAnual.Repositorios.Usuario;
+import grupo2.tpAnual.Web.Models.SingletonUserRepository;
+import spark.ModelAndView;
+import spark.Request;
+import spark.Response;
+
+<span class="nc" id="L20">public class AdministracionTerminalController {</span>
+	
+	public static ModelAndView get(Request req, Response res) {
+<span class="nc" id="L23">		Map&lt;String, List&lt;Usuario&gt;&gt; model = new HashMap&lt;&gt;();</span>
+		
+<span class="nc" id="L25">		UserRepository repo = SingletonUserRepository.get();</span>
+<span class="nc" id="L26">		List&lt;Usuario&gt; terminales = repo.getUsauriosTerminal();</span>
+		
+<span class="nc" id="L28">		model.put(&quot;terminales&quot;, terminales);</span>
+<span class="nc" id="L29">		return new ModelAndView(model, &quot;admin/terminales/administracionTerminal.hbs&quot;);</span>
+		
+	}
+	
+	public static ModelAndView editar(Request req, Response res) {
+<span class="nc" id="L34">		Map&lt;String, Usuario&gt; model = new HashMap&lt;&gt;();</span>
+		
+		//String id = req.params(&quot;id&quot;);
+		/*long id = req.queryParams(&quot;id&quot;);*/
+<span class="nc" id="L38">		long id = Long.parseLong(req.params(&quot;id&quot;));</span>
+		
+<span class="nc" id="L40">		UserRepository usuarios = SingletonUserRepository.get();</span>
+		
+<span class="nc" id="L42">		Usuario user = usuarios.getUsuarioById(id);//Integer.parseInt(req.params(&quot;id&quot;)));</span>
+		
+<span class="nc" id="L44">		model.put(&quot;terminal&quot;, user);</span>
+<span class="nc" id="L45">		return new ModelAndView(model, &quot;admin/terminales/editarTerminal.hbs&quot;);</span>
+		
+	}
+
+
+	/* PARA NO OLVIDARME
+	 * cada href de cada row deberia tener una forma de agarrar el id de la 
+	 * terminal para poder editarla o eliminarla
+	 * 
+	 * no me agarra mi css
+	 * 
+	 * que onda con los repos, me tira null pointer exception, por eso harcodee
+	 * 
+	 * para editar, como es otra vista deberia hacer otro controller o desde este 
+	 * mismo puedo meter un metodo editar que muestre otro .hbs?
+	 * 
+	 * ver por qeu si pongo href=&quot;/admin/terminal&quot; tira 404 not found cuando en el router esta 
+	 * puesto para que redireccione, con ? al final si funciona
+	 * 
+	 * tiene qeu estar hecho lo del repo para poder testearlo bien porque solo en la bd se crea
+	 * el id para poder editarlo 
+	 * 
+	 * en base a la pregunta anterior, entonces, esto no funcionaria si no hy bd?
+	 * 
+	 * ver si en el model.put solo puedo mandar listas o si puedo mandar una sola cosa
+	 * creo que puedo mandar una sola cosa tipo un usuario, pero no se como tomar sus atributos
+	 */
+	
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>
