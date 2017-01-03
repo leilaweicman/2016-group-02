@@ -55,11 +55,11 @@ public class SQLUserRepository implements UserRepository, WithGlobalEntityManage
 		terminales = (List<Usuario>) entityManager().createQuery("from Usuario where esAdmin = 0").getResultList();
 		return terminales;
 	}
-	@Override
+	/*@Override
 	public EntityManager entityManager() {
 		// TODO Auto-generated method stub
 		return null;
-	}
+	}*/
 	@Override
 	public Usuario getUsuarioById(long id) {
 		List<Usuario> usuarios = new ArrayList<Usuario>();
