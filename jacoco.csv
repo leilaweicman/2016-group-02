@@ -11,7 +11,9 @@ tpAnual,grupo2.tpAnual.OrigenesDeDatos,BancosExternos,0,32,0,0,0,7,0,3,0,3
 tpAnual,grupo2.tpAnual.OrigenesDeDatos,OrigenesDeDatosPOIs,0,3,0,0,0,1,0,1,0,1
 tpAnual,grupo2.tpAnual.Repositorios,DatosBusquedaRepositoryMemory,17,51,0,0,1,9,2,8,2,8
 tpAnual,grupo2.tpAnual.Repositorios,DatosBusquedaRepositoryMongoDB,12,72,0,0,2,13,1,9,1,9
-tpAnual,grupo2.tpAnual.Repositorios,Usuario,21,39,1,1,9,15,7,8,6,8
+tpAnual,grupo2.tpAnual.Repositorios,MemoryObserverRepository,23,0,0,0,7,0,4,0,4,0
+tpAnual,grupo2.tpAnual.Repositorios,Usuario,31,39,1,1,12,15,7,8,6,8
+tpAnual,grupo2.tpAnual.Repositorios,SQLObserverRepository,8,25,2,0,3,7,2,4,1,4
 tpAnual,grupo2.tpAnual.Repositorios,MemoryUserRepository,82,17,6,0,6,5,12,3,9,3
 tpAnual,grupo2.tpAnual.Repositorios,SQLUserRepository,77,20,2,0,17,6,7,3,6,3
 tpAnual,grupo2.tpAnual.Repositorios,DatosDeBusqueda,6,49,0,0,2,16,2,6,2,6
@@ -44,7 +46,7 @@ tpAnual,grupo2.tpAnual.AccesoriosPois,Servicio,16,37,0,0,6,12,4,6,4,6
 tpAnual,grupo2.tpAnual.AccesoriosPois,Comuna,21,23,0,0,5,7,3,2,3,2
 tpAnual,grupo2.tpAnual.Web.Models,adminPois,6,0,0,0,2,0,2,0,2,0
 tpAnual,grupo2.tpAnual.Web.Models,SingletonMapa,313,0,4,0,61,0,7,0,5,0
-tpAnual,grupo2.tpAnual.Web.Models,SingletonUserRepository,79,0,4,0,26,0,4,0,2,0
+tpAnual,grupo2.tpAnual.Web.Models,SingletonUserRepository,73,0,4,0,24,0,4,0,2,0
 tpAnual,grupo2.tpAnual.LocalDateConverter,LocalDateConverter,18,36,4,4,4,11,4,3,0,3
 tpAnual,grupo2.tpAnual.helpers,MapExtensions,17,0,0,0,6,0,2,0,2,0
 tpAnual,grupo2.tpAnual.Procesos.ManejoDeErroresProcesos,EnviarMailFalloProceso,11,11,2,0,3,3,2,1,1,1
@@ -56,7 +58,7 @@ tpAnual,grupo2.tpAnual.Web.Controller,TerminalController,44,0,0,0,10,0,4,0,4,0
 tpAnual,grupo2.tpAnual.Web.Controller,InicioController,31,0,2,0,8,0,4,0,3,0
 tpAnual,grupo2.tpAnual.Web.Controller,HistoricoConsultasController,70,0,0,0,16,0,4,0,4,0
 tpAnual,grupo2.tpAnual.Web.Controller,AdministracionTerminalController,49,0,0,0,12,0,3,0,3,0
-tpAnual,grupo2.tpAnual.Observers,ObserverBusqueda,0,3,0,0,0,1,0,1,0,1
+tpAnual,grupo2.tpAnual.Observers,ObserverBusqueda,3,7,0,0,1,3,1,2,1,2
 tpAnual,grupo2.tpAnual.Observers,EnviarMailBusqueda,3,29,1,1,2,9,2,2,1,2
 tpAnual,grupo2.tpAnual.Observers,NotificarDatosBusqueda,17,22,1,1,4,7,2,3,1,3
 tpAnual,grupo2.tpAnual.Web,HandlebarsTemplateEngineBuilder,46,0,0,0,13,0,6,0,6,0

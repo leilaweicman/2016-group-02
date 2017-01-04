@@ -2,10 +2,12 @@
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -17,72 +19,75 @@ public class Usuario {
 	@Id @GeneratedValue
 	private long id; 
 	private String nombre;
-<span class="fc" id="L20">	@OneToMany </span>
+<span class="fc" id="L22">	@OneToMany </span>
 	private List&lt;ObserverBusqueda&gt; accionesBusqueda = new ArrayList&lt;ObserverBusqueda&gt;();
 	@ManyToOne 
 	public Comuna comuna;
 	
 	private boolean esAdmin;
 	
-<span class="fc" id="L27">	public Usuario(){</span>
-<span class="pc bpc" id="L28" title="1 of 2 branches missed.">		if(Server.inMemory){</span>
-			//generarId();
+	
+<span class="fc" id="L30">	public Usuario(){</span>
+<span class="pc bpc" id="L31" title="1 of 2 branches missed.">		if(Server.inMemory){</span>
+<span class="nc" id="L32">			generarId();</span>
 		}
 		
-<span class="fc" id="L32">	}</span>
+<span class="fc" id="L35">	}</span>
 
 	public void setNombre(String nombre){
-<span class="fc" id="L35">		this.nombre = nombre;</span>
-<span class="fc" id="L36">	}</span>
+<span class="fc" id="L38">		this.nombre = nombre;</span>
+<span class="fc" id="L39">	}</span>
 	
 	public String getNombre(){
-<span class="fc" id="L39">		return this.nombre;</span>
+<span class="fc" id="L42">		return this.nombre;</span>
 	}
 
 	public void setId(long id){
-<span class="nc" id="L43">		this.id = id;</span>
-<span class="nc" id="L44">	}</span>
+<span class="nc" id="L46">		this.id = id;</span>
+<span class="nc" id="L47">	}</span>
 	
 	public long getId(){
-<span class="nc" id="L47">		return id;</span>
+<span class="nc" id="L50">		return id;</span>
 	}
 	public void setComuna(Comuna com) {
-<span class="fc" id="L50">		this.comuna = com;</span>
-<span class="fc" id="L51">	}</span>
+<span class="fc" id="L53">		this.comuna = com;</span>
+<span class="fc" id="L54">	}</span>
 
 	public Comuna getComuna() {
-<span class="fc" id="L54">		return comuna;</span>
+<span class="fc" id="L57">		return comuna;</span>
 	}
 
 
 	public void setAccionesBusqueda(List&lt;ObserverBusqueda&gt; observers) {
-<span class="fc" id="L59">		this.accionesBusqueda.addAll(observers);</span>
-<span class="fc" id="L60">	}</span>
+<span class="fc" id="L62">		this.accionesBusqueda.addAll(observers);</span>
+<span class="fc" id="L63">	}</span>
 
 
 	public void setAccionBusqueda(ObserverBusqueda observer) {
-<span class="nc" id="L64">		this.accionesBusqueda.add(observer);</span>
-<span class="nc" id="L65">	}</span>
+<span class="nc" id="L67">		this.accionesBusqueda.add(observer);</span>
+<span class="nc" id="L68">	}</span>
 	
 	public List&lt;ObserverBusqueda&gt; getAccionesBusqueda() {
-<span class="fc" id="L68">		return accionesBusqueda;</span>
+<span class="fc" id="L71">		return accionesBusqueda;</span>
 	}
 
 	public void quitarObserversBusqueda(List&lt;ObserverBusqueda&gt; observers) {
-<span class="fc" id="L72">		this.accionesBusqueda.removeAll(observers);</span>
+<span class="fc" id="L75">		this.accionesBusqueda.removeAll(observers);</span>
 
-<span class="fc" id="L74">	}</span>
+<span class="fc" id="L77">	}</span>
 	
 	public void setEsAdmin(boolean admin){
-<span class="nc" id="L77">		esAdmin = admin;</span>
-<span class="nc" id="L78">	}</span>
+<span class="nc" id="L80">		esAdmin = admin;</span>
+<span class="nc" id="L81">	}</span>
 	
 	public boolean getEsAdmin(){
-<span class="nc" id="L81">		return esAdmin;</span>
+<span class="nc" id="L84">		return esAdmin;</span>
 	}
 	
 	private void generarId(){
+<span class="nc" id="L88">		Random rnd = new Random();</span>
+<span class="nc" id="L89">		this.id = rnd.nextLong();</span>
 		//this.id = java.util.UUID.randomUUID().;
-<span class="nc" id="L86">	}</span>
+<span class="nc" id="L91">	}</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>
