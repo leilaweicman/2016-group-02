@@ -4,14 +4,26 @@
 {{#partial "editarTerminales"}}
 
 	<div class="row">
-		<div>
-			<form action="/admin/terminal" method="post">
+		<div class="col-md-6 col-md-offset-3">
+				<form action="/admin/terminal" method="post">
 				
 				<input type="hidden" name="id" value="{{id}}">
 				
-				<input id="nombre" value="{{terminal.nombre}}" placeholder="{{terminal.nombre}}"/>
+				<div class="row">
+					<label for="nombre">Nombre</label>
+					<input type="text" class="form-control" id="nombre" value="{{terminal.nombre}}" placeholder="{{terminal.nombre}}"/>
+				</div>
 				
-				<input id="comuna" value="{{terminal.comuna.numeroComuna}}" placeholder"{{terminal.comuna.numeroComuna}}"/>
+				<div class="row">
+					<label for="nombre">Numero de comuna</label>
+					<input type="text" class="form-control" id="comuna" value="{{terminal.comuna.numeroComuna}}" placeholder"{{terminal.comuna.numeroComuna}}"/>
+				</div>
+				
+				<div class="col-md-6 col-md-offset-3">
+					<label>Acciones</label>
+					
+					<label><input type="checkbox" value="">opcion</label>
+				</div>
 				
 				{{#each terminal.accionesBusqueda}}
 					<div class="checkbox">
@@ -19,11 +31,7 @@
 					</div>
 				{{/each}}
 				
-				
-				
-
-				<input id="observers" placeholder="Lista de observers"/>
-				
+								
 				<button type="submit" class="btn btn-primary">Guardar</button>
 				<button href="/admin/terminal" class="btn btn-primary">cancelar</button>
 
