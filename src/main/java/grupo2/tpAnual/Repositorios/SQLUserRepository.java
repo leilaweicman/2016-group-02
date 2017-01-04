@@ -17,7 +17,8 @@ public class SQLUserRepository implements UserRepository, WithGlobalEntityManage
 			instance = new SQLUserRepository();
 		}
 		return instance;
-}
+	}
+	
 	@Override
 	public void deleteUsuario(Usuario usuario){
 		entityManager().remove(usuario);
