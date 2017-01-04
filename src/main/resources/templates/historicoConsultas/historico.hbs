@@ -9,6 +9,28 @@
 					<br/>
 				
 				<form action="" method="">
+				
+					<div class='col-md-5'>
+				        <div class="form-group">
+				            <div class='input-group date' id='datetimepicker6'>
+				                <input type='text' class="form-control" />
+				                <span class="input-group-addon">
+				                    <span class="glyphicon glyphicon-calendar"></span>
+				                </span>
+				            </div>
+				        </div>
+				    </div>
+				    <div class='col-md-5'>
+				        <div class="form-group">
+				            <div class='input-group date' id='datetimepicker7'>
+				                <input type='text' class="form-control" />
+				                <span class="input-group-addon">
+				                    <span class="glyphicon glyphicon-calendar"></span>
+				                </span>
+				            </div>
+				        </div>
+				    </div>
+    
 					<input class="form-control" id="ex2" type="text" placeholder=""> <br/>
 					<input type="radio" name="filtro" value="cantidad"> Cantidad De POIS<br>
 		  			<input type="radio" name="filtro" value="teminal"> Terminal<br>
@@ -25,5 +47,20 @@
 				</div>
 			</div>
 		</div>
+
+<script type="text/javascript">
+    $(function () {
+        $('#datetimepicker6').datepicker();
+        $('#datetimepicker7').datepicker({
+            useCurrent: false //Important! See issue #1075
+        });
+        $("#datetimepicker6").on("dp.change", function (e) {
+            $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
+        });
+        $("#datetimepicker7").on("dp.change", function (e) {
+            $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
+        });
+    });
+</script>
 {{/partial}}
 {{>admin.hbs}}
