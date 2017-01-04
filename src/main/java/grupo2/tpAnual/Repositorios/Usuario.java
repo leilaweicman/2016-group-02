@@ -2,10 +2,12 @@ package grupo2.tpAnual.Repositorios;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -24,9 +26,10 @@ public class Usuario {
 	
 	private boolean esAdmin;
 	
+	
 	public Usuario(){
 		if(Server.inMemory){
-			//generarId();
+			generarId();
 		}
 		
 	}
@@ -82,6 +85,8 @@ public class Usuario {
 	}
 	
 	private void generarId(){
+		Random rnd = new Random();
+		this.id = rnd.nextLong();
 		//this.id = java.util.UUID.randomUUID().;
 	}
 }

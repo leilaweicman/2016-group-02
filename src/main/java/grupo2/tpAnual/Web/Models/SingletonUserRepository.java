@@ -33,9 +33,7 @@ public class SingletonUserRepository  extends AbstractPersistenceTest implements
 		terminal2.setNombre("Terminal2");
 
 		if (instance == null) {
-			if (Server.inMemory == true){
-				terminal.setId(1);
-				terminal2.setId(2);				
+			if (Server.inMemory == true){				
 				instance = new MemoryUserRepository();
 				instance.saveUser(admin);
 				instance.saveUser(terminal);
