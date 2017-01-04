@@ -14,5 +14,15 @@ public abstract class ObserverBusqueda{
 	@Id
 	protected long id;
 	
+	String nombre;	
+	
 	public abstract void notificarBusqueda(DatosDeBusqueda datosParaObserver);
+	
+	public void setNombre(String nombre){
+		this.nombre=nombre;
+	}
+	
+	public String getNombre(){
+		return this.nombre;
+	}
 }
