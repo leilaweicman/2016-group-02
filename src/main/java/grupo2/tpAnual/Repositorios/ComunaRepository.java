@@ -13,6 +13,6 @@ public interface ComunaRepository {
 
 	public List<Comuna> getComunas();
 	
-	public Comuna getObserverByNumero(int numero);
+	public Comuna getComunaByNumero(int numero);
 
 }

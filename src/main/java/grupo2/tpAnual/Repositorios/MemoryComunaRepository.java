@@ -26,7 +26,7 @@ public class MemoryComunaRepository implements ComunaRepository{
 	}
 
 	@Override
-	public Comuna getObserverByNumero(int numero) {
+	public Comuna getComunaByNumero(int numero) {
 		return (this.comunas.stream().filter(comuna->(comuna.getNumeroComuna()==numero)).collect(Collectors.toList())).get(0);
 	}
 

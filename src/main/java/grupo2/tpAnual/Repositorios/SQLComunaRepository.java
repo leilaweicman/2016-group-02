@@ -36,7 +36,7 @@ public class SQLComunaRepository implements ComunaRepository, WithGlobalEntityMa
 	}
 
 	@Override
-	public Comuna getObserverByNumero(int numero) {
+	public Comuna getComunaByNumero(int numero) {
 		List<Comuna> comunas = new ArrayList<Comuna>();
 		comunas = (List<Comuna>) entityManager().createQuery("from Comuna where numeroComuna = :numero").setParameter("numero", numero).getResultList();
 		return comunas.get(0);
