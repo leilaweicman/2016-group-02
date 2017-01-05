@@ -56,6 +56,16 @@ public class AdministracionTerminalController {
 		
 	}
 
+	public static ModelAndView eliminar(Request req, Response res){
+		long id = Long.parseLong(req.params("id"));
+		
+		UserRepository repoUsuarios = SingletonUserRepository.get();
+		Usuario usuario = repoUsuarios.getUsuarioById(id);
+		repoUsuarios.deleteUsuario(usuario);
+		
+		res.redirect("/admin/terminal");
+		return null;
+	}
 	public static ModelAndView guardar(Request req, Response res) {
 
 		long id = Long.parseLong(req.queryParams("id"));
