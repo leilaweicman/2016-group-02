@@ -22,10 +22,24 @@ public class HistoricoConsultasController {
 		
 	}
 	
-	public static ModelAndView listarPorTerminal(Request req, Response res) {
+	public static ModelAndView listar(Request req, Response res) {
 		Map<String, List<DatosDeBusqueda>> model = new HashMap<>();
 		
-		String terminal= req.params("terminal");
+		String terminal= req.queryParams("terminal");
+		
+		List<DatosDeBusqueda> datosDeBusqueda = DatosBusquedaRepositoryMongoDB.instancia.obtenerPorNombre(terminal);
+		
+		model.put("datosDebusqueda", datosDeBusqueda);
+		
+		return new ModelAndView(model, "historicoConsultas/listarPorTerminal.hbs");
+		
+	}
+	
+	
+	/*public static ModelAndView listarPorTerminal(Request req, Response res) {
+		Map<String, List<DatosDeBusqueda>> model = new HashMap<>();
+		
+		String terminal= req.queryParams("terminal");
 		
 		List<DatosDeBusqueda> datosDeBusqueda = DatosBusquedaRepositoryMongoDB.instancia.obtenerPorNombre(terminal);
 		
@@ -40,7 +54,7 @@ public class HistoricoConsultasController {
 		
 		//int cantidad= Integer.parseInt(req.params("cantidad"));
 		
-		String cant = req.params("cantidad");
+		String cant = req.queryParams("cantidad");
 		
 		double cantidad =  Double.parseDouble(cant);
 		
@@ -52,10 +66,10 @@ public class HistoricoConsultasController {
 		
 	}
 	
-	/*public static ModelAndView listarPorFecha(Request req, Response res) {
+	public static ModelAndView listarPorFecha(Request req, Response res) {
 		Map<String, List<DatosDeBusqueda>> model = new HashMap<>();
 		
-		String fecha= req.params("fecha");
+		String fecha= req.queryParams("fecha");
 		
 		List<DatosDeBusqueda> datosDeBusqueda = DatosBusquedaRepositoryMongoDB.instancia.(fecha);
 		
