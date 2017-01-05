@@ -4,8 +4,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import grupo2.tpAnual.Mapa;
 import grupo2.tpAnual.Repositorios.DatosBusquedaRepositoryMongoDB;
 import grupo2.tpAnual.Repositorios.DatosDeBusqueda;
+import grupo2.tpAnual.Web.Models.SingletonMapa;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
@@ -26,6 +28,13 @@ public class HistoricoConsultasController {
 		Map<String, List<DatosDeBusqueda>> model = new HashMap<>();
 		
 		String terminal= req.queryParams("terminal");
+		
+		//Mapa mapa = SingletonMapa.get();
+		
+		/*Cosas para hacer:
+		 * 1. Hay que crear una instancia de DatosDeBusquedaRepository que sea unica (singleton), para que haya datos precargados cuando se realice la busqueda 
+		 * 2. filtrar por terminal, fecha y cantidad de pois -> habria que crear un metodo que filtre por las 3 cosas
+		 */		
 		
 		List<DatosDeBusqueda> datosDeBusqueda = DatosBusquedaRepositoryMongoDB.instancia.obtenerPorNombre(terminal);
 		
