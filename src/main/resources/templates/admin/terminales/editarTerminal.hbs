@@ -4,28 +4,40 @@
 {{#partial "editarTerminales"}}
 
 	<div class="row">
-		<div>
-			<form action="/admin/terminal" method="post">
+		<div class="col-md-6 col-md-offset-3">
+				<form action="/admin/terminal/guardar" method="post">
 				
-				<input type="hidden" name="id" value="{{id}}">
+				<input type="hidden" name="id" id="id" value="{{user.id}}">
 				
-				<input id="nombre" value="{{terminal.nombre}}" placeholder="{{terminal.nombre}}"/>
+				<div>
+					<label for="nombre">Nombre</label>
+					<input type="text" class="form-control" name="nombre" id="nombre" value="{{user.nombre}}" placeholder="{{terminal.nombre}}"/>
+				</div>
+				<br>
+				<div>
+					<label for="nombre">Numero de comuna</label>
+					<input type="text" class="form-control" name="comuna" id="comuna" value="{{user.comuna.numeroComuna}}" placeholder"{{terminal.comuna.numeroComuna}}"/>
+				</div>
+				<br>
+				<div id="acciones">
+					<label>Acciones</label>
+					
+					{{#each accionesUsuario}}
+						<div class="checkbox">
+							<label><input type="checkbox" id="{{id}}" name="{{id}}" checked="checked">{{nombre}}</label>
+						</div>
+					{{/each}}
+					{{#each accionesDisponibles}}
+						<div class="checkbox">
+							<label><input type="checkbox" id="{{id}}" name="{{id}}">{{nombre}}</label>
+						</div>
+					{{/each}}
 				
-				<input id="comuna" value="{{terminal.comuna.numeroComuna}}" placeholder"{{terminal.comuna.numeroComuna}}"/>
-				
-				{{#each terminal.accionesBusqueda}}
-					<div class="checkbox">
-  						<label><input type="checkbox" value="">opcion</label>
-					</div>
-				{{/each}}
-				
-				
-				
-
-				<input id="observers" placeholder="Lista de observers"/>
-				
+				</div>
+												
 				<button type="submit" class="btn btn-primary">Guardar</button>
-				<button href="/admin/terminal" class="btn btn-primary">cancelar</button>
+				
+				<a href="/admin/terminal" class="btn btn-primary">cancelar</a>
 
 			</form>	
 		</div>

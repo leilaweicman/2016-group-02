@@ -2,10 +2,12 @@ package grupo2.tpAnual.Repositorios;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -13,7 +15,7 @@ import grupo2.tpAnual.AccesoriosPois.Comuna;
 import grupo2.tpAnual.Observers.ObserverBusqueda;
 import grupo2.tpAnual.Web.Server;
 @Entity
-public class Usuario {
+public class Usuario{
 	@Id @GeneratedValue
 	private long id; 
 	private String nombre;
@@ -24,9 +26,10 @@ public class Usuario {
 	
 	private boolean esAdmin;
 	
+	
 	public Usuario(){
 		if(Server.inMemory){
-			//generarId();
+			generarId();
 		}
 		
 	}
@@ -73,6 +76,10 @@ public class Usuario {
 
 	}
 	
+	public void quitarAccionBusqueda(ObserverBusqueda observer){
+		this.accionesBusqueda.remove(observer);
+	}
+	
 	public void setEsAdmin(boolean admin){
 		esAdmin = admin;
 	}
@@ -82,6 +89,12 @@ public class Usuario {
 	}
 	
 	private void generarId(){
+		Random rnd = new Random();
+		this.id = rnd.nextLong();
 		//this.id = java.util.UUID.randomUUID().;
+	}
+	
+	public boolean tieneObserver(ObserverBusqueda observer){
+		return this.accionesBusqueda.contains(observer);
 	}
 }

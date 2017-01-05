@@ -41,4 +41,10 @@ public class MemoryUserRepository implements UserRepository {
 	public Usuario getUsuarioById(long id) {
 		return (this.usuarios.stream().filter(usuario -> (usuario.getId()==id)).collect(Collectors.toList())).get(0);
 	}
+
+	@Override
+	public void updateUsuario(Usuario usuario) {
+		usuarios.remove(usuario);
+		usuarios.add(usuario);
+	}
 }

@@ -17,7 +17,8 @@ public class SQLUserRepository implements UserRepository, WithGlobalEntityManage
 			instance = new SQLUserRepository();
 		}
 		return instance;
-}
+	}
+	
 	@Override
 	public void deleteUsuario(Usuario usuario){
 		entityManager().remove(usuario);
@@ -55,16 +56,17 @@ public class SQLUserRepository implements UserRepository, WithGlobalEntityManage
 		terminales = (List<Usuario>) entityManager().createQuery("from Usuario where esAdmin = 0").getResultList();
 		return terminales;
 	}
-	/*@Override
-	public EntityManager entityManager() {
-		// TODO Auto-generated method stub
-		return null;
-	}*/
+	
 	@Override
 	public Usuario getUsuarioById(long id) {
 		List<Usuario> usuarios = new ArrayList<Usuario>();
 		usuarios = (List<Usuario>) entityManager().createQuery("from Usuario where id = :id").setParameter("id", id).getResultList();
 		return usuarios.get(0);
+	}
+
+	@Override
+	public void updateUsuario(Usuario usuario) {
+		entityManager().merge(usuario);
 	}
 
 }

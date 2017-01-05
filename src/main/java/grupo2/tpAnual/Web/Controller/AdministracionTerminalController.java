@@ -8,10 +8,15 @@ import java.util.Map;
 import org.uqbar.geodds.Point;
 
 import grupo2.tpAnual.AccesoriosPois.Comuna;
+import grupo2.tpAnual.Observers.ObserverBusqueda;
 import grupo2.tpAnual.Pois.POI;
+import grupo2.tpAnual.Repositorios.ComunaRepository;
 import grupo2.tpAnual.Repositorios.MemoryUserRepository;
+import grupo2.tpAnual.Repositorios.ObserversRepository;
 import grupo2.tpAnual.Repositorios.UserRepository;
 import grupo2.tpAnual.Repositorios.Usuario;
+import grupo2.tpAnual.Web.Models.SingletonComunaRepository;
+import grupo2.tpAnual.Web.Models.SingletonObserverRepository;
 import grupo2.tpAnual.Web.Models.SingletonUserRepository;
 import spark.ModelAndView;
 import spark.Request;
@@ -31,22 +36,73 @@ public class AdministracionTerminalController {
 	}
 	
 	public static ModelAndView editar(Request req, Response res) {
-		Map<String, Usuario> model = new HashMap<>();
+		Map<String, Object> model = new HashMap<>();
 		
-		//String id = req.params("id");
-		/*long id = req.queryParams("id");*/
 		long id = Long.parseLong(req.params("id"));
 		
 		UserRepository usuarios = SingletonUserRepository.get();
 		
 		Usuario user = usuarios.getUsuarioById(id);//Integer.parseInt(req.params("id")));
 		
-		model.put("terminal", user);
+		ObserversRepository repo = SingletonObserverRepository.get();
+		List<ObserverBusqueda> accionesDisponibles = repo.getObservers();
+		List<ObserverBusqueda> accionesUsuario = user.getAccionesBusqueda();
+		accionesDisponibles.removeAll(accionesUsuario);
+		
+		model.put("user", user);
+		model.put("accionesDisponibles", accionesDisponibles);
+		model.put("accionesUsuario", accionesUsuario);
 		return new ModelAndView(model, "admin/terminales/editarTerminal.hbs");
 		
 	}
 
+	public static ModelAndView eliminar(Request req, Response res){
+		long id = Long.parseLong(req.params("id"));
+		
+		UserRepository repoUsuarios = SingletonUserRepository.get();
+		Usuario usuario = repoUsuarios.getUsuarioById(id);
+		repoUsuarios.deleteUsuario(usuario);
+		
+		res.redirect("/admin/terminal");
+		return null;
+	}
+	public static ModelAndView guardar(Request req, Response res) {
 
+		long id = Long.parseLong(req.queryParams("id"));
+		String nombre = req.queryParams("nombre");
+		int numeroComuna = Integer.parseInt(req.queryParams("comuna"));
+		
+		ComunaRepository comunas = SingletonComunaRepository.get();
+		Comuna comuna = comunas.getComunaByNumero(numeroComuna);
+		
+
+		UserRepository usuarios = SingletonUserRepository.get();
+		
+		Usuario user = usuarios.getUsuarioById(id);
+		
+		ObserversRepository repoAcciones = SingletonObserverRepository.get();
+		List<ObserverBusqueda> acciones = repoAcciones.getObservers();
+		acciones.stream().forEach(accion-> editarAcciones(accion, user, req));
+		
+		user.setNombre(nombre);
+		user.setComuna(comuna);
+		
+		usuarios.updateUsuario(user);
+	
+		res.redirect("/admin/terminal");
+		return null;
+	}
+
+	public static void editarAcciones(ObserverBusqueda observer, Usuario user, Request req){
+		Boolean flag = Boolean.valueOf(req.queryParams(String.valueOf(observer.getId()))); 
+		if(user.tieneObserver(observer)&& flag == false){
+			user.quitarAccionBusqueda(observer);
+		} else if(!user.tieneObserver(observer) && flag == true){
+			user.setAccionBusqueda(observer);
+		}
+	}
+	
+	
 	/* PARA NO OLVIDARME
 	 * cada href de cada row deberia tener una forma de agarrar el id de la 
 	 * terminal para poder editarla o eliminarla
@@ -64,7 +120,7 @@ public class AdministracionTerminalController {
 	 * tiene qeu estar hecho lo del repo para poder testearlo bien porque solo en la bd se crea
 	 * el id para poder editarlo 
 	 * 
-	 * en base a la pregunta anterior, entonces, esto no funcionaria si no hy bd?
+	 * en base a la pregunta anterior, entonces, esto no funcionaria si no hay bd?
 	 * 
 	 * ver si en el model.put solo puedo mandar listas o si puedo mandar una sola cosa
 	 * creo que puedo mandar una sola cosa tipo un usuario, pero no se como tomar sus atributos
