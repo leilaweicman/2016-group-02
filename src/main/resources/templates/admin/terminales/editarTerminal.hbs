@@ -5,18 +5,18 @@
 
 	<div class="row">
 		<div class="col-md-6 col-md-offset-3">
-				<form action="/admin/terminal" method="post">
+				<form action="/admin/terminal/guardar" method="post">
 				
-				<input type="hidden" name="id" value="{{id}}">
+				<input type="hidden" name="id" id="id" value="{{user.id}}">
 				
 				<div>
 					<label for="nombre">Nombre</label>
-					<input type="text" class="form-control" id="nombre" value="{{user.nombre}}" placeholder="{{terminal.nombre}}"/>
+					<input type="text" class="form-control" name="nombre" id="nombre" value="{{user.nombre}}" placeholder="{{terminal.nombre}}"/>
 				</div>
 				<br>
 				<div>
 					<label for="nombre">Numero de comuna</label>
-					<input type="text" class="form-control" id="comuna" value="{{user.comuna.numeroComuna}}" placeholder"{{terminal.comuna.numeroComuna}}"/>
+					<input type="text" class="form-control" name="comuna" id="comuna" value="{{user.comuna.numeroComuna}}" placeholder"{{terminal.comuna.numeroComuna}}"/>
 				</div>
 				<br>
 				<div id="acciones">
@@ -24,12 +24,12 @@
 					
 					{{#each accionesUsuario}}
 						<div class="checkbox">
-							<label><input type="checkbox" id="{{id}}" checked="checked" value="">{{nombre}}</label>
+							<label><input type="checkbox" id="{{id}}" name="{{id}}" checked="checked">{{nombre}}</label>
 						</div>
 					{{/each}}
 					{{#each accionesDisponibles}}
 						<div class="checkbox">
-							<label><input type="checkbox" id="{{id}}" value="">{{nombre}}</label>
+							<label><input type="checkbox" id="{{id}}" name="{{id}}">{{nombre}}</label>
 						</div>
 					{{/each}}
 				

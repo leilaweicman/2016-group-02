@@ -57,15 +57,14 @@ public class AdministracionTerminalController {
 	}
 
 	public static ModelAndView guardar(Request req, Response res) {
-		Map<String, Object> model = new HashMap<>();
+		//Map<String, Object> model = new HashMap<>();
 
-		long id = Long.parseLong(req.params("id"));
-		String nombre = req.params("nombre");
-		int numeroComuna = Integer.parseInt(req.params("comuna"));
-		//String acciones = req.params("acciones");
+		long id = Long.parseLong(req.queryParams("id"));
+		String nombre = req.queryParams("nombre");
+		int numeroComuna = Integer.parseInt(req.queryParams("comuna"));
 		
 		ComunaRepository comunas = SingletonComunaRepository.get();
-		Comuna comuna = comunas.getObserverByNumero(numeroComuna);
+		Comuna comuna = comunas.getComunaByNumero(numeroComuna);
 		
 
 		UserRepository usuarios = SingletonUserRepository.get();
@@ -74,22 +73,25 @@ public class AdministracionTerminalController {
 		
 		ObserversRepository repoAcciones = SingletonObserverRepository.get();
 		List<ObserverBusqueda> acciones = repoAcciones.getObservers();
-		//acciones.stream().forEach(accion-> this.editarAcciones(accion, user, req));
+		acciones.stream().forEach(accion-> editarAcciones(accion, user, req));
 		
 		user.setNombre(nombre);
 		user.setComuna(comuna);
 		
 		usuarios.updateUsuario(user);
 	
-		return new ModelAndView(model, "admin/terminales/administracionTerminal.hbs");
-
+		res.redirect("/admin/terminal");
+		return null;
 	}
 
-	/*public void editarAcciones(ObserverBusqueda observer, Usuario user, Request req){
-		
-		
-		private int flag = Integer.parseInt(req.params(observer.getId())); 
-	}*/
+	public static void editarAcciones(ObserverBusqueda observer, Usuario user, Request req){
+		Boolean flag = Boolean.valueOf(req.queryParams(String.valueOf(observer.getId()))); 
+		if(user.tieneObserver(observer)&& flag == false){
+			user.quitarAccionBusqueda(observer);
+		} else if(!user.tieneObserver(observer) && flag == true){
+			user.setAccionBusqueda(observer);
+		}
+	}
 	
 	
 	/* PARA NO OLVIDARME

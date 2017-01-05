@@ -30,9 +30,12 @@ public class Router {
 		Spark.get("/admin/pois/lista", AdministracionPoisController::lista, engine);
 		Spark.get("/admin/pois/editar/:id", AdministracionPoisController::editar, engine);
 		Spark.get("/admin/pois/borrar/:id", AdministracionPoisController::borrar, engine);
+		
 
 		Spark.get("/admin/terminal", AdministracionTerminalController::get, engine);
 		Spark.get("/admin/terminal/editar/:id", AdministracionTerminalController::editar, engine);
+		Spark.post("/admin/terminal/guardar", AdministracionTerminalController::guardar, engine);
+
 		Spark.get("/admin/pois/editarPut", AdministracionPoisController::editarPut, engine);
 
 	}
