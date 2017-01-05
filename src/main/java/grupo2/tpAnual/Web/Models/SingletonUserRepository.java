@@ -9,9 +9,11 @@ import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
 
+import grupo2.tpAnual.AccesoriosPois.Comuna;
 import grupo2.tpAnual.Observers.EnviarMailBusqueda;
 import grupo2.tpAnual.Observers.NotificarDatosBusqueda;
 import grupo2.tpAnual.Observers.ObserverBusqueda;
+import grupo2.tpAnual.Repositorios.ComunaRepository;
 import grupo2.tpAnual.Repositorios.MemoryUserRepository;
 import grupo2.tpAnual.Repositorios.ObserversRepository;
 import grupo2.tpAnual.Repositorios.SQLUserRepository;
@@ -23,11 +25,14 @@ public class SingletonUserRepository  extends AbstractPersistenceTest implements
 	public static UserRepository instance;
 	private static EntityManager em;
 	
-	private static ObserversRepository repo = SingletonObserverRepository.get();
+	public static ObserversRepository repo = SingletonObserverRepository.get();
 	
-	private static ObserverBusqueda notificarDatos = repo.getObserverByName("notificarDatos");
-	private static ObserverBusqueda enviarMail = repo.getObserverByName("enviarMail");
-	
+	public static ObserverBusqueda notificarDatos = repo.getObserverByName("notificarDatos");
+	public static ObserverBusqueda enviarMail = repo.getObserverByName("enviarMail");
+
+	public static ComunaRepository repoComunas = SingletonComunaRepository.get();
+	public static Comuna comuna1 = repoComunas.getComunaByNumero(1);
+	public static Comuna comuna4 = repoComunas.getComunaByNumero(4);
 
 	public static UserRepository get() {
 		
@@ -41,10 +46,12 @@ public class SingletonUserRepository  extends AbstractPersistenceTest implements
 		terminal.setEsAdmin(false);
 		terminal.setNombre("Terminal");
 		terminal.setAccionBusqueda(notificarDatos);
+		terminal.setComuna(comuna1);
 		
 		terminal2.setEsAdmin(false);
 		terminal2.setNombre("Terminal2");
 		terminal2.setAccionBusqueda(enviarMail);
+		terminal2.setComuna(comuna4);
 
 		if (instance == null) {
 			if (Server.inMemory == true){				
