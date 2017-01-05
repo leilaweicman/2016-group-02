@@ -1,0 +1,40 @@
+{{#partial "titulo"}}
+<h1 align = "center" >Informcion terminal</h1>
+{{/partial}}
+{{#partial "infoTerminales"}}
+
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3">
+				
+				<input type="hidden" name="id" id="id" value="{{user.id}}">
+				
+				<div>
+					<label for="nombre">Nombre</label>
+					<input type="text" disabled class="form-control" name="nombre" id="nombre" value="{{user.nombre}}" placeholder="{{terminal.nombre}}"/>
+				</div>
+				<br>
+				<div>
+					<label for="nombre">Numero de comuna</label>
+					<input type="text" disabled class="form-control" name="comuna" id="comuna" value="{{user.comuna.numeroComuna}}" placeholder"{{terminal.comuna.numeroComuna}}"/>
+				</div>
+				<br>
+				<div id="acciones">
+					<label>Acciones</label>
+					
+					{{#each accionesUsuario}}
+						<div class="checkbox">
+							<label><input disabled type="checkbox" id="{{id}}" name="{{id}}" checked="checked">{{nombre}}</label>
+						</div>
+					{{/each}}
+					
+				</div>
+												
+				<a href="/admin/terminal/editar/{{user.id}}" class="btn btn-primary">Editar</a>
+				
+				<a href="/admin/terminal/eliminar/{{user.id}}" class="btn btn-primary">Eliminar</a>
+
+		</div>
+	</div>		
+			
+{{/partial}}
+{{>admin.hbs}}

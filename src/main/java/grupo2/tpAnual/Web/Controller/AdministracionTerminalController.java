@@ -42,7 +42,7 @@ public class AdministracionTerminalController {
 		
 		UserRepository usuarios = SingletonUserRepository.get();
 		
-		Usuario user = usuarios.getUsuarioById(id);//Integer.parseInt(req.params("id")));
+		Usuario user = usuarios.getUsuarioById(id);
 		
 		ObserversRepository repo = SingletonObserverRepository.get();
 		List<ObserverBusqueda> accionesDisponibles = repo.getObservers();
@@ -56,6 +56,35 @@ public class AdministracionTerminalController {
 		
 	}
 
+	public static ModelAndView crear(Request req, Response res) {
+		Map<String, Object> model = new HashMap<>();
+					
+		ObserversRepository repo = SingletonObserverRepository.get();
+		List<ObserverBusqueda> accionesDisponibles = repo.getObservers();
+		
+		model.put("accionesDisponibles", accionesDisponibles);
+		return new ModelAndView(model, "admin/terminales/editarTerminal.hbs");
+		
+	}
+	
+	public static ModelAndView info(Request req, Response res) {
+		Map<String, Object> model = new HashMap<>();
+		
+		long id = Long.parseLong(req.params("id"));
+		
+		UserRepository usuarios = SingletonUserRepository.get();
+		
+		Usuario user = usuarios.getUsuarioById(id);
+		
+		ObserversRepository repo = SingletonObserverRepository.get();
+		List<ObserverBusqueda> accionesUsuario = user.getAccionesBusqueda();
+		
+		model.put("user", user);
+		model.put("accionesUsuario", accionesUsuario);
+		return new ModelAndView(model, "admin/terminales/infoTerminal.hbs");
+		
+	}
+	
 	public static ModelAndView eliminar(Request req, Response res){
 		long id = Long.parseLong(req.params("id"));
 		
@@ -67,18 +96,21 @@ public class AdministracionTerminalController {
 		return null;
 	}
 	public static ModelAndView guardar(Request req, Response res) {
+		
+		UserRepository usuarios = SingletonUserRepository.get();
+		Usuario user;
 
-		long id = Long.parseLong(req.queryParams("id"));
+		if(req.queryParams("id")!=""){
+			long id = Long.parseLong(req.queryParams("id"));
+			user = usuarios.getUsuarioById(id);
+		} else {
+			user = new Usuario();
+		}
 		String nombre = req.queryParams("nombre");
 		int numeroComuna = Integer.parseInt(req.queryParams("comuna"));
 		
 		ComunaRepository comunas = SingletonComunaRepository.get();
 		Comuna comuna = comunas.getComunaByNumero(numeroComuna);
-		
-
-		UserRepository usuarios = SingletonUserRepository.get();
-		
-		Usuario user = usuarios.getUsuarioById(id);
 		
 		ObserversRepository repoAcciones = SingletonObserverRepository.get();
 		List<ObserverBusqueda> acciones = repoAcciones.getObservers();
