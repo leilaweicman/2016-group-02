@@ -11,8 +11,8 @@ public interface ObserversRepository {
 	
 	public void saveObserver(ObserverBusqueda observer);
 
-	//public List<ObserverBusqueda> getObserversByUsuario(Usuario usuario);
-
 	public List<ObserverBusqueda> getObservers();
+	
+	public ObserverBusqueda getObserverByName(String name);
 
 }

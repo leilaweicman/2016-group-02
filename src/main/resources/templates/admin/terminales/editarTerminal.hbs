@@ -9,27 +9,32 @@
 				
 				<input type="hidden" name="id" value="{{id}}">
 				
-				<div class="row">
+				<div>
 					<label for="nombre">Nombre</label>
-					<input type="text" class="form-control" id="nombre" value="{{terminal.nombre}}" placeholder="{{terminal.nombre}}"/>
+					<input type="text" class="form-control" id="nombre" value="{{user.nombre}}" placeholder="{{terminal.nombre}}"/>
 				</div>
-				
-				<div class="row">
+				<br>
+				<div>
 					<label for="nombre">Numero de comuna</label>
-					<input type="text" class="form-control" id="comuna" value="{{terminal.comuna.numeroComuna}}" placeholder"{{terminal.comuna.numeroComuna}}"/>
+					<input type="text" class="form-control" id="comuna" value="{{user.comuna.numeroComuna}}" placeholder"{{terminal.comuna.numeroComuna}}"/>
 				</div>
-				
-				<div class="col-md-6 col-md-offset-3">
+				<br>
+				<div id="acciones">
 					<label>Acciones</label>
 					
-					<label><input type="checkbox" value="">opcion</label>
+					{{#each accionesUsuario}}
+						<div class="checkbox">
+							<label><input type="checkbox" id="{{id}}" checked="checked" value="">{{nombre}}</label>
+						</div>
+					{{/each}}
+					{{#each accionesDisponibles}}
+						<div class="checkbox">
+							<label><input type="checkbox" id="{{id}}" value="">{{nombre}}</label>
+						</div>
+					{{/each}}
+				
 				</div>
 				
-				{{#each terminal.accionesBusqueda}}
-					<div class="checkbox">
-  						<label><input type="checkbox" value="">opcion</label>
-					</div>
-				{{/each}}
 				
 								
 				<button type="submit" class="btn btn-primary">Guardar</button>

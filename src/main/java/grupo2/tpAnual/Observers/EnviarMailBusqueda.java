@@ -6,6 +6,7 @@ import javax.persistence.Transient;
 
 import grupo2.tpAnual.MailSender;
 import grupo2.tpAnual.Repositorios.DatosDeBusqueda;
+import grupo2.tpAnual.Web.Server;
 
 
 @Entity

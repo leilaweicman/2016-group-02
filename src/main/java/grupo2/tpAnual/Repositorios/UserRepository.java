@@ -19,5 +19,7 @@ public interface UserRepository {
 	public List<Usuario> getUsauriosTerminal();
 	
 	public Usuario getUsuarioById(long id);
+	
+	public void updateUsuario(Usuario usuario);
 
 }
