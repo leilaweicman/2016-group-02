@@ -57,7 +57,6 @@ public class AdministracionTerminalController {
 	}
 
 	public static ModelAndView guardar(Request req, Response res) {
-		//Map<String, Object> model = new HashMap<>();
 
 		long id = Long.parseLong(req.queryParams("id"));
 		String nombre = req.queryParams("nombre");
