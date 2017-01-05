@@ -76,6 +76,10 @@ public class Usuario{
 
 	}
 	
+	public void quitarAccionBusqueda(ObserverBusqueda observer){
+		this.accionesBusqueda.remove(observer);
+	}
+	
 	public void setEsAdmin(boolean admin){
 		esAdmin = admin;
 	}
