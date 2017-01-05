@@ -11,7 +11,6 @@ import javax.persistence.Inheritance;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-import grupo2.tpAnual.PersistentEntity;
 import grupo2.tpAnual.AccesoriosPois.Comuna;
 import grupo2.tpAnual.Observers.ObserverBusqueda;
 import grupo2.tpAnual.Web.Server;

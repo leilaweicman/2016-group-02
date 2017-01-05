@@ -6,7 +6,6 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 
-import grupo2.tpAnual.PersistentEntity;
 import grupo2.tpAnual.Repositorios.DatosDeBusqueda;
 import grupo2.tpAnual.Repositorios.Usuario;
 @Entity
