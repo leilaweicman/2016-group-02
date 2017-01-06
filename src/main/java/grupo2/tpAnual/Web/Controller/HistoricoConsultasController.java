@@ -29,6 +29,7 @@ public class HistoricoConsultasController {
 	public static ModelAndView listar(Request req, Response res) {
 		
 		//TODO Recibir los parametros y fijarme cuales no estan vacios para ver por cuales filtrar
+		//Ahora solo esta buscando por el nombre 
 		
 		Map<String, List<DatosDeBusqueda>> model = new HashMap<>();
 		
@@ -42,6 +43,8 @@ public class HistoricoConsultasController {
 		model.put("datosDebusqueda", datosDeBusqueda);
 		
 		return new ModelAndView(model, "historicoConsultas/listar.hbs");
+		
+		//TODO no aparece el nombre ni la fecha en la lista :(
 		
 	}
 	
