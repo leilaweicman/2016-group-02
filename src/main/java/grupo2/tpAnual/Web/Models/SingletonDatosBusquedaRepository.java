@@ -58,7 +58,7 @@ public class SingletonDatosBusquedaRepository extends AbstractPersistenceTest im
 		pois = new ArrayList<>();
 		pois.add(comercio);
 		
-		datoBuscado = new DatosDeBusqueda("lasHeras", "libros", 10, 15, today , pois);
+		datoBuscado = new DatosDeBusqueda("lasHeras", "libros", 10, 10, today , pois);
 		datoBuscado2 = new DatosDeBusqueda("flores", "carpetas", 14, 15, today.minusDays(1), pois);
 		datoBuscado3 = new DatosDeBusqueda("flores", "lapices", 14, 15, today.minusDays(2), pois);
 	
