@@ -38,7 +38,9 @@ public class DatosBusquedaRepositoryMemory /*extends BasicDAO<DatosDeBusqueda, O
 		return this.obtenerTotalResultadosPorTerminal(nombre).stream().reduce(0, (a, b) -> a + b);
 	}
 	
-	public List<Integer> filtrar(String nombreTerminal, String cantidad, LocalDate desde, LocalDate hasta){
+	public List<DatosDeBusqueda> filtrar(String nombreTerminal, int cantidad, LocalDate desde, LocalDate hasta){
 		return null;
 	}
+
+	
 }

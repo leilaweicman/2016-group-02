@@ -18,6 +18,6 @@ public interface DatosDeBusquedaRepository {
 
 	public Integer cantidadDeBusquedasDe(String nombre);
 	
-	public List<Integer> filtrar(String nombreTerminal, String cantidad, LocalDate desde, LocalDate hasta);
+	public List<DatosDeBusqueda> filtrar(String nombreTerminal,int cantidad, LocalDate desde, LocalDate hasta);
 
 }

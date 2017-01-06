@@ -43,6 +43,7 @@ public class HistoricoConsultasController {
 		
 		model.put("datosDebusqueda", datosDeBusqueda);
 		
+		
 		return new ModelAndView(model, "historicoConsultas/listar.hbs");
 		
 		//TODO no aparece el nombre ni la fecha en la lista :(

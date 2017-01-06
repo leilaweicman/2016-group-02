@@ -1,6 +1,7 @@
 package grupo2.tpAnual.Repositorios;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,6 +18,8 @@ public class DatosBusquedaRepositoryMongoDB extends BasicDAO<DatosDeBusqueda, Ob
 	static MorphiaService morphia = new MorphiaService();
 	
 	public static DatosBusquedaRepositoryMongoDB instancia = new DatosBusquedaRepositoryMongoDB(DatosDeBusqueda.class, morphia.getDatastore());
+
+	List<DatosDeBusqueda> listafiltro = new ArrayList<>();
 	
 	public DatosBusquedaRepositoryMongoDB(Class<DatosDeBusqueda> entityClass, Datastore dataStore) {
 		super(entityClass, dataStore);
@@ -61,9 +64,27 @@ public class DatosBusquedaRepositoryMongoDB extends BasicDAO<DatosDeBusqueda, Ob
 
 		return query.asList();
 	}
+	 public <T> List<T> intersection(List<T> list1, List<T> list2) {
+	        List<T> list = new ArrayList<T>();
+
+	        for (T t : list1) {
+	            if(list2.contains(t)) {
+	                list.add(t);
+	            }
+	        }
+
+	        return list;
+	    } // si, re sacado de internet
 	
-	public List<Integer> filtrar(String nombreTerminal, String cantidad, LocalDate desde, LocalDate hasta){
-		return null;
+	@Override
+	public List<DatosDeBusqueda> filtrar(String nombreTerminal, int cantidad, LocalDate desde, LocalDate hasta){
+		
+		return this.intersection(this.obtenerPorNombre(nombreTerminal), this.cantidadDePois(cantidad));
+		//TODO: filtrar por fecha
+		
+	
 	}
+
+	
 	
 }
