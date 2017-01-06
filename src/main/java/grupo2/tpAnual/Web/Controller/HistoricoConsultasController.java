@@ -1,5 +1,6 @@
 package grupo2.tpAnual.Web.Controller;
 
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,23 +27,28 @@ public class HistoricoConsultasController {
 	
 	public static ModelAndView listar(Request req, Response res) {
 		
-		/* TODO Recibir los parametros 
-		 * Ahora solo esta buscando por el nombre 
-		 * Fijarnos si hay forma de hacer interseccion entre listas (? o crear un metodo que filtre por las 3 cosas
+		/* TODO Recibir todos los parametros 
+		 * Fijarnos si hay forma de hacer interseccion entre listas (? o crear una query que filtre por las 3 cosas
 		 */
 		
 		Map<String, List<DatosDeBusqueda>> model = new HashMap<>();
 				
 		String terminal= req.queryParams("terminal");
 		String cantidad= req.queryParams("cantidad");
-
+		int cant = 15;
+		if (! cantidad.isEmpty()){
+			 cant = Integer.parseInt (cantidad);
+		} 		
+		
 		DatosDeBusquedaRepository repository = SingletonDatosBusquedaRepository.get();
 		
 		//List<DatosDeBusqueda> datosDeBusqueda = DatosBusquedaRepositoryMongoDB.instancia.obtenerPorNombre(terminal);
-		List<DatosDeBusqueda> datosDeBusqueda = repository.obtenerPorNombre(terminal);
+
+		//List<DatosDeBusqueda> datosDeBusqueda = repository.obtenerPorNombre(terminal);
+
+		List<DatosDeBusqueda> datosDeBusqueda = repository.filtrar(terminal, cant, LocalDate.now(), LocalDate.now().minusDays(1));
 		
-		model.put("datosDebusqueda", datosDeBusqueda);
-		
+		model.put("datosDebusqueda", datosDeBusqueda);		
 		
 		return new ModelAndView(model, "historicoConsultas/listar.hbs");
 		
