@@ -73,4 +73,7 @@ public class DatosDeBusqueda {
 	 public List<POI> getPoisRespuestaBusqueda() {
 		 return poisRespuestaBusqueda;
 	 }
+	public Integer getCantidadDePois(){
+		return cantidadDePois;
+	}
 }

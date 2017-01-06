@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 import org.bson.types.ObjectId;
 import org.mongodb.morphia.dao.BasicDAO;
+import org.mongodb.morphia.query.Query;
 
 public class DatosBusquedaRepositoryMemory /*extends BasicDAO<DatosDeBusqueda, ObjectId>*/ implements DatosDeBusquedaRepository{
 	
@@ -42,5 +43,11 @@ public class DatosBusquedaRepositoryMemory /*extends BasicDAO<DatosDeBusqueda, O
 		return null;
 	}
 
+	@Override
+	public List<DatosDeBusqueda> cantidadDePois(Integer cantidad) {
+		return listaDatosDeBusqueda.stream().filter(registro -> registro.getCantidadDePois() == cantidad).collect(Collectors.toList());
+	}
+
+	
 	
 }
