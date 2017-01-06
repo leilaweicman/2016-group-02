@@ -1,0 +1,26 @@
+{{#partial "contenido"}}
+
+	<br/>
+	
+  <table class="table table-bordered table-striped">
+     <tr>
+        <th>Nombre</th>
+        <th>Texto</th>
+        <th>Cant Result</th>
+        <th>Fecha</th>
+     </tr>
+     {{#each datosDebusqueda}}
+     <tr>
+        <td>{{this.nombreTerminal}}</td>
+        <td>{{this.txtBuscado}}</td>
+        <td>{{this.totalDeResultados}}</td>
+        <td>{{this.Fecha}}</td>
+     </tr>
+     {{/each}}
+  </table>	   
+	
+{{/partial}}
+
+
+
+{{>historicoConsultas/historico.hbs}}
