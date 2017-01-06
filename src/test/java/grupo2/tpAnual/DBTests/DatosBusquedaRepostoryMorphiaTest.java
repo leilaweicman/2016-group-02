@@ -108,4 +108,10 @@ public class DatosBusquedaRepostoryMorphiaTest {
 		Assert.assertEquals(repositorioDB.obtenerPorNombre(nombreTerminal2).size(), 2);
 		Assert.assertEquals(repositorioDB.obtenerPorNombre(nombreTerminal).size(), 1);	
 	}
+	
+	@Test
+	public void testCantPois(){
+		Assert.assertTrue(repositorioDB.cantidadDePois(1).size()== 3);
+
+	}
 }

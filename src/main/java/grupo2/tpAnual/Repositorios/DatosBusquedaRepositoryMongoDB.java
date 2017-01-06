@@ -58,12 +58,13 @@ public class DatosBusquedaRepositoryMongoDB extends BasicDAO<DatosDeBusqueda, Ob
 	}
 	
 	
-	public List<DatosDeBusqueda> cantidadDePois(double cantidad){
+	public List<DatosDeBusqueda> cantidadDePois(Integer cantidad){
 		
 		Query<DatosDeBusqueda> query = createQuery().field("cantidadDePois").equal(cantidad);
 
 		return query.asList();
 	}
+	
 	 public <T> List<T> intersection(List<T> list1, List<T> list2) {
 	        List<T> list = new ArrayList<T>();
 
@@ -83,11 +84,13 @@ public class DatosBusquedaRepositoryMongoDB extends BasicDAO<DatosDeBusqueda, Ob
 
 		//return this.intersection(this.obtenerPorNombre(nombreTerminal), this.cantidadDePois(cantidad));
 		//Query<DatosDeBusqueda> query = createQuery().field("cantidadDePois").equal(cantidad).field("nombreTerminal").equal(nombreTerminal);
-		Query<DatosDeBusqueda> query = createQuery();
-		query.and(query.criteria("cantidadDePois").equal(cantidad), query.criteria("nombreTerminal").equal(nombreTerminal));
+		//Query<DatosDeBusqueda> query = createQuery();
+		//query.and(query.criteria("cantidadDePois").equal(cantidad), query.criteria("nombreTerminal").equal(nombreTerminal));
 		
-		return query.asList();
+		Query<DatosDeBusqueda> query = createQuery().field("cantidadDePois").equal(cantidad); 
+		//POR QUE NO ME TRAE LAS COSAS?????
 
+		return query.asList();
 	}
 
 	
