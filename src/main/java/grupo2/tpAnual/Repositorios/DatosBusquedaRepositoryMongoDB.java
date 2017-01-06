@@ -1,5 +1,6 @@
 package grupo2.tpAnual.Repositorios;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -59,6 +60,10 @@ public class DatosBusquedaRepositoryMongoDB extends BasicDAO<DatosDeBusqueda, Ob
 		Query<DatosDeBusqueda> query = createQuery().field("cantidadDePois").equal(cantidad);
 
 		return query.asList();
+	}
+	
+	public List<Integer> filtrar(String nombreTerminal, String cantidad, LocalDate desde, LocalDate hasta){
+		return null;
 	}
 	
 }

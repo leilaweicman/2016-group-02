@@ -4,12 +4,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import grupo2.tpAnual.Mapa;
 import grupo2.tpAnual.Repositorios.DatosBusquedaRepositoryMongoDB;
 import grupo2.tpAnual.Repositorios.DatosDeBusqueda;
 import grupo2.tpAnual.Repositorios.DatosDeBusquedaRepository;
 import grupo2.tpAnual.Web.Models.SingletonDatosBusquedaRepository;
-import grupo2.tpAnual.Web.Models.SingletonMapa;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
@@ -28,13 +26,16 @@ public class HistoricoConsultasController {
 	
 	public static ModelAndView listar(Request req, Response res) {
 		
-		//TODO Recibir los parametros y fijarme cuales no estan vacios para ver por cuales filtrar
-		//Ahora solo esta buscando por el nombre 
+		/* TODO Recibir los parametros 
+		 * Ahora solo esta buscando por el nombre 
+		 * Fijarnos si hay forma de hacer interseccion entre listas (? o crear un metodo que filtre por las 3 cosas
+		 */
 		
 		Map<String, List<DatosDeBusqueda>> model = new HashMap<>();
-		
+				
 		String terminal= req.queryParams("terminal");
-		
+		String cantidad= req.queryParams("cantidad");
+
 		DatosDeBusquedaRepository repository = SingletonDatosBusquedaRepository.get();
 		
 		//List<DatosDeBusqueda> datosDeBusqueda = DatosBusquedaRepositoryMongoDB.instancia.obtenerPorNombre(terminal);

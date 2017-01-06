@@ -1,5 +1,6 @@
 package grupo2.tpAnual.Repositorios;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -35,5 +36,9 @@ public class DatosBusquedaRepositoryMemory /*extends BasicDAO<DatosDeBusqueda, O
 
 	public Integer cantidadDeBusquedasDe(String nombre) {
 		return this.obtenerTotalResultadosPorTerminal(nombre).stream().reduce(0, (a, b) -> a + b);
+	}
+	
+	public List<Integer> filtrar(String nombreTerminal, String cantidad, LocalDate desde, LocalDate hasta){
+		return null;
 	}
 }

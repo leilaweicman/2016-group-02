@@ -1,4 +1,5 @@
 package grupo2.tpAnual.Repositorios;
+import java.time.LocalDate;
 import java.util.List;
 
 import org.bson.types.ObjectId;
@@ -16,4 +17,7 @@ public interface DatosDeBusquedaRepository {
 	public List<Integer> obtenerTotalResultadosPorTerminal(String nombreTerminal);
 
 	public Integer cantidadDeBusquedasDe(String nombre);
+	
+	public List<Integer> filtrar(String nombreTerminal, String cantidad, LocalDate desde, LocalDate hasta);
+
 }
