@@ -62,7 +62,7 @@ tpAnual,grupo2.tpAnual.Web.Controller,AdminController,9,0,0,0,2,0,2,0,2,0
 tpAnual,grupo2.tpAnual.Web.Controller,TerminalController,44,0,0,0,10,0,4,0,4,0
 tpAnual,grupo2.tpAnual.Web.Controller,InicioController,31,0,2,0,8,0,4,0,3,0
 tpAnual,grupo2.tpAnual.Web.Controller,HistoricoConsultasController,63,0,2,0,15,0,4,0,3,0
-tpAnual,grupo2.tpAnual.Web.Controller,AdministracionTerminalController,349,0,14,0,80,0,21,0,14,0
+tpAnual,grupo2.tpAnual.Web.Controller,AdministracionTerminalController,366,0,14,0,80,0,21,0,14,0
 tpAnual,grupo2.tpAnual.Observers,ObserverBusqueda,10,7,0,0,3,3,3,2,3,2
 tpAnual,grupo2.tpAnual.Observers,EnviarMailBusqueda,3,29,1,1,2,9,2,2,1,2
 tpAnual,grupo2.tpAnual.Observers,NotificarDatosBusqueda,17,22,1,1,4,7,2,3,1,3

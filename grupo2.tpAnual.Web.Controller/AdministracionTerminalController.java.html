@@ -133,45 +133,47 @@ import spark.Response;
 		
 <span class="nc" id="L134">		UserRepository usuarios = SingletonUserRepository.get();</span>
 		Usuario user;
+		
+<span class="nc" id="L137">		System.out.println(&quot;value id .&quot;+String.valueOf(req.queryParams(&quot;id&quot;))+&quot;.&quot;);</span>
 
-<span class="nc bnc" id="L137" title="All 2 branches missed.">		if(req.queryParams(&quot;id&quot;)!=&quot;&quot;){</span>
-<span class="nc" id="L138">			long id = Long.parseLong(req.queryParams(&quot;id&quot;));</span>
-<span class="nc" id="L139">			user = usuarios.getUsuarioById(id);</span>
-<span class="nc" id="L140">		} else {</span>
-<span class="nc" id="L141">			user = new Usuario();</span>
+<span class="nc bnc" id="L139" title="All 2 branches missed.">		if(String.valueOf(req.queryParams(&quot;id&quot;)).equals(&quot;&quot;)){</span>
+<span class="nc" id="L140">			user = new Usuario();</span>
+		} else {
+<span class="nc" id="L142">			long id = Long.parseLong(req.queryParams(&quot;id&quot;));</span>
+<span class="nc" id="L143">			user = usuarios.getUsuarioById(id);</span>
 		}
-<span class="nc" id="L143">		String nombre = req.queryParams(&quot;nombre&quot;);</span>
-<span class="nc" id="L144">		int numeroComuna = Integer.parseInt(req.queryParams(&quot;comuna&quot;));</span>
+<span class="nc" id="L145">		String nombre = req.queryParams(&quot;nombre&quot;);</span>
+<span class="nc" id="L146">		int numeroComuna = Integer.parseInt(req.queryParams(&quot;comuna&quot;));</span>
 		
-<span class="nc" id="L146">		ComunaRepository comunas = SingletonComunaRepository.get();</span>
-<span class="nc" id="L147">		Comuna comuna = comunas.getComunaByNumero(numeroComuna);</span>
+<span class="nc" id="L148">		ComunaRepository comunas = SingletonComunaRepository.get();</span>
+<span class="nc" id="L149">		Comuna comuna = comunas.getComunaByNumero(numeroComuna);</span>
 		
-<span class="nc" id="L149">		ObserversRepository repoAcciones = SingletonObserverRepository.get();</span>
-<span class="nc" id="L150">		List&lt;ObserverBusqueda&gt; acciones = repoAcciones.getObservers();</span>
-<span class="nc" id="L151">		System.out.println(&quot;size &quot;+String.valueOf(acciones.size()));</span>
-<span class="nc" id="L152">		acciones.stream().forEach(accion -&gt; System.out.println(&quot;flags: &quot;+String.valueOf((req.queryParams(String.valueOf(accion.getId()))))));	</span>
-<span class="nc" id="L153">		acciones.stream().forEach(accion-&gt; editarAcciones(accion, user, req));</span>
+<span class="nc" id="L151">		ObserversRepository repoAcciones = SingletonObserverRepository.get();</span>
+<span class="nc" id="L152">		List&lt;ObserverBusqueda&gt; acciones = repoAcciones.getObservers();</span>
+<span class="nc" id="L153">		System.out.println(&quot;size &quot;+String.valueOf(acciones.size()));</span>
+<span class="nc" id="L154">		acciones.stream().forEach(accion -&gt; System.out.println(&quot;flags: &quot;+String.valueOf((req.queryParams(String.valueOf(accion.getId()))))));	</span>
+<span class="nc" id="L155">		acciones.stream().forEach(accion-&gt; editarAcciones(accion, user, req));</span>
 		
-<span class="nc" id="L155">		user.setNombre(nombre);</span>
-<span class="nc" id="L156">		user.setComuna(comuna);</span>
+<span class="nc" id="L157">		user.setNombre(nombre);</span>
+<span class="nc" id="L158">		user.setComuna(comuna);</span>
 		
-<span class="nc" id="L158">		usuarios.updateUsuario(user);</span>
+<span class="nc" id="L160">		usuarios.updateUsuario(user);</span>
 	
-<span class="nc" id="L160">		res.redirect(&quot;/admin/terminal&quot;);</span>
-<span class="nc" id="L161">		return null;</span>
+<span class="nc" id="L162">		res.redirect(&quot;/admin/terminal&quot;);</span>
+<span class="nc" id="L163">		return null;</span>
 	}
 
 	public static void editarAcciones(ObserverBusqueda observer, Usuario user, Request req){
-<span class="nc" id="L165">		String flag = String.valueOf(req.queryParams(String.valueOf(observer.getId()))); </span>
+<span class="nc" id="L167">		String flag = String.valueOf(req.queryParams(String.valueOf(observer.getId()))); </span>
 
-<span class="nc bnc" id="L167" title="All 4 branches missed.">		if(user.tieneObserver(observer)&amp;&amp; !flag.equals(&quot;on&quot;)){</span>
-<span class="nc" id="L168">			user.quitarAccionBusqueda(observer);</span>
-<span class="nc" id="L169">			System.out.println(flag);</span>
-<span class="nc bnc" id="L170" title="All 4 branches missed.">		} else if(!user.tieneObserver(observer) &amp;&amp; flag.equals(&quot;on&quot;)){</span>
-<span class="nc" id="L171">			user.setAccionBusqueda(observer);</span>
-<span class="nc" id="L172">			System.out.println(flag);</span>
+<span class="nc bnc" id="L169" title="All 4 branches missed.">		if(user.tieneObserver(observer)&amp;&amp; !flag.equals(&quot;on&quot;)){</span>
+<span class="nc" id="L170">			user.quitarAccionBusqueda(observer);</span>
+<span class="nc" id="L171">			System.out.println(flag);</span>
+<span class="nc bnc" id="L172" title="All 4 branches missed.">		} else if(!user.tieneObserver(observer) &amp;&amp; flag.equals(&quot;on&quot;)){</span>
+<span class="nc" id="L173">			user.setAccionBusqueda(observer);</span>
+<span class="nc" id="L174">			System.out.println(flag);</span>
 		}
-<span class="nc" id="L174">	}</span>
+<span class="nc" id="L176">	}</span>
 	
 	
 	/* PARA NO OLVIDARME
