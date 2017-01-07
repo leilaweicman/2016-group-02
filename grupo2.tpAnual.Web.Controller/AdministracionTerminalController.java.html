@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>AdministracionTerminalController.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tpAnual</a> &gt; <a href="index.source.html" class="el_package">grupo2.tpAnual.Web.Controller</a> &gt; <span class="el_source">AdministracionTerminalController.java</span></div><h1>AdministracionTerminalController.java</h1><pre class="source lang-java linenums">package grupo2.tpAnual.Web.Controller;
 
+import java.io.Console;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -22,137 +23,155 @@ import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
-<span class="nc" id="L25">public class AdministracionTerminalController {</span>
+<span class="nc" id="L26">public class AdministracionTerminalController {</span>
 	
 	public static ModelAndView get(Request req, Response res) {
-<span class="nc" id="L28">		Map&lt;String, Object&gt; model = new HashMap&lt;&gt;();</span>
+<span class="nc" id="L29">		Map&lt;String, Object&gt; model = new HashMap&lt;&gt;();</span>
 		
-<span class="nc" id="L30">		UserRepository repo = SingletonUserRepository.get();</span>
-<span class="nc" id="L31">		List&lt;Usuario&gt; terminales = repo.getUsauriosTerminal();</span>
+<span class="nc" id="L31">		UserRepository repo = SingletonUserRepository.get();</span>
+<span class="nc" id="L32">		List&lt;Usuario&gt; terminales = repo.getUsauriosTerminal();</span>
 		
-<span class="nc" id="L33">		ComunaRepository repoComunas = SingletonComunaRepository.get();</span>
-<span class="nc" id="L34">		List&lt;Comuna&gt; comunas = repoComunas.getComunas();</span>
+<span class="nc" id="L34">		ComunaRepository repoComunas = SingletonComunaRepository.get();</span>
+<span class="nc" id="L35">		List&lt;Comuna&gt; comunas = repoComunas.getComunas();</span>
 		
-<span class="nc" id="L36">		model.put(&quot;terminales&quot;, terminales);</span>
-<span class="nc" id="L37">		model.put(&quot;comunas&quot;, comunas);</span>
-<span class="nc" id="L38">		return new ModelAndView(model, &quot;admin/terminales/administracionTerminal.hbs&quot;);</span>
+<span class="nc" id="L37">		model.put(&quot;terminales&quot;, terminales);</span>
+<span class="nc" id="L38">		model.put(&quot;comunas&quot;, comunas);</span>
+<span class="nc" id="L39">		return new ModelAndView(model, &quot;admin/terminales/administracionTerminal.hbs&quot;);</span>
 		
 	}
 	
 	public static ModelAndView filtrar(Request req, Response res){
-<span class="nc" id="L43">		Map&lt;String, Object&gt; model = new HashMap&lt;&gt;();</span>
+<span class="nc" id="L44">		Map&lt;String, Object&gt; model = new HashMap&lt;&gt;();</span>
 		/*
 		 * tengo que agarrar el numero de comuna del select de alguna manera
 		 * de ultima lo agarro como los checks
 		 */
-<span class="nc" id="L48">		int numeroComuna =1;</span>
-<span class="nc" id="L49">		UserRepository repoUsuarios = SingletonUserRepository.get();</span>
-<span class="nc" id="L50">		List&lt;Usuario&gt; terminales = repoUsuarios.getUsauriosTerminal();</span>
+<span class="nc" id="L49">		int numeroComuna =1;</span>
+<span class="nc" id="L50">		UserRepository repoUsuarios = SingletonUserRepository.get();</span>
+<span class="nc" id="L51">		List&lt;Usuario&gt; terminales = repoUsuarios.getUsauriosTerminal();</span>
 		
-<span class="nc bnc" id="L52" title="All 2 branches missed.">		terminales.stream().filter(terminal-&gt;terminal.getComuna().getNumeroComuna()==numeroComuna);</span>
+<span class="nc bnc" id="L53" title="All 2 branches missed.">		terminales.stream().filter(terminal-&gt;terminal.getComuna().getNumeroComuna()==numeroComuna);</span>
 
-<span class="nc" id="L54">		model.put(&quot;terminales&quot;, terminales);</span>
-<span class="nc" id="L55">		return new ModelAndView(model, &quot;admin/terminales/administracionTerminal.hbs&quot;);</span>
+<span class="nc" id="L55">		model.put(&quot;terminales&quot;, terminales);</span>
+<span class="nc" id="L56">		return new ModelAndView(model, &quot;admin/terminales/administracionTerminal.hbs&quot;);</span>
 	}
 	
-	public static ModelAndView editar(Request req, Response res) {
-<span class="nc" id="L59">		Map&lt;String, Object&gt; model = new HashMap&lt;&gt;();</span>
-		
-<span class="nc" id="L61">		long id = Long.parseLong(req.params(&quot;id&quot;));</span>
-		
-<span class="nc" id="L63">		UserRepository usuarios = SingletonUserRepository.get();</span>
-		
-<span class="nc" id="L65">		Usuario user = usuarios.getUsuarioById(id);</span>
-		
-<span class="nc" id="L67">		ObserversRepository repo = SingletonObserverRepository.get();</span>
-<span class="nc" id="L68">		List&lt;ObserverBusqueda&gt; accionesDisponibles = repo.getObservers();</span>
-<span class="nc" id="L69">		List&lt;ObserverBusqueda&gt; accionesUsuario = user.getAccionesBusqueda();</span>
-<span class="nc" id="L70">		accionesDisponibles.removeAll(accionesUsuario);</span>
-		
-<span class="nc" id="L72">		model.put(&quot;user&quot;, user);</span>
-<span class="nc" id="L73">		model.put(&quot;accionesDisponibles&quot;, accionesDisponibles);</span>
-<span class="nc" id="L74">		model.put(&quot;accionesUsuario&quot;, accionesUsuario);</span>
-<span class="nc" id="L75">		return new ModelAndView(model, &quot;admin/terminales/editarTerminal.hbs&quot;);</span>
-		
-	}
-
+	
 	public static ModelAndView crear(Request req, Response res) {
-<span class="nc" id="L80">		Map&lt;String, Object&gt; model = new HashMap&lt;&gt;();</span>
+<span class="nc" id="L61">		Map&lt;String, Object&gt; model = new HashMap&lt;&gt;();</span>
 					
-<span class="nc" id="L82">		ObserversRepository repo = SingletonObserverRepository.get();</span>
-<span class="nc" id="L83">		List&lt;ObserverBusqueda&gt; accionesDisponibles = repo.getObservers();</span>
+<span class="nc" id="L63">		ObserversRepository repo = SingletonObserverRepository.get();</span>
+<span class="nc" id="L64">		List&lt;ObserverBusqueda&gt; accionesDisponibles = repo.getObservers();</span>
 		
-<span class="nc" id="L85">		model.put(&quot;accionesDisponibles&quot;, accionesDisponibles);</span>
-<span class="nc" id="L86">		return new ModelAndView(model, &quot;admin/terminales/editarTerminal.hbs&quot;);</span>
+<span class="nc" id="L66">		model.put(&quot;accionesDisponibles&quot;, accionesDisponibles);</span>
+<span class="nc" id="L67">		return new ModelAndView(model, &quot;admin/terminales/editarTerminal.hbs&quot;);</span>
 		
 	}
 	
 	public static ModelAndView info(Request req, Response res) {
-<span class="nc" id="L91">		Map&lt;String, Object&gt; model = new HashMap&lt;&gt;();</span>
+<span class="nc" id="L72">		Map&lt;String, Object&gt; model = new HashMap&lt;&gt;();</span>
 		
-<span class="nc" id="L93">		long id = Long.parseLong(req.params(&quot;id&quot;));</span>
+<span class="nc" id="L74">		long id = Long.parseLong(req.params(&quot;id&quot;));</span>
 		
-<span class="nc" id="L95">		UserRepository usuarios = SingletonUserRepository.get();</span>
+<span class="nc" id="L76">		UserRepository usuarios = SingletonUserRepository.get();</span>
 		
-<span class="nc" id="L97">		Usuario user = usuarios.getUsuarioById(id);</span>
+<span class="nc" id="L78">		Usuario user = usuarios.getUsuarioById(id);</span>
 		
-<span class="nc" id="L99">		ObserversRepository repo = SingletonObserverRepository.get();</span>
-<span class="nc" id="L100">		List&lt;ObserverBusqueda&gt; accionesUsuario = user.getAccionesBusqueda();</span>
+<span class="nc" id="L80">		ObserversRepository repo = SingletonObserverRepository.get();</span>
+<span class="nc" id="L81">		List&lt;ObserverBusqueda&gt; accionesUsuario = user.getAccionesBusqueda();</span>
 		
-<span class="nc" id="L102">		model.put(&quot;user&quot;, user);</span>
-<span class="nc" id="L103">		model.put(&quot;accionesUsuario&quot;, accionesUsuario);</span>
-<span class="nc" id="L104">		return new ModelAndView(model, &quot;admin/terminales/infoTerminal.hbs&quot;);</span>
+<span class="nc" id="L83">		model.put(&quot;user&quot;, user);</span>
+<span class="nc" id="L84">		model.put(&quot;accionesUsuario&quot;, accionesUsuario);</span>
+<span class="nc" id="L85">		return new ModelAndView(model, &quot;admin/terminales/infoTerminal.hbs&quot;);</span>
 		
 	}
 	
 	public static ModelAndView eliminar(Request req, Response res){
-<span class="nc" id="L109">		long id = Long.parseLong(req.params(&quot;id&quot;));</span>
+<span class="nc" id="L90">		long id = Long.parseLong(req.params(&quot;id&quot;));</span>
 		
-<span class="nc" id="L111">		UserRepository repoUsuarios = SingletonUserRepository.get();</span>
-<span class="nc" id="L112">		Usuario usuario = repoUsuarios.getUsuarioById(id);</span>
-<span class="nc" id="L113">		repoUsuarios.deleteUsuario(usuario);</span>
+<span class="nc" id="L92">		UserRepository repoUsuarios = SingletonUserRepository.get();</span>
+<span class="nc" id="L93">		Usuario usuario = repoUsuarios.getUsuarioById(id);</span>
+<span class="nc" id="L94">		repoUsuarios.deleteUsuario(usuario);</span>
 		
-<span class="nc" id="L115">		res.redirect(&quot;/admin/terminal&quot;);</span>
-<span class="nc" id="L116">		return null;</span>
+<span class="nc" id="L96">		res.redirect(&quot;/admin/terminal&quot;);</span>
+<span class="nc" id="L97">		return null;</span>
 	}
+	
+	public static ModelAndView editar(Request req, Response res) {
+<span class="nc" id="L101">		Map&lt;String, Object&gt; model = new HashMap&lt;&gt;();</span>
+		
+<span class="nc" id="L103">		long id = Long.parseLong(req.params(&quot;id&quot;));</span>
+		
+<span class="nc" id="L105">		UserRepository usuarios = SingletonUserRepository.get();</span>
+		
+<span class="nc" id="L107">		Usuario user = usuarios.getUsuarioById(id);</span>
+		
+<span class="nc" id="L109">		ObserversRepository repo = SingletonObserverRepository.get();</span>
+<span class="nc" id="L110">		List&lt;ObserverBusqueda&gt; accionesDisponibles = new ArrayList&lt;ObserverBusqueda&gt;();//repo.getObservers();</span>
+
+<span class="nc" id="L112">		List&lt;ObserverBusqueda&gt; acciones = repo.getObservers();</span>
+<span class="nc" id="L113">		List&lt;ObserverBusqueda&gt; accionesUsuario = user.getAccionesBusqueda();</span>
+<span class="nc" id="L114">		acciones.stream().forEach(action-&gt;meterEnPrueba(action, accionesDisponibles, user));</span>
+		//comento la sig linea porque el removeAll lo hace al repo y no tiene sentido que haga eso
+		//accionesDisponibles.removeAll(accionesUsuario);
+		
+<span class="nc" id="L118">		model.put(&quot;user&quot;, user);</span>
+<span class="nc" id="L119">		model.put(&quot;accionesDisponibles&quot;, accionesDisponibles);</span>
+<span class="nc" id="L120">		model.put(&quot;accionesUsuario&quot;, accionesUsuario);</span>
+<span class="nc" id="L121">		return new ModelAndView(model, &quot;admin/terminales/editarTerminal.hbs&quot;);</span>
+		
+	}
+
+
+	 public static void meterEnPrueba(ObserverBusqueda obs, List&lt;ObserverBusqueda&gt;prueba, Usuario user){
+		 //aprox que esta funcion es un filter pero con el filter no funcionaba
+<span class="nc bnc" id="L128" title="All 2 branches missed.">		 if(!user.tieneObserver(obs)){</span>
+<span class="nc" id="L129">			 prueba.add(obs);</span>
+		 }
+<span class="nc" id="L131">	 }</span>
 	public static ModelAndView guardar(Request req, Response res) {
 		
-<span class="nc" id="L120">		UserRepository usuarios = SingletonUserRepository.get();</span>
+<span class="nc" id="L134">		UserRepository usuarios = SingletonUserRepository.get();</span>
 		Usuario user;
 
-<span class="nc bnc" id="L123" title="All 2 branches missed.">		if(req.queryParams(&quot;id&quot;)!=&quot;&quot;){</span>
-<span class="nc" id="L124">			long id = Long.parseLong(req.queryParams(&quot;id&quot;));</span>
-<span class="nc" id="L125">			user = usuarios.getUsuarioById(id);</span>
-<span class="nc" id="L126">		} else {</span>
-<span class="nc" id="L127">			user = new Usuario();</span>
+<span class="nc bnc" id="L137" title="All 2 branches missed.">		if(req.queryParams(&quot;id&quot;)!=&quot;&quot;){</span>
+<span class="nc" id="L138">			long id = Long.parseLong(req.queryParams(&quot;id&quot;));</span>
+<span class="nc" id="L139">			user = usuarios.getUsuarioById(id);</span>
+<span class="nc" id="L140">		} else {</span>
+<span class="nc" id="L141">			user = new Usuario();</span>
 		}
-<span class="nc" id="L129">		String nombre = req.queryParams(&quot;nombre&quot;);</span>
-<span class="nc" id="L130">		int numeroComuna = Integer.parseInt(req.queryParams(&quot;comuna&quot;));</span>
+<span class="nc" id="L143">		String nombre = req.queryParams(&quot;nombre&quot;);</span>
+<span class="nc" id="L144">		int numeroComuna = Integer.parseInt(req.queryParams(&quot;comuna&quot;));</span>
 		
-<span class="nc" id="L132">		ComunaRepository comunas = SingletonComunaRepository.get();</span>
-<span class="nc" id="L133">		Comuna comuna = comunas.getComunaByNumero(numeroComuna);</span>
+<span class="nc" id="L146">		ComunaRepository comunas = SingletonComunaRepository.get();</span>
+<span class="nc" id="L147">		Comuna comuna = comunas.getComunaByNumero(numeroComuna);</span>
 		
-<span class="nc" id="L135">		ObserversRepository repoAcciones = SingletonObserverRepository.get();</span>
-<span class="nc" id="L136">		List&lt;ObserverBusqueda&gt; acciones = repoAcciones.getObservers();</span>
-<span class="nc" id="L137">		acciones.stream().forEach(accion-&gt; editarAcciones(accion, user, req));</span>
+<span class="nc" id="L149">		ObserversRepository repoAcciones = SingletonObserverRepository.get();</span>
+<span class="nc" id="L150">		List&lt;ObserverBusqueda&gt; acciones = repoAcciones.getObservers();</span>
+<span class="nc" id="L151">		System.out.println(&quot;size &quot;+String.valueOf(acciones.size()));</span>
+<span class="nc" id="L152">		acciones.stream().forEach(accion -&gt; System.out.println(&quot;flags: &quot;+String.valueOf((req.queryParams(String.valueOf(accion.getId()))))));	</span>
+<span class="nc" id="L153">		acciones.stream().forEach(accion-&gt; editarAcciones(accion, user, req));</span>
 		
-<span class="nc" id="L139">		user.setNombre(nombre);</span>
-<span class="nc" id="L140">		user.setComuna(comuna);</span>
+<span class="nc" id="L155">		user.setNombre(nombre);</span>
+<span class="nc" id="L156">		user.setComuna(comuna);</span>
 		
-<span class="nc" id="L142">		usuarios.updateUsuario(user);</span>
+<span class="nc" id="L158">		usuarios.updateUsuario(user);</span>
 	
-<span class="nc" id="L144">		res.redirect(&quot;/admin/terminal&quot;);</span>
-<span class="nc" id="L145">		return null;</span>
+<span class="nc" id="L160">		res.redirect(&quot;/admin/terminal&quot;);</span>
+<span class="nc" id="L161">		return null;</span>
 	}
 
 	public static void editarAcciones(ObserverBusqueda observer, Usuario user, Request req){
-<span class="nc" id="L149">		Boolean flag = Boolean.valueOf(req.queryParams(String.valueOf(observer.getId()))); </span>
-<span class="nc bnc" id="L150" title="All 4 branches missed.">		if(user.tieneObserver(observer)&amp;&amp; !flag){</span>
-<span class="nc" id="L151">			user.quitarAccionBusqueda(observer);</span>
-<span class="nc bnc" id="L152" title="All 4 branches missed.">		} else if(!user.tieneObserver(observer) &amp;&amp; flag){</span>
-<span class="nc" id="L153">			user.setAccionBusqueda(observer);</span>
+<span class="nc" id="L165">		String flag = String.valueOf(req.queryParams(String.valueOf(observer.getId()))); </span>
+
+<span class="nc bnc" id="L167" title="All 4 branches missed.">		if(user.tieneObserver(observer)&amp;&amp; !flag.equals(&quot;on&quot;)){</span>
+<span class="nc" id="L168">			user.quitarAccionBusqueda(observer);</span>
+<span class="nc" id="L169">			System.out.println(flag);</span>
+<span class="nc bnc" id="L170" title="All 4 branches missed.">		} else if(!user.tieneObserver(observer) &amp;&amp; flag.equals(&quot;on&quot;)){</span>
+<span class="nc" id="L171">			user.setAccionBusqueda(observer);</span>
+<span class="nc" id="L172">			System.out.println(flag);</span>
 		}
-<span class="nc" id="L155">	}</span>
+<span class="nc" id="L174">	}</span>
 	
 	
 	/* PARA NO OLVIDARME
