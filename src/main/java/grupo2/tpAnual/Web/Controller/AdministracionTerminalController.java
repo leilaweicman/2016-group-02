@@ -30,14 +30,49 @@ public class AdministracionTerminalController {
 		
 		UserRepository repo = SingletonUserRepository.get();
 		List<Usuario> terminales = repo.getUsauriosTerminal();
+		List<Usuario> terminalesFiltradas = new ArrayList<Usuario>();
+
+		int comuna =-1;
+		boolean seleccionada;
 		
 		ComunaRepository repoComunas = SingletonComunaRepository.get();
 		List<Comuna> comunas = repoComunas.getComunas();
 		
-		model.put("terminales", terminales);
+		System.out.println(String.valueOf(req.queryParams("comuna")));
+		
+		if (req.queryParams("comuna")!=null){
+			int comunaSeleccionada = Integer.valueOf(req.queryParams("comuna"));
+			comuna = comunaSeleccionada;
+			seleccionada = true;
+			if (comunaSeleccionada != -1){
+				//lo hago asi porque con el repo.getUsuariosByComuna tira un null pointer exception que no entiendo
+				terminales.stream().forEach(terminal -> filtrarPorComuna(terminal, comunaSeleccionada, terminalesFiltradas));
+				model.put("terminales", terminalesFiltradas);
+			}
+		} else {
+			seleccionada = false;
+			model.put("terminales", terminales);
+		}
+		
+		/*
+		 * en administacion de terminales:
+		 * pasar por el model una variable "seleccionada" que sea bool
+		 * if(seleccionada) pongo como selected "comunaSeleccionada" y la tengo que haber sacado de comunas
+		 * else pongo como selected "todas las comunas"
+		 */
+		
+		//model.put("terminales", terminales);
 		model.put("comunas", comunas);
+		model.put("numeroComuna", comuna);
+		model.put("seleccionada", seleccionada);
 		return new ModelAndView(model, "admin/terminales/administracionTerminal.hbs");
 		
+	}
+	
+	public static void filtrarPorComuna(Usuario terminal, int numeroComuna, List<Usuario> filtradas){
+		if(terminal.getComuna().getNumeroComuna()==numeroComuna){
+			filtradas.add(terminal);
+		}
 	}
 	
 	public static ModelAndView filtrar(Request req, Response res){
@@ -50,9 +85,8 @@ public class AdministracionTerminalController {
 		UserRepository repoUsuarios = SingletonUserRepository.get();
 		List<Usuario> terminales = repoUsuarios.getUsauriosTerminal();
 		
-		terminales.stream().filter(terminal->terminal.getComuna().getNumeroComuna()==numeroComuna);
 
-		model.put("terminales", terminales);
+		model.put("terminales", terminales.stream().filter(terminal->terminal.getComuna().getNumeroComuna()==numeroComuna));
 		return new ModelAndView(model, "admin/terminales/administracionTerminal.hbs");
 	}
 	

@@ -12,11 +12,12 @@
 		
 	<div class="row">
 		<div class="form-group col-md-6 col-md-offset-3" style="float:left">
-			<form action="/admin/terminal/filtrar" method="get">
+			<form action="/admin/terminal" method="get">
 				<label for="comuna">Numero de comuna</label>
-				<select id="comuna" class="form-control">
+				<select id="comuna" name="comuna" class="form-control">
+					<option value="-1" name="-1" id="-1">Todas las comunas</option>
 					{{#each comunas}}
-						<option value="{{numeroComuna}}" name="{{numeroComuna}}">{{numeroComuna}}</option>
+						<option value="{{numeroComuna}}" name="{{numeroComuna}}" id="{{numeroComuna}}">{{numeroComuna}}</option>
 					{{/each}}
 				</select>
 				<button type="submit" class="btn btn-primary">Filtrar</button>
