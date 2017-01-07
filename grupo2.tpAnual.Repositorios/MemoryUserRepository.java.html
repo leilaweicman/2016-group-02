@@ -41,5 +41,11 @@ import grupo2.tpAnual.AccesoriosPois.Comuna;
 	public Usuario getUsuarioById(long id) {
 <span class="nc bnc" id="L42" title="All 2 branches missed.">		return (this.usuarios.stream().filter(usuario -&gt; (usuario.getId()==id)).collect(Collectors.toList())).get(0);</span>
 	}
+
+	@Override
+	public void updateUsuario(Usuario usuario) {
+<span class="nc" id="L47">		usuarios.remove(usuario);</span>
+<span class="nc" id="L48">		usuarios.add(usuario);</span>
+<span class="nc" id="L49">	}</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

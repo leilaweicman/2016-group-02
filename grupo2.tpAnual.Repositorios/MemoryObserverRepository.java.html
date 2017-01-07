@@ -2,26 +2,32 @@
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import grupo2.tpAnual.Observers.ObserverBusqueda;
 
-<span class="nc" id="L8">public class MemoryObserverRepository implements ObserversRepository{</span>
+<span class="nc" id="L9">public class MemoryObserverRepository implements ObserversRepository{</span>
 	
-<span class="nc" id="L10">	private List&lt;ObserverBusqueda&gt; observers = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L11">	private List&lt;ObserverBusqueda&gt; observers = new ArrayList&lt;&gt;();</span>
 	
 	@Override
 	public void deleteObserver(ObserverBusqueda observer) {
-<span class="nc" id="L14">		this.observers.remove(observer);</span>
-<span class="nc" id="L15">	}</span>
+<span class="nc" id="L15">		this.observers.remove(observer);</span>
+<span class="nc" id="L16">	}</span>
 
 	@Override
 	public void saveObserver(ObserverBusqueda observer) {
-<span class="nc" id="L19">		this.observers.add(observer);</span>
-<span class="nc" id="L20">	}</span>
+<span class="nc" id="L20">		this.observers.add(observer);</span>
+<span class="nc" id="L21">	}</span>
 
 	@Override
 	public List&lt;ObserverBusqueda&gt; getObservers() {
-<span class="nc" id="L24">		return this.observers;</span>
+<span class="nc" id="L25">		return this.observers;</span>
+	}
+
+	@Override
+	public ObserverBusqueda getObserverByName(String name) {
+<span class="nc" id="L30">		return (this.observers.stream().filter(observer -&gt; (observer.getNombre().equals(name))).collect(Collectors.toList())).get(0);</span>
 	}
 
 }

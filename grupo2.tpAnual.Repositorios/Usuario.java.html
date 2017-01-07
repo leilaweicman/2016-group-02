@@ -15,14 +15,14 @@ import grupo2.tpAnual.AccesoriosPois.Comuna;
 import grupo2.tpAnual.Observers.ObserverBusqueda;
 import grupo2.tpAnual.Web.Server;
 @Entity
-public class Usuario {
+public class Usuario{
 	@Id @GeneratedValue
 	private long id; 
 	private String nombre;
 <span class="fc" id="L22">	@OneToMany </span>
 	private List&lt;ObserverBusqueda&gt; accionesBusqueda = new ArrayList&lt;ObserverBusqueda&gt;();
 	@ManyToOne 
-	public Comuna comuna;
+	private Comuna comuna;
 	
 	private boolean esAdmin;
 	
@@ -76,18 +76,26 @@ public class Usuario {
 
 <span class="fc" id="L77">	}</span>
 	
-	public void setEsAdmin(boolean admin){
-<span class="nc" id="L80">		esAdmin = admin;</span>
+	public void quitarAccionBusqueda(ObserverBusqueda observer){
+<span class="nc" id="L80">		this.accionesBusqueda.remove(observer);</span>
 <span class="nc" id="L81">	}</span>
 	
+	public void setEsAdmin(boolean admin){
+<span class="nc" id="L84">		esAdmin = admin;</span>
+<span class="nc" id="L85">	}</span>
+	
 	public boolean getEsAdmin(){
-<span class="nc" id="L84">		return esAdmin;</span>
+<span class="nc" id="L88">		return esAdmin;</span>
 	}
 	
 	private void generarId(){
-<span class="nc" id="L88">		Random rnd = new Random();</span>
-<span class="nc" id="L89">		this.id = rnd.nextLong();</span>
+<span class="nc" id="L92">		Random rnd = new Random();</span>
+<span class="nc" id="L93">		this.id = rnd.nextLong();</span>
 		//this.id = java.util.UUID.randomUUID().;
-<span class="nc" id="L91">	}</span>
+<span class="nc" id="L95">	}</span>
+	
+	public boolean tieneObserver(ObserverBusqueda observer){
+<span class="nc" id="L98">		return this.accionesBusqueda.contains(observer);</span>
+	}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

@@ -7,23 +7,32 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 
 import grupo2.tpAnual.Repositorios.DatosDeBusqueda;
+import grupo2.tpAnual.Repositorios.Usuario;
 @Entity
 @Inheritance(strategy=InheritanceType.TABLE_PER_CLASS )
-<span class="fc" id="L12">public abstract class ObserverBusqueda{</span>
+<span class="fc" id="L13">public abstract class ObserverBusqueda{</span>
 	
 	@Id
 	protected long id;
 	
-	String nombre;	
+	private String nombre;	
 	
 	public abstract void notificarBusqueda(DatosDeBusqueda datosParaObserver);
 	
 	public void setNombre(String nombre){
-<span class="fc" id="L22">		this.nombre=nombre;</span>
-<span class="fc" id="L23">	}</span>
+<span class="fc" id="L23">		this.nombre=nombre;</span>
+<span class="fc" id="L24">	}</span>
 	
 	public String getNombre(){
-<span class="nc" id="L26">		return this.nombre;</span>
+<span class="nc" id="L27">		return this.nombre;</span>
+	}
+	
+	public long getId(){
+<span class="nc" id="L31">		return this.id;</span>
+	}
+	
+	public boolean perteneceAUsuario(Usuario usuario){
+<span class="nc" id="L35">		return usuario.tieneObserver(this);</span>
 	}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

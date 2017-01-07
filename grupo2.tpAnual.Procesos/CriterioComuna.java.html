@@ -22,7 +22,7 @@ import grupo2.tpAnual.Repositorios.Usuario;
 	@Override
 	public List&lt;Usuario&gt; dameUsuarios(Comuna comuna) {
 <span class="fc" id="L24">		listaUsuarios = new ArrayList&lt;&gt;();</span>
-<span class="fc bfc" id="L25" title="All 2 branches covered.">		listaUsuarios.addAll(this.repositorioUsuarios.getUsuarios().stream().filter(usuario -&gt; usuario.comuna == comuna)</span>
+<span class="fc bfc" id="L25" title="All 2 branches covered.">		listaUsuarios.addAll(this.repositorioUsuarios.getUsuarios().stream().filter(usuario -&gt; usuario.getComuna() == comuna)</span>
 <span class="fc" id="L26">				.collect(Collectors.toList()));</span>
 <span class="fc" id="L27">		return listaUsuarios;</span>
 	}

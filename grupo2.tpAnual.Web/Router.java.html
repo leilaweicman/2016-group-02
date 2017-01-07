@@ -21,20 +21,23 @@ import spark.template.handlebars.HandlebarsTemplateEngine;
 <span class="nc" id="L21">		Spark.get(&quot;/terminal/busqueda/&quot;,TerminalController::show, engine);</span>
 <span class="nc" id="L22">		Spark.get(&quot;/admin&quot;, AdminController::get, engine);</span>
 <span class="nc" id="L23">		Spark.get(&quot;/admin/historico&quot;, HistoricoConsultasController::get, engine);</span>
-<span class="nc" id="L24">		Spark.get(&quot;/admin/listarPorTerminal&quot;, HistoricoConsultasController::listarPorTerminal, engine);</span>
-<span class="nc" id="L25">		Spark.get(&quot;/admin/listarPorCantidad&quot;, HistoricoConsultasController::listarPorCantidad, engine);</span>
-		/* TODO Descomentar cuando se hagan los metodos en el controller
-		 * Spark.get(&quot;/admin/historicoConsultas&quot;, HistoricoConsultasController::listarPorFecha, engine);
-		*/
-<span class="nc" id="L29">		Spark.get(&quot;/admin/pois&quot;, AdministracionPoisController::get, engine);</span>
-<span class="nc" id="L30">		Spark.get(&quot;/admin/pois/lista&quot;, AdministracionPoisController::lista, engine);</span>
-<span class="nc" id="L31">		Spark.get(&quot;/admin/pois/editar/:id&quot;, AdministracionPoisController::editar, engine);</span>
-<span class="nc" id="L32">		Spark.get(&quot;/admin/pois/borrar/:id&quot;, AdministracionPoisController::borrar, engine);</span>
+<span class="nc" id="L24">		Spark.get(&quot;/admin/listar&quot;, HistoricoConsultasController::listar, engine);</span>
+		
+<span class="nc" id="L26">		Spark.get(&quot;/admin/pois&quot;, AdministracionPoisController::get, engine);</span>
+<span class="nc" id="L27">		Spark.get(&quot;/admin/pois/lista&quot;, AdministracionPoisController::lista, engine);</span>
+<span class="nc" id="L28">		Spark.get(&quot;/admin/pois/editar/:id&quot;, AdministracionPoisController::editar, engine);</span>
+<span class="nc" id="L29">		Spark.get(&quot;/admin/pois/borrar/:id&quot;, AdministracionPoisController::borrar, engine);</span>
+		
+<span class="nc" id="L31">		Spark.get(&quot;/admin/terminal&quot;, AdministracionTerminalController::get, engine);</span>
+<span class="nc" id="L32">		Spark.get(&quot;/admin/terminal/editar/:id&quot;, AdministracionTerminalController::editar, engine);</span>
+<span class="nc" id="L33">		Spark.post(&quot;/admin/terminal/guardar&quot;, AdministracionTerminalController::guardar, engine);</span>
+<span class="nc" id="L34">		Spark.get(&quot;/admin/terminal/eliminar/:id&quot;, AdministracionTerminalController::eliminar, engine);</span>
+<span class="nc" id="L35">		Spark.get(&quot;/admin/terminal/info/:id&quot;, AdministracionTerminalController::info, engine);</span>
+<span class="nc" id="L36">		Spark.get(&quot;/admin/terminal/agregar&quot;, AdministracionTerminalController::crear, engine);</span>
+<span class="nc" id="L37">		Spark.get(&quot;/admin/terminal/filtrar&quot;, AdministracionTerminalController::filtrar, engine);</span>
 
-<span class="nc" id="L34">		Spark.get(&quot;/admin/terminal&quot;, AdministracionTerminalController::get, engine);</span>
-<span class="nc" id="L35">		Spark.get(&quot;/admin/terminal/editar/:id&quot;, AdministracionTerminalController::editar, engine);</span>
-<span class="nc" id="L36">		Spark.get(&quot;/admin/pois/editarPut&quot;, AdministracionPoisController::editarPut, engine);</span>
+<span class="nc" id="L39">		Spark.get(&quot;/admin/pois/editarPut&quot;, AdministracionPoisController::editarPut, engine);</span>
 
-<span class="nc" id="L38">	}</span>
+<span class="nc" id="L41">	}</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

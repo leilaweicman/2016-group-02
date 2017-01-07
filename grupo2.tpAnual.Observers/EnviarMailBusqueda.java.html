@@ -6,6 +6,7 @@ import javax.persistence.Transient;
 
 import grupo2.tpAnual.MailSender;
 import grupo2.tpAnual.Repositorios.DatosDeBusqueda;
+import grupo2.tpAnual.Web.Server;
 
 
 @Entity
@@ -18,22 +19,22 @@ public class EnviarMailBusqueda extends ObserverBusqueda {
 
 	private String mailAdministrador;
 	
-<span class="nc" id="L21">	public EnviarMailBusqueda(){</span>
+<span class="nc" id="L22">	public EnviarMailBusqueda(){</span>
 		
-<span class="nc" id="L23">	}</span>
+<span class="nc" id="L24">	}</span>
 
-<span class="fc" id="L25">	public EnviarMailBusqueda(long tiempoMaximoDeEjecucion, MailSender mailsender, String mailAdministrador) {</span>
-<span class="fc" id="L26">		this.tiempoMaximo = tiempoMaximoDeEjecucion;</span>
-<span class="fc" id="L27">		this.mailSender = mailsender;</span>
-<span class="fc" id="L28">		this.mailAdministrador = mailAdministrador;</span>
-<span class="fc" id="L29">		this.id = 2;</span>
-<span class="fc" id="L30">	}</span>
+<span class="fc" id="L26">	public EnviarMailBusqueda(long tiempoMaximoDeEjecucion, MailSender mailsender, String mailAdministrador) {</span>
+<span class="fc" id="L27">		this.tiempoMaximo = tiempoMaximoDeEjecucion;</span>
+<span class="fc" id="L28">		this.mailSender = mailsender;</span>
+<span class="fc" id="L29">		this.mailAdministrador = mailAdministrador;</span>
+<span class="fc" id="L30">		this.id = 2;</span>
+<span class="fc" id="L31">	}</span>
 
 	@Override
 	public void notificarBusqueda(DatosDeBusqueda datosParaObserver) {
-<span class="pc bpc" id="L34" title="1 of 2 branches missed.">		if (datosParaObserver.getSegundosQueTardoLaBusqueda() &gt; this.tiempoMaximo) {</span>
-<span class="fc" id="L35">			mailSender.send(mailAdministrador, &quot;Notificacion de Busqueda&quot;, &quot;La busqueda tardo mas de lo esperado&quot;);</span>
+<span class="pc bpc" id="L35" title="1 of 2 branches missed.">		if (datosParaObserver.getSegundosQueTardoLaBusqueda() &gt; this.tiempoMaximo) {</span>
+<span class="fc" id="L36">			mailSender.send(mailAdministrador, &quot;Notificacion de Busqueda&quot;, &quot;La busqueda tardo mas de lo esperado&quot;);</span>
 		}
-<span class="fc" id="L37">	}</span>
+<span class="fc" id="L38">	}</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

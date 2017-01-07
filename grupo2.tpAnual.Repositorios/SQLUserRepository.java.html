@@ -56,17 +56,18 @@ import grupo2.tpAnual.AccesoriosPois.Comuna;
 <span class="nc" id="L56">		terminales = (List&lt;Usuario&gt;) entityManager().createQuery(&quot;from Usuario where esAdmin = 0&quot;).getResultList();</span>
 <span class="nc" id="L57">		return terminales;</span>
 	}
-	/*@Override
-	public EntityManager entityManager() {
-		// TODO Auto-generated method stub
-		return null;
-	}*/
+	
 	@Override
 	public Usuario getUsuarioById(long id) {
-<span class="nc" id="L66">		List&lt;Usuario&gt; usuarios = new ArrayList&lt;Usuario&gt;();</span>
-<span class="nc" id="L67">		usuarios = (List&lt;Usuario&gt;) entityManager().createQuery(&quot;from Usuario where id = :id&quot;).setParameter(&quot;id&quot;, id).getResultList();</span>
-<span class="nc" id="L68">		return usuarios.get(0);</span>
+<span class="nc" id="L62">		List&lt;Usuario&gt; usuarios = new ArrayList&lt;Usuario&gt;();</span>
+<span class="nc" id="L63">		usuarios = (List&lt;Usuario&gt;) entityManager().createQuery(&quot;from Usuario where id = :id&quot;).setParameter(&quot;id&quot;, id).getResultList();</span>
+<span class="nc" id="L64">		return usuarios.get(0);</span>
 	}
+
+	@Override
+	public void updateUsuario(Usuario usuario) {
+<span class="nc" id="L69">		entityManager().merge(usuario);</span>
+<span class="nc" id="L70">	}</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

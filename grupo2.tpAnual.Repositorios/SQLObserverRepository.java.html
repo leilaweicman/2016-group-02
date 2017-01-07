@@ -2,36 +2,46 @@
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import javax.persistence.EntityManager;
 
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 
 import grupo2.tpAnual.Observers.ObserverBusqueda;
 
-<span class="fc" id="L10">public class SQLObserverRepository implements ObserversRepository, WithGlobalEntityManager {</span>
+<span class="fc" id="L13">public class SQLObserverRepository implements ObserversRepository, WithGlobalEntityManager {</span>
 
 	private static SQLObserverRepository instance;
 
 	public static SQLObserverRepository get() {
-<span class="nc bnc" id="L15" title="All 2 branches missed.">		if (instance == null) {</span>
-<span class="nc" id="L16">			instance = new SQLObserverRepository();</span>
+<span class="nc bnc" id="L18" title="All 2 branches missed.">		if (instance == null) {</span>
+<span class="nc" id="L19">			instance = new SQLObserverRepository();</span>
 		}
-<span class="nc" id="L18">		return instance;</span>
+<span class="nc" id="L21">		return instance;</span>
 	}
 
 	@Override
 	public void deleteObserver(ObserverBusqueda observer) {
-<span class="fc" id="L23">		entityManager().remove(observer);	}</span>
+<span class="fc" id="L26">		entityManager().remove(observer);	}</span>
 
 	@Override
 	public void saveObserver(ObserverBusqueda observer) {
-<span class="fc" id="L27">		entityManager().persist(observer);</span>
-<span class="fc" id="L28">	}</span>
+<span class="fc" id="L30">		entityManager().persist(observer);</span>
+<span class="fc" id="L31">	}</span>
 
 	@Override
 	public List&lt;ObserverBusqueda&gt; getObservers() {
-<span class="fc" id="L32">		List&lt;ObserverBusqueda&gt; observers = new ArrayList&lt;ObserverBusqueda&gt;();</span>
-<span class="fc" id="L33">		observers = (List&lt;ObserverBusqueda&gt;) entityManager().createQuery(&quot;from ObserverBusqueda&quot;).getResultList();</span>
-<span class="fc" id="L34">		return observers;</span>
+<span class="fc" id="L35">		List&lt;ObserverBusqueda&gt; observers = new ArrayList&lt;ObserverBusqueda&gt;();</span>
+<span class="fc" id="L36">		observers = (List&lt;ObserverBusqueda&gt;) entityManager().createQuery(&quot;from ObserverBusqueda&quot;).getResultList();</span>
+<span class="fc" id="L37">		return observers;</span>
+	}
+
+	@Override
+	public ObserverBusqueda getObserverByName(String name) {
+<span class="nc" id="L42">		List&lt;ObserverBusqueda&gt; observers = new ArrayList&lt;ObserverBusqueda&gt;();</span>
+<span class="nc" id="L43">		observers = (List&lt;ObserverBusqueda&gt;) entityManager().createQuery(&quot;from ObserverBusqueda where nombre = :nombre&quot;).setParameter(&quot;nombre&quot;, name).getResultList();</span>
+<span class="nc" id="L44">		return observers.get(0);</span>
 	}
 
 }
