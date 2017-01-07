@@ -1,5 +1,6 @@
 package grupo2.tpAnual.Web.Controller;
 
+import java.io.Console;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -55,27 +56,7 @@ public class AdministracionTerminalController {
 		return new ModelAndView(model, "admin/terminales/administracionTerminal.hbs");
 	}
 	
-	public static ModelAndView editar(Request req, Response res) {
-		Map<String, Object> model = new HashMap<>();
-		
-		long id = Long.parseLong(req.params("id"));
-		
-		UserRepository usuarios = SingletonUserRepository.get();
-		
-		Usuario user = usuarios.getUsuarioById(id);
-		
-		ObserversRepository repo = SingletonObserverRepository.get();
-		List<ObserverBusqueda> accionesDisponibles = repo.getObservers();
-		List<ObserverBusqueda> accionesUsuario = user.getAccionesBusqueda();
-		accionesDisponibles.removeAll(accionesUsuario);
-		
-		model.put("user", user);
-		model.put("accionesDisponibles", accionesDisponibles);
-		model.put("accionesUsuario", accionesUsuario);
-		return new ModelAndView(model, "admin/terminales/editarTerminal.hbs");
-		
-	}
-
+	
 	public static ModelAndView crear(Request req, Response res) {
 		Map<String, Object> model = new HashMap<>();
 					
@@ -115,6 +96,39 @@ public class AdministracionTerminalController {
 		res.redirect("/admin/terminal");
 		return null;
 	}
+	
+	public static ModelAndView editar(Request req, Response res) {
+		Map<String, Object> model = new HashMap<>();
+		
+		long id = Long.parseLong(req.params("id"));
+		
+		UserRepository usuarios = SingletonUserRepository.get();
+		
+		Usuario user = usuarios.getUsuarioById(id);
+		
+		ObserversRepository repo = SingletonObserverRepository.get();
+		List<ObserverBusqueda> accionesDisponibles = new ArrayList<ObserverBusqueda>();//repo.getObservers();
+
+		List<ObserverBusqueda> acciones = repo.getObservers();
+		List<ObserverBusqueda> accionesUsuario = user.getAccionesBusqueda();
+		acciones.stream().forEach(action->meterEnPrueba(action, accionesDisponibles, user));
+		//comento la sig linea porque el removeAll lo hace al repo y no tiene sentido que haga eso
+		//accionesDisponibles.removeAll(accionesUsuario);
+		
+		model.put("user", user);
+		model.put("accionesDisponibles", accionesDisponibles);
+		model.put("accionesUsuario", accionesUsuario);
+		return new ModelAndView(model, "admin/terminales/editarTerminal.hbs");
+		
+	}
+
+
+	 public static void meterEnPrueba(ObserverBusqueda obs, List<ObserverBusqueda>prueba, Usuario user){
+		 //aprox que esta funcion es un filter pero con el filter no funcionaba
+		 if(!user.tieneObserver(obs)){
+			 prueba.add(obs);
+		 }
+	 }
 	public static ModelAndView guardar(Request req, Response res) {
 		
 		UserRepository usuarios = SingletonUserRepository.get();
@@ -134,6 +148,8 @@ public class AdministracionTerminalController {
 		
 		ObserversRepository repoAcciones = SingletonObserverRepository.get();
 		List<ObserverBusqueda> acciones = repoAcciones.getObservers();
+		System.out.println("size "+String.valueOf(acciones.size()));
+		acciones.stream().forEach(accion -> System.out.println("flags: "+String.valueOf((req.queryParams(String.valueOf(accion.getId()))))));	
 		acciones.stream().forEach(accion-> editarAcciones(accion, user, req));
 		
 		user.setNombre(nombre);
@@ -146,11 +162,14 @@ public class AdministracionTerminalController {
 	}
 
 	public static void editarAcciones(ObserverBusqueda observer, Usuario user, Request req){
-		Boolean flag = Boolean.valueOf(req.queryParams(String.valueOf(observer.getId()))); 
-		if(user.tieneObserver(observer)&& !flag){
+		String flag = String.valueOf(req.queryParams(String.valueOf(observer.getId()))); 
+
+		if(user.tieneObserver(observer)&& !flag.equals("on")){
 			user.quitarAccionBusqueda(observer);
-		} else if(!user.tieneObserver(observer) && flag){
+			System.out.println(flag);
+		} else if(!user.tieneObserver(observer) && flag.equals("on")){
 			user.setAccionBusqueda(observer);
+			System.out.println(flag);
 		}
 	}
 	
