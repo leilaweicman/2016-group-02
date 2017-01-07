@@ -27,10 +27,6 @@ public class HistoricoConsultasController {
 	
 	public static ModelAndView listar(Request req, Response res) {
 		
-		/* TODO Recibir todos los parametros 
-		 * Fijarnos si hay forma de hacer interseccion entre listas (? o crear una query que filtre por las 3 cosas
-		 */
-		
 		Map<String, List<DatosDeBusqueda>> model = new HashMap<>();
 				
 		String terminal= req.queryParams("terminal");
@@ -43,8 +39,6 @@ public class HistoricoConsultasController {
 		DatosDeBusquedaRepository repository = SingletonDatosBusquedaRepository.get();
 		
 		//List<DatosDeBusqueda> datosDeBusqueda = DatosBusquedaRepositoryMongoDB.instancia.obtenerPorNombre(terminal);
-
-		//List<DatosDeBusqueda> datosDeBusqueda = repository.obtenerPorNombre(terminal);
 
 		List<DatosDeBusqueda> datosDeBusqueda = repository.filtrar(terminal, cant, LocalDate.now(), LocalDate.now().minusDays(1));
 		
