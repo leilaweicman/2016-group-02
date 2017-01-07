@@ -1,17 +1,13 @@
 package grupo2.tpAnual.Web.Models;
 
-import static org.junit.Assert.assertEquals;
 
 import javax.persistence.EntityManager;
 
-import org.junit.Test;
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
 
 import grupo2.tpAnual.AccesoriosPois.Comuna;
-import grupo2.tpAnual.Observers.EnviarMailBusqueda;
-import grupo2.tpAnual.Observers.NotificarDatosBusqueda;
 import grupo2.tpAnual.Observers.ObserverBusqueda;
 import grupo2.tpAnual.Repositorios.ComunaRepository;
 import grupo2.tpAnual.Repositorios.MemoryUserRepository;
