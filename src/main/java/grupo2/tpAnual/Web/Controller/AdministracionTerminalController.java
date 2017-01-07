@@ -25,14 +25,34 @@ import spark.Response;
 public class AdministracionTerminalController {
 	
 	public static ModelAndView get(Request req, Response res) {
-		Map<String, List<Usuario>> model = new HashMap<>();
+		Map<String, Object> model = new HashMap<>();
 		
 		UserRepository repo = SingletonUserRepository.get();
 		List<Usuario> terminales = repo.getUsauriosTerminal();
 		
+		ComunaRepository repoComunas = SingletonComunaRepository.get();
+		List<Comuna> comunas = repoComunas.getComunas();
+		
 		model.put("terminales", terminales);
+		model.put("comunas", comunas);
 		return new ModelAndView(model, "admin/terminales/administracionTerminal.hbs");
 		
+	}
+	
+	public static ModelAndView filtrar(Request req, Response res){
+		Map<String, Object> model = new HashMap<>();
+		/*
+		 * tengo que agarrar el numero de comuna del select de alguna manera
+		 * de ultima lo agarro como los checks
+		 */
+		int numeroComuna =1;
+		UserRepository repoUsuarios = SingletonUserRepository.get();
+		List<Usuario> terminales = repoUsuarios.getUsauriosTerminal();
+		
+		terminales.stream().filter(terminal->terminal.getComuna().getNumeroComuna()==numeroComuna);
+
+		model.put("terminales", terminales);
+		return new ModelAndView(model, "admin/terminales/administracionTerminal.hbs");
 	}
 	
 	public static ModelAndView editar(Request req, Response res) {

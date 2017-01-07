@@ -11,15 +11,20 @@
 
 		
 	<div class="row">
-		<div style="float:left">
-			<form action="" method="post">
-				<input id="comuna"/>
+		<div class="form-group col-md-6 col-md-offset-3" style="float:left">
+			<form action="/admin/terminal/filtrar" method="get">
+				<label for="comuna">Numero de comuna</label>
+				<select id="comuna" class="form-control">
+					{{#each comunas}}
+						<option value="{{numeroComuna}}" name="{{numeroComuna}}">{{numeroComuna}}</option>
+					{{/each}}
+				</select>
 				<button type="submit" class="btn btn-primary">Filtrar</button>
 			</form>	
 		</div>
 		<div class="agregarTerminal" style="float: right;border: 1px solid;border-radius: 5px;padding: 7px;">
 			<!--boton de agregar terminal-->
-			<a href="terminal/agregar">Agregar terminal</a>
+			<a href="/admin/terminal/agregar">Agregar terminal</a>
 		</div>	
 	</div>
 	
@@ -35,9 +40,9 @@
 				<tr>
 					<td>{{nombre}}</td>
 					<td>{{comuna.numeroComuna}}</td>
-					<td><a href="terminal/info/{{id}}">Ver mas</a><td>
-					<td><a href="terminal/editar/{{id}}">Editar</a><td>
-					<td><a href="terminal/eliminar/{{id}}">Eliminar</a><td>
+					<td><a href="/admin/terminal/info/{{id}}">Ver mas</a><td>
+					<td><a href="/admin/terminal/editar/{{id}}">Editar</a><td>
+					<td><a href="/admin/terminal/eliminar/{{id}}">Eliminar</a><td>
 				</tr>
 			{{/each}}
 		</table>
