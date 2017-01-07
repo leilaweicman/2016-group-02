@@ -133,12 +133,14 @@ public class AdministracionTerminalController {
 		
 		UserRepository usuarios = SingletonUserRepository.get();
 		Usuario user;
+		
+		System.out.println("value id ."+String.valueOf(req.queryParams("id"))+".");
 
-		if(req.queryParams("id")!=""){
+		if(String.valueOf(req.queryParams("id")).equals("")){
+			user = new Usuario();
+		} else {
 			long id = Long.parseLong(req.queryParams("id"));
 			user = usuarios.getUsuarioById(id);
-		} else {
-			user = new Usuario();
 		}
 		String nombre = req.queryParams("nombre");
 		int numeroComuna = Integer.parseInt(req.queryParams("comuna"));
