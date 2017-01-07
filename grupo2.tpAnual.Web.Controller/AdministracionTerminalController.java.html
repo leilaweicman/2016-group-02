@@ -147,9 +147,9 @@ import spark.Response;
 
 	public static void editarAcciones(ObserverBusqueda observer, Usuario user, Request req){
 <span class="nc" id="L149">		Boolean flag = Boolean.valueOf(req.queryParams(String.valueOf(observer.getId()))); </span>
-<span class="nc bnc" id="L150" title="All 4 branches missed.">		if(user.tieneObserver(observer)&amp;&amp; flag == false){</span>
+<span class="nc bnc" id="L150" title="All 4 branches missed.">		if(user.tieneObserver(observer)&amp;&amp; !flag){</span>
 <span class="nc" id="L151">			user.quitarAccionBusqueda(observer);</span>
-<span class="nc bnc" id="L152" title="All 4 branches missed.">		} else if(!user.tieneObserver(observer) &amp;&amp; flag == true){</span>
+<span class="nc bnc" id="L152" title="All 4 branches missed.">		} else if(!user.tieneObserver(observer) &amp;&amp; flag){</span>
 <span class="nc" id="L153">			user.setAccionBusqueda(observer);</span>
 		}
 <span class="nc" id="L155">	}</span>
