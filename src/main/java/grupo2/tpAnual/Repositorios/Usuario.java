@@ -22,7 +22,7 @@ public class Usuario{
 	@OneToMany 
 	private List<ObserverBusqueda> accionesBusqueda = new ArrayList<ObserverBusqueda>();
 	@ManyToOne 
-	public Comuna comuna;
+	private Comuna comuna;
 	
 	private boolean esAdmin;
 	

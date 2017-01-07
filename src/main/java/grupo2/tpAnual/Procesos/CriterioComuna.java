@@ -22,7 +22,7 @@ public class CriterioComuna implements Criterio {
 	@Override
 	public List<Usuario> dameUsuarios(Comuna comuna) {
 		listaUsuarios = new ArrayList<>();
-		listaUsuarios.addAll(this.repositorioUsuarios.getUsuarios().stream().filter(usuario -> usuario.comuna == comuna)
+		listaUsuarios.addAll(this.repositorioUsuarios.getUsuarios().stream().filter(usuario -> usuario.getComuna() == comuna)
 				.collect(Collectors.toList()));
 		return listaUsuarios;
 	}

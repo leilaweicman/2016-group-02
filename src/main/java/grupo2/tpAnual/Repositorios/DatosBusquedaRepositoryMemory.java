@@ -1,11 +1,13 @@
 package grupo2.tpAnual.Repositorios;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.bson.types.ObjectId;
 import org.mongodb.morphia.dao.BasicDAO;
+import org.mongodb.morphia.query.Query;
 
 public class DatosBusquedaRepositoryMemory /*extends BasicDAO<DatosDeBusqueda, ObjectId>*/ implements DatosDeBusquedaRepository{
 	
@@ -36,4 +38,16 @@ public class DatosBusquedaRepositoryMemory /*extends BasicDAO<DatosDeBusqueda, O
 	public Integer cantidadDeBusquedasDe(String nombre) {
 		return this.obtenerTotalResultadosPorTerminal(nombre).stream().reduce(0, (a, b) -> a + b);
 	}
+	
+	public List<DatosDeBusqueda> filtrar(String nombreTerminal, int cantidad, LocalDate desde, LocalDate hasta){
+		return null;
+	}
+
+	@Override
+	public List<DatosDeBusqueda> cantidadDePois(Integer cantidad) {
+		return listaDatosDeBusqueda.stream().filter(registro -> registro.getCantidadDePois() == cantidad).collect(Collectors.toList());
+	}
+
+	
+	
 }

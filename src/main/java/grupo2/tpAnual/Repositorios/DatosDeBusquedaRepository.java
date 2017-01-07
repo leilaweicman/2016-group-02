@@ -1,8 +1,10 @@
 package grupo2.tpAnual.Repositorios;
+import java.time.LocalDate;
 import java.util.List;
 
 import org.bson.types.ObjectId;
 import org.mongodb.morphia.dao.DAO;
+import org.mongodb.morphia.query.Query;
 
 
 public interface DatosDeBusquedaRepository {
@@ -16,4 +18,8 @@ public interface DatosDeBusquedaRepository {
 	public List<Integer> obtenerTotalResultadosPorTerminal(String nombreTerminal);
 
 	public Integer cantidadDeBusquedasDe(String nombre);
+	
+	public List<DatosDeBusqueda> filtrar(String nombreTerminal,int cantidad, LocalDate desde, LocalDate hasta);
+	
+	public List<DatosDeBusqueda> cantidadDePois(Integer cantidad);
 }

@@ -21,11 +21,8 @@ public class Router {
 		Spark.get("/terminal/busqueda/",TerminalController::show, engine);
 		Spark.get("/admin", AdminController::get, engine);
 		Spark.get("/admin/historico", HistoricoConsultasController::get, engine);
-		Spark.get("/admin/listarPorTerminal", HistoricoConsultasController::listarPorTerminal, engine);
-		Spark.get("/admin/listarPorCantidad", HistoricoConsultasController::listarPorCantidad, engine);
-		/* TODO Descomentar cuando se hagan los metodos en el controller
-		 * Spark.get("/admin/historicoConsultas", HistoricoConsultasController::listarPorFecha, engine);
-		*/
+		Spark.get("/admin/listar", HistoricoConsultasController::listar, engine);
+		
 		Spark.get("/admin/pois", AdministracionPoisController::get, engine);
 		Spark.get("/admin/pois/lista", AdministracionPoisController::lista, engine);
 		Spark.get("/admin/pois/editar/:id", AdministracionPoisController::editar, engine);
