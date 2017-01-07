@@ -147,9 +147,9 @@ public class AdministracionTerminalController {
 
 	public static void editarAcciones(ObserverBusqueda observer, Usuario user, Request req){
 		Boolean flag = Boolean.valueOf(req.queryParams(String.valueOf(observer.getId()))); 
-		if(user.tieneObserver(observer)&& flag == false){
+		if(user.tieneObserver(observer)&& !flag){
 			user.quitarAccionBusqueda(observer);
-		} else if(!user.tieneObserver(observer) && flag == true){
+		} else if(!user.tieneObserver(observer) && flag){
 			user.setAccionBusqueda(observer);
 		}
 	}
