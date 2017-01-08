@@ -7,10 +7,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import grupo2.tpAnual.PersistentEntity;
+
 @Entity @Embeddable
-public class Direccion {
-	@Id @GeneratedValue
-	private long id;
+public class Direccion extends PersistentEntity {
+	/*@Id @GeneratedValue
+	private long id;*/
 	@Column
 	private String calle;
 	@Column
@@ -18,29 +20,29 @@ public class Direccion {
 	@Column
 	private String zona;
 	
-<span class="fc" id="L21">	public Direccion(){</span>
+<span class="fc" id="L23">	public Direccion(){</span>
 		
-<span class="fc" id="L23">	}</span>
-<span class="fc" id="L24">	public Direccion(String calle, String zona) {</span>
-<span class="fc" id="L25">		this.calle = calle;</span>
-<span class="fc" id="L26">		this.zona = zona;</span>
-<span class="fc" id="L27">	}</span>
+<span class="fc" id="L25">	}</span>
+<span class="fc" id="L26">	public Direccion(String calle, String zona) {</span>
+<span class="fc" id="L27">		this.calle = calle;</span>
+<span class="fc" id="L28">		this.zona = zona;</span>
+<span class="fc" id="L29">	}</span>
 
 	public String getCalle() {
-<span class="fc" id="L30">		return calle;</span>
+<span class="fc" id="L32">		return calle;</span>
 	}
 
 	public int getAltura() {
-<span class="nc" id="L34">		return altura;</span>
+<span class="nc" id="L36">		return altura;</span>
 	}
 
 	public String getZona() {
-<span class="nc" id="L38">		return zona;</span>
+<span class="nc" id="L40">		return zona;</span>
 	}
 	
 	public void setCalle(String calle){
-<span class="nc" id="L42">		this.calle = calle;</span>
-<span class="nc" id="L43">	}</span>
+<span class="nc" id="L44">		this.calle = calle;</span>
+<span class="nc" id="L45">	}</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>
