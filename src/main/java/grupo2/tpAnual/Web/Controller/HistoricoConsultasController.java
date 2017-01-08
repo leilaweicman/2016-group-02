@@ -36,10 +36,17 @@ public class HistoricoConsultasController {
 		String terminal= req.queryParams("terminal");
 		String cantidad= req.queryParams("cantidad");
 		String desde = req.queryParams("desde");
-		String hasta = req.queryParams("hasta");
+		String hasta = req.queryParams("hasta");		
 		
-		LocalDate fechaDesde = 	convertDate(desde);		
-		LocalDate fechaHasta = 	convertDate(hasta);		
+		LocalDate fechaDesde = 	null;		
+		if (! desde.isEmpty()){
+			fechaDesde = convertDate(desde);		
+		}
+		
+		LocalDate fechaHasta = 	null;		
+		if (! desde.isEmpty()){
+			fechaHasta = convertDate(hasta);		
+		}
 				    
 		int cant = 0;
 		if (! cantidad.isEmpty()){

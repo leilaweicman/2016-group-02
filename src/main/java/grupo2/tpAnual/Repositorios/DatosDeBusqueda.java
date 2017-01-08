@@ -87,6 +87,9 @@ public class DatosDeBusqueda {
 	
 	public Boolean estaEntreFechas(LocalDate fechaDesde, LocalDate fechaHasta){
 		
+		if (fechaDesde == null || fechaHasta == null) {
+			return false;
+		}
 		return (this.fecha.isAfter(fechaDesde) && this.fecha.isBefore(fechaHasta));
 		
 	}
