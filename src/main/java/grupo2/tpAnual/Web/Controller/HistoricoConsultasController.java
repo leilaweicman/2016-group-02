@@ -1,8 +1,16 @@
 package grupo2.tpAnual.Web.Controller;
 
+import java.io.UnsupportedEncodingException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import grupo2.tpAnual.Repositorios.DatosBusquedaRepositoryMongoDB;
@@ -31,7 +39,15 @@ public class HistoricoConsultasController {
 				
 		String terminal= req.queryParams("terminal");
 		String cantidad= req.queryParams("cantidad");
-		int cant = 15;
+		String desde = req.queryParams("desde");
+		String hasta = req.queryParams("hasta");
+		
+		LocalDate fechaDesde = 	convertDate(desde);		
+		LocalDate fechaHasta = 	convertDate(hasta);		
+		
+		System.out.print(fechaDesde + " " + fechaHasta);
+		    
+		int cant = 0;
 		if (! cantidad.isEmpty()){
 			 cant = Integer.parseInt (cantidad);
 		} 		
@@ -50,6 +66,30 @@ public class HistoricoConsultasController {
 		
 	}
 	
+	private static LocalDate convertDate (String dateToConvert){
+		
+		String date = "";
+		
+		try {
+			date = java.net.URLDecoder.decode(dateToConvert, "UTF-8");
+
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+			date = "";
+		}
+		
+		String[] parts = date.split("/");
+		String month = parts[0];
+		String day = parts[1];
+		String year = parts[2];		
+		
+		DateTimeFormatter germanFormatter = DateTimeFormatter.ofLocalizedDate(
+		        FormatStyle.MEDIUM).withLocale(Locale.GERMAN);
+
+		LocalDate dateConverted = LocalDate.parse(day + "." + month + "." + year, germanFormatter);
+    
+		return dateConverted;
+	}
 	
 	/*public static ModelAndView listarPorTerminal(Request req, Response res) {
 		Map<String, List<DatosDeBusqueda>> model = new HashMap<>();
