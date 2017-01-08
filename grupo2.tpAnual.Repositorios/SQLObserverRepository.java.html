@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>SQLObserverRepository.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tpAnual</a> &gt; <a href="index.source.html" class="el_package">grupo2.tpAnual.Repositorios</a> &gt; <span class="el_source">SQLObserverRepository.java</span></div><h1>SQLObserverRepository.java</h1><pre class="source lang-java linenums">package grupo2.tpAnual.Repositorios;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import javax.persistence.EntityManager;
+
+import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
+
+import grupo2.tpAnual.Observers.ObserverBusqueda;
+
+<span class="fc" id="L13">public class SQLObserverRepository implements ObserversRepository, WithGlobalEntityManager {</span>
+
+	private static SQLObserverRepository instance;
+
+	public static SQLObserverRepository get() {
+<span class="nc bnc" id="L18" title="All 2 branches missed.">		if (instance == null) {</span>
+<span class="nc" id="L19">			instance = new SQLObserverRepository();</span>
+		}
+<span class="nc" id="L21">		return instance;</span>
+	}
+
+	@Override
+	public void deleteObserver(ObserverBusqueda observer) {
+<span class="fc" id="L26">		entityManager().remove(observer);	}</span>
+
+	@Override
+	public void saveObserver(ObserverBusqueda observer) {
+<span class="fc" id="L30">		entityManager().persist(observer);</span>
+<span class="fc" id="L31">	}</span>
+
+	@Override
+	public List&lt;ObserverBusqueda&gt; getObservers() {
+<span class="fc" id="L35">		List&lt;ObserverBusqueda&gt; observers = new ArrayList&lt;ObserverBusqueda&gt;();</span>
+<span class="fc" id="L36">		observers = (List&lt;ObserverBusqueda&gt;) entityManager().createQuery(&quot;from ObserverBusqueda&quot;).getResultList();</span>
+<span class="fc" id="L37">		return observers;</span>
+	}
+
+	@Override
+	public ObserverBusqueda getObserverByName(String name) {
+<span class="nc" id="L42">		List&lt;ObserverBusqueda&gt; observers = new ArrayList&lt;ObserverBusqueda&gt;();</span>
+<span class="nc" id="L43">		observers = (List&lt;ObserverBusqueda&gt;) entityManager().createQuery(&quot;from ObserverBusqueda where nombre = :nombre&quot;).setParameter(&quot;nombre&quot;, name).getResultList();</span>
+<span class="nc" id="L44">		return observers.get(0);</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>
