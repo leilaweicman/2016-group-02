@@ -7,10 +7,12 @@ import javax.persistence.*;
 
 import org.joda.time.DateTime;
 
+import grupo2.tpAnual.PersistentEntity;
+
 @Entity
-public class Servicio {
-	@Id	@GeneratedValue 
-	private Integer id;
+public class Servicio extends PersistentEntity{
+	/*@Id	@GeneratedValue 
+	private Integer id;*/
 	@Column
 	private String nombre;
 	@OneToMany
@@ -55,8 +57,8 @@ public class Servicio {
 		this.disponibilidad = disponibilidad;
 	}
 
-	public Integer getId() {
+	/*public Integer getId() {
 		return this.id;
-	}
+	}*/
 
 }

@@ -8,11 +8,13 @@ import javax.persistence.*;
 
 import org.joda.time.DateTime;
 
-@Entity
-public class Disponibilidad {
+import grupo2.tpAnual.PersistentEntity;
 
-	@Id @GeneratedValue
-	private Integer id;
+@Entity
+public class Disponibilidad extends PersistentEntity {
+
+	/*@Id @GeneratedValue
+	private Integer id;*/
 	@OneToMany @JoinColumn
 	private List<Rango> rangoDisponibilidad = new ArrayList<Rango>();
 
@@ -20,9 +22,9 @@ public class Disponibilidad {
 		this.rangoDisponibilidad = rango;
 	}
 
-	public Integer getId(){
+	/*public Integer getId(){
 		return this.id;
-	}
+	}*/
 	
 	public boolean estaDisponible(DateTime momento) {
 		int dia = momento.getDayOfWeek();

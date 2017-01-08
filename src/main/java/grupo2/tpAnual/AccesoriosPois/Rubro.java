@@ -1,12 +1,14 @@
 package grupo2.tpAnual.AccesoriosPois;
 import javax.persistence.*;
 
+import grupo2.tpAnual.PersistentEntity;
+
 @org.mongodb.morphia.annotations.Entity
 @Entity
 @Table(name="Rubro")
-public class Rubro {
-	@Id	@GeneratedValue 
-	private Integer id;
+public class Rubro extends PersistentEntity{
+	/*@Id	@GeneratedValue 
+	private Integer id;*/
 	@Column(name="tipo")
 	private String tipoRubro;
 	@Column(name="radioCercania")
@@ -40,9 +42,9 @@ public class Rubro {
 		this.radioCercania = Radio;
 	}
 	
-	public Integer getId(){
+	/*public Integer getId(){
 		return this.id;
-	}
+	}*/
 
 	public boolean Busqueda(String tipo) {
 		return tipoRubro.equals(tipo);
