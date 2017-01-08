@@ -28,12 +28,12 @@ import spark.template.handlebars.HandlebarsTemplateEngine;
 <span class="nc" id="L28">		Spark.get(&quot;/admin/pois/editar/:id&quot;, AdministracionPoisController::editar, engine);</span>
 <span class="nc" id="L29">		Spark.get(&quot;/admin/pois/borrar/:id&quot;, AdministracionPoisController::borrar, engine);</span>
 		
-<span class="nc" id="L31">		Spark.get(&quot;/admin/terminal&quot;, AdministracionTerminalController::get, engine);</span>
-<span class="nc" id="L32">		Spark.get(&quot;/admin/terminal/editar/:id&quot;, AdministracionTerminalController::editar, engine);</span>
+<span class="nc" id="L31">		Spark.get(&quot;/admin/terminal/:status&quot;, AdministracionTerminalController::get, engine);</span>
+<span class="nc" id="L32">		Spark.get(&quot;/admin/terminal/editar/:id/:status&quot;, AdministracionTerminalController::editar, engine);</span>
 <span class="nc" id="L33">		Spark.post(&quot;/admin/terminal/guardar&quot;, AdministracionTerminalController::guardar, engine);</span>
 <span class="nc" id="L34">		Spark.get(&quot;/admin/terminal/eliminar/:id&quot;, AdministracionTerminalController::eliminar, engine);</span>
 <span class="nc" id="L35">		Spark.get(&quot;/admin/terminal/info/:id&quot;, AdministracionTerminalController::info, engine);</span>
-<span class="nc" id="L36">		Spark.get(&quot;/admin/terminal/agregar&quot;, AdministracionTerminalController::crear, engine);</span>
+<span class="nc" id="L36">		Spark.get(&quot;/admin/terminal/agregar/:status&quot;, AdministracionTerminalController::crear, engine);</span>
 		//Spark.get(&quot;/admin/terminal/agregar/:error&quot;, AdministracionTerminalController::crear, engine);
 
 <span class="nc" id="L39">		Spark.get(&quot;/admin/pois/editarPut&quot;, AdministracionPoisController::editarPut, engine);</span>
