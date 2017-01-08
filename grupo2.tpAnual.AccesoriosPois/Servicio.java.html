@@ -7,57 +7,59 @@ import javax.persistence.*;
 
 import org.joda.time.DateTime;
 
+import grupo2.tpAnual.PersistentEntity;
+
 @Entity
-public class Servicio {
-	@Id	@GeneratedValue 
-	private Integer id;
+public class Servicio extends PersistentEntity{
+	/*@Id	@GeneratedValue 
+	private Integer id;*/
 	@Column
 	private String nombre;
-<span class="fc" id="L16">	@OneToMany</span>
+<span class="fc" id="L18">	@OneToMany</span>
 	private List&lt;Rango&gt; rangoDisponibilidad = new ArrayList&lt;Rango&gt;();
 	@OneToOne
 	private Disponibilidad disponibilidad;
 
-<span class="fc" id="L21">	public Servicio(List&lt;Rango&gt; rango) {</span>
-<span class="fc" id="L22">		this.rangoDisponibilidad = rango;</span>
-<span class="fc" id="L23">		disponibilidad = new Disponibilidad(this.rangoDisponibilidad);</span>
-<span class="fc" id="L24">	}</span>
+<span class="fc" id="L23">	public Servicio(List&lt;Rango&gt; rango) {</span>
+<span class="fc" id="L24">		this.rangoDisponibilidad = rango;</span>
+<span class="fc" id="L25">		disponibilidad = new Disponibilidad(this.rangoDisponibilidad);</span>
+<span class="fc" id="L26">	}</span>
 
 	public String getNombre() {
-<span class="fc" id="L27">		return nombre;</span>
+<span class="fc" id="L29">		return nombre;</span>
 	}
 
 	public void setNombre(String Nom) {
-<span class="fc" id="L31">		this.nombre = Nom;</span>
-<span class="fc" id="L32">	}</span>
+<span class="fc" id="L33">		this.nombre = Nom;</span>
+<span class="fc" id="L34">	}</span>
 
 	public List&lt;Rango&gt; getRango() {
-<span class="nc" id="L35">		return rangoDisponibilidad;</span>
+<span class="nc" id="L37">		return rangoDisponibilidad;</span>
 	}
 
 	public void setRango(List&lt;Rango&gt; rango) {
-<span class="nc" id="L39">		this.rangoDisponibilidad = rango;</span>
-<span class="nc" id="L40">	}</span>
+<span class="nc" id="L41">		this.rangoDisponibilidad = rango;</span>
+<span class="nc" id="L42">	}</span>
 
 	public void addRango(Rango rango) {
-<span class="nc" id="L43">		this.rangoDisponibilidad.add(rango);</span>
-<span class="nc" id="L44">	}</span>
+<span class="nc" id="L45">		this.rangoDisponibilidad.add(rango);</span>
+<span class="nc" id="L46">	}</span>
 
 	public boolean estaDisponible(DateTime momento) {
-<span class="fc" id="L47">		return this.disponibilidad.estaDisponible(momento);</span>
+<span class="fc" id="L49">		return this.disponibilidad.estaDisponible(momento);</span>
 	}
 
 	public Disponibilidad getDisponibilidad() {
-<span class="nc" id="L51">		return disponibilidad;</span>
+<span class="nc" id="L53">		return disponibilidad;</span>
 	}
 
 	public void setDisponibilidad(Disponibilidad disponibilidad) {
-<span class="fc" id="L55">		this.disponibilidad = disponibilidad;</span>
-<span class="fc" id="L56">	}</span>
+<span class="fc" id="L57">		this.disponibilidad = disponibilidad;</span>
+<span class="fc" id="L58">	}</span>
 
-	public Integer getId() {
-<span class="fc" id="L59">		return this.id;</span>
-	}
+	/*public Integer getId() {
+		return this.id;
+	}*/
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>
