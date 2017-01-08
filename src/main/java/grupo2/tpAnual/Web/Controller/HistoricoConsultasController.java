@@ -42,37 +42,10 @@ public class HistoricoConsultasController {
 		String desde = req.queryParams("desde");
 		String hasta = req.queryParams("hasta");
 		
-		String fechaDesde = "";
-		String fechaHasta = "";
+		LocalDate fechaDesde = 	convertDate(desde);		
+		LocalDate fechaHasta = 	convertDate(hasta);		
 		
-		try {
-			fechaHasta = java.net.URLDecoder.decode(hasta, "UTF-8");
-			fechaDesde = java.net.URLDecoder.decode(desde, "UTF-8");
-
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-			fechaDesde = "";
-			fechaHasta= "";
-		}
-		
-		String[] parts = fechaDesde.split("/");
-		String mesDesde = parts[0];
-		String diaDesde = parts[1];
-		String anioDesde = parts[2];
-		
-		String[] partsHasta = fechaHasta.split("/");
-		String mesHasta = partsHasta[0];
-		String diaHasta = partsHasta[1];
-		String anioHasta = partsHasta[2];
-		
-		DateTimeFormatter germanFormatter = DateTimeFormatter.ofLocalizedDate(
-		        FormatStyle.MEDIUM).withLocale(Locale.GERMAN);
-
-		LocalDate dateDesde = LocalDate.parse(diaDesde + "." + mesDesde + "." + anioDesde, germanFormatter);
-		LocalDate dateHasta = LocalDate.parse(diaHasta + "." + mesHasta + "." + anioHasta, germanFormatter);
-    
-		
-		//System.out.print(dateHasta);
+		System.out.print(fechaDesde + " " + fechaHasta);
 		    
 		int cant = 0;
 		if (! cantidad.isEmpty()){
@@ -93,6 +66,30 @@ public class HistoricoConsultasController {
 		
 	}
 	
+	private static LocalDate convertDate (String dateToConvert){
+		
+		String date = "";
+		
+		try {
+			date = java.net.URLDecoder.decode(dateToConvert, "UTF-8");
+
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+			date = "";
+		}
+		
+		String[] parts = date.split("/");
+		String month = parts[0];
+		String day = parts[1];
+		String year = parts[2];		
+		
+		DateTimeFormatter germanFormatter = DateTimeFormatter.ofLocalizedDate(
+		        FormatStyle.MEDIUM).withLocale(Locale.GERMAN);
+
+		LocalDate dateConverted = LocalDate.parse(day + "." + month + "." + year, germanFormatter);
+    
+		return dateConverted;
+	}
 	
 	/*public static ModelAndView listarPorTerminal(Request req, Response res) {
 		Map<String, List<DatosDeBusqueda>> model = new HashMap<>();
