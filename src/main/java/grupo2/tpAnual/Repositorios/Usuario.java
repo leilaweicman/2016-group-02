@@ -11,13 +11,14 @@ import javax.persistence.Inheritance;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import grupo2.tpAnual.PersistentEntity;
 import grupo2.tpAnual.AccesoriosPois.Comuna;
 import grupo2.tpAnual.Observers.ObserverBusqueda;
 import grupo2.tpAnual.Web.Server;
 @Entity
-public class Usuario{
-	@Id @GeneratedValue
-	private long id; 
+public class Usuario extends PersistentEntity{
+	/*@Id @GeneratedValue
+	private long id; */
 	private String nombre;
 	@OneToMany 
 	private List<ObserverBusqueda> accionesBusqueda = new ArrayList<ObserverBusqueda>();
@@ -30,8 +31,7 @@ public class Usuario{
 	public Usuario(){
 		if(Server.inMemory){
 			generarId();
-		}
-		
+		}		
 	}
 
 	public void setNombre(String nombre){
@@ -42,13 +42,13 @@ public class Usuario{
 		return this.nombre;
 	}
 
-	public void setId(long id){
+	/*public void setId(long id){
 		this.id = id;
 	}
 	
 	public long getId(){
 		return id;
-	}
+	}*/
 	public void setComuna(Comuna com) {
 		this.comuna = com;
 	}
@@ -88,11 +88,11 @@ public class Usuario{
 		return esAdmin;
 	}
 	
-	private void generarId(){
+	/*private void generarId(){
 		Random rnd = new Random();
 		this.id = rnd.nextLong();
 		//this.id = java.util.UUID.randomUUID().;
-	}
+	}*/
 	
 	public boolean tieneObserver(ObserverBusqueda observer){
 		return this.accionesBusqueda.contains(observer);
