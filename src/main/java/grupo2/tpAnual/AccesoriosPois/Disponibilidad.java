@@ -48,4 +48,8 @@ public class Disponibilidad extends PersistentEntity {
 	public void addRango(Rango rango) {
 		this.rangoDisponibilidad.add(rango);
 	}
+	
+	public List<Rango> getRango(){
+		return this.rangoDisponibilidad;
+	}
 }

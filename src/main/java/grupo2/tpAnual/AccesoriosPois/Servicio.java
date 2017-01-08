@@ -15,14 +15,11 @@ public class Servicio extends PersistentEntity{
 	private Integer id;*/
 	@Column
 	private String nombre;
-	@OneToMany
-	private List<Rango> rangoDisponibilidad = new ArrayList<Rango>();
 	@OneToOne
 	private Disponibilidad disponibilidad;
 
 	public Servicio(List<Rango> rango) {
-		this.rangoDisponibilidad = rango;
-		disponibilidad = new Disponibilidad(this.rangoDisponibilidad);
+		disponibilidad = new Disponibilidad(rango);
 	}
 
 	public String getNombre() {
@@ -34,15 +31,15 @@ public class Servicio extends PersistentEntity{
 	}
 
 	public List<Rango> getRango() {
-		return rangoDisponibilidad;
+		return disponibilidad.getRango();
 	}
 
 	public void setRango(List<Rango> rango) {
-		this.rangoDisponibilidad = rango;
+		this.disponibilidad.setDisponibilidad(rango);
 	}
 
 	public void addRango(Rango rango) {
-		this.rangoDisponibilidad.add(rango);
+		this.disponibilidad.addRango(rango);
 	}
 
 	public boolean estaDisponible(DateTime momento) {
