@@ -36,23 +36,30 @@ import spark.Response;
 <span class="nc" id="L36">		String terminal= req.queryParams(&quot;terminal&quot;);</span>
 <span class="nc" id="L37">		String cantidad= req.queryParams(&quot;cantidad&quot;);</span>
 <span class="nc" id="L38">		String desde = req.queryParams(&quot;desde&quot;);</span>
-<span class="nc" id="L39">		String hasta = req.queryParams(&quot;hasta&quot;);</span>
+<span class="nc" id="L39">		String hasta = req.queryParams(&quot;hasta&quot;);		</span>
 		
-<span class="nc" id="L41">		LocalDate fechaDesde = 	convertDate(desde);		</span>
-<span class="nc" id="L42">		LocalDate fechaHasta = 	convertDate(hasta);		</span>
+<span class="nc" id="L41">		LocalDate fechaDesde = 	null;		</span>
+<span class="nc bnc" id="L42" title="All 2 branches missed.">		if (! desde.isEmpty()){</span>
+<span class="nc" id="L43">			fechaDesde = convertDate(desde);		</span>
+		}
+		
+<span class="nc" id="L46">		LocalDate fechaHasta = 	null;		</span>
+<span class="nc bnc" id="L47" title="All 2 branches missed.">		if (! desde.isEmpty()){</span>
+<span class="nc" id="L48">			fechaHasta = convertDate(hasta);		</span>
+		}
 				    
-<span class="nc" id="L44">		int cant = 0;</span>
-<span class="nc bnc" id="L45" title="All 2 branches missed.">		if (! cantidad.isEmpty()){</span>
-<span class="nc" id="L46">			 cant = Integer.parseInt (cantidad);</span>
+<span class="nc" id="L51">		int cant = 0;</span>
+<span class="nc bnc" id="L52" title="All 2 branches missed.">		if (! cantidad.isEmpty()){</span>
+<span class="nc" id="L53">			 cant = Integer.parseInt (cantidad);</span>
 		} 		
 		
-<span class="nc" id="L49">		DatosDeBusquedaRepository repository = SingletonDatosBusquedaRepository.get();</span>
+<span class="nc" id="L56">		DatosDeBusquedaRepository repository = SingletonDatosBusquedaRepository.get();</span>
 		
-<span class="nc" id="L51">		List&lt;DatosDeBusqueda&gt; datosDeBusqueda = repository.filtrar(terminal, cant, fechaDesde, fechaHasta);</span>
+<span class="nc" id="L58">		List&lt;DatosDeBusqueda&gt; datosDeBusqueda = repository.filtrar(terminal, cant, fechaDesde, fechaHasta);</span>
 		
-<span class="nc" id="L53">		model.put(&quot;datosDebusqueda&quot;, datosDeBusqueda);		</span>
+<span class="nc" id="L60">		model.put(&quot;datosDebusqueda&quot;, datosDeBusqueda);		</span>
 		
-<span class="nc" id="L55">		return new ModelAndView(model, &quot;historicoConsultas/listar.hbs&quot;);</span>
+<span class="nc" id="L62">		return new ModelAndView(model, &quot;historicoConsultas/listar.hbs&quot;);</span>
 		
 		//TODO no aparece el nombre ni la fecha en la lista :(
 		
@@ -60,27 +67,27 @@ import spark.Response;
 	
 	private static LocalDate convertDate (String dateToConvert){
 		
-<span class="nc" id="L63">		String date = &quot;&quot;;</span>
+<span class="nc" id="L70">		String date = &quot;&quot;;</span>
 		
 		try {
-<span class="nc" id="L66">			date = java.net.URLDecoder.decode(dateToConvert, &quot;UTF-8&quot;);</span>
+<span class="nc" id="L73">			date = java.net.URLDecoder.decode(dateToConvert, &quot;UTF-8&quot;);</span>
 
-<span class="nc" id="L68">		} catch (UnsupportedEncodingException e) {</span>
-<span class="nc" id="L69">			e.printStackTrace();</span>
-<span class="nc" id="L70">			date = &quot;&quot;;</span>
-<span class="nc" id="L71">		}</span>
+<span class="nc" id="L75">		} catch (UnsupportedEncodingException e) {</span>
+<span class="nc" id="L76">			e.printStackTrace();</span>
+<span class="nc" id="L77">			date = &quot;&quot;;</span>
+<span class="nc" id="L78">		}</span>
 		
-<span class="nc" id="L73">		String[] parts = date.split(&quot;/&quot;);</span>
-<span class="nc" id="L74">		String month = parts[0];</span>
-<span class="nc" id="L75">		String day = parts[1];</span>
-<span class="nc" id="L76">		String year = parts[2];		</span>
+<span class="nc" id="L80">		String[] parts = date.split(&quot;/&quot;);</span>
+<span class="nc" id="L81">		String month = parts[0];</span>
+<span class="nc" id="L82">		String day = parts[1];</span>
+<span class="nc" id="L83">		String year = parts[2];		</span>
 		
-<span class="nc" id="L78">		DateTimeFormatter germanFormatter = DateTimeFormatter.ofLocalizedDate(</span>
-<span class="nc" id="L79">		        FormatStyle.MEDIUM).withLocale(Locale.GERMAN);</span>
+<span class="nc" id="L85">		DateTimeFormatter germanFormatter = DateTimeFormatter.ofLocalizedDate(</span>
+<span class="nc" id="L86">		        FormatStyle.MEDIUM).withLocale(Locale.GERMAN);</span>
 
-<span class="nc" id="L81">		LocalDate dateConverted = LocalDate.parse(day + &quot;.&quot; + month + &quot;.&quot; + year, germanFormatter);</span>
+<span class="nc" id="L88">		LocalDate dateConverted = LocalDate.parse(day + &quot;.&quot; + month + &quot;.&quot; + year, germanFormatter);</span>
     
-<span class="nc" id="L83">		return dateConverted;</span>
+<span class="nc" id="L90">		return dateConverted;</span>
 	}
 	
 	/*public static ModelAndView listarPorTerminal(Request req, Response res) {

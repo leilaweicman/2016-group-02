@@ -18,7 +18,7 @@ tpAnual,grupo2.tpAnual.Repositorios,MemoryComunaRepository,44,0,2,0,8,0,7,0,6,0
 tpAnual,grupo2.tpAnual.Repositorios,SQLObserverRepository,26,25,2,0,6,7,3,4,2,4
 tpAnual,grupo2.tpAnual.Repositorios,MemoryUserRepository,93,17,6,0,9,5,13,3,10,3
 tpAnual,grupo2.tpAnual.Repositorios,SQLUserRepository,83,20,2,0,19,6,8,3,7,3
-tpAnual,grupo2.tpAnual.Repositorios,DatosDeBusqueda,33,55,6,0,5,17,8,7,5,7
+tpAnual,grupo2.tpAnual.Repositorios,DatosDeBusqueda,40,55,10,0,7,17,10,7,5,7
 tpAnual,grupo2.tpAnual.Pois,POI,18,65,1,3,6,22,5,14,4,13
 tpAnual,grupo2.tpAnual.Pois,Banco,27,89,2,0,7,13,6,5,5,5
 tpAnual,grupo2.tpAnual.Pois,CGP,10,81,1,7,3,17,3,10,2,7
@@ -62,7 +62,7 @@ tpAnual,grupo2.tpAnual.Web.Controller,AdministracionPoisController,143,0,0,0,31,
 tpAnual,grupo2.tpAnual.Web.Controller,AdminController,9,0,0,0,2,0,2,0,2,0
 tpAnual,grupo2.tpAnual.Web.Controller,TerminalController,44,0,0,0,10,0,4,0,4,0
 tpAnual,grupo2.tpAnual.Web.Controller,InicioController,31,0,2,0,8,0,4,0,3,0
-tpAnual,grupo2.tpAnual.Web.Controller,HistoricoConsultasController,127,0,2,0,33,0,5,0,4,0
+tpAnual,grupo2.tpAnual.Web.Controller,HistoricoConsultasController,137,0,6,0,37,0,7,0,4,0
 tpAnual,grupo2.tpAnual.Web.Controller,AdministracionTerminalController,483,0,26,0,105,0,27,0,14,0
 tpAnual,grupo2.tpAnual.Observers,ObserverBusqueda,10,7,0,0,3,3,3,2,3,2
 tpAnual,grupo2.tpAnual.Observers,EnviarMailBusqueda,3,29,1,1,2,9,2,2,1,2

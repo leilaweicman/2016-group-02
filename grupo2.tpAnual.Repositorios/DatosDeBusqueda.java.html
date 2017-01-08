@@ -87,7 +87,10 @@ public class DatosDeBusqueda {
 	
 	public Boolean estaEntreFechas(LocalDate fechaDesde, LocalDate fechaHasta){
 		
-<span class="nc bnc" id="L90" title="All 4 branches missed.">		return (this.fecha.isAfter(fechaDesde) &amp;&amp; this.fecha.isBefore(fechaHasta));</span>
+<span class="nc bnc" id="L90" title="All 4 branches missed.">		if (fechaDesde == null || fechaHasta == null) {</span>
+<span class="nc" id="L91">			return false;</span>
+		}
+<span class="nc bnc" id="L93" title="All 4 branches missed.">		return (this.fecha.isAfter(fechaDesde) &amp;&amp; this.fecha.isBefore(fechaHasta));</span>
 		
 	}
 }
