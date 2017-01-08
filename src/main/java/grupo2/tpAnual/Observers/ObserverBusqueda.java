@@ -11,10 +11,10 @@ import grupo2.tpAnual.Repositorios.DatosDeBusqueda;
 import grupo2.tpAnual.Repositorios.Usuario;
 @Entity
 @Inheritance(strategy=InheritanceType.TABLE_PER_CLASS )
-public abstract class ObserverBusqueda extends PersistentEntity{
+public abstract class ObserverBusqueda{
 	
-	/*@Id
-	protected long id;*/
+	@Id
+	protected long id;
 	
 	private String nombre;	
 	
@@ -28,9 +28,9 @@ public abstract class ObserverBusqueda extends PersistentEntity{
 		return this.nombre;
 	}
 	
-	/*public long getId(){
+	public long getId(){
 		return this.id;
-	}*/
+	}
 	
 	public boolean perteneceAUsuario(Usuario usuario){
 		return usuario.tieneObserver(this);
