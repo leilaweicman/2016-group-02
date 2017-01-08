@@ -48,5 +48,9 @@ public class Disponibilidad extends PersistentEntity {
 	public void addRango(Rango rango) {
 <span class="nc" id="L49">		this.rangoDisponibilidad.add(rango);</span>
 <span class="nc" id="L50">	}</span>
+	
+	public List&lt;Rango&gt; getRango(){
+<span class="nc" id="L53">		return this.rangoDisponibilidad;</span>
+	}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>
