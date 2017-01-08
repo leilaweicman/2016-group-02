@@ -28,7 +28,7 @@ public class DatosBusquedaRepositoryMemory /*extends BasicDAO<DatosDeBusqueda, O
 	}
 
 	public List<DatosDeBusqueda> obtenerPorNombre(String nombreTerminal) {
-		return listaDatosDeBusqueda.stream().filter(registro -> registro.getNombre().equals(nombreTerminal)).collect(Collectors.toList());
+		return listaDatosDeBusqueda.stream().filter(registro -> registro.esLaTerminal(nombreTerminal)).collect(Collectors.toList());
 	}
 
 	public List<Integer> obtenerTotalResultadosPorTerminal(String nombreTerminal) {
@@ -40,12 +40,14 @@ public class DatosBusquedaRepositoryMemory /*extends BasicDAO<DatosDeBusqueda, O
 	}
 	
 	public List<DatosDeBusqueda> filtrar(String nombreTerminal, int cantidad, LocalDate desde, LocalDate hasta){
-		return null;
+		return listaDatosDeBusqueda.stream().filter(registro ->registro.esLaTerminal(nombreTerminal) && registro.tieneEstaCantidadDePois(cantidad) ).collect(Collectors.toList());
+		
+		
 	}
 
 	@Override
 	public List<DatosDeBusqueda> cantidadDePois(Integer cantidad) {
-		return listaDatosDeBusqueda.stream().filter(registro -> registro.getCantidadDePois() == cantidad).collect(Collectors.toList());
+		return  listaDatosDeBusqueda.stream().filter(registro -> registro.tieneEstaCantidadDePois(cantidad)).collect(Collectors.toList());
 	}
 
 	

@@ -76,4 +76,12 @@ public class DatosDeBusqueda {
 	public Integer getCantidadDePois(){
 		return cantidadDePois;
 	}
+	
+	public Boolean esLaTerminal(String terminal){
+		return this.getNombre().equals(terminal);
+	}
+	
+	public Boolean tieneEstaCantidadDePois(Integer cantidad){
+		return this.getCantidadDePois() == cantidad;
+	}
 }
