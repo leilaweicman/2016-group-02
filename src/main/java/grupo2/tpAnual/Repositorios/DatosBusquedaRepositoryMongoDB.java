@@ -68,25 +68,12 @@ public class DatosBusquedaRepositoryMongoDB extends BasicDAO<DatosDeBusqueda, Ob
 	public List<DatosDeBusqueda> filtrar(String nombreTerminal, int cantidad, LocalDate desde, LocalDate hasta){
 		
 		//TODO: filtrar por fecha
-
-		//return this.intersection(this.obtenerPorNombre(nombreTerminal), this.cantidadDePois(cantidad));
-		
+	
 		Query<DatosDeBusqueda> query = createQuery().field("cantidadDePois").equal(cantidad).field("nombreTerminal").equal(nombreTerminal);
 		return query.asList();
 	}
 	
-	public <T> List<T> intersection(List<T> list1, List<T> list2) {
-        List<T> list = new ArrayList<T>();
-
-        for (T t : list1) {
-            if(list2.contains(t)) {
-                list.add(t);
-            }
-        }
-        return list;
-   } // si, re sacado de internet
-
-
+	
 	
 	
 }

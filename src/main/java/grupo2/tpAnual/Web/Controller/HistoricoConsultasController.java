@@ -1,13 +1,9 @@
 package grupo2.tpAnual.Web.Controller;
 
 import java.io.UnsupportedEncodingException;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -44,9 +40,7 @@ public class HistoricoConsultasController {
 		
 		LocalDate fechaDesde = 	convertDate(desde);		
 		LocalDate fechaHasta = 	convertDate(hasta);		
-		
-		System.out.print(fechaDesde + " " + fechaHasta);
-		    
+				    
 		int cant = 0;
 		if (! cantidad.isEmpty()){
 			 cant = Integer.parseInt (cantidad);
@@ -54,9 +48,7 @@ public class HistoricoConsultasController {
 		
 		DatosDeBusquedaRepository repository = SingletonDatosBusquedaRepository.get();
 		
-		//List<DatosDeBusqueda> datosDeBusqueda = DatosBusquedaRepositoryMongoDB.instancia.obtenerPorNombre(terminal);
-
-		List<DatosDeBusqueda> datosDeBusqueda = repository.filtrar(terminal, cant, LocalDate.now(), LocalDate.now().minusDays(1));
+		List<DatosDeBusqueda> datosDeBusqueda = repository.filtrar(terminal, cant, fechaDesde, fechaHasta);
 		
 		model.put("datosDebusqueda", datosDeBusqueda);		
 		

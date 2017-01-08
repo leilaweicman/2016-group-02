@@ -84,4 +84,10 @@ public class DatosDeBusqueda {
 	public Boolean tieneEstaCantidadDePois(Integer cantidad){
 		return this.getCantidadDePois() == cantidad;
 	}
+	
+	public Boolean estaEntreFechas(LocalDate fechaDesde, LocalDate fechaHasta){
+		
+		return (this.fecha.isAfter(fechaDesde) && this.fecha.isBefore(fechaHasta));
+		
+	}
 }

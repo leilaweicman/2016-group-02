@@ -40,8 +40,7 @@ public class DatosBusquedaRepositoryMemory /*extends BasicDAO<DatosDeBusqueda, O
 	}
 	
 	public List<DatosDeBusqueda> filtrar(String nombreTerminal, int cantidad, LocalDate desde, LocalDate hasta){
-		return listaDatosDeBusqueda.stream().filter(registro ->registro.esLaTerminal(nombreTerminal) && registro.tieneEstaCantidadDePois(cantidad) ).collect(Collectors.toList());
-		
+		return listaDatosDeBusqueda.stream().filter(registro ->registro.esLaTerminal(nombreTerminal) && registro.tieneEstaCantidadDePois(cantidad)&& registro.estaEntreFechas(desde, hasta) ).collect(Collectors.toList());
 		
 	}
 
