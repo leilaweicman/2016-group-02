@@ -34,6 +34,7 @@ public class Router {
 		Spark.get("/admin/terminal/eliminar/:id", AdministracionTerminalController::eliminar, engine);
 		Spark.get("/admin/terminal/info/:id", AdministracionTerminalController::info, engine);
 		Spark.get("/admin/terminal/agregar", AdministracionTerminalController::crear, engine);
+		//Spark.get("/admin/terminal/agregar/:error", AdministracionTerminalController::crear, engine);
 
 		Spark.get("/admin/pois/editarPut", AdministracionPoisController::editarPut, engine);
 

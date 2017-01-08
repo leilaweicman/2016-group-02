@@ -11,7 +11,7 @@
 
 		
 	<div class="row">
-		<div class="form-group col-md-6 col-md-offset-3" style="float:left">
+		<div class="form-group col-md-6" style="float:left; padding-left: 0px;">
 			<form action="/admin/terminal" method="get">
 				<label for="comuna">Numero de comuna</label>
 				<select id="comuna" name="comuna" class="form-control">
@@ -25,6 +25,7 @@
 						<option value="{{numeroComuna}}" name="{{numeroComuna}}" id="{{numeroComuna}}">{{numeroComuna}}</option>
 					{{/each}}
 				</select>
+				<br>
 				<button type="submit" class="btn btn-primary">Filtrar</button>
 			</form>	
 		</div>

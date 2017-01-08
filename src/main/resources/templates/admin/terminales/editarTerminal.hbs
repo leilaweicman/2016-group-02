@@ -16,7 +16,14 @@
 				<br>
 				<div>
 					<label for="nombre">Numero de comuna</label>
-					<input type="text" class="form-control" name="comuna" id="comuna" value="{{user.comuna.numeroComuna}}" placeholder"{{terminal.comuna.numeroComuna}}"/>
+					<select id="comuna" name="comuna" class="form-control">
+						{{#if user}}
+							<option value="{{user.comuna.numeroComuna}}" selected name="{{user.comuna.numeroComuna}}" id="{{user.comuna.numeroComuna}}">{{user.comuna.numeroComuna}}</option>
+						{{/if}}
+						{{#each comunas}}
+							<option value="{{numeroComuna}}" name="{{numeroComuna}}" id="{{numeroComuna}}">{{numeroComuna}}</option>
+						{{/each}}
+					</select>
 				</div>
 				<br>
 				<div id="acciones">

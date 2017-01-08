@@ -78,6 +78,10 @@ public class AdministracionTerminalController {
 		ObserversRepository repo = SingletonObserverRepository.get();
 		List<ObserverBusqueda> accionesDisponibles = repo.getObservers();
 		
+		ComunaRepository repoComunas = SingletonComunaRepository.get();
+		List<Comuna> comunas = repoComunas.getComunas();
+		
+		model.put("comunas", comunas);
 		model.put("accionesDisponibles", accionesDisponibles);
 		return new ModelAndView(model, "admin/terminales/editarTerminal.hbs");
 		
@@ -116,34 +120,34 @@ public class AdministracionTerminalController {
 		Map<String, Object> model = new HashMap<>();
 		
 		long id = Long.parseLong(req.params("id"));
-		
+				
 		UserRepository usuarios = SingletonUserRepository.get();
 		
 		Usuario user = usuarios.getUsuarioById(id);
 		
+		ComunaRepository repoComunas = SingletonComunaRepository.get();
+		List<Comuna> comunas = repoComunas.getComunas();
+		List<Comuna> comunasAMostrar = new ArrayList<Comuna>();
+		int comunaUsuario = user.getComuna().getNumeroComuna();
+		comunasAMostrar = comunas.stream().filter(comu -> (comu.getNumeroComuna()!= comunaUsuario)).collect(Collectors.toList());
+			
 		ObserversRepository repo = SingletonObserverRepository.get();
 		List<ObserverBusqueda> accionesDisponibles = new ArrayList<ObserverBusqueda>();//repo.getObservers();
 
 		List<ObserverBusqueda> acciones = repo.getObservers();
 		List<ObserverBusqueda> accionesUsuario = user.getAccionesBusqueda();
-		acciones.stream().forEach(action->meterEnPrueba(action, accionesDisponibles, user));
+		accionesDisponibles = acciones.stream().filter(action->(!user.tieneObserver(action))).collect(Collectors.toList());
 		//comento la sig linea porque el removeAll lo hace al repo y no tiene sentido que haga eso
 		//accionesDisponibles.removeAll(accionesUsuario);
 		
 		model.put("user", user);
+		model.put("comunas", comunasAMostrar);
 		model.put("accionesDisponibles", accionesDisponibles);
 		model.put("accionesUsuario", accionesUsuario);
 		return new ModelAndView(model, "admin/terminales/editarTerminal.hbs");
 		
 	}
 
-
-	 public static void meterEnPrueba(ObserverBusqueda obs, List<ObserverBusqueda>prueba, Usuario user){
-		 //aprox que esta funcion es un filter pero con el filter no funcionaba
-		 if(!user.tieneObserver(obs)){
-			 prueba.add(obs);
-		 }
-	 }
 	public static ModelAndView guardar(Request req, Response res) {
 		
 		UserRepository usuarios = SingletonUserRepository.get();
@@ -156,6 +160,7 @@ public class AdministracionTerminalController {
 			user = usuarios.getUsuarioById(id);
 		}
 		String nombre = req.queryParams("nombre");
+		System.out.println("nom "+nombre);
 		int numeroComuna = Integer.parseInt(req.queryParams("comuna"));
 		
 		ComunaRepository comunas = SingletonComunaRepository.get();
@@ -183,29 +188,5 @@ public class AdministracionTerminalController {
 			user.setAccionBusqueda(observer);
 		}
 	}
-	
-	
-	/* PARA NO OLVIDARME
-	 * cada href de cada row deberia tener una forma de agarrar el id de la 
-	 * terminal para poder editarla o eliminarla
-	 * 
-	 * no me agarra mi css
-	 * 
-	 * que onda con los repos, me tira null pointer exception, por eso harcodee
-	 * 
-	 * para editar, como es otra vista deberia hacer otro controller o desde este 
-	 * mismo puedo meter un metodo editar que muestre otro .hbs?
-	 * 
-	 * ver por qeu si pongo href="/admin/terminal" tira 404 not found cuando en el router esta 
-	 * puesto para que redireccione, con ? al final si funciona
-	 * 
-	 * tiene qeu estar hecho lo del repo para poder testearlo bien porque solo en la bd se crea
-	 * el id para poder editarlo 
-	 * 
-	 * en base a la pregunta anterior, entonces, esto no funcionaria si no hay bd?
-	 * 
-	 * ver si en el model.put solo puedo mandar listas o si puedo mandar una sola cosa
-	 * creo que puedo mandar una sola cosa tipo un usuario, pero no se como tomar sus atributos
-	 */
-	
+		
 }
