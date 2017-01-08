@@ -7,10 +7,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import grupo2.tpAnual.PersistentEntity;
+
 @Entity @Embeddable
-public class Direccion {
-	@Id @GeneratedValue
-	private long id;
+public class Direccion extends PersistentEntity {
+	/*@Id @GeneratedValue
+	private long id;*/
 	@Column
 	private String calle;
 	@Column
