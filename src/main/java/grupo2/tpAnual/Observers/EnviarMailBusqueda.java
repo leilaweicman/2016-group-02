@@ -27,7 +27,7 @@ public class EnviarMailBusqueda extends ObserverBusqueda {
 		this.tiempoMaximo = tiempoMaximoDeEjecucion;
 		this.mailSender = mailsender;
 		this.mailAdministrador = mailAdministrador;
-		generarId();
+		this.id=2;
 	}
 
 	@Override
