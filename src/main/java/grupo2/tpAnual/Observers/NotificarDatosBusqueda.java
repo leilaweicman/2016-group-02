@@ -25,7 +25,7 @@ public class NotificarDatosBusqueda extends ObserverBusqueda {
 			this.register= new DatosBusquedaRepositoryMongoDB(DatosDeBusqueda.class,morphia.getDatastore());
 			morphia = new MorphiaService();
 		}
-		this.id=1;
+		generarId();
 	}
 
 	@Override
