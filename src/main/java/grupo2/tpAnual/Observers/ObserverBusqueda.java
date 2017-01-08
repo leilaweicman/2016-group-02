@@ -6,11 +6,12 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 
+import grupo2.tpAnual.PersistentEntity;
 import grupo2.tpAnual.Repositorios.DatosDeBusqueda;
 import grupo2.tpAnual.Repositorios.Usuario;
 @Entity
 @Inheritance(strategy=InheritanceType.TABLE_PER_CLASS )
-public abstract class ObserverBusqueda{
+public abstract class ObserverBusqueda extends PersistentEntity{
 	
 	@Id
 	protected long id;
