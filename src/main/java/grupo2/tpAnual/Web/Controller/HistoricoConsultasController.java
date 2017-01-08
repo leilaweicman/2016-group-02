@@ -1,8 +1,16 @@
 package grupo2.tpAnual.Web.Controller;
 
+import java.io.UnsupportedEncodingException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import grupo2.tpAnual.Repositorios.DatosBusquedaRepositoryMongoDB;
@@ -31,7 +39,42 @@ public class HistoricoConsultasController {
 				
 		String terminal= req.queryParams("terminal");
 		String cantidad= req.queryParams("cantidad");
-		int cant = 15;
+		String desde = req.queryParams("desde");
+		String hasta = req.queryParams("hasta");
+		
+		String fechaDesde = "";
+		String fechaHasta = "";
+		
+		try {
+			fechaHasta = java.net.URLDecoder.decode(hasta, "UTF-8");
+			fechaDesde = java.net.URLDecoder.decode(desde, "UTF-8");
+
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+			fechaDesde = "";
+			fechaHasta= "";
+		}
+		
+		String[] parts = fechaDesde.split("/");
+		String mesDesde = parts[0];
+		String diaDesde = parts[1];
+		String anioDesde = parts[2];
+		
+		String[] partsHasta = fechaHasta.split("/");
+		String mesHasta = partsHasta[0];
+		String diaHasta = partsHasta[1];
+		String anioHasta = partsHasta[2];
+		
+		DateTimeFormatter germanFormatter = DateTimeFormatter.ofLocalizedDate(
+		        FormatStyle.MEDIUM).withLocale(Locale.GERMAN);
+
+		LocalDate dateDesde = LocalDate.parse(diaDesde + "." + mesDesde + "." + anioDesde, germanFormatter);
+		LocalDate dateHasta = LocalDate.parse(diaHasta + "." + mesHasta + "." + anioHasta, germanFormatter);
+    
+		
+		//System.out.print(dateHasta);
+		    
+		int cant = 0;
 		if (! cantidad.isEmpty()){
 			 cant = Integer.parseInt (cantidad);
 		} 		
