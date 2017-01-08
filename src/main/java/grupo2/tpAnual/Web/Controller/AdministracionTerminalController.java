@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.uqbar.geodds.Point;
 
@@ -32,37 +33,33 @@ public class AdministracionTerminalController {
 		List<Usuario> terminales = repo.getUsauriosTerminal();
 		List<Usuario> terminalesFiltradas = new ArrayList<Usuario>();
 
-		int comuna =-1;
+		int comuna =-1; //si es -1 significa que son todas las comunas
 		boolean seleccionada;
 		
 		ComunaRepository repoComunas = SingletonComunaRepository.get();
 		List<Comuna> comunas = repoComunas.getComunas();
+		List<Comuna> comunasAMostrar = new ArrayList<Comuna>();
+		/*
+		 * tengo comunas y comunasAMostrar porque si hago comunas.remove(object) me lo borra del repo
+		 * entonces cada vez que filtro por una comuna distinta se me borra del repo
+		 */
 		
-		System.out.println(String.valueOf(req.queryParams("comuna")));
-		
-		if (req.queryParams("comuna")!=null){
+		if (req.queryParams("comuna")!=null && (Integer.valueOf(req.queryParams("comuna"))!=-1)){
 			int comunaSeleccionada = Integer.valueOf(req.queryParams("comuna"));
 			comuna = comunaSeleccionada;
 			seleccionada = true;
-			if (comunaSeleccionada != -1){
-				//lo hago asi porque con el repo.getUsuariosByComuna tira un null pointer exception que no entiendo
-				terminales.stream().forEach(terminal -> filtrarPorComuna(terminal, comunaSeleccionada, terminalesFiltradas));
-				model.put("terminales", terminalesFiltradas);
-			}
+			//lo hago asi porque con el repo.getUsuariosByComuna tira un null pointer exception que no entiendo
+			terminales.stream().forEach(terminal -> filtrarPorComuna(terminal, comunaSeleccionada, terminalesFiltradas));
+			model.put("terminales", terminalesFiltradas);
+			comunasAMostrar = comunas.stream().filter(comu -> (comu.getNumeroComuna()!= comunaSeleccionada)).collect(Collectors.toList());
+			//comunas.remove(repoComunas.getComunaByNumero(comunaSeleccionada));
+			
 		} else {
 			seleccionada = false;
 			model.put("terminales", terminales);
+			comunasAMostrar = comunas;
 		}
-		
-		/*
-		 * en administacion de terminales:
-		 * pasar por el model una variable "seleccionada" que sea bool
-		 * if(seleccionada) pongo como selected "comunaSeleccionada" y la tengo que haber sacado de comunas
-		 * else pongo como selected "todas las comunas"
-		 */
-		
-		//model.put("terminales", terminales);
-		model.put("comunas", comunas);
+		model.put("comunas", comunasAMostrar);
 		model.put("numeroComuna", comuna);
 		model.put("seleccionada", seleccionada);
 		return new ModelAndView(model, "admin/terminales/administracionTerminal.hbs");
@@ -74,23 +71,7 @@ public class AdministracionTerminalController {
 			filtradas.add(terminal);
 		}
 	}
-	
-	public static ModelAndView filtrar(Request req, Response res){
-		Map<String, Object> model = new HashMap<>();
-		/*
-		 * tengo que agarrar el numero de comuna del select de alguna manera
-		 * de ultima lo agarro como los checks
-		 */
-		int numeroComuna =1;
-		UserRepository repoUsuarios = SingletonUserRepository.get();
-		List<Usuario> terminales = repoUsuarios.getUsauriosTerminal();
 		
-
-		model.put("terminales", terminales.stream().filter(terminal->terminal.getComuna().getNumeroComuna()==numeroComuna));
-		return new ModelAndView(model, "admin/terminales/administracionTerminal.hbs");
-	}
-	
-	
 	public static ModelAndView crear(Request req, Response res) {
 		Map<String, Object> model = new HashMap<>();
 					
@@ -167,8 +148,6 @@ public class AdministracionTerminalController {
 		
 		UserRepository usuarios = SingletonUserRepository.get();
 		Usuario user;
-		
-		System.out.println("value id ."+String.valueOf(req.queryParams("id"))+".");
 
 		if(String.valueOf(req.queryParams("id")).equals("")){
 			user = new Usuario();
@@ -184,8 +163,6 @@ public class AdministracionTerminalController {
 		
 		ObserversRepository repoAcciones = SingletonObserverRepository.get();
 		List<ObserverBusqueda> acciones = repoAcciones.getObservers();
-		System.out.println("size "+String.valueOf(acciones.size()));
-		acciones.stream().forEach(accion -> System.out.println("flags: "+String.valueOf((req.queryParams(String.valueOf(accion.getId()))))));	
 		acciones.stream().forEach(accion-> editarAcciones(accion, user, req));
 		
 		user.setNombre(nombre);
@@ -202,10 +179,8 @@ public class AdministracionTerminalController {
 
 		if(user.tieneObserver(observer)&& !flag.equals("on")){
 			user.quitarAccionBusqueda(observer);
-			System.out.println(flag);
 		} else if(!user.tieneObserver(observer) && flag.equals("on")){
 			user.setAccionBusqueda(observer);
-			System.out.println(flag);
 		}
 	}
 	

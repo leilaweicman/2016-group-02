@@ -15,7 +15,12 @@
 			<form action="/admin/terminal" method="get">
 				<label for="comuna">Numero de comuna</label>
 				<select id="comuna" name="comuna" class="form-control">
-					<option value="-1" name="-1" id="-1">Todas las comunas</option>
+					{{#if seleccionada}}
+						<option value="{{numeroComuna}}" selected name="{{numeroComuna}}" id="{{numeroComuna}}">{{numeroComuna}}</option>
+						<option value="-1" name="-1" id="-1">Todas las comunas</option>						
+					{{else}}
+						<option value="-1" name="-1" selected id="-1">Todas las comunas</option>
+					{{/if}}
 					{{#each comunas}}
 						<option value="{{numeroComuna}}" name="{{numeroComuna}}" id="{{numeroComuna}}">{{numeroComuna}}</option>
 					{{/each}}
