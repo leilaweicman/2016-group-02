@@ -26,7 +26,7 @@ import grupo2.tpAnual.Pois.POI;
 <span class="fc" id="L26">		entityManager().persist(poi);</span>
 <span class="fc" id="L27">	}</span>
 
-	public void darDeBajaPOI(Integer id) {
+	public void darDeBajaPOI(long id) {
 <span class="nc" id="L30">		List&lt;POI&gt; pois = new ArrayList&lt;POI&gt;();</span>
 <span class="nc" id="L31">		pois = entityManager().createQuery(&quot;from POI where id = :id&quot;, POI.class).setParameter(&quot;id&quot;, id).getResultList();</span>
 <span class="nc" id="L32">		pois.forEach(poi -&gt; entityManager().remove(poi));</span>
@@ -41,7 +41,7 @@ import grupo2.tpAnual.Pois.POI;
 	}
 	
 	@Override
-	public POI buscarPorId(Integer id){
+	public POI buscarPorId(long id){
 <span class="nc" id="L45">		List&lt;POI&gt; pois =  entityManager().createQuery(&quot;from POI where id= :id&quot;, POI.class).setParameter(&quot;id&quot;, id).getResultList(); </span>
 <span class="nc bnc" id="L46" title="All 2 branches missed.">		if(pois.size()&gt; 0){</span>
 <span class="nc" id="L47">			return pois.get(0);</span>

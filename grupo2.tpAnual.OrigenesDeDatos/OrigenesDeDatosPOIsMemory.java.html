@@ -29,8 +29,8 @@ public class OrigenesDeDatosPOIsMemory extends OrigenesDeDatosPOIs {
 <span class="fc" id="L29">		pois.add(poi);</span>
 <span class="fc" id="L30">	}</span>
 
-	public void darDeBajaPOI(Integer id) {
-<span class="fc" id="L33">		this.pois.removeIf(poi -&gt; poi.getId().equals(id));</span>
+	public void darDeBajaPOI(long id) {
+<span class="fc bfc" id="L33" title="All 2 branches covered.">		this.pois.removeIf(poi -&gt; poi.getId()==id);</span>
 <span class="fc" id="L34">	}</span>
 
 	@Override
@@ -41,8 +41,8 @@ public class OrigenesDeDatosPOIsMemory extends OrigenesDeDatosPOIs {
 	}
 	
 	@Override
-	public POI buscarPorId(Integer id){
-<span class="nc" id="L45">		List&lt;POI&gt; pois = this.pois.stream().filter(poi -&gt; poi.getId().equals(id)).collect(Collectors.toList());</span>
+	public POI buscarPorId(long id){
+<span class="nc bnc" id="L45" title="All 2 branches missed.">		List&lt;POI&gt; pois = this.pois.stream().filter(poi -&gt; poi.getId()==id).collect(Collectors.toList());</span>
 <span class="nc bnc" id="L46" title="All 2 branches missed.">		if(pois.size()&gt; 0){</span>
 <span class="nc" id="L47">			return pois.get(0);</span>
 		}
