@@ -29,6 +29,8 @@ public class AdministracionTerminalController {
 	public static ModelAndView get(Request req, Response res) {
 		Map<String, Object> model = new HashMap<>();
 		
+		int success = Integer.valueOf(req.params("status"));
+
 		UserRepository repo = SingletonUserRepository.get();
 		List<Usuario> terminales = repo.getUsauriosTerminal();
 		List<Usuario> terminalesFiltradas = new ArrayList<Usuario>();
@@ -59,6 +61,8 @@ public class AdministracionTerminalController {
 			model.put("terminales", terminales);
 			comunasAMostrar = comunas;
 		}
+		
+		model.put("success", success);
 		model.put("comunas", comunasAMostrar);
 		model.put("numeroComuna", comuna);
 		model.put("seleccionada", seleccionada);
@@ -74,13 +78,17 @@ public class AdministracionTerminalController {
 		
 	public static ModelAndView crear(Request req, Response res) {
 		Map<String, Object> model = new HashMap<>();
-					
+		
+		int error = Integer.valueOf(req.params("status"));
+	
 		ObserversRepository repo = SingletonObserverRepository.get();
 		List<ObserverBusqueda> accionesDisponibles = repo.getObservers();
 		
 		ComunaRepository repoComunas = SingletonComunaRepository.get();
 		List<Comuna> comunas = repoComunas.getComunas();
 		
+		model.put("error", error);
+
 		model.put("comunas", comunas);
 		model.put("accionesDisponibles", accionesDisponibles);
 		return new ModelAndView(model, "admin/terminales/editarTerminal.hbs");
@@ -112,12 +120,14 @@ public class AdministracionTerminalController {
 		Usuario usuario = repoUsuarios.getUsuarioById(id);
 		repoUsuarios.deleteUsuario(usuario);
 		
-		res.redirect("/admin/terminal");
+		res.redirect("/admin/terminal/1");
 		return null;
 	}
 	
 	public static ModelAndView editar(Request req, Response res) {
 		Map<String, Object> model = new HashMap<>();
+		
+		int error = Integer.valueOf(req.params("status"));
 		
 		long id = Long.parseLong(req.params("id"));
 				
@@ -140,6 +150,7 @@ public class AdministracionTerminalController {
 		//comento la sig linea porque el removeAll lo hace al repo y no tiene sentido que haga eso
 		//accionesDisponibles.removeAll(accionesUsuario);
 		
+		model.put("error", error);
 		model.put("user", user);
 		model.put("comunas", comunasAMostrar);
 		model.put("accionesDisponibles", accionesDisponibles);
@@ -155,9 +166,17 @@ public class AdministracionTerminalController {
 
 		if(String.valueOf(req.queryParams("id")).equals("")){
 			user = new Usuario();
+			if (req.queryParams("nombre").isEmpty()){
+				res.redirect("/admin/terminal/agregar/1");
+				return null;
+			}
 		} else {
 			long id = Long.parseLong(req.queryParams("id"));
 			user = usuarios.getUsuarioById(id);
+			if (req.queryParams("nombre").isEmpty()){
+				res.redirect("/admin/terminal/editar/"+String.valueOf(id)+"/1");
+				return null;
+			}
 		}
 		String nombre = req.queryParams("nombre");
 		System.out.println("nom "+nombre);
@@ -175,7 +194,7 @@ public class AdministracionTerminalController {
 		
 		usuarios.updateUsuario(user);
 	
-		res.redirect("/admin/terminal");
+		res.redirect("/admin/terminal/1");
 		return null;
 	}
 

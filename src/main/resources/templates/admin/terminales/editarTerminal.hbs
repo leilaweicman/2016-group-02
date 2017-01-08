@@ -3,52 +3,59 @@
 {{/partial}}
 {{#partial "editarTerminales"}}
 
-	<div class="row">
-		<div class="col-md-6 col-md-offset-3">
-				<form action="/admin/terminal/guardar" method="post">
-				
-				<input type="hidden" name="id" id="id" value="{{user.id}}">
-				
-				<div>
-					<label for="nombre">Nombre</label>
-					<input type="text" class="form-control" name="nombre" id="nombre" value="{{user.nombre}}" placeholder="{{terminal.nombre}}"/>
-				</div>
-				<br>
-				<div>
-					<label for="nombre">Numero de comuna</label>
-					<select id="comuna" name="comuna" class="form-control">
-						{{#if user}}
-							<option value="{{user.comuna.numeroComuna}}" selected name="{{user.comuna.numeroComuna}}" id="{{user.comuna.numeroComuna}}">{{user.comuna.numeroComuna}}</option>
-						{{/if}}
-						{{#each comunas}}
-							<option value="{{numeroComuna}}" name="{{numeroComuna}}" id="{{numeroComuna}}">{{numeroComuna}}</option>
-						{{/each}}
-					</select>
-				</div>
-				<br>
-				<div id="acciones">
-					<label>Acciones</label>
-					
-					{{#each accionesUsuario}}
-						<div class="checkbox">
-							<label><input type="checkbox" id="{{id}}" name="{{id}}" checked="checked">{{nombre}}</label>
-						</div>
-					{{/each}}
-					{{#each accionesDisponibles}}
-						<div class="checkbox">
-							<label><input type="checkbox" id="{{id}}" name="{{id}}">{{nombre}}</label>
-						</div>
-					{{/each}}
-				
-				</div>
-												
-				<button type="submit" class="btn btn-primary">Guardar</button>
-				
-				<a href="/admin/terminal" class="btn btn-primary">Cancelar</a>
+<div class="row">
+	
+	<div class="col-md-6 col-md-offset-3">
 
-			</form>	
-		</div>
-	</div>		
+		{{#if error}}	
+			<div class="alert alert-danger">
+				<strong>Error!</strong> Complete todos los campos por favor.
+			</div>
+		{{/if}}
+		
+		<form action="/admin/terminal/guardar" method="post">
+			<input type="hidden" name="id" id="id" value="{{user.id}}">
+			
+			<div>
+				<label for="nombre">Nombre</label>
+				<input type="text" class="form-control" name="nombre" id="nombre" value="{{user.nombre}}" placeholder="{{terminal.nombre}}"/>
+			</div>
+			<br>
+			<div>
+				<label for="nombre">Numero de comuna</label>
+				<select id="comuna" name="comuna" class="form-control">
+					{{#if user}}
+						<option value="{{user.comuna.numeroComuna}}" selected name="{{user.comuna.numeroComuna}}" id="{{user.comuna.numeroComuna}}">{{user.comuna.numeroComuna}}</option>
+					{{/if}}
+					{{#each comunas}}
+						<option value="{{numeroComuna}}" name="{{numeroComuna}}" id="{{numeroComuna}}">{{numeroComuna}}</option>
+					{{/each}}
+				</select>
+			</div>
+			<br>
+			<div id="acciones">
+				<label>Acciones</label>
+				
+				{{#each accionesUsuario}}
+					<div class="checkbox">
+						<label><input type="checkbox" id="{{id}}" name="{{id}}" checked="checked">{{nombre}}</label>
+					</div>
+				{{/each}}
+				{{#each accionesDisponibles}}
+					<div class="checkbox">
+						<label><input type="checkbox" id="{{id}}" name="{{id}}">{{nombre}}</label>
+					</div>
+				{{/each}}
+			
+			</div>
+											
+			<button type="submit" class="btn btn-primary">Guardar</button>
+			
+			<a href="/admin/terminal/0" class="btn btn-primary">Cancelar</a>
+
+		</form>	
+	</div>
+</div>		
 			
 {{/partial}}
 {{>admin.hbs}}

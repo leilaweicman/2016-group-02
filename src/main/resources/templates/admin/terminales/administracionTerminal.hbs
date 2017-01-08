@@ -3,16 +3,17 @@
 {{/partial}}
 
 {{#partial "listarTerminales"}}
-	<!--<head>
-		<title>Administracion terminales</title>
-    	<link rel="stylesheet"  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    	<link rel="stylesheet"  href="/css/administracionTerminales.css">
-	</head>-->
-
-		
-	<div class="row">
+<div class= row>
+	<div class="col-md-6 col-md-offset-3">
+	
+		{{#if success}}	
+			<div class="alert alert-success">
+				Los cambios se guardron correctamente.
+			</div>
+		{{/if}}
+			
 		<div class="form-group col-md-6" style="float:left; padding-left: 0px;">
-			<form action="/admin/terminal" method="get">
+			<form action="/admin/terminal/0" method="get">
 				<label for="comuna">Numero de comuna</label>
 				<select id="comuna" name="comuna" class="form-control">
 					{{#if seleccionada}}
@@ -29,13 +30,10 @@
 				<button type="submit" class="btn btn-primary">Filtrar</button>
 			</form>	
 		</div>
-		<div class="agregarTerminal" style="float: right;border: 1px solid;border-radius: 5px;padding: 7px;">
+		<div class="btn btn-primary" style="float: right; margin-top:25px;">
 			<!--boton de agregar terminal-->
-			<a href="/admin/terminal/agregar">Agregar terminal</a>
+			<a href="/admin/terminal/agregar/0" style="color:#fff;">Agregar terminal</a>
 		</div>	
-	</div>
-	
-	<div class="row">
 		<table class="table table-striped">
 			<tr class="first-row">
 				<th  style="border-top: none">Nombre</th>
@@ -48,12 +46,12 @@
 					<td>{{nombre}}</td>
 					<td>{{comuna.numeroComuna}}</td>
 					<td><a href="/admin/terminal/info/{{id}}">Ver mas</a><td>
-					<td><a href="/admin/terminal/editar/{{id}}">Editar</a><td>
+					<td><a href="/admin/terminal/editar/{{id}}/0">Editar</a><td>
 					<td><a href="/admin/terminal/eliminar/{{id}}">Eliminar</a><td>
 				</tr>
 			{{/each}}
 		</table>
 	</div>
-		
+</div>	
 {{/partial}}
 {{>admin.hbs}}
