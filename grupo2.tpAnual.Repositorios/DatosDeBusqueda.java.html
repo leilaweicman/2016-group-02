@@ -84,5 +84,11 @@ public class DatosDeBusqueda {
 	public Boolean tieneEstaCantidadDePois(Integer cantidad){
 <span class="nc bnc" id="L85" title="All 2 branches missed.">		return this.getCantidadDePois() == cantidad;</span>
 	}
+	
+	public Boolean estaEntreFechas(LocalDate fechaDesde, LocalDate fechaHasta){
+		
+<span class="nc bnc" id="L90" title="All 4 branches missed.">		return (this.fecha.isAfter(fechaDesde) &amp;&amp; this.fecha.isBefore(fechaHasta));</span>
+		
+	}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

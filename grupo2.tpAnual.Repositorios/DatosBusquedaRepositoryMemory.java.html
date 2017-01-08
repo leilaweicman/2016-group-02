@@ -40,14 +40,13 @@ public class DatosBusquedaRepositoryMemory /*extends BasicDAO&lt;DatosDeBusqueda
 	}
 	
 	public List&lt;DatosDeBusqueda&gt; filtrar(String nombreTerminal, int cantidad, LocalDate desde, LocalDate hasta){
-<span class="nc bnc" id="L43" title="All 4 branches missed.">		return listaDatosDeBusqueda.stream().filter(registro -&gt;registro.esLaTerminal(nombreTerminal) &amp;&amp; registro.tieneEstaCantidadDePois(cantidad) ).collect(Collectors.toList());</span>
-		
+<span class="nc bnc" id="L43" title="All 6 branches missed.">		return listaDatosDeBusqueda.stream().filter(registro -&gt;registro.esLaTerminal(nombreTerminal) &amp;&amp; registro.tieneEstaCantidadDePois(cantidad)&amp;&amp; registro.estaEntreFechas(desde, hasta) ).collect(Collectors.toList());</span>
 		
 	}
 
 	@Override
 	public List&lt;DatosDeBusqueda&gt; cantidadDePois(Integer cantidad) {
-<span class="nc" id="L50">		return  listaDatosDeBusqueda.stream().filter(registro -&gt; registro.tieneEstaCantidadDePois(cantidad)).collect(Collectors.toList());</span>
+<span class="nc" id="L49">		return  listaDatosDeBusqueda.stream().filter(registro -&gt; registro.tieneEstaCantidadDePois(cantidad)).collect(Collectors.toList());</span>
 	}
 
 	

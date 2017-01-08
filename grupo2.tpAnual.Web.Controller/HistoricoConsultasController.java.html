@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>HistoricoConsultasController.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tpAnual</a> &gt; <a href="index.source.html" class="el_package">grupo2.tpAnual.Web.Controller</a> &gt; <span class="el_source">HistoricoConsultasController.java</span></div><h1>HistoricoConsultasController.java</h1><pre class="source lang-java linenums">package grupo2.tpAnual.Web.Controller;
 
 import java.io.UnsupportedEncodingException;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -21,46 +17,42 @@ import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
-<span class="nc" id="L24">public class HistoricoConsultasController {</span>
+<span class="nc" id="L20">public class HistoricoConsultasController {</span>
 	
 	public static ModelAndView get(Request req, Response res) {
-<span class="nc" id="L27">		Map&lt;String, List&lt;DatosDeBusqueda&gt;&gt; model = new HashMap&lt;&gt;();</span>
-<span class="nc" id="L28">		List&lt;DatosDeBusqueda&gt; datosDeBusqueda = DatosBusquedaRepositoryMongoDB.instancia.consultarDatos();</span>
+<span class="nc" id="L23">		Map&lt;String, List&lt;DatosDeBusqueda&gt;&gt; model = new HashMap&lt;&gt;();</span>
+<span class="nc" id="L24">		List&lt;DatosDeBusqueda&gt; datosDeBusqueda = DatosBusquedaRepositoryMongoDB.instancia.consultarDatos();</span>
 		
-<span class="nc" id="L30">		model.put(&quot;datosDebusqueda&quot;, datosDeBusqueda);</span>
+<span class="nc" id="L26">		model.put(&quot;datosDebusqueda&quot;, datosDeBusqueda);</span>
 		
-<span class="nc" id="L32">		return new ModelAndView(model, &quot;historicoConsultas/historico.hbs&quot;);</span>
+<span class="nc" id="L28">		return new ModelAndView(model, &quot;historicoConsultas/historico.hbs&quot;);</span>
 		
 	}
 	
 	public static ModelAndView listar(Request req, Response res) {
 		
-<span class="nc" id="L38">		Map&lt;String, List&lt;DatosDeBusqueda&gt;&gt; model = new HashMap&lt;&gt;();</span>
+<span class="nc" id="L34">		Map&lt;String, List&lt;DatosDeBusqueda&gt;&gt; model = new HashMap&lt;&gt;();</span>
 				
-<span class="nc" id="L40">		String terminal= req.queryParams(&quot;terminal&quot;);</span>
-<span class="nc" id="L41">		String cantidad= req.queryParams(&quot;cantidad&quot;);</span>
-<span class="nc" id="L42">		String desde = req.queryParams(&quot;desde&quot;);</span>
-<span class="nc" id="L43">		String hasta = req.queryParams(&quot;hasta&quot;);</span>
+<span class="nc" id="L36">		String terminal= req.queryParams(&quot;terminal&quot;);</span>
+<span class="nc" id="L37">		String cantidad= req.queryParams(&quot;cantidad&quot;);</span>
+<span class="nc" id="L38">		String desde = req.queryParams(&quot;desde&quot;);</span>
+<span class="nc" id="L39">		String hasta = req.queryParams(&quot;hasta&quot;);</span>
 		
-<span class="nc" id="L45">		LocalDate fechaDesde = 	convertDate(desde);		</span>
-<span class="nc" id="L46">		LocalDate fechaHasta = 	convertDate(hasta);		</span>
-		
-<span class="nc" id="L48">		System.out.print(fechaDesde + &quot; &quot; + fechaHasta);</span>
-		    
-<span class="nc" id="L50">		int cant = 0;</span>
-<span class="nc bnc" id="L51" title="All 2 branches missed.">		if (! cantidad.isEmpty()){</span>
-<span class="nc" id="L52">			 cant = Integer.parseInt (cantidad);</span>
+<span class="nc" id="L41">		LocalDate fechaDesde = 	convertDate(desde);		</span>
+<span class="nc" id="L42">		LocalDate fechaHasta = 	convertDate(hasta);		</span>
+				    
+<span class="nc" id="L44">		int cant = 0;</span>
+<span class="nc bnc" id="L45" title="All 2 branches missed.">		if (! cantidad.isEmpty()){</span>
+<span class="nc" id="L46">			 cant = Integer.parseInt (cantidad);</span>
 		} 		
 		
-<span class="nc" id="L55">		DatosDeBusquedaRepository repository = SingletonDatosBusquedaRepository.get();</span>
+<span class="nc" id="L49">		DatosDeBusquedaRepository repository = SingletonDatosBusquedaRepository.get();</span>
 		
-		//List&lt;DatosDeBusqueda&gt; datosDeBusqueda = DatosBusquedaRepositoryMongoDB.instancia.obtenerPorNombre(terminal);
-
-<span class="nc" id="L59">		List&lt;DatosDeBusqueda&gt; datosDeBusqueda = repository.filtrar(terminal, cant, LocalDate.now(), LocalDate.now().minusDays(1));</span>
+<span class="nc" id="L51">		List&lt;DatosDeBusqueda&gt; datosDeBusqueda = repository.filtrar(terminal, cant, fechaDesde, fechaHasta);</span>
 		
-<span class="nc" id="L61">		model.put(&quot;datosDebusqueda&quot;, datosDeBusqueda);		</span>
+<span class="nc" id="L53">		model.put(&quot;datosDebusqueda&quot;, datosDeBusqueda);		</span>
 		
-<span class="nc" id="L63">		return new ModelAndView(model, &quot;historicoConsultas/listar.hbs&quot;);</span>
+<span class="nc" id="L55">		return new ModelAndView(model, &quot;historicoConsultas/listar.hbs&quot;);</span>
 		
 		//TODO no aparece el nombre ni la fecha en la lista :(
 		
@@ -68,27 +60,27 @@ import spark.Response;
 	
 	private static LocalDate convertDate (String dateToConvert){
 		
-<span class="nc" id="L71">		String date = &quot;&quot;;</span>
+<span class="nc" id="L63">		String date = &quot;&quot;;</span>
 		
 		try {
-<span class="nc" id="L74">			date = java.net.URLDecoder.decode(dateToConvert, &quot;UTF-8&quot;);</span>
+<span class="nc" id="L66">			date = java.net.URLDecoder.decode(dateToConvert, &quot;UTF-8&quot;);</span>
 
-<span class="nc" id="L76">		} catch (UnsupportedEncodingException e) {</span>
-<span class="nc" id="L77">			e.printStackTrace();</span>
-<span class="nc" id="L78">			date = &quot;&quot;;</span>
-<span class="nc" id="L79">		}</span>
+<span class="nc" id="L68">		} catch (UnsupportedEncodingException e) {</span>
+<span class="nc" id="L69">			e.printStackTrace();</span>
+<span class="nc" id="L70">			date = &quot;&quot;;</span>
+<span class="nc" id="L71">		}</span>
 		
-<span class="nc" id="L81">		String[] parts = date.split(&quot;/&quot;);</span>
-<span class="nc" id="L82">		String month = parts[0];</span>
-<span class="nc" id="L83">		String day = parts[1];</span>
-<span class="nc" id="L84">		String year = parts[2];		</span>
+<span class="nc" id="L73">		String[] parts = date.split(&quot;/&quot;);</span>
+<span class="nc" id="L74">		String month = parts[0];</span>
+<span class="nc" id="L75">		String day = parts[1];</span>
+<span class="nc" id="L76">		String year = parts[2];		</span>
 		
-<span class="nc" id="L86">		DateTimeFormatter germanFormatter = DateTimeFormatter.ofLocalizedDate(</span>
-<span class="nc" id="L87">		        FormatStyle.MEDIUM).withLocale(Locale.GERMAN);</span>
+<span class="nc" id="L78">		DateTimeFormatter germanFormatter = DateTimeFormatter.ofLocalizedDate(</span>
+<span class="nc" id="L79">		        FormatStyle.MEDIUM).withLocale(Locale.GERMAN);</span>
 
-<span class="nc" id="L89">		LocalDate dateConverted = LocalDate.parse(day + &quot;.&quot; + month + &quot;.&quot; + year, germanFormatter);</span>
+<span class="nc" id="L81">		LocalDate dateConverted = LocalDate.parse(day + &quot;.&quot; + month + &quot;.&quot; + year, germanFormatter);</span>
     
-<span class="nc" id="L91">		return dateConverted;</span>
+<span class="nc" id="L83">		return dateConverted;</span>
 	}
 	
 	/*public static ModelAndView listarPorTerminal(Request req, Response res) {

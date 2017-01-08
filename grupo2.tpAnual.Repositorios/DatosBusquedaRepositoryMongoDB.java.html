@@ -68,25 +68,12 @@ public class DatosBusquedaRepositoryMongoDB extends BasicDAO&lt;DatosDeBusqueda,
 	public List&lt;DatosDeBusqueda&gt; filtrar(String nombreTerminal, int cantidad, LocalDate desde, LocalDate hasta){
 		
 		//TODO: filtrar por fecha
-
-		//return this.intersection(this.obtenerPorNombre(nombreTerminal), this.cantidadDePois(cantidad));
-		
-<span class="nc" id="L74">		Query&lt;DatosDeBusqueda&gt; query = createQuery().field(&quot;cantidadDePois&quot;).equal(cantidad).field(&quot;nombreTerminal&quot;).equal(nombreTerminal);</span>
-<span class="nc" id="L75">		return query.asList();</span>
+	
+<span class="nc" id="L72">		Query&lt;DatosDeBusqueda&gt; query = createQuery().field(&quot;cantidadDePois&quot;).equal(cantidad).field(&quot;nombreTerminal&quot;).equal(nombreTerminal);</span>
+<span class="nc" id="L73">		return query.asList();</span>
 	}
 	
-	public &lt;T&gt; List&lt;T&gt; intersection(List&lt;T&gt; list1, List&lt;T&gt; list2) {
-<span class="nc" id="L79">        List&lt;T&gt; list = new ArrayList&lt;T&gt;();</span>
-
-<span class="nc bnc" id="L81" title="All 2 branches missed.">        for (T t : list1) {</span>
-<span class="nc bnc" id="L82" title="All 2 branches missed.">            if(list2.contains(t)) {</span>
-<span class="nc" id="L83">                list.add(t);</span>
-            }
-<span class="nc" id="L85">        }</span>
-<span class="nc" id="L86">        return list;</span>
-   } // si, re sacado de internet
-
-
+	
 	
 	
 }
