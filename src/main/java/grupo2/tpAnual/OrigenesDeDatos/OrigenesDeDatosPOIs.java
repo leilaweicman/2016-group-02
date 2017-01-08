@@ -12,7 +12,7 @@ public abstract class OrigenesDeDatosPOIs extends OrigenesDeDatos{
 	
 	public abstract List<POI> busqueda(String txtABuscar);
 	
-	public abstract void darDeBajaPOI(Integer id);
+	public abstract void darDeBajaPOI(long id);
 
-	public abstract POI buscarPorId (Integer id);
+	public abstract POI buscarPorId (long id);
 }

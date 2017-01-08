@@ -24,6 +24,7 @@ import org.joda.time.DateTime;
 import org.uqbar.geodds.Point;
 
 import grupo2.tpAnual.ConverterPoint;
+import grupo2.tpAnual.PersistentEntity;
 import grupo2.tpAnual.AccesoriosPois.Comuna;
 import grupo2.tpAnual.AccesoriosPois.Direccion;
 
@@ -32,11 +33,11 @@ import grupo2.tpAnual.AccesoriosPois.Direccion;
 @Table(name="POI") 
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="tipo", discriminatorType = DiscriminatorType.INTEGER)
-public abstract class POI {
+public abstract class POI extends PersistentEntity{
 
-	@org.mongodb.morphia.annotations.Id
+	/*@org.mongodb.morphia.annotations.Id
 	@Id	@GeneratedValue
-	private Integer id;
+	private Integer id;*/
 	
 	@org.mongodb.morphia.annotations.Transient
 	@OneToOne(cascade=CascadeType.ALL) @Embedded
@@ -69,13 +70,13 @@ public abstract class POI {
 	
 	}
 	
-	public void setId(Integer numeroVerificador) {
+	/*public void setId(Integer numeroVerificador) {
 		this.id = numeroVerificador;
 	}
 
 	public Integer getId() {
 		return this.id;
-	}
+	}*/
 
 	public Direccion getDireccion() {
 		return direccion;

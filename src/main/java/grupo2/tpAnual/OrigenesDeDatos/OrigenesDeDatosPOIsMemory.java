@@ -29,8 +29,8 @@ public class OrigenesDeDatosPOIsMemory extends OrigenesDeDatosPOIs {
 		pois.add(poi);
 	}
 
-	public void darDeBajaPOI(Integer id) {
-		this.pois.removeIf(poi -> poi.getId().equals(id));
+	public void darDeBajaPOI(long id) {
+		this.pois.removeIf(poi -> poi.getId()==id);
 	}
 
 	@Override
@@ -41,8 +41,8 @@ public class OrigenesDeDatosPOIsMemory extends OrigenesDeDatosPOIs {
 	}
 	
 	@Override
-	public POI buscarPorId(Integer id){
-		List<POI> pois = this.pois.stream().filter(poi -> poi.getId().equals(id)).collect(Collectors.toList());
+	public POI buscarPorId(long id){
+		List<POI> pois = this.pois.stream().filter(poi -> poi.getId()==id).collect(Collectors.toList());
 		if(pois.size()> 0){
 			return pois.get(0);
 		}

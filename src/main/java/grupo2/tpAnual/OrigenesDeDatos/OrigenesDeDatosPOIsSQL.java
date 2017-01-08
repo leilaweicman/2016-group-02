@@ -26,7 +26,7 @@ public class OrigenesDeDatosPOIsSQL extends OrigenesDeDatosPOIs implements WithG
 		entityManager().persist(poi);
 	}
 
-	public void darDeBajaPOI(Integer id) {
+	public void darDeBajaPOI(long id) {
 		List<POI> pois = new ArrayList<POI>();
 		pois = entityManager().createQuery("from POI where id = :id", POI.class).setParameter("id", id).getResultList();
 		pois.forEach(poi -> entityManager().remove(poi));
@@ -41,7 +41,7 @@ public class OrigenesDeDatosPOIsSQL extends OrigenesDeDatosPOIs implements WithG
 	}
 	
 	@Override
-	public POI buscarPorId(Integer id){
+	public POI buscarPorId(long id){
 		List<POI> pois =  entityManager().createQuery("from POI where id= :id", POI.class).setParameter("id", id).getResultList(); 
 		if(pois.size()> 0){
 			return pois.get(0);
