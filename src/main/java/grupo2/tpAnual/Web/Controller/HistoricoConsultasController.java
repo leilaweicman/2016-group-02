@@ -61,7 +61,7 @@ public class HistoricoConsultasController {
 
 		return new ModelAndView(model, "historicoConsultas/listar.hbs");
 
-		// TODO no aparece el nombre ni la fecha en la lista :(
+		// TODO no aparece el nombre en la lista :(
 
 	}
 
