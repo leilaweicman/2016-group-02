@@ -44,7 +44,7 @@ public class HistoricoConsultasController {
 		}
 		
 		LocalDate fechaHasta = 	null;		
-		if (! desde.isEmpty()){
+		if (! hasta.isEmpty()){
 			fechaHasta = convertDate(hasta);		
 		}
 				    

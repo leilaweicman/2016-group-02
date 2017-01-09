@@ -60,7 +60,22 @@ public class DatosBusquedaRepositoryMongoDB extends BasicDAO<DatosDeBusqueda, Ob
 	
 	public List<DatosDeBusqueda> filtrar(String nombreTerminal, int cantidad, LocalDate desde, LocalDate hasta){
 		
-		Query<DatosDeBusqueda> query = createQuery().field("cantidadDePois").equal(cantidad).field("nombreTerminal").equal(nombreTerminal).field("fecha").greaterThanOrEq(desde).field("fecha").lessThanOrEq(hasta);
+		//Query<DatosDeBusqueda> query = createQuery().field("cantidadDePois").equal(cantidad).field("nombreTerminal").equal(nombreTerminal).field("fecha").greaterThanOrEq(desde).field("fecha").lessThanOrEq(hasta);
+		Query<DatosDeBusqueda> query = createQuery();
+		
+		if(cantidad != 0){
+			query.field("cantidadDePois").equal(cantidad);
+		}
+		if (!nombreTerminal.isEmpty()){
+			query.field("nombreTerminal").equal(nombreTerminal);
+		}
+		
+		if(desde != null){
+			query.field("fecha").greaterThanOrEq(desde);
+		}
+		if(hasta != null){
+			query.field("fecha").lessThanOrEq(hasta);
+		}
 		return query.asList();
 	}
 	
