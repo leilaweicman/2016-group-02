@@ -59,24 +59,22 @@ public class DatosBusquedaRepositoryMongoDB extends BasicDAO&lt;DatosDeBusqueda,
 	}
 	
 	public List&lt;DatosDeBusqueda&gt; filtrar(String nombreTerminal, int cantidad, LocalDate desde, LocalDate hasta){
+<span class="nc" id="L62">		Query&lt;DatosDeBusqueda&gt; query = createQuery();</span>
 		
-		//Query&lt;DatosDeBusqueda&gt; query = createQuery().field(&quot;cantidadDePois&quot;).equal(cantidad).field(&quot;nombreTerminal&quot;).equal(nombreTerminal).field(&quot;fecha&quot;).greaterThanOrEq(desde).field(&quot;fecha&quot;).lessThanOrEq(hasta);
-<span class="nc" id="L64">		Query&lt;DatosDeBusqueda&gt; query = createQuery();</span>
-		
-<span class="nc bnc" id="L66" title="All 2 branches missed.">		if(cantidad != 0){</span>
-<span class="nc" id="L67">			query.field(&quot;cantidadDePois&quot;).equal(cantidad);</span>
+<span class="nc bnc" id="L64" title="All 2 branches missed.">		if(cantidad != 0){</span>
+<span class="nc" id="L65">			query.field(&quot;cantidadDePois&quot;).equal(cantidad);</span>
 		}
-<span class="nc bnc" id="L69" title="All 2 branches missed.">		if (!nombreTerminal.isEmpty()){</span>
-<span class="nc" id="L70">			query.field(&quot;nombreTerminal&quot;).equal(nombreTerminal);</span>
+<span class="nc bnc" id="L67" title="All 2 branches missed.">		if (!nombreTerminal.isEmpty()){</span>
+<span class="nc" id="L68">			query.field(&quot;nombreTerminal&quot;).equal(nombreTerminal);</span>
 		}
 		
-<span class="nc bnc" id="L73" title="All 2 branches missed.">		if(desde != null){</span>
-<span class="nc" id="L74">			query.field(&quot;fecha&quot;).greaterThanOrEq(desde);</span>
+<span class="nc bnc" id="L71" title="All 2 branches missed.">		if(desde != null){</span>
+<span class="nc" id="L72">			query.field(&quot;fecha&quot;).greaterThanOrEq(desde);</span>
 		}
-<span class="nc bnc" id="L76" title="All 2 branches missed.">		if(hasta != null){</span>
-<span class="nc" id="L77">			query.field(&quot;fecha&quot;).lessThanOrEq(hasta);</span>
+<span class="nc bnc" id="L74" title="All 2 branches missed.">		if(hasta != null){</span>
+<span class="nc" id="L75">			query.field(&quot;fecha&quot;).lessThanOrEq(hasta);</span>
 		}
-<span class="nc" id="L79">		return query.asList();</span>
+<span class="nc" id="L77">		return query.asList();</span>
 	}
 	
 	

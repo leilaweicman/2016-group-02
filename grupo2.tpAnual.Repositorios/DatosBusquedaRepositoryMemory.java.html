@@ -36,31 +36,28 @@ public class DatosBusquedaRepositoryMemory /*extends BasicDAO&lt;DatosDeBusqueda
 	}
 	
 	public List&lt;DatosDeBusqueda&gt; filtrar(String nombreTerminal, int cantidad, LocalDate desde, LocalDate hasta){
-//		return listaDatosDeBusqueda.stream().filter(registro -&gt;registro.esLaTerminal(nombreTerminal) &amp;&amp; registro.tieneEstaCantidadDePois(cantidad)
-//				&amp;&amp; registro.estaEntreFechas(desde, hasta) ).collect(Collectors.toList());
-		
-<span class="nc" id="L42">		List&lt;DatosDeBusqueda&gt; listaFiltrada= listaDatosDeBusqueda;</span>
-<span class="nc bnc" id="L43" title="All 2 branches missed.">		if(!nombreTerminal.isEmpty()){</span>
-<span class="nc" id="L44">			listaFiltrada = listaFiltrada.stream().filter(registro -&gt;registro.esLaTerminal(nombreTerminal)).collect(Collectors.toList());</span>
+<span class="nc" id="L39">		List&lt;DatosDeBusqueda&gt; listaFiltrada= listaDatosDeBusqueda;</span>
+<span class="nc bnc" id="L40" title="All 2 branches missed.">		if(!nombreTerminal.isEmpty()){</span>
+<span class="nc" id="L41">			listaFiltrada = listaFiltrada.stream().filter(registro -&gt;registro.esLaTerminal(nombreTerminal)).collect(Collectors.toList());</span>
 		}
 		
-<span class="nc bnc" id="L47" title="All 2 branches missed.">		if(cantidad != 0){</span>
-<span class="nc" id="L48">			listaFiltrada = listaFiltrada.stream().filter(registro -&gt;registro.tieneEstaCantidadDePois(cantidad)).collect(Collectors.toList());</span>
+<span class="nc bnc" id="L44" title="All 2 branches missed.">		if(cantidad != 0){</span>
+<span class="nc" id="L45">			listaFiltrada = listaFiltrada.stream().filter(registro -&gt;registro.tieneEstaCantidadDePois(cantidad)).collect(Collectors.toList());</span>
 		}
 		
-<span class="nc bnc" id="L51" title="All 2 branches missed.">		if(desde != null){</span>
-<span class="nc" id="L52">			listaFiltrada = listaFiltrada.stream().filter(registro -&gt;registro.fechaMayorOIgualA(desde)).collect(Collectors.toList());</span>
+<span class="nc bnc" id="L48" title="All 2 branches missed.">		if(desde != null){</span>
+<span class="nc" id="L49">			listaFiltrada = listaFiltrada.stream().filter(registro -&gt;registro.fechaMayorOIgualA(desde)).collect(Collectors.toList());</span>
 		}
 		
-<span class="nc bnc" id="L55" title="All 2 branches missed.">		if(hasta != null){</span>
-<span class="nc" id="L56">			listaFiltrada = listaFiltrada.stream().filter(registro -&gt;registro.fechaMenorOIgualA(hasta)).collect(Collectors.toList());</span>
+<span class="nc bnc" id="L52" title="All 2 branches missed.">		if(hasta != null){</span>
+<span class="nc" id="L53">			listaFiltrada = listaFiltrada.stream().filter(registro -&gt;registro.fechaMenorOIgualA(hasta)).collect(Collectors.toList());</span>
 		}
 		
-<span class="nc" id="L59">		return listaFiltrada;</span>
+<span class="nc" id="L56">		return listaFiltrada;</span>
 	}
 
 	public List&lt;DatosDeBusqueda&gt; cantidadDePois(Integer cantidad) {
-<span class="nc" id="L63">		return  listaDatosDeBusqueda.stream().filter(registro -&gt; registro.tieneEstaCantidadDePois(cantidad)).collect(Collectors.toList());</span>
+<span class="nc" id="L60">		return  listaDatosDeBusqueda.stream().filter(registro -&gt; registro.tieneEstaCantidadDePois(cantidad)).collect(Collectors.toList());</span>
 	}
 
 	

@@ -62,7 +62,7 @@ import grupo2.tpAnual.Web.Server;
 <span class="nc" id="L62">		datoBuscado2 = new DatosDeBusqueda(&quot;flores&quot;, &quot;carpetas&quot;, 14, 15, today.minusDays(1), pois);</span>
 <span class="nc" id="L63">		datoBuscado3 = new DatosDeBusqueda(&quot;flores&quot;, &quot;lapices&quot;, 14, 15, today.minusDays(2), pois);</span>
 	
-<span class="nc" id="L65">		morphia = new MorphiaService(); //TODO no se si se pone el new</span>
+<span class="nc" id="L65">		morphia = new MorphiaService();</span>
 		
 <span class="nc" id="L67">		instance = new DatosBusquedaRepositoryMongoDB(DatosDeBusqueda.class, morphia.getDatastore());</span>
 
