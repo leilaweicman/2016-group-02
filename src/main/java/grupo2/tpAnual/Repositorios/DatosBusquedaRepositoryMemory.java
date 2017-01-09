@@ -36,8 +36,27 @@ public class DatosBusquedaRepositoryMemory /*extends BasicDAO<DatosDeBusqueda, O
 	}
 	
 	public List<DatosDeBusqueda> filtrar(String nombreTerminal, int cantidad, LocalDate desde, LocalDate hasta){
-		return listaDatosDeBusqueda.stream().filter(registro ->registro.esLaTerminal(nombreTerminal) && registro.tieneEstaCantidadDePois(cantidad)&& registro.estaEntreFechas(desde, hasta) ).collect(Collectors.toList());
+//		return listaDatosDeBusqueda.stream().filter(registro ->registro.esLaTerminal(nombreTerminal) && registro.tieneEstaCantidadDePois(cantidad)
+//				&& registro.estaEntreFechas(desde, hasta) ).collect(Collectors.toList());
 		
+		List<DatosDeBusqueda> listaFiltrada= listaDatosDeBusqueda;
+		if(!nombreTerminal.isEmpty()){
+			listaFiltrada = listaFiltrada.stream().filter(registro ->registro.esLaTerminal(nombreTerminal)).collect(Collectors.toList());
+		}
+		
+		if(cantidad != 0){
+			listaFiltrada = listaFiltrada.stream().filter(registro ->registro.tieneEstaCantidadDePois(cantidad)).collect(Collectors.toList());
+		}
+		
+		if(desde != null){
+			listaFiltrada = listaFiltrada.stream().filter(registro ->registro.fechaMayorOIgualA(desde)).collect(Collectors.toList());
+		}
+		
+		if(hasta != null){
+			listaFiltrada = listaFiltrada.stream().filter(registro ->registro.fechaMenorOIgualA(hasta)).collect(Collectors.toList());
+		}
+		
+		return listaFiltrada;
 	}
 
 	public List<DatosDeBusqueda> cantidadDePois(Integer cantidad) {

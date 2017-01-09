@@ -88,4 +88,21 @@ public class DatosDeBusqueda {
 		return (this.fecha.isAfter(fechaDesde) && this.fecha.isBefore(fechaHasta));
 		
 	}
+	
+	public Boolean fechaMayorOIgualA(LocalDate fecha){
+		
+		if (fecha == null) {
+			return false;
+		}
+		return (this.fecha.isAfter(fecha) || this.fecha.isEqual(fecha) );
+		
+	}
+	public Boolean fechaMenorOIgualA(LocalDate fecha){
+		
+		if (fecha == null) {
+			return false;
+		}
+		return (this.fecha.isBefore(fecha) || this.fecha.isEqual(fecha));
+		
+	}
 }
