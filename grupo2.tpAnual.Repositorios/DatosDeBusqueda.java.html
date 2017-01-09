@@ -2,11 +2,6 @@
 
 
 import org.bson.types.ObjectId;
-import org.mongodb.morphia.annotations.Converters;
-import org.mongodb.morphia.annotations.Embedded;
-import org.mongodb.morphia.annotations.Entity;
-import org.mongodb.morphia.annotations.Id;
-import org.mongodb.morphia.annotations.Property;
 
 import grupo2.tpAnual.LocalDateConverter.LocalDateConverter;
 import grupo2.tpAnual.Pois.POI;
@@ -36,61 +31,78 @@ public class DatosDeBusqueda {
 	@org.mongodb.morphia.annotations.Property
 	private Integer cantidadDePois;
 	
-<span class="fc" id="L39">	public DatosDeBusqueda(String nombre, String texto, long segundos, int totalResultados, LocalDate fecha,List&lt;POI&gt; poisRespuesta ) {</span>
-<span class="fc" id="L40">		this.txtBuscado = texto;</span>
-<span class="fc" id="L41">		this.segundosQueTardoLaBusqueda = segundos;</span>
-<span class="fc" id="L42">		this.totalDeResultados = totalResultados;</span>
-<span class="fc" id="L43">		this.fecha = fecha;</span>
-<span class="fc" id="L44">		this.nombreTerminal = nombre;</span>
-<span class="fc" id="L45">		this.poisRespuestaBusqueda=new ArrayList&lt;&gt;();</span>
-<span class="fc" id="L46">		this.poisRespuestaBusqueda.addAll(poisRespuesta);</span>
-<span class="fc" id="L47">		this.cantidadDePois = this.poisRespuestaBusqueda.size();</span>
-<span class="fc" id="L48">	}</span>
+<span class="fc" id="L34">	public DatosDeBusqueda(String nombre, String texto, long segundos, int totalResultados, LocalDate fecha,List&lt;POI&gt; poisRespuesta ) {</span>
+<span class="fc" id="L35">		this.txtBuscado = texto;</span>
+<span class="fc" id="L36">		this.segundosQueTardoLaBusqueda = segundos;</span>
+<span class="fc" id="L37">		this.totalDeResultados = totalResultados;</span>
+<span class="fc" id="L38">		this.fecha = fecha;</span>
+<span class="fc" id="L39">		this.nombreTerminal = nombre;</span>
+<span class="fc" id="L40">		this.poisRespuestaBusqueda=new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L41">		this.poisRespuestaBusqueda.addAll(poisRespuesta);</span>
+<span class="fc" id="L42">		this.cantidadDePois = this.poisRespuestaBusqueda.size();</span>
+<span class="fc" id="L43">	}</span>
 	
-<span class="fc" id="L50">	public DatosDeBusqueda() {</span>
+<span class="fc" id="L45">	public DatosDeBusqueda() {</span>
 		
-<span class="fc" id="L52">	}</span>
+<span class="fc" id="L47">	}</span>
 	
 	public String getTxtBuscado() {
-<span class="nc" id="L55">		return txtBuscado;</span>
+<span class="nc" id="L50">		return txtBuscado;</span>
 	}
 
 	public long getSegundosQueTardoLaBusqueda() {
-<span class="fc" id="L59">		return segundosQueTardoLaBusqueda;</span>
+<span class="fc" id="L54">		return segundosQueTardoLaBusqueda;</span>
 	}
 
 	public int getTotalDeResultados() {
-<span class="fc" id="L63">		return totalDeResultados;</span>
+<span class="fc" id="L58">		return totalDeResultados;</span>
 	}
 
 	public LocalDate getFecha() {
-<span class="fc" id="L67">		return fecha;</span>
+<span class="fc" id="L62">		return fecha;</span>
 	}
 
 	public String getNombre() {
-<span class="fc" id="L71">		return nombreTerminal;</span>
+<span class="fc" id="L66">		return nombreTerminal;</span>
 	}
 	 public List&lt;POI&gt; getPoisRespuestaBusqueda() {
-<span class="nc" id="L74">		 return poisRespuestaBusqueda;</span>
+<span class="nc" id="L69">		 return poisRespuestaBusqueda;</span>
 	 }
 	public Integer getCantidadDePois(){
-<span class="nc" id="L77">		return cantidadDePois;</span>
+<span class="nc" id="L72">		return cantidadDePois;</span>
 	}
 	
 	public Boolean esLaTerminal(String terminal){
-<span class="fc" id="L81">		return this.getNombre().equals(terminal);</span>
+<span class="fc" id="L76">		return this.getNombre().equals(terminal);</span>
 	}
 	
 	public Boolean tieneEstaCantidadDePois(Integer cantidad){
-<span class="nc bnc" id="L85" title="All 2 branches missed.">		return this.getCantidadDePois() == cantidad;</span>
+<span class="nc bnc" id="L80" title="All 2 branches missed.">		return this.getCantidadDePois() == cantidad;</span>
 	}
 	
 	public Boolean estaEntreFechas(LocalDate fechaDesde, LocalDate fechaHasta){
 		
-<span class="nc bnc" id="L90" title="All 4 branches missed.">		if (fechaDesde == null || fechaHasta == null) {</span>
-<span class="nc" id="L91">			return false;</span>
+<span class="nc bnc" id="L85" title="All 4 branches missed.">		if (fechaDesde == null || fechaHasta == null) {</span>
+<span class="nc" id="L86">			return false;</span>
 		}
-<span class="nc bnc" id="L93" title="All 4 branches missed.">		return (this.fecha.isAfter(fechaDesde) &amp;&amp; this.fecha.isBefore(fechaHasta));</span>
+<span class="nc bnc" id="L88" title="All 4 branches missed.">		return (this.fecha.isAfter(fechaDesde) &amp;&amp; this.fecha.isBefore(fechaHasta));</span>
+		
+	}
+	
+	public Boolean fechaMayorOIgualA(LocalDate fecha){
+		
+<span class="nc bnc" id="L94" title="All 2 branches missed.">		if (fecha == null) {</span>
+<span class="nc" id="L95">			return false;</span>
+		}
+<span class="nc bnc" id="L97" title="All 4 branches missed.">		return (this.fecha.isAfter(fecha) || this.fecha.isEqual(fecha) );</span>
+		
+	}
+	public Boolean fechaMenorOIgualA(LocalDate fecha){
+		
+<span class="nc bnc" id="L102" title="All 2 branches missed.">		if (fecha == null) {</span>
+<span class="nc" id="L103">			return false;</span>
+		}
+<span class="nc bnc" id="L105" title="All 4 branches missed.">		return (this.fecha.isBefore(fecha) || this.fecha.isEqual(fecha));</span>
 		
 	}
 }

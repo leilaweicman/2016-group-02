@@ -5,48 +5,62 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.bson.types.ObjectId;
-import org.mongodb.morphia.dao.BasicDAO;
-import org.mongodb.morphia.query.Query;
-
 public class DatosBusquedaRepositoryMemory /*extends BasicDAO&lt;DatosDeBusqueda, ObjectId&gt;*/ implements DatosDeBusquedaRepository{
 	
-<span class="fc" id="L14">	public static DatosBusquedaRepositoryMemory instancia = new DatosBusquedaRepositoryMemory(); </span>
+<span class="fc" id="L10">	public static DatosBusquedaRepositoryMemory instancia = new DatosBusquedaRepositoryMemory(); </span>
 	
 	private List&lt;DatosDeBusqueda&gt; listaDatosDeBusqueda;	
 	
-<span class="fc" id="L18">	public DatosBusquedaRepositoryMemory() {</span>
-<span class="fc" id="L19">		this.listaDatosDeBusqueda = new ArrayList&lt;DatosDeBusqueda&gt;();		</span>
-<span class="fc" id="L20">	}</span>
+<span class="fc" id="L14">	public DatosBusquedaRepositoryMemory() {</span>
+<span class="fc" id="L15">		this.listaDatosDeBusqueda = new ArrayList&lt;DatosDeBusqueda&gt;();		</span>
+<span class="fc" id="L16">	}</span>
 
 	public void agregarDatosBusqueda(DatosDeBusqueda registroBusqueda) {
-<span class="fc" id="L23">		this.listaDatosDeBusqueda.add(registroBusqueda);</span>
-<span class="fc" id="L24">	}</span>
+<span class="fc" id="L19">		this.listaDatosDeBusqueda.add(registroBusqueda);</span>
+<span class="fc" id="L20">	}</span>
 
 	public List&lt;DatosDeBusqueda&gt; consultarDatos() {
-<span class="fc" id="L27">		return this.listaDatosDeBusqueda;</span>
+<span class="fc" id="L23">		return this.listaDatosDeBusqueda;</span>
 	}
 
 	public List&lt;DatosDeBusqueda&gt; obtenerPorNombre(String nombreTerminal) {
-<span class="fc" id="L31">		return listaDatosDeBusqueda.stream().filter(registro -&gt; registro.esLaTerminal(nombreTerminal)).collect(Collectors.toList());</span>
+<span class="fc" id="L27">		return listaDatosDeBusqueda.stream().filter(registro -&gt; registro.esLaTerminal(nombreTerminal)).collect(Collectors.toList());</span>
 	}
 
 	public List&lt;Integer&gt; obtenerTotalResultadosPorTerminal(String nombreTerminal) {
-<span class="fc" id="L35">		return this.obtenerPorNombre(nombreTerminal).stream().map(registro -&gt; registro.getTotalDeResultados()).collect(Collectors.toList());</span>
+<span class="fc" id="L31">		return this.obtenerPorNombre(nombreTerminal).stream().map(registro -&gt; registro.getTotalDeResultados()).collect(Collectors.toList());</span>
 	}
 
 	public Integer cantidadDeBusquedasDe(String nombre) {
-<span class="nc" id="L39">		return this.obtenerTotalResultadosPorTerminal(nombre).stream().reduce(0, (a, b) -&gt; a + b);</span>
+<span class="nc" id="L35">		return this.obtenerTotalResultadosPorTerminal(nombre).stream().reduce(0, (a, b) -&gt; a + b);</span>
 	}
 	
 	public List&lt;DatosDeBusqueda&gt; filtrar(String nombreTerminal, int cantidad, LocalDate desde, LocalDate hasta){
-<span class="nc bnc" id="L43" title="All 6 branches missed.">		return listaDatosDeBusqueda.stream().filter(registro -&gt;registro.esLaTerminal(nombreTerminal) &amp;&amp; registro.tieneEstaCantidadDePois(cantidad)&amp;&amp; registro.estaEntreFechas(desde, hasta) ).collect(Collectors.toList());</span>
+//		return listaDatosDeBusqueda.stream().filter(registro -&gt;registro.esLaTerminal(nombreTerminal) &amp;&amp; registro.tieneEstaCantidadDePois(cantidad)
+//				&amp;&amp; registro.estaEntreFechas(desde, hasta) ).collect(Collectors.toList());
 		
+<span class="nc" id="L42">		List&lt;DatosDeBusqueda&gt; listaFiltrada= listaDatosDeBusqueda;</span>
+<span class="nc bnc" id="L43" title="All 2 branches missed.">		if(!nombreTerminal.isEmpty()){</span>
+<span class="nc" id="L44">			listaFiltrada = listaFiltrada.stream().filter(registro -&gt;registro.esLaTerminal(nombreTerminal)).collect(Collectors.toList());</span>
+		}
+		
+<span class="nc bnc" id="L47" title="All 2 branches missed.">		if(cantidad != 0){</span>
+<span class="nc" id="L48">			listaFiltrada = listaFiltrada.stream().filter(registro -&gt;registro.tieneEstaCantidadDePois(cantidad)).collect(Collectors.toList());</span>
+		}
+		
+<span class="nc bnc" id="L51" title="All 2 branches missed.">		if(desde != null){</span>
+<span class="nc" id="L52">			listaFiltrada = listaFiltrada.stream().filter(registro -&gt;registro.fechaMayorOIgualA(desde)).collect(Collectors.toList());</span>
+		}
+		
+<span class="nc bnc" id="L55" title="All 2 branches missed.">		if(hasta != null){</span>
+<span class="nc" id="L56">			listaFiltrada = listaFiltrada.stream().filter(registro -&gt;registro.fechaMenorOIgualA(hasta)).collect(Collectors.toList());</span>
+		}
+		
+<span class="nc" id="L59">		return listaFiltrada;</span>
 	}
 
-	@Override
 	public List&lt;DatosDeBusqueda&gt; cantidadDePois(Integer cantidad) {
-<span class="nc" id="L49">		return  listaDatosDeBusqueda.stream().filter(registro -&gt; registro.tieneEstaCantidadDePois(cantidad)).collect(Collectors.toList());</span>
+<span class="nc" id="L63">		return  listaDatosDeBusqueda.stream().filter(registro -&gt; registro.tieneEstaCantidadDePois(cantidad)).collect(Collectors.toList());</span>
 	}
 
 	
