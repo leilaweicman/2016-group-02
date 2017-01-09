@@ -2,11 +2,6 @@ package grupo2.tpAnual.Repositorios;
 
 
 import org.bson.types.ObjectId;
-import org.mongodb.morphia.annotations.Converters;
-import org.mongodb.morphia.annotations.Embedded;
-import org.mongodb.morphia.annotations.Entity;
-import org.mongodb.morphia.annotations.Id;
-import org.mongodb.morphia.annotations.Property;
 
 import grupo2.tpAnual.LocalDateConverter.LocalDateConverter;
 import grupo2.tpAnual.Pois.POI;

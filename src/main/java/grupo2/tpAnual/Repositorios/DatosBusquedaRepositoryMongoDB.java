@@ -26,16 +26,13 @@ public class DatosBusquedaRepositoryMongoDB extends BasicDAO<DatosDeBusqueda, Ob
 	}
 
 	public List<DatosDeBusqueda> consultarDatos() {
-
-		Query<DatosDeBusqueda> query = createQuery();
-		
+		Query<DatosDeBusqueda> query = createQuery();		
 		return query.asList();
 
 	}
 
 	public List<DatosDeBusqueda> obtenerPorNombre(String nombreTerminal) {
 		Query<DatosDeBusqueda> query = createQuery().field("nombreTerminal").equal(nombreTerminal);
-
 		return query.asList();
 
 	}
@@ -45,15 +42,12 @@ public class DatosBusquedaRepositoryMongoDB extends BasicDAO<DatosDeBusqueda, Ob
 	}
 
 	public List<Integer> obtenerTotalResultadosPorTerminal(String nombreTerminal) {
-
-		List<DatosDeBusqueda> lista = this.obtenerPorNombre(nombreTerminal);
-		
+		List<DatosDeBusqueda> lista = this.obtenerPorNombre(nombreTerminal);		
 		return lista.stream().map(datoDeBusqueda -> datoDeBusqueda.getTotalDeResultados()).collect(Collectors.toList());
 
 	}
 
 	public Integer cantidadDeBusquedasDe(String nombre) {
-
 		return this.obtenerTotalResultadosPorTerminal(nombre).stream().reduce(0, (a, b) -> a + b);
 	}
 	
@@ -61,15 +55,12 @@ public class DatosBusquedaRepositoryMongoDB extends BasicDAO<DatosDeBusqueda, Ob
 	public List<DatosDeBusqueda> cantidadDePois(Integer cantidad){
 		
 		Query<DatosDeBusqueda> query = createQuery().field("cantidadDePois").equal(cantidad);
-
 		return query.asList();
 	}
 	
 	public List<DatosDeBusqueda> filtrar(String nombreTerminal, int cantidad, LocalDate desde, LocalDate hasta){
 		
-		//TODO: filtrar por fecha
-	
-		Query<DatosDeBusqueda> query = createQuery().field("cantidadDePois").equal(cantidad).field("nombreTerminal").equal(nombreTerminal);
+		Query<DatosDeBusqueda> query = createQuery().field("cantidadDePois").equal(cantidad).field("nombreTerminal").equal(nombreTerminal).field("fecha").greaterThanOrEq(desde).field("fecha").lessThanOrEq(hasta);
 		return query.asList();
 	}
 	

@@ -7,7 +7,7 @@ public class Server {
 	public static boolean inMemory;
 	
 	public static void main(String[] args) {
-		inMemory = true;
+		inMemory = false;
 		Spark.port(4000);
 		DebugScreen.enableDebugScreen();
 		Router.configure();

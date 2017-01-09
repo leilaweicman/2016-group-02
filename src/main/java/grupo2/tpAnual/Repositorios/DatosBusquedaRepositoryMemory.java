@@ -5,10 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.bson.types.ObjectId;
-import org.mongodb.morphia.dao.BasicDAO;
-import org.mongodb.morphia.query.Query;
-
 public class DatosBusquedaRepositoryMemory /*extends BasicDAO<DatosDeBusqueda, ObjectId>*/ implements DatosDeBusquedaRepository{
 	
 	public static DatosBusquedaRepositoryMemory instancia = new DatosBusquedaRepositoryMemory(); 
@@ -44,7 +40,6 @@ public class DatosBusquedaRepositoryMemory /*extends BasicDAO<DatosDeBusqueda, O
 		
 	}
 
-	@Override
 	public List<DatosDeBusqueda> cantidadDePois(Integer cantidad) {
 		return  listaDatosDeBusqueda.stream().filter(registro -> registro.tieneEstaCantidadDePois(cantidad)).collect(Collectors.toList());
 	}

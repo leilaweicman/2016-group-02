@@ -2,11 +2,6 @@ package grupo2.tpAnual.Repositorios;
 import java.time.LocalDate;
 import java.util.List;
 
-import org.bson.types.ObjectId;
-import org.mongodb.morphia.dao.DAO;
-import org.mongodb.morphia.query.Query;
-
-
 public interface DatosDeBusquedaRepository {
 	
 	public List<DatosDeBusqueda> obtenerPorNombre(String nombreTerminal);
