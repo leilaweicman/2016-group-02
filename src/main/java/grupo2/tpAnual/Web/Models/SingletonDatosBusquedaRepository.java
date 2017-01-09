@@ -62,7 +62,7 @@ public class SingletonDatosBusquedaRepository extends AbstractPersistenceTest im
 		datoBuscado2 = new DatosDeBusqueda("flores", "carpetas", 14, 15, today.minusDays(1), pois);
 		datoBuscado3 = new DatosDeBusqueda("flores", "lapices", 14, 15, today.minusDays(2), pois);
 	
-		morphia = new MorphiaService(); //TODO no se si se pone el new
+		morphia = new MorphiaService();
 		
 		instance = new DatosBusquedaRepositoryMongoDB(DatosDeBusqueda.class, morphia.getDatastore());
 
